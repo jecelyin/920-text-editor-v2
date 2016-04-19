@@ -1,0 +1,107 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 工具栏背景 -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <!--状态栏背景-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--按钮类默认颜色-->
+        <item name="colorControlNormal">@color/colorControlNormal</item>
+        <!--按钮类选中颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--导航栏背景-->
+        <!--<item name="android:navigationBarColor">@color/navigationBarColor</item>-->
+        <!-- 浮在toolbar上面 -->
+        <item name="windowActionModeOverlay">true</item>
+
+        <!--<item name="android:actionBarStyle">@style/Toolbar</item>-->
+        <item name="actionBarStyle">@style/Toolbar</item>
+        <!--使用方式 app:theme="?attr/actionBarTheme"-->
+        <item name="actionBarTheme">@style/ToolbarTheme</item>
+        <!--<item name="android:actionBarTheme" tools:targetApi="lollipop">@style/ToolbarTheme</item>-->
+        <!--菜单字体颜色-->
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <!--<item name="actionMenuTextAppearance">@style/Toolbar.Item</item>-->
+
+        <item name="actionModeStyle">@style/ActionMode</item>
+        <item name="actionModeFindDrawable">@drawable/find_white</item>
+        <item name="actionModeCloseDrawable">@drawable/back_btn</item>
+
+        <item name="dividerColor">@color/divider</item>
+
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
+
+        <!--App自定义-->
+        <item name="netLoadingDrawable">@drawable/loading_icon</item>
+    </style>
+
+    <!--Toolbar主题，使用方式：app:theme="@style/ToolbarTheme"-->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!--控件颜色，如返回按钮箭头图标的颜色-->
+        <item name="colorControlNormal">#fff</item>
+    </style>
+
+    <!--Toolbar样式，使用方式：style="@style/Toolbar" 要改变返回按钮样式时，要配合app:theme使用-->
+    <style name="Toolbar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="elevation">3dp</item>
+
+        <item name="titleTextColor">#fff</item>
+        <item name="subtitleTextColor">#fff</item>
+
+        <item name="android:elevation" tools:ignore="NewApi">3dp</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="actionMenuTextAppearance">@style/Toolbar.Item</item>
+    </style>
+
+    <style name="Toolbar.Item" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Toolbar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Toolbar.SubTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="ActionMode" parent="Widget.AppCompat.ActionMode">
+
+        <item name="background">@color/actionModeBackground</item>
+        <item name="backgroundSplit">@color/actionModeSplitBackground</item>
+        <item name="height">?attr/actionBarSize</item>
+        <item name="titleTextStyle">@style/ActionMode.Title</item>
+        <item name="subtitleTextStyle">@style/ActionMode.Subtitle</item>
+    </style>
+
+    <style name="ActionMode.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="ActionMode.Subtitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#cecece</item>
+    </style>
+
+    <style name="EditTextStyle" parent="android:Widget.EditText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#cecece</item>
+    </style>
+
+    <style name="MaterialEditText">
+        <item name="met_primaryColor">?colorAccent</item>
+    </style>
+</resources>

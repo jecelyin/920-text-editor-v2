@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="file_list_item_divider_left_margin">70dp</dimen>
+</resources>

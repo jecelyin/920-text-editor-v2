@@ -1,0 +1,17 @@
+<resources>
+    <string name="directory">目录</string>
+    <string name="authenticate">授权</string>
+    <string name="logout">退出</string>
+    <string name="selected_x_items">已选中 %d 个项目</string>
+    <string name="filename">文件名称：</string>
+    <string name="file_encoding">文件编码：</string>
+    <string name="file_save">保存</string>
+    <string name="root_path">根目录</string>
+    <string name="auto_detection_encoding">自动检测编码</string>
+    <string name="illegal_filename">非法文件名</string>
+    <string name="unknown_path">未知的目录</string>
+    <string name="open_file">打开文件</string>
+    <string name="save_file">保存文件</string>
+    <string name="override_file_prompt">%s 已经存在，确认要覆盖它吗？</string>
+    <string name="filter_by_name">按名称过滤</string>
+</resources>

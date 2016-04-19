@@ -1,0 +1,5 @@
+include ':common', ':app', ':styles', ':file_explorer'
+include ':leakcanary-watcher'
+include ':leakcanary-analyzer'
+include ':leakcanary-android'
+include ':leakcanary-android-no-op'

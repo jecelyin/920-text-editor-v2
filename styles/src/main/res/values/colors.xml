@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimaryDark">#248b9b</color>
+    <color name="primary_pressed">#248b9b</color>
+    <color name="primary_color">#47c5df</color>
+    <color name="navigationBarColor">#47c5df</color>
+    <color name="colorControlNormal">#727272</color>
+    <color name="colorAccent">#009688</color>
+    <color name="actionModeBackground">#8BC34A</color>
+    <color name="actionModeSplitBackground">#689F38</color>
+    <color name="divider">#10000000</color>
+</resources>

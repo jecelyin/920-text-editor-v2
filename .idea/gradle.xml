@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/file_explorer" />
+            <option value="$PROJECT_DIR$/leakcanary-analyzer" />
+            <option value="$PROJECT_DIR$/leakcanary-android" />
+            <option value="$PROJECT_DIR$/leakcanary-android-no-op" />
+            <option value="$PROJECT_DIR$/leakcanary-watcher" />
+            <option value="$PROJECT_DIR$/styles" />
+          </set>
+        </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/file_explorer" />
+            <option value="$PROJECT_DIR$/leakcanary-analyzer" />
+            <option value="$PROJECT_DIR$/leakcanary-android" />
+            <option value="$PROJECT_DIR$/leakcanary-android-no-op" />
+            <option value="$PROJECT_DIR$/leakcanary-watcher" />
+            <option value="$PROJECT_DIR$/styles" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

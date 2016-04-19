@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.jecelyin.common">
+
+    <application android:allowBackup="true" android:name=".app.JecApp">
+        <activity
+            android:name=".app.CrashReportDialogActivity"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">920文本编辑器</string>
+    <string name="new_file">新建</string>
+    <string name="open">打开</string>
+    <string name="save">保存</string>
+    <string name="undo">撤销</string>
+    <string name="redo">重做</string>
+    <string name="save_all">全部保存</string>
+    <string name="save_as">另存为</string>
+    <string name="recent_files">最近打开</string>
+    <string name="line_separator">换行符</string>
+    <string name="select_all">全选</string>
+    <string name="duplication_line">重复行</string>
+    <string name="find_in_files">搜索文件</string>
+    <string name="jump_to_start">跳到开始</string>
+    <string name="jump_to_end">跳到结束</string>
+    <string name="goto_line">跳到行</string>
+    <string name="back">上个位置</string>
+    <string name="forward">下个位置</string>
+    <string name="document_info">文档信息</string>
+    <string name="symbol">符号</string>
+    <string name="insert_color">插入颜色</string>
+    <string name="highlight_language">高亮语言</string>
+    <string name="encoding">编码</string>
+    <string name="read_only">只读模式</string>
+    <string name="insert_datetime">插入时间</string>
+    <string name="edit_mode">编辑模式</string>
+    <string name="run">运行</string>
+    <string name="file">文件</string>
+    <string name="other">其它</string>
+    <string name="view">查看</string>
+    <string name="edit">编辑</string>
+    <string name="new_filename">无标题 %d</string>
+    <string name="confirm_save">确认保存</string>
+    <string name="confirm_save_msg">文档 %s 尚未保存，是否保存并关闭</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="cannt_access_file">文件 %s 无法访问</string>
+    <string name="cannt_read_file">无法读取文件 %s</string>
+    <string name="ok">确定</string>
+    <string name="read_file_exception">读取文件时发生异常</string>
+    <string name="init_syntax_msg">正在初始化语法高亮…</string>
+    <string name="init_syntax_error">初始化语法文件失败，请检查是否有足够的存储空间</string>
+    <string name="init_build_index_error">建立索引失败</string>
+    <string name="close">关闭</string>
+    <string name="cancel">取消</string>
+    <string name="convert_wrap_char">转换换行符</string>
+    <string name="path_x">路径：%s</string>
+    <string name="char_x">字符数：%d</string>
+    <string name="word_x">单词数：%d</string>
+    <string name="line_number_x">行数：%d</string>
+    <string name="encoding_x">编码：%s</string>
+    <string name="tab">标签</string>
+    <string name="no_change">没有任何改变</string>
+    <string name="save_success">保存成功</string>
+    <string name="find_label">Find What:</string>
+    <string name="replace_label">Replace With:</string>
+    <string name="case_sensitive">Case sensitive</string>
+    <string name="whole_words_only">Whole words only</string>
+    <string name="regex">Regular expression</string>
+    <string name="in_path">In Path:</string>
+    <string name="recursively">Recursively</string>
+    <string name="cannot_be_empty">不能为空</string>
+    <string name="path_not_exists">路径不存在</string>
+    <string name="find_not_found">找不到结果</string>
+    <string name="previous_occurrence">向上查找</string>
+    <string name="next_occurrence">查找下一个</string>
+    <string name="replace_all">替换全部</string>
+    <string name="searching">搜索中…</string>
+    <string name="select_lang_to_highlight">Select a language to highlight</string>
+    <string name="more_menu">更多菜单</string>
+    <string name="reopen_with_encoding">使用该编码重新打开</string>
+    <string name="save_as_file_first">请先保存为文件</string>
+    <string name="document_changed">文档已经改变</string>
+    <string name="give_up_document_changed_message">文档已经改变，重新打开将放弃改变，确认要放弃？</string>
+    <string name="preview_in_browser">在浏览器预览</string>
+    <string name="use_sl4a_in_background_run_script">调用SL4A在后台运行脚本</string>
+    <string name="use_sl4a_in_terminal_run_script">调用SL4A在命令行运行脚本</string>
+    <string name="please_save_as_file_first">请先保存为文件</string>
+    <string name="run_fail_message">调用外部应用失败</string>
+    <string name="settings">设置</string>
+    <string name="editor">编辑器</string>
+    <string name="font">字体</string>
+    <string name="default_value">默认值</string>
+    <string name="font_size">字体大小</string>
+    <string name="cursor_width">光标宽度</string>
+    <string name="touch_to_adjust_text_size">多点触摸缩放字体大小</string>
+    <string name="word_wrap_in_editor">自动换行</string>
+    <string name="show_linenumber">显示行号</string>
+    <string name="show_whitespace">显示空白字符</string>
+    <string name="auto_indent">自动缩进</string>
+    <string name="insert_space_for_tab">使用空格代替制表符</string>
+    <string name="indent_size">缩进大小</string>
+    <string name="highlight_and_theme">高亮和主题</string>
+    <string name="highlight_the_file_size_limit">限制高亮的文件大小</string>
+    <string name="select_theme">选择主题（待开发）</string>
+    <string name="auto_save">自动保存文档</string>
+    <string name="remember_last_opened_files">记住最后打开的文件</string>
+    <string name="remember_last_opened_files_summary">启动编辑器时自动打开上次打开的文件</string>
+    <string name="screen_orientation">屏幕方向</string>
+    <string name="keep_screen_on">保持屏幕常亮</string>
+    <string name="auto_capitalize">首字母自动大写</string>
+    <string name="feedback">意见反馈</string>
+    <string name="donate">捐赠</string>
+    <string name="help_translate">翻译本应用</string>
+    <string name="about">关于</string>
+    <string name="enable_highlight">启用语法高亮</string>
+    <string name="version_x">版本：%s</string>
+    <string name="need_to_enable_read_storage_permissions">需要打开读取存储器权限</string>
+    <string name="file_not_exists">文件不存在</string>
+    <string name="cannt_handle_intent_x">无法处理来源信息：%s</string>
+    <string name="handle_intent_x_error">处理来源：%s 时发生错误</string>
+    <string name="hex_color_char" translatable="false">#</string>
+    <string name="color_R" translatable="false">R:</string>
+    <string name="color_G" translatable="false">G:</string>
+    <string name="color_B" translatable="false">B:</string>
+    <string name="verify_sign_failure">你当前使用的是非官方发布的应用，请转到 https://github.com/jecelyin/920-text-editor-v2/releases 下载官方发布的应用。</string>
+    <string name="press_again_will_exit">再按一次返回按钮将退出程序</string>
+    <string name="find_replace">查找/替换</string>
+    <string name="find_title">\"%s\" Find Results</string>
+    <string name="zero_matches">0 matches</string>
+    <string name="chooser_browser">选择一个浏览器</string>
+    <string name="find_or_replace">查找/替换…</string>
+    <string name="other_application">其它程序…</string>
+    <string name="chooser_application">选择程序</string>
+    <string name="editor_create_unknown_exception">创建编辑器时发生未知异常</string>
+    <string name="convert_to_uppercase">转换为大写</string>
+    <string name="convert_to_lowercase">转换为小写</string>
+    <string name="duplication_text">重复选中文本</string>
+    <string name="tab_size">制表符大小</string>
+    <string name="new_version_available">发现新版本</string>
+    <string name="install">安装</string>
+    <string name="new_version_update_content">Latest Version: %1$s\n\nWhat\'s New:\n%2$s</string>
+    <string name="download_progress">正在下载：%1$d%%</string>
+    <string name="download_failure_x">下载失败：%s</string>
+    <string name="start_download">开始下载</string>
+    <string name="auto_check_updates">自动检查更新</string>
+    <string name="cannt_download">无法下载</string>
+    <string name="readonly_mode_not_support_this_action">Read-only mode does not support this action</string>
+    <string name="x_text_replaced">%d text has been replaced</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 found</item>
+        <item quantity="other">%d text replaced</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>英语</item>
+        <item>中文</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>转换为 \\n（Linux/OSX）</item>
+        <item>转换为 \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="date_number">
+        <item>〇</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+        <item>七</item>
+        <item>八</item>
+        <item>九</item>
+        <item>十</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>自动</item>
+        <item>横屏</item>
+        <item>竖屏</item>
+    </string-array>
+</resources>

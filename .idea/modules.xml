@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/920-Text-Editor.iml" filepath="$PROJECT_DIR$/920-Text-Editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/file_explorer/file_explorer.iml" filepath="$PROJECT_DIR$/file_explorer/file_explorer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leakcanary-analyzer/leakcanary-analyzer.iml" filepath="$PROJECT_DIR$/leakcanary-analyzer/leakcanary-analyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leakcanary-android/leakcanary-android.iml" filepath="$PROJECT_DIR$/leakcanary-android/leakcanary-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leakcanary-android-no-op/leakcanary-android-no-op.iml" filepath="$PROJECT_DIR$/leakcanary-android-no-op/leakcanary-android-no-op.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leakcanary-watcher/leakcanary-watcher.iml" filepath="$PROJECT_DIR$/leakcanary-watcher/leakcanary-watcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/styles/styles.iml" filepath="$PROJECT_DIR$/styles/styles.iml" />
+    </modules>
+  </component>
+</project>
