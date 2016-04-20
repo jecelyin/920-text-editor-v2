@@ -27,6 +27,7 @@ import android.preference.PreferenceManager;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
 import com.jecelyin.common.utils.SysUtils;
+import com.stericson.RootTools.RootTools;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,6 +56,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_REMEMBER_LAST_OPENED_FILES = "pref_remember_last_opened_files";
     public static final String KEY_SCREEN_ORIENTATION = "pref_screen_orientation";
     public static final String KEY_KEEP_SCREEN_ON = "pref_keep_screen_on";
+    public static final String KEY_ENABLE_ROOT = "pref_enable_root";
     public static final String KEY_TOOLBAR_ICONS = "pref_toolbar_icons";
     public static final String KEY_PREF_AUTO_CHECK_UPDATES = "pref_auto_check_updates";
     public static final String KEY_LAST_OPEN_PATH = "last_open_path";
@@ -120,6 +122,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_HIGHLIGHT_FILE_SIZE_LIMIT, 500);
         map.put(KEY_THEME, "");
         map.put(KEY_AUTO_SAVE, true);
+        map.put(KEY_ENABLE_ROOT, true);
         map.put(KEY_REMEMBER_LAST_OPENED_FILES, true);
         map.put(KEY_SCREEN_ORIENTATION, "auto");
         map.put(KEY_KEEP_SCREEN_ON, false);
@@ -309,5 +312,9 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         } else {
             return SCREEN_ORIENTATION_AUTO;
         }
+    }
+
+    public boolean isRootable() {
+        return ((boolean)map.get(KEY_ENABLE_ROOT)) && RootTools.isRootAvailable() && RootTools.isAccessGiven();
     }
 }

@@ -140,6 +140,7 @@
     <string name="cannt_download">无法下载</string>
     <string name="readonly_mode_not_support_this_action">Read-only mode does not support this action</string>
     <string name="x_text_replaced">%d text has been replaced</string>
+    <string name="enable_root">启用Root权限</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 found</item>
         <item quantity="other">%d text replaced</item>

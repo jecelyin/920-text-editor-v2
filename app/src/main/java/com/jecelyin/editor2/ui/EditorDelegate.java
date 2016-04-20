@@ -487,6 +487,9 @@ public class EditorDelegate {
         TextView.SavedState editorState;
         byte[] textMd5;
 
+        boolean root;
+        File rootFile;
+
         @Override
         public int describeContents() {
             return 0;
@@ -498,6 +501,8 @@ public class EditorDelegate {
             dest.writeInt(this.offset);
             dest.writeInt(this.lineNumber);
             dest.writeSerializable(this.file);
+            dest.writeSerializable(this.rootFile);
+            dest.writeInt(root ? 1 : 0);
             dest.writeString(this.title);
             dest.writeString(this.encoding);
             dest.writeString(this.modeName);
@@ -513,6 +518,8 @@ public class EditorDelegate {
             this.offset = in.readInt();
             this.lineNumber = in.readInt();
             this.file = (File) in.readSerializable();
+            this.rootFile = (File) in.readSerializable();
+            this.root = in.readInt() == 1;
             this.title = in.readString();
             this.encoding = in.readString();
             this.modeName = in.readString();

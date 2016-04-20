@@ -44,6 +44,7 @@ import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.OnCheckedChangeListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor2.Pref;
 import com.stericson.RootTools.RootTools;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -64,6 +65,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     private ActionMode actionMode;
     private String topPath;
     private PathButtonAdapter pathAdapter;
+    private boolean isRoot;
 
     public static Fragment newFragment(JecFile path) {
         FileListPagerFragment f = new FileListPagerFragment();
@@ -76,6 +78,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        isRoot = Pref.getInstance(getContext()).isRootable();
         path = (JecFile) getArguments().getParcelable("path");
         topPath = path.getPath();
         binding = DataBindingUtil.inflate(inflater, R.layout.file_explorer_fragment, container, false);
@@ -149,7 +152,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public void onRefresh() {
-        if (!path.canRead() && !(path instanceof RootFile) && RootTools.isRootAvailable() && RootTools.isAccessGiven()) {
+        if (isRoot && !path.canRead() && !(path instanceof RootFile)) {
             path = new RootFile(path.getPath());
         }
         Observable.create(new Observable.OnSubscribe<JecFile[]>() {

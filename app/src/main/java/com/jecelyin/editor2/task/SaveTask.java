@@ -64,21 +64,34 @@ public class SaveTask {
             editorDelegate.startSaveFileSelectorActivity();
             return;
         }
-        saveTo(file, document.getEncoding(), listener);
+        if (document.isRoot()) {
+            saveTo(document.getRootFile(), file, document.getEncoding(), listener);
+        } else {
+            saveTo(file, null, document.getEncoding(), listener);
+        }
+
     }
 
     public void saveTo(final File file, final String encoding) {
-        saveTo(file, encoding, null);
+        saveTo(file, null, encoding, null);
     }
 
-    public void saveTo(final File file, final String encoding, final SaveListener listener) {
+    /**
+     *
+     * @param rootFile 要注意这里是否ROOT处理
+     * @param orgiFile 如果是Root处理，保存成功后要回写到原始文件
+     * @param encoding
+     * @param listener
+     */
+    private void saveTo(final File rootFile, final File orgiFile, final String encoding, final SaveListener listener) {
         writing = true;
-        FileWriter fileWriter = new FileWriter(file, encoding);
+        FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding);
         fileWriter.setFileWriteListener(new FileWriter.FileWriteListener() {
             @Override
             public void onSuccess() {
                 writing = false;
-                document.onSaveSuccess(file, encoding);
+
+                document.onSaveSuccess(orgiFile != null ? orgiFile : rootFile, encoding);
                 if(!isCluster) {
                     UIUtils.toast(context, R.string.save_success);
                 } else {

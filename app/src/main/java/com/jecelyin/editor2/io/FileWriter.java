@@ -21,6 +21,9 @@ package com.jecelyin.editor2.io;
 import android.os.AsyncTask;
 import android.text.Editable;
 
+import com.jecelyin.android.file_explorer.io.RootFile;
+import com.stericson.RootTools.RootTools;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,6 +38,7 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
     private final File file;
     private final static int BUFFER_SIZE = 16*1024;
     private final File backupFile, tempFile;
+    private final File orgiFile;
     private FileWriteListener fileWriteListener;
 
     public static interface FileWriteListener {
@@ -42,8 +46,9 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
         public void onError(Exception e);
     }
 
-    public FileWriter(File file, String encoding) {
+    public FileWriter(File file, File orgiFile, String encoding) {
         this.file = file;
+        this.orgiFile = orgiFile;
         this.backupFile = makeBackupFile(file);
         this.tempFile = makeTempFile(file);
         this.encoding = encoding;
@@ -86,8 +91,12 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
             }
 
             bw.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             return e;
+        }
+
+        if (!tempFile.isFile()) {
+            return new IOException("Couldn't write temp file " + tempFile);
         }
 
         if(backupFile.exists()) {
@@ -101,11 +110,15 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
                     + " to backup file " + backupFile);
         }
 
-        if(tempFile.isFile() && !tempFile.renameTo(file)) {
+        if(!tempFile.renameTo(file)) {
             return new IOException("Couldn't rename temp file " + tempFile
                     + " to file " + file);
         }
 
+        // 注意路径可能是 symbolic links
+        if (orgiFile != null && !RootTools.copyFile(file.getAbsolutePath() , (new RootFile(orgiFile.getPath())).getAbsolutePath(), true, false)) {
+            return new IOException("Can't copy " + file.getPath() + " content to " + orgiFile.getPath());
+        }
         if(file.exists()) {
             if(backupFile.exists() && !backupFile.delete()) {
                 return new IOException("Couldn't remove backup file " + backupFile);
@@ -131,4 +144,5 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
     private static File makeTempFile(File prefsFile) {
         return new File(prefsFile.getPath() + ".920.tmp");
     }
+
 }

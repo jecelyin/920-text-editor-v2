@@ -26,17 +26,16 @@ import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 
 import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.common.ReadFileListener;
 import com.jecelyin.editor2.common.SaveListener;
-import com.jecelyin.editor2.highlight.jedit.LineManager;
-import com.jecelyin.editor2.io.FileReader;
 import com.jecelyin.editor2.core.text.SpannableStringBuilder;
-import com.jecelyin.editor2.task.SaveTask;
 import com.jecelyin.editor2.highlight.Buffer;
 import com.jecelyin.editor2.highlight.HighlightInfo;
+import com.jecelyin.editor2.highlight.jedit.LineManager;
 import com.jecelyin.editor2.highlight.jedit.Mode;
 import com.jecelyin.editor2.highlight.jedit.modes.Catalog;
 import com.jecelyin.editor2.highlight.jedit.syntax.DefaultTokenHandler;
@@ -44,6 +43,9 @@ import com.jecelyin.editor2.highlight.jedit.syntax.ModeProvider;
 import com.jecelyin.editor2.highlight.jedit.syntax.SyntaxStyle;
 import com.jecelyin.editor2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor2.highlight.jedit.util.StyleUtilities;
+import com.jecelyin.editor2.io.FileReader;
+import com.jecelyin.editor2.task.SaveTask;
+import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 import java.security.MessageDigest;
@@ -65,13 +67,15 @@ public class Document implements ReadFileListener, TextWatcher {
     private final Buffer buffer;
     private SyntaxStyle[] styles;
     private final HashMap<Integer, ArrayList<ForegroundColorSpan>> colorSpanMap;
-    private File file;
+    private File file, rootFile;
     private String modeName;
+    private boolean root;
 
     public Document(Context context, EditorDelegate EditorDelegate) {
         this.editorDelegate = EditorDelegate;
         this.context = context;
         pref = Pref.getInstance(context);
+        root = false;
 
         buffer = new Buffer(context);
         colorSpanMap = new HashMap<>();
@@ -85,6 +89,8 @@ public class Document implements ReadFileListener, TextWatcher {
         ss.encoding = encoding;
         ss.modeName = modeName;
         ss.file = file;
+        ss.rootFile = rootFile;
+        ss.root = root;
     }
 
     public void onRestoreInstanceState(EditorDelegate.SavedState ss) {
@@ -100,6 +106,8 @@ public class Document implements ReadFileListener, TextWatcher {
         srcMD5 = ss.textMd5;
         encoding = ss.encoding;
         file = ss.file;
+        rootFile = ss.rootFile;
+        root = ss.root;
     }
 
     public void loadFile(File file) {
@@ -110,12 +118,20 @@ public class Document implements ReadFileListener, TextWatcher {
             UIUtils.alert(context, context.getString(R.string.cannt_access_file, file.getPath()));
             return;
         }
-        if(!file.canRead()) {
+        root = false;
+        if ((!file.canRead() || !file.canWrite()) && pref.isRootable()) {
+            rootFile = new File(SysUtils.getCacheDir(context), file.getName() + ".root");
+            if (rootFile.exists())
+                rootFile.delete();
+
+            root = RootTools.copyFile(file.getPath(), rootFile.getPath(), false, false);
+        }
+        if(!file.canRead() && !root) {
             UIUtils.alert(context, context.getString(R.string.cannt_read_file, file.getPath()));
             return;
         }
         this.file = file;
-        FileReader reader = new FileReader(file, encodingName);
+        FileReader reader = new FileReader(root ? rootFile : file, encodingName);
         new ReadFileTask(reader, this).execute();
     }
 
@@ -271,6 +287,14 @@ public class Document implements ReadFileListener, TextWatcher {
 
     public String getEncoding() {
         return encoding;
+    }
+
+    public File getRootFile() {
+        return rootFile;
+    }
+
+    public boolean isRoot() {
+        return root;
     }
 
     public void save() {
