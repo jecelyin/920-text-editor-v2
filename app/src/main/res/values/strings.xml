@@ -141,6 +141,11 @@
     <string name="readonly_mode_not_support_this_action">Read-only mode does not support this action</string>
     <string name="x_text_replaced">%d text has been replaced</string>
     <string name="enable_root">启用Root权限</string>
+    <string name="my_name">作者：彭春瑜</string>
+    <string name="my_email" translatable="false"><![CDATA[Email：<a href="mailto:jecelyin@gmail.com">jecelyin@gmail.com</a>]]></string>
+    <string name="project_url" translatable="false"><![CDATA[URL：<a href="https://github.com/jecelyin/920-text-editor-v2/">https://github.com/jecelyin/920-text-editor-v2/</a>]]></string>
+    <string name="qq_group">QQ群：87272821</string>
+    <string name="license"><![CDATA[Copyright (C) 2016 Jecelyin Peng,\n\n920 Text Editor open source software is licensed under the Apache License 2.0]]></string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 found</item>
         <item quantity="other">%d text replaced</item>

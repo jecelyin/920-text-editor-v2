@@ -115,5 +115,5 @@
 
     <Preference
         android:key="pref_about"
-        android:title="@string/about" />
+        android:title="@string/about"/>
 </PreferenceScreen>

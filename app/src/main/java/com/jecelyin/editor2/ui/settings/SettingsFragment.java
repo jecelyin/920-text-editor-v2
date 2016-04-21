@@ -18,6 +18,7 @@
 
 package com.jecelyin.editor2.ui.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -29,11 +30,12 @@ import android.preference.PreferenceGroup;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.preference.JecListPreference;
+import com.jecelyin.editor2.ui.AboutActivity;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -77,6 +79,8 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preference);
 
         dependBindPreference(getPreferenceScreen());
+
+        findPreference("pref_about").setOnPreferenceClickListener(this);
     }
 
     private static void dependBindPreference(PreferenceGroup pg) {
@@ -134,5 +138,17 @@ public class SettingsFragment extends PreferenceFragment {
         String key = preference.getKey();
         Object value = Pref.getInstance(preference.getContext()).getValue(key);
         sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, value);
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        Intent it;
+        switch (preference.getKey()) {
+            case "pref_about":
+                it = new Intent(getActivity(), AboutActivity.class);
+                startActivity(it);
+                break;
+        }
+        return true;
     }
 }

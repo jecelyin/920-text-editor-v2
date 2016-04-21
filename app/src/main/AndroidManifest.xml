@@ -34,7 +34,7 @@
         在一个新栈中创建该Activity实例，并让多个应用共享改栈中的该Activity实例。一旦改模式的Activity的实例存在于某个栈中，任何应用再激活改Activity时都会重用该栈中的实例，其效果相当于多个应用程序共享一个应用，不管谁激活该Activity都会进入同一个应用中。
         -->
         <activity
-            android:name="com.jecelyin.editor2.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -79,13 +79,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.jecelyin.editor2.ui.FindInFileActivity" />
+        <activity android:name=".ui.FindInFileActivity" />
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <service
             android:name=".service.DownloadService" />
+        <activity android:name=".ui.AboutActivity" />
     </application>
 
 </manifest>
