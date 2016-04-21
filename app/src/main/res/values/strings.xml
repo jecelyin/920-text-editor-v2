@@ -147,6 +147,10 @@
     <string name="qq_group">QQ群：87272821</string>
     <string name="license"><![CDATA[Copyright (C) 2016 Jecelyin Peng,\n\n920 Text Editor open source software is licensed under the Apache License 2.0]]></string>
     <string name="open_with_external_browser">使用外部浏览器打开</string>
+    <string name="contact_email_optional">联系Email（可选）</string>
+    <string name="with_error_logs">错误日志</string>
+    <string name="content">内容</string>
+    <string name="send">发送</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 found</item>
         <item quantity="other">%d text replaced</item>

@@ -88,6 +88,7 @@
             android:name=".service.DownloadService" />
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.BrowserActivity" />
+        <activity android:name=".ui.FeedbackActivity" />
     </application>
 
 </manifest>

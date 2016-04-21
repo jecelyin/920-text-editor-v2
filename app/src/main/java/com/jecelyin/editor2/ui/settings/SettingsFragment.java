@@ -32,6 +32,7 @@ import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.preference.JecListPreference;
 import com.jecelyin.editor2.ui.AboutActivity;
 import com.jecelyin.editor2.ui.BrowserActivity;
+import com.jecelyin.editor2.ui.FeedbackActivity;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -83,6 +84,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
         findPreference("pref_about").setOnPreferenceClickListener(this);
         findPreference("pref_translate").setOnPreferenceClickListener(this);
+        findPreference("pref_feedback").setOnPreferenceClickListener(this);
     }
 
     @Override
@@ -95,6 +97,11 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 break;
             case "pref_translate":
                 BrowserActivity.startActivity(getActivity(), getString(R.string.help_translate), "https://www.getlocalization.com/920_Text_Editor_v2/");
+                break;
+            case "pref_feedback":
+                it = new Intent(getActivity(), FeedbackActivity.class);
+                startActivity(it);
+                break;
         }
         return true;
     }

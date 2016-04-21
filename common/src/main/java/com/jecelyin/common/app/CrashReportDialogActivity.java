@@ -139,6 +139,7 @@ public class CrashReportDialogActivity extends JecActivity {
         final Issue issue = new Issue();
         issue.setTitle(version + " Crash: " + mMsg);
         issue.setBody(sb.toString());
+        issue.setLabel("bug");
 
         final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
         netLoadingDialog.show();
