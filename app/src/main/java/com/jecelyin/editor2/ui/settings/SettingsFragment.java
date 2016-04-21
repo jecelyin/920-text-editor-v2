@@ -31,6 +31,7 @@ import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.preference.JecListPreference;
 import com.jecelyin.editor2.ui.AboutActivity;
+import com.jecelyin.editor2.ui.BrowserActivity;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -81,6 +82,21 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         dependBindPreference(getPreferenceScreen());
 
         findPreference("pref_about").setOnPreferenceClickListener(this);
+        findPreference("pref_translate").setOnPreferenceClickListener(this);
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        Intent it;
+        switch (preference.getKey()) {
+            case "pref_about":
+                it = new Intent(getActivity(), AboutActivity.class);
+                startActivity(it);
+                break;
+            case "pref_translate":
+                BrowserActivity.startActivity(getActivity(), getString(R.string.help_translate), "https://www.getlocalization.com/920_Text_Editor_v2/");
+        }
+        return true;
     }
 
     private static void dependBindPreference(PreferenceGroup pg) {
@@ -140,15 +156,4 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, value);
     }
 
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-        Intent it;
-        switch (preference.getKey()) {
-            case "pref_about":
-                it = new Intent(getActivity(), AboutActivity.class);
-                startActivity(it);
-                break;
-        }
-        return true;
-    }
 }
