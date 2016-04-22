@@ -365,8 +365,6 @@ public class MainActivity extends JecActivity
 
         switch (id) {
             case R.id.m_new:
-                if (mDrawerLayout != null)
-                    throw new RuntimeException("test bug");
                 tabManager.newTab();
                 break;
             case R.id.m_open:
