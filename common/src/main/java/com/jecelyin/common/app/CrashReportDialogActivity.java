@@ -20,10 +20,7 @@ package com.jecelyin.common.app;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -33,32 +30,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jecelyin.common.R;
-import com.jecelyin.common.github.IGitHubConstants;
-import com.jecelyin.common.github.Issue;
-import com.jecelyin.common.github.IssueService;
+import com.jecelyin.common.hockeyapp.tasks.CrashReportTask;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CrashReportDialogActivity extends JecActivity {
     private static final int MENU_SUBMIT = 1;
-    private String mTrace;
-    private String mMsg;
+    private CrashReportTask task;
 
     public static void startActivity(Context context, Throwable t) {
-        Intent dialogIntent = new Intent(context, CrashReportDialogActivity.class);
-        dialogIntent.putExtra("throwable", t);
-        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(dialogIntent);
+        Intent it = new Intent(context, CrashReportDialogActivity.class);
+        it.putExtra("trace", Log.getStackTraceString(t));
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(it);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (task != null)
+            task.detach();
     }
 
     @Override
@@ -68,10 +63,7 @@ public class CrashReportDialogActivity extends JecActivity {
         setContentView(R.layout.crash_report_activity);
 
         Intent it = getIntent();
-        Throwable t = (Throwable) it.getSerializableExtra("throwable");
-        mMsg = t.getMessage();
-        mTrace = Log.getStackTraceString(t);
-        Log.e("uncaughtException", "#ERROR: " + mMsg, t);
+        String trace = it.getStringExtra("trace");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView stacktraceTextView = (TextView) findViewById(R.id.stacktraceTextView);
@@ -81,7 +73,7 @@ public class CrashReportDialogActivity extends JecActivity {
         getSupportActionBar().setTitle(R.string.crash_report);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_btn);
 
-        stacktraceTextView.setText(mTrace);
+        stacktraceTextView.setText(trace);
     }
 
     @Override
@@ -109,93 +101,43 @@ public class CrashReportDialogActivity extends JecActivity {
             UIUtils.toast(this, R.string.network_unavailable);
             return;
         }
-        String version;
-        try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            version = packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            version = e.getMessage();
-        }
+        EditText commentEditText = (EditText) findViewById(R.id.commentEditText);
+        String content = commentEditText.getText().toString().trim();
+
+        EditText emailEditText = (EditText) findViewById(R.id.emailEditText);
+        String email = emailEditText.getText().toString().trim();
 
         ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
         activityManager.getMemoryInfo(memoryInfo);
 
-        StringBuilder sb = new StringBuilder();
-
-        EditText commentEditText = (EditText) findViewById(R.id.commentEditText);
-        sb.append(commentEditText.getText().toString()).append("\n");
-        sb.append("======================================================\n");
-        sb.append("App Version: ").append(version).append("\n");
-        sb.append("Phone: ").append(android.os.Build.BRAND).append(" ").append(android.os.Build.MODEL).append("\n");
-        sb.append("Android Version: ").append(android.os.Build.VERSION.RELEASE).append("\n");
-        sb.append("Memory: ").append(memoryInfo.availMem/1024/1024).append(" MB / ").append(memoryInfo.totalMem/1024/1024).append(" MB\n");
+        StringBuilder sb = new StringBuilder(content);
         sb.append("\n\n");
-        sb.append("Stacktrace:\n\n").append(mTrace).append("\n\n\n");
-
+        sb.append("Memory: ").append(memoryInfo.availMem/1024/1024).append(" MB / ").append(memoryInfo.totalMem/1024/1024).append(" MB\n");
+        sb.append("LogCat Error:\n\n");
         final CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
         dbHelper.crashToString(sb);
+        dbHelper.close();
 
-        final Issue issue = new Issue();
-        issue.setTitle(version + " Crash: " + mMsg);
-        issue.setBody(sb.toString());
-        issue.setLabel("bug");
-
-        final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
-        netLoadingDialog.show();
-        final Subscription subscription = Observable.create(new Observable.OnSubscribe<Issue>() {
+        task = new CrashReportTask(getContext(), email, sb.toString()) {
             @Override
-            public void call(Subscriber<? super Issue> subscriber) {
-                try {
-                    IssueService is = new IssueService();
-                    is.getClient().setOAuth2Token(IGitHubConstants.TOKEN);
-                    Issue rs = is.createIssue(issue);
-                    dbHelper.updateCrashCommitted();
-
-                    subscriber.onNext(rs);
-                    subscriber.onCompleted();
-                } catch (Exception e) {
-                    subscriber.onError(e);
+            protected void onPostExecute(Boolean success) {
+                super.onPostExecute(success);
+                if (success) {
+                    UIUtils.toast(getContext(), R.string.crash_report_success);
+                    close();
+                } else {
+                    UIUtils.alert(getContext(), getString(R.string.crash_submit_fail));
                 }
             }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<Issue>() {
-            @Override
-            public void onCompleted() {
-                dbHelper.close();
-                netLoadingDialog.dismiss();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                dbHelper.close();
-                netLoadingDialog.dismiss();
-                UIUtils.alert(getContext(), getString(R.string.crash_submit_error_x, e.getMessage()));
-            }
-
-            @Override
-            public void onNext(Issue issue) {
-                UIUtils.toast(getContext(), R.string.crash_report_success);
-                close();
-            }
-        });
-
-        netLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                dbHelper.close();
-                subscription.unsubscribe();
-                close();
-            }
-        });
+        };
+        task.execute();
     }
 
     private void close() {
         finish();
         android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+        System.exit(10);
     }
 
 }

@@ -23,10 +23,11 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.util.Log;
 
+import com.jecelyin.common.hockeyapp.tasks.CrashReportTask;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
-import com.squareup.leakcanary.RefWatcher;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -34,11 +35,15 @@ import com.squareup.leakcanary.LeakCanary;
 public class JecApp extends Application implements Thread.UncaughtExceptionHandler {
     private static Context context;
     private RefWatcher refWatcher;
+    private static long startupTimestamp;
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
+        if (startupTimestamp == 0)
+            startupTimestamp = System.currentTimeMillis();
 
         if (SysUtils.isDebug(this))
         {
@@ -59,6 +64,7 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
     {
         Log.e("uncaughtException", "#ERROR: " + ex.getMessage(), ex);
 
+        CrashReportTask.saveException(getApplicationContext(), ex, thread);
         CrashReportDialogActivity.startActivity(this, ex);
 
 //        android.os.Process.killProcess(android.os.Process.myPid());
@@ -72,5 +78,9 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
 
     public static Context getContext() {
         return context;
+    }
+
+    public static long getStartupTimestamp() {
+        return startupTimestamp;
     }
 }

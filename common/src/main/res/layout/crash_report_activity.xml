@@ -17,47 +17,61 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         style="?attr/actionBarStyle"
-        app:theme="?attr/actionBarTheme"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"/>
+        android:layout_height="?attr/actionBarSize"
+        app:theme="?attr/actionBarTheme" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:padding="16dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/crash_contact"
+            android:singleLine="true"
+            app:met_floatingLabel="highlight" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/commentEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="top|start"
+            android:hint="@string/crash_comment"
+            android:lines="5"
+            android:scrollbars="vertical"
+            app:met_floatingLabel="highlight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/crash_stacktrace" />
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:text="@string/crash_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <EditText
-                android:id="@+id/commentEditText"
-                android:lines="5"
-                android:padding="8dp"
-                android:gravity="top|left"
-                android:layout_marginTop="8dp"
-                android:scrollbars="vertical"
-                android:background="@drawable/crash_edittext_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="@string/crash_stacktrace"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/stacktraceTextView"
-                android:layout_marginTop="8dp"
-                android:textIsSelectable="true"
-                android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textIsSelectable="true" />
+        </ScrollView>
+
+    </LinearLayout>
 </LinearLayout>
