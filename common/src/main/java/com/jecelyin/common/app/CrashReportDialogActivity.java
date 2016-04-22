@@ -124,6 +124,9 @@ public class CrashReportDialogActivity extends JecActivity {
             protected void onPostExecute(Boolean success) {
                 super.onPostExecute(success);
                 if (success) {
+                    final CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
+                    dbHelper.updateCrashCommitted();
+                    dbHelper.close();
                     UIUtils.toast(getContext(), R.string.crash_report_success);
                     close();
                 } else {
