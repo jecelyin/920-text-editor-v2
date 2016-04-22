@@ -15,6 +15,7 @@ android {
         targetSdkVersion 23
         versionCode 10
         versionName "v2"
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "ad68e1501e20421da13d71e86aa8f3ca"]
     }
 
     signingConfigs {

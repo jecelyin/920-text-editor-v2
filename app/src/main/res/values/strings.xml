@@ -151,6 +151,9 @@
     <string name="with_error_logs">错误日志</string>
     <string name="content">内容</string>
     <string name="send">发送</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">反馈内容长度必须大于%d个字</string>
+    <string name="feedback_submit_error_x">提交反馈失败：%s</string>
+    <string name="submit_success">提交成功</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 found</item>
         <item quantity="other">%d text replaced</item>

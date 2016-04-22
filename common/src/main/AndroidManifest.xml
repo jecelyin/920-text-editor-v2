@@ -6,6 +6,7 @@
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"/>
+        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
     </application>
 
 </manifest>
