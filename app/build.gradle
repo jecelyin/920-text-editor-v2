@@ -13,7 +13,7 @@ android {
         applicationId "com.jecelyin.editor2"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 10
+        versionCode 12
         versionName "v2"
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "ad68e1501e20421da13d71e86aa8f3ca"]
     }
