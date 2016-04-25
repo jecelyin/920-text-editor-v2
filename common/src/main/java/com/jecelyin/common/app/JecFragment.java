@@ -26,8 +26,8 @@ import android.support.v4.app.Fragment;
 public class JecFragment extends Fragment {
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         JecApp.getRefWatcher(getContext()).watch(this);
     }
 }
