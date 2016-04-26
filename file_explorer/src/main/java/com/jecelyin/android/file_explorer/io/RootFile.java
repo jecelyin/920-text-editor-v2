@@ -18,6 +18,8 @@
 
 package com.jecelyin.android.file_explorer.io;
 
+import android.os.Parcel;
+
 import com.jecelyin.android.file_explorer.util.FileInfo;
 import com.jecelyin.android.file_explorer.util.RootUtils;
 import com.jecelyin.common.utils.L;
@@ -144,4 +146,29 @@ public class RootFile extends LocalFile {
         }
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(getPath());
+    }
+
+    protected RootFile(Parcel in) {
+        this(in.readString());
+    }
+
+    public static final Creator<RootFile> CREATOR = new Creator<RootFile>() {
+        @Override
+        public RootFile createFromParcel(Parcel source) {
+            return new RootFile(source);
+        }
+
+        @Override
+        public RootFile[] newArray(int size) {
+            return new RootFile[size];
+        }
+    };
 }
