@@ -22,6 +22,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -128,7 +129,12 @@ public class CrashReportDialogActivity extends JecActivity {
                     dbHelper.updateCrashCommitted();
                     dbHelper.close();
                     UIUtils.toast(getContext(), R.string.crash_report_success);
-                    close();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            close();
+                        }
+                    }, 2000);
                 } else {
                     UIUtils.alert(getContext(), getString(R.string.crash_submit_fail));
                 }
