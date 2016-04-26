@@ -153,7 +153,7 @@ public class MainActivity extends JecActivity
             });
         }
 
-        setStatusBarColor(mToolbar, getResources().getColor(R.color.colorPrimaryDark));
+        setStatusBarColor(mToolbar, getResources().getColor(R.color.editor_primary_color_dark));
         pref = Pref.getInstance(this);
 
         bindPreferences();

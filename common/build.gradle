@@ -6,7 +6,6 @@ android {
 
     defaultConfig {
         minSdkVersion 17
-        manifestPlaceholders = [HOCKEYAPP_APP_ID: ""]
     }
     dataBinding {
         enabled = true

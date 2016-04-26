@@ -1,15 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="EditorTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 工具栏背景 -->
-        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimary">@color/editor_primary_color</item>
         <!--状态栏背景-->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/editor_primary_color_dark</item>
         <!--按钮类默认颜色-->
-        <item name="colorControlNormal">@color/colorControlNormal</item>
+        <item name="colorControlNormal">@color/editor_control_normal</item>
         <!--按钮类选中颜色-->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/editor_accent</item>
         <!--导航栏背景-->
         <!--<item name="android:navigationBarColor">@color/navigationBarColor</item>-->
         <!-- 浮在toolbar上面 -->
@@ -74,8 +74,8 @@
 
     <style name="ActionMode" parent="Widget.AppCompat.ActionMode">
 
-        <item name="background">@color/actionModeBackground</item>
-        <item name="backgroundSplit">@color/actionModeSplitBackground</item>
+        <item name="background">@color/editor_actionmode_background</item>
+        <item name="backgroundSplit">@color/editor_actionmode_split_background</item>
         <item name="height">?attr/actionBarSize</item>
         <item name="titleTextStyle">@style/ActionMode.Title</item>
         <item name="subtitleTextStyle">@style/ActionMode.Subtitle</item>
