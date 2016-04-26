@@ -11,10 +11,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/file_explorer" />
-            <option value="$PROJECT_DIR$/leakcanary-analyzer" />
-            <option value="$PROJECT_DIR$/leakcanary-android" />
-            <option value="$PROJECT_DIR$/leakcanary-android-no-op" />
-            <option value="$PROJECT_DIR$/leakcanary-watcher" />
             <option value="$PROJECT_DIR$/styles" />
           </set>
         </option>
@@ -24,10 +20,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/file_explorer" />
-            <option value="$PROJECT_DIR$/leakcanary-analyzer" />
-            <option value="$PROJECT_DIR$/leakcanary-android" />
-            <option value="$PROJECT_DIR$/leakcanary-android-no-op" />
-            <option value="$PROJECT_DIR$/leakcanary-watcher" />
             <option value="$PROJECT_DIR$/styles" />
           </set>
         </option>

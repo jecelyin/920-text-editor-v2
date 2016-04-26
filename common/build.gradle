@@ -6,9 +6,22 @@ android {
 
     defaultConfig {
         minSdkVersion 17
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: ""]
     }
     dataBinding {
         enabled = true
+    }
+
+    defaultPublishConfig 'release'
+    publishNonDefault true
+    productFlavors {
+        library {
+            /* This strange empty flavour is actually needed
+               for the below to be successful
+    debugCompile project(path: ':common', configuration: "libraryDebug")
+    releaseCompile project(path: ':common', configuration: "libraryRelease")
+           */
+        }
     }
 }
 
@@ -28,7 +41,6 @@ dependencies {
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'com.google.code.gson:gson:2.5'
-    debugCompile project(':leakcanary-android')
-    releaseCompile project(':leakcanary-android')
-//    releaseCompile project(':leakcanary-android-no-op')
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }

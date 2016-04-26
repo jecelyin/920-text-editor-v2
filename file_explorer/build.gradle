@@ -20,12 +20,25 @@ android {
     dataBinding {
         enabled = true
     }
+    defaultPublishConfig 'release'
+    publishNonDefault true
+    productFlavors {
+        library {
+            /* This strange empty flavour is actually needed
+               for the below to be successful
+    debugCompile project(path: ':common', configuration: "libraryDebug")
+    releaseCompile project(path: ':common', configuration: "libraryRelease")
+           */
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':common')
-    compile project(':styles')
+    debugCompile project(path: ':common', configuration: "libraryDebug")
+    releaseCompile project(path: ':common', configuration: "libraryRelease")
+    debugCompile project(path: ':styles', configuration: "libraryDebug")
+    releaseCompile project(path: ':styles', configuration: "libraryRelease")
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
 }

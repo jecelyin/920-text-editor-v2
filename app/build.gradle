@@ -118,9 +118,16 @@ configurations {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':common')
-    compile project(':styles')
-    compile project(':file_explorer')
+
+    debugCompile project(path: ':common', configuration: "libraryDebug")
+    releaseCompile project(path: ':common', configuration: "libraryRelease")
+
+    debugCompile project(path: ':styles', configuration: "libraryDebug")
+    releaseCompile project(path: ':styles', configuration: "libraryRelease")
+
+    debugCompile project(path: ':file_explorer', configuration: "libraryDebug")
+    releaseCompile project(path: ':file_explorer', configuration: "libraryRelease")
+
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
     compile 'org.apmem.tools:layouts:1.9@aar'
     //    compile 'com.larswerkman:HoloColorPicker:1.5'
