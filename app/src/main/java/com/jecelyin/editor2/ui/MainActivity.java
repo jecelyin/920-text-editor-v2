@@ -165,7 +165,7 @@ public class MainActivity extends JecActivity
         String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
 
-        if (pref.isAutoCheckUpdates()) {
+        if (savedInstanceState == null && pref.isAutoCheckUpdates()) {
             new CheckUpgradeTask(this).checkVersion(version);
         }
 
@@ -590,4 +590,5 @@ public class MainActivity extends JecActivity
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

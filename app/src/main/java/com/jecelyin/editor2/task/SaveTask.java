@@ -29,21 +29,22 @@ import com.jecelyin.editor2.ui.Document;
 import com.jecelyin.editor2.ui.EditorDelegate;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SaveTask {
-    private final Context context;
-    private final EditorDelegate editorDelegate;
-    private final Document document;
+    private final WeakReference<Context> contextWR;
+    private final WeakReference<EditorDelegate> editorDelegateWR;
+    private final WeakReference<Document> documentWR;
     private boolean writing = false;
     private boolean isCluster;
 
     public SaveTask(Context context, EditorDelegate editorDelegate, Document document) {
-        this.context = context;
-        this.editorDelegate = editorDelegate;
-        this.document = document;
+        this.contextWR = new WeakReference<Context>(context);
+        this.editorDelegateWR = new WeakReference<EditorDelegate>(editorDelegate);
+        this.documentWR = new WeakReference<Document>(document);
     }
 
     public boolean isWriting() {
@@ -52,6 +53,11 @@ public class SaveTask {
 
     public void save(boolean isCluster, SaveListener listener) {
         if(writing)
+            return;
+
+        Document document = documentWR.get();
+        EditorDelegate editorDelegate = editorDelegateWR.get();
+        if (document == null || editorDelegate == null)
             return;
         if(!document.isChanged()) {
 //            if(!isCluster)
@@ -84,6 +90,8 @@ public class SaveTask {
      * @param listener
      */
     private void saveTo(final File rootFile, final File orgiFile, final String encoding, final SaveListener listener) {
+        if (editorDelegateWR.get() == null)
+            return;
         writing = true;
         FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding);
         fileWriter.setFileWriteListener(new FileWriter.FileWriteListener() {
@@ -91,11 +99,13 @@ public class SaveTask {
             public void onSuccess() {
                 writing = false;
 
-                document.onSaveSuccess(orgiFile != null ? orgiFile : rootFile, encoding);
+                if (documentWR.get() == null || contextWR.get() == null || editorDelegateWR.get() == null)
+                    return;
+                documentWR.get().onSaveSuccess(orgiFile != null ? orgiFile : rootFile, encoding);
                 if(!isCluster) {
-                    UIUtils.toast(context, R.string.save_success);
+                    UIUtils.toast(contextWR.get(), R.string.save_success);
                 } else {
-                    editorDelegate.getMainActivity().doNextCommand();
+                    editorDelegateWR.get().getMainActivity().doNextCommand();
                 }
                 if(listener != null)
                     listener.onSaved();
@@ -105,9 +115,10 @@ public class SaveTask {
             public void onError(Exception e) {
                 writing = false;
                 L.e(e);
-                UIUtils.alert(context, e.getMessage());
+                if (contextWR.get() != null)
+                 UIUtils.alert(contextWR.get(), e.getMessage());
             }
         });
-        fileWriter.write(editorDelegate.getEditableText());
+        fileWriter.write(editorDelegateWR.get().getEditableText());
     }
 }

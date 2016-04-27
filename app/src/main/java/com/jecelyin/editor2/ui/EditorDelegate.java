@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
@@ -61,6 +62,7 @@ public class EditorDelegate {
     private static boolean disableAutoSave = false;
 
     private SavedState savedState;
+    private int orientation;
 
     public EditorDelegate(SavedState ss) {
         savedState = ss;
@@ -126,6 +128,9 @@ public class EditorDelegate {
         context = editorView.getContext();
         this.mEditorView = editorView;
         this.mEditText = editorView.getEditText();
+
+        this.orientation = context.getResources().getConfiguration().orientation;
+
         init();
     }
 
@@ -465,7 +470,13 @@ public class EditorDelegate {
         }
 
         if (!disableAutoSave && document != null && document.getFile() != null && Pref.getInstance(context).isAutoSave()) {
-            document.save();
+            int newOrientation = context.getResources().getConfiguration().orientation;
+            if (orientation != newOrientation) {
+                L.d("current is screen orientation, discard auto save!");
+                orientation = newOrientation;
+            } else {
+                document.save();
+            }
         }
 
         return ss;
