@@ -964,7 +964,7 @@ public class StaticLayout extends Layout {
     private static final int DIR_SHIFT  = 30;
     private static final int TAB_MASK   = 0x20000000;
 
-    private static final int TAB_INCREMENT = 20; // same as Layout, but that's private
+//    private static final int TAB_INCREMENT = 20; // same as Layout, but that's private
 
     private static final char CHAR_NEW_LINE = '\n';
     private static final char CHAR_NEW_LINE_CR = '\r';

@@ -109,6 +109,8 @@ class TextLine {
         tl.mDirections = null;
         tl.layoutContext = null;
         tl.mSpanned = null;
+        tl.mTabs = null;
+        tl.mChars = null;
 
         tl.mMetricAffectingSpanSpanSet.recycle();
         tl.mCharacterStyleSpanSet.recycle();
@@ -1064,7 +1066,6 @@ class TextLine {
             CanvasCompat.drawTextRun(c, text, start, next - start, contextIndex, contextCount, x, y, isRtl, paint);
             x += TextPaintCompat.getTextRunAdvances(paint, text, start, next - start, contextIndex, contextCount, isRtl, null, 0);
         }
-
     }
 
     private static int getNextTransition(char[] text, int start, int end, boolean space) {
