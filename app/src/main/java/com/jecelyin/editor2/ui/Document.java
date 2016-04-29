@@ -181,7 +181,7 @@ public class Document implements ReadFileListener, TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        L.d("onTextChanged: start=" + start + " before=" + before + " count=" + count );
+//        L.d("","onTextChanged: start=" + start + " before=" + before + " count=" + count, new Exception());
 
         Editable editableText = editorDelegate.getEditableText();
         buffer.setEditable(editableText);
