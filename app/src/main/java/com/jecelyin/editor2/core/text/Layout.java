@@ -1102,8 +1102,13 @@ public abstract class Layout {
         int min = getLineStart(line);
         Directions dirs = getLineDirections(line);
 
-        if (line == getLineCount() - 1)
+        if (line == getLineCount() - 1) {
             max++;
+        } else {
+            //jec+: fix select offset between in \r\n
+            if (mText.charAt(max) == '\n' && max > 0 && mText.charAt(max - 1) == '\r')
+                max--;
+        }
 
         int best = min;
         float bestdist = Math.abs(getPrimaryHorizontal(best) - horiz);
