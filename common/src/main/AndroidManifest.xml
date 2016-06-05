@@ -1,8 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.jecelyin.common">
 
     <application android:allowBackup="true" android:name=".app.JecApp">
+        <!--
+        add android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        for fix:
+        Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.
+        -->
         <activity
             android:name=".app.CrashReportDialogActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"/>

@@ -145,7 +145,8 @@ public class EditorDelegate {
         mEditText.post(new Runnable() {
             @Override
             public void run() {
-                mEditText.setSelection(savedState.offset);
+                if (savedState.offset < mEditText.getText().length())
+                    mEditText.setSelection(savedState.offset);
             }
         });
 
@@ -517,7 +518,9 @@ public class EditorDelegate {
             dest.writeString(this.title);
             dest.writeString(this.encoding);
             dest.writeString(this.modeName);
-            dest.writeParcelable(this.editorState, flags);
+            dest.writeInt(this.editorState == null ? 0 : 1);
+            if (this.editorState != null)
+                dest.writeParcelable(this.editorState, flags);
             dest.writeByteArray(this.textMd5);
         }
 
@@ -534,7 +537,9 @@ public class EditorDelegate {
             this.title = in.readString();
             this.encoding = in.readString();
             this.modeName = in.readString();
-            this.editorState = in.readParcelable(TextView.SavedState.class.getClassLoader());
+            int hasState = in.readInt();
+            if (hasState == 1)
+                this.editorState = in.readParcelable(TextView.SavedState.class.getClassLoader());
             this.textMd5 = in.createByteArray();
         }
 
