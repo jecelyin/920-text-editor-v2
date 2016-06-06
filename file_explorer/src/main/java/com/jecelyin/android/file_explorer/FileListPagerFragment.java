@@ -78,7 +78,6 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        isRoot = Pref.getInstance(getContext()).isRootable();
         path = (JecFile) getArguments().getParcelable("path");
         topPath = path.getPath();
         binding = DataBindingUtil.inflate(inflater, R.layout.file_explorer_fragment, container, false);
@@ -147,7 +146,34 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
             }
         });
-        onRefresh();
+
+        Observable.create(new Observable.OnSubscribe<Boolean>() {
+            @Override
+            public void call(Subscriber<? super Boolean> subscriber) {
+                boolean root = Pref.getInstance(getContext()).isRootable();
+                subscriber.onNext(root);
+                subscriber.onCompleted();
+            }
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<Boolean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Boolean root) {
+                isRoot = root;
+                onRefresh();
+            }
+        });
     }
 
     @Override
