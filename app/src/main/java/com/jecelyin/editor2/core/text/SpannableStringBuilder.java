@@ -1619,8 +1619,16 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
     private static final int SPAN_END_AT_END = 0x8000;
     private static final int SPAN_START_END_MASK = 0xF000;
 
+    /**
+     * 注意不能直接返回mText,因为会涉及到字符改变后会移动,比如"abc"删除了b后,可能变成了"acb"
+     * @return
+     */
     public char[] toCharArray() {
-        return mText;
+        int len = length();
+        char[] buf = new char[len];
+
+        getChars(0, len, buf, 0);
+        return buf;
     }
 
     private boolean isAutoIndent;
