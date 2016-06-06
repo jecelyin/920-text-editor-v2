@@ -76,17 +76,18 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
             char[] buffer = new char[BUFFER_SIZE]; //16kb
             int size = text.length();
             if (size > 0) {
-                int start = 0, end;
+                int start = 0, end = BUFFER_SIZE;
                 for (;;) {
-                    end = Math.min(BUFFER_SIZE, size);
+                    end = Math.min(end, size);
                     text.getChars(start, end, buffer, 0);
 
                     bw.write(buffer, 0, end - start);
                     start = end;
-                    end += BUFFER_SIZE;
 
                     if (end >= size)
                         break;
+
+                    end += BUFFER_SIZE;
                 }
             }
 

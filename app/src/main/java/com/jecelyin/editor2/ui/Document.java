@@ -302,6 +302,10 @@ public class Document implements ReadFileListener, TextWatcher {
     }
 
     public void save(boolean isCluster, SaveListener listener) {
+        if (saveTask.isWriting()) {
+            UIUtils.toast(context, R.string.writing);
+            return;
+        }
         saveTask.save(isCluster, listener);
     }
 
