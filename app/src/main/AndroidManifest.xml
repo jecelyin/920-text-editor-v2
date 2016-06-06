@@ -16,6 +16,7 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/EditorTheme" >
+        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
         <!--
         1. standard
 
