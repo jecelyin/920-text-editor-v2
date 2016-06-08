@@ -23,11 +23,14 @@ import android.content.DialogInterface;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.view.ActionMode;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -55,6 +58,7 @@ public class FinderDialog extends AbstractDialog {
     private static final int ID_FIND_NEXT = 2;
     private static final int ID_REPLACE = 3;
     private static final int ID_REPLACE_ALL = 4;
+    private static final int ID_FIND_TEXT = 5;
     /**
      * 0 = find
      * 1 = replace
@@ -277,6 +281,33 @@ public class FinderDialog extends AbstractDialog {
             actionMode.setTitle(replaceText == null ? R.string.find : R.string.replace);
             actionMode.setSubtitle(null);
 
+            int w = fragment.getContext().getResources().getDimensionPixelSize(R.dimen.cab_find_text_width);
+            MaterialEditText et = new MaterialEditText(fragment.getContext());
+            et.setLayoutParams(new ViewGroup.LayoutParams(w, ViewGroup.LayoutParams.MATCH_PARENT));
+            et.setText(grep.getRegex());
+            et.setHint(R.string.keyword);
+            et.setSingleLine();
+            et.setTextAppearance(et.getContext(), R.style.ActionMode_Subtitle);
+            et.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    grep.setRegex(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            menu.add(0, ID_FIND_TEXT, 0, R.string.keyword)
+                    .setActionView(et)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
             menu.add(0, ID_FIND_PREV, 0, R.string.previous_occurrence)
                     .setIcon(R.drawable.up)
                     .setAlphabeticShortcut('p')
@@ -307,6 +338,10 @@ public class FinderDialog extends AbstractDialog {
 
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            if (TextUtils.isEmpty(grep.getRegex())) {
+                UIUtils.toast(fragment.getContext(), R.string.find_keyword_is_empty);
+                return false;
+            }
             int id = menuItem.getItemId();
             switch (id) {
                 case ID_FIND_PREV:
