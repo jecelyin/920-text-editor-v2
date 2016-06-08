@@ -11,17 +11,6 @@ android {
         enabled = true
     }
 
-    defaultPublishConfig 'release'
-    publishNonDefault true
-    productFlavors {
-        library {
-            /* This strange empty flavour is actually needed
-               for the below to be successful
-    debugCompile project(path: ':common', configuration: "libraryDebug")
-    releaseCompile project(path: ':common', configuration: "libraryRelease")
-           */
-        }
-    }
 }
 
 // 查看依赖关系命令
@@ -32,9 +21,7 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.rengwuxian.materialedittext:library:2.0.3'
     // ColorChooserDialog, FolderChooserDialog, the Material Preference classes, and MaterialSimpleListAdapter/MaterialSimpleListItem
-    compile('com.github.afollestad.material-dialogs:commons:0.8.5.6') {
-        transitive = true
-    }
+    compile 'com.github.afollestad.material-dialogs:commons:0.8.5.8'
     compile 'io.reactivex:rxandroid:1.1.0'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.

@@ -6,22 +6,9 @@ android {
     defaultConfig {
         minSdkVersion 17
     }
-    defaultPublishConfig 'release'
-    publishNonDefault true
-    productFlavors {
-        library {
-            /* This strange empty flavour is actually needed
-               for the below to be successful
-    debugCompile project(path: ':common', configuration: "libraryDebug")
-    releaseCompile project(path: ':common', configuration: "libraryRelease")
-           */
-        }
-    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    debugCompile project(path: ':common', configuration: "libraryDebug")
-    releaseCompile project(path: ':common', configuration: "libraryRelease")
-
+    compile project(':common')
 }

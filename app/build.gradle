@@ -7,7 +7,7 @@ def KEYSTORE_PASSWORD = properties.getProperty('KEYSTORE_PASSWORD')
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.jecelyin.editor2"
@@ -117,20 +117,19 @@ configurations {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    debugCompile project(path: ':common', configuration: "libraryDebug")
-    releaseCompile project(path: ':common', configuration: "libraryRelease")
-
-    debugCompile project(path: ':styles', configuration: "libraryDebug")
-    releaseCompile project(path: ':styles', configuration: "libraryRelease")
-
-    debugCompile project(path: ':file_explorer', configuration: "libraryDebug")
-    releaseCompile project(path: ':file_explorer', configuration: "libraryRelease")
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':common')
+    compile project(':file_explorer')
+    compile project(':styles')
+    //避免AS找不到相关文件（可以编译通过）
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.github.afollestad.material-dialogs:commons:0.8.5.8'
+    compile 'com.rengwuxian.materialedittext:library:2.0.3'
 
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
     compile 'org.apmem.tools:layouts:1.9@aar'
     //    compile 'com.larswerkman:HoloColorPicker:1.5'
     compile 'com.azeesoft.lib.colorpicker:colorpicker:1.0.8@aar'
     compile 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
+
 }
