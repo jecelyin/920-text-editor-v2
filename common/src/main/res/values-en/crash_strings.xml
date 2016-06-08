@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">Email (Optional)</string>
+    <string name="crash_comment">How to crash (Optional):</string>
+    <string name="crash_report_success">Success, Thank you!</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Submit</string>
+    <string name="crash_submit_fail">Failure!</string>
+    <string name="network_unavailable">Network Unavailable</string>
+</resources>

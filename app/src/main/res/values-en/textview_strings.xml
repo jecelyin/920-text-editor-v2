@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
   ~
@@ -18,5 +17,14 @@
   -->
 
 <resources>
-    <string name="submitting">正在提交…</string>
+    <string name="delete">Delete</string>
+    <string name="addToDictionary">Add to dictionary</string>
+    <string name="deleteText">Delete Text</string>
+    <string name="paste">Paste</string>
+    <string name="replace">Replace</string>
+    <string name="textSelectionCABTitle">Select Text</string>
+    <string name="selectAll">Select All</string>
+    <string name="cut">Cut</string>
+    <string name="copy">Copy</string>
+    <string name="find">Find</string>
 </resources>

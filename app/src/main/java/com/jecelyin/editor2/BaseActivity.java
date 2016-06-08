@@ -16,14 +16,20 @@
  * limitations under the License.
  */
 
-package com.jecelyin.common.app;
+package com.jecelyin.editor2;
 
-import android.support.v4.app.Fragment;
+import com.jecelyin.common.app.JecActivity;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class JecFragment extends Fragment {
 
+public class BaseActivity extends JecActivity {
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MainApp.getRefWatcher(this).watch(this);
+    }
 
 }

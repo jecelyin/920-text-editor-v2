@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="directory">Directory</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="logout">Logout</string>
+    <string name="selected_x_items">Selected %d Items</string>
+    <string name="filename">File Name:</string>
+    <string name="file_encoding">Encoding:</string>
+    <string name="file_save">Save</string>
+    <string name="root_path">Root</string>
+    <string name="auto_detection_encoding">Auto detection encoding</string>
+    <string name="illegal_filename">illegal filename</string>
+    <string name="unknown_path">unknown path</string>
+    <string name="open_file">Open File</string>
+    <string name="save_file">Save File</string>
+    <string name="override_file_prompt">%s exists，do you override it？</string>
+    <string name="filter_by_name">Filter by Name</string>
+</resources>

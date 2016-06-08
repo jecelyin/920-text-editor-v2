@@ -331,7 +331,7 @@ public class EditorDelegate {
     private void reOpenWithEncoding(final String encoding) {
         final File file = document.getFile();
         if (file == null) {
-            UIUtils.toast(context, R.string.save_as_file_first);
+            UIUtils.toast(context, R.string.please_save_as_file_first);
             return;
         }
         if (document.isChanged()) {

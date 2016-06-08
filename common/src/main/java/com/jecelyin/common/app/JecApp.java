@@ -26,15 +26,12 @@ import android.util.Log;
 import com.jecelyin.common.hockeyapp.tasks.CrashReportTask;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class JecApp extends Application implements Thread.UncaughtExceptionHandler {
     private static Context context;
-    private RefWatcher refWatcher;
     private static long startupTimestamp;
 
     @Override
@@ -56,7 +53,6 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
         }
         // 捕捉未知异常
         Thread.setDefaultUncaughtExceptionHandler(this);
-        refWatcher = LeakCanary.install(this);
     }
 
     @Override
@@ -69,11 +65,6 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
 
 //        android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
-    }
-
-    public static RefWatcher getRefWatcher(Context context) {
-        JecApp application = (JecApp) context.getApplicationContext();
-        return application.refWatcher;
     }
 
     public static Context getContext() {

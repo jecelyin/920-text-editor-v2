@@ -18,5 +18,5 @@
   -->
 
 <resources>
-    <string name="submitting">正在提交…</string>
+    <string name="submitting">Submitting…</string>
 </resources>

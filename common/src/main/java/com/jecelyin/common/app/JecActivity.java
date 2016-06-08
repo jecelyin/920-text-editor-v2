@@ -35,12 +35,6 @@ import com.jecelyin.common.view.SystemBarTintManager;
  */
 public class JecActivity extends AppCompatActivity {
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        JecApp.getRefWatcher(this).watch(this);
-    }
-
     protected void setStatusBarColor(Toolbar toolbar, int color) {
         super.onStart();
         if(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {

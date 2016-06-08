@@ -72,7 +72,6 @@
     <string name="select_lang_to_highlight">选择高亮语言</string>
     <string name="more_menu">更多菜单</string>
     <string name="reopen_with_encoding">使用该编码重新打开</string>
-    <string name="save_as_file_first">请先保存为文件</string>
     <string name="document_changed">文档已经改变</string>
     <string name="give_up_document_changed_message">文档已经改变，重新打开将放弃改变，确认要放弃？</string>
     <string name="preview_in_browser">在浏览器预览</string>
@@ -145,7 +144,7 @@
     <string name="my_email" translatable="false"><![CDATA[Email：<a href="mailto:jecelyin@gmail.com">jecelyin@gmail.com</a>]]></string>
     <string name="project_url" translatable="false"><![CDATA[URL：<a href="https://github.com/jecelyin/920-text-editor-v2/">https://github.com/jecelyin/920-text-editor-v2/</a>]]></string>
     <string name="qq_group">QQ群：87272821</string>
-    <string name="license"><![CDATA[Copyright (C) 2016 Jecelyin Peng,\n\n920 Text Editor open source software is licensed under the Apache License 2.0]]></string>
+    <string name="license" translatable="false"><![CDATA[Copyright (C) 2016 Jecelyin Peng,\n\n920 Text Editor open source software is licensed under the Apache License 2.0]]></string>
     <string name="open_with_external_browser">使用外部浏览器打开</string>
     <string name="contact_email_optional">联系Email（可选）</string>
     <string name="with_error_logs">错误日志</string>
@@ -169,7 +168,7 @@
         <item>转换为 \\n（Linux/OSX）</item>
         <item>转换为 \\r\\n（Windows）</item>
     </string-array>
-    <string-array name="date_number">
+    <string-array name="date_number" translatable="false">
         <item>〇</item>
         <item>一</item>
         <item>二</item>
