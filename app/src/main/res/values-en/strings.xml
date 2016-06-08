@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">920文本编辑器</string>
+    <string name="app_name">920 Text Editor</string>
     <string name="new_file">新建</string>
     <string name="open">打开</string>
     <string name="save">保存</string>
@@ -55,13 +54,13 @@
     <string name="tab">标签</string>
     <string name="no_change">没有任何改变</string>
     <string name="save_success">保存成功</string>
-    <string name="find_label">输入关键字</string>
-    <string name="replace_label">替换为:</string>
-    <string name="case_sensitive">区分大小写</string>
-    <string name="whole_words_only">仅匹配单词</string>
-    <string name="regex">正则匹配</string>
-    <string name="in_path">指定目录:</string>
-    <string name="recursively">递归查找</string>
+    <string name="find_label">Find What:</string>
+    <string name="replace_label">Replace With:</string>
+    <string name="case_sensitive">Case sensitive</string>
+    <string name="whole_words_only">Whole words only</string>
+    <string name="regex">Regular expression</string>
+    <string name="in_path">In Path:</string>
+    <string name="recursively">Recursively</string>
     <string name="cannot_be_empty">不能为空</string>
     <string name="path_not_exists">路径不存在</string>
     <string name="find_not_found">找不到结果</string>
@@ -69,7 +68,7 @@
     <string name="next_occurrence">查找下一个</string>
     <string name="replace_all">替换全部</string>
     <string name="searching">搜索中…</string>
-    <string name="select_lang_to_highlight">选择高亮语言</string>
+    <string name="select_lang_to_highlight">Select a language to highlight</string>
     <string name="more_menu">更多菜单</string>
     <string name="reopen_with_encoding">使用该编码重新打开</string>
     <string name="save_as_file_first">请先保存为文件</string>
@@ -112,15 +111,11 @@
     <string name="file_not_exists">文件不存在</string>
     <string name="cannt_handle_intent_x">无法处理来源信息：%s</string>
     <string name="handle_intent_x_error">处理来源：%s 时发生错误</string>
-    <string name="hex_color_char" translatable="false">#</string>
-    <string name="color_R" translatable="false">R:</string>
-    <string name="color_G" translatable="false">G:</string>
-    <string name="color_B" translatable="false">B:</string>
     <string name="verify_sign_failure">你当前使用的是非官方发布的应用，请转到 https://github.com/jecelyin/920-text-editor-v2/releases 下载官方发布的应用。</string>
     <string name="press_again_will_exit">再按一次返回按钮将退出程序</string>
     <string name="find_replace">查找/替换</string>
-    <string name="find_title">\"%s\" 查找结果</string>
-    <string name="zero_matches">0 个匹配</string>
+    <string name="find_title">\"%s\" Find Results</string>
+    <string name="zero_matches">0 matches</string>
     <string name="chooser_browser">选择一个浏览器</string>
     <string name="find_or_replace">查找/替换…</string>
     <string name="other_application">其它程序…</string>
@@ -132,20 +127,17 @@
     <string name="tab_size">制表符大小</string>
     <string name="new_version_available">发现新版本</string>
     <string name="install">安装</string>
-    <string name="new_version_update_content">最新版本: %1$s\n\n更新日志:\n%2$s</string>
+    <string name="new_version_update_content">Latest Version: %1$s\n\nWhat\'s New:\n%2$s</string>
     <string name="download_progress">正在下载：%1$d%%</string>
     <string name="download_failure_x">下载失败：%s</string>
     <string name="start_download">开始下载</string>
     <string name="auto_check_updates">自动检查更新</string>
     <string name="cannt_download">无法下载</string>
-    <string name="readonly_mode_not_support_this_action">只读模式不支持此操作</string>
-    <string name="x_text_replaced">%d 个文本已经替换</string>
+    <string name="readonly_mode_not_support_this_action">Read-only mode does not support this action</string>
+    <string name="x_text_replaced">%d text has been replaced</string>
     <string name="enable_root">启用Root权限</string>
     <string name="my_name">作者：彭春瑜</string>
-    <string name="my_email" translatable="false"><![CDATA[Email：<a href="mailto:jecelyin@gmail.com">jecelyin@gmail.com</a>]]></string>
-    <string name="project_url" translatable="false"><![CDATA[URL：<a href="https://github.com/jecelyin/920-text-editor-v2/">https://github.com/jecelyin/920-text-editor-v2/</a>]]></string>
     <string name="qq_group">QQ群：87272821</string>
-    <string name="license"><![CDATA[Copyright (C) 2016 Jecelyin Peng,\n\n920 Text Editor open source software is licensed under the Apache License 2.0]]></string>
     <string name="open_with_external_browser">使用外部浏览器打开</string>
     <string name="contact_email_optional">联系Email（可选）</string>
     <string name="with_error_logs">错误日志</string>
@@ -158,8 +150,8 @@
     <string name="keyword">关键字</string>
     <string name="find_keyword_is_empty">查找关键字不能为空</string>
     <plurals name="x_text_replaced">
-        <item quantity="zero">0 个匹配</item>
-        <item quantity="other">%d 处文本已经替换</item>
+        <item quantity="zero">0 found</item>
+        <item quantity="other">%d text replaced</item>
     </plurals>
     <string-array name="insert_datetime_lang">
         <item>英语</item>
@@ -168,19 +160,6 @@
     <string-array name="wrap_char_list">
         <item>转换为 \\n（Linux/OSX）</item>
         <item>转换为 \\r\\n（Windows）</item>
-    </string-array>
-    <string-array name="date_number">
-        <item>〇</item>
-        <item>一</item>
-        <item>二</item>
-        <item>三</item>
-        <item>四</item>
-        <item>五</item>
-        <item>六</item>
-        <item>七</item>
-        <item>八</item>
-        <item>九</item>
-        <item>十</item>
     </string-array>
     <string-array name="screen_orientation">
         <item>自动</item>
