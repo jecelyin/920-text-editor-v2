@@ -26,7 +26,7 @@ import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.common.utils.StringUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
@@ -64,6 +64,7 @@ public class Document implements ReadFileListener, TextWatcher {
     private int lineNumber;
     private String encoding = "UTF-8";
     private byte[] srcMD5;
+    private int srcLength;
     private final Buffer buffer;
     private SyntaxStyle[] styles;
     private final HashMap<Integer, ArrayList<ForegroundColorSpan>> colorSpanMap;
@@ -86,6 +87,7 @@ public class Document implements ReadFileListener, TextWatcher {
     public void onSaveInstanceState(EditorDelegate.SavedState ss) {
         ss.lineNumber = lineNumber;
         ss.textMd5 = srcMD5;
+        ss.textLength = srcLength;
         ss.encoding = encoding;
         ss.modeName = modeName;
         ss.file = file;
@@ -104,6 +106,7 @@ public class Document implements ReadFileListener, TextWatcher {
             lineNumber = ss.lineNumber;
         }
         srcMD5 = ss.textMd5;
+        srcLength = ss.textLength;
         encoding = ss.encoding;
         file = ss.file;
         rootFile = ss.rootFile;
@@ -120,7 +123,7 @@ public class Document implements ReadFileListener, TextWatcher {
         }
         root = false;
         if ((!file.canRead() || !file.canWrite()) && pref.isRootable()) {
-            rootFile = new File(SysUtils.getCacheDir(context), file.getName() + ".root");
+//            rootFile = new File(SysUtils.getCacheDir(context), file.getName() + ".root");
             if (rootFile.exists())
                 rootFile.delete();
 
@@ -153,6 +156,7 @@ public class Document implements ReadFileListener, TextWatcher {
         encoding = fileReader.getEncoding();
 
         srcMD5 = md5(text);
+        srcLength = text.length();
 
         return (SpannableStringBuilder)text;
 
@@ -321,16 +325,22 @@ public class Document implements ReadFileListener, TextWatcher {
         this.file = file;
         this.encoding = encoding;
         srcMD5 = md5(editorDelegate.getText());
+        srcLength = editorDelegate.getText().length();
         editorDelegate.noticeDocumentChanged();
     }
 
     public boolean isChanged() {
-        if(srcMD5 == null)
+        if(srcMD5 == null) {
             return editorDelegate.getText().length() != 0;
+        }
+        if (srcLength != editorDelegate.getEditableText().length())
+            return true;
+
         byte[] curMD5 = md5(editorDelegate.getEditableText());
 
-        return !MessageDigest.isEqual(srcMD5, curMD5);
+        return !StringUtils.isEqual(srcMD5, curMD5);
     }
+
 
     /**
      * Returns the md5sum for given string. Or dummy byte array on error

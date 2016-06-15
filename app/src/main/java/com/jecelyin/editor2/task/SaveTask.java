@@ -116,7 +116,7 @@ public class SaveTask {
                 writing = false;
                 L.e(e);
                 if (contextWR.get() != null)
-                 UIUtils.alert(contextWR.get(), e.getMessage());
+                    UIUtils.alert(contextWR.get(), e.getMessage());
             }
         });
         fileWriter.write(editorDelegateWR.get().getEditableText());

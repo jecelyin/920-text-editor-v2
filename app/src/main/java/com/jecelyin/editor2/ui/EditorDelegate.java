@@ -501,6 +501,7 @@ public class EditorDelegate {
 
         boolean root;
         File rootFile;
+        int textLength;
 
         @Override
         public int describeContents() {
@@ -522,6 +523,7 @@ public class EditorDelegate {
             if (this.editorState != null)
                 dest.writeParcelable(this.editorState, flags);
             dest.writeByteArray(this.textMd5);
+            dest.writeInt(textLength);
         }
 
         public SavedState() {
@@ -541,6 +543,7 @@ public class EditorDelegate {
             if (hasState == 1)
                 this.editorState = in.readParcelable(TextView.SavedState.class.getClassLoader());
             this.textMd5 = in.createByteArray();
+            this.textLength = in.readInt();
         }
 
         public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {

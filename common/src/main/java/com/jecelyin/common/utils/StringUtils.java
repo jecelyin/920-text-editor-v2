@@ -33,17 +33,23 @@ public class StringUtils {
     public static boolean isEmpty(String input) {
         return TextUtils.isEmpty(input);
     }
+
     /**
-     * 检测两个字符串是否相同；
+     * 不能使用 {@link MessageDigest#isEqual} 因为像华为emui 2.3这个函数不能正确比较
+     * @param digesta
+     * @param digestb
+     * @return
      */
-    public final static boolean isSame(String value1, String value2) {
-        if (isEmpty(value1) && isEmpty(value2)) {
-            return true;
-        } else if (!isEmpty(value1) && !isEmpty(value2)) {
-            return (value1.trim().equalsIgnoreCase(value2.trim()));
-        } else {
+    public static boolean isEqual(byte[] digesta, byte[] digestb) {
+        if (digesta.length != digestb.length) {
             return false;
         }
+        // Perform a constant time comparison to avoid timing attacks.
+        int v = 0;
+        for (int i = 0; i < digesta.length; i++) {
+            v |= (digesta[i] ^ digestb[i]);
+        }
+        return v == 0;
     }
 
     /**
