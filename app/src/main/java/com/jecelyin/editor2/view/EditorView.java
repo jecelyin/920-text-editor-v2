@@ -24,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.jecelyin.editor2.R;
+import com.jecelyin.editor2.common.OnVisibilityChangedListener;
 import com.jecelyin.editor2.core.widget.JecEditText;
 
 /**
@@ -33,6 +34,7 @@ public class EditorView extends RelativeLayout {
     private JecEditText editText;
     private ProgressBar progressView;
     private boolean removed = false;
+    private OnVisibilityChangedListener visibilityChangedListener;
 
     public EditorView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -77,5 +79,17 @@ public class EditorView extends RelativeLayout {
 
     public void setRemoved() {
         this.removed = true;
+    }
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+
+        if (visibilityChangedListener != null)
+            visibilityChangedListener.onVisibilityChanged(visibility);
+    }
+
+    public void setVisibilityChangedListener(OnVisibilityChangedListener visibilityChangedListener) {
+        this.visibilityChangedListener = visibilityChangedListener;
     }
 }

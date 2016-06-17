@@ -86,7 +86,7 @@ public class MenuFactory {
     private void initAllMenuItem() {
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_new,            Command.CommandEnum.NONE,    R.drawable.m_new, R.string.new_file));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_open,           Command.CommandEnum.OPEN,    R.drawable.m_open, R.string.open));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save,           Command.CommandEnum.SAVE,    R.drawable.m_save, R.string.save));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save,           Command.CommandEnum.SAVE,    R.drawable.m_save_level, R.string.save));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save_all,       Command.CommandEnum.NONE,    R.drawable.m_save_all, R.string.save_all));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save_as,        Command.CommandEnum.SAVE_AS, R.drawable.m_save_as, R.string.save_as));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_history,        Command.CommandEnum.NONE,    R.drawable.m_history, R.string.recent_files));

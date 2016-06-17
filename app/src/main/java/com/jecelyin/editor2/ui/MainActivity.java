@@ -24,12 +24,10 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -73,6 +71,7 @@ import com.jecelyin.editor2.ui.settings.SettingsActivity;
 import com.jecelyin.editor2.utils.AppUtils;
 import com.jecelyin.editor2.utils.DBHelper;
 import com.jecelyin.editor2.view.TabViewPager;
+import com.jecelyin.editor2.view.menu.MenuDef;
 import com.jecelyin.editor2.view.menu.MenuFactory;
 import com.jecelyin.editor2.view.menu.MenuItemInfo;
 
@@ -271,15 +270,14 @@ public class MainActivity extends JecActivity
         Menu menu = mToolbar.getMenu();
         List<MenuItemInfo> menuItemInfos = MenuFactory.getInstance(this).getToolbarIcon();
         for (MenuItemInfo item : menuItemInfos) {
-            MenuItem menuItem = menu.add(Menu.NONE, item.getItemId(), Menu.NONE, item.getTitleResId());
-//            menuItem.setIcon(item.getIconResId()); //不能直接使用，不然其它地方也会变色
-            menuItem.setIcon(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), item.getIconResId())));
-            menuItem.getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN); //image to white color
+            MenuItem menuItem = menu.add(MenuDef.GROUP_TOOLBAR, item.getItemId(), Menu.NONE, item.getTitleResId());
+            menuItem.setIcon(item.getIconResId());
+            menuItem.getIcon().setLevel(MenuDef.LEVEL_TOOLBAR);
             //menuItem.setShortcut()
             menuItem.setOnMenuItemClickListener(this);
             menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         }
-        MenuItem menuItem = menu.add(Menu.NONE, R.id.m_menu, Menu.NONE, getString(R.string.more_menu));
+        MenuItem menuItem = menu.add(MenuDef.GROUP_TOOLBAR, R.id.m_menu, Menu.NONE, getString(R.string.more_menu));
         menuItem.setIcon(R.drawable.ic_right_menu);
         menuItem.setOnMenuItemClickListener(this);
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -350,6 +348,25 @@ public class MainActivity extends JecActivity
         }
 
         return false;
+    }
+
+    /**
+     *
+     * @param menuResId
+     * @param status {@link com.jecelyin.editor2.view.menu.MenuDef#STATUS_NORMAL}, {@link com.jecelyin.editor2.view.menu.MenuDef#STATUS_DISABLED}
+     */
+    public void setMenuStatus(@IdRes int menuResId, int status) {
+        MenuItem menuItem = mToolbar.getMenu().findItem(menuResId);
+        if (menuItem == null) {
+            throw new RuntimeException("Can't find a menu item");
+        }
+        if (status == MenuDef.STATUS_DISABLED) {
+            menuItem.setEnabled(false);
+            menuItem.getIcon().setLevel(MenuDef.LEVEL_DISABLED);
+        } else {
+            menuItem.setEnabled(true);
+            menuItem.getIcon().setLevel(menuItem.getGroupId() == MenuDef.GROUP_TOOLBAR ? MenuDef.LEVEL_TOOLBAR : MenuDef.LEVEL_DEFAULT);
+        }
     }
 
     @Override

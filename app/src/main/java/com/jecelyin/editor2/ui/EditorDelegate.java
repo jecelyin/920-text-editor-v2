@@ -25,9 +25,11 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.common.utils.L;
@@ -35,6 +37,7 @@ import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.common.Command;
+import com.jecelyin.editor2.common.OnVisibilityChangedListener;
 import com.jecelyin.editor2.common.SaveListener;
 import com.jecelyin.editor2.core.widget.JecEditText;
 import com.jecelyin.editor2.core.widget.TextView;
@@ -45,13 +48,14 @@ import com.jecelyin.editor2.ui.dialog.DocumentInfoDialog;
 import com.jecelyin.editor2.ui.dialog.FinderDialog;
 import com.jecelyin.editor2.utils.AppUtils;
 import com.jecelyin.editor2.view.EditorView;
+import com.jecelyin.editor2.view.menu.MenuDef;
 
 import java.io.File;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class EditorDelegate {
+public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher {
     public final static String KEY_CLUSTER = "is_cluster";
 
     private Context context;
@@ -112,6 +116,8 @@ public class EditorDelegate {
             mEditText.setText(savedState.content);
         }
 
+        mEditText.addTextChangedListener(this);
+
         // 更新标题
         noticeDocumentChanged();
 
@@ -131,6 +137,7 @@ public class EditorDelegate {
 
         this.orientation = context.getResources().getConfiguration().orientation;
 
+        editorView.setVisibilityChangedListener(this);
         init();
     }
 
@@ -370,6 +377,33 @@ public class EditorDelegate {
         if (mEditorView == null)
             return;
         mEditorView.setRemoved();
+    }
+
+    @Override
+    public void onVisibilityChanged(int visibility) {
+        if (visibility != View.VISIBLE)
+            return;
+
+        noticeSaveMenuChanged();
+    }
+
+    private void noticeSaveMenuChanged() {
+        ((MainActivity)context).setMenuStatus(R.id.m_save, isChanged() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        noticeSaveMenuChanged();
     }
 
     private class EditorSelectionActionModeCallback implements ActionMode.Callback {

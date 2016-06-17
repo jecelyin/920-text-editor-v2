@@ -29,6 +29,8 @@ import com.jecelyin.common.utils.L;
  */
 public abstract class ViewPagerAdapter extends PagerAdapter
 {
+    private View mCurrentPrimaryItem;
+
     /**
      * Get a View that displays the data at the specified position in the data set.
      *
@@ -66,9 +68,29 @@ public abstract class ViewPagerAdapter extends PagerAdapter
     public Object instantiateItem(ViewGroup container, int position) {
         View view = getView(position, container);
 
+        if (view != mCurrentPrimaryItem) {
+            view.setVisibility(View.INVISIBLE);
+        }
+
         container.addView(view);
 
         return view;
+    }
+
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        super.setPrimaryItem(container, position, object);
+
+        View view = (View) object;
+        if (view != mCurrentPrimaryItem) {
+            if (mCurrentPrimaryItem != null) {
+                mCurrentPrimaryItem.setVisibility(View.INVISIBLE);
+            }
+            if (view != null) {
+                view.setVisibility(View.VISIBLE);
+            }
+            mCurrentPrimaryItem = view;
+        }
     }
 
     /**
