@@ -384,11 +384,13 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         if (visibility != View.VISIBLE)
             return;
 
-        noticeSaveMenuChanged();
+        noticeMenuChanged();
     }
 
-    private void noticeSaveMenuChanged() {
+    private void noticeMenuChanged() {
         ((MainActivity)context).setMenuStatus(R.id.m_save, isChanged() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+        ((MainActivity)context).setMenuStatus(R.id.m_undo, mEditText != null && mEditText.canUndo() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+        ((MainActivity)context).setMenuStatus(R.id.m_redo, mEditText != null && mEditText.canRedo() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
     }
 
     @Override
@@ -403,7 +405,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
 
     @Override
     public void afterTextChanged(Editable s) {
-        noticeSaveMenuChanged();
+        noticeMenuChanged();
     }
 
     private class EditorSelectionActionModeCallback implements ActionMode.Callback {

@@ -84,8 +84,8 @@ public class MenuFactory {
     }
 
     private void initAllMenuItem() {
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_new,            Command.CommandEnum.NONE,    R.drawable.m_new, R.string.new_file));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_open,           Command.CommandEnum.OPEN,    R.drawable.m_open, R.string.open));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_new,            Command.CommandEnum.NONE,    R.drawable.m_new_level, R.string.new_file));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_open,           Command.CommandEnum.OPEN,    R.drawable.m_open_level, R.string.open));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save,           Command.CommandEnum.SAVE,    R.drawable.m_save_level, R.string.save));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save_all,       Command.CommandEnum.NONE,    R.drawable.m_save_all, R.string.save_all));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_save_as,        Command.CommandEnum.SAVE_AS, R.drawable.m_save_as, R.string.save_as));
@@ -95,8 +95,8 @@ public class MenuFactory {
 //        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_copy,           Command.CommandEnum.COPY,              R.drawable.m_copy, R.string.copy));
 //        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_paste,          Command.CommandEnum.PASTE,             R.drawable.m_paste, R.string.paste));
 //        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_select_all,     Command.CommandEnum.SELECT_ALL,        R.drawable.m_select_all, R.string.select_all));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_undo,           Command.CommandEnum.UNDO,              R.drawable.m_undo, R.string.undo));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_redo,           Command.CommandEnum.REDO,              R.drawable.m_redo, R.string.redo));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_undo,           Command.CommandEnum.UNDO,              R.drawable.m_undo_level, R.string.undo));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_redo,           Command.CommandEnum.REDO,              R.drawable.m_redo_level, R.string.redo));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_wrap,           Command.CommandEnum.CONVERT_WRAP_CHAR, R.drawable.m_wrap, R.string.line_separator));
 //        menuItemInfos.add(new MenuItemInfo(MenuGroup.EDIT,  R.id.m_duplication,    Command.CommandEnum.DUPLICATION,       R.drawable.m_duplication, R.string.duplication));
 
