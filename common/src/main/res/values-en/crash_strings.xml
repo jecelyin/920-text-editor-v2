@@ -6,6 +6,6 @@
     <string name="crash_report_success">Success, Thank you!</string>
     <string name="crash_stacktrace">Stacktrace:</string>
     <string name="crash_submit">Submit</string>
-    <string name="crash_submit_fail">Failure!</string>
+    <string name="crash_submit_fail_x">Failure: %s</string>
     <string name="network_unavailable">Network Unavailable</string>
 </resources>

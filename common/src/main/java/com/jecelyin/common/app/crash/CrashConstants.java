@@ -1,4 +1,4 @@
-package com.jecelyin.common.hockeyapp;
+package com.jecelyin.common.app.crash;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -8,11 +8,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.jecelyin.common.hockeyapp.utils.Util;
 import com.jecelyin.common.utils.L;
 
 import java.io.File;
@@ -20,61 +18,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * <h3>Description</h3>
- *
- * Various constants and meta information loaded from the context.
- *
- * <h3>License</h3>
- *
- * <pre>
- * Copyright (c) 2009 nullwire aps
- * Copyright (c) 2011-2016 Bit Stadium GmbH
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- * </pre>
- *
- * @author Mads Kristiansen
- * @author Glen Humphrey
- * @author Evan Charlton
- * @author Peter Hewitt
- * @author Thomas Dohmke
- **/
-public class Constants {
+ * @author Jecelyin Peng <jecelyin@gmail.com>
+ */
+public class CrashConstants {
 
-    /**
-     * HockeyApp API URL.
-     */
-    public static final String BASE_URL = "https://sdk.hockeyapp.net/";
-    /**
-     * Name of this SDK.
-     */
-    public static final String SDK_NAME = "HockeySDK";
-
-    public static final String FILES_DIRECTORY_NAME = "HockeyApp";
-
-    /**
-     * Permissions request for the update task.
-     */
-    public static final int UPDATE_PERMISSIONS_REQUEST = 1;
     private static final String BUNDLE_BUILD_NUMBER = "buildNumber";
     /**
      * Path where crash logs and temporary files are stored.
@@ -117,7 +64,6 @@ public class Constants {
      * Unique identifier for device, not dependent on package or device.
      */
     public static String DEVICE_IDENTIFIER = null;
-    public static String identifier;
 
     /**
      * Initializes constants from the given context. The context is used to set
@@ -126,37 +72,15 @@ public class Constants {
      * @param context The context to use. Usually your Activity object.
      */
     public static void loadFromContext(Context context) {
-        Constants.ANDROID_VERSION = android.os.Build.VERSION.RELEASE;
-        Constants.ANDROID_BUILD = android.os.Build.DISPLAY;
-        Constants.PHONE_MODEL = android.os.Build.MODEL;
-        Constants.PHONE_MANUFACTURER = android.os.Build.MANUFACTURER;
-
-        String appIdentifier = Util.getAppIdentifier(context);
-        if (appIdentifier == null || appIdentifier.length() == 0) {
-            throw new IllegalArgumentException("HockeyApp app identifier was not configured correctly in manifest or build configuration.");
-        }
-        identifier = Util.sanitizeAppIdentifier(appIdentifier);
+        CrashConstants.ANDROID_VERSION = android.os.Build.VERSION.RELEASE;
+        CrashConstants.ANDROID_BUILD = android.os.Build.DISPLAY;
+        CrashConstants.PHONE_MODEL = android.os.Build.MODEL;
+        CrashConstants.PHONE_MANUFACTURER = android.os.Build.MANUFACTURER;
 
         loadFilesPath(context);
         loadPackageData(context);
         loadCrashIdentifier(context);
         loadDeviceIdentifier(context);
-    }
-
-    /**
-     * Returns a file representing the folder in which screenshots are stored.
-     *
-     * @return A file representing the screenshot folder.
-     */
-    public static File getHockeyAppStorageDir() {
-        File externalStorage = Environment.getExternalStorageDirectory();
-
-        File dir = new File(externalStorage.getAbsolutePath() + "/" + Constants.FILES_DIRECTORY_NAME);
-        boolean success = dir.exists() || dir.mkdirs();
-        if (!success) {
-            L.w("Couldn't create HockeyApp Storage dir");
-        }
-        return dir;
     }
 
     /**
@@ -173,7 +97,7 @@ public class Constants {
                 // The file shouldn't be null, but apparently it still can happen, see
                 // http://code.google.com/p/android/issues/detail?id=8886
                 if (file != null) {
-                    Constants.FILES_PATH = file.getAbsolutePath();
+                    CrashConstants.FILES_PATH = file.getAbsolutePath();
                 }
             } catch (Exception e) {
                 L.e("Exception thrown when accessing the files dir:");
@@ -193,13 +117,13 @@ public class Constants {
             try {
                 PackageManager packageManager = context.getPackageManager();
                 PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-                Constants.APP_PACKAGE = packageInfo.packageName;
-                Constants.APP_VERSION = "" + packageInfo.versionCode;
-                Constants.APP_VERSION_NAME = packageInfo.versionName;
+                CrashConstants.APP_PACKAGE = packageInfo.packageName;
+                CrashConstants.APP_VERSION = "" + packageInfo.versionCode;
+                CrashConstants.APP_VERSION_NAME = packageInfo.versionName;
 
                 int buildNumber = loadBuildNumber(context, packageManager);
                 if ((buildNumber != 0) && (buildNumber > packageInfo.versionCode)) {
-                    Constants.APP_VERSION = "" + buildNumber;
+                    CrashConstants.APP_VERSION = "" + buildNumber;
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 L.e("Exception thrown when accessing the package info:");
@@ -236,15 +160,15 @@ public class Constants {
      */
     private static void loadCrashIdentifier(Context context) {
         String deviceIdentifier = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-        if (!TextUtils.isEmpty(Constants.APP_PACKAGE) && !TextUtils.isEmpty(deviceIdentifier)) {
-            String combined = Constants.APP_PACKAGE + ":" + deviceIdentifier + ":" + createSalt(context);
+        if (!TextUtils.isEmpty(CrashConstants.APP_PACKAGE) && !TextUtils.isEmpty(deviceIdentifier)) {
+            String combined = CrashConstants.APP_PACKAGE + ":" + deviceIdentifier + ":" + createSalt(context);
             try {
                 MessageDigest digest = MessageDigest.getInstance("SHA-1");
                 byte[] bytes = combined.getBytes("UTF-8");
                 digest.update(bytes, 0, bytes.length);
                 bytes = digest.digest();
 
-                Constants.CRASH_IDENTIFIER = bytesToHex(bytes);
+                CrashConstants.CRASH_IDENTIFIER = bytesToHex(bytes);
             } catch (Throwable e) {
                 L.e("Couldn't create CrashIdentifier with Exception:" + e.toString());
                 //TODO handle the exeption
@@ -262,7 +186,7 @@ public class Constants {
         ContentResolver resolver = context.getContentResolver();
         String deviceIdentifier = Settings.Secure.getString(resolver, Settings.Secure.ANDROID_ID);
         if (deviceIdentifier != null) {
-            Constants.DEVICE_IDENTIFIER = tryHashStringSha256(context, deviceIdentifier);
+            CrashConstants.DEVICE_IDENTIFIER = tryHashStringSha256(context, deviceIdentifier);
         }
     }
 

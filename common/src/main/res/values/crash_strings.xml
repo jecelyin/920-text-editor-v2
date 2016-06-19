@@ -6,6 +6,6 @@
     <string name="crash_report_success">已经提交成功，感谢您的支持！</string>
     <string name="crash_stacktrace">错误：</string>
     <string name="crash_submit">提交</string>
-    <string name="crash_submit_fail">提交失败</string>
+    <string name="crash_submit_fail_x">提交失败：%s</string>
     <string name="network_unavailable">Network Unavailable</string>
 </resources>

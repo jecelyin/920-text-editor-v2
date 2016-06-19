@@ -23,9 +23,15 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.util.Log;
 
-import com.jecelyin.common.hockeyapp.tasks.CrashReportTask;
+import com.jecelyin.common.app.crash.CrashConstants;
+import com.jecelyin.common.app.crash.CrashDetails;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -60,11 +66,50 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
     {
         Log.e("uncaughtException", "#ERROR: " + ex.getMessage(), ex);
 
-        CrashReportTask.saveException(getApplicationContext(), ex, thread);
+        saveException(getApplicationContext(), ex, thread);
         CrashReportDialogActivity.startActivity(this, ex);
 
 //        android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
+    }
+
+    /**
+     * Save a caught exception to disk.
+     *
+     * @param exception Exception to save.
+     * @param thread    Thread that crashed.
+     */
+    public static void saveException(Context context, Throwable exception, Thread thread) {
+        CrashConstants.loadFromContext(context);
+        final Date now = new Date();
+        final Date startDate = new Date(JecApp.getStartupTimestamp());
+        final StringWriter result = new StringWriter();
+        final PrintWriter printWriter = new PrintWriter(result);
+        exception.printStackTrace(printWriter);
+
+        String filename = UUID.randomUUID().toString();
+
+        CrashDetails crashDetails = new CrashDetails(filename, exception);
+        crashDetails.setAppPackage(CrashConstants.APP_PACKAGE);
+        crashDetails.setAppVersionCode(CrashConstants.APP_VERSION);
+        crashDetails.setAppVersionName(CrashConstants.APP_VERSION_NAME);
+        crashDetails.setAppStartDate(startDate);
+        crashDetails.setAppCrashDate(now);
+
+        crashDetails.setOsVersion(CrashConstants.ANDROID_VERSION);
+        crashDetails.setOsBuild(CrashConstants.ANDROID_BUILD);
+        crashDetails.setDeviceManufacturer(CrashConstants.PHONE_MANUFACTURER);
+        crashDetails.setDeviceModel(CrashConstants.PHONE_MODEL);
+
+        if (thread != null) {
+            crashDetails.setThreadName(thread.getName() + "-" + thread.getId());
+        }
+
+        if (CrashConstants.CRASH_IDENTIFIER != null) {
+            crashDetails.setReporterKey(CrashConstants.CRASH_IDENTIFIER);
+        }
+
+        crashDetails.writeCrashReport();
     }
 
     public static Context getContext() {

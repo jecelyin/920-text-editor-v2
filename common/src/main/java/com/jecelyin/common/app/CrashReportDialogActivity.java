@@ -20,9 +20,9 @@ package com.jecelyin.common.app;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -31,20 +31,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jecelyin.common.R;
-import com.jecelyin.common.hockeyapp.tasks.CrashReportTask;
+import com.jecelyin.common.github.IGitHubConstants;
+import com.jecelyin.common.github.Issue;
+import com.jecelyin.common.github.IssueService;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CrashReportDialogActivity extends JecActivity {
     private static final int MENU_SUBMIT = 1;
-    private CrashReportTask task;
+    private String title;
 
     public static void startActivity(Context context, Throwable t) {
         Intent it = new Intent(context, CrashReportDialogActivity.class);
+        it.putExtra("title", t.getMessage());
         it.putExtra("trace", Log.getStackTraceString(t));
         it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(it);
@@ -53,8 +62,6 @@ public class CrashReportDialogActivity extends JecActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (task != null)
-            task.detach();
     }
 
     @Override
@@ -65,6 +72,7 @@ public class CrashReportDialogActivity extends JecActivity {
 
         Intent it = getIntent();
         String trace = it.getStringExtra("trace");
+        title = it.getStringExtra("title");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView stacktraceTextView = (TextView) findViewById(R.id.stacktraceTextView);
@@ -113,6 +121,8 @@ public class CrashReportDialogActivity extends JecActivity {
         activityManager.getMemoryInfo(memoryInfo);
 
         StringBuilder sb = new StringBuilder(content);
+        sb.append("\n");
+        sb.append(email);
         sb.append("\n\n");
         sb.append("Memory: ").append(memoryInfo.availMem/1024/1024).append(" MB / ").append(memoryInfo.totalMem/1024/1024).append(" MB\n");
         sb.append("LogCat Error:\n\n");
@@ -120,27 +130,63 @@ public class CrashReportDialogActivity extends JecActivity {
         dbHelper.crashToString(sb);
         dbHelper.close();
 
-        task = new CrashReportTask(getContext(), email, sb.toString()) {
+        final Issue issue = new Issue();
+        issue.setTitle("[BugReport] " + title);
+        issue.setBody(sb.toString());
+        issue.setLabel("bug");
+
+        final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
+        netLoadingDialog.show();
+        final Subscription subscription = Observable.create(new Observable.OnSubscribe<Issue>() {
             @Override
-            protected void onPostExecute(Boolean success) {
-                super.onPostExecute(success);
-                if (success) {
-                    final CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
+            public void call(Subscriber<? super Issue> subscriber) {
+                try {
+                    IssueService is = new IssueService();
+                    is.getClient().setOAuth2Token(IGitHubConstants.TOKEN);
+                    Issue rs = is.createIssue(issue);
+
+                    CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
                     dbHelper.updateCrashCommitted();
                     dbHelper.close();
-                    UIUtils.toast(getContext(), R.string.crash_report_success);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            close();
-                        }
-                    }, 2000);
-                } else {
-                    UIUtils.alert(getContext(), getString(R.string.crash_submit_fail));
+
+                    subscriber.onNext(rs);
+                    subscriber.onCompleted();
+                } catch (Exception e) {
+                    subscriber.onError(e);
                 }
             }
-        };
-        task.execute();
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<Issue>() {
+            @Override
+            public void onCompleted() {
+                dbHelper.close();
+                netLoadingDialog.dismiss();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                dbHelper.close();
+                netLoadingDialog.dismiss();
+                UIUtils.alert(getContext(), getString(R.string.crash_submit_fail_x, e.getMessage()));
+            }
+
+            @Override
+            public void onNext(Issue issue) {
+                UIUtils.toast(getContext(), R.string.crash_report_success);
+                close();
+            }
+        });
+
+        netLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                dbHelper.close();
+                subscription.unsubscribe();
+                close();
+            }
+        });
     }
 
     private void close() {
