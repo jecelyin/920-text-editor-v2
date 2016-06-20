@@ -36,6 +36,7 @@ public class MainApp extends JecApp {
         super.onCreate();
 
         refWatcher = LeakCanary.install(this);
+
     }
 
     public static RefWatcher getRefWatcher(Context context) {

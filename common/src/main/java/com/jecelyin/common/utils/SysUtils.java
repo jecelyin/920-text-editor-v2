@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -132,5 +133,18 @@ public class SysUtils {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static byte[] getSignature(Context context) {
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+        } catch (PackageManager.NameNotFoundException e) {
+            L.e(e);
+        }
+        if (packageInfo == null || packageInfo.signatures == null)
+            return null;
+        Signature signature = packageInfo.signatures[0];
+        return signature.toByteArray();
     }
 }

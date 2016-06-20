@@ -18,6 +18,7 @@
 
 package com.jecelyin.editor2.ui;
 
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,22 +27,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.jecelyin.common.app.JecActivity;
-import com.jecelyin.common.hockeyapp.tasks.SendFeedbackTask;
+import com.jecelyin.common.app.NetLoadingDialog;
+import com.jecelyin.common.github.Issue;
+import com.jecelyin.common.github.IssueService;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.FeedbackActivityBinding;
 
-import java.util.HashMap;
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class FeedbackActivity extends JecActivity {
     private FeedbackActivityBinding binding;
-    private CrashDbHelper dbHelper;
-    private SendFeedbackTask task;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,14 +73,6 @@ public class FeedbackActivity extends JecActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (task != null)
-            task.detach();
-    }
-
     private void submit() {
         String email = binding.emailEditText.getText().toString();
         String content = binding.contentEditText.getText().toString();
@@ -98,30 +95,62 @@ public class FeedbackActivity extends JecActivity {
         sb.append(content);
         if (withLog) {
             sb.append("\n\n");
-            dbHelper = CrashDbHelper.getInstance(getContext());
+            CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
             dbHelper.crashToString(sb);
             dbHelper.close();
         }
 
-        task = new SendFeedbackTask(this, "", email, title, sb.toString(), null, null, null) {
+        final Issue issue = new Issue();
+        issue.setLabel("help wanted");
+        issue.setTitle("[Feedback] " + title);
+        issue.setBody(sb.toString());
+
+        final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
+        netLoadingDialog.show();
+        final Subscription subscription = Observable.create(new Observable.OnSubscribe<Issue>() {
             @Override
-            protected void onPostExecute(HashMap<String, String> result) {
-                super.onPostExecute(result);
+            public void call(Subscriber<? super Issue> subscriber) {
+                try {
+                    IssueService is = new IssueService();
+                    is.getClient().setOAuth2Token(getApplicationContext());
+                    Issue rs = is.createIssue(issue);
 
-                String status = result.get("status");
-                String response = result.get("response");
-
-                if (("201".equals(status) || "200".equals(status)) && response != null && response.contains("\"status\":\"success\"")) {
-                    dbHelper = CrashDbHelper.getInstance(getContext());
+                    CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
                     dbHelper.updateCrashCommitted();
                     dbHelper.close();
-                    UIUtils.toast(getContext(), R.string.submit_success);
-                    finish();
-                } else {
-                    UIUtils.alert(getContext(), getString(R.string.feedback_submit_error_x, response));
+
+                    subscriber.onNext(rs);
+                    subscriber.onCompleted();
+                } catch (Exception e) {
+                    subscriber.onError(e);
                 }
             }
-        };
-        task.execute();
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<Issue>() {
+            @Override
+            public void onCompleted() {
+                netLoadingDialog.dismiss();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                netLoadingDialog.dismiss();
+                UIUtils.alert(getContext(), getString(R.string.feedback_submit_error_x, e.getMessage()));
+            }
+
+            @Override
+            public void onNext(Issue issue) {
+                UIUtils.toast(getContext(), R.string.submit_success);
+            }
+        });
+
+        netLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                subscription.unsubscribe();
+            }
+        });
     }
 }

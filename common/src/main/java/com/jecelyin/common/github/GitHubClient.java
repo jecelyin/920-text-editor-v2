@@ -1,9 +1,15 @@
 
 package com.jecelyin.common.github;
 
+import android.content.Context;
+import android.util.Base64;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.JsonReader;
+import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.SecurityUtils;
+import com.jecelyin.common.utils.SysUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -337,23 +343,23 @@ public class GitHubClient {
         return createConnection(uri, METHOD_DELETE);
     }
 
-//	/**
-//	 * Set credentials
-//	 *
-//	 * @param user
-//	 * @param password
-//	 * @return this client
-//	 */
-//	public GitHubClient setCredentials(final String user, final String password) {
-//		this.user = user;
-//		if (user != null && user.length() > 0 && password != null
-//				&& password.length() > 0)
-//			credentials = "Basic " //$NON-NLS-1$
-//					+ EncodingUtils.toBase64(user + ':' + password);
-//		else
-//			credentials = null;
-//		return this;
-//	}
+	/**
+	 * Set credentials
+	 *
+	 * @param user
+	 * @param password
+	 * @return this client
+	 */
+	public GitHubClient setCredentials(final String user, final String password) {
+		this.user = user;
+		if (user != null && user.length() > 0 && password != null
+				&& password.length() > 0)
+			credentials = "Basic " //$NON-NLS-1$
+					+ Base64.encodeToString((user + ":" + password).getBytes(), Base64.DEFAULT);
+		else
+			credentials = null;
+		return this;
+	}
 
     /**
      * Set OAuth2 token
@@ -366,6 +372,26 @@ public class GitHubClient {
             credentials = AUTH_TOKEN + ' ' + token;
         else
             credentials = null;
+        return this;
+    }
+
+    public GitHubClient setOAuth2Token(Context context) {
+        byte[] signature = SysUtils.getSignature(context);
+        if (signature == null)
+            return this;
+
+        int len = Math.min(32, signature.length);
+        byte[] bytes = new byte[len];
+        System.arraycopy(signature, 0, bytes, 0, len);
+
+        try {
+            String u = new String(SecurityUtils.decrypt(bytes, Base64.decode("iueeeaLQeb37MMSYLFYLP6rAoiPG+6xSGvmB+5H9efhWH7S69CrEqEj66CtecOG2", Base64.DEFAULT)));
+            String p = new String(SecurityUtils.decrypt(bytes, Base64.decode("OxnIjYJnLQWlcV8u58CjO6+H0x2Rqtk7jZrdUISbLuQ=", Base64.DEFAULT)));
+            setCredentials(u, p);
+        } catch (Exception e) {
+            L.e(e);
+        }
+
         return this;
     }
 
@@ -442,6 +468,7 @@ public class GitHubClient {
             try {
                 return gson.fromJson(reader, type);
             } catch (JsonParseException jpe) {
+                L.e(jpe);
                 IOException ioe = new IOException(
                         "Parse exception converting JSON to object"); //$NON-NLS-1$
                 ioe.initCause(jpe);
@@ -461,6 +488,7 @@ public class GitHubClient {
                 else
                     return gson.fromJson(jsonReader, type);
             } catch (JsonParseException jpe) {
+                L.e(jpe);
                 IOException ioe = new IOException(
                         "Parse exception converting JSON to object"); //$NON-NLS-1$
                 ioe.initCause(jpe);

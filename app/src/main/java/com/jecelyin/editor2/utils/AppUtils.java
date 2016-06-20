@@ -19,12 +19,10 @@
 package com.jecelyin.editor2.utils;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.util.Base64;
 
 import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.SysUtils;
 
 import java.security.MessageDigest;
 
@@ -36,12 +34,11 @@ public class AppUtils {
 
     public static boolean verifySign(Context context) {
         try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-            if (packageInfo == null || packageInfo.signatures == null)
+            byte[] signature = SysUtils.getSignature(context);
+            if (signature == null)
                 return false;
-            Signature signature = packageInfo.signatures[0];
             MessageDigest md = MessageDigest.getInstance("SHA");
-            md.update(signature.toByteArray());
+            md.update(signature);
             final String currentSignature = Base64.encodeToString(md.digest(), Base64.DEFAULT);
             return rightSign.equals(currentSignature);
         } catch (Exception e) {

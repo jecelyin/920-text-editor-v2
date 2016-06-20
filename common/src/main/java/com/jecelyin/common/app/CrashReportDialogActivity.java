@@ -31,7 +31,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jecelyin.common.R;
-import com.jecelyin.common.github.IGitHubConstants;
 import com.jecelyin.common.github.Issue;
 import com.jecelyin.common.github.IssueService;
 import com.jecelyin.common.utils.CrashDbHelper;
@@ -142,7 +141,7 @@ public class CrashReportDialogActivity extends JecActivity {
             public void call(Subscriber<? super Issue> subscriber) {
                 try {
                     IssueService is = new IssueService();
-                    is.getClient().setOAuth2Token(IGitHubConstants.TOKEN);
+                    is.getClient().setOAuth2Token(getApplicationContext());
                     Issue rs = is.createIssue(issue);
 
                     CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());

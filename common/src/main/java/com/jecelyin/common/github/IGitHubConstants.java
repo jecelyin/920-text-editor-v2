@@ -5,14 +5,11 @@ package com.jecelyin.common.github;
  * GitHub constants
  */
 public interface IGitHubConstants {
-    /**
-     * @link https://github.com/settings/tokens
-     */
-    String TOKEN = "e14f62d044d92d5f9bc61128f6f7c16d9bf6a01c";
 
     String REPO_USER = "jecelyin";
     String REPO_NAME = "920-text-editor-v2";
 
+    String AUTH_CLIENT_ID = "42ffe865eeb145739aeb";
     /** */
     String AUTH_TOKEN = "token"; //$NON-NLS-1$
 
