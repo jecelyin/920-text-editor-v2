@@ -383,8 +383,6 @@ public class MainActivity extends JecActivity
         switch (id) {
             case R.id.m_new:
                 tabManager.newTab();
-                if(tabManager != null)
-                throw new RuntimeException("test exception");
                 break;
             case R.id.m_open:
                 FileExplorerActivity.startPickFileActivity(this, null, RC_OPEN_FILE);
