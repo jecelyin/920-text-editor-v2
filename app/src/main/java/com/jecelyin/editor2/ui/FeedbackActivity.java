@@ -90,6 +90,8 @@ public class FeedbackActivity extends JecActivity {
 
         String title = content.length() <= 20 ? content : content.substring(0, 20);
 
+        email = email.trim().replace("@", "#");
+
         StringBuilder sb = new StringBuilder(email);
         sb.append("\n\n");
         sb.append(content);

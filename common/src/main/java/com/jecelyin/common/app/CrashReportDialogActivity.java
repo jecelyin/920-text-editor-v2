@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jecelyin.common.R;
+import com.jecelyin.common.app.crash.CrashUtils;
 import com.jecelyin.common.github.Issue;
 import com.jecelyin.common.github.IssueService;
 import com.jecelyin.common.utils.CrashDbHelper;
@@ -113,7 +115,7 @@ public class CrashReportDialogActivity extends JecActivity {
         String content = commentEditText.getText().toString().trim();
 
         EditText emailEditText = (EditText) findViewById(R.id.emailEditText);
-        String email = emailEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim().replace("@", "#");
 
         ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
@@ -128,6 +130,9 @@ public class CrashReportDialogActivity extends JecActivity {
         final CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
         dbHelper.crashToString(sb);
         dbHelper.close();
+
+        sb.append("Exception ==========================\n");
+        sb.append(CrashUtils.getStackTraces(getApplicationContext()));
 
         final Issue issue = new Issue();
         issue.setTitle("[BugReport] " + title);
@@ -174,7 +179,12 @@ public class CrashReportDialogActivity extends JecActivity {
             @Override
             public void onNext(Issue issue) {
                 UIUtils.toast(getContext(), R.string.crash_report_success);
-                close();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        close();
+                    }
+                }, 2000);
             }
         });
 
@@ -183,7 +193,6 @@ public class CrashReportDialogActivity extends JecActivity {
             public void onDismiss(DialogInterface dialog) {
                 dbHelper.close();
                 subscription.unsubscribe();
-                close();
             }
         });
     }

@@ -17,7 +17,19 @@
         android:supportsRtl="true"
         android:name=".MainApp"
         android:theme="@style/EditorTheme" >
-        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
+
+        <!--
+        add android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        for fix:
+        Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.
+        -->
+        <activity
+            android:name="com.jecelyin.common.app.CrashReportDialogActivity"
+            android:theme="@style/EditorTheme"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true"/>
+
         <!--
         1. standard
 

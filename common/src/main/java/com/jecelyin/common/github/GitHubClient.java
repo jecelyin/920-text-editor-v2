@@ -7,8 +7,8 @@ import android.util.Base64;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.JsonReader;
+import com.jecelyin.common.utils.EncryptionUtils;
 import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.SecurityUtils;
 import com.jecelyin.common.utils.SysUtils;
 
 import java.io.BufferedOutputStream;
@@ -385,8 +385,8 @@ public class GitHubClient {
         System.arraycopy(signature, 0, bytes, 0, len);
 
         try {
-            String u = new String(SecurityUtils.decrypt(bytes, Base64.decode("iueeeaLQeb37MMSYLFYLP6rAoiPG+6xSGvmB+5H9efhWH7S69CrEqEj66CtecOG2", Base64.DEFAULT)));
-            String p = new String(SecurityUtils.decrypt(bytes, Base64.decode("OxnIjYJnLQWlcV8u58CjO6+H0x2Rqtk7jZrdUISbLuQ=", Base64.DEFAULT)));
+            String u = EncryptionUtils.decryptText(bytes, Base64.decode("VapMUGB855/Xs1W+56ZpVKXpyKWj/V7jX6VuVNI4v+wh1/hthkuZEk1fYoQhsQtb", Base64.DEFAULT));
+            String p = EncryptionUtils.decryptText(bytes, Base64.decode("SnB2niIYmgM+c4j2JlhK/x6FbiopjQyZcVw5+eRrE8E=", Base64.DEFAULT));
             setCredentials(u, p);
         } catch (Exception e) {
             L.e(e);

@@ -5,13 +5,14 @@
         add android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         for fix:
         Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.
+        在 App module 才能使用到 EditorTheme
         -->
-        <activity
-            android:name=".app.CrashReportDialogActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="true"
-            android:finishOnTaskLaunch="true"/>
+        <!--<activity-->
+            <!--android:name=".app.CrashReportDialogActivity"-->
+            <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
+            <!--android:launchMode="singleInstance"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:finishOnTaskLaunch="true"/>-->
 
     </application>
 
