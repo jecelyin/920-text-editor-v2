@@ -104,4 +104,14 @@
     <style name="MaterialEditText">
         <item name="met_primaryColor">?colorAccent</item>
     </style>
+
+    <style name="ButtonH1">
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:background">@drawable/button_h1_selector</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

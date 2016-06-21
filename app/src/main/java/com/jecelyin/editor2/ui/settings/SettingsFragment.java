@@ -32,6 +32,7 @@ import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.preference.JecListPreference;
 import com.jecelyin.editor2.ui.AboutActivity;
 import com.jecelyin.editor2.ui.BrowserActivity;
+import com.jecelyin.editor2.ui.DonateActivity;
 import com.jecelyin.editor2.ui.FeedbackActivity;
 
 /**
@@ -85,6 +86,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         findPreference("pref_about").setOnPreferenceClickListener(this);
         findPreference("pref_translate").setOnPreferenceClickListener(this);
         findPreference("pref_feedback").setOnPreferenceClickListener(this);
+        findPreference("pref_donate").setOnPreferenceClickListener(this);
     }
 
     @Override
@@ -101,6 +103,9 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             case "pref_feedback":
                 it = new Intent(getActivity(), FeedbackActivity.class);
                 startActivity(it);
+                break;
+            case "pref_donate":
+                DonateActivity.startActivity(getActivity());
                 break;
         }
         return true;

@@ -5,8 +5,11 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- check new version and ftp/ssh/... and submit crash -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- for donate -->
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:allowBackup="true"
@@ -99,6 +102,7 @@
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.BrowserActivity" />
         <activity android:name=".ui.FeedbackActivity" />
+        <activity android:name=".ui.DonateActivity" />
     </application>
 
 </manifest>

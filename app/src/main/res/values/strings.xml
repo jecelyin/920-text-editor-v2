@@ -156,6 +156,11 @@
     <string name="writing">正在写入</string>
     <string name="keyword">关键字</string>
     <string name="find_keyword_is_empty">查找关键字不能为空</string>
+    <string name="donate_desc">非常感觉您对开源软件的支持</string>
+    <string name="donate_google">Google Billing</string>
+    <string name="donate_alipay">支付宝</string>
+    <string name="donate_amount_x">捐赠金额: %1$s%2$d</string>
+    <string name="donate_now">确认捐赠</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

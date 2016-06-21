@@ -18,6 +18,16 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@color/white_selectable_pressed_bg" />
-    <item android:drawable="@color/white_selectable_bg" />
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <solid android:color="#b98503" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp" />
+            <solid android:color="#e7a602" />
+        </shape>
+    </item>
 </selector>
