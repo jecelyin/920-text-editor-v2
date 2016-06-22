@@ -23,20 +23,27 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 import com.jecelyin.common.app.JecActivity;
+import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.DonateActivityBinding;
+import com.jecelyin.editor2.ui.donate.DonateChannel;
+import com.jecelyin.editor2.ui.donate.DonateListener;
+import com.jecelyin.editor2.ui.donate.GoogleBilling;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener {
+public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener, DonateListener {
     private DonateActivityBinding binding;
     private int amount = 5;
+    private GoogleBilling googleBilling;
 
     public static void startActivity(Context context) {
         Intent it = new Intent(context, DonateActivity.class);
@@ -50,8 +57,22 @@ public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChan
         binding = DataBindingUtil.setContentView(this, R.layout.donate_activity);
         binding.seekBar.setOnSeekBarChangeListener(this);
         binding.channelRadioGroup.setOnCheckedChangeListener(this);
-        binding.channelRadioGroup.check(R.id.channel_google);
         binding.seekBar.setProgress(amount);
+        binding.donateButton.setOnClickListener(this);
+
+        googleBilling = new GoogleBilling(getContext());
+        binding.channelRadioGroup.check(googleBilling.isReady() ? R.id.channel_google : R.id.channel_alipay);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == GoogleBilling.RC_REQUEST) {
+            if (!googleBilling.onActivityResult(requestCode, resultCode, data)) {
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     private void onAmountChanged() {
@@ -69,7 +90,10 @@ public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChan
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if (progress < 1)
+            return;
         amount = progress;
+        onAmountChanged();
     }
 
     @Override
@@ -85,5 +109,43 @@ public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChan
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         onAmountChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.donateButton) {
+            doDonate();
+        }
+    }
+
+    private void doDonate() {
+        DonateChannel channel = null;
+
+        switch (binding.channelRadioGroup.getCheckedRadioButtonId()) {
+            case R.id.channel_google:
+                channel = googleBilling;
+                break;
+            default:
+                UIUtils.toast(this, R.string.please_select_a_channel);
+                return;
+        }
+
+        channel.pay(amount, this);
+    }
+
+    @Override
+    public void onSuccess() {
+        UIUtils.showConfirmDialog(getContext(), R.string.donate_success_message, new UIUtils.OnClickCallback() {
+            @Override
+            public void onOkClick() {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onError(String msg, Throwable t) {
+        L.e(t);
+        UIUtils.alert(getContext(), getString(R.string.donate_fail), msg);
     }
 }

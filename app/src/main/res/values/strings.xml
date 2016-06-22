@@ -161,6 +161,10 @@
     <string name="donate_alipay">支付宝</string>
     <string name="donate_amount_x">捐赠金额: %1$s%2$d</string>
     <string name="donate_now">确认捐赠</string>
+    <string name="please_select_a_channel">请选择一个渠道</string>
+    <string name="donate_fail">捐赠失败</string>
+    <string name="donate_success_message">捐赠成功,感谢您的支持</string>
+    <string name="google_billing_unavailable">Google Billing 不可用</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

@@ -4,6 +4,7 @@ Properties properties = new Properties()
 properties.load(file('../../keystore/920-text-editor-v2.gradle.properties').newDataInputStream())
 def KEYSTORE_ALIAS = properties.getProperty('KEYSTORE_ALIAS')
 def KEYSTORE_PASSWORD = properties.getProperty('KEYSTORE_PASSWORD')
+def GOOGLE_BILLING_KEY = properties.getProperty('GOOGLE_BILLING_KEY')
 
 android {
     compileSdkVersion 23
@@ -15,7 +16,7 @@ android {
         targetSdkVersion 23
         versionCode 15
         versionName "v2"
-        manifestPlaceholders = [HOCKEYAPP_APP_ID: "ad68e1501e20421da13d71e86aa8f3ca"]
+        buildConfigField "String", "GOOGLE_BILLING_KEY", "\"" + GOOGLE_BILLING_KEY + "\""
     }
 
     signingConfigs {

@@ -22,6 +22,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
@@ -33,10 +34,18 @@ import com.afollestad.materialdialogs.MaterialDialog;
  */
 public class UIUtils {
     public static void alert(Context context, String message) {
-        new MaterialDialog.Builder(context)
+        alert(context, null, message);
+    }
+
+    public static void alert(Context context, String title, String message) {
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .content(message)
-                .positiveText(android.R.string.ok)
-                .show();
+                .positiveText(android.R.string.ok);
+
+        if (!TextUtils.isEmpty(title))
+            builder.title(title);
+
+        builder.show();
     }
 
     public static void toast(Context context, int messageResId) {

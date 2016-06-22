@@ -10,6 +10,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- for donate -->
     <uses-permission android:name="com.android.vending.BILLING" />
+    <!-- alipay start -->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!-- alipay end -->
 
     <application
         android:allowBackup="true"
@@ -103,6 +110,19 @@
         <activity android:name=".ui.BrowserActivity" />
         <activity android:name=".ui.FeedbackActivity" />
         <activity android:name=".ui.DonateActivity" />
+
+        <!-- Alipay start ==================================== -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <!-- Alipay end ==================================== -->
     </application>
 
 </manifest>

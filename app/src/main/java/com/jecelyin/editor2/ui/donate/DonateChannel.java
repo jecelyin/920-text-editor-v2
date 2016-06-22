@@ -23,7 +23,6 @@ package com.jecelyin.editor2.ui.donate;
  */
 
 public interface DonateChannel {
-    int RC_REQUEST = 4;
 
     void pay(int amount, DonateListener listener);
 

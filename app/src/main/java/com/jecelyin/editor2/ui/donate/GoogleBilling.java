@@ -20,11 +20,15 @@ package com.jecelyin.editor2.ui.donate;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import com.android.vending.billing.util.IabHelper;
 import com.android.vending.billing.util.IabResult;
 import com.android.vending.billing.util.Purchase;
 import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor2.BuildConfig;
+import com.jecelyin.editor2.R;
 
 import java.util.UUID;
 
@@ -33,6 +37,7 @@ import java.util.UUID;
  */
 
 public class GoogleBilling implements DonateChannel {
+    public static final int RC_REQUEST = 4;
     // The helper object
     IabHelper mHelper;
 
@@ -43,11 +48,12 @@ public class GoogleBilling implements DonateChannel {
 
     private DonateListener mDonateListener;
     private String payload;
+    private boolean ready = false;
 
-    public void init(Context context) {
+    public GoogleBilling(final Context context) {
         this.mContext = context;
 
-        String base64EncodedPublicKey = "";
+        String base64EncodedPublicKey = BuildConfig.GOOGLE_BILLING_KEY;
 
         // compute your public key and store it in base64EncodedPublicKey
         mHelper = new IabHelper(context, base64EncodedPublicKey);
@@ -64,6 +70,7 @@ public class GoogleBilling implements DonateChannel {
                 if (!result.isSuccess()) {
                     // Oh noes, there was a problem.
                     L.e("Problem setting up in-app billing: " + result);
+                    UIUtils.alert(context, context.getString(R.string.google_billing_unavailable), result.toString());
                     return;
                 }
 
@@ -72,8 +79,27 @@ public class GoogleBilling implements DonateChannel {
 
                 // IAB is fully set up. Now, let's get an inventory of stuff we own.
                 L.d("Setup successful. Querying inventory.");
+                ready = true;
             }
         });
+    }
+
+    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+        L.d("onActivityResult(" + requestCode + "," + resultCode + "," + data);
+        if (mHelper == null) return false;
+
+        // Pass on the activity result to the helper for handling
+        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
+            return false;
+        }
+        else {
+            L.d("onActivityResult handled by IABUtil.");
+            return true;
+        }
+    }
+
+    public boolean isReady() {
+        return ready;
     }
 
     /** Verifies the developer payload of a purchase. */
@@ -108,6 +134,11 @@ public class GoogleBilling implements DonateChannel {
 
     @Override
     public void pay(int amount, DonateListener listener) {
+        if (!ready) {
+            UIUtils.toast(mContext, R.string.google_billing_unavailable);
+            return;
+        }
+
         mDonateListener = listener;
         /*
              *        verifyDeveloperPayload() for more info. Since this is a SAMPLE, we just use
