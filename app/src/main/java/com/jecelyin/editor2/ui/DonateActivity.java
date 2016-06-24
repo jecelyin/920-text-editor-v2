@@ -34,7 +34,7 @@ import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.DonateActivityBinding;
 import com.jecelyin.editor2.ui.donate.DonateChannel;
 import com.jecelyin.editor2.ui.donate.DonateListener;
-import com.jecelyin.editor2.ui.donate.GoogleBilling;
+import com.jecelyin.editor2.ui.donate.GoogleBillingDonate;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -43,7 +43,7 @@ import com.jecelyin.editor2.ui.donate.GoogleBilling;
 public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener, DonateListener {
     private DonateActivityBinding binding;
     private int amount = 5;
-    private GoogleBilling googleBilling;
+    private GoogleBillingDonate googleBilling;
 
     public static void startActivity(Context context) {
         Intent it = new Intent(context, DonateActivity.class);
@@ -60,13 +60,16 @@ public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChan
         binding.seekBar.setProgress(amount);
         binding.donateButton.setOnClickListener(this);
 
-        googleBilling = new GoogleBilling(getContext());
+        googleBilling = new GoogleBillingDonate(getContext());
         binding.channelRadioGroup.check(googleBilling.isReady() ? R.id.channel_google : R.id.channel_alipay);
+
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == GoogleBilling.RC_REQUEST) {
+        if (requestCode == GoogleBillingDonate.RC_REQUEST) {
             if (!googleBilling.onActivityResult(requestCode, resultCode, data)) {
                 super.onActivityResult(requestCode, resultCode, data);
             }

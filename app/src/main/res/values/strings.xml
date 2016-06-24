@@ -156,8 +156,8 @@
     <string name="writing">正在写入</string>
     <string name="keyword">关键字</string>
     <string name="find_keyword_is_empty">查找关键字不能为空</string>
-    <string name="donate_desc">非常感觉您对开源软件的支持</string>
-    <string name="donate_google">Google Billing</string>
+    <string name="donate_desc">非常感谢您对开源软件的支持</string>
+    <string name="donate_google" translatable="false">Google Billing</string>
     <string name="donate_alipay">支付宝</string>
     <string name="donate_amount_x">捐赠金额: %1$s%2$d</string>
     <string name="donate_now">确认捐赠</string>
@@ -165,6 +165,9 @@
     <string name="donate_fail">捐赠失败</string>
     <string name="donate_success_message">捐赠成功,感谢您的支持</string>
     <string name="google_billing_unavailable">Google Billing 不可用</string>
+    <string name="donation_item_title">捐赠920文本编辑器</string>
+    <string name="donation_item_desc">帮助改进920文本编辑器</string>
+    <string name="pay_failure">支付失败</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

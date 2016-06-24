@@ -141,6 +141,8 @@ public class L {
     }
 
     public static int e(Throwable t) {
+        if (t == null)
+            return 0;
         return logError(getTag(), t.getMessage(), t);
     }
 

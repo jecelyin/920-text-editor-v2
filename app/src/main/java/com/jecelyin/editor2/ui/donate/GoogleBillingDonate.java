@@ -36,7 +36,7 @@ import java.util.UUID;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class GoogleBilling implements DonateChannel {
+public class GoogleBillingDonate implements DonateChannel {
     public static final int RC_REQUEST = 4;
     // The helper object
     IabHelper mHelper;
@@ -50,7 +50,7 @@ public class GoogleBilling implements DonateChannel {
     private String payload;
     private boolean ready = false;
 
-    public GoogleBilling(final Context context) {
+    public GoogleBillingDonate(final Context context) {
         this.mContext = context;
 
         String base64EncodedPublicKey = BuildConfig.GOOGLE_BILLING_KEY;
