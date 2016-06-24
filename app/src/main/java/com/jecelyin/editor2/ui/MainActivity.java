@@ -32,7 +32,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -74,6 +73,7 @@ import com.jecelyin.editor2.view.TabViewPager;
 import com.jecelyin.editor2.view.menu.MenuDef;
 import com.jecelyin.editor2.view.menu.MenuFactory;
 import com.jecelyin.editor2.view.menu.MenuItemInfo;
+import com.jecelyin.editor2.widget.AnyDrawerLayout;
 
 import java.io.File;
 import java.io.InputStream;
@@ -96,7 +96,7 @@ public class MainActivity extends JecActivity
     LinearLayout mLoadingLayout;
     TabViewPager mTabPager;
     RecyclerView mMenuRecyclerView;
-    DrawerLayout mDrawerLayout;
+    AnyDrawerLayout mDrawerLayout;
     RecyclerView mTabRecyclerView;
     TextView mVersionTextView;
 
@@ -139,7 +139,7 @@ public class MainActivity extends JecActivity
         mLoadingLayout = (LinearLayout) findViewById(R.id.loading_layout);
         mTabPager = (TabViewPager) findViewById(R.id.tab_pager);
         mMenuRecyclerView = (RecyclerView) findViewById(R.id.menuRecyclerView);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (AnyDrawerLayout) findViewById(R.id.drawer_layout);
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
 

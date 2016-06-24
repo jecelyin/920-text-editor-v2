@@ -35,15 +35,29 @@ public class L {
     public static boolean debug = false;
 
     private static String getTag() {
-//        if (DEBUG) {
-        StackTraceElement stack = Thread.currentThread().getStackTrace()[5];
+        if (!debug)
+            return TAG;
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        StackTraceElement stack;
+        int currentFileLinePosition = 4;
+        boolean foundL = false;
+        String clsName = L.class.getName();
+        for (int i = 0; i < stackTrace.length; i++) {
+            stack = stackTrace[i];
+            if (clsName.equals(stack.getClassName())) {
+                foundL = true;
+            } else if(foundL) {
+                currentFileLinePosition = i;
+                break;
+            }
+        }
+        stack = stackTrace[currentFileLinePosition];
         String fullClassName = stack.getClassName();
         String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
         String methodName = stack.getMethodName();
         int lineNumber = stack.getLineNumber();
 
         return className + "." + methodName + "#" + lineNumber;
-//        }
     }
 
     public static int v(String tag, String msg) {
