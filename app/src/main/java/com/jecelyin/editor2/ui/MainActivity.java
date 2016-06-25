@@ -64,7 +64,6 @@ import com.jecelyin.editor2.ui.dialog.GotoLineDialog;
 import com.jecelyin.editor2.ui.dialog.InsertDateTimeDialog;
 import com.jecelyin.editor2.ui.dialog.LangListDialog;
 import com.jecelyin.editor2.ui.dialog.RunDialog;
-import com.jecelyin.editor2.ui.dialog.SymbolBarWindow;
 import com.jecelyin.editor2.ui.dialog.WrapCharDialog;
 import com.jecelyin.editor2.ui.settings.SettingsActivity;
 import com.jecelyin.editor2.utils.AppUtils;
@@ -74,6 +73,7 @@ import com.jecelyin.editor2.view.menu.MenuDef;
 import com.jecelyin.editor2.view.menu.MenuFactory;
 import com.jecelyin.editor2.view.menu.MenuItemInfo;
 import com.jecelyin.editor2.widget.AnyDrawerLayout;
+import com.jecelyin.editor2.widget.SymbolBarLayout;
 
 import java.io.File;
 import java.io.InputStream;
@@ -142,6 +142,13 @@ public class MainActivity extends JecActivity
         mDrawerLayout = (AnyDrawerLayout) findViewById(R.id.drawer_layout);
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
+        SymbolBarLayout symbolBarLayout = (SymbolBarLayout) findViewById(R.id.symbolBarLayout);
+        symbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
+            @Override
+            public void onClick(View v, String text) {
+                insertText(text);
+            }
+        });
 
         if(!AppUtils.verifySign(getContext())) {
             UIUtils.showConfirmDialog(getContext(), getString(R.string.verify_sign_failure), new UIUtils.OnClickCallback() {
@@ -160,6 +167,7 @@ public class MainActivity extends JecActivity
 
         mDrawerLayout.setEnabled(false);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+        mDrawerLayout.setTouchToCloseBottomDrawer(false);
 //        mVersionTextView.setText(getString(R.string.version_x, SysUtils.getVersionName(this)));
         String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
@@ -416,11 +424,6 @@ public class MainActivity extends JecActivity
                 Command command = new Command(commandEnum);
                 command.args.putBoolean(EditorDelegate.KEY_CLUSTER, true);
                 doClusterCommand(command);
-                break;
-            case R.id.m_symbol:
-                if (ensureNotReadOnly()) {
-                    new SymbolBarWindow(this).showAtLocation(mTabPager);
-                }
                 break;
             case R.id.m_readonly:
                 boolean readOnly = !pref.isReadOnly();

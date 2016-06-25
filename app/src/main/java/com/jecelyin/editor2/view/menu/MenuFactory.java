@@ -108,7 +108,7 @@ public class MenuFactory {
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FIND,  R.id.m_forward,        Command.CommandEnum.FORWARD,        R.drawable.m_forward, R.string.forward));
 
         menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_info,           Command.CommandEnum.DOC_INFO, R.drawable.m_info, R.string.document_info));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_symbol,         Command.CommandEnum.NONE, R.drawable.m_symbol, R.string.symbol));
+//        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_symbol,         Command.CommandEnum.NONE, R.drawable.m_symbol, R.string.symbol));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_readonly,       Command.CommandEnum.READONLY_MODE, R.drawable.m_readonly, R.string.read_only));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_highlight,      Command.CommandEnum.NONE, R.drawable.m_highlight, R.string.highlight_language));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_encoding,       Command.CommandEnum.NONE, R.drawable.m_encoding, R.string.encoding));

@@ -57,7 +57,6 @@ import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.editor2.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -240,6 +239,8 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
     private Drawable mShadowRight = null;
 
     private final ArrayList<View> mNonDrawerViews;
+
+    private boolean touchToCloseBottomDrawer = true;
 
     /**
      * Listener for monitoring events about drawers.
@@ -1127,8 +1128,10 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 } else {
                     hasDrawerOnRightEdge = true;
                 }
+                //底部 View 要可以占整个宽度
+                int minDrawerMargin = isBottomEdgeDrawer ? 0 : mMinDrawerMargin;
                 final int drawerWidthSpec = getChildMeasureSpec(widthMeasureSpec,
-                        mMinDrawerMargin + lp.leftMargin + lp.rightMargin,
+                        minDrawerMargin + lp.leftMargin + lp.rightMargin,
                         lp.width);
                 final int drawerHeightSpec = getChildMeasureSpec(heightMeasureSpec,
                         lp.topMargin + lp.bottomMargin,
@@ -1226,10 +1229,11 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 final int childHeight = child.getMeasuredHeight();
                 int childLeft, childTop = 0;
 
-                final float newOffset;
+                float newOffset;
                 if (checkDrawerViewAbsoluteGravity(child, Gravity.BOTTOM)) {
-                    childTop = height - (int) (childHeight * lp.onScreen);
-                    newOffset = (float) (height - childTop) / childWidth;
+                    float offset = lp.onScreen == 0 ? (Math.abs(lp.topMargin) / (float)childHeight) : lp.onScreen;
+                    childTop = height - (int) (childHeight * offset);
+                    newOffset = (float) (height - childTop) / childHeight;
                     childLeft = child.getLeft();
                 } else if (checkDrawerViewAbsoluteGravity(child, Gravity.LEFT)) {
                     childLeft = -childWidth + (int) (childWidth * lp.onScreen);
@@ -1253,9 +1257,9 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
                     case Gravity.BOTTOM: {
                         child.layout(childLeft,
-                                height - lp.bottomMargin - child.getMeasuredHeight(),
+                                childTop,
                                 childLeft + childWidth,
-                                height - lp.bottomMargin);
+                                childTop + childHeight);
                         break;
                     }
 
@@ -1276,6 +1280,7 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 }
 
                 if (changeOffset) {
+                    L.d("onLayout newOffset=" + newOffset);
                     setDrawerViewOffset(child, newOffset);
                 }
 
@@ -1301,8 +1306,13 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
         final int childCount = getChildCount();
         float scrimOpacity = 0;
         for (int i = 0; i < childCount; i++) {
-            final float onscreen = ((LayoutParams) getChildAt(i).getLayoutParams()).onScreen;
+            LayoutParams lp = (LayoutParams) getChildAt(i).getLayoutParams();
+            //简单判断是否底部 View，如果是则跳过它，不然会因为底部 View 已经显示导致无法点击其它地方
+            if (lp.topMargin != 0)
+                continue;
+            final float onscreen = lp.onScreen;
             scrimOpacity = Math.max(scrimOpacity, onscreen);
+
         }
         mScrimOpacity = scrimOpacity;
 
@@ -1522,7 +1532,10 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
-                closeDrawers(true);
+                if (touchToCloseBottomDrawer) {
+                    closeDrawers(true);
+                }
+
                 mDisallowInterceptRequested = false;
                 mChildrenCanceledTouch = false;
             }
@@ -1626,7 +1639,7 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                         getWidth(), child.getTop());
             } else {
                 needsInvalidate |= mBottomDragger.smoothSlideViewTo(child,
-                        child.getLeft(), getHeight());
+                        child.getLeft(), getHeight() - (int) (child.getHeight() * lp.onScreen));
             }
 
             lp.isPeeking = false;
@@ -2014,6 +2027,10 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 != ViewCompat.IMPORTANT_FOR_ACCESSIBILITY_NO;
     }
 
+    public void setTouchToCloseBottomDrawer(boolean touchToCloseBottomDrawer) {
+        this.touchToCloseBottomDrawer = touchToCloseBottomDrawer;
+    }
+
     /**
      * State persisted across instances
      */
@@ -2109,13 +2126,16 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 final int height = getHeight();
                 final int childHeight = changedView.getHeight();
                 offset = (float) (height - top) / childHeight;
+
+                final LayoutParams lp = (LayoutParams) changedView.getLayoutParams();
+                int childTop = height + lp.topMargin;
+                float fixOffset = (float) (height - childTop) / childHeight;
+                if (offset <= fixOffset) {
+                    offset = fixOffset;
+                }
             } else {
                 final int width = getWidth();
                 offset = (float) (width - left) / childWidth;
-            }
-
-            if (changedView.getId() == R.id.bottomLayout) {
-                L.e("onViewPositionChanged, offset="+offset+" view="+changedView);
             }
 
             setDrawerViewOffset(changedView, offset);
@@ -2161,9 +2181,11 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 left = xvel > 0 || xvel == 0 && offset > 0.5f ? 0 : -childWidth;
                 top = releasedChild.getTop();
             } else if (checkDrawerViewAbsoluteGravity(releasedChild, Gravity.BOTTOM)) {
+                final LayoutParams lp = (LayoutParams) releasedChild.getLayoutParams();
                 final int height = getHeight();
                 left = releasedChild.getLeft();
-                top = yvel < 0 || yvel == 0 && offset > 0.5f ? height - childHeight : height;
+                //控制底部 View 高度
+                top = yvel < 0 || yvel == 0 && offset > 0.5f ? height - childHeight : height + lp.topMargin;
             } else {
                 final int width = getWidth();
                 left = xvel < 0 || xvel == 0 && offset > 0.5f ? width - childWidth : width;
@@ -2262,7 +2284,12 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
         @Override
         public int getViewVerticalDragRange(View child) {
+//            final int height = getHeight();
+//            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+//            int childTop = height - lp.topMargin;
+//            return childTop;
             return child.getHeight();
+
         }
 
         @Override
@@ -2280,12 +2307,15 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
         @Override
         public int clampViewPositionVertical(View child, int top, int dy) {
-            L.d("clampViewPositionVertical top=%d,dy=%d, view=%s", top, dy, child.toString());
+//            L.d("clampViewPositionVertical top=%d,dy=%d, view=%s", top, dy, child.toString());
             if (!checkDrawerViewAbsoluteGravity(child, Gravity.BOTTOM)) {
                 return child.getTop();
             } else {
                 final int height = getHeight();
-                return Math.max(height - child.getHeight(), Math.min(top, height));
+                final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+                int childTop = height + lp.topMargin;
+                L.d("clampViewPositionVertical childTop=" + childTop + " top=" + top);
+                return Math.min(childTop, Math.max(top, height - child.getHeight()));
             }
         }
     }

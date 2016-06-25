@@ -34,6 +34,14 @@
 
     </RelativeLayout>
 
+    <com.jecelyin.editor2.widget.SymbolBarLayout
+        android:id="@+id/symbolBarLayout"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="-42dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f0e1e1e1"/>
+
     <include layout="@layout/main_tab_layout" />
 
     <android.support.design.widget.NavigationView
@@ -48,15 +56,5 @@
             android:layout_height="match_parent" />
     </android.support.design.widget.NavigationView>
 
-    <LinearLayout
-        android:id="@+id/bottomLayout"
-        android:background="#f00"
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="oiljsdljflajsdlfjlsad\njflsjflsdjlnlsajflsfjalsjflasf;sdf;asdfasfasdfsfasdfasdfasdfasfdsf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+
 </com.jecelyin.editor2.widget.AnyDrawerLayout>
