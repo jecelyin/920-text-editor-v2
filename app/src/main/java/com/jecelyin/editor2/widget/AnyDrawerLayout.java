@@ -240,7 +240,7 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
     private final ArrayList<View> mNonDrawerViews;
 
-    private boolean touchToCloseBottomDrawer = true;
+    private boolean mHideBottomDrawer = false;
 
     /**
      * Listener for monitoring events about drawers.
@@ -1284,7 +1284,10 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                     setDrawerViewOffset(child, newOffset);
                 }
 
-                final int newVisibility = lp.onScreen > 0 ? VISIBLE : INVISIBLE;
+                int newVisibility = lp.onScreen > 0 ? VISIBLE : INVISIBLE;
+                //强制隐藏
+                if (vgrav == Gravity.BOTTOM && mHideBottomDrawer)
+                    newVisibility = INVISIBLE;
                 if (child.getVisibility() != newVisibility) {
                     child.setVisibility(newVisibility);
                 }
@@ -1532,10 +1535,6 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
-                if (touchToCloseBottomDrawer) {
-                    closeDrawers(true);
-                }
-
                 mDisallowInterceptRequested = false;
                 mChildrenCanceledTouch = false;
             }
@@ -2027,8 +2026,13 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 != ViewCompat.IMPORTANT_FOR_ACCESSIBILITY_NO;
     }
 
-    public void setTouchToCloseBottomDrawer(boolean touchToCloseBottomDrawer) {
-        this.touchToCloseBottomDrawer = touchToCloseBottomDrawer;
+    public void setHideBottomDrawer(boolean hide) {
+        mHideBottomDrawer = hide;
+        View child = findDrawerWithGravity(Gravity.BOTTOM);
+        if (child == null)
+            return;
+        child.setVisibility(hide ? INVISIBLE : VISIBLE);
+        invalidate();
     }
 
     /**
@@ -2118,11 +2122,12 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             float offset;
             final int childWidth = changedView.getWidth();
-
+            boolean isBottom = false;
             // This reverses the positioning shown in onLayout.
             if (checkDrawerViewAbsoluteGravity(changedView, Gravity.LEFT)) {
                 offset = (float) (childWidth + left) / childWidth;
             } else if (checkDrawerViewAbsoluteGravity(changedView, Gravity.BOTTOM)) {
+                isBottom = true;
                 final int height = getHeight();
                 final int childHeight = changedView.getHeight();
                 offset = (float) (height - top) / childHeight;
@@ -2139,7 +2144,7 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
             }
 
             setDrawerViewOffset(changedView, offset);
-            changedView.setVisibility(offset == 0 ? INVISIBLE : VISIBLE);
+            changedView.setVisibility(offset == 0 || (isBottom && mHideBottomDrawer) ? INVISIBLE : VISIBLE);
             invalidate();
         }
 

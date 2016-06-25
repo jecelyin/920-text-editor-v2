@@ -167,7 +167,6 @@ public class MainActivity extends JecActivity
 
         mDrawerLayout.setEnabled(false);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
-        mDrawerLayout.setTouchToCloseBottomDrawer(false);
 //        mVersionTextView.setText(getString(R.string.version_x, SysUtils.getVersionName(this)));
         String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
@@ -428,6 +427,7 @@ public class MainActivity extends JecActivity
             case R.id.m_readonly:
                 boolean readOnly = !pref.isReadOnly();
                 pref.setReadOnly(readOnly);
+                mDrawerLayout.setHideBottomDrawer(readOnly);
                 doClusterCommand(new Command(Command.CommandEnum.READONLY_MODE));
                 break;
             case R.id.m_encoding:
