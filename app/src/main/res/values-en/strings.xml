@@ -173,4 +173,7 @@
     <string name="donate_success_message">Donation success, thank you for your support</string>
     <string name="google_billing_unavailable">Google Billing Unavailable</string>
     <string name="please_select_a_channel">Please select a channel to donation</string>
+    <string name="donation_item_desc">Help improve 920 Text Editor</string>
+    <string name="donation_item_title">Donate 920 Text Editor</string>
+    <string name="pay_failure">Pay failure</string>
 </resources>
