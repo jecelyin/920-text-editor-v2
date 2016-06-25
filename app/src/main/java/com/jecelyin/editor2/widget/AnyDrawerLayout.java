@@ -1280,7 +1280,6 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 }
 
                 if (changeOffset) {
-                    L.d("onLayout newOffset=" + newOffset);
                     setDrawerViewOffset(child, newOffset);
                 }
 
@@ -2106,7 +2105,6 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
-            L.d("tryCaptureView view=" + child);
             // Only capture views where the gravity matches what we're looking for.
             // This lets us use two ViewDragHelpers, one for each side drawer.
             return isDrawerView(child) && checkDrawerViewAbsoluteGravity(child, mAbsGravity)
@@ -2197,7 +2195,6 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 top = releasedChild.getTop();
             }
 
-            L.d("onViewReleased left=%d, top=%d view=%s", left, top, releasedChild.toString());
             mDragger.settleCapturedViewAt(left, top);
             invalidate();
         }
@@ -2223,7 +2220,7 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 toCapture = findDrawerWithGravity(Gravity.RIGHT);
                 childLeft = getWidth() - peekDistance;
             }
-            L.d("peekDrawer toCapture="+toCapture);
+
             if (bottomEdge) {
                 final int childTop = getHeight() - peekDistance;
                 if (toCapture != null &&  toCapture.getTop() > childTop
@@ -2277,7 +2274,6 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
             }
 
             if (toCapture != null && getDrawerLockMode(toCapture) == LOCK_MODE_UNLOCKED) {
-                L.d("onEdgeDragStarted toCapture=" + toCapture);
                 mDragger.captureChildView(toCapture, pointerId);
             }
         }
@@ -2299,7 +2295,6 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
-            L.d("clampViewPositionHorizontal left=%d,dx=%d, view=%s", left, dx, child.toString());
             if (checkDrawerViewAbsoluteGravity(child, Gravity.BOTTOM)) {
                 return child.getLeft();
             } else if (checkDrawerViewAbsoluteGravity(child, Gravity.LEFT)) {
@@ -2312,14 +2307,12 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
         @Override
         public int clampViewPositionVertical(View child, int top, int dy) {
-//            L.d("clampViewPositionVertical top=%d,dy=%d, view=%s", top, dy, child.toString());
             if (!checkDrawerViewAbsoluteGravity(child, Gravity.BOTTOM)) {
                 return child.getTop();
             } else {
                 final int height = getHeight();
                 final LayoutParams lp = (LayoutParams) child.getLayoutParams();
                 int childTop = height + lp.topMargin;
-                L.d("clampViewPositionVertical childTop=" + childTop + " top=" + top);
                 return Math.min(childTop, Math.max(top, height - child.getHeight()));
             }
         }
