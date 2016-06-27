@@ -549,8 +549,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             dest.writeInt(this.index);
             dest.writeInt(this.offset);
             dest.writeInt(this.lineNumber);
-            dest.writeSerializable(this.file);
-            dest.writeSerializable(this.rootFile);
+            dest.writeString(this.file.getPath());
+            dest.writeString(this.rootFile.getPath());
             dest.writeInt(root ? 1 : 0);
             dest.writeString(this.title);
             dest.writeString(this.encoding);
@@ -569,8 +569,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             this.index = in.readInt();
             this.offset = in.readInt();
             this.lineNumber = in.readInt();
-            this.file = (File) in.readSerializable();
-            this.rootFile = (File) in.readSerializable();
+            this.file = new File(in.readString());
+            this.rootFile = new File(in.readString());
             this.root = in.readInt() == 1;
             this.title = in.readString();
             this.encoding = in.readString();

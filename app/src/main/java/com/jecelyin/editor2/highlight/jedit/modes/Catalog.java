@@ -152,7 +152,7 @@ public class Catalog {
             new Mode("Netrexx"           , "netrexx.xml"                 , "*.nrx"                       , null),
             new Mode("Nqc"               , "nqc.xml"                     , "*.nqc"                       , null),
             new Mode("Nsis2"             , "nsis2.xml"                   , "*.{nsi,nsh}"                 , null),
-            new Mode("Objective-C"       , "objective_c.xml"             , "*.{objc,m}"                  , null),
+            new Mode("Objective-C"       , "objective_c.xml"             , "*.{objc,m,mm}"               , null),
             new Mode("Objectrexx"        , "objectrexx.xml"              , "*.{rex,orx}"                 , null),
             new Mode("Occam"             , "occam.xml"                   , "*.icc"                       , null),
             new Mode("Omnimark"          , "omnimark.xml"                , "*.x{om,in}"                  , null),
