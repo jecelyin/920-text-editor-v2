@@ -41,11 +41,13 @@ import android.support.v7.view.menu.MenuBuilder;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.ParcelableSpan;
 import android.text.SpanWatcher;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.KeyListener;
+import android.text.method.MetaKeyKeyListener;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.EasyEditSpan;
 import android.text.style.SuggestionRangeSpan;
@@ -76,6 +78,7 @@ import android.view.inputmethod.CorrectionInfo;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
+import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -1160,120 +1163,120 @@ public class Editor {
     static final int EXTRACT_NOTHING = -2;
     static final int EXTRACT_UNKNOWN = -1;
 
-//    boolean extractText(ExtractedTextRequest request, ExtractedText outText) {
-//        return extractTextInternal(request, EXTRACT_UNKNOWN, EXTRACT_UNKNOWN,
-//                EXTRACT_UNKNOWN, outText);
-//    }
-//
-//    private boolean extractTextInternal(ExtractedTextRequest request,
-//            int partialStartOffset, int partialEndOffset, int delta,
-//            ExtractedText outText) {
-//        final CharSequence content = mTextView.getText();
-//        if (content != null) {
-//            if (partialStartOffset != EXTRACT_NOTHING) {
-//                final int N = content.length();
-//                if (partialStartOffset < 0) {
-//                    outText.partialStartOffset = outText.partialEndOffset = -1;
-//                    partialStartOffset = 0;
-//                    partialEndOffset = N;
-//                } else {
-//                    // Now use the delta to determine the actual amount of text
-//                    // we need.
-//                    partialEndOffset += delta;
-//                    // Adjust offsets to ensure we contain full spans.
-//                    if (content instanceof Spanned) {
-//                        Spanned spanned = (Spanned)content;
-//                        Object[] spans = spanned.getSpans(partialStartOffset,
-//                                partialEndOffset, ParcelableSpan.class);
-//                        int i = spans.length;
-//                        while (i > 0) {
-//                            i--;
-//                            int j = spanned.getSpanStart(spans[i]);
-//                            if (j < partialStartOffset) partialStartOffset = j;
-//                            j = spanned.getSpanEnd(spans[i]);
-//                            if (j > partialEndOffset) partialEndOffset = j;
-//                        }
-//                    }
-//                    outText.partialStartOffset = partialStartOffset;
-//                    outText.partialEndOffset = partialEndOffset - delta;
-//
-//                    if (partialStartOffset > N) {
-//                        partialStartOffset = N;
-//                    } else if (partialStartOffset < 0) {
-//                        partialStartOffset = 0;
-//                    }
-//                    if (partialEndOffset > N) {
-//                        partialEndOffset = N;
-//                    } else if (partialEndOffset < 0) {
-//                        partialEndOffset = 0;
-//                    }
-//                }
-//                if ((request.flags&InputConnection.GET_TEXT_WITH_STYLES) != 0) {
-//                    outText.text = content.subSequence(partialStartOffset,
-//                            partialEndOffset);
-//                } else {
-//                    outText.text = TextUtils.substring(content, partialStartOffset,
-//                            partialEndOffset);
-//                }
-//            } else {
-//                outText.partialStartOffset = 0;
-//                outText.partialEndOffset = 0;
-//                outText.text = "";
-//            }
-//            outText.flags = 0;
-//            if (MetaKeyKeyListener.getMetaState(content, MetaKeyKeyListener.META_SELECTING) != 0) {
-//                outText.flags |= ExtractedText.FLAG_SELECTING;
-//            }
-//            if (mTextView.isSingleLine()) {
-//                outText.flags |= ExtractedText.FLAG_SINGLE_LINE;
-//            }
-//            outText.startOffset = 0;
-//            outText.selectionStart = mTextView.getSelectionStart();
-//            outText.selectionEnd = mTextView.getSelectionEnd();
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    boolean reportExtractedText() {
-//        final Editor.InputMethodState ims = mInputMethodState;
-//        if (ims != null) {
-//            final boolean contentChanged = ims.mContentChanged;
-//            if (contentChanged || ims.mSelectionModeChanged) {
-//                ims.mContentChanged = false;
-//                ims.mSelectionModeChanged = false;
-//                final ExtractedTextRequest req = ims.mExtractedTextRequest;
-//                if (req != null) {
-//                    InputMethodManager imm = InputMethodManager.peekInstance();
-//                    if (imm != null) {
-//                        if (TextView.DEBUG_EXTRACT) Log.v(TextView.LOG_TAG,
-//                                "Retrieving extracted start=" + ims.mChangedStart +
-//                                " end=" + ims.mChangedEnd +
-//                                " delta=" + ims.mChangedDelta);
-//                        if (ims.mChangedStart < 0 && !contentChanged) {
-//                            ims.mChangedStart = EXTRACT_NOTHING;
-//                        }
-//                        if (extractTextInternal(req, ims.mChangedStart, ims.mChangedEnd,
-//                                ims.mChangedDelta, ims.mExtractedText)) {
-//                            if (TextView.DEBUG_EXTRACT) Log.v(TextView.LOG_TAG,
-//                                    "Reporting extracted start=" +
-//                                    ims.mExtractedText.partialStartOffset +
-//                                    " end=" + ims.mExtractedText.partialEndOffset +
-//                                    ": " + ims.mExtractedText.text);
-//
-//                            imm.updateExtractedText(mTextView, req.token, ims.mExtractedText);
-//                            ims.mChangedStart = EXTRACT_UNKNOWN;
-//                            ims.mChangedEnd = EXTRACT_UNKNOWN;
-//                            ims.mChangedDelta = 0;
-//                            ims.mContentChanged = false;
-//                            return true;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    boolean extractText(ExtractedTextRequest request, ExtractedText outText) {
+        return extractTextInternal(request, EXTRACT_UNKNOWN, EXTRACT_UNKNOWN,
+                EXTRACT_UNKNOWN, outText);
+    }
+
+    private boolean extractTextInternal(ExtractedTextRequest request,
+            int partialStartOffset, int partialEndOffset, int delta,
+            ExtractedText outText) {
+        final CharSequence content = mTextView.getText();
+        if (content != null) {
+            if (partialStartOffset != EXTRACT_NOTHING) {
+                final int N = content.length();
+                if (partialStartOffset < 0) {
+                    outText.partialStartOffset = outText.partialEndOffset = -1;
+                    partialStartOffset = 0;
+                    partialEndOffset = N;
+                } else {
+                    // Now use the delta to determine the actual amount of text
+                    // we need.
+                    partialEndOffset += delta;
+                    // Adjust offsets to ensure we contain full spans.
+                    if (content instanceof Spanned) {
+                        Spanned spanned = (Spanned)content;
+                        Object[] spans = spanned.getSpans(partialStartOffset,
+                                partialEndOffset, ParcelableSpan.class);
+                        int i = spans.length;
+                        while (i > 0) {
+                            i--;
+                            int j = spanned.getSpanStart(spans[i]);
+                            if (j < partialStartOffset) partialStartOffset = j;
+                            j = spanned.getSpanEnd(spans[i]);
+                            if (j > partialEndOffset) partialEndOffset = j;
+                        }
+                    }
+                    outText.partialStartOffset = partialStartOffset;
+                    outText.partialEndOffset = partialEndOffset - delta;
+
+                    if (partialStartOffset > N) {
+                        partialStartOffset = N;
+                    } else if (partialStartOffset < 0) {
+                        partialStartOffset = 0;
+                    }
+                    if (partialEndOffset > N) {
+                        partialEndOffset = N;
+                    } else if (partialEndOffset < 0) {
+                        partialEndOffset = 0;
+                    }
+                }
+                if ((request.flags& InputConnection.GET_TEXT_WITH_STYLES) != 0) {
+                    outText.text = content.subSequence(partialStartOffset,
+                            partialEndOffset);
+                } else {
+                    outText.text = TextUtils.substring(content, partialStartOffset,
+                            partialEndOffset);
+                }
+            } else {
+                outText.partialStartOffset = 0;
+                outText.partialEndOffset = 0;
+                outText.text = "";
+            }
+            outText.flags = 0;
+            if (MetaKeyKeyListener.getMetaState(content, MetaKeyKeyListener.META_SELECTING) != 0) {
+                outText.flags |= ExtractedText.FLAG_SELECTING;
+            }
+            if (mTextView.isSingleLine()) {
+                outText.flags |= ExtractedText.FLAG_SINGLE_LINE;
+            }
+            outText.startOffset = 0;
+            outText.selectionStart = mTextView.getSelectionStart();
+            outText.selectionEnd = mTextView.getSelectionEnd();
+            return true;
+        }
+        return false;
+    }
+
+    boolean reportExtractedText() {
+        final Editor.InputMethodState ims = mInputMethodState;
+        if (ims != null) {
+            final boolean contentChanged = ims.mContentChanged;
+            if (contentChanged || ims.mSelectionModeChanged) {
+                ims.mContentChanged = false;
+                ims.mSelectionModeChanged = false;
+                final ExtractedTextRequest req = ims.mExtractedTextRequest;
+                if (req != null) {
+                    InputMethodManager imm = InputMethodManager.peekInstance();
+                    if (imm != null) {
+                        if (TextView.DEBUG_EXTRACT) Log.v(TextView.LOG_TAG,
+                                "Retrieving extracted start=" + ims.mChangedStart +
+                                " end=" + ims.mChangedEnd +
+                                " delta=" + ims.mChangedDelta);
+                        if (ims.mChangedStart < 0 && !contentChanged) {
+                            ims.mChangedStart = EXTRACT_NOTHING;
+                        }
+                        if (extractTextInternal(req, ims.mChangedStart, ims.mChangedEnd,
+                                ims.mChangedDelta, ims.mExtractedText)) {
+                            if (TextView.DEBUG_EXTRACT) Log.v(TextView.LOG_TAG,
+                                    "Reporting extracted start=" +
+                                    ims.mExtractedText.partialStartOffset +
+                                    " end=" + ims.mExtractedText.partialEndOffset +
+                                    ": " + ims.mExtractedText.text);
+
+                            imm.updateExtractedText(mTextView, req.token, ims.mExtractedText);
+                            ims.mChangedStart = EXTRACT_UNKNOWN;
+                            ims.mChangedEnd = EXTRACT_UNKNOWN;
+                            ims.mChangedDelta = 0;
+                            ims.mContentChanged = false;
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     private void sendUpdateSelection() {
         if (null != mInputMethodState && mInputMethodState.mBatchEditNesting <= 0) {
@@ -1301,21 +1304,21 @@ public class Editor {
         final int selectionStart = mTextView.getSelectionStart();
         final int selectionEnd = mTextView.getSelectionEnd();
 
-//        final InputMethodState ims = mInputMethodState;
-//        if (ims != null && ims.mBatchEditNesting == 0) {
-//            InputMethodManager imm = InputMethodManager.peekInstance();
-//            if (imm != null) {
-//                if (imm.isActive(mTextView)) {
-//                    boolean reported = false;
-//                    if (ims.mContentChanged || ims.mSelectionModeChanged) {
-//                        // We are in extract mode and the content has changed
-//                        // in some way... just report complete new text to the
-//                        // input method.
-//                        reported = reportExtractedText();
-//                    }
-//                }
-//            }
-//        }
+        final InputMethodState ims = mInputMethodState;
+        if (ims != null && ims.mBatchEditNesting == 0) {
+            InputMethodManager imm = InputMethodManager.peekInstance();
+            if (imm != null) {
+                if (imm.isActive(mTextView)) {
+                    boolean reported = false;
+                    if (ims.mContentChanged || ims.mSelectionModeChanged) {
+                        // We are in extract mode and the content has changed
+                        // in some way... just report complete new text to the
+                        // input method.
+                        reported = reportExtractedText();
+                    }
+                }
+            }
+        }
 
         if (mCorrectionHighlighter != null) {
             mCorrectionHighlighter.draw(canvas, cursorOffsetVertical);

@@ -158,15 +158,15 @@ public class EditableInputConnection extends BaseInputConnection {
     
     @Override
     public ExtractedText getExtractedText(ExtractedTextRequest request, int flags) {
-//        if (mTextView != null) {
-//            ExtractedText et = new ExtractedText();
-//            if (mTextView.extractText(request, et)) {
-//                if ((flags&GET_EXTRACTED_TEXT_MONITOR) != 0) {
-//                    mTextView.setExtracting(request);
-//                }
-//                return et;
-//            }
-//        }
+        if (mTextView != null) { //用于输入法的复制文本操作
+            ExtractedText et = new ExtractedText();
+            if (mTextView.extractText(request, et)) {
+                if ((flags&GET_EXTRACTED_TEXT_MONITOR) != 0) {
+                    mTextView.setExtracting(request);
+                }
+                return et;
+            }
+        }
         return null;
     }
 

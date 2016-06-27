@@ -6076,11 +6076,12 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
      * If this TextView contains editable content, extract a portion of it
      * based on the information in <var>request</var> in to <var>outText</var>.
      * @return Returns true if the text was successfully extracted, else false.
+     * 用于输入法的复制文本操作
      */
-//    public boolean extractText(ExtractedTextRequest request, ExtractedText outText) {
-//        createEditorIfNeeded();
-//        return mEditor.extractText(request, outText);
-//    }
+    public boolean extractText(ExtractedTextRequest request, ExtractedText outText) {
+        createEditorIfNeeded();
+        return mEditor.extractText(request, outText);
+    }
 
     /**
      * This is used to remove all style-impacting spans from text before new

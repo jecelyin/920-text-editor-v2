@@ -60,7 +60,7 @@ public class ArrowKeyMovementMethod extends BaseMovementMethod implements Moveme
                 if (KeyEvent.metaStateHasNoModifiers(movementMetaState)) {
                     if (event.getAction() == KeyEvent.ACTION_DOWN
                             && event.getRepeatCount() == 0
-                            && MetaKeyKeyListenerCompat.getMetaState(buffer,
+                            && MetaKeyKeyListenerCompat.getMetaState2(buffer,
                                         MetaKeyKeyListenerCompat.META_SELECTING, event) != 0) {
                         return widget.showContextMenu();
                     }
