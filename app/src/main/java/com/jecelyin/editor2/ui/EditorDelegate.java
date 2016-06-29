@@ -67,6 +67,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
 
     private SavedState savedState;
     private int orientation;
+    private boolean loaded = false;
 
     public EditorDelegate(SavedState ss) {
         savedState = ss;
@@ -162,6 +163,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         if(!"com.jecelyin.editor2".equals(context.getPackageName())) {
             mEditText.setEnabled(false);
         }
+        loaded = true;
     }
 
     public Context getContext() {
@@ -506,7 +508,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             ss.editorState = (TextView.SavedState) mEditText.onSaveInstanceState();
         }
 
-        if (!disableAutoSave && document != null && document.getFile() != null && Pref.getInstance(context).isAutoSave()) {
+        if (loaded && !disableAutoSave && document != null && document.getFile() != null && Pref.getInstance(context).isAutoSave()) {
             int newOrientation = context.getResources().getConfiguration().orientation;
             if (orientation != newOrientation) {
                 L.d("current is screen orientation, discard auto save!");

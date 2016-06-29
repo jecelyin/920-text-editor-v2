@@ -131,7 +131,7 @@ dependencies {
     compile 'org.apmem.tools:layouts:1.9@aar'
     //    compile 'com.larswerkman:HoloColorPicker:1.5'
     compile 'com.azeesoft.lib.colorpicker:colorpicker:1.0.8@aar'
-    compile 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
+//    compile 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'

@@ -110,6 +110,8 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
             File dest = new File(destPath);
             lastPath = dest.isFile() ? dest.getParent() : dest.getPath();
             binding.filenameEditText.setText(dest.getName());
+        } else {
+            binding.filenameEditText.setText(getString(R.string.untitled_file_name));
         }
 
         initPager();
