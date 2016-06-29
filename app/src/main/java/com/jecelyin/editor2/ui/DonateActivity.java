@@ -68,6 +68,14 @@ public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChan
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        googleBilling.destroy();
+        googleBilling = null;
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GoogleBillingDonate.RC_REQUEST) {
             if (!googleBilling.onActivityResult(requestCode, resultCode, data)) {

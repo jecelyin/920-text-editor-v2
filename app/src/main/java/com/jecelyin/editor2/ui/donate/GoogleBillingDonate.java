@@ -154,6 +154,15 @@ public class GoogleBillingDonate implements DonateChannel {
         }
     }
 
+    public void destroy() {
+        if (mHelper != null)
+            try {
+                mHelper.dispose();
+            } catch (IabHelper.IabAsyncInProgressException e) {
+                e.printStackTrace();
+            }
+    }
+
     // Callback for when a purchase is finished
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
