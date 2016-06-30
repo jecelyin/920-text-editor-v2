@@ -373,6 +373,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             savedState.title = file.getName();
         }
         ((MainActivity)context).getTabManager().onDocumentChanged(savedState.index);
+        //保存文件后判断改变
+        noticeMenuChanged();
     }
 
     public void setRemoved() {

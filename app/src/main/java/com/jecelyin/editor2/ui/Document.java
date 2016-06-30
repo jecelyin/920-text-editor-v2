@@ -27,6 +27,7 @@ import android.text.style.ForegroundColorSpan;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
@@ -123,7 +124,7 @@ public class Document implements ReadFileListener, TextWatcher {
         }
         root = false;
         if ((!file.canRead() || !file.canWrite()) && pref.isRootable()) {
-//            rootFile = new File(SysUtils.getCacheDir(context), file.getName() + ".root");
+            rootFile = new File(SysUtils.getCacheDir(context), file.getName() + ".root");
             if (rootFile.exists())
                 rootFile.delete();
 
