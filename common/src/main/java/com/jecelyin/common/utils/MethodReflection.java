@@ -19,8 +19,12 @@
 
 package com.jecelyin.common.utils;
 
+import android.os.Parcel;
+
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 /**
  * Utility class to use reflection to call methods.
  * getMethods方法, 包其继承类的方法,但不包括私有方法
@@ -114,5 +118,29 @@ public class MethodReflection {
 
     public void staticInvoke(Object... args) throws Throwable {
         get(null, args);
+    }
+
+    /**
+     * 修改 static final Type type = xx; 这样的值
+     * @param field
+     * @param newValue
+     * @throws Exception
+     */
+    public static void setFinalStatic(Field field, Object newValue) throws Exception {
+        field.setAccessible(true);
+//        Field modifiersField = Field.class.getDeclaredField("accessFlags");
+//        modifiersField.setAccessible(true);
+//        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+        field.set(null, newValue);
+    }
+
+    public static void setFinalStatic(Class<Parcel> cls, String varName, Object value) throws Exception {
+        Field f;
+        try {
+            f = cls.getDeclaredField(varName);
+        }catch (NoSuchFieldException e) {
+            f = cls.getField(varName);
+        }
+        setFinalStatic(f, value);
     }
 }

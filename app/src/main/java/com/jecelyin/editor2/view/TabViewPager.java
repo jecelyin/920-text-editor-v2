@@ -1111,7 +1111,9 @@ public class TabViewPager extends ViewGroup {
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeInt(position);
-            out.writeParcelable(adapterState, flags);
+            out.writeInt(adapterState != null ? 1 : 0);
+            if (adapterState != null)
+                out.writeParcelable(adapterState, flags);
         }
 
         @Override
@@ -1139,7 +1141,9 @@ public class TabViewPager extends ViewGroup {
                 loader = getClass().getClassLoader();
             }
             position = in.readInt();
-            adapterState = in.readParcelable(loader);
+            boolean hasAdapterState = in.readInt() == 1;
+            if (hasAdapterState)
+                adapterState = in.readParcelable(loader);
             this.loader = loader;
         }
     }
@@ -1165,7 +1169,7 @@ public class TabViewPager extends ViewGroup {
         SavedState ss = (SavedState)state;
         super.onRestoreInstanceState(ss.getSuperState());
 
-        if (mAdapter != null) {
+        if (mAdapter != null && ss.adapterState != null) {
             mAdapter.restoreState(ss.adapterState, ss.loader);
             setCurrentItemInternal(ss.position, false, true);
         } else {
