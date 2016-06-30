@@ -27,7 +27,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.editor2.R;
 
@@ -188,8 +187,6 @@ public class DownloadService extends IntentService {
             }
 
             return true;
-        } catch (Exception e) {
-            L.e("Download new version apk fail", e);
         } finally {
             if (out != null) {
                 try {
@@ -207,7 +204,6 @@ public class DownloadService extends IntentService {
             }
         }
 
-        return false;
     }
 
 }
