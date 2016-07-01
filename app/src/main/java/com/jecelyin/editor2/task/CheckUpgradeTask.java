@@ -27,6 +27,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.common.github.PageIterator;
 import com.jecelyin.common.github.Release;
 import com.jecelyin.common.github.ReleasesService;
+import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.service.DownloadService;
@@ -84,18 +85,22 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
         final String downloadUrl = assets.getBrowser_download_url();
         final int size = assets.getSize();
 
-        new MaterialDialog.Builder(context.get())
-                .canceledOnTouchOutside(false)
-                .title(R.string.new_version_available)
-                .content(R.string.new_version_update_content, s.getTagName(), s.getBody())
-                .negativeText(R.string.cancel)
-                .positiveText(R.string.install)
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        goToDownload(downloadUrl, size);
-                    }
-                }).show();
+        try {
+            new MaterialDialog.Builder(context.get())
+                    .canceledOnTouchOutside(false)
+                    .title(R.string.new_version_available)
+                    .content(R.string.new_version_update_content, s.getTagName(), s.getBody())
+                    .negativeText(R.string.cancel)
+                    .positiveText(R.string.install)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            goToDownload(downloadUrl, size);
+                        }
+                    }).show();
+        } catch (Exception e) {
+            L.d(e); //ignore: Bad window token, you cannot show a dialog before an Activity is created or after it's hidden.
+        }
     }
 
     private void goToDownload(String downloadUrl, int size) {
