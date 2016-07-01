@@ -57,11 +57,11 @@ public class UIUtils {
     }
 
     public static void toast(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public static void toast(Context context, Throwable t) {
-        Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+        Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     /**
