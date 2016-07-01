@@ -45,13 +45,13 @@ import com.jecelyin.common.listeners.OnCheckedChangeListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
-import com.stericson.RootTools.RootTools;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.Arrays;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -66,6 +66,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     private String topPath;
     private PathButtonAdapter pathAdapter;
     private boolean isRoot;
+    private Subscription subscribe;
 
     public static Fragment newFragment(JecFile path) {
         FileListPagerFragment f = new FileListPagerFragment();
@@ -147,43 +148,31 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             }
         });
 
-        Observable.create(new Observable.OnSubscribe<Boolean>() {
-            @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
-                boolean root = Pref.getInstance(getContext()).isRootable();
-                subscriber.onNext(root);
-                subscriber.onCompleted();
-            }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<Boolean>() {
-            @Override
-            public void onCompleted() {
+        onRefresh();
+    }
 
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Boolean root) {
-                isRoot = root;
-                onRefresh();
-            }
-        });
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (subscribe != null) {
+            subscribe.unsubscribe();
+            subscribe = null;
+        }
     }
 
     @Override
     public void onRefresh() {
-        if (isRoot && !path.canRead() && !(path instanceof RootFile)) {
-            path = new RootFile(path.getPath());
-        }
         Observable.create(new Observable.OnSubscribe<JecFile[]>() {
             @Override
             public void call(final Subscriber<? super JecFile[]> subscriber) {
+                boolean canRead = path.canRead();
+                if (!isRoot && !canRead) {
+                    //请求Root权限
+                    isRoot = Pref.getInstance(getContext()).isRootable();
+                }
+                if (isRoot && !canRead && !(path instanceof RootFile)) {
+                    path = new RootFile(path.getPath());
+                }
                 try {
                     path.listFiles(new JecFile.FileListResultListener() {
                         @Override
