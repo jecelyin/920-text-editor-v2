@@ -25,7 +25,7 @@ import android.preference.PreferenceActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.jecelyin.common.app.JecActivity;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 
 /**
@@ -43,7 +43,7 @@ import com.jecelyin.editor2.R;
  * API Guide</a> for more information on developing a Settings UI.
  * <p/>
  */
-public class SettingsActivity extends JecActivity {
+public class SettingsActivity extends BaseActivity {
 
     public static void startActivity(Context context) {
         context.startActivity(new Intent(context, SettingsActivity.class));

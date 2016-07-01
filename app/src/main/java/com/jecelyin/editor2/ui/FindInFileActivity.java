@@ -30,8 +30,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.utils.L;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.adapter.FindInFilesAdapter;
 import com.jecelyin.editor2.utils.ExtGrep;
@@ -43,7 +43,7 @@ import rx.Subscriber;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FindInFileActivity extends JecActivity implements AdapterView.OnItemClickListener {
+public class FindInFileActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     ListView mList;
     ProgressBar mProgressView;
     TextView mLoadingTextView;

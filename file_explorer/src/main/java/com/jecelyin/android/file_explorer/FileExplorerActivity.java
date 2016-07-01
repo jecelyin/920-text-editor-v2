@@ -34,6 +34,7 @@ import com.jecelyin.android.file_explorer.databinding.FileExplorerActivityBindin
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
 import com.jecelyin.common.app.JecActivity;
+import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.Pref;
@@ -84,6 +85,12 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
     @Nullable
     public static String getFileEncoding(Intent it) {
         return it.getStringExtra("encoding");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ((JecApp)getApplication()).watch(this);
     }
 
     @Override

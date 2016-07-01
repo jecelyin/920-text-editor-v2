@@ -18,8 +18,6 @@
 
 package com.jecelyin.editor2;
 
-import android.content.Context;
-
 import com.jecelyin.common.app.JecApp;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -32,14 +30,13 @@ public class MainApp extends JecApp {
     private RefWatcher refWatcher;
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-
+    protected void installMonitor() {
         refWatcher = LeakCanary.install(this);
     }
 
-    public static RefWatcher getRefWatcher(Context context) {
-        MainApp application = (MainApp) context.getApplicationContext();
-        return application.refWatcher;
+    @Override
+    public void watch(Object object) {
+        refWatcher.watch(object);
     }
+
 }

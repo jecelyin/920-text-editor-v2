@@ -47,12 +47,12 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.jecelyin.android.file_explorer.FileExplorerActivity;
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.Pref;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.common.Command;
@@ -82,7 +82,7 @@ import java.util.List;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class MainActivity extends JecActivity
+public class MainActivity extends BaseActivity
         implements MenuItem.OnMenuItemClickListener
         , FolderChooserDialog.FolderCallback
         , SharedPreferences.OnSharedPreferenceChangeListener {

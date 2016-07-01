@@ -34,16 +34,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.jecelyin.common.app.JecActivity;
-import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.BrowserActivityBinding;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class BrowserActivity extends JecActivity {
+public class BrowserActivity extends BaseActivity {
     private String url;
 
     public static void startActivity(Context context, String title, String url) {

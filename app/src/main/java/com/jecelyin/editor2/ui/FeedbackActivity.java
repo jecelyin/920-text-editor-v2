@@ -26,13 +26,13 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.app.NetLoadingDialog;
 import com.jecelyin.common.github.Issue;
 import com.jecelyin.common.github.IssueService;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.FeedbackActivityBinding;
 
@@ -45,7 +45,7 @@ import rx.schedulers.Schedulers;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FeedbackActivity extends JecActivity {
+public class FeedbackActivity extends BaseActivity {
     private FeedbackActivityBinding binding;
 
     @Override

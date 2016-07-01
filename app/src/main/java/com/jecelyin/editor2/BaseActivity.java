@@ -19,6 +19,7 @@
 package com.jecelyin.editor2;
 
 import com.jecelyin.common.app.JecActivity;
+import com.jecelyin.common.app.JecApp;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -29,7 +30,7 @@ public class BaseActivity extends JecActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MainApp.getRefWatcher(this).watch(this);
+        ((JecApp)getApplication()).watch(this);
     }
 
 }

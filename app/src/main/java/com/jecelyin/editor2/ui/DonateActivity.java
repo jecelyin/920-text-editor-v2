@@ -27,9 +27,9 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.DonateActivityBinding;
 import com.jecelyin.editor2.ui.donate.DonateChannel;
@@ -40,7 +40,7 @@ import com.jecelyin.editor2.ui.donate.GoogleBillingDonate;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class DonateActivity extends JecActivity implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener, DonateListener {
+public class DonateActivity extends BaseActivity implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener, DonateListener {
     private DonateActivityBinding binding;
     private int amount = 5;
     private GoogleBillingDonate googleBilling;

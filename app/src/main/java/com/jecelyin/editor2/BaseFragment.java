@@ -18,6 +18,7 @@
 
 package com.jecelyin.editor2;
 
+import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.app.JecFragment;
 
 /**
@@ -28,6 +29,6 @@ public class BaseFragment extends JecFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        MainApp.getRefWatcher(getContext()).watch(this);
+        ((JecApp)getContext()).watch(this);
     }
 }

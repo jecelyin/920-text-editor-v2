@@ -22,15 +22,15 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.AboutActivityBinding;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class AboutActivity extends JecActivity {
+public class AboutActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

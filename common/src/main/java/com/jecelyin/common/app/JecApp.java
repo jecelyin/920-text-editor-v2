@@ -30,7 +30,7 @@ import com.jecelyin.common.utils.SysUtils;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class JecApp extends Application implements Thread.UncaughtExceptionHandler {
+public abstract class JecApp extends Application implements Thread.UncaughtExceptionHandler {
     private static Context context;
     private static long startupTimestamp;
 
@@ -53,6 +53,8 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
         }
         // 捕捉未知异常
         Thread.setDefaultUncaughtExceptionHandler(this);
+        // 安装内存泄漏监控或UI卡顿监控
+        installMonitor();
     }
 
     @Override
@@ -74,4 +76,8 @@ public class JecApp extends Application implements Thread.UncaughtExceptionHandl
     public static long getStartupTimestamp() {
         return startupTimestamp;
     }
+
+    abstract protected void installMonitor();
+
+    abstract public void watch(Object object);
 }
