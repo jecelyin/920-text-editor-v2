@@ -110,6 +110,8 @@ public class EditorAdapter extends ViewPagerAdapter {
     }
 
     public EditorDelegate getCurrentEditorDelegate() {
+        if (list == null || list.isEmpty() || currentPosition >= list.size())
+            return null;
         return list.get(currentPosition);
     }
 

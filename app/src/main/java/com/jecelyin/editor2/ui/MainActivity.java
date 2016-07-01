@@ -533,7 +533,9 @@ public class MainActivity extends BaseActivity
 
     public void doCommand(Command command) {
         clusterCommand = null;
-        tabManager.getEditorAdapter().getCurrentEditorDelegate().doCommand(command);
+        EditorDelegate editorDelegate = tabManager.getEditorAdapter().getCurrentEditorDelegate();
+        if (editorDelegate != null)
+            editorDelegate.doCommand(command);
     }
 
     public void startOpenFileSelectorActivity(Intent it) {
