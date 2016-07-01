@@ -18,6 +18,7 @@
 
 package com.jecelyin.editor2.task;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -40,10 +41,10 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
-    private final WeakReference<Context> context;
+    private final WeakReference<Context> contextWeakReference;
 
     public CheckUpgradeTask(Context context) {
-        this.context = new WeakReference<>(context);
+        this.contextWeakReference = new WeakReference<>(context);
     }
 
     @Override
@@ -75,7 +76,8 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
 
     @Override
     protected void onPostExecute(Release s) {
-        if (s == null || context.get() == null)
+        Context context = contextWeakReference.get();
+        if (s == null || context == null)
             return;
 
         List<Release.Assets> assetsList = s.getAssets();
@@ -85,8 +87,12 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
         final String downloadUrl = assets.getBrowser_download_url();
         final int size = assets.getSize();
 
+        if (context instanceof Activity) {
+            if (((Activity)context).isFinishing())
+                return;
+        }
         try {
-            new MaterialDialog.Builder(context.get())
+            new MaterialDialog.Builder(context)
                     .canceledOnTouchOutside(false)
                     .title(R.string.new_version_available)
                     .content(R.string.new_version_update_content, s.getTagName(), s.getBody())
@@ -104,10 +110,10 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
     }
 
     private void goToDownload(String downloadUrl, int size) {
-        if (context.get() == null)
+        if (contextWeakReference.get() == null)
             return;
 
-        Context c = context.get();
+        Context c = contextWeakReference.get();
 
         DownloadService.startService(c, downloadUrl, size);
     }
@@ -151,10 +157,10 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
     }
 
     public void checkVersion(String version) {
-        if (context.get() == null)
+        if (contextWeakReference.get() == null)
             return;
 
-        if (!SysUtils.isNetworkAvailable(context.get()))
+        if (!SysUtils.isNetworkAvailable(contextWeakReference.get()))
             return;
 
         execute(version);
