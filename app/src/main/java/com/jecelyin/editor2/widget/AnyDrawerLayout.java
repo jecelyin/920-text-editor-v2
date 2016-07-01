@@ -1789,7 +1789,9 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
         if (!isDrawerView(drawer)) {
             throw new IllegalArgumentException("View " + drawer + " is not a drawer");
         }
-        return ((LayoutParams) drawer.getLayoutParams()).onScreen > 0;
+        LayoutParams lp = ((LayoutParams) drawer.getLayoutParams());
+        //排除底部工具栏, 不然会导致无法按返回键来退出应用
+        return lp.onScreen > 0 && lp.topMargin == 0;
     }
 
     /**
