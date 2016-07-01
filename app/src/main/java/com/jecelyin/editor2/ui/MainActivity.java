@@ -109,6 +109,15 @@ public class MainActivity extends JecActivity
     private FolderChooserDialog.FolderCallback findFolderCallback;
     private long mExitTime;
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        try {
+            super.onRestoreInstanceState(savedInstanceState);
+        } catch (Exception e) {
+            L.d(e); //ignore exception: Unmarshalling unknown type code 7602281 at offset 58340
+        }
+    }
+
     private void requestWriteExternalStoragePermission() {
         final String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
