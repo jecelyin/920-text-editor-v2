@@ -321,8 +321,15 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
                 ((MainActivity)context).doNextCommand();
                 break;
             case INSERT_TEXT:
-                if (!readonly)
-                    mEditText.getText().replace(mEditText.getSelectionStart(), mEditText.getSelectionEnd(), (CharSequence) command.object);
+                if (!readonly) {
+                    int selStart = mEditText.getSelectionStart();
+                    int selEnd = mEditText.getSelectionEnd();
+                    if (selStart == -1 || selEnd == -1) {
+                        mEditText.getText().insert(0, (CharSequence) command.object);
+                    } else {
+                        mEditText.getText().replace(selStart, selEnd, (CharSequence) command.object);
+                    }
+                }
                 break;
             case RELOAD_WITH_ENCODING:
                 reOpenWithEncoding((String) command.object);
