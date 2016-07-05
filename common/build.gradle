@@ -1,11 +1,18 @@
 apply plugin: 'com.android.library'
 
+Properties properties = new Properties()
+properties.load(file('../../keystore/920-text-editor-v2.gradle.properties').newDataInputStream())
+def GITHUB_USER = properties.getProperty('GITHUB_USER')
+def GITHUB_PWD = properties.getProperty('GITHUB_PWD')
+
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.3'
 
     defaultConfig {
         minSdkVersion 17
+        buildConfigField "String", "GITHUB_USER", "\"" + GITHUB_USER + "\""
+        buildConfigField "String", "GITHUB_PWD", "\"" + GITHUB_PWD + "\""
     }
     dataBinding {
         enabled = true
