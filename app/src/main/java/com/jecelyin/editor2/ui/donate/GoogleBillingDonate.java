@@ -158,7 +158,8 @@ public class GoogleBillingDonate implements DonateChannel {
         if (mHelper != null)
             try {
                 mHelper.dispose();
-            } catch (IabHelper.IabAsyncInProgressException e) {
+                // fix: java.lang.IllegalArgumentException: Service not registered: com.android.vending.billing.util.IabHelper$1@428a7d40
+            } catch (Exception e) {
                 e.printStackTrace();
             }
     }
