@@ -87,6 +87,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.jecelyin.common.utils.L;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.core.content.UndoManager;
 import com.jecelyin.editor2.core.content.UndoOperation;
@@ -4325,6 +4326,11 @@ public class Editor {
             TextView tv = getOwnerData();
             Editable editable = (Editable)tv.getText();
             CharSequence curText;
+            //jec fix: java.lang.IndexOutOfBoundsException: getChars (4 ... 6) ends beyond length 0
+            if (mRangeStart < 0 || mRangeEnd >= editable.length()) {
+                L.e("Undo/Redo swapText: range=(%d - %d), text length=%d", mRangeStart, mRangeEnd, editable.length());
+                return;
+            }
             if (mRangeStart >= mRangeEnd) {
                 curText = null;
             } else {
