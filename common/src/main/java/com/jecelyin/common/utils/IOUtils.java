@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -106,5 +107,43 @@ public class IOUtils {
         }
 
         return out.toString();
+    }
+
+    public static boolean isBinaryFile(File f) {
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream(f);
+        } catch (FileNotFoundException e) {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return false;
+        }
+        byte[] data = null;
+        try {
+            int size = in.available();
+            if(size > 1024) size = 1024;
+            data = new byte[size];
+            in.read(data);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                in.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return false;
+        }
+
+        for (byte b : data) {
+            if (b < 0x09) return true;
+        }
+
+        return false;
     }
 }

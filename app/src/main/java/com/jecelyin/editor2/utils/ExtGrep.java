@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.Editable;
 
-import com.jecelyin.android.file_explorer.util.FileUtils;
 import com.jecelyin.common.app.JecApp;
+import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.R;
@@ -374,7 +374,7 @@ public class ExtGrep implements Parcelable {
 //            return true;
 //        }
 
-        return !FileUtils.isTextFile(f);
+        return IOUtils.isBinaryFile(f);
 
     }
 
