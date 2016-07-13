@@ -117,6 +117,7 @@ public class MenuFactory {
         menuItemInfos.add(new MenuItemInfo(MenuGroup.OTHER, R.id.m_datetime,       Command.CommandEnum.NONE, R.drawable.m_datetime, R.string.insert_datetime));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.OTHER, R.id.m_run,            Command.CommandEnum.NONE, R.drawable.m_run, R.string.run));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.OTHER, R.id.m_settings,       Command.CommandEnum.NONE, R.drawable.m_settings, R.string.settings));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.OTHER, R.id.m_exit,           Command.CommandEnum.NONE, R.drawable.m_exit, R.string.exit));
     }
 
     public List<MenuItemInfo> getMenuItemsWithoutToolbarMenu(MenuGroup group) {

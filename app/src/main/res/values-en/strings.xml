@@ -176,4 +176,5 @@
     <string name="donation_item_desc">Help improve 920 Text Editor</string>
     <string name="donation_item_title">Donate 920 Text Editor</string>
     <string name="pay_failure">Pay failure</string>
+    <string name="exit">Exit</string>
 </resources>

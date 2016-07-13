@@ -168,6 +168,7 @@
     <string name="donation_item_title">捐赠920文本编辑器</string>
     <string name="donation_item_desc">帮助改进920文本编辑器</string>
     <string name="pay_failure">支付失败</string>
+    <string name="exit">退出</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

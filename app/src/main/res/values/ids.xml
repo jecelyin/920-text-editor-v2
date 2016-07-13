@@ -30,6 +30,7 @@
     <item name="m_run" type="id" />
     <item name="m_menu" type="id" />
     <item name="m_settings" type="id" />
+    <item name="m_exit" type="id" />
     <item name="m_convert_to_uppercase" type="id" />
     <item name="m_convert_to_lowercase" type="id" />
 </resources>

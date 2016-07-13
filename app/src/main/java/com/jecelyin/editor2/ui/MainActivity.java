@@ -465,6 +465,10 @@ public class MainActivity extends BaseActivity
             case R.id.m_settings:
                 SettingsActivity.startActivity(this);
                 break;
+            case R.id.m_exit:
+                if (tabManager != null)
+                    tabManager.closeAllTabAndExitApp();
+                break;
             default:
                 commandEnum = MenuFactory.getInstance(this).idToCommandEnum(id);
                 if (commandEnum != Command.CommandEnum.NONE)
