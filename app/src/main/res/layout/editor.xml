@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jecelyin.editor2.view.EditorView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jecelyin.editor.v2.view.EditorView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jecelyin.editor2.core.widget.JecEditText
+    <com.jecelyin.editor.v2.core.widget.JecEditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,5 +26,5 @@
         android:visibility="gone"
         android:indeterminate="true" />
 
-</com.jecelyin.editor2.view.EditorView>
+</com.jecelyin.editor.v2.view.EditorView>
 

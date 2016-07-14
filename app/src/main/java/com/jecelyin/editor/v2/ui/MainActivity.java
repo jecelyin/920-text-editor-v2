@@ -1,0 +1,629 @@
+/*
+ * Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+ *
+ * This file is part of 920 Text Editor.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.jecelyin.editor.v2.ui;
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
+import com.azeesoft.lib.colorpicker.ColorPickerDialog;
+import com.jecelyin.android.file_explorer.FileExplorerActivity;
+import com.jecelyin.common.utils.CrashDbHelper;
+import com.jecelyin.common.utils.IOUtils;
+import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor.v2.BaseActivity;
+import com.jecelyin.editor.v2.Pref;
+import com.jecelyin.editor.v2.R;
+import com.jecelyin.editor.v2.common.Command;
+import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
+import com.jecelyin.editor.v2.task.CheckUpgradeTask;
+import com.jecelyin.editor.v2.task.ClusterCommand;
+import com.jecelyin.editor.v2.ui.dialog.CharsetsDialog;
+import com.jecelyin.editor.v2.ui.dialog.GotoLineDialog;
+import com.jecelyin.editor.v2.ui.dialog.InsertDateTimeDialog;
+import com.jecelyin.editor.v2.ui.dialog.LangListDialog;
+import com.jecelyin.editor.v2.ui.dialog.RunDialog;
+import com.jecelyin.editor.v2.ui.dialog.WrapCharDialog;
+import com.jecelyin.editor.v2.ui.settings.SettingsActivity;
+import com.jecelyin.editor.v2.utils.AppUtils;
+import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.editor.v2.view.TabViewPager;
+import com.jecelyin.editor.v2.view.menu.MenuDef;
+import com.jecelyin.editor.v2.view.menu.MenuFactory;
+import com.jecelyin.editor.v2.view.menu.MenuItemInfo;
+import com.jecelyin.editor.v2.widget.AnyDrawerLayout;
+import com.jecelyin.editor.v2.widget.SymbolBarLayout;
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
+
+/**
+ * @author Jecelyin Peng <jecelyin@gmail.com>
+ */
+public class MainActivity extends BaseActivity
+        implements MenuItem.OnMenuItemClickListener
+        , FolderChooserDialog.FolderCallback
+        , SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final String TAG = MainActivity.class.getName();
+    private static final int RC_OPEN_FILE = 1;
+    private final static int RC_SAVE = 3;
+    private static final int RC_PERMISSION_STORAGE = 2;
+
+    Toolbar mToolbar;
+    LinearLayout mLoadingLayout;
+    TabViewPager mTabPager;
+    RecyclerView mMenuRecyclerView;
+    AnyDrawerLayout mDrawerLayout;
+    RecyclerView mTabRecyclerView;
+    TextView mVersionTextView;
+
+    private TabManager tabManager;
+
+    private Pref pref;
+    private ClusterCommand clusterCommand;
+//    TabDrawable tabDrawable;
+    private MenuManager menuManager;
+    private FolderChooserDialog.FolderCallback findFolderCallback;
+    private long mExitTime;
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        try {
+            super.onRestoreInstanceState(savedInstanceState);
+        } catch (Exception e) {
+            L.d(e); //ignore exception: Unmarshalling unknown type code 7602281 at offset 58340
+        }
+    }
+
+    private void requestWriteExternalStoragePermission() {
+        final String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            UIUtils.showConfirmDialog(this, null, getString(R.string.need_to_enable_read_storage_permissions), new UIUtils.OnClickCallback() {
+                @Override
+                public void onOkClick() {
+                    ActivityCompat.requestPermissions(MainActivity.this, permissions, RC_PERMISSION_STORAGE);
+                }
+
+                @Override
+                public void onCancelClick() {
+                    finish();
+                }
+            });
+        } else {
+            ActivityCompat.requestPermissions(MainActivity.this, permissions, RC_PERMISSION_STORAGE);
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_activity);
+        L.d(TAG, "onCreate");
+        CrashDbHelper.getInstance(this).close(); //初始化一下
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mLoadingLayout = (LinearLayout) findViewById(R.id.loading_layout);
+        mTabPager = (TabViewPager) findViewById(R.id.tab_pager);
+        mMenuRecyclerView = (RecyclerView) findViewById(R.id.menuRecyclerView);
+        mDrawerLayout = (AnyDrawerLayout) findViewById(R.id.drawer_layout);
+        mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
+        mVersionTextView = (TextView) findViewById(R.id.versionTextView);
+        SymbolBarLayout symbolBarLayout = (SymbolBarLayout) findViewById(R.id.symbolBarLayout);
+        symbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
+            @Override
+            public void onClick(View v, String text) {
+                insertText(text);
+            }
+        });
+
+        if(!AppUtils.verifySign(getContext())) {
+            UIUtils.showConfirmDialog(getContext(), getString(R.string.verify_sign_failure), new UIUtils.OnClickCallback() {
+                @Override
+                public void onOkClick() {
+                    SysUtils.startWebView(getContext(), "https://github.com/jecelyin/920-text-editor-v2/releases");
+                }
+            });
+        }
+
+        setStatusBarColor(mToolbar, getResources().getColor(R.color.editor_primary_color_dark));
+        pref = Pref.getInstance(this);
+
+        bindPreferences();
+        setScreenOrientation();
+
+        mDrawerLayout.setEnabled(false);
+        mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+//        mVersionTextView.setText(getString(R.string.version_x, SysUtils.getVersionName(this)));
+        String version = SysUtils.getVersionName(this);
+        mVersionTextView.setText(version);
+
+        if (savedInstanceState == null && pref.isAutoCheckUpdates()) {
+            new CheckUpgradeTask(this).checkVersion(version);
+        }
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            requestWriteExternalStoragePermission();
+        } else {
+            start();
+        }
+    }
+
+    private void bindPreferences() {
+        mDrawerLayout.setKeepScreenOn(pref.isKeepScreenOn());
+        //bind other preference
+//        pref.getSharedPreferences().registerOnSharedPreferenceChangeListener(this); //不能这样使用，无法监听
+//        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+        pref.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    /**
+     * 注意registerOnSharedPreferenceChangeListener的listeners是使用WeakHashMap引用的
+     * 不能直接registerOnSharedPreferenceChangeListener(new ...) 否则可能监听不起作用
+     * @param sharedPreferences
+     * @param key
+     */
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (mToolbar == null)
+            return;
+        switch(key) {
+            case Pref.KEY_KEEP_SCREEN_ON:
+                mToolbar.setKeepScreenOn(sharedPreferences.getBoolean(key, false));
+                break;
+            case Pref.KEY_ENABLE_HIGHLIGHT:
+                Command command = new Command(Command.CommandEnum.HIGHLIGHT);
+                command.object = pref.isHighlight() ? null : Catalog.DEFAULT_MODE_NAME;
+                doClusterCommand(command);
+                break;
+            case Pref.KEY_SCREEN_ORIENTATION:
+                setScreenOrientation();
+                break;
+        }
+    }
+
+    private void setScreenOrientation() {
+        int orgi = pref.getScreenOrientation();
+
+        if (Pref.SCREEN_ORIENTATION_AUTO == orgi) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        } else if(Pref.SCREEN_ORIENTATION_LANDSCAPE == orgi) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else if(Pref.SCREEN_ORIENTATION_PORTRAIT == orgi) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        // Write external store permission requires a restart
+        for (int i = 0; i < permissions.length; i++) {
+            //Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permissions[i])
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                requestWriteExternalStoragePermission();
+                return;
+            }
+        }
+        start();
+    }
+
+    private void start() {
+        ((ViewGroup) mLoadingLayout.getParent()).removeView(mLoadingLayout);
+
+//                inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mTabPager.setVisibility(View.VISIBLE);
+
+        initUI();
+    }
+
+    private void initUI() {
+        mMenuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mTabRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mDrawerLayout.setEnabled(true);
+
+        initToolbar();
+
+        if (menuManager == null)
+            menuManager = new MenuManager(this);
+
+        //系统可能会随时杀掉后台运行的Activity，如果这一切发生，那么系统就会调用onCreate方法，而不调用onNewIntent方法
+        processIntent();
+    }
+
+    private void initToolbar() {
+//        mToolbar.setTitleTextAppearance(this, R.style.Toolbar_TitleTextAppearance);
+
+        Resources res = getResources();
+        int textSize = res.getDimensionPixelSize(R.dimen.tab_text_size);
+//        tabDrawable = new TabDrawable(this, BitmapFactory.decodeResource(res, R.drawable.ic_drawer_raw), "0", textSize);
+//        mToolbar.setNavigationIcon(tabDrawable);
+        mToolbar.setNavigationIcon(R.drawable.ic_drawer_raw);
+        mToolbar.setNavigationContentDescription(R.string.tab);
+
+        Menu menu = mToolbar.getMenu();
+        List<MenuItemInfo> menuItemInfos = MenuFactory.getInstance(this).getToolbarIcon();
+        for (MenuItemInfo item : menuItemInfos) {
+            MenuItem menuItem = menu.add(MenuDef.GROUP_TOOLBAR, item.getItemId(), Menu.NONE, item.getTitleResId());
+            menuItem.setIcon(item.getIconResId());
+            menuItem.getIcon().setLevel(MenuDef.LEVEL_TOOLBAR);
+            //menuItem.setShortcut()
+            menuItem.setOnMenuItemClickListener(this);
+            menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        }
+        MenuItem menuItem = menu.add(MenuDef.GROUP_TOOLBAR, R.id.m_menu, Menu.NONE, getString(R.string.more_menu));
+        menuItem.setIcon(R.drawable.ic_right_menu);
+        menuItem.setOnMenuItemClickListener(this);
+        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        tabManager = new TabManager(this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        processIntent();
+    }
+
+    private void processIntent() {
+        try {
+            if (!processIntentImpl()) {
+                UIUtils.alert(getContext(), getString(R.string.cannt_handle_intent_x, getIntent().toString()));
+            }
+        } catch (Throwable e) {
+            L.e(e);
+            UIUtils.alert(getContext(), getString(R.string.handle_intent_x_error, getIntent().toString() + "\n" + e.getMessage()));
+        }
+    }
+
+    private boolean processIntentImpl() throws Throwable {
+        Intent intent = getIntent();
+        L.d("intent=" + intent);
+        if(intent == null)
+            return true; //pass hint
+
+        String action = intent.getAction();
+
+        if(Intent.ACTION_MAIN.equals(action)) {
+            return true;
+        }
+
+        if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_EDIT.equals(action) ) {
+            if (intent.getScheme().equals("content"))
+            {
+                InputStream attachment = getContentResolver().openInputStream(intent.getData());
+                String text = IOUtils.toString(attachment);
+                openText(text);
+                return true;
+            }else if(intent.getScheme().equals("file")) {
+                Uri mUri = intent.getData();
+                String file = mUri != null ? mUri.getPath() : null;
+                if(!TextUtils.isEmpty(file)) {
+                    openFile(file);
+                    return true;
+                }
+            }
+
+        }else if (Intent.ACTION_SEND.equals(action) && intent.getExtras() != null) {
+            Bundle extras = intent.getExtras();
+            CharSequence text = extras.getCharSequence(Intent.EXTRA_TEXT);
+
+            if (text != null) {
+                openText(text);
+                return true;
+            } else {
+                Object stream = extras.get(Intent.EXTRA_STREAM);
+                if(stream != null && stream instanceof Uri) {
+                    openFile(((Uri)stream).getPath());
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @param menuResId
+     * @param status {@link com.jecelyin.editor.v2.view.menu.MenuDef#STATUS_NORMAL}, {@link com.jecelyin.editor.v2.view.menu.MenuDef#STATUS_DISABLED}
+     */
+    public void setMenuStatus(@IdRes int menuResId, int status) {
+        MenuItem menuItem = mToolbar.getMenu().findItem(menuResId);
+        if (menuItem == null) {
+            throw new RuntimeException("Can't find a menu item");
+        }
+        if (status == MenuDef.STATUS_DISABLED) {
+            menuItem.setEnabled(false);
+            menuItem.getIcon().setLevel(MenuDef.LEVEL_DISABLED);
+        } else {
+            menuItem.setEnabled(true);
+            menuItem.getIcon().setLevel(menuItem.getGroupId() == MenuDef.GROUP_TOOLBAR ? MenuDef.LEVEL_TOOLBAR : MenuDef.LEVEL_DEFAULT);
+        }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        onMenuClick(item.getItemId());
+        return true;
+    }
+
+    private void onMenuClick(int id) {
+        Command.CommandEnum commandEnum;
+
+        closeMenu();
+
+        switch (id) {
+            case R.id.m_new:
+                tabManager.newTab();
+                break;
+            case R.id.m_open:
+                FileExplorerActivity.startPickFileActivity(this, null, RC_OPEN_FILE);
+                break;
+            case R.id.m_goto_line:
+                new GotoLineDialog(this).show();
+                break;
+            case R.id.m_history:
+                RecentFilesManager rfm = RecentFilesManager.getInstance(this);
+                rfm.setOnFileItemClickListener(new RecentFilesManager.OnFileItemClickListener() {
+                    @Override
+                    public void onClick(String file, String encoding) {
+                        openFile(file, encoding, 0);
+                    }
+                });
+                rfm.show(getContext());
+                break;
+            case R.id.m_wrap:
+                new WrapCharDialog(this).show();
+                break;
+            case R.id.m_highlight:
+                new LangListDialog(this).show();
+                break;
+            case R.id.m_menu:
+                hideSoftInput();
+
+                mDrawerLayout.openDrawer(GravityCompat.END);
+                break;
+            case R.id.m_save_all:
+                commandEnum = Command.CommandEnum.SAVE;
+                Command command = new Command(commandEnum);
+                command.args.putBoolean(EditorDelegate.KEY_CLUSTER, true);
+                doClusterCommand(command);
+                break;
+            case R.id.m_readonly:
+                boolean readOnly = !pref.isReadOnly();
+                pref.setReadOnly(readOnly);
+                mDrawerLayout.setHideBottomDrawer(readOnly);
+                doClusterCommand(new Command(Command.CommandEnum.READONLY_MODE));
+                break;
+            case R.id.m_encoding:
+                new CharsetsDialog(this).show();
+                break;
+            case R.id.m_color:
+                if (ensureNotReadOnly()) {
+                    ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this);
+                    colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
+                        @Override
+                        public void onColorPicked(int color, String hexVal) {
+                            insertText(hexVal);
+                        }
+                    });
+                    colorPickerDialog.show();
+                }
+                break;
+            case R.id.m_datetime:
+                if (ensureNotReadOnly()) {
+                    new InsertDateTimeDialog(this).show();
+                }
+                break;
+            case R.id.m_run:
+                new RunDialog(this).show();
+                break;
+            case R.id.m_settings:
+                SettingsActivity.startActivity(this);
+                break;
+            case R.id.m_exit:
+                if (tabManager != null)
+                    tabManager.closeAllTabAndExitApp();
+                break;
+            default:
+                commandEnum = MenuFactory.getInstance(this).idToCommandEnum(id);
+                if (commandEnum != Command.CommandEnum.NONE)
+                    doCommand(new Command(commandEnum));
+        }
+    }
+
+    private boolean ensureNotReadOnly() {
+        boolean readOnly = pref.isReadOnly();
+        if (readOnly) {
+            UIUtils.toast(this, R.string.readonly_mode_not_support_this_action);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        onMenuClick(R.id.m_menu);
+        return false;
+    }
+
+    public void closeMenu() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+            mDrawerLayout.closeDrawer(GravityCompat.END);
+        }
+    }
+
+    @Override
+    public void onFolderSelection(@NonNull FolderChooserDialog dialog, @NonNull File file) {
+        if (findFolderCallback != null) {
+            findFolderCallback.onFolderSelection(dialog, file);
+        }
+    }
+
+    public void setFindFolderCallback(FolderChooserDialog.FolderCallback findFolderCallback) {
+        this.findFolderCallback = findFolderCallback;
+    }
+
+    private void hideSoftInput() {
+        doCommand(new Command(Command.CommandEnum.HIDE_SOFT_INPUT));
+    }
+
+    private void showSoftInput() {
+        doCommand(new Command(Command.CommandEnum.SHOW_SOFT_INPUT));
+    }
+
+    /**
+     * 需要手动回调 {@link #doNextCommand}
+     * @param command
+     */
+    public void doClusterCommand(Command command) {
+        clusterCommand = tabManager.getEditorAdapter().makeClusterCommand();
+        clusterCommand.setCommand(command);
+        clusterCommand.doNextCommand();
+    }
+
+    public void doNextCommand() {
+        if (clusterCommand == null)
+            return;
+        clusterCommand.doNextCommand();
+    }
+
+    public void doCommand(Command command) {
+        clusterCommand = null;
+        EditorDelegate editorDelegate = tabManager.getEditorAdapter().getCurrentEditorDelegate();
+        if (editorDelegate != null)
+            editorDelegate.doCommand(command);
+    }
+
+    public void startOpenFileSelectorActivity(Intent it) {
+        startActivityForResult(it, RC_OPEN_FILE);
+    }
+
+    public void startPickPathActivity(String path, String encoding) {
+        FileExplorerActivity.startPickPathActivity(this, path, encoding, RC_SAVE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != RESULT_OK)
+            return;
+        switch (requestCode) {
+            case RC_OPEN_FILE:
+                if(data == null)
+                    break;
+                openFile(FileExplorerActivity.getFile(data), FileExplorerActivity.getFileEncoding(data), data.getIntExtra("offset", 0));
+                break;
+            case RC_SAVE:
+                String file = FileExplorerActivity.getFile(data);
+                String encoding = FileExplorerActivity.getFileEncoding(data);
+                tabManager.getEditorAdapter().getCurrentEditorDelegate().saveTo(new File(file), encoding);
+                break;
+        }
+    }
+
+    public static Intent getOpenFileIntent(File file, int offset) {
+        Intent intent = new Intent();
+        intent.putExtra("file", file.getPath());
+        intent.putExtra("offset", offset);
+        return intent;
+    }
+
+    private void openText(CharSequence content) {
+        if(TextUtils.isEmpty(content))
+            return;
+        tabManager.newTab(content);
+    }
+
+    private void openFile(String file) {
+        openFile(file, null, 0);
+    }
+
+    public void openFile(String file, String encoding, int offset) {
+        if(TextUtils.isEmpty(file))
+            return;
+        File f = new File(file);
+        if(!f.isFile()) {
+            UIUtils.toast(this, R.string.file_not_exists);
+            return;
+        }
+        if (!tabManager.newTab(f, offset, encoding))
+            return;
+        DBHelper.getInstance(this).addRecentFile(file, encoding);
+    }
+
+    public void insertText(CharSequence text) {
+        if (text == null)
+            return;
+        Command c = new Command(Command.CommandEnum.INSERT_TEXT);
+        c.object = text;
+        doCommand(c);
+    }
+
+    public TabManager getTabManager() {
+        return tabManager;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                UIUtils.toast(getContext(), R.string.press_again_will_exit);
+                mExitTime = System.currentTimeMillis();
+                return true;
+            } else {
+                return tabManager == null || tabManager.closeAllTabAndExitApp();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+}

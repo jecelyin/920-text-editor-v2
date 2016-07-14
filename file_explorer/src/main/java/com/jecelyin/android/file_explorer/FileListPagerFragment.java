@@ -44,7 +44,7 @@ import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.OnCheckedChangeListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.UIUtils;
-import com.jecelyin.editor2.Pref;
+import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.Arrays;

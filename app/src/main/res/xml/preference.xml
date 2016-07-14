@@ -2,12 +2,12 @@
     <PreferenceCategory
         android:title="@string/editor">
 
-        <com.jecelyin.editor2.preference.FontSizePreference
+        <com.jecelyin.editor.v2.preference.FontSizePreference
             android:key="pref_font_size"
             android:title="@string/font_size"
             android:summary="@string/default_value"
              />
-        <com.jecelyin.editor2.preference.CursorWidthPreference
+        <com.jecelyin.editor.v2.preference.CursorWidthPreference
             android:key="pref_cursor_width"
             android:title="@string/cursor_width"
             android:summary="@string/default_value"
@@ -62,7 +62,7 @@
             android:inputType="number"
             android:singleLine="true"
             android:summary="500 KB"/>
-        <com.jecelyin.editor2.preference.JecListPreference
+        <com.jecelyin.editor.v2.preference.JecListPreference
             android:key="pref_theme"
             android:enabled="false"
             android:title="@string/select_theme"
@@ -81,7 +81,7 @@
             android:title="@string/remember_last_opened_files"
             android:summary="@string/remember_last_opened_files_summary"/>
 
-        <com.jecelyin.editor2.preference.JecListPreference
+        <com.jecelyin.editor.v2.preference.JecListPreference
             android:key="pref_screen_orientation"
             android:entryValues="@array/screen_orientation_values"
             android:entries="@array/screen_orientation"

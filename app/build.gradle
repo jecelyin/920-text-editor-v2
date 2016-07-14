@@ -11,7 +11,7 @@ android {
     buildToolsVersion '23.0.3'
 
     defaultConfig {
-        applicationId "com.jecelyin.editor2"
+        applicationId "com.jecelyin.editor.v2"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 18
