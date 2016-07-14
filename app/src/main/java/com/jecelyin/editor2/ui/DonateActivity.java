@@ -18,32 +18,27 @@
 
 package com.jecelyin.editor2.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.RadioGroup;
-import android.widget.SeekBar;
+import android.widget.TextView;
 
-import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.BaseActivity;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.databinding.DonateActivityBinding;
-import com.jecelyin.editor2.ui.donate.DonateChannel;
-import com.jecelyin.editor2.ui.donate.DonateListener;
-import com.jecelyin.editor2.ui.donate.GoogleBillingDonate;
+
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class DonateActivity extends BaseActivity implements SeekBar.OnSeekBarChangeListener, RadioGroup.OnCheckedChangeListener, View.OnClickListener, DonateListener {
-    private DonateActivityBinding binding;
-    private int amount = 5;
-    private GoogleBillingDonate googleBilling;
+public class DonateActivity extends BaseActivity implements View.OnClickListener {
 
     public static void startActivity(Context context) {
         Intent it = new Intent(context, DonateActivity.class);
@@ -54,109 +49,32 @@ public class DonateActivity extends BaseActivity implements SeekBar.OnSeekBarCha
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.donate_activity);
-        binding.seekBar.setOnSeekBarChangeListener(this);
-        binding.channelRadioGroup.setOnCheckedChangeListener(this);
-        binding.seekBar.setProgress(amount);
-        binding.donateButton.setOnClickListener(this);
-
-        googleBilling = new GoogleBillingDonate(getContext());
-        binding.channelRadioGroup.check(googleBilling.isReady() ? R.id.channel_google : R.id.channel_alipay);
+        DonateActivityBinding binding = DataBindingUtil.setContentView(this, R.layout.donate_activity);
+        binding.channelAlipay.setOnClickListener(this);
+        binding.channelPaypal.setOnClickListener(this);
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        googleBilling.destroy();
-        googleBilling = null;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == GoogleBillingDonate.RC_REQUEST) {
-            if (!googleBilling.onActivityResult(requestCode, resultCode, data)) {
-                super.onActivityResult(requestCode, resultCode, data);
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    private void onAmountChanged() {
-        binding.moneyTextView.setText(getString(R.string.donate_amount_x, isRMB() ? "￥" : "$", amount));
-    }
-
-    private boolean isRMB() {
-        int checkedId = binding.channelRadioGroup.getCheckedRadioButtonId();
-        switch (checkedId) {
-            case R.id.channel_alipay:
-                return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (progress < 1)
-            return;
-        amount = progress;
-        onAmountChanged();
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        onAmountChanged();
-    }
-
-    @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.donateButton) {
-            doDonate();
-        }
-    }
-
-    private void doDonate() {
-        DonateChannel channel = null;
-
-        switch (binding.channelRadioGroup.getCheckedRadioButtonId()) {
-            case R.id.channel_google:
-                channel = googleBilling;
+        switch (v.getId()) {
+            case R.id.channel_alipay:
+                copyToClipboard("jecelyin@163.com", ((TextView)v).getText().toString());
                 break;
-            default:
-                UIUtils.toast(this, R.string.please_select_a_channel);
-                return;
+            case R.id.channel_paypal:
+                copyToClipboard("jecelyin@gmail.com", ((TextView)v).getText().toString());
+                break;
         }
-
-        channel.pay(amount, this);
     }
 
-    @Override
-    public void onSuccess() {
-        UIUtils.showConfirmDialog(getContext(), R.string.donate_success_message, new UIUtils.OnClickCallback() {
-            @Override
-            public void onOkClick() {
-                finish();
-            }
-        });
-    }
+    private void copyToClipboard(String account, String msg) {
+        ClipboardManager clipboard = (ClipboardManager)
+                getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(getString(R.string.donate), account);
+        clipboard.setPrimaryClip(clip);
 
-    @Override
-    public void onError(String msg, Throwable t) {
-        L.e(t);
-        UIUtils.alert(getContext(), getString(R.string.donate_fail), msg);
+        UIUtils.alert(this, getString(R.string.donation_account_copied_x, msg));
     }
 }

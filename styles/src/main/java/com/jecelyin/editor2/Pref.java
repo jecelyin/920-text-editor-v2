@@ -121,7 +121,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_ENABLE_HIGHLIGHT, true);
         map.put(KEY_HIGHLIGHT_FILE_SIZE_LIMIT, 500);
         map.put(KEY_THEME, "");
-        map.put(KEY_AUTO_SAVE, true);
+        map.put(KEY_AUTO_SAVE, false);
         map.put(KEY_ENABLE_ROOT, true);
         map.put(KEY_REMEMBER_LAST_OPENED_FILES, true);
         map.put(KEY_SCREEN_ORIENTATION, "auto");

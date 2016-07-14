@@ -20,7 +20,8 @@
 
     <data></data>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -34,70 +35,32 @@
 
         <TextView
             android:id="@+id/desc"
-            android:layout_below="@id/toolbar"
             android:layout_margin="16dp"
             android:text="@string/donate_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <RadioGroup
-            android:id="@+id/channel_radioGroup"
-            android:layout_below="@id/desc"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/channel_google"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:drawableStart="@drawable/donate_google"
-                android:drawablePadding="5dp"
-                android:text="@string/donate_google"
-                android:background="?attr/selectableItemBackground"
-                />
-            <RadioButton
-                android:id="@+id/channel_alipay"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:drawableStart="@drawable/donate_alipay"
-                android:drawablePadding="5dp"
-                android:text="@string/donate_alipay"
-                android:background="?attr/selectableItemBackground"
-                />
-        </RadioGroup>
-
         <TextView
-            android:text="@string/donate_amount_x"
+            android:id="@+id/channel_paypal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/channel_radioGroup"
-            android:id="@+id/moneyTextView"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textColor="#000"
-            android:layout_below="@id/channel_radioGroup" />
-
-        <SeekBar
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_below="@id/moneyTextView"
-            android:layout_alignStart="@id/channel_radioGroup"
-            android:layout_alignEnd="@id/channel_radioGroup"
-            android:id="@+id/seekBar"
-            android:progress="5"
-            android:max="100" />
+            android:padding="16dp"
+            android:drawableStart="@drawable/donate_paypal"
+            android:drawablePadding="5dp"
+            android:text="@string/donate_paypal"
+            android:background="?attr/selectableItemBackground"
+            />
 
         <TextView
-            android:id="@+id/donateButton"
-            android:layout_below="@id/seekBar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            style="@style/ButtonH1"
-            android:text="@string/donate_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:id="@+id/channel_alipay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:drawableStart="@drawable/donate_alipay"
+            android:drawablePadding="5dp"
+            android:text="@string/donate_alipay"
+            android:background="?attr/selectableItemBackground"
+            />
 
-
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

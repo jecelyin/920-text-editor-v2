@@ -27,7 +27,10 @@
         android:supportsRtl="true"
         android:name=".MainApp"
         android:theme="@style/EditorTheme" >
-
+        <!-- Enables the Android Pay API -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
         <!--
         add android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         for fix:
@@ -111,18 +114,6 @@
         <activity android:name=".ui.FeedbackActivity" />
         <activity android:name=".ui.DonateActivity" />
 
-        <!-- Alipay start ==================================== -->
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" />
-        <activity
-            android:name="com.alipay.sdk.auth.AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind" />
-        <!-- Alipay end ==================================== -->
     </application>
 
 </manifest>
