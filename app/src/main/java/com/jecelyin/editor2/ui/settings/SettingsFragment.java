@@ -101,8 +101,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 BrowserActivity.startActivity(getActivity(), getString(R.string.help_translate), "https://www.getlocalization.com/920_Text_Editor_v2/");
                 break;
             case "pref_feedback":
-                it = new Intent(getActivity(), FeedbackActivity.class);
-                startActivity(it);
+                FeedbackActivity.startActivity(getActivity(), null);
                 break;
             case "pref_donate":
                 DonateActivity.startActivity(getActivity());

@@ -18,11 +18,14 @@
 
 package com.jecelyin.editor2.ui;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -47,6 +50,12 @@ import rx.schedulers.Schedulers;
  */
 public class FeedbackActivity extends BaseActivity {
     private FeedbackActivityBinding binding;
+
+    public static void startActivity(Context context, Exception e) {
+        Intent it = new Intent(context, FeedbackActivity.class);
+        it.putExtra("exception", e == null ? "" : Log.getStackTraceString(e));
+        context.startActivity(it);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,6 +104,11 @@ public class FeedbackActivity extends BaseActivity {
         StringBuilder sb = new StringBuilder(email);
         sb.append("\n\n");
         sb.append(content);
+
+        sb.append("Exception Start ==============================\n");
+        sb.append(getIntent().getStringExtra("exception"));
+        sb.append("Exception End ==============================\n");
+
         if (withLog) {
             sb.append("\n\n");
             CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());

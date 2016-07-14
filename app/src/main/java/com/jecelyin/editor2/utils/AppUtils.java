@@ -19,10 +19,13 @@
 package com.jecelyin.editor2.utils;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Base64;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor2.R;
 
 import java.security.MessageDigest;
 
@@ -45,5 +48,14 @@ public class AppUtils {
             L.e(e);
             return false;
         }
+    }
+
+    public static void showException(Context context, String code, @NonNull final Exception e) {
+        UIUtils.showConfirmDialog(context, context.getString(R.string.unknown_exception_and_report_message_x, code), new UIUtils.OnClickCallback() {
+            @Override
+            public void onOkClick() {
+
+            }
+        });
     }
 }

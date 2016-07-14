@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.common.adapter.ViewPagerAdapter;
+import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor2.R;
 import com.jecelyin.editor2.common.Command;
 import com.jecelyin.editor2.common.SaveListener;
@@ -38,6 +39,7 @@ import com.jecelyin.editor2.task.ClusterCommand;
 import com.jecelyin.editor2.ui.EditorDelegate;
 import com.jecelyin.editor2.ui.MainActivity;
 import com.jecelyin.editor2.ui.dialog.SaveConfirmDialog;
+import com.jecelyin.editor2.utils.AppUtils;
 import com.jecelyin.editor2.utils.ExtGrep;
 import com.jecelyin.editor2.view.EditorView;
 
@@ -97,6 +99,10 @@ public class EditorAdapter extends ViewPagerAdapter {
      * @param editorView
      */
     public void setEditorView(int index, EditorView editorView) {
+        if (index >= getCount()) {
+            AppUtils.showException(context, "setEditorView", new Exception());
+            return;
+        }
         EditorDelegate delegate = list.get(index);
         if (delegate != null)
             delegate.setEditorView(editorView);

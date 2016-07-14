@@ -125,7 +125,7 @@
     <string name="duplication_text">Duplication text</string>
     <string name="tab_size">Tab size</string>
     <string name="new_version_available">New version available</string>
-    <string name="install">Install</string>
+    <string name="upgrade">Upgrade</string>
     <string name="new_version_update_content">Latest Version: %1$s\n\nWhat\'s New:\n%2$s</string>
     <string name="download_progress">Downloading %1$d%%</string>
     <string name="download_failure_x">Download failure: %s</string>
@@ -168,4 +168,5 @@
     <string name="exit">Exit</string>
     <string name="donate_desc">Thank you for your support for open source software, click follow account will be copied to the clipboard</string>
     <string name="donation_account_copied_x">Donation account copied\n%s</string>
+    <string name="unknown_exception_and_report_message_x">Unknown exception, Please tell me what is this case happening, Thank you\nCode: %s</string>
 </resources>

@@ -35,6 +35,8 @@ import com.jecelyin.common.view.SystemBarTintManager;
  */
 public class JecActivity extends AppCompatActivity {
 
+    private boolean isAttached;
+
     protected void setStatusBarColor(Toolbar toolbar, int color) {
         super.onStart();
         if(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
@@ -90,5 +92,25 @@ public class JecActivity extends AppCompatActivity {
 
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        isAttached = true;
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        isAttached = false;
+    }
+
+    public boolean isAttached() {
+        return isAttached;
+    }
+
+    public boolean isDetached() {
+        return !isAttached;
     }
 }

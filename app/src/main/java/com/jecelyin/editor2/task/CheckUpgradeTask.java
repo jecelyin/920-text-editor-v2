@@ -20,18 +20,20 @@ package com.jecelyin.editor2.task;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.github.PageIterator;
 import com.jecelyin.common.github.Release;
 import com.jecelyin.common.github.ReleasesService;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.editor2.R;
-import com.jecelyin.editor2.service.DownloadService;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
@@ -75,19 +77,22 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
     }
 
     @Override
-    protected void onPostExecute(Release s) {
+    protected void onPostExecute(Release release) {
         Context context = contextWeakReference.get();
-        if (s == null || context == null)
+        if (release == null || context == null)
             return;
 
-        List<Release.Assets> assetsList = s.getAssets();
+        List<Release.Assets> assetsList = release.getAssets();
         if (assetsList == null || assetsList.isEmpty())
             return;
         Release.Assets assets = assetsList.get(0);
         final String downloadUrl = assets.getBrowser_download_url();
         final int size = assets.getSize();
 
-        if (context instanceof Activity) {
+        if (context instanceof JecActivity) {
+            if (((JecActivity)context).isDetached())
+                return;
+        } else if (context instanceof Activity) {
             if (((Activity)context).isFinishing())
                 return;
         }
@@ -95,9 +100,9 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
             new MaterialDialog.Builder(context)
                     .canceledOnTouchOutside(false)
                     .title(R.string.new_version_available)
-                    .content(R.string.new_version_update_content, s.getTagName(), s.getBody())
+                    .content(R.string.new_version_update_content, release.getTagName(), release.getBody())
                     .negativeText(R.string.cancel)
-                    .positiveText(R.string.install)
+                    .positiveText(R.string.upgrade)
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -105,17 +110,21 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
                         }
                     }).show();
         } catch (Exception e) {
-            L.d(e); //ignore: Bad window token, you cannot show a dialog before an Activity is created or after it's hidden.
+            L.d(e); //ignore: Bad window token, you cannot show a dialog before an Activity is created or after it'release hidden.
         }
     }
 
     private void goToDownload(String downloadUrl, int size) {
-        if (contextWeakReference.get() == null)
+        Context c = contextWeakReference.get();
+        if (c == null)
             return;
 
-        Context c = contextWeakReference.get();
-
-        DownloadService.startService(c, downloadUrl, size);
+        final String appPackageName = c.getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            c.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            c.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
     }
 
     /**

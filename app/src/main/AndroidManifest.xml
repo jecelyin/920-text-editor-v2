@@ -108,7 +108,6 @@
         </activity>
         <activity android:name=".ui.FindInFileActivity" />
         <activity android:name=".ui.settings.SettingsActivity" />
-        <service android:name=".service.DownloadService" />
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.BrowserActivity" />
         <activity android:name=".ui.FeedbackActivity" />
