@@ -26,6 +26,7 @@ import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 
+import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
@@ -36,7 +37,6 @@ import com.jecelyin.editor.v2.utils.ExtGrep;
 import java.io.File;
 import java.util.List;
 
-import rx.Subscriber;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -63,22 +63,22 @@ public class EditorObjectProcessor {
         private void find() {
             editText.setText(R.string.searching);
             editText.append("\n\n");
-            grep.execute(new Subscriber<List<ExtGrep.Result>>() {
+            grep.execute(new TaskListener<List<ExtGrep.Result>>() {
                 @Override
                 public void onCompleted() {
 
                 }
 
                 @Override
-                public void onError(Throwable e) {
-                    editText.append(e.getMessage());
-                    editText.append(editText.getContext().getString(R.string.zero_matches));
-                    L.e(e);
+                public void onSuccess(List<ExtGrep.Result> result) {
+                    buildResults(result);
                 }
 
                 @Override
-                public void onNext(List<ExtGrep.Result> results) {
-                    buildResults(results);
+                public void onError(Exception e) {
+                    editText.append(e.getMessage());
+                    editText.append(editText.getContext().getString(R.string.zero_matches));
+                    L.e(e);
                 }
             });
         }

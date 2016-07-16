@@ -29,10 +29,7 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.0.3'
     // ColorChooserDialog, FolderChooserDialog, the Material Preference classes, and MaterialSimpleListAdapter/MaterialSimpleListItem
     compile 'com.github.afollestad.material-dialogs:commons:0.8.5.8'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-    compile 'io.reactivex:rxjava:1.1.0'
+    // require by github client
     compile 'com.google.code.gson:gson:2.5'
 
 }

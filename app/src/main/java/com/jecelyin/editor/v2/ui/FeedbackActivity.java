@@ -32,18 +32,15 @@ import android.view.MenuItem;
 import com.jecelyin.common.app.NetLoadingDialog;
 import com.jecelyin.common.github.Issue;
 import com.jecelyin.common.github.IssueService;
+import com.jecelyin.common.task.JecAsyncTask;
+import com.jecelyin.common.task.TaskListener;
+import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.BaseActivity;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.databinding.FeedbackActivityBinding;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -123,50 +120,54 @@ public class FeedbackActivity extends BaseActivity {
 
         final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
         netLoadingDialog.show();
-        final Subscription subscription = Observable.create(new Observable.OnSubscribe<Issue>() {
-            @Override
-            public void call(Subscriber<? super Issue> subscriber) {
-                try {
-                    IssueService is = new IssueService();
-                    is.getClient().setOAuth2Token(getApplicationContext());
-                    Issue rs = is.createIssue(issue);
 
-                    CrashDbHelper dbHelper = CrashDbHelper.getInstance(getContext());
-                    dbHelper.updateCrashCommitted();
-                    dbHelper.close();
-
-                    subscriber.onNext(rs);
-                    subscriber.onCompleted();
-                } catch (Exception e) {
-                    subscriber.onError(e);
-                }
-            }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<Issue>() {
+        final ReportTask task = new ReportTask(getContext());
+        task.setTaskListener(new TaskListener<Void>() {
             @Override
             public void onCompleted() {
                 netLoadingDialog.dismiss();
             }
 
             @Override
-            public void onError(Throwable e) {
-                netLoadingDialog.dismiss();
-                UIUtils.alert(getContext(), getString(R.string.feedback_submit_error_x, e.getMessage()));
+            public void onSuccess(Void result) {
+                UIUtils.toast(getContext(), R.string.submit_success);
             }
 
             @Override
-            public void onNext(Issue issue) {
-                UIUtils.toast(getContext(), R.string.submit_success);
+            public void onError(Exception e) {
+                netLoadingDialog.dismiss();
+                UIUtils.alert(getContext(), getString(R.string.feedback_submit_error_x, e.getMessage()));
             }
         });
+        task.execute(issue);
+
 
         netLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                subscription.unsubscribe();
+                task.cancel(true);
             }
         });
+    }
+
+    private static class ReportTask extends JecAsyncTask<Issue, Void, Void> {
+        private final Context context;
+
+        private ReportTask(Context context) {
+            this.context = context.getApplicationContext();
+        }
+
+        @Override
+        protected void onRun(TaskResult<Void> taskResult, Issue... params) throws Exception {
+            IssueService is = new IssueService();
+            is.getClient().setOAuth2Token(context);
+            is.createIssue(params[0]);
+
+            CrashDbHelper dbHelper = CrashDbHelper.getInstance(context);
+            dbHelper.updateCrashCommitted();
+            dbHelper.close();
+
+            taskResult.setResult(null);
+        }
     }
 }

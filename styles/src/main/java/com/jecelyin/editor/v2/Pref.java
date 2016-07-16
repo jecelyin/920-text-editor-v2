@@ -59,6 +59,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_ENABLE_ROOT = "pref_enable_root";
     public static final String KEY_TOOLBAR_ICONS = "pref_toolbar_icons";
     public static final String KEY_PREF_AUTO_CHECK_UPDATES = "pref_auto_check_updates";
+    public static final String KEY_PREF_KEEP_BACKUP_FILE = "pref_keep_backup_file";
     public static final String KEY_LAST_OPEN_PATH = "last_open_path";
     public static final String KEY_READ_ONLY = "readonly_mode";
 
@@ -127,6 +128,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_SCREEN_ORIENTATION, "auto");
         map.put(KEY_KEEP_SCREEN_ON, false);
         map.put(KEY_PREF_AUTO_CHECK_UPDATES, true);
+        map.put(KEY_PREF_KEEP_BACKUP_FILE, true);
 
         //not at preference setting
         toolbarIcons = pm.getStringSet(KEY_TOOLBAR_ICONS, null);
@@ -316,5 +318,9 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
     public boolean isRootable() {
         return ((boolean)map.get(KEY_ENABLE_ROOT)) && RootTools.isRootAvailable() && RootTools.isAccessGiven();
+    }
+
+    public boolean isKeepBackupFile() {
+        return (boolean) map.get(KEY_PREF_KEEP_BACKUP_FILE);
     }
 }

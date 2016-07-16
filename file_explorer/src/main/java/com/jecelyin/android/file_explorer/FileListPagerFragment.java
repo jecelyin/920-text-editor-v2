@@ -18,6 +18,7 @@
 
 package com.jecelyin.android.file_explorer;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -43,17 +44,15 @@ import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.OnCheckedChangeListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
+import com.jecelyin.common.task.JecAsyncTask;
+import com.jecelyin.common.task.TaskResult;
+import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.Arrays;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -66,7 +65,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     private String topPath;
     private PathButtonAdapter pathAdapter;
     private boolean isRoot;
-    private Subscription subscribe;
+    private ScanFilesTask task;
 
     public static Fragment newFragment(JecFile path) {
         FileListPagerFragment f = new FileListPagerFragment();
@@ -154,60 +153,35 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     @Override
     public void onPause() {
         super.onPause();
-        if (subscribe != null) {
-            subscribe.unsubscribe();
-            subscribe = null;
+        if (task != null) {
+            task.cancel(true);
+            task = null;
         }
     }
 
     @Override
     public void onRefresh() {
-        Observable.create(new Observable.OnSubscribe<JecFile[]>() {
-            @Override
-            public void call(final Subscriber<? super JecFile[]> subscriber) {
-                boolean canRead = path.canRead();
-                if (!isRoot && !canRead) {
-                    //请求Root权限
-                    isRoot = Pref.getInstance(getContext()).isRootable();
-                }
-                if (isRoot && !canRead && !(path instanceof RootFile)) {
-                    path = new RootFile(path.getPath());
-                }
-                try {
-                    path.listFiles(new JecFile.FileListResultListener() {
-                        @Override
-                        public void onResult(JecFile[] result) {
-                            Arrays.sort(result, new FileListSorter());
-                            subscriber.onNext(result);
-                            subscriber.onCompleted();
-                        }
-                    });
-
-                } catch (Exception e) {
-                    subscriber.onError(e);
-                }
-
-            }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<JecFile[]>() {
+        task = new ScanFilesTask(getActivity(), path, isRoot);
+        task.setTaskListener(new TaskListener<JecFile[]>() {
             @Override
             public void onCompleted() {
                 binding.explorerSwipeRefreshLayout.setRefreshing(false);
+                isRoot = task.isRoot;
+                path = task.path;
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onSuccess(JecFile[] result) {
+                adapter.setData(result);
+            }
+
+            @Override
+            public void onError(Exception e) {
                 binding.explorerSwipeRefreshLayout.setRefreshing(false);
                 UIUtils.toast(getContext(), e);
             }
-
-            @Override
-            public void onNext(JecFile[] s) {
-                adapter.setData(s);
-            }
         });
+        task.execute();
     }
 
     @Override
@@ -264,5 +238,36 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         path = file;
         pathAdapter.setPath(file);
         onRefresh();
+    }
+
+    private static class ScanFilesTask extends JecAsyncTask<Void, Void, JecFile[]> {
+        private JecFile path;
+        private boolean isRoot;
+        private final Context context;
+
+        private ScanFilesTask(Context context, JecFile path, boolean isRoot) {
+            this.context = context.getApplicationContext();
+            this.path = path;
+            this.isRoot = isRoot;
+        }
+
+        @Override
+        protected void onRun(final TaskResult<JecFile[]> taskResult, Void... params) throws Exception {
+            boolean canRead = path.canRead();
+            if (!isRoot && !canRead) {
+                //请求Root权限
+                isRoot = Pref.getInstance(context).isRootable();
+            }
+            if (isRoot && !canRead && !(path instanceof RootFile)) {
+                path = new RootFile(path.getPath());
+            }
+            path.listFiles(new JecFile.FileListResultListener() {
+                @Override
+                public void onResult(JecFile[] result) {
+                    Arrays.sort(result, new FileListSorter());
+                    taskResult.setResult(result);
+                }
+            });
+        }
     }
 }

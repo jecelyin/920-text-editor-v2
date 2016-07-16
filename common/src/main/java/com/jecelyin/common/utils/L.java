@@ -22,10 +22,6 @@ import android.util.Log;
 
 import com.jecelyin.common.app.JecApp;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
-
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
@@ -168,9 +164,9 @@ public class L {
           .append("Msg: ").append(msg).append("\n")
           .append("Stacktrace:\n").append(Log.getStackTraceString(t)).append("\n\n");
 
-        Observable.create(new Observable.OnSubscribe<Integer>() {
+        new Thread(new Runnable() {
             @Override
-            public void call(Subscriber<? super Integer> subscriber) {
+            public void run() {
                 CrashDbHelper db = null;
                 try {
                     db = CrashDbHelper.getInstance(JecApp.getContext());
@@ -182,7 +178,7 @@ public class L {
                         db.close();
                 }
             }
-        }).subscribeOn(Schedulers.io()).subscribe();
+        }).start();
 
         return ret;
     }

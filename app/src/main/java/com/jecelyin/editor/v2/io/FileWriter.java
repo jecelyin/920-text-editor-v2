@@ -22,6 +22,7 @@ import android.os.AsyncTask;
 import android.text.Editable;
 
 import com.jecelyin.android.file_explorer.io.RootFile;
+import com.jecelyin.common.utils.IOUtils;
 import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedWriter;
@@ -37,8 +38,9 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
     private final String encoding;
     private final File file;
     private final static int BUFFER_SIZE = 16*1024;
-    private final File backupFile, tempFile;
+    private final File backupFile;
     private final File orgiFile;
+    private final boolean keepBackupFile;
     private FileWriteListener fileWriteListener;
 
     public static interface FileWriteListener {
@@ -46,12 +48,12 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
         public void onError(Exception e);
     }
 
-    public FileWriter(File file, File orgiFile, String encoding) {
+    public FileWriter(File file, File orgiFile, String encoding, boolean keepBackupFile) {
         this.file = file;
         this.orgiFile = orgiFile;
         this.backupFile = makeBackupFile(file);
-        this.tempFile = makeTempFile(file);
         this.encoding = encoding;
+        this.keepBackupFile = keepBackupFile;
     }
 
     public void write(Editable text) {
@@ -64,15 +66,21 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
 
     @Override
     protected Exception doInBackground(Editable... params) {
-        if(tempFile.exists()) {
-            if(!tempFile.delete()) {
-                return new IOException("Couldn't remove old temp file " + tempFile);
+
+        if(backupFile.exists()) {
+            if(!backupFile.delete()) {
+                return new IOException("Couldn't remove old backup file " + backupFile);
             }
+        }
+
+        if(file.isFile() && !IOUtils.copyFile(file, backupFile)) {
+            return new IOException("Couldn't copy file " + file
+                    + " to backup file " + backupFile);
         }
 
         Editable text = params[0];
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempFile), encoding), BUFFER_SIZE);
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding), BUFFER_SIZE);
             char[] buffer = new char[BUFFER_SIZE]; //16kb
             int size = text.length();
             if (size > 0) {
@@ -96,32 +104,12 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
             return e;
         }
 
-        if (!tempFile.isFile()) {
-            return new IOException("Couldn't write temp file " + tempFile);
-        }
-
-        if(backupFile.exists()) {
-            if(!backupFile.delete()) {
-                return new IOException("Couldn't remove old backup file " + backupFile);
-            }
-        }
-
-        if(file.isFile() && !file.renameTo(backupFile)) {
-            return new IOException("Couldn't rename file " + file
-                    + " to backup file " + backupFile);
-        }
-
-        if(!tempFile.renameTo(file)) {
-            return new IOException("Couldn't rename temp file " + tempFile
-                    + " to file " + file);
-        }
-
         // 注意路径可能是 symbolic links
         if (orgiFile != null && !RootTools.copyFile(file.getAbsolutePath() , (new RootFile(orgiFile.getPath())).getAbsolutePath(), true, false)) {
             return new IOException("Can't copy " + file.getPath() + " content to " + orgiFile.getPath());
         }
         if(file.exists()) {
-            if(backupFile.exists() && !backupFile.delete()) {
+            if(!keepBackupFile && backupFile.exists() && !backupFile.delete()) {
                 return new IOException("Couldn't remove backup file " + backupFile);
             }
         }
@@ -138,12 +126,8 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
             fileWriteListener.onError(e);
     }
 
-    private static File makeBackupFile(File prefsFile) {
-        return new File(prefsFile.getPath() + ".920.bak");
-    }
-
-    private static File makeTempFile(File prefsFile) {
-        return new File(prefsFile.getPath() + ".920.tmp");
+    private static File makeBackupFile(File file) {
+        return new File(file.getParent(), ".920bak." + file.getName());
     }
 
 }

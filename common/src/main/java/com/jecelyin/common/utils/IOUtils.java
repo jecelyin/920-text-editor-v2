@@ -20,11 +20,14 @@ package com.jecelyin.common.utils;
 
 import android.text.TextUtils;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -145,5 +148,44 @@ public class IOUtils {
         }
 
         return false;
+    }
+
+    public static boolean copyFile(File oldLocation, File newLocation) {
+        if (!oldLocation.exists()) {
+            return false;
+        }
+
+        BufferedInputStream reader = null;
+        BufferedOutputStream writer = null;
+        try {
+            reader = new BufferedInputStream(new FileInputStream(oldLocation));
+            writer = new BufferedOutputStream(new FileOutputStream(newLocation, false));
+
+            byte[] buff = new byte[8192];
+            int numChars;
+            while ((numChars = reader.read(buff, 0, buff.length)) != -1) {
+                writer.write(buff, 0, numChars);
+            }
+
+            return true;
+        } catch (Exception ex) {
+            L.e("IOException when transferring " + oldLocation.getPath() + " to " + newLocation.getPath());
+            return false;
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException ex) {
+                L.d(ex);
+            }
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException ex) {
+                L.d(ex);
+            }
+        }
     }
 }

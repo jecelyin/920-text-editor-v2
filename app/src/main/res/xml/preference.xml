@@ -81,6 +81,11 @@
             android:title="@string/remember_last_opened_files"
             android:summary="@string/remember_last_opened_files_summary"/>
 
+        <CheckBoxPreference
+            android:key="pref_keep_backup_file"
+            android:title="@string/keep_backup_file"
+            android:summary="@string/keep_backup_file_summary"/>
+
         <com.jecelyin.editor.v2.preference.JecListPreference
             android:key="pref_screen_orientation"
             android:entryValues="@array/screen_orientation_values"

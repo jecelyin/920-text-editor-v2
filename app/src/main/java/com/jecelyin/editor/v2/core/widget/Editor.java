@@ -4327,7 +4327,7 @@ public class Editor {
             Editable editable = (Editable)tv.getText();
             CharSequence curText;
             //jec fix: java.lang.IndexOutOfBoundsException: getChars (4 ... 6) ends beyond length 0
-            if (mRangeStart < 0 || mRangeEnd >= editable.length()) {
+            if (mRangeStart < 0 || mRangeEnd > editable.length()) {
                 L.e("Undo/Redo swapText: range=(%d - %d), text length=%d", mRangeStart, mRangeEnd, editable.length());
                 return;
             }

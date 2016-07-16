@@ -5,6 +5,9 @@ import android.os.Parcelable;
 import android.text.Editable;
 
 import com.jecelyin.common.app.JecApp;
+import com.jecelyin.common.task.JecAsyncTask;
+import com.jecelyin.common.task.TaskResult;
+import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
@@ -20,10 +23,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author https://github.com/drippel/JavaGrep
@@ -510,50 +509,41 @@ public class ExtGrep implements Parcelable {
         return results;
     }
 
-    public void grepText(final GrepDirect direct, final CharSequence line, final int start, Subscriber<int[]> subscriber) {
-        Observable.create(new Observable.OnSubscribe<int[]>() {
-            @Override
-            public void call(Subscriber<? super int[]> subscriber) {
-                try {
-                    compilePattern();
-                    int[] results = null;
-                    int index = start;
-                    Matcher m = grepPattern.matcher(line);
-                    if (direct == GrepDirect.NEXT) {
-                        for (int tryCount = 0; tryCount < 2; tryCount++) {
-                            if (m.find(index)) {
-                                results = new int[]{m.start(), m.end()};
-                                break;
-                            } else if (index > 0) {
-                                index = 0;
-                            } else {
-                                break;
-                            }
-                        }
-                    } else {
-                        if (index <= 0)
-                            index = line.length();
+    public void grepText(final GrepDirect direct, final CharSequence line, int start, TaskListener<int[]> listener) {
+        new JecAsyncTask<Integer, Void, int[]>() {
 
-                        // 从头开始搜索获取所有位置
-                        while (m.find()) {
-                            if (m.end() >= index) {
-                                break;
-                            }
+            @Override
+            protected void onRun(TaskResult<int[]> taskResult, Integer... params) throws Exception {
+                compilePattern();
+                int[] results = null;
+                int index = params[0];
+                Matcher m = grepPattern.matcher(line);
+                if (direct == GrepDirect.NEXT) {
+                    for (int tryCount = 0; tryCount < 2; tryCount++) {
+                        if (m.find(index)) {
                             results = new int[]{m.start(), m.end()};
+                            break;
+                        } else if (index > 0) {
+                            index = 0;
+                        } else {
+                            break;
                         }
                     }
+                } else {
+                    if (index <= 0)
+                        index = line.length();
 
-                    subscriber.onNext(results);
-                    subscriber.onCompleted();
-                } catch (Exception e) {
-                    subscriber.onError(e);
+                    // 从头开始搜索获取所有位置
+                    while (m.find()) {
+                        if (m.end() >= index) {
+                            break;
+                        }
+                        results = new int[]{m.start(), m.end()};
+                    }
                 }
-
+                taskResult.setResult(results);
             }
-        })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(subscriber);
+        }.setTaskListener(listener).execute(start);
     }
 
     public void setRegex(final String r) {
@@ -595,25 +585,17 @@ public class ExtGrep implements Parcelable {
         filesToProcess.add(new File(name));
     }
 
-    public void execute(Subscriber<List<Result>> subscriber) {
-        Observable.create(new Observable.OnSubscribe<List<Result>>() {
-            @Override
-            public void call(Subscriber<? super List<Result>> subscriber) {
-                try {
-                    compilePattern();
-                    verifyFileList();
-                    List<Result> results = grepFiles();
-                    subscriber.onNext(results);
-                    subscriber.onCompleted();
-                } catch (Exception e) {
-                    subscriber.onError(e);
-                }
+    public void execute(TaskListener<List<Result>> listener) {
+        new JecAsyncTask<Void, Void, List<Result>>() {
 
+            @Override
+            protected void onRun(TaskResult<List<Result>> taskResult, Void... params) throws Exception {
+                compilePattern();
+                verifyFileList();
+                List<Result> results = grepFiles();
+                taskResult.setResult(results);
             }
-        })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
+        }.setTaskListener(listener).execute();
     }
 
     public List<File> getFilesToProcess() {

@@ -37,6 +37,7 @@ import android.widget.CompoundButton;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
+import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.R;
@@ -48,7 +49,6 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
 
-import rx.Subscriber;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -238,26 +238,26 @@ public class FinderDialog extends AbstractDialog {
         grep.grepText(ExtGrep.GrepDirect.NEXT,
                 fragment.getEditableText(),
                 fragment.getCursorOffset(),
-                new Subscriber<int[]>() {
+                new TaskListener<int[]>() {
                     @Override
                     public void onCompleted() {
 
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        L.e(e);
-                        UIUtils.toast(context, e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(int[] match) {
+                    public void onSuccess(int[] match) {
                         if (match == null) {
                             UIUtils.toast(context, R.string.find_not_found);
                             return;
                         }
                         fragment.addHightlight(match[0], match[1]);
                         getMainActivity().startSupportActionMode(new FindTextActionModeCallback(replaceText, fragment, grep, match));
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        L.e(e);
+                        UIUtils.toast(context, e.getMessage());
                     }
                 }
         );
@@ -368,26 +368,26 @@ public class FinderDialog extends AbstractDialog {
             grep.grepText(id == ID_FIND_PREV ? ExtGrep.GrepDirect.PREV : ExtGrep.GrepDirect.NEXT,
                     fragment.getEditableText(),
                     fragment.getCursorOffset(),
-                    new Subscriber<int[]>() {
+                    new TaskListener<int[]>() {
                         @Override
                         public void onCompleted() {
 
                         }
 
                         @Override
-                        public void onError(Throwable e) {
-                            L.e(e);
-                            UIUtils.toast(fragment.getContext(), e.getMessage());
-                        }
-
-                        @Override
-                        public void onNext(int[] match) {
+                        public void onSuccess(int[] match) {
                             if (match == null) {
                                 UIUtils.toast(fragment.getContext(), R.string.find_not_found);
                                 return;
                             }
                             fragment.addHightlight(match[0], match[1]);
                             lastResults = match;
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            L.e(e);
+                            UIUtils.toast(fragment.getContext(), e.getMessage());
                         }
                     });
         }

@@ -22,6 +22,7 @@ import android.content.Context;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.io.FileWriter;
@@ -90,10 +91,10 @@ public class SaveTask {
      * @param listener
      */
     private void saveTo(final File rootFile, final File orgiFile, final String encoding, final SaveListener listener) {
-        if (editorDelegateWR.get() == null)
+        if (editorDelegateWR.get() == null || contextWR.get() == null)
             return;
         writing = true;
-        FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding);
+        FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding, Pref.getInstance(contextWR.get()).isKeepBackupFile());
         fileWriter.setFileWriteListener(new FileWriter.FileWriteListener() {
             @Override
             public void onSuccess() {

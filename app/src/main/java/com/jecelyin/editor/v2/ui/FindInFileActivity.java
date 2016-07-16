@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.BaseActivity;
 import com.jecelyin.editor.v2.R;
@@ -38,7 +39,6 @@ import com.jecelyin.editor.v2.utils.ExtGrep;
 
 import java.util.List;
 
-import rx.Subscriber;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -97,7 +97,7 @@ public class FindInFileActivity extends BaseActivity implements AdapterView.OnIt
     }
 
     private void find() {
-        grep.execute(new Subscriber<List<ExtGrep.Result>>() {
+        grep.execute(new TaskListener<List<ExtGrep.Result>>() {
             @Override
             public void onCompleted() {
                 mLoadingLayout.setVisibility(View.GONE);
@@ -105,18 +105,18 @@ public class FindInFileActivity extends BaseActivity implements AdapterView.OnIt
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onSuccess(List<ExtGrep.Result> result) {
+                mList.setVisibility(result.isEmpty() ? View.GONE : View.VISIBLE);
+                adapter.setResults(result);
+            }
+
+            @Override
+            public void onError(Exception e) {
                 mLoadingLayout.setVisibility(View.GONE);
                 mList.setVisibility(View.GONE);
                 mErrorMsgTextView.setText(e.getMessage());
                 mErrorLayout.setVisibility(View.VISIBLE);
                 L.e(e);
-            }
-
-            @Override
-            public void onNext(List<ExtGrep.Result> results) {
-                mList.setVisibility(results.isEmpty() ? View.GONE : View.VISIBLE);
-                adapter.setResults(results);
             }
         });
     }

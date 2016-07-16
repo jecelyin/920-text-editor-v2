@@ -169,4 +169,6 @@
     <string name="donate_desc">Thank you for your support for open source software, click follow account will be copied to the clipboard</string>
     <string name="donation_account_copied_x">Donation account copied\n%s</string>
     <string name="unknown_exception_and_report_message_x">Unknown exception, Please tell me what is this case happening, Thank you\nCode: %s</string>
+    <string name="keep_backup_file">Keep a backup file</string>
+    <string name="keep_backup_file_summary">Suggest you keep backup files, avoid file misses for exception</string>
 </resources>
