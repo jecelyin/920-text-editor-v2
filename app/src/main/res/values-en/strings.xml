@@ -171,4 +171,5 @@
     <string name="unknown_exception_and_report_message_x">Unknown exception, Please tell me what is this case happening, Thank you\nCode: %s</string>
     <string name="keep_backup_file">Keep a backup file</string>
     <string name="keep_backup_file_summary">Suggest you keep backup files, avoid file misses for exception</string>
+    <string name="save_all_without_new_document_message">Save all will skip new document</string>
 </resources>

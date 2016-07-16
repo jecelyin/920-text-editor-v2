@@ -165,6 +165,7 @@
     <string name="unknown_exception_and_report_message_x">未知异常,请告诉我这是什么情况下发生的,谢谢\n代码:%s</string>
     <string name="keep_backup_file">保留备份文件</string>
     <string name="keep_backup_file_summary">建议保留备份文件，避免文件异外损坏而无法恢复文件</string>
+    <string name="save_all_without_new_document_message">全部保存将跳过新建文档</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

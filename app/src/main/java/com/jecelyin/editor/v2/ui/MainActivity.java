@@ -56,6 +56,7 @@ import com.jecelyin.editor.v2.BaseActivity;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
+import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
 import com.jecelyin.editor.v2.task.CheckUpgradeTask;
 import com.jecelyin.editor.v2.task.ClusterCommand;
@@ -431,6 +432,13 @@ public class MainActivity extends BaseActivity
                 commandEnum = Command.CommandEnum.SAVE;
                 Command command = new Command(commandEnum);
                 command.args.putBoolean(EditorDelegate.KEY_CLUSTER, true);
+                command.object = new SaveListener() {
+
+                    @Override
+                    public void onSaved() {
+                        doNextCommand();
+                    }
+                };
                 doClusterCommand(command);
                 break;
             case R.id.m_readonly:

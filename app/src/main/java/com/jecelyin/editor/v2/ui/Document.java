@@ -311,6 +311,11 @@ public class Document implements ReadFileListener, TextWatcher {
             UIUtils.toast(context, R.string.writing);
             return;
         }
+        if (isCluster && file == null) {
+            listener.onSaved();
+            UIUtils.toast(context, R.string.save_all_without_new_document_message);
+            return;
+        }
         saveTask.save(isCluster, listener);
     }
 
