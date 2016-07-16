@@ -408,7 +408,7 @@ public class MainActivity extends BaseActivity
                 new GotoLineDialog(this).show();
                 break;
             case R.id.m_history:
-                RecentFilesManager rfm = RecentFilesManager.getInstance(this);
+                RecentFilesManager rfm = new RecentFilesManager(this);
                 rfm.setOnFileItemClickListener(new RecentFilesManager.OnFileItemClickListener() {
                     @Override
                     public void onClick(String file, String encoding) {

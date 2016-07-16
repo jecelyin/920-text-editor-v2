@@ -32,7 +32,6 @@ import java.util.ArrayList;
  */
 public class RecentFilesManager implements MaterialDialog.ListCallback {
     private final DBHelper dbHelper;
-    private static RecentFilesManager instance;
     private OnFileItemClickListener onFileItemClickListener;
     private ArrayList<DBHelper.RecentFileItem> list;
 
@@ -40,15 +39,8 @@ public class RecentFilesManager implements MaterialDialog.ListCallback {
         void onClick(String file, String encoding);
     }
 
-    public static RecentFilesManager getInstance(Context context) {
-        if(instance == null)
-            instance = new RecentFilesManager(context.getApplicationContext());
-
-        return instance;
-    }
-
     public RecentFilesManager(Context context) {
-        dbHelper = DBHelper.getInstance(context);
+        dbHelper = DBHelper.getInstance(context.getApplicationContext());
     }
 
     public void show(Context context) {
