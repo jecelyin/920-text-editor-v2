@@ -26,8 +26,6 @@ import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.utils.DBHelper;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -55,12 +53,12 @@ public class RecentFilesManager implements MaterialDialog.ListCallback {
 
     public void show(Context context) {
         list = dbHelper.getRecentFiles();
-        Collections.sort(list, new Comparator<DBHelper.RecentFileItem>() {
-            @Override
-            public int compare(DBHelper.RecentFileItem lhs, DBHelper.RecentFileItem rhs) {
-                return (int) (lhs.time - rhs.time);
-            }
-        });
+//        Collections.sort(list, new Comparator<DBHelper.RecentFileItem>() {
+//            @Override
+//            public int compare(DBHelper.RecentFileItem lhs, DBHelper.RecentFileItem rhs) {
+//                return (int) (lhs.time - rhs.time);
+//            }
+//        });
         String[] items = new String[list.size()];
         for(int i=list.size()-1; i>=0; i--) {
             items[i] = list.get(i).path;
