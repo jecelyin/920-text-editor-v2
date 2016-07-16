@@ -185,9 +185,11 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
             @Override
             public void onClose(String path, String encoding, int offset) {
                 DBHelper.getInstance(mainActivity).updateRecentFile(path, false);
+                int currentTab = getCurrentTab();
                 if (getTabCount() != 0) {
-                    setCurrentTab(getCurrentTab()); //设置title等等
+                    setCurrentTab(currentTab); //设置title等等
                 }
+//                tabAdapter.setCurrentTab(currentTab);
             }
         });
     }

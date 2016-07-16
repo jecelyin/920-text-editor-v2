@@ -730,6 +730,7 @@ public class TabViewPager extends ViewGroup {
         boolean needPopulate = mItems.size() < mOffscreenPageLimit * 2 + 1 &&
                 mItems.size() < adapterCount;
         int newCurrItem = mCurItem;
+        final ItemInfo currentItemInfo = mCurItem >= 0 && mCurItem < mItems.size() ? mItems.get(newCurrItem) : null;
 
         boolean isUpdating = false;
         for (int i = 0; i < mItems.size(); i++) {
@@ -755,7 +756,7 @@ public class TabViewPager extends ViewGroup {
                 if (mCurItem == ii.position) {
                     // Keep the current item in the valid range
                     newCurrItem = Math.max(0, Math.min(mCurItem, adapterCount - 1));
-                    needPopulate = true;
+//                    needPopulate = true;
                 }
                 continue;
             }
@@ -774,6 +775,10 @@ public class TabViewPager extends ViewGroup {
         for (int i = 0; i < mItems.size(); i++) {
             final ItemInfo ii = mItems.get(i);
             ii.position = i;
+            // 删除后，确认当前页面的 Index 不变
+            if (currentItemInfo != null && currentItemInfo == ii) {
+                newCurrItem = i;
+            }
         }
 
         if (isUpdating) {

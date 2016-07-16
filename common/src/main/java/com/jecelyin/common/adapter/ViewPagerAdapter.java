@@ -103,6 +103,8 @@ public abstract class ViewPagerAdapter extends PagerAdapter
     @Override
     public void destroyItem(ViewGroup container, int position, Object view) {
         L.d("remove page %d", position);
+        if (mCurrentPrimaryItem == view)
+            mCurrentPrimaryItem = null;
         container.removeView((View) view);
     }
 }
