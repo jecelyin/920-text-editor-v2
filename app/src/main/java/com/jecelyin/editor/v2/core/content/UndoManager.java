@@ -234,8 +234,9 @@ public class UndoManager {
 
         while (count > 0 && (i=findPrevState(mUndos, owners, i)) >= 0) {
             UndoState state = mUndos.remove(i);
+            mRedos.add(state); //要放在undo 前面，不然undo 后就触发onTextChanged 就无法正确改变工具栏图标状态
             state.undo();
-            mRedos.add(state);
+
             count--;
             num++;
         }
