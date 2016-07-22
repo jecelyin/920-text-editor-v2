@@ -128,7 +128,7 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.0.3'
 
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
-    compile 'org.apmem.tools:layouts:1.9@aar'
+    compile 'org.apmem.tools:layouts:1.10@aar'
     //    compile 'com.larswerkman:HoloColorPicker:1.5'
     compile 'com.azeesoft.lib.colorpicker:colorpicker:1.0.8@aar'
 //    compile 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
