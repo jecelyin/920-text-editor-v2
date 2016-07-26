@@ -701,6 +701,7 @@ class TextLine {
         } else {
 //            return wp.getTextRunCursor(mText, mStart + spanStart,
 //                    mStart + spanLimit, dir, mStart + offset, cursorOpt) - mStart;
+            //todo: 5.0会导致输入法光标向左时跳到开始行
             return TextPaintCompat.getTextRunCursor(wp, mText, mStart + spanStart,
                     mStart + spanLimit, dir, mStart + offset, cursorOpt) - mStart;
         }

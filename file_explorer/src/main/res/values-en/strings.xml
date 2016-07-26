@@ -15,5 +15,4 @@
     <string name="save_file">Save File</string>
     <string name="override_file_prompt">%s exists，do you override it？</string>
     <string name="filter_by_name">Filter by Name</string>
-    <string name="untitled_file_name"></string>
 </resources>
