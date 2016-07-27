@@ -6,17 +6,19 @@ import android.text.Editable;
 
 import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.task.JecAsyncTask;
-import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.task.TaskListener;
-import com.jecelyin.common.utils.IOUtils;
+import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.R;
+import com.jecelyin.editor.v2.io.FileEncodingDetector;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -208,58 +210,28 @@ public class ExtGrep implements Parcelable {
 //        }
     }
 
-    // TODO: note that file names can contain wild cards too
-    // so this method should also expand directories as well
-    private void processFileArgs(final List list) {
-
-        filesToProcess = new ArrayList<File>();
-
-        for (final Object o : list) {
-            final String name = (String) o;
-
-            final File f = new File(name);
-
-            if (f.exists()) {
-                if (f.isFile()) {
-                    if (includeFile(f)) {
-                        if (!excludeFile(f)) {
-                            filesToProcess.add(f);
-                        }
-                    }
-                } else if (f.isDirectory()) {
-                    if (recurseDirectories) {
-                        filesToProcess.addAll(recurseDir(f));
-                    }
-                }
-            }
-        }
-
-    }
-
     public void verifyFileList() {
 
-        List<File> list = filesToProcess;
-        filesToProcess = new ArrayList<File>();
+        List<File> list = new ArrayList<>();
 
-        for (final Object o : list) {
-
-            final File f = (File) o;
+        for (final File f : filesToProcess) {
 
             if (f.exists()) {
                 if (f.isFile()) {
                     if (includeFile(f)) {
                         if (!excludeFile(f)) {
-                            filesToProcess.add(f);
+                            list.add(f);
                         }
                     }
                 } else if (f.isDirectory()) {
                     if (recurseDirectories) {
-                        filesToProcess.addAll(recurseDir(f));
+                        list.addAll(recurseDir(f));
                     }
                 }
             }
         }
 
+        filesToProcess = list;
     }
 
     private List<File> recurseDir(final File dir) {
@@ -373,8 +345,8 @@ public class ExtGrep implements Parcelable {
 //            return true;
 //        }
 
-        return IOUtils.isBinaryFile(f);
-
+//        return IOUtils.isBinaryFile(f); //对中文有误杀
+        return false;
     }
 
     private boolean excludeDir(final File f) {
@@ -430,7 +402,8 @@ public class ExtGrep implements Parcelable {
         ArrayList<Result> results = new ArrayList<>();
         BufferedReader bfr = null;
         try {
-            bfr = new BufferedReader(new FileReader(file), 16000);
+            String encoding = FileEncodingDetector.detectEncoding(file);
+            bfr = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding), 16000);
             for (String line = bfr.readLine(); line != null; line = bfr.readLine()) {
 
                 lineNumber++;
@@ -596,10 +569,6 @@ public class ExtGrep implements Parcelable {
                 taskResult.setResult(results);
             }
         }.setTaskListener(listener).execute();
-    }
-
-    public List<File> getFilesToProcess() {
-        return filesToProcess;
     }
 
     public static class Result {

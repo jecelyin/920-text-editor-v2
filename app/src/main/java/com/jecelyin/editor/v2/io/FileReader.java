@@ -21,11 +21,9 @@ package com.jecelyin.editor.v2.io;
 import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.editor.v2.core.detector.CharsetDetector;
 import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
 import com.jecelyin.editor.v2.core.util.GrowingArrayUtils;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -36,7 +34,6 @@ import java.io.InputStreamReader;
 public class FileReader {
     private SpannableStringBuilder ssb = null;
     private File file;
-    private final static String DEFAULT_ENCODING = "UTF-8";
     private String encoding;
     private int lineNumber;
 //    private int BUFFER_SIZE = 8192;
@@ -50,7 +47,8 @@ public class FileReader {
     public boolean read() {
         try {
             if(TextUtils.isEmpty(encoding))
-                encoding = detectEncoding();
+                encoding = FileEncodingDetector.detectEncoding(file);
+
             L.d(file.getPath()+" encoding is "+encoding);
             LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(file), encoding));
 //            String line, firstLine = null;
@@ -81,33 +79,6 @@ public class FileReader {
             L.e(e);
             return false;
         }
-    }
-
-    private String detectEncoding() {
-//        CharsetDetector detector = new CharsetDetector();
-//        try {
-//            detector.setText(new BufferedInputStream(new FileInputStream(file)));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        CharsetMatch detect = detector.detect();
-//        if(detect == null)
-//            return DEFAULT_ENCODING;
-//        String encoding = detect.getName();
-        String encoding = null;
-        try {
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-            encoding = CharsetDetector.detect(bufferedInputStream);
-            bufferedInputStream.close();
-
-        } catch (Exception e) {
-            L.e(e);
-        }
-        if(TextUtils.isEmpty(encoding)) {
-            encoding = DEFAULT_ENCODING;
-        }
-
-        return encoding;
     }
 
     public String getEncoding() {

@@ -97,7 +97,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.FindInFileActivity" />
         <activity android:name=".ui.settings.SettingsActivity" />
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.BrowserActivity" />
