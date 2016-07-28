@@ -145,7 +145,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 ((CheckBoxPreference)preference).setChecked((boolean)value);
             }
 
-            bindPreferenceSummaryToValue(preference);
+            if (!Pref.KEY_SYMBOL.equals(key))
+                bindPreferenceSummaryToValue(preference);
         }
     }
 

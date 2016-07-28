@@ -48,6 +48,15 @@
         <CheckBoxPreference
             android:key="pref_auto_capitalize"
             android:title="@string/auto_capitalize" />
+
+
+        <com.jecelyin.editor.v2.preference.SymbolBarPreference
+            android:key="pref_symbol"
+            android:title="@string/custom_symbol_list"
+            android:negativeButtonText="@string/reset"
+            android:maxLines="7"
+            android:scrollbars="vertical"
+            android:summary=""/>
     </PreferenceCategory>
 
     <PreferenceCategory

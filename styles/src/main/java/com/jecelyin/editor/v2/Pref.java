@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
@@ -48,6 +49,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_AUTO_INDENT = "pref_auto_indent";
     public static final String KEY_INSERT_SPACE_FOR_TAB = "pref_insert_space_for_tab";
     public static final String KEY_TAB_SIZE = "pref_tab_size";
+    public static final String KEY_SYMBOL = "pref_symbol";
     public static final String KEY_AUTO_CAPITALIZE = "pref_auto_capitalize";
     public static final String KEY_ENABLE_HIGHLIGHT = "pref_enable_highlight";
     public static final String KEY_HIGHLIGHT_FILE_SIZE_LIMIT = "pref_highlight_file_size_limit";
@@ -69,6 +71,9 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final int SCREEN_ORIENTATION_AUTO = 0;
     public static final int SCREEN_ORIENTATION_LANDSCAPE = 1;
     public static final int SCREEN_ORIENTATION_PORTRAIT = 2;
+    public static final String VALUE_SYMBOL = TextUtils.join("\n", new String[]{"{", "}", "<", ">"
+            , ",", ";", "'", "\"", "(", ")", "/", "\\", "%", "[", "]", "|", "#", "=", "$", ":"
+            , "&", "?", "!", "@", "^", "+", "*", "-", "_", "`", "\\t", "\\n" });
 
     @IntDef({SCREEN_ORIENTATION_AUTO, SCREEN_ORIENTATION_LANDSCAPE, SCREEN_ORIENTATION_PORTRAIT})
     public @interface ScreenOrientation {}
@@ -118,6 +123,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_AUTO_INDENT, true);
         map.put(KEY_INSERT_SPACE_FOR_TAB, true);
         map.put(KEY_TAB_SIZE, 4);
+        map.put(KEY_SYMBOL, VALUE_SYMBOL);
         map.put(KEY_AUTO_CAPITALIZE, true);
         map.put(KEY_ENABLE_HIGHLIGHT, true);
         map.put(KEY_HIGHLIGHT_FILE_SIZE_LIMIT, 500);
@@ -322,5 +328,9 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
     public boolean isKeepBackupFile() {
         return (boolean) map.get(KEY_PREF_KEEP_BACKUP_FILE);
+    }
+
+    public String getSymbol() {
+        return (String) map.get(KEY_SYMBOL);
     }
 }

@@ -19,11 +19,13 @@
 package com.jecelyin.editor.v2.widget;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 
 import org.apmem.tools.layouts.FlowLayout;
@@ -32,9 +34,8 @@ import org.apmem.tools.layouts.FlowLayout;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SymbolBarLayout extends FlowLayout implements View.OnClickListener {
-    private static final String charList = "{}<>,;\"()/\\'%[]|#=$:&?!@^+*-_\t\n";
-
     private OnSymbolCharClickListener onSymbolCharClickListener;
+    private String[] charList;
 
     public interface OnSymbolCharClickListener {
         void onClick(View v, String text);
@@ -56,28 +57,20 @@ public class SymbolBarLayout extends FlowLayout implements View.OnClickListener 
     }
 
     private void init() {
+        String symbol = Pref.getInstance(getContext()).getSymbol();
+        charList = TextUtils.split(symbol, "\n");
         makeItemViews(getContext());
     }
 
     private void makeItemViews(Context context) {
+        if (charList == null || charList.length == 0)
+            return;
+
         LayoutInflater inflater = LayoutInflater.from(context);
 
         TextView tv;
-        char c;
-        int size = charList.length();
-        String str;
-        for (int i = 0; i < size; i++) {
-            c = charList.charAt(i);
-            if (c == '\t') {
-                str = "\\t";
-            } else if (c == '\n') {
-                str = "\\n";
-            } else {
-                str = String.valueOf(c);
-            }
+        for (String str : charList) {
             tv = (TextView) inflater.inflate(R.layout.symbol_item, this, false);
-            tv.setTag(c);
-
             tv.setText(str);
 
             tv.setOnClickListener(this);
@@ -90,8 +83,13 @@ public class SymbolBarLayout extends FlowLayout implements View.OnClickListener 
         if (onSymbolCharClickListener == null)
             return;
 
-        char c = (char)v.getTag();
-        onSymbolCharClickListener.onClick(v, String.valueOf(c));
+        String str = ((TextView)v).getText().toString();
+        if ("\\t".equals(str)) {
+            str = "\t";
+        } else if ("\\n".equals(str)) {
+            str = "\n";
+        }
+        onSymbolCharClickListener.onClick(v, str);
     }
 
     public void setOnSymbolCharClickListener(OnSymbolCharClickListener listener) {
