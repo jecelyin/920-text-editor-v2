@@ -56,6 +56,7 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
     private int mode;
     private String fileEncoding = null;
     private String lastPath;
+    private FileClipboard fileClipboard;
 
     public static void startPickFileActivity(Activity activity, String destFile, int requestCode) {
         Intent it = new Intent(activity, FileExplorerActivity.class);
@@ -272,5 +273,12 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
         it.putExtra("encoding", fileEncoding);
         setResult(RESULT_OK, it);
         finish();
+    }
+
+    public FileClipboard getFileClipboard() {
+        if (fileClipboard == null)
+            fileClipboard = new FileClipboard();
+
+        return fileClipboard;
     }
 }

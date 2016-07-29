@@ -16,11 +16,13 @@
  * limitations under the License.
  */
 
-package com.jecelyin.common.listeners;
+package com.jecelyin.android.file_explorer.util;
+
+import com.jecelyin.android.file_explorer.io.JecFile;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public interface OnCheckedChangeListener {
-    void onCheckedChanged(int checkedCount, int position, boolean checked);
+    void onCheckedChanged(JecFile file, int checkedCount, int position, boolean checked);
 }

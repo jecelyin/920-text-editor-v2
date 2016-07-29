@@ -35,7 +35,7 @@ import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.model.FileItemModel;
 import com.jecelyin.android.file_explorer.util.MimeTypes;
 import com.jecelyin.common.adapter.BindingViewHolder;
-import com.jecelyin.common.listeners.OnCheckedChangeListener;
+import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.StringUtils;
 
@@ -213,7 +213,7 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         }
 
         if(onCheckedChangeListener != null)
-            onCheckedChangeListener.onCheckedChanged(checkedArray.size(), position, isChecked);
+            onCheckedChangeListener.onCheckedChanged(getItem(position), checkedArray.size(), position, isChecked);
     }
 
     public boolean isChecked(int position) {

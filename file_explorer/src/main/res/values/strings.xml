@@ -15,4 +15,11 @@
     <string name="override_file_prompt">%s 已经存在，确认要覆盖它吗？</string>
     <string name="filter_by_name">按名称过滤</string>
     <string name="untitled_file_name" translatable="false">untitled.txt</string>
+    <string name="select_all">全选</string>
+    <string name="cut">剪切</string>
+    <string name="copy">复制</string>
+    <string name="paste">粘贴</string>
+    <string name="rename">重命名</string>
+    <string name="share">共享</string>
+    <string name="delete">删除</string>
 </resources>

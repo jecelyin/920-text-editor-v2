@@ -30,8 +30,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,11 +40,10 @@ import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.RootFile;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
-import com.jecelyin.common.listeners.OnCheckedChangeListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.task.JecAsyncTask;
-import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.task.TaskListener;
+import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -57,15 +54,15 @@ import java.util.Arrays;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileListPagerFragment extends JecFragment implements SwipeRefreshLayout.OnRefreshListener, OnCheckedChangeListener, ActionMode.Callback, OnItemClickListener {
+public class FileListPagerFragment extends JecFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, FileExplorerView {
     private FileListItemAdapter adapter;
     private JecFile path;
     private FileExplorerFragmentBinding binding;
-    private ActionMode actionMode;
     private String topPath;
     private PathButtonAdapter pathAdapter;
     private boolean isRoot;
     private ScanFilesTask task;
+    private FileExplorerAction action;
 
     public static Fragment newFragment(JecFile path) {
         FileListPagerFragment f = new FileListPagerFragment();
@@ -86,8 +83,9 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        action = new FileExplorerAction(getContext(), this, ((FileExplorerActivity)getActivity()).getFileClipboard());
         adapter = new FileListItemAdapter();
-        adapter.setOnCheckedChangeListener(this);
+        adapter.setOnCheckedChangeListener(action);
         adapter.setOnItemClickListener(this);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -151,6 +149,15 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (action != null) {
+            action.destroy();
+        }
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         if (task != null) {
@@ -185,37 +192,6 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     }
 
     @Override
-    public void onCheckedChanged(int checkedCount, int position, boolean checked) {
-        if(checkedCount > 0) {
-            actionMode = getView().startActionMode(this);
-            actionMode.setTitle(getString(R.string.selected_x_items, checkedCount));
-        } else {
-            if(actionMode != null)
-                actionMode.finish();
-        }
-    }
-
-    @Override
-    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        return false;
-    }
-
-    @Override
-    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        return false;
-    }
-
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-
-    }
-
-    @Override
     public void onItemClick(int position, View view) {
         JecFile file = adapter.getItem(position);
         if(!((FileExplorerActivity)getActivity()).onSelectFile(file)) {
@@ -238,6 +214,11 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         path = file;
         pathAdapter.setPath(file);
         onRefresh();
+    }
+
+    @Override
+    public ActionMode startActionMode(ActionMode.Callback callback) {
+        return getActivity().startActionMode(callback);
     }
 
     private static class ScanFilesTask extends JecAsyncTask<Void, Void, JecFile[]> {
