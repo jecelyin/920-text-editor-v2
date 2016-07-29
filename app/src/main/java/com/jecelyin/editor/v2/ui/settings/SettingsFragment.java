@@ -19,6 +19,7 @@
 package com.jecelyin.editor.v2.ui.settings;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -27,13 +28,12 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
 
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.preference.JecListPreference;
 import com.jecelyin.editor.v2.ui.AboutActivity;
 import com.jecelyin.editor.v2.ui.BrowserActivity;
-import com.jecelyin.editor.v2.ui.DonateActivity;
 import com.jecelyin.editor.v2.ui.FeedbackActivity;
-import com.jecelyin.editor.v2.Pref;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -104,7 +104,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 FeedbackActivity.startActivity(getActivity(), null);
                 break;
             case "pref_donate":
-                DonateActivity.startActivity(getActivity());
+                it = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jecelyin.github.io/donate/?project=920%20Text%20Editor"));
+                startActivity(it);
                 break;
         }
         return true;

@@ -156,9 +156,6 @@
     <string name="writing">正在写入</string>
     <string name="keyword">关键字</string>
     <string name="find_keyword_is_empty">查找关键字不能为空</string>
-    <string name="donate_desc">非常感谢您对开源软件的支持, 点击下面账号将复制到剪贴板</string>
-    <string name="donate_paypal" translatable="false">PayPal: jecelyin@gmail.com</string>
-    <string name="donate_alipay" translatable="false">AliPay: jecelyin@163.com</string>
 
     <string name="exit">退出</string>
     <string name="donation_account_copied_x">捐赠账号已经复制到剪贴板\n%s</string>
