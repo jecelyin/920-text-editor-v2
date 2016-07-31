@@ -145,28 +145,6 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
         binding.viewPager.setAdapter(adapter);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId() == android.R.id.home) {
-//            FileListPagerFragment fragment = adapter.getCurrentFragment();
-//            if(fragment != null && fragment.onBackPressed()) {
-//                return true;
-//            }
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if(keyCode == KeyEvent.KEYCODE_BACK) {
-//            FileListPagerFragment fragment = adapter.getCurrentFragment();
-//            if(fragment != null && fragment.onBackPressed()) {
-//                return true;
-//            }
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
-
     @Override
     protected void onPause() {
         super.onPause();
