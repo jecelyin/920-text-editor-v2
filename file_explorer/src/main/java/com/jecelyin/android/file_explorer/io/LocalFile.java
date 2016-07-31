@@ -20,6 +20,12 @@ package com.jecelyin.android.file_explorer.io;
 
 import android.os.Parcel;
 
+import com.jecelyin.android.file_explorer.ExplorerException;
+import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.android.file_explorer.listener.FileListResultListener;
+import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
+import com.jecelyin.common.utils.IOUtils;
+
 import java.io.File;
 
 /**
@@ -41,6 +47,11 @@ public class LocalFile extends JecFile {
     public LocalFile(String pathname) {
         super(pathname);
         file = new File(pathname);
+    }
+
+    @Override
+    public JecFile newFile(String filename) {
+        return new LocalFile(getPath(), filename);
     }
 
     @Override
@@ -113,9 +124,17 @@ public class LocalFile extends JecFile {
 
     @Override
     public void delete(BoolResultListener listener) {
-        boolean result = file.delete();
+        boolean result = deleteRecursive(file);
         if (listener != null)
             listener.onResult(result);
+    }
+
+    private static boolean deleteRecursive(File fileOrDirectory) {
+        if (fileOrDirectory.isDirectory())
+            for (File child : fileOrDirectory.listFiles())
+                deleteRecursive(child);
+
+        return fileOrDirectory.delete();
     }
 
     @Override
@@ -149,8 +168,30 @@ public class LocalFile extends JecFile {
     }
 
     @Override
+    public void copyTo(JecFile dest, BoolResultListener listener) {
+        if (!(dest instanceof LocalFile)) {
+            throw new ExplorerException(dest + " !(dest instanceof LocalFile)");
+        }
+        boolean result = IOUtils.copyFile(file, ((LocalFile)dest).file);
+        if (listener != null)
+            listener.onResult(result);
+    }
+
+    @Override
     public void upload(LocalFile file, BoolResultListener resultListener, ProgressUpdateListener progressUpdateListener) {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof LocalFile))
+            return false;
+        return file.equals(((LocalFile)o).file);
+    }
+
+    @Override
+    public int hashCode() {
+        return file.hashCode();
     }
 
     @Override

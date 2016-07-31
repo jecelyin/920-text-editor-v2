@@ -18,18 +18,12 @@
 
 package com.jecelyin.android.file_explorer;
 
-import android.support.v7.view.ActionMode;
+import com.jecelyin.android.file_explorer.io.JecFile;
 
 /**
- * @author Jecelyin Peng <jecelyin@gmail.com>
+ * Created by jecelyin on 16/7/31.
  */
 
-public interface FileExplorerView {
-    ActionMode startActionMode(ActionMode.Callback callback);
-
-    void setSelectAll(boolean checked);
-
-    void refresh();
-
-    void finish();
+public interface ExplorerContext {
+    JecFile getCurrentDirectory();
 }

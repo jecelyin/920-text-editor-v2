@@ -20,22 +20,20 @@ package com.jecelyin.android.file_explorer.adapter;
 
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.jecelyin.android.file_explorer.R;
 import com.jecelyin.android.file_explorer.databinding.FileListItemBinding;
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.model.FileItemModel;
 import com.jecelyin.android.file_explorer.util.MimeTypes;
-import com.jecelyin.common.adapter.BindingViewHolder;
 import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
+import com.jecelyin.common.adapter.BindingViewHolder;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.StringUtils;
 
@@ -159,9 +157,9 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
             icon = TextUtils.isEmpty(path.getExtension()) ? R.drawable.file_type_file : 0;
         }
 
-        FileListItemBinding binding = holder.getBinding();
-        binding.iconImageView.setImageResource(icon);
-        binding.iconImageView.setBackgroundColor(res.getColor(color));
+        final FileListItemBinding binding = holder.getBinding();
+        binding.iconImageView.setDefaultImageResource(icon);
+        binding.iconImageView.setDefaultBackgroundColor(res.getColor(color));
 
         FileItemModel item = new FileItemModel();
         item.setName(path.getName());
@@ -173,47 +171,59 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         binding.iconImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleChecked(position, holder);
+                toggleChecked(position, binding);
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                toggleChecked(position, holder);
+                toggleChecked(position, binding);
                 return true;
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkedArray != null && checkedArray.size() > 0) {
-                    toggleChecked(position, holder);
+                if (checkedArray != null && checkedArray.size() > 0) {
+                    toggleChecked(position, binding);
                     return;
                 }
-                if(onItemClickListener != null)
+                if (onItemClickListener != null)
                     onItemClickListener.onItemClick(position, v);
             }
         });
+
+        boolean isChecked = isChecked(position);
+        setViewCheckedStatus(isChecked, binding);
     }
 
-    private void toggleChecked(int position, BindingViewHolder<FileListItemBinding> holder) {
-        FileListItemBinding binding = holder.getBinding();
-        boolean isChecked = isChecked(position);
+    private void setViewCheckedStatus(boolean isChecked, FileListItemBinding binding) {
+        binding.iconImageView.setChecked(isChecked);
 
-        ImageSwap.swap(binding.iconImageView, isChecked);
-
-        if(isChecked) {
+        if(!isChecked) {
             binding.getRoot().setBackgroundResource(R.drawable.white_selectable_item_background);
             binding.extTextView.setVisibility(View.VISIBLE);
-            checkedArray.delete(position);
         } else {
             binding.getRoot().setBackgroundResource(R.drawable.gray_seletable_item_background);
             binding.extTextView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void toggleChecked(int position, FileListItemBinding binding) {
+        boolean isChecked = isChecked(position);
+        if(isChecked) {
+            checkedArray.delete(position);
+        } else {
             checkedArray.put(position, 1);
         }
 
-        if(onCheckedChangeListener != null)
-            onCheckedChangeListener.onCheckedChanged(getItem(position), checkedArray.size(), position, isChecked);
+        setViewCheckedStatus(!isChecked, binding);
+
+        if(onCheckedChangeListener != null) {
+            onCheckedChangeListener.onCheckedChanged(getItem(position), position, !isChecked);
+            onCheckedChangeListener.onCheckedChanged(checkedArray.size());
+        }
+
     }
 
     public boolean isChecked(int position) {
@@ -228,28 +238,21 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         return date;
     }
 
-    static class ImageSwap {
-        Drawable image;
-        Drawable background;
-
-        public static void swap(ImageView iv, boolean isChecked) {
-            ImageSwap is = (ImageSwap) iv.getTag();
-            if(is == null) {
-                is = new ImageSwap();
-                iv.setTag(is);
-            } else {
-                is = (ImageSwap) iv.getTag();
+    public void checkAll(boolean checked) {
+        if (checked) {
+            int count = getItemCount();
+            for (int i = 0; i < count; i++) {
+                checkedArray.put(i, 1);
             }
-            if(!isChecked) {
-                is.image = iv.getDrawable();
-                is.background = iv.getBackground();
-
-                iv.setImageResource(R.drawable.file_checked);
-                iv.setBackgroundColor(iv.getResources().getColor(R.color.item_icon_select_status));
-            } else {
-                iv.setImageDrawable(is.image);
-                iv.setBackground(is.background);
-            }
+        } else {
+            checkedArray.clear();
         }
+
+        if (onCheckedChangeListener != null) {
+            onCheckedChangeListener.onCheckedChanged(checkedArray.size());
+        }
+
+        notifyDataSetChanged();
     }
+
 }

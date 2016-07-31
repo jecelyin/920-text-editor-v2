@@ -22,4 +22,7 @@
     <string name="rename">重命名</string>
     <string name="share">共享</string>
     <string name="delete">删除</string>
+    <string name="cancel_select_all">取消全选</string>
+    <string name="rename_fail">重命名失败</string>
+    <string name="can_not_share_x">无法共享该文件: %s</string>
 </resources>

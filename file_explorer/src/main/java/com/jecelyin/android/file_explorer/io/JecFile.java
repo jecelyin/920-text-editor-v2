@@ -20,22 +20,15 @@ package com.jecelyin.android.file_explorer.io;
 
 import android.os.Parcelable;
 
+import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.android.file_explorer.listener.FileListResultListener;
+import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public abstract class JecFile implements Parcelable
 {
-    public interface BoolResultListener {
-        void onResult(boolean result);
-    }
-
-    public interface FileListResultListener {
-        void onResult(JecFile[] result);
-    }
-
-    public interface ProgressUpdateListener {
-        void onProgressUpdate(int current, int max);
-    }
 
     /* -- Constructors -- */
     /**
@@ -123,6 +116,13 @@ public abstract class JecFile implements Parcelable
     }
 
     /* -- Path-component accessors -- */
+
+    /**
+     * 代替 {@link JecFile(JecFile, String)} 避免判断类型
+     * @param filename
+     * @return
+     */
+    public abstract JecFile newFile(String filename);
 
     /**
      * Returns the name of the file or directory denoted by this abstract
@@ -446,6 +446,8 @@ public abstract class JecFile implements Parcelable
      *          If parameter <code>dest</code> is <code>null</code>
      */
     public abstract void renameTo(JecFile dest, BoolResultListener listener);
+
+    public abstract void copyTo(JecFile dest, BoolResultListener listener);
 
     public abstract void upload(LocalFile file, BoolResultListener resultListener, ProgressUpdateListener progressUpdateListener);
 

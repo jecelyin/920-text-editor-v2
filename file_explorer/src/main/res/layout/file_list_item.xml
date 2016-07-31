@@ -36,7 +36,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="16dp">
 
-            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.jecelyin.android.file_explorer.widget.IconImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/iconImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

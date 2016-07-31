@@ -16,20 +16,11 @@
  * limitations under the License.
  */
 
-package com.jecelyin.android.file_explorer;
-
-import android.support.v7.view.ActionMode;
+package com.jecelyin.android.file_explorer.listener;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-
-public interface FileExplorerView {
-    ActionMode startActionMode(ActionMode.Callback callback);
-
-    void setSelectAll(boolean checked);
-
-    void refresh();
-
-    void finish();
+public interface BoolResultListener {
+    void onResult(boolean result);
 }

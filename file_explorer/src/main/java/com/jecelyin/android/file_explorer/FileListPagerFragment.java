@@ -24,11 +24,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ import com.jecelyin.android.file_explorer.adapter.PathButtonAdapter;
 import com.jecelyin.android.file_explorer.databinding.FileExplorerFragmentBinding;
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.RootFile;
+import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.OnItemClickListener;
@@ -54,11 +56,10 @@ import java.util.Arrays;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileListPagerFragment extends JecFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, FileExplorerView {
+public class FileListPagerFragment extends JecFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, FileExplorerView, ExplorerContext {
     private FileListItemAdapter adapter;
     private JecFile path;
     private FileExplorerFragmentBinding binding;
-    private String topPath;
     private PathButtonAdapter pathAdapter;
     private boolean isRoot;
     private ScanFilesTask task;
@@ -76,14 +77,13 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         path = (JecFile) getArguments().getParcelable("path");
-        topPath = path.getPath();
         binding = DataBindingUtil.inflate(inflater, R.layout.file_explorer_fragment, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        action = new FileExplorerAction(getContext(), this, ((FileExplorerActivity)getActivity()).getFileClipboard());
+        action = new FileExplorerAction(getContext(), this, ((FileExplorerActivity)getActivity()).getFileClipboard(), this);
         adapter = new FileListItemAdapter();
         adapter.setOnCheckedChangeListener(action);
         adapter.setOnItemClickListener(this);
@@ -203,7 +203,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     public boolean onBackPressed() {
         JecFile parent = path.getParentFile();
-        if(parent == null || parent.getPath().startsWith(topPath)) {
+        if(parent == null || parent.getPath().startsWith(path.getPath())) {
             switchToPath(parent);
             return true;
         }
@@ -218,7 +218,27 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
-        return getActivity().startActionMode(callback);
+        return ((AppCompatActivity)getActivity()).startSupportActionMode(callback);
+    }
+
+    @Override
+    public void setSelectAll(boolean checked) {
+        adapter.checkAll(checked);
+    }
+
+    @Override
+    public void refresh() {
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void finish() {
+        getActivity().finish();
+    }
+
+    @Override
+    public JecFile getCurrentDirectory() {
+        return path;
     }
 
     private static class ScanFilesTask extends JecAsyncTask<Void, Void, JecFile[]> {
@@ -242,7 +262,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             if (isRoot && !canRead && !(path instanceof RootFile)) {
                 path = new RootFile(path.getPath());
             }
-            path.listFiles(new JecFile.FileListResultListener() {
+            path.listFiles(new FileListResultListener() {
                 @Override
                 public void onResult(JecFile[] result) {
                     Arrays.sort(result, new FileListSorter());

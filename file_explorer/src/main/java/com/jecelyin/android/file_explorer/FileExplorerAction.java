@@ -19,13 +19,22 @@
 package com.jecelyin.android.file_explorer;
 
 import android.content.Context;
-import android.view.ActionMode;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.view.ActionMode;
+import android.support.v7.widget.ShareActionProvider;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.jecelyin.android.file_explorer.io.JecFile;
+import com.jecelyin.android.file_explorer.io.LocalFile;
+import com.jecelyin.android.file_explorer.listener.BoolResultListener;
 import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
+import com.jecelyin.common.utils.UIUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,30 +42,40 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.Callback {
+public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.Callback, ShareActionProvider.OnShareTargetSelectedListener {
     private final FileExplorerView view;
     private final Context context;
     private final FileClipboard fileClipboard;
+    private final ExplorerContext explorerContext;
     private ActionMode actionMode;
     private List<JecFile> checkedList = new ArrayList<>();
+    private ShareActionProvider shareActionProvider;
+    private MenuItem renameMenu;
+    private MenuItem shareMenu;
 
-    public FileExplorerAction(Context context, FileExplorerView view, FileClipboard fileClipboard) {
+    public FileExplorerAction(Context context, FileExplorerView view, FileClipboard fileClipboard, ExplorerContext explorerContext) {
         this.view = view;
         this.context = context;
         this.fileClipboard = fileClipboard;
+        this.explorerContext = explorerContext;
     }
 
     @Override
-    public void onCheckedChanged(JecFile file, int checkedCount, int position, boolean checked) {
+    public void onCheckedChanged(JecFile file, int position, boolean checked) {
         if (checked) {
             checkedList.add(file);
         } else {
             checkedList.remove(file);
         }
+    }
+
+    @Override
+    public void onCheckedChanged(int checkedCount) {
         if(checkedCount > 0) {
             if (actionMode == null)
                 actionMode = view.startActionMode(this);
             actionMode.setTitle(context.getString(R.string.selected_x_items, checkedCount));
+            onFileSelected();
         } else {
             if(actionMode != null) {
                 actionMode.finish();
@@ -65,20 +84,36 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
         }
     }
 
+    private void onFileSelected() {
+        if (shareMenu == null || renameMenu == null)
+            return;
+        shareMenu.setEnabled(canShare());
+        renameMenu.setEnabled(checkedList.size()  == 1);
+    }
+
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         menu.add(0, R.id.select_all, 0, R.string.select_all).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.add(0, R.id.cut, 0, R.string.cut).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(0, R.id.copy, 0, R.string.copy).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        if (fileClipboard.canPaste())
-            menu.add(0, R.id.paste, 0, R.string.paste).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-        if (checkedList.size()  == 1) {
-            menu.add(0, R.id.rename, 0, R.string.rename).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            menu.add(0, R.id.share, 0, R.string.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        }
+        MenuItem pasteMenu = menu.add(0, R.id.paste, 0, R.string.paste);
+        pasteMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        pasteMenu.setEnabled(fileClipboard.canPaste());
+
+        renameMenu = menu.add(0, R.id.rename, 0, R.string.rename);
+        renameMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+
+        shareMenu = menu.add(0, R.id.share, 0, R.string.share);
+        shareMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        shareActionProvider = new ShareActionProvider(context);
+        shareActionProvider.setOnShareTargetSelectedListener(this);
+        MenuItemCompat.setActionProvider(shareMenu, shareActionProvider);
+
+        onFileSelected();
+
         menu.add(0, R.id.delete, 0, R.string.delete).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        return false;
+        return true;
     }
 
     @Override
@@ -88,18 +123,123 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        return false;
+        int id = item.getItemId();
+        if (id == R.id.select_all) {
+            if (!item.isChecked()) {
+                view.setSelectAll(true);
+                item.setChecked(true);
+                item.setTitle(R.string.cancel_select_all);
+            } else {
+                view.setSelectAll(false);
+            }
+        } else if (id == R.id.copy && !checkedList.isEmpty()) {
+            fileClipboard.setData(true, checkedList);
+            destroyActionMode();
+        } else if (id == R.id.cut && !checkedList.isEmpty()) {
+            fileClipboard.setData(false, checkedList);
+            destroyActionMode();
+        } else if (id == R.id.paste) {
+            destroyActionMode();
+            fileClipboard.paste(explorerContext.getCurrentDirectory());
+        } else if (id == R.id.rename) {
+            doRenameAction();
+        } else if (id == R.id.share) {
+            shareFile();
+        } else if (id == R.id.delete) {
+            doDeleteAction();
+        } else {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
-
+        checkedList.clear();
+        view.setSelectAll(false);
+        renameMenu = null;
+        shareMenu = null;
+        actionMode = null;
     }
 
     public void destroy() {
+        destroyActionMode();
+    }
+
+    private void destroyActionMode() {
         if (actionMode != null) {
             actionMode.finish();
             actionMode = null;
         }
+    }
+
+    private boolean canShare() {
+        for (JecFile file : checkedList) {
+            if (!(file instanceof LocalFile) || !file.isFile())
+                return false;
+        }
+        return true;
+    }
+
+    private void doRenameAction() {
+        if (checkedList.size() != 1)
+            return;
+
+        final JecFile file = checkedList.get(0);
+        UIUtils.showInputDialog(context, R.string.rename, 0, file.getName(), 0, new UIUtils.OnShowInputCallback() {
+            @Override
+            public void onConfirm(CharSequence input) {
+                if (TextUtils.isEmpty(input)) {
+                    return;
+                }
+                if (file.getName().equals(input)) {
+                    destroyActionMode();
+                    return;
+                }
+                file.renameTo(file.newFile(input.toString()), new BoolResultListener() {
+                    @Override
+                    public void onResult(boolean result) {
+                        if (!result) {
+                            UIUtils.toast(context, R.string.rename_fail);
+                        }
+                        destroyActionMode();
+                    }
+                });
+            }
+        });
+    }
+
+    private void shareFile() {
+        if (checkedList.size() != 1 || shareActionProvider == null)
+            return;
+
+        ArrayList<Uri> streams = new ArrayList<>();
+        for (JecFile file : checkedList) {
+            if (!(file instanceof LocalFile))
+                throw new ExplorerException(context.getString(R.string.can_not_share_x, file + " isn't LocalFile"));
+
+            streams.add(Uri.fromFile(new File(file.getPath())));
+        }
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+//        shareIntent.setType(MimeTypes.getInstance().getMimeType(localFile.getPath()));
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));
+        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, streams);
+
+        shareActionProvider.setShareIntent(shareIntent);
+    }
+
+    private void doDeleteAction() {
+        for (JecFile file : checkedList) {
+            file.delete(null);
+        }
+        destroyActionMode();
+    }
+
+    @Override
+    public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
+        destroyActionMode();
+        view.finish();
+        return false;
     }
 }

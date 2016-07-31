@@ -18,13 +18,40 @@
 
 package com.jecelyin.android.file_explorer;
 
+import com.jecelyin.android.file_explorer.io.JecFile;
+import com.jecelyin.android.file_explorer.util.FileUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
 public class FileClipboard {
+    private List<JecFile> clipList = new ArrayList<>();
+    private boolean isCopy;
 
     public boolean canPaste() {
-        return false;
+        return !clipList.isEmpty();
+    }
+
+    public void setData(boolean isCopy, List<JecFile> data) {
+        this.isCopy = isCopy;
+        clipList.clear();
+        clipList.addAll(data);
+    }
+
+    public void paste(JecFile currentDirectory) {
+        if (!canPaste())
+            return;
+
+        for (JecFile file : clipList) {
+            if (file.isDirectory()) {
+                FileUtils.copyDirectory(file, currentDirectory, !isCopy);
+            } else {
+                FileUtils.copyFile(file, currentDirectory.newFile(file.getName()), !isCopy);
+            }
+        }
     }
 }

@@ -18,18 +18,22 @@
 
 package com.jecelyin.android.file_explorer;
 
-import android.support.v7.view.ActionMode;
-
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
+public class ExplorerException extends RuntimeException {
+    public ExplorerException(String detailMessage) {
+        super(detailMessage);
+    }
 
-public interface FileExplorerView {
-    ActionMode startActionMode(ActionMode.Callback callback);
+    public ExplorerException(Throwable throwable) {
+        super(throwable);
+    }
 
-    void setSelectAll(boolean checked);
+    public ExplorerException(String detailMessage, Throwable throwable) {
+        super(detailMessage, throwable);
+    }
 
-    void refresh();
-
-    void finish();
+    public ExplorerException() {
+    }
 }
