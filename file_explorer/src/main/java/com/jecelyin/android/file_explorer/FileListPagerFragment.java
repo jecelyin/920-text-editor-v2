@@ -32,6 +32,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -170,6 +171,20 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             task.cancel(true);
             task = null;
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.paste_menu) {
+            ((FileExplorerActivity)getActivity()).getFileClipboard().paste(getCurrentDirectory());
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

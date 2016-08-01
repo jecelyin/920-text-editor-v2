@@ -19,6 +19,7 @@
 package com.jecelyin.android.file_explorer;
 
 import com.jecelyin.android.file_explorer.io.JecFile;
+import com.jecelyin.android.file_explorer.listener.OnClipboardDataChangedListener;
 import com.jecelyin.android.file_explorer.util.FileUtils;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.List;
 public class FileClipboard {
     private List<JecFile> clipList = new ArrayList<>();
     private boolean isCopy;
+    private OnClipboardDataChangedListener onClipboardDataChangedListener;
 
     public boolean canPaste() {
         return !clipList.isEmpty();
@@ -40,6 +42,8 @@ public class FileClipboard {
         this.isCopy = isCopy;
         clipList.clear();
         clipList.addAll(data);
+        if (onClipboardDataChangedListener != null)
+            onClipboardDataChangedListener.onClipboardDataChanged();
     }
 
     public void paste(JecFile currentDirectory) {
@@ -53,5 +57,9 @@ public class FileClipboard {
                 FileUtils.copyFile(file, currentDirectory.newFile(file.getName()), !isCopy);
             }
         }
+    }
+
+    public void setOnClipboardDataChangedListener(OnClipboardDataChangedListener onClipboardDataChangedListener) {
+        this.onClipboardDataChangedListener = onClipboardDataChangedListener;
     }
 }

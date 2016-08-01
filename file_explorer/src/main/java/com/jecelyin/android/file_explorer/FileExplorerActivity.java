@@ -35,6 +35,7 @@ import com.jecelyin.android.file_explorer.adapter.FileListPagerAdapter;
 import com.jecelyin.android.file_explorer.databinding.FileExplorerActivityBinding;
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
+import com.jecelyin.android.file_explorer.listener.OnClipboardDataChangedListener;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.app.JecApp;
@@ -51,7 +52,7 @@ import java.util.SortedMap;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileExplorerActivity extends JecActivity implements View.OnClickListener {
+public class FileExplorerActivity extends JecActivity implements View.OnClickListener, OnClipboardDataChangedListener {
     private FileExplorerActivityBinding binding;
     private FileListPagerAdapter adapter;
     private static final int MODE_PICK_FILE = 1;
@@ -60,6 +61,7 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
     private String fileEncoding = null;
     private String lastPath;
     private FileClipboard fileClipboard;
+    private MenuItem pasteMenu;
 
     public static void startPickFileActivity(Activity activity, String destFile, int requestCode) {
         Intent it = new Intent(activity, FileExplorerActivity.class);
@@ -138,6 +140,7 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
 
         binding.filenameLayout.setVisibility(mode == MODE_PICK_FILE ? View.GONE : View.VISIBLE);
 
+        getFileClipboard().setOnClipboardDataChangedListener(this);
     }
 
     private void initPager() {
@@ -161,6 +164,7 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
 
         Pref pref = Pref.getInstance(this);
         menu.findItem(R.id.show_hidden_files_menu).setChecked(pref.isShowHiddenFiles());
+        pasteMenu = menu.findItem(R.id.paste_menu);
 
         int sortId;
         switch (pref.getFileSortType()) {
@@ -312,5 +316,13 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
             fileClipboard = new FileClipboard();
 
         return fileClipboard;
+    }
+
+    @Override
+    public void onClipboardDataChanged() {
+        if (pasteMenu == null)
+            return;
+
+        pasteMenu.setVisible(getFileClipboard().canPaste());
     }
 }
