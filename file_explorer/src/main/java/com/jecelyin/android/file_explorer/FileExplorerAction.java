@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
 import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.android.file_explorer.util.MimeTypes;
 import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
 import com.jecelyin.common.utils.UIUtils;
 
@@ -75,20 +76,12 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
             if (actionMode == null)
                 actionMode = view.startActionMode(this);
             actionMode.setTitle(context.getString(R.string.selected_x_items, checkedCount));
-            onFileSelected();
         } else {
             if(actionMode != null) {
                 actionMode.finish();
                 actionMode = null;
             }
         }
-    }
-
-    private void onFileSelected() {
-        if (shareMenu == null || renameMenu == null)
-            return;
-        shareMenu.setEnabled(canShare());
-        renameMenu.setEnabled(checkedList.size()  == 1);
     }
 
     @Override
@@ -110,15 +103,15 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
         shareActionProvider.setOnShareTargetSelectedListener(this);
         MenuItemCompat.setActionProvider(shareMenu, shareActionProvider);
 
-        onFileSelected();
-
         menu.add(0, R.id.delete, 0, R.string.delete).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 
     @Override
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        return false;
+        shareMenu.setEnabled(canShare());
+        renameMenu.setEnabled(checkedList.size()  == 1);
+        return true;
     }
 
     @Override
@@ -202,6 +195,7 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
                         if (!result) {
                             UIUtils.toast(context, R.string.rename_fail);
                         }
+                        view.refresh();
                         destroyActionMode();
                     }
                 });
@@ -210,21 +204,29 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
     }
 
     private void shareFile() {
-        if (checkedList.size() != 1 || shareActionProvider == null)
+        if (checkedList.isEmpty() || shareActionProvider == null)
             return;
 
-        ArrayList<Uri> streams = new ArrayList<>();
-        for (JecFile file : checkedList) {
-            if (!(file instanceof LocalFile))
-                throw new ExplorerException(context.getString(R.string.can_not_share_x, file + " isn't LocalFile"));
+        Intent shareIntent = new Intent();
+        if (checkedList.size() == 1) {
+            File localFile = new File(checkedList.get(0).getPath());
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.setType(MimeTypes.getInstance().getMimeType(localFile.getPath()));
+            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));
+        } else {
+            shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
 
-            streams.add(Uri.fromFile(new File(file.getPath())));
+            ArrayList<Uri> streams = new ArrayList<>();
+            for (JecFile file : checkedList) {
+                if (!(file instanceof LocalFile))
+                    throw new ExplorerException(context.getString(R.string.can_not_share_x, file + " isn't LocalFile"));
+
+                streams.add(Uri.fromFile(new File(file.getPath())));
+            }
+
+            shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, streams);
         }
 
-        Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
-//        shareIntent.setType(MimeTypes.getInstance().getMimeType(localFile.getPath()));
-//        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(localFile));
-        shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, streams);
 
         shareActionProvider.setShareIntent(shareIntent);
     }
@@ -233,6 +235,7 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
         for (JecFile file : checkedList) {
             file.delete(null);
         }
+        view.refresh();
         destroyActionMode();
     }
 

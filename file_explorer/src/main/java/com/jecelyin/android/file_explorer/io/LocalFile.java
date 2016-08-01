@@ -51,7 +51,7 @@ public class LocalFile extends JecFile {
 
     @Override
     public JecFile newFile(String filename) {
-        return new LocalFile(getPath(), filename);
+        return new LocalFile(getParent(), filename);
     }
 
     @Override

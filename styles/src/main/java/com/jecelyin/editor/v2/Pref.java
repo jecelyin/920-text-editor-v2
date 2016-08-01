@@ -64,6 +64,8 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_PREF_KEEP_BACKUP_FILE = "pref_keep_backup_file";
     public static final String KEY_LAST_OPEN_PATH = "last_open_path";
     public static final String KEY_READ_ONLY = "readonly_mode";
+    public static final String KEY_SHOW_HIDDEN_FILES = "show_hidden_files";
+    public static final String KEY_FILE_SORT_TYPE = "show_file_sort";
 
     public static final int DEF_MIN_FONT_SIZE = 9;
     public static final int DEF_MAX_FONT_SIZE = 32;
@@ -140,6 +142,8 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         toolbarIcons = pm.getStringSet(KEY_TOOLBAR_ICONS, null);
         map.put(KEY_LAST_OPEN_PATH, Environment.getExternalStorageDirectory().getPath());
         map.put(KEY_READ_ONLY, false);
+        map.put(KEY_SHOW_HIDDEN_FILES, false);
+        map.put(KEY_FILE_SORT_TYPE, 0);
 
         for(String key : map.keySet()) {
             updateValue(key);
@@ -171,6 +175,12 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public void registerOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         synchronized(this) {
             mListeners.put(listener, mContent);
+        }
+    }
+
+    public void unregisterOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        synchronized(this) {
+            mListeners.remove(listener);
         }
     }
 
@@ -332,5 +342,23 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
     public String getSymbol() {
         return (String) map.get(KEY_SYMBOL);
+    }
+
+    public boolean isShowHiddenFiles() {
+        return (boolean) map.get(KEY_SHOW_HIDDEN_FILES);
+    }
+
+    public void setShowHiddenFiles(boolean b) {
+        pm.edit().putBoolean(KEY_SHOW_HIDDEN_FILES, b).apply();
+        map.put(KEY_SHOW_HIDDEN_FILES, b);
+    }
+
+    public int getFileSortType() {
+        return (int) map.get(KEY_FILE_SORT_TYPE);
+    }
+
+    public void setFileSortType(int type) {
+        pm.edit().putInt(KEY_FILE_SORT_TYPE, type).apply();
+        map.put(KEY_FILE_SORT_TYPE, type);
     }
 }

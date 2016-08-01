@@ -26,6 +26,8 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -33,6 +35,7 @@ import com.jecelyin.android.file_explorer.adapter.FileListPagerAdapter;
 import com.jecelyin.android.file_explorer.databinding.FileExplorerActivityBinding;
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
+import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
@@ -150,6 +153,57 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
         super.onPause();
 
         Pref.getInstance(this).setLastOpenPath(lastPath);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.explorer_menu, menu);
+
+        Pref pref = Pref.getInstance(this);
+        menu.findItem(R.id.show_hidden_files_menu).setChecked(pref.isShowHiddenFiles());
+
+        int sortId;
+        switch (pref.getFileSortType()) {
+            case FileListSorter.SORT_DATE:
+                sortId = R.id.sort_by_datetime_menu;
+                break;
+            case FileListSorter.SORT_SIZE:
+                sortId = R.id.sort_by_size_menu;
+                break;
+            case FileListSorter.SORT_TYPE:
+                sortId = R.id.sort_by_type_menu;
+                break;
+            default:
+                sortId = R.id.sort_by_name_menu;
+                break;
+        }
+
+        menu.findItem(sortId).setChecked(true);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Pref pref = Pref.getInstance(this);
+        int id = item.getItemId();
+        if (id == R.id.show_hidden_files_menu) {
+            item.setChecked(!item.isChecked());
+            pref.setShowHiddenFiles(item.isChecked());
+        } else if (id == R.id.sort_by_name_menu) {
+            item.setChecked(true);
+            pref.setFileSortType(FileListSorter.SORT_NAME);
+        } else if (id == R.id.sort_by_datetime_menu) {
+            item.setChecked(true);
+            pref.setFileSortType(FileListSorter.SORT_DATE);
+        } else if (id == R.id.sort_by_size_menu) {
+            item.setChecked(true);
+            pref.setFileSortType(FileListSorter.SORT_SIZE);
+        } else if (id == R.id.sort_by_type_menu) {
+            item.setChecked(true);
+            pref.setFileSortType(FileListSorter.SORT_TYPE);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     boolean onSelectFile(JecFile file) {

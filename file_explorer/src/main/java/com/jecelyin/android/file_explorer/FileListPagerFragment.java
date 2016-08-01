@@ -19,6 +19,7 @@
 package com.jecelyin.android.file_explorer;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,13 +51,15 @@ import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileListPagerFragment extends JecFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, FileExplorerView, ExplorerContext {
+public class FileListPagerFragment extends JecFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, FileExplorerView, ExplorerContext, SharedPreferences.OnSharedPreferenceChangeListener {
     private FileListItemAdapter adapter;
     private JecFile path;
     private FileExplorerFragmentBinding binding;
@@ -146,15 +149,18 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         });
 
         onRefresh();
+
+        Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
+        Pref.getInstance(getContext()).unregisterOnSharedPreferenceChangeListener(this);
         if (action != null) {
             action.destroy();
         }
+
     }
 
     @Override
@@ -228,7 +234,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public void refresh() {
-        adapter.notifyDataSetChanged();
+        onRefresh();
     }
 
     @Override
@@ -239,6 +245,11 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     @Override
     public JecFile getCurrentDirectory() {
         return path;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        onRefresh();
     }
 
     private static class ScanFilesTask extends JecAsyncTask<Void, Void, JecFile[]> {
@@ -254,10 +265,13 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
         @Override
         protected void onRun(final TaskResult<JecFile[]> taskResult, Void... params) throws Exception {
+            Pref pref = Pref.getInstance(context);
+            final boolean showHiddenFiles = pref.isShowHiddenFiles();
+            final int sortType = pref.getFileSortType();
             boolean canRead = path.canRead();
             if (!isRoot && !canRead) {
                 //请求Root权限
-                isRoot = Pref.getInstance(context).isRootable();
+                isRoot = pref.isRootable();
             }
             if (isRoot && !canRead && !(path instanceof RootFile)) {
                 path = new RootFile(path.getPath());
@@ -265,7 +279,18 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             path.listFiles(new FileListResultListener() {
                 @Override
                 public void onResult(JecFile[] result) {
-                    Arrays.sort(result, new FileListSorter());
+                    if (!showHiddenFiles) {
+                        List<JecFile> list = new ArrayList<>(result.length);
+                        for (JecFile file : result) {
+                            if (file.getName().charAt(0) == '.') {
+                                continue;
+                            }
+                            list.add(file);
+                        }
+                        result = new JecFile[list.size()];
+                        list.toArray(result);
+                    }
+                    Arrays.sort(result, new FileListSorter(true, sortType, true));
                     taskResult.setResult(result);
                 }
             });

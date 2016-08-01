@@ -24,9 +24,33 @@
         android:title="@string/paste"
         app:showAsAction="always" />
     <item
-        android:id="@+id/hide_menu"
+        android:id="@+id/show_hidden_files_menu"
         android:checkable="true"
         android:checked="false"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:title="@string/show_hide_menu" />
+    <group
+        android:id="@+id/sort_group_menu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/sort_by_name_menu"
+            android:title="@string/sort_by_name"
+            android:checked="true"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/sort_by_datetime_menu"
+            android:title="@string/sort_by_datetime"
+            android:checked="false"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/sort_by_size_menu"
+            android:title="@string/sort_by_size"
+            android:checked="false"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/sort_by_type_menu"
+            android:title="@string/sort_by_type"
+            android:checked="false"
+            app:showAsAction="never"/>
+    </group>
 </menu>
