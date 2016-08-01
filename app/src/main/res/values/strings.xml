@@ -165,6 +165,7 @@
     <string name="save_all_without_new_document_message">全部保存将跳过新建文档</string>
     <string name="reset">重置</string>
     <string name="custom_symbol_list">自定义符号列表</string>
+    <string name="clear_history">清除记录</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

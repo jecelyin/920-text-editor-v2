@@ -19,8 +19,10 @@
 package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.utils.DBHelper;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class RecentFilesManager implements MaterialDialog.ListCallback {
+public class RecentFilesManager implements MaterialDialog.ListCallback, MaterialDialog.SingleButtonCallback {
     private final DBHelper dbHelper;
     private OnFileItemClickListener onFileItemClickListener;
     private ArrayList<DBHelper.RecentFileItem> list;
@@ -58,10 +60,19 @@ public class RecentFilesManager implements MaterialDialog.ListCallback {
         new MaterialDialog.Builder(context)
                 .items(items)
                 .dividerColorRes(R.color.md_divider_black)
+                .negativeText(R.string.clear_history)
+                .onNegative(this)
                 .positiveText(R.string.close)
                 .title(R.string.recent_files)
                 .itemsCallback(this)
                 .show();
+    }
+
+    @Override
+    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+        if (which == DialogAction.NEGATIVE) {
+            dbHelper.clearRecentFiles();
+        }
     }
 
     @Override

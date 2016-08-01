@@ -206,7 +206,10 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     public String getToolbarText() {
-        return String.format("%s  \t|\t  %s", getTitle(), document == null ? "UTF-8" : document.getEncoding());
+        return String.format("%s  \t|\t  %s \t %s", getTitle()
+                , document == null ? "UTF-8" : document.getEncoding()
+                , document == null || document.getModeName() == null ? "" : document.getModeName()
+        );
     }
 
     public void startSaveFileSelectorActivity() {

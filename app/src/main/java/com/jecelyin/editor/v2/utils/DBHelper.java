@@ -132,4 +132,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return list;
     }
+
+    public void clearRecentFiles() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("delete from recent_files");
+        db.close();
+    }
 }
