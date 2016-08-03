@@ -30,4 +30,6 @@
     <string name="sort_by_datetime">按时间</string>
     <string name="sort_by_size">按大小</string>
     <string name="sort_by_type">按类型</string>
+    <string name="create_folder">创建文件夹</string>
+    <string name="can_not_create_folder">无法创建文件夹</string>
 </resources>

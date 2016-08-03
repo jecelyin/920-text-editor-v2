@@ -19,6 +19,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/add_folder_menu"
+        android:title="@string/create_folder"
+        android:icon="@drawable/ic_add_folder"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/paste_menu"
         android:visible="false"
         android:title="@string/paste"

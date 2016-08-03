@@ -183,6 +183,10 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.paste_menu) {
             ((FileExplorerActivity)getActivity()).getFileClipboard().paste(getCurrentDirectory());
+            item.setVisible(false);
+            onRefresh();
+        } else if (item.getItemId() == R.id.add_folder_menu) {
+            action.doCreateFolder();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -234,6 +238,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     private void switchToPath(JecFile file) {
         path = file;
         pathAdapter.setPath(file);
+        Pref.getInstance(getContext()).setLastOpenPath(file.getPath());
         onRefresh();
     }
 

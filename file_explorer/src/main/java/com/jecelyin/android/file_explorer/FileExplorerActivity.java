@@ -152,13 +152,6 @@ public class FileExplorerActivity extends JecActivity implements View.OnClickLis
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        Pref.getInstance(this).setLastOpenPath(lastPath);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.explorer_menu, menu);
 

@@ -148,6 +148,8 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
+        shareActionProvider.setOnShareTargetSelectedListener(null);
+        shareActionProvider = null;
         checkedList.clear();
         view.setSelectAll(false);
         renameMenu = null;
@@ -194,6 +196,7 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
                     public void onResult(boolean result) {
                         if (!result) {
                             UIUtils.toast(context, R.string.rename_fail);
+                            return;
                         }
                         view.refresh();
                         destroyActionMode();
@@ -242,7 +245,30 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
     @Override
     public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
         destroyActionMode();
-        view.finish();
         return false;
+    }
+
+    public void doCreateFolder() {
+        UIUtils.showInputDialog(context, R.string.create_folder
+                , 0 ,null, 0, new UIUtils.OnShowInputCallback() {
+            @Override
+            public void onConfirm(CharSequence input) {
+                if (TextUtils.isEmpty(input)) {
+                    return;
+                }
+                JecFile folder = explorerContext.getCurrentDirectory().newFile(input.toString());
+                folder.mkdirs(new BoolResultListener() {
+                    @Override
+                    public void onResult(boolean result) {
+                        if (!result) {
+                            UIUtils.toast(context, R.string.can_not_create_folder);
+                            return;
+                        }
+                        view.refresh();
+                        destroyActionMode();
+                    }
+                });
+            }
+        });
     }
 }
