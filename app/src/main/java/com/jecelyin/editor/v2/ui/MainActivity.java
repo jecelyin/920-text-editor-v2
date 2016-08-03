@@ -169,7 +169,7 @@ public class MainActivity extends BaseActivity
             });
         }
 
-        setStatusBarColor(mToolbar, getResources().getColor(R.color.editor_primary_color_dark));
+        setStatusBarColor(mToolbar);
         pref = Pref.getInstance(this);
 
         bindPreferences();

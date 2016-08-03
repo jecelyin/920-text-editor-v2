@@ -20,7 +20,10 @@ package com.jecelyin.common.app;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -28,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.jecelyin.common.R;
 import com.jecelyin.common.view.SystemBarTintManager;
 
 /**
@@ -37,13 +41,23 @@ public class JecActivity extends AppCompatActivity {
 
     private boolean isAttached;
 
-    protected void setStatusBarColor(Toolbar toolbar, int color) {
+    @Override
+    public void setSupportActionBar(@Nullable Toolbar toolbar) {
+        super.setSupportActionBar(toolbar);
+        setStatusBarColor(toolbar);
+    }
+
+    protected void setStatusBarColor(Toolbar toolbar) {
         super.onStart();
         if(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             //使StatusBarTintView 和 actionbar的颜色保持一致，风格统一。
+
+            TypedArray a = getTheme().obtainStyledAttributes(new int[]{R.attr.colorPrimary});
+            int color = a.getColor(0, Color.TRANSPARENT);
+            a.recycle();
 
             tintManager.setStatusBarTintColor(color);
             // 设置状态栏的文字颜色

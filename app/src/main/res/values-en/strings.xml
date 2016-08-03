@@ -170,4 +170,7 @@
     <string name="keep_backup_file">Keep a backup file</string>
     <string name="keep_backup_file_summary">Suggest you keep backup files, avoid file misses for exception</string>
     <string name="save_all_without_new_document_message">Save all will skip new document</string>
+    <string name="clear_history">Clear History</string>
+    <string name="custom_symbol_list">Custom symbol list</string>
+    <string name="reset">Reset</string>
 </resources>

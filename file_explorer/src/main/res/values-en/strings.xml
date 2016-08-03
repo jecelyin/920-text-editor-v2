@@ -15,4 +15,21 @@
     <string name="save_file">Save File</string>
     <string name="override_file_prompt">%s exists，do you override it？</string>
     <string name="filter_by_name">Filter by Name</string>
+    <string name="can_not_create_folder">Can\'t create folder</string>
+    <string name="can_not_share_x">Can\'t share file: %s</string>
+    <string name="cancel_select_all">Deselect All</string>
+    <string name="copy">Copy</string>
+    <string name="create_folder">Create folder</string>
+    <string name="cut">Cut</string>
+    <string name="delete">Delete</string>
+    <string name="paste">Paste</string>
+    <string name="rename">Rename</string>
+    <string name="rename_fail">Rename failure</string>
+    <string name="select_all">Select all</string>
+    <string name="share">Share</string>
+    <string name="show_hidden_files">Show hidden files</string>
+    <string name="sort_by_datetime">Sort by Date</string>
+    <string name="sort_by_name">Sort by Name</string>
+    <string name="sort_by_size">Sort by Size</string>
+    <string name="sort_by_type">Sort by Type</string>
 </resources>

@@ -33,7 +33,7 @@
         android:checkable="true"
         android:checked="false"
         app:showAsAction="never"
-        android:title="@string/show_hide_menu" />
+        android:title="@string/show_hidden_files" />
     <group
         android:id="@+id/sort_group_menu"
         android:checkableBehavior="single">

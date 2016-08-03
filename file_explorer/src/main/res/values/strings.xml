@@ -25,7 +25,7 @@
     <string name="cancel_select_all">取消全选</string>
     <string name="rename_fail">重命名失败</string>
     <string name="can_not_share_x">无法共享该文件: %s</string>
-    <string name="show_hide_menu">显示隐藏文件</string>
+    <string name="show_hidden_files">显示隐藏文件</string>
     <string name="sort_by_name">按名称</string>
     <string name="sort_by_datetime">按时间</string>
     <string name="sort_by_size">按大小</string>
