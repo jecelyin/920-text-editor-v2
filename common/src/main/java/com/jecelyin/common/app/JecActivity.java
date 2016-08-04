@@ -40,12 +40,6 @@ public class JecActivity extends AppCompatActivity {
     @Override
     public void setSupportActionBar(@Nullable Toolbar toolbar) {
         super.setSupportActionBar(toolbar);
-        setStatusBarColor(toolbar);
-    }
-
-    protected void setStatusBarColor(Toolbar toolbar) {
-        super.onStart();
-
         setStatusBarColor(null);
     }
 

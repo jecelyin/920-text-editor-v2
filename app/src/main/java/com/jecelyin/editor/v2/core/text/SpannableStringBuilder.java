@@ -1260,6 +1260,27 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
         }
     }
 
+    /**
+     * for 4.4
+     */
+    public void drawTextRun(Canvas c, int start, int end, int contextStart, int contextEnd,
+                            float x, float y, int flags, Paint p) {
+        checkRange("drawTextRun", start, end);
+
+        int contextLen = contextEnd - contextStart;
+        int len = end - start;
+        if (contextEnd <= mGapStart) {
+            c.drawTextRun(mText, start, len, contextStart, contextLen, x, y, flags, p);
+        } else if (contextStart >= mGapStart) {
+            c.drawTextRun(mText, start + mGapLength, len, contextStart + mGapLength,
+                    contextLen, x, y, flags, p);
+        } else {
+            char[] buf = TextUtils.obtain(contextLen);
+            getChars(contextStart, contextEnd, buf, 0);
+            c.drawTextRun(buf, start - contextStart, len, 0, contextLen, x, y, flags, p);
+            TextUtils.recycle(buf);
+        }
+    }
 
     /**
      * Don't call this yourself -- exists for Canvas to use internally.
@@ -1330,6 +1351,33 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
 
             getChars(start, end, buf, 0);
             ret = p.getTextWidths(buf, 0, end - start, widths);
+            TextUtils.recycle(buf);
+        }
+
+        return ret;
+    }
+
+    /**
+     * for 4.4
+     */
+    public float getTextRunAdvances(int start, int end, int contextStart, int contextEnd, int flags,
+                                    float[] advances, int advancesPos, Paint p) {
+        float ret;
+
+        int contextLen = contextEnd - contextStart;
+        int len = end - start;
+
+        if (end <= mGapStart) {
+            ret = p.getTextRunAdvances(mText, start, len, contextStart, contextLen,
+                    flags, advances, advancesPos);
+        } else if (start >= mGapStart) {
+            ret = p.getTextRunAdvances(mText, start + mGapLength, len,
+                    contextStart + mGapLength, contextLen, flags, advances, advancesPos);
+        } else {
+            char[] buf = TextUtils.obtain(contextLen);
+            getChars(contextStart, contextEnd, buf, 0);
+            ret = p.getTextRunAdvances(buf, start - contextStart, len,
+                    0, contextLen, flags, advances, advancesPos);
             TextUtils.recycle(buf);
         }
 
