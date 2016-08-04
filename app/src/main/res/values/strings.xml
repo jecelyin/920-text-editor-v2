@@ -165,6 +165,9 @@
     <string name="reset">重置</string>
     <string name="custom_symbol_list">自定义符号列表</string>
     <string name="clear_history">清除记录</string>
+    <string name="fullscreen_mode">全屏模式</string>
+    <string name="disabled_fullscreen_mode_message">重启程序后将关闭全屏模式</string>
+    <string name="enable_fullscreen_mode_message">重启程序后将启用全屏模式</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

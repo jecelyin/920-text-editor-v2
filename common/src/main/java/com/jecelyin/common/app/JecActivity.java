@@ -44,6 +44,8 @@ public class JecActivity extends AppCompatActivity {
     }
 
     protected void setStatusBarColor(ViewGroup drawerLayout) {
+        if (isFullScreenMode())
+            return;
         TypedArray a = getTheme().obtainStyledAttributes(new int[]{R.attr.colorPrimary});
         int color = a.getColor(0, Color.TRANSPARENT);
         a.recycle();
@@ -53,6 +55,10 @@ public class JecActivity extends AppCompatActivity {
         } else {
             StatusBarUtil.setColor(this, color, 0);
         }
+    }
+
+    protected boolean isFullScreenMode() {
+        return false;
     }
 
     @Override

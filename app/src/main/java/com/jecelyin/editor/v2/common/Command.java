@@ -50,6 +50,7 @@ public class Command {
         HIGHLIGHT,
         INSERT_TEXT,
         RELOAD_WITH_ENCODING,
+        FULL_SCREEN,
     }
 
     public CommandEnum what;

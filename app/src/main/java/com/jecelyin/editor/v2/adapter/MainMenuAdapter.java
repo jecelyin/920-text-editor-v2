@@ -32,7 +32,6 @@ import com.jecelyin.editor.v2.common.Command;
 import com.jecelyin.editor.v2.view.menu.MenuFactory;
 import com.jecelyin.editor.v2.view.menu.MenuGroup;
 import com.jecelyin.editor.v2.view.menu.MenuItemInfo;
-import com.jecelyin.editor.v2.Pref;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,15 +90,15 @@ public class MainMenuAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     if(menuItemClickListener != null) {
                         menuItemClickListener.onMenuItemClick(item);
-                        if(item.getItemId() == R.id.m_readonly) {
+                        if(MenuFactory.isCheckboxMenu(item.getItemId())) {
                             vh.mCheckBox.setChecked(!vh.mCheckBox.isChecked());
                         }
                     }
                 }
             });
-            if(item.getItemId() == R.id.m_readonly) {
+            if(MenuFactory.isCheckboxMenu(item.getItemId())) {
                 vh.mCheckBox.setVisibility(View.VISIBLE);
-                vh.mCheckBox.setChecked(Pref.getInstance(vh.itemView.getContext()).isReadOnly());
+                vh.mCheckBox.setChecked(MenuFactory.isChecked(vh.itemView.getContext(), item.getItemId()));
             } else {
                 vh.mCheckBox.setVisibility(View.GONE);
             }

@@ -37,10 +37,10 @@ import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
 import com.jecelyin.android.file_explorer.listener.OnClipboardDataChangedListener;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor.v2.FullScreenActivity;
 import com.jecelyin.editor.v2.Pref;
 
 import java.io.File;
@@ -52,7 +52,7 @@ import java.util.SortedMap;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileExplorerActivity extends JecActivity implements View.OnClickListener, OnClipboardDataChangedListener {
+public class FileExplorerActivity extends FullScreenActivity implements View.OnClickListener, OnClipboardDataChangedListener {
     private FileExplorerActivityBinding binding;
     private FileListPagerAdapter adapter;
     private static final int MODE_PICK_FILE = 1;

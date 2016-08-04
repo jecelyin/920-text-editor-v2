@@ -40,7 +40,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -141,8 +140,6 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Hide the status bar.
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.main_activity);
 
@@ -445,6 +442,12 @@ public class MainActivity extends BaseActivity
                 };
                 doClusterCommand(command);
                 break;
+            case R.id.m_fullscreen:
+                boolean fullscreenMode = pref.isFullScreenMode();
+                pref.setFullScreenMode(!fullscreenMode);
+                UIUtils.toast(this, fullscreenMode
+                        ? R.string.disabled_fullscreen_mode_message
+                        : R.string.enable_fullscreen_mode_message);
             case R.id.m_readonly:
                 boolean readOnly = !pref.isReadOnly();
                 pref.setReadOnly(readOnly);

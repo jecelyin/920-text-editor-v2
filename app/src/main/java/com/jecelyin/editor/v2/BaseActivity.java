@@ -18,14 +18,13 @@
 
 package com.jecelyin.editor.v2;
 
-import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.app.JecApp;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class BaseActivity extends JecActivity {
+public class BaseActivity extends FullScreenActivity {
 
     @Override
     protected void onDestroy() {

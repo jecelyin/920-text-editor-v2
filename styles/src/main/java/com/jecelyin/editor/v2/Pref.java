@@ -66,6 +66,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_READ_ONLY = "readonly_mode";
     public static final String KEY_SHOW_HIDDEN_FILES = "show_hidden_files";
     public static final String KEY_FILE_SORT_TYPE = "show_file_sort";
+    public static final String KEY_FULL_SCREEN = "fullscreen_mode";
 
     public static final int DEF_MIN_FONT_SIZE = 9;
     public static final int DEF_MAX_FONT_SIZE = 32;
@@ -144,6 +145,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_READ_ONLY, false);
         map.put(KEY_SHOW_HIDDEN_FILES, false);
         map.put(KEY_FILE_SORT_TYPE, 0);
+        map.put(KEY_FULL_SCREEN, false);
 
         for(String key : map.keySet()) {
             updateValue(key);
@@ -360,5 +362,14 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public void setFileSortType(int type) {
         pm.edit().putInt(KEY_FILE_SORT_TYPE, type).apply();
         map.put(KEY_FILE_SORT_TYPE, type);
+    }
+
+    public void setFullScreenMode(boolean b) {
+        pm.edit().putBoolean(KEY_FULL_SCREEN, b).apply();
+        map.put(KEY_FULL_SCREEN, b);
+    }
+
+    public boolean isFullScreenMode() {
+        return (boolean)map.get(KEY_FULL_SCREEN);
     }
 }

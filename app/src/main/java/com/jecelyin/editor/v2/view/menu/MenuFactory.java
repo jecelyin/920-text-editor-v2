@@ -83,6 +83,20 @@ public class MenuFactory {
         return groups.get(MenuGroup.TOP);
     }
 
+    public static boolean isCheckboxMenu(int id) {
+        return id == R.id.m_readonly || id == R.id.m_fullscreen;
+    }
+
+    public static boolean isChecked(Context context, int id) {
+        switch (id) {
+            case R.id.m_readonly:
+                return Pref.getInstance(context).isReadOnly();
+            case R.id.m_fullscreen:
+                return Pref.getInstance(context).isFullScreenMode();
+        }
+        return false;
+    }
+
     private void initAllMenuItem() {
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_new,            Command.CommandEnum.NONE,    R.drawable.m_new_level, R.string.new_file));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FILE,  R.id.m_open,           Command.CommandEnum.OPEN,    R.drawable.m_open_level, R.string.open));
@@ -107,11 +121,12 @@ public class MenuFactory {
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FIND,  R.id.m_back,           Command.CommandEnum.BACK,           R.drawable.m_back, R.string.back));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FIND,  R.id.m_forward,        Command.CommandEnum.FORWARD,        R.drawable.m_forward, R.string.forward));
 
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_info,           Command.CommandEnum.DOC_INFO, R.drawable.m_info, R.string.document_info));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_fullscreen,     Command.CommandEnum.FULL_SCREEN,    R.drawable.m_fullscreen, R.string.fullscreen_mode));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_info,           Command.CommandEnum.DOC_INFO,       R.drawable.m_info, R.string.document_info));
 //        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_symbol,         Command.CommandEnum.NONE, R.drawable.m_symbol, R.string.symbol));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_readonly,       Command.CommandEnum.READONLY_MODE, R.drawable.m_readonly, R.string.read_only));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_highlight,      Command.CommandEnum.NONE, R.drawable.m_highlight, R.string.highlight_language));
-        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_encoding,       Command.CommandEnum.NONE, R.drawable.m_encoding, R.string.encoding));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_readonly,       Command.CommandEnum.READONLY_MODE,  R.drawable.m_readonly, R.string.read_only));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_highlight,      Command.CommandEnum.NONE,           R.drawable.m_highlight, R.string.highlight_language));
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_encoding,       Command.CommandEnum.NONE,           R.drawable.m_encoding, R.string.encoding));
 
         menuItemInfos.add(new MenuItemInfo(MenuGroup.OTHER, R.id.m_color,          Command.CommandEnum.NONE, R.drawable.m_color, R.string.insert_color));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.OTHER, R.id.m_datetime,       Command.CommandEnum.NONE, R.drawable.m_datetime, R.string.insert_datetime));
