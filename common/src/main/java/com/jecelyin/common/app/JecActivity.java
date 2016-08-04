@@ -18,21 +18,17 @@
 
 package com.jecelyin.common.app;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.jecelyin.common.R;
-import com.jecelyin.common.view.SystemBarTintManager;
+import com.jecelyin.common.view.StatusBarUtil;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -49,47 +45,20 @@ public class JecActivity extends AppCompatActivity {
 
     protected void setStatusBarColor(Toolbar toolbar) {
         super.onStart();
-        if(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            //使StatusBarTintView 和 actionbar的颜色保持一致，风格统一。
 
-            TypedArray a = getTheme().obtainStyledAttributes(new int[]{R.attr.colorPrimary});
-            int color = a.getColor(0, Color.TRANSPARENT);
-            a.recycle();
-
-            tintManager.setStatusBarTintColor(color);
-            // 设置状态栏的文字颜色
-            tintManager.setStatusBarDarkMode(false, this);
-            ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) toolbar.getLayoutParams();
-            if (lp != null) {
-                lp.topMargin = getStatusBarHeight();
-            }
-
-        }
+        setStatusBarColor(null);
     }
 
-    @TargetApi(19)
-    protected void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
+    protected void setStatusBarColor(ViewGroup drawerLayout) {
+        TypedArray a = getTheme().obtainStyledAttributes(new int[]{R.attr.colorPrimary});
+        int color = a.getColor(0, Color.TRANSPARENT);
+        a.recycle();
+
+        if (drawerLayout != null) {
+            StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, color, 0);
         } else {
-            winParams.flags &= ~bits;
+            StatusBarUtil.setColor(this, color, 0);
         }
-        win.setAttributes(winParams);
-    }
-
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
     }
 
     @Override

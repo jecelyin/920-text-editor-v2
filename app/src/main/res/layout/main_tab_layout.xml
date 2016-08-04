@@ -4,6 +4,7 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/tabNavView"
+        android:fitsSystemWindows="false"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start|left">
@@ -18,11 +19,14 @@
                 android:gravity="center_vertical"
                 android:background="?attr/colorPrimaryDark"
                 android:translationZ="3dp"
+                android:paddingTop="45dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:minHeight="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
                     android:textSize="18sp"
                     android:textColor="#fff"
                     android:layout_width="wrap_content"

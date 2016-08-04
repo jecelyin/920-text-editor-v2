@@ -31,5 +31,4 @@ dependencies {
     compile 'com.github.afollestad.material-dialogs:commons:0.8.5.8'
     // require by github client
     compile 'com.google.code.gson:gson:2.5'
-
 }

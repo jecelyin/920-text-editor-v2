@@ -24,7 +24,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -41,6 +40,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -141,7 +141,12 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Hide the status bar.
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.main_activity);
+
+
         L.d(TAG, "onCreate");
         CrashDbHelper.getInstance(this).close(); //初始化一下
 
@@ -169,15 +174,14 @@ public class MainActivity extends BaseActivity
             });
         }
 
-        setStatusBarColor(mToolbar);
+        setStatusBarColor(mDrawerLayout);
         pref = Pref.getInstance(this);
 
         bindPreferences();
         setScreenOrientation();
 
         mDrawerLayout.setEnabled(false);
-        mDrawerLayout.setScrimColor(Color.TRANSPARENT);
-//        mVersionTextView.setText(getString(R.string.version_x, SysUtils.getVersionName(this)));
+
         String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
 
