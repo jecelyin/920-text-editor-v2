@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
 import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.styles.R;
 import com.stericson.RootTools.RootTools;
 
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_AUTO_CAPITALIZE = "pref_auto_capitalize";
     public static final String KEY_ENABLE_HIGHLIGHT = "pref_enable_highlight";
     public static final String KEY_HIGHLIGHT_FILE_SIZE_LIMIT = "pref_highlight_file_size_limit";
-    public static final String KEY_THEME = "pref_theme";
+    public static final String KEY_THEME = "pref_current_theme";
     public static final String KEY_AUTO_SAVE = "pref_auto_save";
     public static final String KEY_REMEMBER_LAST_OPENED_FILES = "pref_remember_last_opened_files";
     public static final String KEY_SCREEN_ORIENTATION = "pref_screen_orientation";
@@ -77,6 +78,11 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String VALUE_SYMBOL = TextUtils.join("\n", new String[]{"{", "}", "<", ">"
             , ",", ";", "'", "\"", "(", ")", "/", "\\", "%", "[", "]", "|", "#", "=", "$", ":"
             , "&", "?", "!", "@", "^", "+", "*", "-", "_", "`", "\\t", "\\n" });
+
+    public static final int[] THEMES = new int[] {
+            R.style.DefaultTheme,
+            R.style.DarkTheme
+    };
 
     @IntDef({SCREEN_ORIENTATION_AUTO, SCREEN_ORIENTATION_LANDSCAPE, SCREEN_ORIENTATION_PORTRAIT})
     public @interface ScreenOrientation {}
@@ -130,7 +136,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_AUTO_CAPITALIZE, true);
         map.put(KEY_ENABLE_HIGHLIGHT, true);
         map.put(KEY_HIGHLIGHT_FILE_SIZE_LIMIT, 500);
-        map.put(KEY_THEME, "");
+        map.put(KEY_THEME, 0);
         map.put(KEY_AUTO_SAVE, false);
         map.put(KEY_ENABLE_ROOT, true);
         map.put(KEY_REMEMBER_LAST_OPENED_FILES, true);
@@ -221,8 +227,17 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         return (boolean) map.get(KEY_SHOW_WHITESPACE);
     }
 
-    public String getTheme() {
-        return (String) map.get(KEY_THEME);
+    public int getTheme() {
+        return (int) map.get(KEY_THEME);
+    }
+
+    /**
+     * theme index of {@link #THEMES}
+     * @param theme
+     */
+    public void setTheme(int theme) {
+        map.put(KEY_THEME, theme);
+        pm.edit().putInt(KEY_THEME, theme).commit();
     }
 
     public boolean isHighlight() {

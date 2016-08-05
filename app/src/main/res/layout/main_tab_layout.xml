@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.design.widget.NavigationView
         android:id="@+id/tabNavView"
@@ -14,34 +13,47 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:background="?attr/colorPrimaryDark"
                 android:translationZ="3dp"
-                android:paddingTop="45dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="15dp"
-                android:minHeight="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="90dp">
                 <TextView
+                    android:id="@+id/appNameTextView"
                     android:textSize="18sp"
                     android:textColor="#fff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="15dp"
                     android:text="@string/app_name" />
 
                 <TextView
                     android:id="@+id/versionTextView"
+                    android:layout_toEndOf="@id/appNameTextView"
                     android:text="16.1.1"
                     android:textColor="#fff"
-                    android:paddingLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_alignParentBottom="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/changeThemeBtn"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/m_theme"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/change_theme"
+                    android:layout_margin="5dp"
+                    android:scaleType="center"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+
+            </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/tabRecyclerView"

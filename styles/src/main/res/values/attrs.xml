@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="dividerColor" format="color" />
+    <declare-styleable name="Editor">
+        <attr name="textForeground" format="color" />
+        <attr name="textBackground" format="color" />
+        <attr name="caret" format="color" />
+        <attr name="selection" format="color" />
+        <attr name="invisibles" format="color" />
+        <attr name="gutterForeground" format="color" />
+        <attr name="gutterBackground" format="color" />
+        <attr name="gutterDivider" format="color" />
+    </declare-styleable>
 </resources>

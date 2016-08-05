@@ -33,6 +33,11 @@ public class FullScreenActivity extends JecActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        int theme = Pref.getInstance(this).getTheme();
+        if (theme != 0) {
+            setTheme(Pref.THEMES[theme]);
+        }
+
         if (isFullScreenMode()) {
             enabledFullScreenMode();
         }

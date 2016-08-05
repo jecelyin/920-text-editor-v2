@@ -1,45 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="EditorTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 工具栏背景 -->
-        <item name="colorPrimary">@color/editor_primary_color</item>
-        <!--状态栏背景-->
-        <item name="colorPrimaryDark">@color/editor_primary_color_dark</item>
-        <!--按钮类默认颜色-->
-        <item name="colorControlNormal">@color/editor_control_normal</item>
-        <!--按钮类选中颜色-->
-        <item name="colorAccent">@color/editor_accent</item>
-        <!--导航栏背景-->
-        <!--<item name="android:navigationBarColor">@color/navigationBarColor</item>-->
-        <!-- 浮在toolbar上面 -->
-        <item name="windowActionModeOverlay">true</item>
-
-        <!--<item name="android:actionBarStyle">@style/Toolbar</item>-->
-        <item name="actionBarStyle">@style/Toolbar</item>
-        <!--使用方式 app:theme="?attr/actionBarTheme"-->
-        <item name="actionBarTheme">@style/ToolbarTheme</item>
-        <!--<item name="android:actionBarTheme" tools:targetApi="lollipop">@style/ToolbarTheme</item>-->
-        <!--菜单字体颜色-->
-        <item name="actionMenuTextColor">@android:color/white</item>
-        <!--<item name="actionMenuTextAppearance">@style/Toolbar.Item</item>-->
-
-        <item name="actionModeStyle">@style/ActionMode</item>
-        <item name="actionModeFindDrawable">@drawable/find_white</item>
-        <item name="actionModeCloseDrawable">@drawable/back_btn</item>
-
-        <item name="dividerColor">@color/divider</item>
-
-        <item name="android:textViewStyle">@style/TextViewStyle</item>
-        <item name="android:editTextStyle">@style/EditTextStyle</item>
-
-        <!--App自定义-->
-        <item name="netLoadingDrawable">@drawable/loading_icon</item>
-    </style>
-
     <!--Toolbar主题，使用方式：app:theme="@style/ToolbarTheme"-->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
-        <!--控件颜色，如返回按钮箭头图标的颜色-->
         <item name="colorControlNormal">#fff</item>
     </style>
 
@@ -72,10 +34,9 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <color name="editor_actionmode_light_background">#8BC34A</color>
     <style name="ActionMode" parent="Widget.AppCompat.ActionMode">
-
-        <item name="background">@color/editor_actionmode_background</item>
-        <item name="backgroundSplit">@color/editor_actionmode_split_background</item>
+        <item name="background">@color/editor_actionmode_light_background</item>
         <item name="height">?attr/actionBarSize</item>
         <item name="titleTextStyle">@style/ActionMode.Title</item>
         <item name="subtitleTextStyle">@style/ActionMode.Subtitle</item>

@@ -96,6 +96,7 @@ import android.widget.RemoteViews.RemoteView;
 import android.widget.Scroller;
 
 import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.core.content.UndoManager;
 import com.jecelyin.editor.v2.core.text.BoringLayout;
@@ -117,9 +118,6 @@ import com.jecelyin.editor.v2.core.text.method.WordIterator;
 import com.jecelyin.editor.v2.core.util.FastMath;
 import com.jecelyin.editor.v2.core.view.InputMethodManagerCompat;
 import com.jecelyin.editor.v2.core.view.ViewCompat;
-import com.jecelyin.editor.v2.highlight.ThemeInfo;
-import com.jecelyin.editor.v2.highlight.ThemeUtils;
-import com.jecelyin.editor.v2.Pref;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -9607,8 +9605,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
 
         //===== White Space End =======================================
 
-        ThemeInfo themeInfo = ThemeUtils.getThemeInfo();
-        setTheme(themeInfo);
+        initTheme();
 
         onSharedPreferenceChanged(null, Pref.KEY_FONT_SIZE);
         onSharedPreferenceChanged(null, Pref.KEY_CURSOR_WIDTH);
@@ -9631,7 +9628,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                 layoutContext.cursorThickness = pref.getCursorThickness();
                 break;
             case Pref.KEY_SHOW_LINE_NUMBER:
-                setShowLineNumber(pref.isShowLineNumber());
+                setLineNumber(layoutContext.lineNumber);
                 break;
             case Pref.KEY_WORD_WRAP:
                 setHorizontallyScrolling(!pref.isWordWrap());
@@ -9707,18 +9704,33 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         return getLayout().getHeight()-vspace;
     }
 
-    public void setTheme(ThemeInfo themeInfo) {
-        setBackgroundColor(themeInfo.background);
-        setTextColor(themeInfo.foreground);
+    public void initTheme() {
+        TypedArray a = getContext().obtainStyledAttributes(new int[]{
+                R.attr.textForeground,
+                R.attr.textBackground,
+                R.attr.gutterForeground,
+                R.attr.gutterBackground,
+                R.attr.gutterDivider,
+                R.attr.invisibles,
+                R.attr.selection,
+        });
+        int textForeground = a.getColor(0, 0);
+        int textBackground = a.getColor(1, 0);
+        int gutterForeground = a.getColor(2, 0);
+        int gutterBackground = a.getColor(3, 0);
+        int gutterDivider = a.getColor(4, 0);
+        int invisibles = a.getColor(5, 0);
+        int selection = a.getColor(6, 0);
+        a.recycle();
 
-        layoutContext.lineNumberPaint.setColor(themeInfo.gutterForeground);
-        layoutContext.linePaint.setColor(themeInfo.gutterDivider);
-        layoutContext.gutterBackgroundPaint.setColor(themeInfo.gutterBackground);
-        layoutContext.whiteSpaceColor = themeInfo.invisibles;
-    }
+        setBackgroundColor(textBackground);
+        setTextColor(textForeground);
+        setHighlightColor(selection);
 
-    public void setShowLineNumber(boolean b) {
-        setLineNumber(layoutContext.lineNumber);
+        layoutContext.lineNumberPaint.setColor(gutterForeground);
+        layoutContext.linePaint.setColor(gutterDivider);
+        layoutContext.gutterBackgroundPaint.setColor(gutterBackground);
+        layoutContext.whiteSpaceColor = invisibles;
     }
 
 }

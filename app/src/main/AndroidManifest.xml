@@ -17,7 +17,7 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:name=".MainApp"
-        android:theme="@style/EditorTheme" >
+        android:theme="@style/DefaultTheme" >
         <!-- Enables the Android Pay API -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
@@ -29,7 +29,7 @@
         -->
         <activity
             android:name="com.jecelyin.common.app.CrashReportDialogActivity"
-            android:theme="@style/EditorTheme"
+            android:theme="@style/DefaultTheme"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"/>
@@ -101,7 +101,6 @@
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.BrowserActivity" />
         <activity android:name=".ui.FeedbackActivity" />
-        <activity android:name=".ui.DonateActivity" />
 
     </application>
 

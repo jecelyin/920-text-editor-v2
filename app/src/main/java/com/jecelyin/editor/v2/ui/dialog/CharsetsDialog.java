@@ -19,6 +19,7 @@
 package com.jecelyin.editor.v2.ui.dialog;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.ListView;
@@ -86,8 +87,12 @@ public class CharsetsDialog extends AbstractDialog {
 
         handleDialog(dlg);
 
+        TypedArray a = context.obtainStyledAttributes(new int[]{R.attr.dividerColor});
+        int dividerColor = a.getColor(0, 0);
+        a.recycle();
+
         ListView listView = dlg.getListView();
-        listView.setDivider(new ColorDrawable(context.getResources().getColor(R.color.divider)));
+        listView.setDivider(new ColorDrawable(dividerColor));
         listView.setDividerHeight(context.getResources().getDimensionPixelSize(R.dimen.divider_height));
 
     }

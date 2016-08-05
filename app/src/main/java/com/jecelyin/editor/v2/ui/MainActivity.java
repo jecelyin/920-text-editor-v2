@@ -35,6 +35,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,6 +60,7 @@ import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
 import com.jecelyin.editor.v2.task.CheckUpgradeTask;
 import com.jecelyin.editor.v2.task.ClusterCommand;
+import com.jecelyin.editor.v2.ui.dialog.ChangeThemeDialog;
 import com.jecelyin.editor.v2.ui.dialog.CharsetsDialog;
 import com.jecelyin.editor.v2.ui.dialog.GotoLineDialog;
 import com.jecelyin.editor.v2.ui.dialog.InsertDateTimeDialog;
@@ -140,6 +142,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pref = Pref.getInstance(this);
 
         setContentView(R.layout.main_activity);
 
@@ -154,6 +157,12 @@ public class MainActivity extends BaseActivity
         mDrawerLayout = (AnyDrawerLayout) findViewById(R.id.drawer_layout);
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
+        findViewById(R.id.changeThemeBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ChangeThemeDialog(getContext()).show();
+            }
+        });
         SymbolBarLayout symbolBarLayout = (SymbolBarLayout) findViewById(R.id.symbolBarLayout);
         symbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
             @Override
@@ -172,7 +181,6 @@ public class MainActivity extends BaseActivity
         }
 
         setStatusBarColor(mDrawerLayout);
-        pref = Pref.getInstance(this);
 
         bindPreferences();
         setScreenOrientation();
@@ -328,8 +336,8 @@ public class MainActivity extends BaseActivity
             return true; //pass hint
 
         String action = intent.getAction();
-
-        if(Intent.ACTION_MAIN.equals(action)) {
+        // action == null if change theme
+        if(action == null || Intent.ACTION_MAIN.equals(action)) {
             return true;
         }
 
@@ -630,6 +638,16 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (mDrawerLayout != null) {
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                    return true;
+                }
+                if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                    return true;
+                }
+            }
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 UIUtils.toast(getContext(), R.string.press_again_will_exit);
                 mExitTime = System.currentTimeMillis();
