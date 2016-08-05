@@ -201,10 +201,10 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         binding.iconImageView.setChecked(isChecked);
 
         if(!isChecked) {
-            binding.getRoot().setBackgroundResource(R.drawable.white_selectable_item_background);
+            binding.getRoot().setSelected(false);
             binding.extTextView.setVisibility(View.VISIBLE);
         } else {
-            binding.getRoot().setBackgroundResource(R.drawable.gray_seletable_item_background);
+            binding.getRoot().setSelected(true);
             binding.extTextView.setVisibility(View.INVISIBLE);
         }
     }

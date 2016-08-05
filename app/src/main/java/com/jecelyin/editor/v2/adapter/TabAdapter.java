@@ -46,11 +46,13 @@ public class TabAdapter extends RecyclerView.Adapter {
         ViewHolder viewHolder = (ViewHolder) holder;
         TabInfo tabInfo = getItem(position);
 
-        if (position == currentTab) {
-            viewHolder.itemView.setBackgroundResource(R.drawable.drawer_tab_item_background);
-        } else {
-            viewHolder.itemView.setBackgroundResource(R.drawable.white_selectable_item_background);
-        }
+//        if (position == currentTab) {
+//            viewHolder.itemView.setBackgroundResource(R.drawable.drawer_tab_item_background);
+//        } else {
+//            viewHolder.itemView.setBackgroundResource(R.drawable.white_selectable_item_background);
+//        }
+        viewHolder.itemView.setSelected(position == currentTab);
+
         viewHolder.mTitleTextView.setText(tabInfo.getTitle());
         viewHolder.mFileTextView.setText(tabInfo.getPath());
 

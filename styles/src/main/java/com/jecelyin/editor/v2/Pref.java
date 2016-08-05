@@ -153,12 +153,13 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_FILE_SORT_TYPE, 0);
         map.put(KEY_FULL_SCREEN, false);
 
+        Map<String, ?> values = pm.getAll();
         for(String key : map.keySet()) {
-            updateValue(key);
+            updateValue(key, values);
         }
     }
 
-    private void updateValue(String key) {
+    private void updateValue(String key, Map<String, ?> values) {
         Object value = map.get(key);
         // 跳过一些不能通过本方法取值的东东
         if(value == null)
@@ -167,11 +168,17 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
         try {
             if(cls == int.class || cls == Integer.class) {
-                value = StringUtils.toInt(pm.getString(key, String.valueOf(value)));
+//                value = StringUtils.toInt(pm.getString(key, String.valueOf(value)));
+                Object in = values.get(key);
+                value = in instanceof Integer ? (int)in : StringUtils.toInt(String.valueOf(in));
             } else if(cls == boolean.class || cls == Boolean.class) {
-                value = pm.getBoolean(key, (boolean)value);
+//                value = pm.getBoolean(key, (boolean)value);
+                Boolean b = (Boolean) values.get(key);
+                value = b == null ? (boolean)value : b;
             } else {
-                value = pm.getString(key, (String)value);
+//                value = pm.getString(key, (String)value);
+                String str = (String) values.get(key);
+                value = str == null ? (String)value : str;
             }
         } catch (Exception e) {
             L.e("key = " + key, e);
@@ -194,7 +201,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        updateValue(key);
+        updateValue(key, sharedPreferences.getAll());
         Set<SharedPreferences.OnSharedPreferenceChangeListener> listeners = mListeners.keySet();
         for(SharedPreferences.OnSharedPreferenceChangeListener listener : listeners) {
             if (listener != null) {

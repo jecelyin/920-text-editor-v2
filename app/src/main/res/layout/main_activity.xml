@@ -41,7 +41,7 @@
         android:layout_marginTop="-42dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f0e1e1e1"/>
+        android:background="?android:attr/windowBackground"/>
 
     <include layout="@layout/main_tab_layout" />
 

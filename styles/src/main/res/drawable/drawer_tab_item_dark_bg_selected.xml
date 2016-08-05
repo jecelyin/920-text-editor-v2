@@ -17,21 +17,15 @@
   ~ limitations under the License.
   -->
 
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#ebebeb">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <selector>
-            <item android:state_selected="true">
-                <color android:color="#ebebeb" />
-            </item>
-
-            <item android:state_activated="true">
-                <color android:color="#424242" />
-            </item>
-
-            <item>
-                <color android:color="#fafafa" />
-            </item>
-        </selector>
+        <shape android:shape="rectangle">
+            <solid android:color="#008080" />
+        </shape>
     </item>
-</ripple>
+    <item android:left="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background_material_dark" />
+        </shape>
+    </item>
+</layer-list>

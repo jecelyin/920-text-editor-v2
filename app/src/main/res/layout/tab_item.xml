@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="?attr/selectableItemBackground"
+    android:background="?attr/tabBackground"
     android:paddingStart="18dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -9,7 +9,7 @@
         android:id="@+id/title_text_view"
         android:singleLine="true"
         android:textSize="14sp"
-        android:textColor="#333"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_marginTop="8dp"
         android:layout_marginRight="45dp"
         android:layout_marginEnd="45dp"
@@ -21,7 +21,7 @@
         android:layout_marginRight="45dp"
         android:layout_marginEnd="45dp"
         android:textSize="12sp"
-        android:textColor="#666"
+        android:textColor="?android:attr/textColorSecondary"
         android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

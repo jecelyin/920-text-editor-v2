@@ -49,12 +49,15 @@
         <item name="actionModeCloseDrawable">@drawable/back_btn</item>
 
         <item name="dividerColor">#10000000</item>
+        <item name="android:listDivider">@drawable/divider</item>
 
         <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="android:editTextStyle">@style/EditTextStyle</item>
 
         <!--App自定义-->
         <item name="netLoadingDrawable">@drawable/loading_icon</item>
+        <item name="tabBackground">@drawable/drawer_tab_item_background</item>
+        <item name="listItemBackground">@drawable/white_selectable_item_background</item>
 
         <!--编辑器样式-->
         <item name="textForeground">#000000</item>
