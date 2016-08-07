@@ -37,12 +37,12 @@ import com.jecelyin.editor.v2.highlight.Buffer;
 import com.jecelyin.editor.v2.highlight.HighlightInfo;
 import com.jecelyin.editor.v2.highlight.jedit.LineManager;
 import com.jecelyin.editor.v2.highlight.jedit.Mode;
+import com.jecelyin.editor.v2.highlight.jedit.StyleLoader;
 import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.DefaultTokenHandler;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.ModeProvider;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.SyntaxStyle;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
-import com.jecelyin.editor.v2.highlight.jedit.util.StyleUtilities;
 import com.jecelyin.editor.v2.io.FileReader;
 import com.jecelyin.editor.v2.task.SaveTask;
 import com.jecelyin.editor.v2.Pref;
@@ -58,6 +58,8 @@ import java.util.HashMap;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class Document implements ReadFileListener, TextWatcher {
+    public static SyntaxStyle[] styles;
+
     private final EditorDelegate editorDelegate;
     private final Context context;
     private final SaveTask saveTask;
@@ -67,7 +69,6 @@ public class Document implements ReadFileListener, TextWatcher {
     private byte[] srcMD5;
     private int srcLength;
     private final Buffer buffer;
-    private SyntaxStyle[] styles;
     private final HashMap<Integer, ArrayList<ForegroundColorSpan>> colorSpanMap;
     private File file, rootFile;
     private String modeName;
@@ -386,7 +387,7 @@ public class Document implements ReadFileListener, TextWatcher {
         DefaultTokenHandler tokenHandler;
 
         if(styles == null)
-            styles = StyleUtilities.loadStyles("monospace", 12);
+            styles = StyleLoader.loadStyles(context);
         ArrayList<HighlightInfo> mergerArray;
 
         for (int i = startLine; i <= endLine; i++) {
