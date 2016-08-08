@@ -1,8 +1,8 @@
 ## 920 Text Editor
 **920 Text Editor is a Free, Open Source and no Ad software for android**
  
- ![Screenshot1](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/en/Screenshot_20160715-040942.png?raw=true "Screenshot1")
- ![Screenshot2](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/en/Screenshot_20160715-041014.png?raw=true "Screenshot2")
+ ![Screenshot1](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/en/Screenshot_20160715-041010.png?raw=true 400x)
+ ![Screenshot2](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/en/Screenshot_20160715-041014.png?raw=true 400x)
  
 ### Features:
 1. Multi Tab, you can open different files in different tabs to facilitate you in a different text of this switch to edit
