@@ -191,7 +191,7 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
                     destroyActionMode();
                     return;
                 }
-                file.renameTo(file.newFile(input.toString()), new BoolResultListener() {
+                file.renameTo(file.getParentFile().newFile(input.toString()), new BoolResultListener() {
                     @Override
                     public void onResult(boolean result) {
                         if (!result) {

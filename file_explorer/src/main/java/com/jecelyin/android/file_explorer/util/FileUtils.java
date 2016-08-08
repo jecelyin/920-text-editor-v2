@@ -73,7 +73,7 @@ public class FileUtils {
         return MimeTypes.getInstance().getMimeType(file).startsWith("text/");
     }
 
-    public static void copyDirectory(final JecFile srcDir, final JecFile destDir
+    public static void copyDirectory(final JecFile srcDir, JecFile destDir
                                      , final boolean moveFile) {
         if (srcDir == null) {
             throw new NullPointerException("Source must not be null");
@@ -91,6 +91,8 @@ public class FileUtils {
             throw new ExplorerException("Source '" + srcDir + "' and destination '" + destDir + "' are the same");
         }
 
+        final JecFile destDir2 = destDir.newFile(srcDir.getName());
+
         // Cater for destination being directory within the source directory (see IO-141)
         if (destDir.getAbsolutePath().startsWith(srcDir.getAbsolutePath())) {
             srcDir.listFiles(new FileListResultListener() {
@@ -100,15 +102,15 @@ public class FileUtils {
                     if (srcFiles != null && srcFiles.length > 0) {
                         exclusionList = new ArrayList<>(srcFiles.length);
                         for (JecFile srcFile : srcFiles) {
-                            JecFile copiedFile = destDir.newFile(srcFile.getName());
+                            JecFile copiedFile = destDir2.newFile(srcFile.getName());
                             exclusionList.add(copiedFile.getAbsoluteFile());
                         }
                     }
-                    doCopyDirectory(srcDir, destDir, moveFile, exclusionList);
+                    doCopyDirectory(srcDir, destDir2, moveFile, exclusionList);
                 }
             });
         } else {
-            doCopyDirectory(srcDir, destDir, moveFile, null);
+            doCopyDirectory(srcDir, destDir2, moveFile, null);
         }
     }
 
