@@ -19,6 +19,7 @@
 package com.jecelyin.editor.v2.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import com.jecelyin.common.widget.CheckableImageView;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
+import com.jecelyin.editor.v2.ui.MenuManager;
 import com.jecelyin.editor.v2.view.menu.MenuFactory;
 import com.jecelyin.editor.v2.view.menu.MenuGroup;
 import com.jecelyin.editor.v2.view.menu.MenuItemInfo;
@@ -84,7 +86,8 @@ public class MainMenuAdapter extends RecyclerView.Adapter {
         if(holder instanceof ItemViewHolder) {
             final ItemViewHolder vh = (ItemViewHolder)holder;
             vh.mTextView.setText(item.getTitleResId());
-            vh.mTextView.setCompoundDrawablesWithIntrinsicBounds(item.getIconResId(), 0, 0, 0);
+            Drawable icon = MenuManager.makeMenuNormalIcon(vh.itemView.getResources(), item.getIconResId());
+            vh.mTextView.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
             vh.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -93,7 +93,6 @@
     <string name="indent_size">Indent size</string>
     <string name="highlight_and_theme">Highlight and Theme</string>
     <string name="highlight_the_file_size_limit">Limit highlight file size</string>
-    <string name="select_theme">Select theme（come soon）</string>
     <string name="auto_save">Auto save file</string>
     <string name="remember_last_opened_files">Remember last opened files</string>
     <string name="remember_last_opened_files_summary">Auto open last opened files when startup</string>

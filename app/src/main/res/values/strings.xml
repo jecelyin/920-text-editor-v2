@@ -94,7 +94,6 @@
     <string name="indent_size">缩进大小</string>
     <string name="highlight_and_theme">高亮和主题</string>
     <string name="highlight_the_file_size_limit">限制高亮的文件大小</string>
-    <string name="select_theme">选择主题（待开发）</string>
     <string name="auto_save">自动保存文档</string>
     <string name="remember_last_opened_files">记住最后打开的文件</string>
     <string name="remember_last_opened_files_summary">启动编辑器时自动打开上次打开的文件</string>

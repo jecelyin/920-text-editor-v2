@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -143,9 +144,9 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pref = Pref.getInstance(this);
+        MenuManager.init(this);
 
         setContentView(R.layout.main_activity);
-
 
         L.d(TAG, "onCreate");
         CrashDbHelper.getInstance(this).close(); //初始化一下
@@ -284,12 +285,10 @@ public class MainActivity extends BaseActivity
     }
 
     private void initToolbar() {
-//        mToolbar.setTitleTextAppearance(this, R.style.Toolbar_TitleTextAppearance);
+
 
         Resources res = getResources();
-        int textSize = res.getDimensionPixelSize(R.dimen.tab_text_size);
-//        tabDrawable = new TabDrawable(this, BitmapFactory.decodeResource(res, R.drawable.ic_drawer_raw), "0", textSize);
-//        mToolbar.setNavigationIcon(tabDrawable);
+
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_raw);
         mToolbar.setNavigationContentDescription(R.string.tab);
 
@@ -297,8 +296,8 @@ public class MainActivity extends BaseActivity
         List<MenuItemInfo> menuItemInfos = MenuFactory.getInstance(this).getToolbarIcon();
         for (MenuItemInfo item : menuItemInfos) {
             MenuItem menuItem = menu.add(MenuDef.GROUP_TOOLBAR, item.getItemId(), Menu.NONE, item.getTitleResId());
-            menuItem.setIcon(item.getIconResId());
-            menuItem.getIcon().setLevel(MenuDef.LEVEL_TOOLBAR);
+            menuItem.setIcon(MenuManager.makeToolbarNormalIcon(res, item.getIconResId()));
+
             //menuItem.setShortcut()
             menuItem.setOnMenuItemClickListener(this);
             menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -386,12 +385,17 @@ public class MainActivity extends BaseActivity
         if (menuItem == null) {
             throw new RuntimeException("Can't find a menu item");
         }
+        Drawable icon = menuItem.getIcon();
         if (status == MenuDef.STATUS_DISABLED) {
             menuItem.setEnabled(false);
-            menuItem.getIcon().setLevel(MenuDef.LEVEL_DISABLED);
+            menuItem.setIcon(MenuManager.makeToolbarDisabledIcon(icon));
         } else {
             menuItem.setEnabled(true);
-            menuItem.getIcon().setLevel(menuItem.getGroupId() == MenuDef.GROUP_TOOLBAR ? MenuDef.LEVEL_TOOLBAR : MenuDef.LEVEL_DEFAULT);
+            if (menuItem.getGroupId() == MenuDef.GROUP_TOOLBAR) {
+                menuItem.setIcon(MenuManager.makeToolbarNormalIcon(icon));
+            } else {
+                menuItem.setIcon(MenuManager.makeMenuNormalIcon(icon));
+            }
         }
     }
 

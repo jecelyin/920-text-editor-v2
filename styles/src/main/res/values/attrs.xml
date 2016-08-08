@@ -2,6 +2,9 @@
 <resources>
     <attr name="dividerColor" format="color" />
     <attr name="listItemBackground" format="reference" />
+    <attr name="toolbarIconNormalColor" format="color" />
+    <attr name="toolbarIconDisabledColor" format="color" />
+    <attr name="menuIconNormalColor" format="color" />
 
     <declare-styleable name="Editor">
         <attr name="textForeground" format="color" />

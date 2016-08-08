@@ -44,14 +44,12 @@
         <!--<item name="android:actionBarStyle">@style/Toolbar</item>-->
         <item name="actionBarStyle">@style/Toolbar</item>
         <!--使用方式 app:theme="?attr/actionBarTheme"-->
-        <item name="actionBarTheme">@style/ToolbarTheme</item>
+        <item name="actionBarTheme">@style/DarkToolbarTheme</item>
         <item name="actionBarPopupTheme">@style/DarkToolbarPopupTheme</item>
-        <!--<item name="android:popupMenuStyle"></item>-->
         <!--菜单字体颜色-->
         <item name="actionMenuTextColor">@android:color/white</item>
-        <!--<item name="actionMenuTextAppearance">@style/Toolbar.Item</item>-->
 
-        <item name="actionModeStyle">@style/ActionMode</item>
+        <item name="actionModeStyle">@style/DarkActionMode</item>
         <item name="actionModeFindDrawable">@drawable/find_white</item>
         <item name="actionModeCloseDrawable">@drawable/back_btn</item>
 
@@ -65,6 +63,9 @@
         <item name="netLoadingDrawable">@drawable/loading_icon</item>
         <item name="tabBackground">@drawable/drawer_tab_item_dark_background</item>
         <item name="listItemBackground">@drawable/gray_selectable_item_background</item>
+        <item name="toolbarIconNormalColor">#ffffff</item>
+        <item name="toolbarIconDisabledColor">#50ffffff</item>
+        <item name="menuIconNormalColor">#829294</item>
 
         <!--编辑器样式-->
         <item name="textForeground">#A6B2C0</item>
@@ -108,11 +109,21 @@
         <item name="hlOperator">#D0D0FF</item>
     </style>
 
+    <style name="DarkToolbarTheme" parent="@style/ToolbarTheme">
+        <item name="android:actionMenuTextAppearance">@style/Toolbar.Item</item>
+    </style>
+
     <style name="DarkToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
         <item name="colorControlNormal">@color/darkColorControlNormal</item>
     </style>
 
     <style name="DarkTextViewStyle" parent="TextViewStyle">
+        <!-- 注意,Toolbar Menu也会有影响 -->
         <item name="android:textColor">@color/editor_primary_text_material_dark</item>
+    </style>
+
+    <color name="dark_actionmode_light_background">#666666</color>
+    <style name="DarkActionMode" parent="@style/ActionMode">
+        <item name="background">@color/dark_actionmode_light_background</item>
     </style>
 </resources>

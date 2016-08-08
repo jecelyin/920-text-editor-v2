@@ -58,6 +58,9 @@
         <item name="netLoadingDrawable">@drawable/loading_icon</item>
         <item name="tabBackground">@drawable/drawer_tab_item_background</item>
         <item name="listItemBackground">@drawable/white_selectable_item_background</item>
+        <item name="toolbarIconNormalColor">#ffffff</item>
+        <item name="toolbarIconDisabledColor">#50ffffff</item>
+        <item name="menuIconNormalColor">#23c5dd</item>
 
         <!--编辑器样式-->
         <item name="textForeground">#000000</item>
