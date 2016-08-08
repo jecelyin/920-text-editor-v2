@@ -21,6 +21,7 @@ package com.jecelyin.common.app;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +45,9 @@ public class JecActivity extends AppCompatActivity {
     }
 
     protected void setStatusBarColor(ViewGroup drawerLayout) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
         if (isFullScreenMode())
             return;
         TypedArray a = getTheme().obtainStyledAttributes(new int[]{R.attr.colorPrimary});
