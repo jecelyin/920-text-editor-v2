@@ -106,13 +106,13 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
         binding.pathScrollView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         pathAdapter = new PathButtonAdapter();
-        pathAdapter.setPath(path);
         pathAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
                 binding.pathScrollView.scrollToPosition(pathAdapter.getItemCount() - 1);
             }
         });
+        pathAdapter.setPath(path);
         pathAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position, View view) {

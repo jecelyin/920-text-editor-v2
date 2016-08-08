@@ -58,6 +58,7 @@
             <TextView android:id="@+id/emptyLayout"
                 android:drawableTop="@drawable/empty"
                 android:text="@string/no_data"
+                android:visibility="gone"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
