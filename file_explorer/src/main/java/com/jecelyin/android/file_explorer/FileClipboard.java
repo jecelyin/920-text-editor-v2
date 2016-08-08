@@ -57,6 +57,7 @@ public class FileClipboard {
                 FileUtils.copyFile(file, currentDirectory.newFile(file.getName()), !isCopy);
             }
         }
+        clipList.clear();
     }
 
     public void setOnClipboardDataChangedListener(OnClipboardDataChangedListener onClipboardDataChangedListener) {
