@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -187,6 +188,7 @@ public class MainActivity extends BaseActivity
         setScreenOrientation();
 
         mDrawerLayout.setEnabled(false);
+        mDrawerLayout.setScrimColor(Color.TRANSPARENT);
 
         String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
@@ -460,6 +462,7 @@ public class MainActivity extends BaseActivity
                 UIUtils.toast(this, fullscreenMode
                         ? R.string.disabled_fullscreen_mode_message
                         : R.string.enable_fullscreen_mode_message);
+                break;
             case R.id.m_readonly:
                 boolean readOnly = !pref.isReadOnly();
                 pref.setReadOnly(readOnly);
