@@ -172,4 +172,11 @@
     <string name="clear_history">Clear History</string>
     <string name="custom_symbol_list">Custom symbol list</string>
     <string name="reset">Reset</string>
+    <string name="change_theme">Change theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="default_theme">Default Theme</string>
+    <string name="fullscreen_mode">Fullscreen Mode</string>
+    <string name="enable_fullscreen_mode_message">Restart the application will enable the full screen mode</string>
+    <string name="disabled_fullscreen_mode_message">Restart the application will disable the full screen mode</string>
+    <string name="confirm_change_theme_message">Change theme will not auto save documents, you confirm discard document to change theme?</string>
 </resources>

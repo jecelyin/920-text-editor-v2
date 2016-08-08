@@ -170,7 +170,7 @@
     <string name="default_theme">默认</string>
     <string name="dark_theme">黑夜</string>
     <string name="change_theme">改变主题</string>
-    <string name="confirm_change_theme_message">改变主题不会自动保存当前文档, 确认放弃文档改变?</string>
+    <string name="confirm_change_theme_message">改变主题不会自动保存当前文档, 确认放弃文档改变而改变主题?</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 个匹配</item>
         <item quantity="other">%d 处文本已经替换</item>

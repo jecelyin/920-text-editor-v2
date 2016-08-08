@@ -9704,6 +9704,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         return getLayout().getHeight()-vspace;
     }
 
+    @SuppressWarnings("ResourceType")
     public void initTheme() {
         TypedArray a = getContext().obtainStyledAttributes(new int[]{
                 R.attr.textForeground,
@@ -9714,13 +9715,13 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                 R.attr.invisibles,
                 R.attr.selection,
         });
-        int textForeground = a.getColor(0, 0);
-        int textBackground = a.getColor(1, 0);
-        int gutterForeground = a.getColor(2, 0);
-        int gutterBackground = a.getColor(3, 0);
-        int gutterDivider = a.getColor(4, 0);
-        int invisibles = a.getColor(5, 0);
-        int selection = a.getColor(6, 0);
+        int textForeground = a.getColor(0, Color.BLACK);
+        int textBackground = a.getColor(1, Color.BLACK);
+        int gutterForeground = a.getColor(2, Color.BLACK);
+        int gutterBackground = a.getColor(3, Color.BLACK);
+        int gutterDivider = a.getColor(4, Color.BLACK);
+        int invisibles = a.getColor(5, Color.BLACK);
+        int selection = a.getColor(6, Color.BLACK);
         a.recycle();
 
         setBackgroundColor(textBackground);
