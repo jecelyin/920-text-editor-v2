@@ -170,7 +170,8 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
             if(cls == int.class || cls == Integer.class) {
 //                value = StringUtils.toInt(pm.getString(key, String.valueOf(value)));
                 Object in = values.get(key);
-                value = in instanceof Integer ? (int)in : StringUtils.toInt(String.valueOf(in));
+                if (in != null)
+                    value = in instanceof Integer ? (int)in : StringUtils.toInt(String.valueOf(in));
             } else if(cls == boolean.class || cls == Boolean.class) {
 //                value = pm.getBoolean(key, (boolean)value);
                 Boolean b = (Boolean) values.get(key);
