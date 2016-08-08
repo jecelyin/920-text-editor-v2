@@ -68,7 +68,7 @@
         <item name="gutterForeground">#000000</item>
         <item name="gutterBackground">#dfdfdf</item>
         <item name="gutterDivider">#000000</item>
-        
+
         <!--高亮-->
         <item name="hlComment1">#cc0000</item>
         <item name="hlComment2">#ff8400</item>
