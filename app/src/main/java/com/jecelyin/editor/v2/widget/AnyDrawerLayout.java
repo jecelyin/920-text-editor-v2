@@ -1079,10 +1079,13 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
             if (child.getVisibility() == GONE) {
                 continue;
             }
+            final @EdgeGravity int vchildGravity =
+                    getDrawerViewAbsoluteGravity(child) & Gravity.VERTICAL_GRAVITY_MASK;
+            boolean isBottomEdgeDrawer = (vchildGravity == Gravity.BOTTOM);
 
             final LayoutParams lp = (LayoutParams) child.getLayoutParams();
 
-            if (applyInsets) {
+            if (applyInsets && !isBottomEdgeDrawer) {
                 final int cgrav = GravityCompat.getAbsoluteGravity(lp.gravity, layoutDirection);
                 if (ViewCompat.getFitsSystemWindows(child)) {
                     IMPL.dispatchChildInsets(child, mLastInsets, cgrav);
@@ -1106,12 +1109,11 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
                 }
                 final @EdgeGravity int childGravity =
                         getDrawerViewAbsoluteGravity(child) & Gravity.HORIZONTAL_GRAVITY_MASK;
-                final @EdgeGravity int vchildGravity =
-                        getDrawerViewAbsoluteGravity(child) & Gravity.VERTICAL_GRAVITY_MASK;
+//                final @EdgeGravity int vchildGravity =
+//                        getDrawerViewAbsoluteGravity(child) & Gravity.VERTICAL_GRAVITY_MASK;
                 // Note that the isDrawerView check guarantees that childGravity here is either
                 // LEFT or RIGHT
                 boolean isLeftEdgeDrawer = (childGravity == Gravity.LEFT);
-                boolean isBottomEdgeDrawer = (vchildGravity == Gravity.BOTTOM);
                 if ((isLeftEdgeDrawer && hasDrawerOnLeftEdge) ||
                         (isBottomEdgeDrawer && hasDrawerOnBottomEdge) ||
                         (!isBottomEdgeDrawer && !isLeftEdgeDrawer && hasDrawerOnRightEdge)) {
@@ -1305,10 +1307,13 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
     public void computeScroll() {
         final int childCount = getChildCount();
         float scrimOpacity = 0;
+        View child;
         for (int i = 0; i < childCount; i++) {
-            LayoutParams lp = (LayoutParams) getChildAt(i).getLayoutParams();
+            child = getChildAt(i);
+            LayoutParams lp = (LayoutParams) child.getLayoutParams();
             //简单判断是否底部 View，如果是则跳过它，不然会因为底部 View 已经显示导致无法点击其它地方
-            if (lp.topMargin != 0)
+            //if android:fitsSystemWindows="true": lp.topMargin < 0
+            if (checkDrawerViewAbsoluteGravity(child, Gravity.BOTTOM))
                 continue;
             final float onscreen = lp.onScreen;
             scrimOpacity = Math.max(scrimOpacity, onscreen);

@@ -18,7 +18,7 @@
                 android:background="?attr/colorPrimaryDark"
                 android:translationZ="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
+                android:layout_height="70dp">
                 <TextView
                     android:id="@+id/appNameTextView"
                     android:textSize="18sp"
