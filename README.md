@@ -1,13 +1,13 @@
 ## 920 Text Editor
 **920 Text Editor is a Free, Open Source and no Ad software for android**
  
- ![Screenshot1](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/en/Screenshot_20160715-041010.png?raw=true)
+ ![Screenshot1](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/preview.png?raw=true)
 
 ### Features:
 1. Multi Tab, you can open different files in different tabs to facilitate you in a different text of this switch to edit
 1. syntax highlighting:ASP, ActionScript, C/C++, C#, Erlang, Frink, HTML/XML/WML, CSS, Javascript
        , Java, JSP, Perl, PowerShell , PHP, Python, Shell/Bash, Lua, SQL, VB/VBS, Tcl, TeX/LaTeX, Verilog, AutoHotKey
-       , AutoLisp, Pascal, Fortran, ColdFusion, VHDL
+       , AutoLisp, Pascal, Fortran, ColdFusion, VHDL etc...
 1. show line numbers
 1. show blank characters (tabs, line breaks)
 1. automatically detects the open file encoding, and you can also convert the current file encoding support:
@@ -32,16 +32,17 @@
 1. use the volume keys to quickly switch the display/hide the toolbar, full-screen mode
 1. preview the HTML file
 1. Color Picker
+1. Dark Theme
 1. you can use the “Preferences” menu “Donate” page to the donate it  
 
 
 ##920文本编辑器
-**920文本编辑器是一款运行于Android上免费，开源，永无广告的文本编辑器**
+**920文本编辑器现更名为920编辑器，它是一款运行于Android上免费、开源、永无广告的文本编辑器，支持多标签，语法高亮等等..**
  
 ### 特色功能:
 1. 多标签，你可以在不同的标签打开不同的文件，方便你在不同的文本之本切换编辑
 1. 语法高亮:ASP, ActionScript, C/C++, C#, Erlang, Frink, HTML/XML/WML, CSS, Javascript, Java, JSP, Perl, PowerShell
-       , PHP, Python, Shell/Bash, Lua, SQL, VB/VBS, Tcl, TeX/LaTeX, Verilog, AutoHotKey, AutoLisp, Pascal
+       , PHP, Python, Shell/Bash, Lua, SQL, VB/VBS, Tcl, TeX/LaTeX, Verilog, AutoHotKey, AutoLisp, Pascal等等...
 1. 显示行号
 1. 显示空白字符（制表符，换行符）
 1. 自动检测打开的文件编码，同时你也可以转换当前文件编码，支持:
@@ -65,41 +66,10 @@
 1. 使用音量键快速切换显示/隐藏工具栏，全屏模式
 1. 预览HTML文件
 1. 强大的颜色拾取器
+1. 黑色主题
 1. 你可以通过“参数”菜单的“捐赠”页面来捐助它
  
 **Special thanks to donated friend (特别感谢捐赠了的朋友):**
-* Sagar Nimje
-* Vincent Scholze
-* John Johnson
-* Mark R Turnbull
-* David
-* 陈 杰
-* mark luscher
-* Konrad Wetzel
-* Chuck Thomas Enterprises
-* David Black
-* Deborah Kraft
-* Antonello Casula
-* Megan Webb
-* Doug Freeze
-* Bradley Hertz
-* David Craig Barker
-* Edward Peckham
-* Toni Mäenpää
-* Michel Pitermann
-* Kevin Mears
-* Tom Louie
-* Cédric Heintz
-* 赵先聪
-* DAVID ARSO CIVIL
-* Meng Li
-* Visualdensity
-* Jesús Màrquez
-* Yoshimasa Ideguchi
-* Nathan Quinn
-* Vincent Scholze
-* Gerald Tan
-* ...
 
 You can download from:
 * [https://market.android.com/details?id=com.jecelyin.editor](https://market.android.com/details?id=com.jecelyin.editor)
