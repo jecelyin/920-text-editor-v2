@@ -10,11 +10,7 @@
        , AutoLisp, Pascal, Fortran, ColdFusion, VHDL etc...
 1. show line numbers
 1. show blank characters (tabs, line breaks)
-1. automatically detects the open file encoding, and you can also convert the current file encoding support:
-        ISO-2022-CN, BIG5, EUC-TW, GBK, GB2312, ISO-8859-5, KOI8-R, WINDOWS-1251, MACCYRILLIC, IBM866, IBM855
-        , ISO-8859-7, WINDOWS-1253, ISO-8859-8, WINDOWS-1255, ISO-2022-JP, SHIFT_JIS, EUC-JP, ISO-2022-KR
-        , EUC-KR, UTF-8, UTF-16BE / UTF-16LE, UTF-32BE / UTF-32LE / X-ISO-10646-UCS-4-34121 / X-ISO-10646-UCS-4-21431
-        , WINDOWS-1252
+1. automatically detects the open file encoding, and you can also convert the current file encoding
 1. easy toolbar, you can quickly doing a new file, open, save, save as, undo/redo
         , and some commonly used symbols, back to last edit location, etc.
 1. list of recently opened files history
@@ -45,11 +41,7 @@
        , PHP, Python, Shell/Bash, Lua, SQL, VB/VBS, Tcl, TeX/LaTeX, Verilog, AutoHotKey, AutoLisp, Pascal等等...
 1. 显示行号
 1. 显示空白字符（制表符，换行符）
-1. 自动检测打开的文件编码，同时你也可以转换当前文件编码，支持:
-        ISO-2022-CN,BIG5,EUC-TW,GBK,GB2312,ISO-8859-5,KOI8-R,WINDOWS-1251,MACCYRILLIC,IBM866,IBM855
-       ,ISO-8859-7,WINDOWS-1253,ISO-8859-8,WINDOWS-1255,ISO-2022-JP,SHIFT_JIS,EUC-JP,ISO-2022-KR
-       ,EUC-KR,UTF-8,UTF-16BE / UTF-16LE,UTF-32BE / UTF-32LE / X-ISO-10646-UCS-4-34121 / X-ISO-10646-UCS-4-21431
-       ,WINDOWS-1252
+1. 自动检测打开的文件编码，同时你也可以转换当前文件编码，支持
 1. 方便的工具栏，你可以快捷进行文件新建、打开、保存、另存为、撤销/重做、一些常用符号、返回上次编辑位置等等
 1. 最近打开的文件历史列表
 1. 正则查找、替换或替换全部
