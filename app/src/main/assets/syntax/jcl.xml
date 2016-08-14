@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
-<!--  
+<!--
       JCL edit mode by Bill McMilleon (bill@mcmilleon.com)
       March 19, 2003
 
@@ -11,15 +10,15 @@
 				FILE_NAME_GLOB="*.{jcl}" />
 
 -->
- 
- 
+
+
 <MODE>
 
     <PROPS>
         <PROPERTY NAME="wordBreakChars" VALUE=",+-=&lt;&gt;/?^&amp;*" />
     </PROPS>
 
-    
+
     <RULES IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="FALSE">
 
 <!-- In fixed form, column 72 is the last column parsed, unless the

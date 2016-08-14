@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
@@ -12,8 +11,8 @@
 		<PROPERTY NAME="contextInsensitive" VALUE="true"/>
 	</PROPS>
 	<RULES IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="FALSE">
-		<EOL_SPAN TYPE="COMMENT1" 
-			DELEGATE="CHANGED" 
+		<EOL_SPAN TYPE="COMMENT1"
+			DELEGATE="CHANGED"
 			AT_LINE_START="TRUE"
 		>CVS:</EOL_SPAN>
 	</RULES>

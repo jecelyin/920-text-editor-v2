@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM 'xmode.dtd'>
 
 <!-- Regular Expression mode, by Kevin Hunter -->
@@ -118,4 +117,4 @@ $ - Match at end of string
 	</RULES>
 
 </MODE>
- 	  	 
+

@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- Occam mode by Rick Beton. -->
@@ -66,7 +65,7 @@
 			<KEYWORD1>SEQ</KEYWORD1>
 			<KEYWORD1>VALOF</KEYWORD1>
 			<KEYWORD1>WHILE</KEYWORD1>
-                        
+
 			<!-- main keywords -->
                         <KEYWORD2>AT</KEYWORD2>
 			<KEYWORD2>ELSE</KEYWORD2>
@@ -131,7 +130,7 @@
 			<KEYWORD2>SEMAPHORE</KEYWORD2>
 			<KEYWORD2>SHARED</KEYWORD2>
 			<KEYWORD2>SYNC</KEYWORD2>
-                        
+
                         <!-- arithmetic & trigonometric functions -->
 			<KEYWORD3>LONGADD</KEYWORD3>
 			<KEYWORD3>LONGSUB</KEYWORD3>

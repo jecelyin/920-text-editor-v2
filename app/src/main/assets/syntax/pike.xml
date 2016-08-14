@@ -1,10 +1,4 @@
 <?xml version="1.0"?>
-
-<!-- Pike mode, contributed by
-                      Marco G?tze, <gomar@gmx.net> -->
-<!-- Small fixes and autodoc support contributed by
-                      Peter Lundqvist <peterl@update.uu.se> -->
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>

@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- INTERLIS mode (www.interlis.ch) by Claude Eisenhut (ce@eisenhutinformatik.ch). -->
@@ -76,7 +75,7 @@
 		<SEQ TYPE="OPERATOR">{</SEQ>
 		<SEQ TYPE="OPERATOR">}</SEQ>
 		<SEQ TYPE="OPERATOR">~</SEQ>
-		
+
 		<KEYWORDS>
 			<!-- INTERLIS 1 -->
 			<KEYWORD1>ANY</KEYWORD1>
@@ -256,7 +255,7 @@
 			<KEYWORD1>WHERE</KEYWORD1>
 			<KEYWORD1>WITH</KEYWORD1>
 			<KEYWORD1>WITHOUT</KEYWORD1>
-			
+
 		</KEYWORDS>
 	</RULES>
 </MODE>

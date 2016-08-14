@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -17,14 +16,14 @@
 		</SPAN>
 
 		<EOL_SPAN TYPE="COMMENT1">//</EOL_SPAN>
-		
+
 		<EOL_SPAN TYPE="COMMENT3">#!</EOL_SPAN>
 
 		<SPAN TYPE="LITERAL1" ESCAPE="\" NO_LINE_BREAK="TRUE">
 			<BEGIN>"</BEGIN>
 			<END>"</END>
 		</SPAN>
-		
+
 		<SEQ TYPE="OPERATOR">.</SEQ>
 		<SEQ TYPE="OPERATOR">&amp;</SEQ>
 		<SEQ TYPE="OPERATOR">&lt;</SEQ>
@@ -46,14 +45,14 @@
 		<SEQ TYPE="OPERATOR">:</SEQ>
 		<SEQ TYPE="OPERATOR">?</SEQ>
 		<SEQ TYPE="OPERATOR">,</SEQ>
-		
+
 		<KEYWORDS>
 			<OPERATOR>or</OPERATOR>
 			<OPERATOR>and</OPERATOR>
 			<OPERATOR>div</OPERATOR>
 			<OPERATOR>mod</OPERATOR>
 			<OPERATOR>not</OPERATOR>
-			
+
 			<KEYWORD1>case</KEYWORD1>
 			<KEYWORD1>of</KEYWORD1>
 			<KEYWORD1>when</KEYWORD1>
@@ -66,7 +65,7 @@
 			<KEYWORD1>catch</KEYWORD1>
 			<KEYWORD1>throw</KEYWORD1>
 			<KEYWORD1>quote</KEYWORD1>
-			
+
 			<KEYWORD2>bigint</KEYWORD2>
 			<KEYWORD2>bool</KEYWORD2>
 			<KEYWORD2>char</KEYWORD2>
@@ -81,7 +80,7 @@
 			<KEYWORD2>dmatrix</KEYWORD2>
 			<KEYWORD2>cmatrix</KEYWORD2>
 			<KEYWORD2>imatrix</KEYWORD2>
-			
+
 			<KEYWORD3>const</KEYWORD3>
 			<KEYWORD3>def</KEYWORD3>
 			<KEYWORD3>extern</KEYWORD3>
@@ -97,7 +96,7 @@
 			<KEYWORD3>prefix</KEYWORD3>
 			<KEYWORD3>postfix</KEYWORD3>
 			<KEYWORD3>using</KEYWORD3>
-			
+
 			<LITERAL2>true</LITERAL2>
 			<LITERAL2>false</LITERAL2>
 		</KEYWORDS>
@@ -105,4 +104,4 @@
 
 </MODE>
 
- 	  	 
+

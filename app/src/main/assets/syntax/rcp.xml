@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
  **
@@ -9,9 +10,6 @@
  ** v1.0 (2006.04.25)
  **
 -->
-
-<!DOCTYPE MODE SYSTEM "xmode.dtd">
-
 <MODE>
 	<PROPS>
 	<!--

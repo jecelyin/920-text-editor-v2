@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
@@ -42,7 +41,7 @@ $Id: nsis2.xml 22465 2012-11-13 06:45:29Z ezust $
 
     <!-- Silly comment -->
     <SEQ TYPE="COMMENT1">/**/</SEQ>
-	
+
 		<EOL_SPAN TYPE="COMMENT1">;</EOL_SPAN>
 		<EOL_SPAN TYPE="COMMENT2">#</EOL_SPAN>
 

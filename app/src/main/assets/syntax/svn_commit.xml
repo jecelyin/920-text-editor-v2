@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
@@ -11,8 +10,8 @@
 		<PROPERTY NAME="contextInsensitive" VALUE="true" />
 	</PROPS>
 	<RULES IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="FALSE">
-		<SEQ TYPE="COMMENT1" 
-			DELEGATE="CHANGED" 
+		<SEQ TYPE="COMMENT1"
+			DELEGATE="CHANGED"
 			AT_LINE_START="TRUE"
 		>--This line, and those below, will be ignored--</SEQ>
 	</RULES>

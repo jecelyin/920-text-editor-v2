@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!--
+<!DOCTYPE MODE SYSTEM "xmode.dtd"><!--
 Basic N3 mode by Jakub Roztočil <jakub@roztocil.name>
 
 	N3 (Notation3) is a shorthand non-XML serialization of RDF
@@ -14,7 +14,6 @@ TODO:
 	* higlight qnames, not only prefixes (prefix:qname)
 
 -->
-<!DOCTYPE MODE SYSTEM "xmode.dtd">
 <MODE>
 	<PROPS>
 		<!-- Indent when writting more statements about the same subject -->
@@ -83,4 +82,4 @@ TODO:
 
 </MODE>
 
- 	  	 
+

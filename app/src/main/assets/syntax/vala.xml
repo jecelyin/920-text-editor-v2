@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -22,7 +21,7 @@
 	<RULES IGNORE_CASE="FALSE"
 		HIGHLIGHT_DIGITS="TRUE"
 		DIGIT_RE="(0x[\p{XDigit}]+[lL]?|[\p{Digit}]+(e[\p{Digit}]*)?[lLdDfF]?)">
-		
+
 		<!-- Valadoc comment -->
 		<SPAN TYPE="COMMENT3" DELEGATE="VALADOC">
 			<BEGIN>/**</BEGIN>
@@ -41,7 +40,7 @@
 			<BEGIN>@"</BEGIN>
 			<END>"</END>
 		</SPAN>
-		
+
 		<!-- verbatim strings -->
 		<SPAN TYPE="LITERAL3" NO_LINE_BREAK="FALSE">
 			<BEGIN>"""</BEGIN>
@@ -189,7 +188,7 @@
 			<LITERAL2>true</LITERAL2>
 		</KEYWORDS>
 	</RULES>
-	
+
 	<!-- Copied from the Javadoc rules set -->
 	<!-- TODO: verify these when http://live.gnome.org/Valadoc gets updated -->
 	<RULES SET="VALADOC" DEFAULT="COMMENT3" IGNORE_CASE="TRUE">

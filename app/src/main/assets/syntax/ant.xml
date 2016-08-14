@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -13,13 +12,13 @@
 			<BEGIN>&lt;transaction</BEGIN>
 			<END>&lt;/transaction&gt;</END>
 		</SPAN>
-		
+
 		<!-- ant variables -->
 		<SPAN TYPE="KEYWORD3">
 			<BEGIN>${</BEGIN>
 			<END>}</END>
 		</SPAN>
-		
+
 		<!-- SGML comment -->
 		<SPAN TYPE="COMMENT1">
 			<BEGIN>&lt;!--</BEGIN>
@@ -63,7 +62,7 @@
 		</SPAN>
 	</RULES>
 	<!-- }}} -->
-	
+
 	<!-- {{{ TAGS -->
 	<RULES SET="TAGS" DEFAULT="MARKUP" NO_WORD_SEP="-_">
 		<!-- SGML comment -->
@@ -89,15 +88,15 @@
 		<SEQ TYPE="OPERATOR">:</SEQ>
 		<KEYWORDS>
 			<KEYWORD1>target</KEYWORD1>
-			
+
 			<KEYWORD2>project</KEYWORD2>
-			
+
 			<KEYWORD3>description</KEYWORD3>
 			<KEYWORD3>loadfile</KEYWORD3>
 			<KEYWORD3>loadproperties</KEYWORD3>
 			<KEYWORD3>property</KEYWORD3>
 			<KEYWORD3>xmlproperty</KEYWORD3>
-			
+
 			<KEYWORD4>fileset</KEYWORD4>
 			<KEYWORD4>filelist</KEYWORD4>
 			<KEYWORD4>include</KEYWORD4>
@@ -107,16 +106,16 @@
 			<KEYWORD4>path</KEYWORD4>
 			<KEYWORD4>pathelement</KEYWORD4>
 			<KEYWORD4>classpath</KEYWORD4>
-         
+
          <!-- condition subelements -->
          <KEYWORD4>istrue</KEYWORD4>
-			
+
 			<OPERATOR>equals</OPERATOR>
 			<OPERATOR>and</OPERATOR>
 			<OPERATOR>or</OPERATOR>
 			<OPERATOR>not</OPERATOR>
 			<OPERATOR>=</OPERATOR>
-			
+
 			<!-- basic file tasks -->
 			<FUNCTION>chmod</FUNCTION>
 			<FUNCTION>checksum</FUNCTION>
@@ -132,7 +131,7 @@
 			<FUNCTION>patch</FUNCTION>
 			<FUNCTION>tempfile</FUNCTION>
 			<FUNCTION>touch</FUNCTION>
-			
+
 			<!-- java specific tasks -->
 			<FUNCTION>java</FUNCTION>
 			<FUNCTION>javac</FUNCTION>
@@ -140,7 +139,7 @@
 			<FUNCTION>junit</FUNCTION>
 			<FUNCTION>rmic</FUNCTION>
 			<FUNCTION>signjar</FUNCTION>
-			
+
 			<!-- archive tasks -->
 			<FUNCTION>bzip2</FUNCTION>
 			<FUNCTION>bunzip2</FUNCTION>
@@ -156,7 +155,7 @@
 			<FUNCTION>unwar</FUNCTION>
 			<FUNCTION>zip</FUNCTION>
 			<FUNCTION>unzip</FUNCTION>
-			
+
 			<!-- execution tasks -->
 			<FUNCTION>ant</FUNCTION>
 			<FUNCTION>antcall</FUNCTION>
@@ -167,7 +166,7 @@
 			<FUNCTION>sequential</FUNCTION>
 			<FUNCTION>sleep</FUNCTION>
 			<FUNCTION>waitfor</FUNCTION>
-			
+
 			<!-- misc tasks -->
 			<FUNCTION>antstructure</FUNCTION>
 			<FUNCTION>available</FUNCTION>
@@ -185,7 +184,7 @@
 			<FUNCTION>tstamp</FUNCTION>
 			<FUNCTION>typedef</FUNCTION>
 			<FUNCTION>xslt</FUNCTION>
-         
+
          <!-- antelope tasks -->
 			<FUNCTION>assert</FUNCTION>
 			<FUNCTION>call</FUNCTION>
@@ -200,7 +199,7 @@
 			<FUNCTION>testcase</FUNCTION>
 			<FUNCTION>unset</FUNCTION>
 			<FUNCTION>var</FUNCTION>
-			
+
 			<!-- deprecated tasks -->
 			<INVALID>copydir</INVALID>
 			<INVALID>copyfile</INVALID>
@@ -211,7 +210,7 @@
 		</KEYWORDS>
 	</RULES>
 	<!-- }}} -->
-	
+
 	<!-- {{{ DTD-TAGS -->
 	<RULES SET="DTD-TAGS" DEFAULT="KEYWORD2" IGNORE_CASE="FALSE">
 		<!-- SGML comment -->
@@ -268,7 +267,7 @@
 		</KEYWORDS>
 	</RULES>
 	<!-- }}} -->
-	
+
 	<!-- {{{ ENTITY-TAGS -->
 	<RULES SET="ENTITY-TAGS" DEFAULT="KEYWORD2">
 		<!-- SGML comment -->
@@ -302,13 +301,13 @@
 		</KEYWORDS>
 	</RULES>
 	<!-- }}} -->
-	
+
 	<!-- {{{ CDATA -->
 	<RULES SET="CDATA" DEFAULT="COMMENT2">
 		<!-- no rules -->
 	</RULES>
 	<!-- }}} -->
-	
+
 	<!-- {{{ STRING -->
 	<RULES SET="STRING" DEFAULT="LITERAL1">
 		<!-- ant property -->
@@ -328,7 +327,7 @@
 		</KEYWORDS>
 	</RULES>
 	<!-- }}} -->
-	
+
 	<RULES SET="SQL" DEFAULT="MARKUP">
 		<SEQ TYPE="MARKUP" DELEGATE="MAIN">/&gt;</SEQ>
 		<!--
@@ -337,10 +336,10 @@
 		<!-- handle <transaction src="..."> properly -->
 		<SEQ TYPE="MARKUP" DELEGATE="BACK_TO_XML"> </SEQ>
 	</RULES>
-	
+
 	<RULES SET="BACK_TO_XML" DEFAULT="MARKUP">
 		<SEQ TYPE="MARKUP" DELEGATE="ant::TAGS">&gt;</SEQ>
 	</RULES>
 </MODE>
 
- 	  	 
+

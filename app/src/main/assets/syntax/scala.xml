@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
-<!-- Scala mode by Daniel Spiewak downloaded on 2015-05-17 from https://github.com/djspiewak/jedit-modes/blob/master/scala.xml -->
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
-
+<!-- Scala mode by Daniel Spiewak downloaded on 2015-05-17 from https://github.com/djspiewak/jedit-modes/blob/master/scala.xml -->
 <MODE>
   <PROPS>
     <PROPERTY NAME="indentOpenBrackets" VALUE="{" />

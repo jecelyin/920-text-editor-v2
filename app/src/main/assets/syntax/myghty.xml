@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
@@ -73,9 +72,9 @@
 			<END>%&gt;</END>
 		</SPAN>
 
-		<EOL_SPAN 
-			AT_LINE_START="TRUE" 
-			DELEGATE="MYGHTY" 
+		<EOL_SPAN
+			AT_LINE_START="TRUE"
+			DELEGATE="MYGHTY"
 			TYPE="LITERAL4">%</EOL_SPAN>
 
 		<IMPORT DELEGATE="html::MAIN"/>

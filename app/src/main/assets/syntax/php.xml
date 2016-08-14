@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
@@ -143,7 +142,7 @@ TODO:
 			<END>;</END>
 		</SPAN>
 	</RULES>
-	
+
 	<!--{{{ rule TAGS -->
 	<!-- HTML tags (from MAIN rule) -->
 	<RULES SET="TAGS" DEFAULT="MARKUP" ESCAPE="\">

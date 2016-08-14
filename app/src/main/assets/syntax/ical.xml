@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- iCalendar mode by Victor Engmark <victor.engmark@gmail.com> -->
@@ -19,7 +18,7 @@
 		<PROPERTY NAME="noTabs" VALUE="1"/>
 		<PROPERTY NAME="tabSize" VALUE="1"/>
 	</PROPS>
-	
+
 	<!-- General rules -->
 	<RULES IGNORE_CASE="FALSE">
 		<SPAN AT_LINE_START="TRUE" DELEGATE="VCALENDAR" NO_LINE_BREAK="FALSE" MATCH_TYPE="KEYWORD1">
@@ -96,7 +95,7 @@
 		<IMPORT DELEGATE="VCALENDAR_KEYWORDS"/>
 		<IMPORT DELEGATE="VTIMEZONE_KEYWORDS"/>
 	</RULES>
-	
+
 	<!-- Event -->
 	<RULES SET="VEVENT" IGNORE_CASE="FALSE">
 		<!-- Alarm -->
@@ -201,4 +200,4 @@
 	</RULES>
 </MODE>
 
- 	  	 
+

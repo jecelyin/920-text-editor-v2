@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--  BibTeX mode, by Thomas Alspaugh alspaugh@ics.uci.edu, 2004Mar25  v1.1  -->
@@ -9,7 +8,7 @@
   -->
 <!--
       This BibTeX mode highlights the fields for each entry type to distinguish
-      required, optional, or other fields from Lamport.  
+      required, optional, or other fields from Lamport.
       I have added several commonly-accepted fields (highlighted in yet another
       color);  these are
 
@@ -32,7 +31,7 @@
       Enjoy!
   -->
 <!--  Things BibTeX mode does not do:
-        - highlight keys, which must appear after the { or ( 
+        - highlight keys, which must appear after the { or (
           and match [a-zA-Z0-9.:;?!`'()[\]\-/*@]+
   -->
 <!--  Use of token types:
@@ -47,7 +46,7 @@
         LITERAL3  \{text\}
         OPERATOR   = ,
   -->
-<!--  bibtex.xml is generated automatically from a summary of Lamport 
+<!--  bibtex.xml is generated automatically from a summary of Lamport
       "LaTeX : A document preparation system : User guide and reference manual",
       1994 (LaTeX2e) edition, appendix B, using a Perl scripts.  -->
 
@@ -58,7 +57,7 @@
 
   <RULES IGNORE_CASE="TRUE">
     <EOL_SPAN TYPE="COMMENT1">%</EOL_SPAN>
-    
+
     <!-- Entry types.  Each entry type has its own ruleset. -->
     <!-- entry: FUNCTION -->
     <SPAN TYPE="FUNCTION" DELEGATE="article"      ><BEGIN>@article{</BEGIN><END>}</END></SPAN>
@@ -91,7 +90,7 @@
     <SPAN TYPE="FUNCTION" DELEGATE="unpublished"  ><BEGIN>@unpublished(</BEGIN><END>)</END></SPAN>
     <SPAN TYPE="FUNCTION" DELEGATE="string"       ><BEGIN>@string{</BEGIN><END>}</END></SPAN>
     <SPAN TYPE="FUNCTION" DELEGATE="string"       ><BEGIN>@string(</BEGIN><END>)</END></SPAN>
-    
+
   </RULES>
 
 <RULES SET="article">

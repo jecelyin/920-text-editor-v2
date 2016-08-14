@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
+<!DOCTYPE MODE SYSTEM "xmode.dtd">
 <!--
   contributed by M. Cesar R. Lacruz (mcesar@sec.upm.es)
   v1.1 2008/08/29
   from previous work by Dante Fabrizio and Nitsan Vardi
 -->
-
-<!DOCTYPE MODE SYSTEM "xmode.dtd">
-
 <MODE>
 	<PROPS>
 		<PROPERTY NAME="label" VALUE="VHDL"/>

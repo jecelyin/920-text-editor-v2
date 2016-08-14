@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- Catalog entry:
@@ -33,15 +32,15 @@
 		<EOL_SPAN TYPE="KEYWORD4">#end</EOL_SPAN>
 		<EOL_SPAN TYPE="COMMENT1">'</EOL_SPAN>
 		<EOL_SPAN TYPE="COMMENT1">rem </EOL_SPAN>
-		
+
 		<!-- Dates -->
-		<SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="#" 
+		<SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="#"
 				AT_WORD_START="TRUE">#\d{1,4}/\d{1,4}/\d{1,4}( \d{1,2}\:\d{1,2}(:\d{1,2}| ?(am|pm))?)?#</SEQ_REGEXP>
 
 		<!-- Numbers: Float|Int|Hex|Oct and variations -->
 		<SEQ_REGEXP TYPE="DIGIT" HASH_CHARS="0123456789-&amp;"
 				AT_WORD_START="TRUE">-?(\d+\.\d+([!@]|E[+-]\d+)?|\d+[&amp;!@#]?|&amp;H[0-9A-F]+&amp;?|&amp;O[0-7]+&amp;?)</SEQ_REGEXP>
-		
+
 		<!-- Recordset fields -->
 		<SEQ_REGEXP TYPE="LITERAL4" HASH_CHARS="abcdefghijklmnopqrstuvwxyz" AT_WORD_START="TRUE">\w+!\w+\b</SEQ_REGEXP>
 
@@ -1161,4 +1160,4 @@
 </MODE>
 
 
- 	  	 
+

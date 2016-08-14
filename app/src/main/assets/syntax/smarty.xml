@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<!DOCTYPE MODE SYSTEM "xmode.dtd">
 <!--
 /**
 * @version		2.0.1 (2010-02-08)
@@ -21,7 +22,6 @@ jEdit.setProperty("mode.smarty.xml.completion-info",
 to get tag-completion/matching on html in the templates-files if you have the XML-plugin installed
 
 -->
-<!DOCTYPE MODE SYSTEM "xmode.dtd">
 <MODE>
 	<PROPS>
 		<PROPERTY NAME="commentStart" VALUE="{*" />
@@ -33,13 +33,13 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>{*</BEGIN>
 			<END>*}</END>
 		</SPAN>
-		
+
 		<!-- Highlight markup other than Smarty inside a {literal} block -->
 		<SPAN TYPE="LITERAL3" DELEGATE="NON_SMARTY">
 			<BEGIN>{LITERAL}</BEGIN>
 			<END>{/LITERAL}</END>
 		</SPAN>
-		
+
 		<SPAN TYPE="MARKUP" DELEGATE="php::PHP" MATCH_TYPE="FUNCTION">
 			<BEGIN>{PHP}</BEGIN>
 			<END>{/PHP}</END>
@@ -49,13 +49,13 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>{</BEGIN>
 			<END>}</END>
 		</SPAN>
-		
+
 		<!-- SGML comment -->
 		<SPAN TYPE="COMMENT1" DELEGATE="COMMENT1+SMARTY">
 			<BEGIN>&lt;!--</BEGIN>
 			<END>--&gt;</END>
 		</SPAN>
-		
+
 		<!-- JavaScript -->
 		<SPAN TYPE="MARKUP" DELEGATE="JAVASCRIPT_OPENTAG">
 			<BEGIN>&lt;SCRIPT</BEGIN>
@@ -67,13 +67,13 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>&lt;STYLE</BEGIN>
 			<END>&lt;/STYLE&gt;</END>
 		</SPAN>
-		
+
 		<!-- HTML tags -->
 		<SEQ_REGEXP HASH_CHAR="&lt;" TYPE="MARKUP" DELEGATE="TAGS">&lt;/?\w+</SEQ_REGEXP>
-		
+
 		<IMPORT DELEGATE="NON_SMARTY" />
 	</RULES>
-	
+
 	<RULES SET="NON_SMARTY" IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="FALSE">
 
 		<!-- SGML comment -->
@@ -87,7 +87,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>&lt;!</BEGIN>
 			<END>&gt;</END>
 		</SPAN>
-		
+
 		<!-- JavaScript -->
 		<SPAN_REGEXP HASH_CHAR="&lt;SCRIPT" TYPE="MARKUP" DELEGATE="javascript::MAIN">
 			<BEGIN>&lt;SCRIPT.*?&gt;</BEGIN>
@@ -110,7 +110,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 		</SPAN>
 
 	</RULES>
-	
+
 	<!-- HTML tags (from MAIN rule) -->
 	<RULES SET="TAGS" DEFAULT="MARKUP" ESCAPE="\">
 		<SEQ TYPE="MARKUP" DELEGATE="MAIN">&gt;</SEQ><!-- from SEQ_REGEXP delegate -->
@@ -119,13 +119,13 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>style\s*=\s*(["'])</BEGIN>
 			<END>$1</END>
 		</SPAN_REGEXP>
-		
+
 		<IMPORT DELEGATE="TO_LITERAL+SMARTY" />
 		<IMPORT DELEGATE="TO_SMARTY" />
 		<IMPORT DELEGATE="INVALID_LT" />
 		<IMPORT DELEGATE="html::TAGS" />
 	</RULES>
-	
+
 	<!-- Handle literals, but allow switching to SMARTY therein, e.g. from html TAGS -->
 	<RULES SET="TO_LITERAL+SMARTY">
 		<SPAN TYPE="LITERAL1" DELEGATE="LITERAL1+SMARTY">
@@ -138,7 +138,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 		</SPAN>
 		<IMPORT DELEGATE="TO_SMARTY"/>
 	</RULES>
-	
+
 	<!-- Handle SMARTY tags in LITERAL1, e.g. in the "type" attribute of a <SCRIPT> tag -->
 	<RULES SET="LITERAL1+SMARTY" DEFAULT="LITERAL1" ESCAPE="\">
 		<IMPORT DELEGATE="TO_SMARTY"/>
@@ -148,12 +148,12 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 	<RULES SET="LITERAL2+SMARTY" DEFAULT="LITERAL2" ESCAPE="\">
 		<IMPORT DELEGATE="TO_SMARTY"/>
 	</RULES>
-	
+
 	<!-- Handle Smarty tags in HTML comments -->
 	<RULES SET="COMMENT1+SMARTY" DEFAULT="COMMENT1">
 		<IMPORT DELEGATE="TO_SMARTY"/>
 	</RULES>
-	
+
 	<!-- Go to SMARTY mode again -->
 	<RULES SET="TO_SMARTY" DEFAULT="MARKUP">
 		<SPAN TYPE="MARKUP" DELEGATE="SMARTY">
@@ -161,13 +161,13 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<END>}</END>
 		</SPAN>
 	</RULES>
-	
+
 	<RULES SET="INVALID_LT" DEFAULT="INVALID">
 		<SEQ TYPE="INVALID">&lt;</SEQ>
 	</RULES>
-	
-	
-	
+
+
+
 	<!-- CSS where SMARTY code may be injected -->
 	<RULES SET="CSS_OPENTAG" DEFAULT="MARKUP">
 		<SEQ TYPE="MARKUP" DELEGATE="CSS+SMARTY">&gt;</SEQ>
@@ -185,15 +185,15 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>{$smarty.ldelim}</BEGIN>
 			<END>{$smarty.rdelim}</END>
 		</SPAN>
-		
+
 		<SEQ TYPE="OPERATOR" DELEGATE="CSS_PSEUDO">:</SEQ>
-		
+
 		<IMPORT DELEGATE="TO_SMARTY"/>
 		<IMPORT DELEGATE="css::MAIN"/>
 	</RULES>
 	<RULES SET="CSS_PROPERTIES+SMARTY" ESCAPE="\">
 		<SEQ TYPE="OPERATOR" DELEGATE="CSS_PROP_VALUE+SMARTY">:</SEQ>
-		
+
 		<IMPORT DELEGATE="TO_SMARTY"/>
 		<IMPORT DELEGATE="css::PROPERTIES"/>
 	</RULES>
@@ -201,10 +201,10 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 		HIGHLIGHT_DIGITS="TRUE"
 		DIGIT_RE="-?\d+(\.\d+)?(pt|pc|in|mm|cm|em|ex|px|ms|s|%|)"
 		NO_WORD_SEP="-_%">
-		
+
 		<SEQ TYPE="OPERATOR" DELEGATE="CSS_PROPERTIES+SMARTY">;</SEQ>
 		<SEQ TYPE="INVALID" DELEGATE="CSS+SMARTY">}</SEQ> <!-- end properties block, but it's invalid -->
-		
+
 		<IMPORT DELEGATE="TO_SMARTY"/>
 		<IMPORT DELEGATE="css::PROP_VALUE"/>
 	</RULES>
@@ -212,7 +212,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 	<RULES SET="CSS_PSEUDO">
 		<SEQ TYPE="NULL" DELEGATE="CSS+SMARTY"> </SEQ>
 		<SEQ TYPE="OPERATOR" DELEGATE="CSS+SMARTY">,</SEQ>
-		
+
 		<SPAN TYPE="FUNCTION" DELEGATE="CSS_PROPERTIES+SMARTY">
 			<BEGIN>{ldelim}</BEGIN>
 			<END>{rdelim}</END>
@@ -221,45 +221,45 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<BEGIN>{$smarty.ldelim}</BEGIN>
 			<END>{$smarty.rdelim}</END>
 		</SPAN>
-	
+
 		<IMPORT DELEGATE="TO_SMARTY"/>
 		<IMPORT DELEGATE="css::PSEUDO"/>
 	</RULES>
-	
+
 	<!-- Javascript -->
 	<RULES SET="JAVASCRIPT_OPENTAG" DEFAULT="MARKUP">
 		<SEQ TYPE="MARKUP" DELEGATE="JAVASCRIPT">&gt;</SEQ>
 		<IMPORT DELEGATE="TO_LITERAL+SMARTY"/> <!-- handle SMARTY in <script> tag -->
 		<IMPORT DELEGATE="html::TAGS" /> <!-- handle e.g. 'style="width:1px"' -->
 	</RULES>
-	
+
 	<RULES SET="JAVASCRIPT" DEFAULT="MARKUP" ESCAPE="\">
 		<IMPORT DELEGATE="TO_LITERAL+SMARTY"/>
 		<IMPORT DELEGATE="TO_SMARTY"/>
 		<IMPORT DELEGATE="javascript::MAIN"/>
 	</RULES>
-	
-	
-	
+
+
+
 	<RULES DEFAULT="LITERAL2" SET="DOUBLE_QUOTED" IGNORE_CASE="TRUE">
 		<SPAN TYPE="LITERAL2" DELEGATE="BACK_TICKED">
 			<BEGIN>`</BEGIN>
 			<END>`</END>
 		</SPAN>
-		
+
 		<IMPORT DELEGATE="VARIABLES" />
 	</RULES>
-	
+
 	<RULES DEFAULT="LITERAL2" SET="BACK_TICKED" IGNORE_CASE="TRUE">
 		<IMPORT DELEGATE="VARIABLES" />
 		<IMPORT DELEGATE="MATH_OPERATORS" />
 	</RULES>
-	
-	
+
+
 	<RULES SET="VARIABLES">
 		<MARK_FOLLOWING TYPE="KEYWORD3">$</MARK_FOLLOWING>
 	</RULES>
-		
+
 	<RULES SET="MATH_OPERATORS" IGNORE_CASE="TRUE">
 		<SEQ TYPE="OPERATOR">.</SEQ>
 		<SEQ TYPE="OPERATOR">-&gt;</SEQ>
@@ -274,16 +274,16 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 		<SEQ TYPE="OPERATOR">|</SEQ>
 		<SEQ TYPE="OPERATOR">:</SEQ>
 		<SEQ TYPE="OPERATOR">=</SEQ>
-	
+
 		<KEYWORDS>
 			<OPERATOR>!=</OPERATOR>
 			<OPERATOR>&gt;</OPERATOR>
 			<OPERATOR>&gt;=</OPERATOR>
 			<OPERATOR>&lt;</OPERATOR>
 			<OPERATOR>&lt;=</OPERATOR>
-			
+
 			<OPERATOR>==</OPERATOR>
-			
+
 			<OPERATOR>div by </OPERATOR>
 			<OPERATOR>even by </OPERATOR>
 			<OPERATOR>is even </OPERATOR>
@@ -291,7 +291,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<OPERATOR>is not odd </OPERATOR>
 			<OPERATOR>is odd </OPERATOR>
 			<OPERATOR>odd by </OPERATOR>
-			
+
 			<OPERATOR>eq</OPERATOR>
 			<OPERATOR>ge</OPERATOR>
 			<OPERATOR>gt</OPERATOR>
@@ -305,31 +305,31 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<OPERATOR>not</OPERATOR>
 		</KEYWORDS>
 	</RULES>
-	
+
 
 	<RULES SET="SMARTY" IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="TRUE" DEFAULT="LITERAL1">
 		<SPAN TYPE="LITERAL1">
 			<BEGIN>'</BEGIN>
 			<END>'</END>
 		</SPAN>
-		
+
 		<SPAN TYPE="LITERAL2" DELEGATE="DOUBLE_QUOTED">
 			<BEGIN>"</BEGIN>
 			<END>"</END>
 		</SPAN>
-		
+
 		<!-- Variables from config-files -->
 		<SPAN TYPE="KEYWORD3">
 			<BEGIN>#</BEGIN>
 			<END>#</END>
 		</SPAN>
-		
+
 		<IMPORT DELEGATE="VARIABLES" />
 		<IMPORT DELEGATE="MATH_OPERATORS" />
 		<IMPORT DELEGATE="LOGIC_OPERATORS" />
-		
+
 		<KEYWORDS>
-		
+
 			<!-- Built-in functions (in order of documentation) -->
 			<FUNCTION>capture</FUNCTION>
 			<FUNCTION>/capture</FUNCTION>
@@ -353,7 +353,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<FUNCTION>/section</FUNCTION>
 			<FUNCTION>strip</FUNCTION>
 			<FUNCTION>/strip</FUNCTION>
-			
+
 			<!-- Default custom functions -->
 			<FUNCTION>assign</FUNCTION>
 			<FUNCTION>counter</FUNCTION>
@@ -374,8 +374,8 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<FUNCTION>popup_init</FUNCTION>
 			<FUNCTION>textformat</FUNCTION>
 			<FUNCTION>/textformat</FUNCTION>
-			
-			<!-- 
+
+			<!--
 			Variable modifiers
 			'strip' is used in Smarty as both a variable modifier and a function.
 			I have them listed as both, but it will only be recognised as one of these possibilities.
@@ -402,7 +402,7 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<KEYWORD1>truncate</KEYWORD1>
 			<KEYWORD1>upper</KEYWORD1>
 			<KEYWORD1>wordwrap</KEYWORD1>
-			
+
 			<!-- attributes for Smarty built-in and custom functions -->
 			<KEYWORD3>above</KEYWORD3>
 			<KEYWORD3>advance</KEYWORD3>
@@ -521,11 +521,11 @@ to get tag-completion/matching on html in the templates-files if you have the XM
 			<KEYWORD3>year_as_text</KEYWORD3>
 			<KEYWORD3>year_extra</KEYWORD3>
 			<KEYWORD3>year_size</KEYWORD3>
-			
+
 		</KEYWORDS>
-		
+
 	</RULES>
 
 </MODE>
 
- 	  	 
+

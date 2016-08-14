@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
+<!DOCTYPE MODE SYSTEM "xmode.dtd">
 <!--
 YAML mode by Jakub Roztočil <jakub@webkitchen.cz>
 -->
-<!DOCTYPE MODE SYSTEM "xmode.dtd">
 <MODE>
 	<PROPS>
 		<PROPERTY NAME="indentNextLines" VALUE=".+:$" />

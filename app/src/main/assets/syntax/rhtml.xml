@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- rhtml (ruby+html) mode -->
@@ -12,7 +11,7 @@
 		<PROPERTY NAME="commentEnd" VALUE="%&gt;" />
 	</PROPS>
 	<RULES IGNORE_CASE="TRUE">
-		
+
 		<!-- eRuby comment -->
 		<SPAN TYPE="COMMENT1">
 			<BEGIN>&lt;%#</BEGIN>

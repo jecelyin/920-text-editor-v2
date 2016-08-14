@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -191,7 +190,7 @@
 			<KEYWORD2>padding-left</KEYWORD2>
 			<KEYWORD2>padding-right</KEYWORD2>
 			<KEYWORD2>padding-top</KEYWORD2>
-			
+
 			<KEYWORD2>column-count</KEYWORD2>
 			<KEYWORD2>column-fill</KEYWORD2>
 			<KEYWORD2>column-gap</KEYWORD2>
@@ -202,10 +201,10 @@
 			<KEYWORD2>column-span</KEYWORD2>
 			<KEYWORD2>column-width</KEYWORD2>
 			<KEYWORD2>columns</KEYWORD2>
-			
+
 			<KEYWORD2>handing-punctuation</KEYWORD2>
-			
-			
+
+
 
 			<!-- Visual formatting properties -->
 			<KEYWORD2>display</KEYWORD2>
@@ -288,7 +287,7 @@
 			<KEYWORD2>speak-punctuation</KEYWORD2>
 			<KEYWORD2>speak-numeral</KEYWORD2>
 			<KEYWORD2>speak-header-cell</KEYWORD2>
-			
+
 			<KEYWORD2>animation</KEYWORD2>
 			<KEYWORD2>animation-name</KEYWORD2>
 			<KEYWORD2>animation-duration</KEYWORD2>
@@ -297,67 +296,67 @@
 			<KEYWORD2>animation-iteration-count</KEYWORD2>
 			<KEYWORD2>animation-direction</KEYWORD2>
 			<KEYWORD2>animation-play-state</KEYWORD2>
-			
+
 			<KEYWORD2>appearance</KEYWORD2>
-			
+
 			<!-- these properties are proposed for css3, but are either not
 			supported by any browser or are specific to a single browser. -->
-			<INVALID>alignment-adjust</INVALID> 					
-			<INVALID>alignment-baseline</INVALID>			
-			<INVALID>backface-visibility</INVALID> 					
-			<INVALID>baseline-shift</INVALID> 					
-			<INVALID>bookmark-label</INVALID> 					
-			<INVALID>bookmark-level</INVALID> 					
-			<INVALID>bookmark-target</INVALID>	
-			<INVALID>border-image</INVALID> 					
-			<INVALID>border-image-outset</INVALID> 					
-			<INVALID>border-image-repeat</INVALID> 					
-			<INVALID>border-image-slice</INVALID> 					
-			<INVALID>border-image-source</INVALID> 					
+			<INVALID>alignment-adjust</INVALID>
+			<INVALID>alignment-baseline</INVALID>
+			<INVALID>backface-visibility</INVALID>
+			<INVALID>baseline-shift</INVALID>
+			<INVALID>bookmark-label</INVALID>
+			<INVALID>bookmark-level</INVALID>
+			<INVALID>bookmark-target</INVALID>
+			<INVALID>border-image</INVALID>
+			<INVALID>border-image-outset</INVALID>
+			<INVALID>border-image-repeat</INVALID>
+			<INVALID>border-image-slice</INVALID>
+			<INVALID>border-image-source</INVALID>
 			<INVALID>border-image-width</INVALID>
 			<INVALID>box-decoration-break</INVALID>
-			<INVALID>box-flex-group</INVALID> 					
+			<INVALID>box-flex-group</INVALID>
 			<INVALID>box-lines</INVALID>
-			<INVALID>color-profile</INVALID> 					
+			<INVALID>color-profile</INVALID>
 			<INVALID>column-fill</INVALID>
-			<INVALID>crop</INVALID> 					
-			<INVALID>dominant-baseline</INVALID> 					
-			<INVALID>drop-initial-after-adjust</INVALID> 					
-			<INVALID>drop-initial-after-align</INVALID> 					
-			<INVALID>drop-initial-before-adjust</INVALID> 					
-			<INVALID>drop-initial-before-align</INVALID> 					
-			<INVALID>drop-initial-size</INVALID> 					
-			<INVALID>drop-initial-value</INVALID> 					
-			<INVALID>fit</INVALID> 					
-			<INVALID>fit-position</INVALID> 					
+			<INVALID>crop</INVALID>
+			<INVALID>dominant-baseline</INVALID>
+			<INVALID>drop-initial-after-adjust</INVALID>
+			<INVALID>drop-initial-after-align</INVALID>
+			<INVALID>drop-initial-before-adjust</INVALID>
+			<INVALID>drop-initial-before-align</INVALID>
+			<INVALID>drop-initial-size</INVALID>
+			<INVALID>drop-initial-value</INVALID>
+			<INVALID>fit</INVALID>
+			<INVALID>fit-position</INVALID>
 			<INVALID>float-offset</INVALID>
-			<INVALID>font-stretch</INVALID> 					
-			<INVALID>font-size-adjust</INVALID> 					
-			<INVALID>grid-columns</INVALID> 					
-			<INVALID>grid-rows</INVALID> 					
-			<INVALID>hanging-punctuation</INVALID> 					
-			<INVALID>hyphenate-after</INVALID> 					
-			<INVALID>hyphenate-before</INVALID> 					
-			<INVALID>hyphenate-characters</INVALID> 					
-			<INVALID>hyphenate-lines</INVALID> 					
-			<INVALID>hyphenate-resource</INVALID> 					
-			<INVALID>hyphens</INVALID> 					
-			<INVALID>icon</INVALID> 					
-			<INVALID>image-orientation</INVALID> 					
+			<INVALID>font-stretch</INVALID>
+			<INVALID>font-size-adjust</INVALID>
+			<INVALID>grid-columns</INVALID>
+			<INVALID>grid-rows</INVALID>
+			<INVALID>hanging-punctuation</INVALID>
+			<INVALID>hyphenate-after</INVALID>
+			<INVALID>hyphenate-before</INVALID>
+			<INVALID>hyphenate-characters</INVALID>
+			<INVALID>hyphenate-lines</INVALID>
+			<INVALID>hyphenate-resource</INVALID>
+			<INVALID>hyphens</INVALID>
+			<INVALID>icon</INVALID>
+			<INVALID>image-orientation</INVALID>
 			<INVALID>image-resolution</INVALID>
-			<INVALID>inline-box-align</INVALID> 					
-			<INVALID>line-stacking</INVALID> 					
-			<INVALID>line-stacking-ruby</INVALID> 					
-			<INVALID>line-stacking-shift</INVALID> 					
-			<INVALID>line-stacking-strategy</INVALID> 					
-			<INVALID>mark</INVALID> 					
-			<INVALID>mark-after</INVALID> 					
-			<INVALID>mark-before</INVALID> 					
-			<INVALID>marks</INVALID> 					
-			<INVALID>marquee-direction</INVALID> 					
-			<INVALID>marquee-play-count</INVALID> 					
-			<INVALID>marquee-speed</INVALID> 					
-			<INVALID>marquee-style</INVALID> 					
+			<INVALID>inline-box-align</INVALID>
+			<INVALID>line-stacking</INVALID>
+			<INVALID>line-stacking-ruby</INVALID>
+			<INVALID>line-stacking-shift</INVALID>
+			<INVALID>line-stacking-strategy</INVALID>
+			<INVALID>mark</INVALID>
+			<INVALID>mark-after</INVALID>
+			<INVALID>mark-before</INVALID>
+			<INVALID>marks</INVALID>
+			<INVALID>marquee-direction</INVALID>
+			<INVALID>marquee-play-count</INVALID>
+			<INVALID>marquee-speed</INVALID>
+			<INVALID>marquee-style</INVALID>
 			<INVALID>move-to</INVALID>
 			<INVALID>nav-down</INVALID>
 			<INVALID>nav-index</INVALID>
@@ -365,36 +364,36 @@
 			<INVALID>nav-right</INVALID>
 			<INVALID>nav-up</INVALID>
 			<INVALID>overflow-style</INVALID>
-			<INVALID>page</INVALID> 					
+			<INVALID>page</INVALID>
 			<INVALID>page-policy</INVALID>
 			<INVALID>phonemes</INVALID>
 			<INVALID>punctuation-trim</INVALID>
-			<INVALID>rest</INVALID> 					
-			<INVALID>rest-after</INVALID> 					
-			<INVALID>rest-before</INVALID> 					
-			<INVALID>rotation</INVALID> 					
+			<INVALID>rest</INVALID>
+			<INVALID>rest-after</INVALID>
+			<INVALID>rest-before</INVALID>
+			<INVALID>rotation</INVALID>
 			<INVALID>rotation-point</INVALID>
-			<INVALID>ruby-align</INVALID> 					
-			<INVALID>ruby-overhang</INVALID> 					
-			<INVALID>ruby-position</INVALID> 					
-			<INVALID>ruby-span</INVALID> 					
-			<INVALID>size</INVALID> 					
-			<INVALID>string-set</INVALID> 					
-			<INVALID>target</INVALID> 					
-			<INVALID>target-name</INVALID> 					
-			<INVALID>target-new</INVALID> 					
-			<INVALID>target-position</INVALID> 					
-			<INVALID>text-align-last</INVALID> 					
-			<INVALID>text-emphasis</INVALID> 					
+			<INVALID>ruby-align</INVALID>
+			<INVALID>ruby-overhang</INVALID>
+			<INVALID>ruby-position</INVALID>
+			<INVALID>ruby-span</INVALID>
+			<INVALID>size</INVALID>
+			<INVALID>string-set</INVALID>
+			<INVALID>target</INVALID>
+			<INVALID>target-name</INVALID>
+			<INVALID>target-new</INVALID>
+			<INVALID>target-position</INVALID>
+			<INVALID>text-align-last</INVALID>
+			<INVALID>text-emphasis</INVALID>
 			<INVALID>text-height</INVALID>
 			<INVALID>text-outline</INVALID>
 			<INVALID>text-wrap</INVALID>
-			<INVALID>voice-balance</INVALID> 					
-			<INVALID>voice-duration</INVALID> 					
-			<INVALID>voice-pitch</INVALID> 					
-			<INVALID>voice-pitch-range</INVALID> 					
-			<INVALID>voice-rate</INVALID> 					
-			<INVALID>voice-stress</INVALID> 					
+			<INVALID>voice-balance</INVALID>
+			<INVALID>voice-duration</INVALID>
+			<INVALID>voice-pitch</INVALID>
+			<INVALID>voice-pitch-range</INVALID>
+			<INVALID>voice-rate</INVALID>
+			<INVALID>voice-stress</INVALID>
 			<INVALID>voice-volume</INVALID>
 
 		</KEYWORDS>
@@ -748,7 +747,7 @@
             <KEYWORD3>x-weak</KEYWORD3>
             <KEYWORD3>xx-large</KEYWORD3>
             <KEYWORD3>xx-small</KEYWORD3>
-			
+
             <!-- Colors -->
             <KEYWORD4>aliceblue</KEYWORD4>
             <KEYWORD4>antiquewhite</KEYWORD4>

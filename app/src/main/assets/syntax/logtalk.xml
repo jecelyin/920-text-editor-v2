@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--	jEdit 4.3 Logtalk syntax file
@@ -9,10 +8,10 @@
 	created on		5 May 2002
 	last revised	23 January 2010
 
-	To install, copy this file to the "modes" subdirectory in jEdit 
-	directory installation.   Next, check the "catalog" file in the 
+	To install, copy this file to the "modes" subdirectory in jEdit
+	directory installation.   Next, check the "catalog" file in the
 	same subdirectory and add (if not present) the following entry:
-	
+
 	<MODE NAME="logtalk" FILE="logtalk.xml" FILE_NAME_GLOB="*.{lgt}" />
 -->
 
@@ -29,7 +28,7 @@
 	</PROPS>
 
 	<RULES SET="MAIN" IGNORE_CASE="FALSE">
-	
+
 		<!-- Comments -->
 		<EOL_SPAN TYPE="COMMENT1">%</EOL_SPAN>
 		<SPAN TYPE="COMMENT1" NO_LINE_BREAK="FALSE">
@@ -218,13 +217,13 @@
 		<SEQ_REGEXP TYPE="OPERATOR">\s:-($|\s)</SEQ_REGEXP>
 
 		<!-- Mode operators -->
-		<SEQ TYPE="OPERATOR">+</SEQ>	
+		<SEQ TYPE="OPERATOR">+</SEQ>
 		<SEQ TYPE="OPERATOR">-</SEQ>
 		<SEQ TYPE="OPERATOR">?</SEQ>
 		<SEQ TYPE="OPERATOR">@</SEQ>
 
 		<!-- Existential quantifier operator -->
-		<SEQ TYPE="OPERATOR">^</SEQ>	
+		<SEQ TYPE="OPERATOR">^</SEQ>
 
 		<KEYWORDS> <!-- just for code completion to work! -->
 
@@ -389,9 +388,9 @@
 			<NULL>truncate</NULL>
 
 		</KEYWORDS>
-		
+
 	</RULES>
 
 </MODE>
 
- 	  	 
+

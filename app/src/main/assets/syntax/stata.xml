@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--Based on Syntax file for Stata v9.x. and 10.x from the jedit community
@@ -9,7 +8,7 @@
 -->
 
 <!--You should put the following two lines into your jedit/modes/catalog file:
-	<MODE NAME="stata"	FILE="stata.xml" 
+	<MODE NAME="stata"	FILE="stata.xml"
 	FILE_NAME_GLOB="*.{do,ado,mata}" />
 -->
 
@@ -45,62 +44,62 @@
 				<BEGIN>#deli?m?i?t?[\s]*[;]</BEGIN>
 				<END>#delimit cr</END>
 		</SPAN_REGEXP>
-		
+
 		<!--Mata one-liner:-->
 		<EOL_SPAN_REGEXP TYPE="KEYWORD1" DELEGATE="MATA_ENV" AT_WHITESPACE_END="TRUE" HASH_CHAR="mata">mata[\s]*[:]*[\s]*(?=[\w]+)</EOL_SPAN_REGEXP>
-		<!--Span Mata environment:--> 
+		<!--Span Mata environment:-->
 		<SPAN_REGEXP TYPE="KEYWORD3" DELEGATE="MATA_ENV" AT_WHITESPACE_END="TRUE" HASH_CHAR="mata">
 				<BEGIN>mata[\s]*([:]|$)</BEGIN>
 				<END>end</END>
 		</SPAN_REGEXP>
-		
+
 		<!--Apply to everything else:-->
 		<EOL_SPAN TYPE="COMMENT1" AT_WHITESPACE_END="TRUE">*</EOL_SPAN>
-		
+
 		<IMPORT DELEGATE="UNIVERSAL"/>
 		<IMPORT DELEGATE="KEYWORDLIST"/>
-		
+
 	</RULES>
 
-	
+
 	<RULES SET="UNIVERSAL"
-		IGNORE_CASE="FALSE" 
+		IGNORE_CASE="FALSE"
 		NO_WORD_SEP="`'_?"
 		HIGHLIGHT_DIGITS="TRUE"
 		DIGIT_RE="(([\.]?[0-9]+)([eE]?)([-+]*)([0-9]*)) | (([0-9]+\.*[0-9]*|\.[0-9]+)([+-]?[eE]?[0-9]+)) | ((([0-9]+\.[0-9]*|\.[0-9]+))[Ee]?)"
 		>
-			
+
 		<!-- Line comments -->
 		<EOL_SPAN TYPE="COMMENT1" AT_WHITESPACE_END="TRUE">//</EOL_SPAN>
 			<!--If there is code in the line before the // than tab or whitespace is required before // as a separator:-->
 		<EOL_SPAN_REGEXP TYPE="COMMENT1">[\s]///</EOL_SPAN_REGEXP>
-		<EOL_SPAN_REGEXP TYPE="COMMENT1">[\s]//</EOL_SPAN_REGEXP>  
-		
+		<EOL_SPAN_REGEXP TYPE="COMMENT1">[\s]//</EOL_SPAN_REGEXP>
+
 		<!-- Multiline comment -->
 		<SPAN TYPE="COMMENT2">
 			<BEGIN>/*</BEGIN>
 			<END>*/</END>
 		</SPAN>
-		
+
 		<!--Do not highlight documented file endings:-->
-		<SEQ TYPE="NULL">.ado</SEQ>	
-		<SEQ TYPE="NULL">.dct</SEQ>	
-		<SEQ TYPE="NULL">.do</SEQ>	
-		<SEQ TYPE="NULL">.dta</SEQ>	
-		<SEQ TYPE="NULL">.gph</SEQ>	
-		<SEQ TYPE="NULL">.grec</SEQ>	
-		<SEQ TYPE="NULL">.log</SEQ>	
-		<SEQ TYPE="NULL">.mata</SEQ>	
-		<SEQ TYPE="NULL">.mlib</SEQ>	
-		<SEQ TYPE="NULL">.mmat</SEQ>	
-		<SEQ TYPE="NULL">.mo</SEQ>	
+		<SEQ TYPE="NULL">.ado</SEQ>
+		<SEQ TYPE="NULL">.dct</SEQ>
+		<SEQ TYPE="NULL">.do</SEQ>
+		<SEQ TYPE="NULL">.dta</SEQ>
+		<SEQ TYPE="NULL">.gph</SEQ>
+		<SEQ TYPE="NULL">.grec</SEQ>
+		<SEQ TYPE="NULL">.log</SEQ>
+		<SEQ TYPE="NULL">.mata</SEQ>
+		<SEQ TYPE="NULL">.mlib</SEQ>
+		<SEQ TYPE="NULL">.mmat</SEQ>
+		<SEQ TYPE="NULL">.mo</SEQ>
 		<SEQ TYPE="NULL">.out</SEQ>
 		<SEQ TYPE="NULL">.raw</SEQ>
 		<SEQ TYPE="NULL">.mo</SEQ>
 		<SEQ TYPE="NULL">.smcl</SEQ>
 		<SEQ TYPE="NULL">.sthlp</SEQ>
 		<SEQ TYPE="NULL">.ster</SEQ>
-		
+
 		<!--Operators:-->
 		<SEQ TYPE="OPERATOR">.</SEQ>
 		<SEQ TYPE="OPERATOR">=</SEQ>
@@ -119,7 +118,7 @@
 		<SEQ TYPE="OPERATOR">*</SEQ>
 		<SEQ TYPE="OPERATOR">;</SEQ>
 		<SEQ_REGEXP TYPE="OPERATOR" HASH_CHAR="%">%[^ )]+</SEQ_REGEXP>  <!--highlight formats e.g.: %10.0f-->
-		
+
 		<SEQ TYPE="NULL">,</SEQ>
 		<SEQ TYPE="NULL">]</SEQ>
 		<SEQ TYPE="NULL">[</SEQ>
@@ -131,7 +130,7 @@
 		<SEQ_REGEXP TYPE="OPERATOR" AT_WORD_START="TRUE" HASH_CHAR="F">F(([\d]*[.])|([(][\d]+/[\d]+[)][.]))</SEQ_REGEXP>
 		<SEQ_REGEXP TYPE="OPERATOR" AT_WORD_START="TRUE" HASH_CHAR="D">D(([\d]*[.])|([(][\d]+/[\d]+[)][.]))</SEQ_REGEXP>
 		<SEQ_REGEXP TYPE="OPERATOR" AT_WORD_START="TRUE" HASH_CHAR="S">S(([\d]*[.])|([(][\d]+/[\d]+[)][.]))</SEQ_REGEXP>
-		
+
 		<!-- Highlight variable references and declarations (macros): -->
 		<!--commands that define only one macrovariables per line:-->
 		<SEQ_REGEXP TYPE="LITERAL4" AT_WORD_START="TRUE" HASH_CHAR="loc">loca?l?((\s+\w+)|$)</SEQ_REGEXP>
@@ -143,7 +142,7 @@
 		<MARK_FOLLOWING TYPE="LITERAL4" MATCH_TYPE="KEYWORD2">forv </MARK_FOLLOWING>
 		<MARK_FOLLOWING TYPE="LITERAL4" MATCH_TYPE="KEYWORD2">forvalues  </MARK_FOLLOWING>
 		<MARK_FOLLOWING TYPE="LITERAL4" MATCH_TYPE="KEYWORD2">forvalues </MARK_FOLLOWING>
-		<!--commands that define one or more macrovariables per line:--> 
+		<!--commands that define one or more macrovariables per line:-->
 		<SEQ_REGEXP TYPE="LITERAL4" AT_WHITESPACE_END="TRUE" HASH_CHAR="tempvar" >tempvar((\s+\w+)+|$)</SEQ_REGEXP>
 		<SEQ_REGEXP TYPE="LITERAL4" AT_WHITESPACE_END="TRUE" HASH_CHAR="tempname">tempname((\s+\w+)+|$)</SEQ_REGEXP>
 
@@ -154,7 +153,7 @@
 
 		<!-- Highlight Function calls -->
 		<MARK_PREVIOUS TYPE="FUNCTION" MATCH_TYPE="NULL">(</MARK_PREVIOUS>
-		<SEQ TYPE="NULL">)</SEQ>		
+		<SEQ TYPE="NULL">)</SEQ>
 
 		<!-- The special conditions "set", "do", "run", "sysdir" and "shell" -->
 		<SEQ_REGEXP TYPE="KEYWORD3" AT_WHITESPACE_END="TRUE" HASH_CHAR="cap"  >capt?u?r?e?[\s]+log([\s]+|$)</SEQ_REGEXP>
@@ -166,22 +165,22 @@
 		<SEQ_REGEXP TYPE="KEYWORD1" AT_WORD_START="TRUE"	 HASH_CHAR="macro">macro([\s]+(drop)([\s]+|$))</SEQ_REGEXP> <!--highlight "macro "drop"" as keyword1-->
 		<SEQ_REGEXP TYPE="KEYWORD3" AT_WORD_START="TRUE"	 HASH_CHAR="drop" >drop([\s]+(?!if|[=])|$)</SEQ_REGEXP>  <!--highlight ""drop" varlist" but not ""drop" if condition"-->
 		<SEQ_REGEXP TYPE="KEYWORD3" AT_WORD_START="TRUE"	 HASH_CHAR="keep" >keep([\s]+(?!if|[=])|$)</SEQ_REGEXP>  <!--highlight ""keep" varlist" but not ""keep" if condition"-->
-		
+
 		<SEQ_REGEXP TYPE="KEYWORD4" AT_WHITESPACE_END="TRUE" HASH_CHAR="set"   >set(?!([\s]+[\w]+[\s]*[=]))</SEQ_REGEXP>  <!--highlight ""set" variable 1000" but not ""set" varibale = 1000"-->
 		<SEQ_REGEXP TYPE="KEYWORD4" AT_WHITESPACE_END="TRUE" HASH_CHAR="mata"  >mata[\s]+set([\s]+|$)</SEQ_REGEXP>
 		<SEQ_REGEXP TYPE="KEYWORD4" AT_WHITESPACE_END="TRUE" HASH_CHAR="shell" >shell([\s]+|$)</SEQ_REGEXP>
 		<SEQ_REGEXP TYPE="KEYWORD4" AT_WHITESPACE_END="TRUE" HASH_CHAR="sysdir">sysdir([\s]+|$)</SEQ_REGEXP>
-		
-		<!-- A few identifiers and variables -->		
+
+		<!-- A few identifiers and variables -->
 		<SEQ_REGEXP TYPE="KEYWORD2" AT_WORD_START="TRUE" HASH_CHAR="c"	>c\((\w+)\)</SEQ_REGEXP>
 		<SEQ_REGEXP TYPE="KEYWORD2" AT_WORD_START="TRUE" HASH_CHAR="str">str(\d+)</SEQ_REGEXP>
-		
-		<!-- Import rules for stings, macros and quotes (see beyond) -->		
+
+		<!-- Import rules for stings, macros and quotes (see beyond) -->
 		<IMPORT DELEGATE="STRINGMACRO"/>
 	</RULES>
 
-	
-	<RULES SET="SEMICOLON_ENV" 
+
+	<RULES SET="SEMICOLON_ENV"
 		IGNORE_CASE="FALSE"
 		NO_WORD_SEP="`'_?"
 		HIGHLIGHT_DIGITS="TRUE"
@@ -190,21 +189,21 @@
 		<!--The following type of comments are ONLY valid inside SEMICOLON environment:-->
 		<SPAN TYPE="COMMENT1"  AT_WHITESPACE_END="TRUE">
 			<BEGIN>*</BEGIN><END>;</END></SPAN>
-			
+
 		<!-- Line comments: -->
 		<!-- //-line comments at the start of a line do not work reliably in semicolon environment (this is a Stata problem)-->
 		<!-- e.g.: put //-comment at the line start of two successive lines at the start of semicolon environment: this will lead to an Stata(v10)-error/break-->
 		<!-- if you want to enable this anyway, just uncomment the follwoing line: -->
 		<!--<EOL_SPAN TYPE="COMMENT1" AT_WHITESPACE_END="TRUE">//</EOL_SPAN>-->
 		<EOL_SPAN_REGEXP TYPE="COMMENT1">[\s]///</EOL_SPAN_REGEXP>
-		<EOL_SPAN_REGEXP TYPE="COMMENT1">[\s]//</EOL_SPAN_REGEXP>  
-			
+		<EOL_SPAN_REGEXP TYPE="COMMENT1">[\s]//</EOL_SPAN_REGEXP>
+
 		<IMPORT DELEGATE="UNIVERSAL"/>
 		<IMPORT DELEGATE="KEYWORDLIST"/>
 	</RULES>
 
-	
-	<RULES SET="MATA_ENV" 
+
+	<RULES SET="MATA_ENV"
 		IGNORE_CASE="FALSE"
 		NO_WORD_SEP="`'_?"
 		HIGHLIGHT_DIGITS="TRUE"
@@ -213,15 +212,15 @@
 		<!--The following type of comment is NOT valid inside MATA environments :-->
 		<!--<EOL_SPAN TYPE="COMMENT1" AT_WHITESPACE_END="TRUE">*</EOL_SPAN>-->
 
-		<!--"do " constructs have a specific meaning in in mata-environment:--> 
+		<!--"do " constructs have a specific meaning in in mata-environment:-->
 		<SEQ_REGEXP TYPE="KEYWORD2" AT_WORD_START="TRUE"	 HASH_CHAR="do"  >do([\s]+|$)</SEQ_REGEXP>
-		
+
 		<!--Import universal rules - but not keywords-->
 		<IMPORT DELEGATE="UNIVERSAL"/>
-				
+
 		<!-- Instead use the list of officially reserved  MATA keywords:-->
 		<KEYWORDS>
-		
+
 		<KEYWORD1>array</KEYWORD1>
 		<KEYWORD1>colvector</KEYWORD1>
 		<KEYWORD1>external</KEYWORD1>
@@ -240,7 +239,7 @@
 		<KEYWORD1>void</KEYWORD1>
 		<KEYWORD1>delete</KEYWORD1>
 		<KEYWORD1>describe</KEYWORD1>
-		
+
 		<KEYWORD2>if</KEYWORD2>
 		<KEYWORD2>else</KEYWORD2>
 		<KEYWORD2>for</KEYWORD2>
@@ -251,13 +250,13 @@
 		<KEYWORD2>return</KEYWORD2>
 		<KEYWORD2>break</KEYWORD2>
 		<KEYWORD2>continue</KEYWORD2>
-		
+
 		<KEYWORD2>add</KEYWORD2>
 		<KEYWORD2>create</KEYWORD2>
 		<KEYWORD2>index</KEYWORD2>
 		<KEYWORD2>replace</KEYWORD2>
 		<KEYWORD2>using</KEYWORD2>
-	
+
 		<KEYWORD2>byte</KEYWORD2>
 		<KEYWORD2>int</KEYWORD2>
 		<KEYWORD2>long</KEYWORD2>
@@ -268,8 +267,8 @@
 		<KEYWORD2>boolean</KEYWORD2>
 		<KEYWORD2>complex</KEYWORD2>
 		<KEYWORD2>const</KEYWORD2>
-		
-		<!--Other (reserved) MATA keywords:--> 
+
+		<!--Other (reserved) MATA keywords:-->
 		<KEYWORD2>aggregate</KEYWORD2>
 		<KEYWORD2>case</KEYWORD2>
 		<KEYWORD2>catch</KEYWORD2>
@@ -289,7 +288,7 @@
 		<KEYWORD2>new</KEYWORD2>
 		<KEYWORD2>NULL</KEYWORD2>
 		<KEYWORD2>numeric</KEYWORD2>
-		<KEYWORD2>operator</KEYWORD2>	
+		<KEYWORD2>operator</KEYWORD2>
 		<KEYWORD2>orgtypedef</KEYWORD2>
 		<KEYWORD2>pointer</KEYWORD2>
 		<KEYWORD2>polymorphic</KEYWORD2>
@@ -299,7 +298,7 @@
 		<KEYWORD2>public</KEYWORD2>
 		<KEYWORD2>signed</KEYWORD2>
 		<KEYWORD2>static</KEYWORD2>
-		<KEYWORD2>super</KEYWORD2>		
+		<KEYWORD2>super</KEYWORD2>
 		<KEYWORD2>switch</KEYWORD2>
 		<KEYWORD2>template</KEYWORD2>
 		<KEYWORD2>throw</KEYWORD2>
@@ -307,25 +306,25 @@
 		<KEYWORD2>try</KEYWORD2>
 		<KEYWORD2>typedef</KEYWORD2>
 		<KEYWORD2>typename</KEYWORD2>
-		<KEYWORD2>union</KEYWORD2>		
-		<KEYWORD2>unsigned</KEYWORD2>		
+		<KEYWORD2>union</KEYWORD2>
+		<KEYWORD2>unsigned</KEYWORD2>
 		<KEYWORD2>virtual</KEYWORD2>
-		<KEYWORD2>volatile</KEYWORD2>             
-		
+		<KEYWORD2>volatile</KEYWORD2>
+
 		</KEYWORDS>
 	</RULES>
-		
 
-	<RULES SET="KEYWORDLIST" 
+
+	<RULES SET="KEYWORDLIST"
 		IGNORE_CASE="FALSE"
 		NO_WORD_SEP="`'_?"
 		HIGHLIGHT_DIGITS="TRUE"
 		DIGIT_RE="(([\.]?[0-9]+)([eE]?)([-+]*)([0-9]*)) | (([0-9]+\.*[0-9]*|\.[0-9]+)([+-]?[eE]?[0-9]+)) | ((([0-9]+\.[0-9]*|\.[0-9]+))[Ee]?)"
 		>
-		<!-- Example for "keyword"-style rules - that allows for flexible abbreviations (but are computationaly expensive):	 -->		
+		<!-- Example for "keyword"-style rules - that allows for flexible abbreviations (but are computationaly expensive):	 -->
 		<!--<SEQ_REGEXP TYPE="KEYWORD2" HASH_CHAR="bys" AT_WORD_START="TRUE">byso?r?t?([\s]+|$)</SEQ_REGEXP>
 			<SEQ_REGEXP TYPE="KEYWORD2" HASH_CHAR="cap" AT_WORD_START="TRUE">capt?u?r?e?([\s]+|$)</SEQ_REGEXP>	-->
-			
+
 		<!-- This list of keywords owes much to similar files for other editors which
 		members of the Stata community have so generously made freely available -->
 		<KEYWORDS>
@@ -348,7 +347,7 @@
 		<KEYWORD3>sav</KEYWORD3>
 		<KEYWORD3>xmlsave</KEYWORD3>
 		<KEYWORD3>xmluse</KEYWORD3>
-		
+
 		<!-- Data management and programming keywords: -->
 		<KEYWORD2>_estimates</KEYWORD2>
 		<KEYWORD2>_return</KEYWORD2>
@@ -369,7 +368,7 @@
 		<KEYWORD2>comments</KEYWORD2>
 		<KEYWORD2>compare</KEYWORD2>
 		<KEYWORD2>compress</KEYWORD2>
-		<KEYWORD2>confirm</KEYWORD2>	
+		<KEYWORD2>confirm</KEYWORD2>
 		<KEYWORD2>continue</KEYWORD2>
 		<KEYWORD2>creturn</KEYWORD2>
 		<KEYWORD2>define</KEYWORD2>
@@ -452,8 +451,8 @@
 		<KEYWORD2>long</KEYWORD2>
 		<KEYWORD2>float</KEYWORD2>
 		<KEYWORD2>double</KEYWORD2>
-		
-		<KEYWORD1>_rc</KEYWORD1>	
+
+		<KEYWORD1>_rc</KEYWORD1>
 		<KEYWORD1>_b</KEYWORD1>
 		<KEYWORD1>_coef</KEYWORD1>
 		<KEYWORD1>_cons</KEYWORD1>
@@ -1276,7 +1275,7 @@
 		<KEYWORD1>encod</KEYWORD1>
 		<KEYWORD1>encode</KEYWORD1>
 		<KEYWORD1>enter</KEYWORD1>
-		<!--<KEYWORD1>eq</KEYWORD1>-->	
+		<!--<KEYWORD1>eq</KEYWORD1>-->
 		<KEYWORD1>ereg</KEYWORD1>
 		<KEYWORD1>ereg_lf</KEYWORD1>
 		<KEYWORD1>ereg_p</KEYWORD1>
@@ -2747,9 +2746,9 @@
 		<KEYWORD1>inp</KEYWORD1>
 		<KEYWORD1>res</KEYWORD1>
 		<KEYWORD1>txt</KEYWORD1>
-		
 
-		
+
+
 		<!-- Survival Model keywords (recent addons ) -->
 		<KEYWORD1>basec</KEYWORD1>
 		<KEYWORD1>basechazard</KEYWORD1>
@@ -2766,13 +2765,13 @@
 		<KEYWORD1>sh</KEYWORD1>
 		<KEYWORD1>offset</KEYWORD1>
 		<KEYWORD1>breslow</KEYWORD1>
-		<KEYWORD1>bre</KEYWORD1>	
+		<KEYWORD1>bre</KEYWORD1>
 		<KEYWORD1>texp</KEYWORD1>
 		<KEYWORD1>exactm</KEYWORD1>
 		<KEYWORD1>exactp</KEYWORD1>
 		<KEYWORD1>con</KEYWORD1>
 		<KEYWORD1>noadjust</KEYWORD1>
-		<KEYWORD1>noadj</KEYWORD1>		
+		<KEYWORD1>noadj</KEYWORD1>
 		<KEYWORD1>noshow</KEYWORD1>
 		<KEYWORD1>nosh</KEYWORD1>
 		<KEYWORD1>mgale</KEYWORD1>
@@ -2794,9 +2793,9 @@
 		<KEYWORD1>ties</KEYWORD1>
 		<KEYWORD1>tie</KEYWORD1>
 		<KEYWORD1>sep</KEYWORD1>
-		<KEYWORD1>separate</KEYWORD1>		
+		<KEYWORD1>separate</KEYWORD1>
 
-		<!-- Some add-on ado packages: -->		
+		<!-- Some add-on ado packages: -->
 		<KEYWORD1>_gsqelemcount</KEYWORD1>
 		<KEYWORD1>_gsqepicount</KEYWORD1>
 		<KEYWORD1>_gsqgapcount</KEYWORD1>
@@ -2842,7 +2841,7 @@
 		<KEYWORD1>sutex</KEYWORD1>
 		<KEYWORD1>sutex6</KEYWORD1>
 		<KEYWORD1>tlogit</KEYWORD1>
-		<KEYWORD1>xtfevd</KEYWORD1>	
+		<KEYWORD1>xtfevd</KEYWORD1>
 		<KEYWORD1>xtserial</KEYWORD1>
 		<KEYWORD1>xttest1</KEYWORD1>
 
@@ -2920,37 +2919,37 @@
 		<KEYWORD1>yti</KEYWORD1>
 		<KEYWORD1>xti</KEYWORD1>
 		<KEYWORD1>ytitle</KEYWORD1>
-		<KEYWORD1>xtitle</KEYWORD1>		
+		<KEYWORD1>xtitle</KEYWORD1>
 		</KEYWORDS>
-		
+
 	</RULES>
 
-	
+
 <!-- Rule sets for strings, macros, quotes -->
-	<RULES SET="STRINGMACRO"> 
-		<SPAN TYPE="LITERAL3" DELEGATE="COM-QUOTE"><BEGIN>`"</BEGIN><END>"'</END></SPAN> 
+	<RULES SET="STRINGMACRO">
+		<SPAN TYPE="LITERAL3" DELEGATE="COM-QUOTE"><BEGIN>`"</BEGIN><END>"'</END></SPAN>
 		<SPAN TYPE="LITERAL1" DELEGATE="DUB-QUOTE"><BEGIN>"</BEGIN><END>"</END></SPAN>
 		<IMPORT DELEGATE="MACROS"/>
 	</RULES>
-	
+
 	<!-- COM-Quotes are highlighted as LITERAL3 - except:functions and macros -->
-	<RULES SET="COM-QUOTE" 
+	<RULES SET="COM-QUOTE"
 		DEFAULT="LITERAL3"
 		>
 		<MARK_PREVIOUS TYPE="FUNCTION" MATCH_TYPE="FUNCTION">(</MARK_PREVIOUS>
 		<SEQ TYPE="FUNCTION">)</SEQ>
 		<IMPORT DELEGATE="MACROS"/>
 	</RULES>
-	
+
 	<!-- DUB-Quotes are highlighted as LITERAL1 - except: macros -->
-	<RULES SET="DUB-QUOTE" 
+	<RULES SET="DUB-QUOTE"
 		DEFAULT="LITERAL1"
 		>
 		<IMPORT DELEGATE="MACROS"/>
 	</RULES>
-	
-	<!-- MACTROS are highlighted as LITERAL4:-->	
-	<RULES SET="MACROS" 
+
+	<!-- MACTROS are highlighted as LITERAL4:-->
+	<RULES SET="MACROS"
 		DEFAULT="LITERAL4"
 		>
 		<SPAN TYPE="LITERAL4" DELEGATE="EXPRESSION">
@@ -2959,18 +2958,18 @@
 			<BEGIN>`:</BEGIN><END>'</END></SPAN>
 		<SPAN TYPE="LITERAL4" DELEGATE="MACROS">
 			<BEGIN>`</BEGIN><END>'</END></SPAN>
-		<SEQ_REGEXP TYPE="LITERAL4" HASH_CHAR="$">\$[a-zA-Z]\w*</SEQ_REGEXP> 
-	</RULES> 
-	
-	<RULES SET="EXPRESSION" 
-		DEFAULT="NULL" 
+		<SEQ_REGEXP TYPE="LITERAL4" HASH_CHAR="$">\$[a-zA-Z]\w*</SEQ_REGEXP>
+	</RULES>
+
+	<RULES SET="EXPRESSION"
+		DEFAULT="NULL"
 		HIGHLIGHT_DIGITS="TRUE"
 		>
 		<SPAN_REGEXP TYPE="FUNCTION" DELEGATE="EXPRESSION" HASH_CHARS="abcdefghijklmnopqrstuvwxyz_"><BEGIN>\w*\(</BEGIN><END>)</END></SPAN_REGEXP>
 		<IMPORT DELEGATE="STRINGMACRO"/>
 	</RULES>
 
-	<RULES SET="GIVEUP" 
+	<RULES SET="GIVEUP"
 		DEFAULT="NULL"
 		>
 		<IMPORT DELEGATE="STRINGMACRO"/>

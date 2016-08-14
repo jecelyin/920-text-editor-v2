@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -29,19 +28,19 @@
 			<BEGIN>&lt;!--</BEGIN>
 			<END>--&gt;</END>
 		</SPAN>
-		
+
 		<!-- CFScript -->
 		<SPAN TYPE="KEYWORD3" DELEGATE="cfscript::MAIN">
 			<BEGIN>&lt;CFSCRIPT</BEGIN>
 			<END>&lt;/CFSCRIPT&gt;</END>
 		</SPAN>
-		
+
 		<!-- query -->
 		<SPAN TYPE="KEYWORD3" DELEGATE="CFQUERY">
 			<BEGIN>&lt;CFQUERY</BEGIN>
 			<END>/CFQUERY&gt;</END>
 		</SPAN>
-		
+
 		<!-- CFML markup start tags -->
 		<SPAN TYPE="KEYWORD3" DELEGATE="CFTAGS">
 			<BEGIN>&lt;CF</BEGIN>
@@ -65,7 +64,7 @@
 			<BEGIN>&lt;STYLE</BEGIN>
 			<END>&lt;/STYLE&gt;</END>
 		</SPAN>
-		
+
 		<!-- markup tags -->
 		<SPAN TYPE="MARKUP" DELEGATE="TAGS">
 			<BEGIN>&lt;</BEGIN>
@@ -90,7 +89,7 @@
 		</SPAN>
 
 		<SEQ TYPE="OPERATOR">=</SEQ>
-		
+
 		<!-- CFML markup start tags -->
 		<SPAN TYPE="KEYWORD3" DELEGATE="CFTAGS">
 			<BEGIN>&lt;CF</BEGIN>
@@ -103,7 +102,7 @@
 			<END>&gt;</END>
 		</SPAN>
 	</RULES>
-	
+
 	<RULES SET="CFQUERY" DEFAULT="KEYWORD3" IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="TRUE">
 		<!-- attributes inside cfquery tag -->
 		<SPAN TYPE="LITERAL1">
@@ -115,26 +114,26 @@
 			<END>'</END>
 		</SPAN>
 		<SEQ TYPE="OPERATOR">=</SEQ>
-		
+
 		<!-- cf logic inside query (like <cfqueryparam.../> -->
 		<SPAN_REGEXP TYPE="KEYWORD3" DELEGATE="CFTAGS" HASH_CHARS="&lt;CF">
 			<BEGIN>&lt;CF</BEGIN>
 			<END>&gt;</END>
 		</SPAN_REGEXP>
-		
+
 		<!-- ending cf tag in query (like </cfif> ) -->
 		<SPAN_REGEXP TYPE="KEYWORD3" DELEGATE="CFTAGS" HASH_CHARS="&lt;/CF">
 			<BEGIN>&lt;/CF</BEGIN>
 			<END>&gt;</END>
 		</SPAN_REGEXP>
-		
+
 		<!-- the actual SQL, delegate -->
 		<SPAN TYPE="MARKUP" DELEGATE="transact-sql::MAIN">
 			<BEGIN>&gt;</BEGIN>
 			<END>&lt;</END>
 		</SPAN>
 	</RULES>
-	
+
 	<RULES SET="CFTAGS" DEFAULT="KEYWORD3">
 		<SPAN TYPE="LITERAL1">
 			<BEGIN>"</BEGIN>
@@ -152,13 +151,13 @@
 			<BEGIN>#</BEGIN>
 			<END>#</END>
 		</SPAN>
-		
+
 		<!-- Allow arbitrary CFScript in CFSET tags (buggy) -->
 		<!--SPAN TYPE="KEYWORD3" DELEGATE="cfscript::MAIN">
 			<BEGIN>SET </BEGIN>
 			<END>&gt;</END>
 		</SPAN-->
-		
+
 		<KEYWORDS>
 			<KEYWORD2>ACos</KEYWORD2>
 			<KEYWORD2>ASin</KEYWORD2>

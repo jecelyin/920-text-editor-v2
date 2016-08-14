@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!--
@@ -74,7 +73,7 @@
 
                 <SEQ_REGEXP TYPE="DIGIT">0[xXoO][0-9a-fA-F]+</SEQ_REGEXP>
                 <SEQ_REGEXP TYPE="DIGIT">[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?</SEQ_REGEXP>
-                
+
                 <!-- Reserved operators -->
                 <SEQ_REGEXP TYPE="KEYWORD4">\.\.(?![!#$%&amp;\*+\./&lt;=&gt;?@\\\^\|\-~:])</SEQ_REGEXP>
                 <SEQ_REGEXP TYPE="KEYWORD4">:(?![!#$%&amp;\*+\./&lt;=&gt;?@\\\^\|\-~:])</SEQ_REGEXP>

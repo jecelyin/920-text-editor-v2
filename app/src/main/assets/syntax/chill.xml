@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- CHILL mode by Rudolf Widmann (Rudi.Widmann@web.de)
@@ -118,13 +117,13 @@
             <!-- UNTYPED POINTER. -->
             <KEYWORD3>PTR</KEYWORD3>
             <KEYWORD3>REF</KEYWORD3>
-            
+
             <LABEL>MODULE_DESCRIPTION_HEADER</LABEL>
             <LABEL>PATCH_INFOS</LABEL>
             <LABEL>LIO_INFOS</LABEL>
             <LABEL>SWSG_INFOS</LABEL>
-            <LABEL>MSG_XREF</LABEL>            
-            <LABEL>EJECT</LABEL>            
+            <LABEL>MSG_XREF</LABEL>
+            <LABEL>EJECT</LABEL>
 
             <LITERAL2>FALSE</LITERAL2>
             <LITERAL2>NULL</LITERAL2>

@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -205,7 +204,7 @@
 		<SEQ TYPE="MARKUP">/</SEQ>
 		<MARK_FOLLOWING TYPE="FUNCTION" MATCH_TYPE="OPERATOR">:</MARK_FOLLOWING>
 		<SEQ TYPE="OPERATOR">:</SEQ>
-		
+
 		<IMPORT DELEGATE="html::TAGS"/>
 	</RULES>
 
@@ -254,11 +253,11 @@
 		<MARK_PREVIOUS TYPE="LABEL" MATCH_TYPE="OPERATOR">:</MARK_PREVIOUS>
 		<IMPORT DELEGATE="java::MAIN"/>
 	</RULES>
-	
+
 	<RULES SET="JAVA">
 		<SEQ_REGEXP TYPE="COMMENT2">[/][/](.*?)(?=[%][&gt;])</SEQ_REGEXP>
 		<IMPORT DELEGATE="java::MAIN"/>
 	</RULES>
-	
+
 </MODE>
 <!-- :noTabs=false: -->

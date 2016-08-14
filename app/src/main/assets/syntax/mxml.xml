@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <MODE>
@@ -8,8 +7,8 @@
 		<PROPERTY NAME="commentEnd" VALUE="--&gt;" />
 	</PROPS>
 	<RULES>
-	
-		
+
+
 		<!-- SGML comment -->
 		<SPAN TYPE="COMMENT1">
 			<BEGIN>&lt;!--</BEGIN>
@@ -51,7 +50,7 @@
 			<BEGIN>&amp;</BEGIN>
 			<END>;</END>
 		</SPAN>
-		
+
 	</RULES>
 	<RULES SET="ACTIONSCRIPT" DEFAULT="MARKUP" IGNORE_CASE="FALSE">
 		<SEQ TYPE="KEYWORD2" DELEGATE="actionscript::MAIN">[</SEQ>
@@ -67,7 +66,7 @@
 			<BEGIN>"{</BEGIN>
 			<END>}"</END>
 		</SPAN>
-		
+
 		<SPAN TYPE="LITERAL1" NO_LINE_BREAK="FALSE">
 			<BEGIN>"</BEGIN>
 			<END>"</END>
@@ -82,7 +81,7 @@
 		<MARK_PREVIOUS TYPE="LABEL" MATCH_TYPE="CONTEXT">:</MARK_PREVIOUS>
 		<SEQ TYPE="OPERATOR">:</SEQ>
 	</RULES>
-	
+
 	<RULES SET="DTD-TAGS" DEFAULT="KEYWORD2" IGNORE_CASE="FALSE">
 		<!-- SGML comment -->
 		<SPAN TYPE="COMMENT1">

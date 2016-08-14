@@ -1,6 +1,4 @@
 <?xml version="1.0"?>
-
-<!-- RFC mode by Matthieu Casanova -->
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 <MODE>
 	<PROPS>
@@ -25,7 +23,7 @@
 			<KEYWORD1>SHOULD NOT</KEYWORD1>
 			<KEYWORD1>RECOMMENDED</KEYWORD1>
 			<KEYWORD1>MAY</KEYWORD1>
-			<KEYWORD1>OPTIONAL</KEYWORD1> 
+			<KEYWORD1>OPTIONAL</KEYWORD1>
 			<!--}}}-->
 		</KEYWORDS>
 	</RULES>

@@ -1,29 +1,4 @@
 <?xml version="1.0"?>
-
-<!-- @RisingSun//XML//1.0//EN________________________________________________
-
-	JEdit syntax mode for Io
-
-	..........................................................................
-
-	File name		:	io.xml
-	Description		:	JEdit syntax file for the Io programming language
-	Related links	:	<http://www.iolanguage.com>, <http://www.jedit.org>
-
-	..........................................................................
-	Author			:	Sébastien Pierre                  <spierre@type-z.org>
-	..........................................................................
-
-	Creation date	:	05-May-2003
-	Last revision	:	19-May-2003
-	Revision		:	1.1
-    History			:
-						19-May-2003 Added primitives highlighting.
-						05-May-2003 First release
-
-	.....................................................................  -->
-
-<!-- ________________________________________________________D O C T Y P E -->
 <!DOCTYPE MODE SYSTEM "xmode.dtd">
 
 <!-- ____________________________________________D O C U M E N T _ R O O T -->
