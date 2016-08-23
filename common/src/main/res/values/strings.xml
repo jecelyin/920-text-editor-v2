@@ -27,7 +27,7 @@
     <string name="crash_submit_fail_x">Failure: %s</string>
     <string name="network_unavailable">Network Unavailable</string>
     <string name="submitting">Submitting…</string>
-    <string name="can_not_be_empty">Can't be empty</string>
+    <string name="can_not_be_empty">Can\'t be empty</string>
     <string name="no_data">No Data</string>
     <string name="try_agent">Try again</string>
     <string name="search_results">Search Results</string>
