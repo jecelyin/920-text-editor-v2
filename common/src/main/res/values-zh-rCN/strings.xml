@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
   ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
   ~
@@ -47,24 +46,23 @@
     <string name="save_file">保存文件</string>
     <string name="override_file_prompt">%s 已经存在，确认要覆盖它吗？</string>
     <string name="filter_by_name">按名称过滤</string>
-    <string name="untitled_file_name" translatable="false">untitled.txt</string>
-    <string name="select_all">全选</string>
-    <string name="cut">剪切</string>
+    <string name="can_not_create_folder">无法创建文件夹</string>
+    <string name="can_not_share_x">无法共享该文件: %s</string>
+    <string name="cancel_select_all">取消全选</string>
     <string name="copy">复制</string>
+    <string name="create_folder">创建文件夹</string>
+    <string name="cut">剪切</string>
+    <string name="delete">删除</string>
     <string name="paste">粘贴</string>
     <string name="rename">重命名</string>
-    <string name="share">共享</string>
-    <string name="delete">删除</string>
-    <string name="cancel_select_all">取消全选</string>
     <string name="rename_fail">重命名失败</string>
-    <string name="can_not_share_x">无法共享该文件: %s</string>
+    <string name="select_all">全选</string>
+    <string name="share">共享</string>
     <string name="show_hidden_files">显示隐藏文件</string>
-    <string name="sort_by_name">按名称</string>
     <string name="sort_by_datetime">按时间</string>
+    <string name="sort_by_name">按名称</string>
     <string name="sort_by_size">按大小</string>
     <string name="sort_by_type">按类型</string>
-    <string name="create_folder">创建文件夹</string>
-    <string name="can_not_create_folder">无法创建文件夹</string>
     <string name="addToDictionary">添加到字典</string>
     <string name="deleteText">删除文本</string>
     <string name="replace">替换</string>
@@ -166,7 +164,11 @@
     <string name="auto_save">自动保存文档</string>
     <string name="remember_last_opened_files">记住最后打开的文件</string>
     <string name="remember_last_opened_files_summary">启动编辑器时自动打开上次打开的文件</string>
-    <string name="screen_orientation">屏幕方向</string>
+    <string-array name="screen_orientation">
+        <item>自动</item>
+        <item>横屏</item>
+        <item>竖屏</item>
+    </string-array>
     <string name="keep_screen_on">保持屏幕常亮</string>
     <string name="auto_capitalize">首字母自动大写</string>
     <string name="feedback">意见反馈</string>
@@ -179,10 +181,6 @@
     <string name="file_not_exists">文件不存在</string>
     <string name="cannt_handle_intent_x">无法处理来源信息：%s</string>
     <string name="handle_intent_x_error">处理来源：%s 时发生错误</string>
-    <string name="hex_color_char" translatable="false">#</string>
-    <string name="color_R" translatable="false">R:</string>
-    <string name="color_G" translatable="false">G:</string>
-    <string name="color_B" translatable="false">B:</string>
     <string name="verify_sign_failure">你当前使用的是非官方发布的应用，请转到 https://github.com/jecelyin/920-text-editor-v2/releases 下载官方发布的应用。</string>
     <string name="press_again_will_exit">再按一次返回按钮将退出程序</string>
     <string name="find_replace">查找/替换</string>
@@ -203,13 +201,12 @@
     <string name="auto_check_updates">自动检查更新</string>
     <string name="cannt_download">无法下载</string>
     <string name="readonly_mode_not_support_this_action">只读模式不支持此操作</string>
-    <string name="x_text_replaced">%d 个文本已经替换</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 个匹配</item>
+        <item quantity="other">%d 处文本已经替换</item>
+    </plurals>
     <string name="enable_root">启用Root权限</string>
-    <string name="my_name">作者：彭春瑜</string>
-    <string name="my_email" translatable="false"><![CDATA[Email：<a href="mailto:jecelyin@gmail.com">jecelyin@gmail.com</a>]]></string>
-    <string name="project_url" translatable="false"><![CDATA[URL：<a href="https://github.com/jecelyin/920-text-editor-v2/">https://github.com/jecelyin/920-text-editor-v2/</a>]]></string>
-    <string name="qq_group">QQ群：87272821</string>
-    <string name="license" translatable="false"><![CDATA[Copyright (C) 2016 Jecelyin Peng,\n\n920 Text Editor open source software is licensed under the Apache License 2.0]]></string>
+    <string name="my_name">作者：彭春瑜 (QQ群：87272821)</string>
     <string name="open_with_external_browser">使用外部浏览器打开</string>
     <string name="contact_email_optional">联系Email（可选）</string>
     <string name="with_error_logs">错误日志</string>
@@ -221,26 +218,7 @@
     <string name="writing">正在写入</string>
     <string name="keyword">关键字</string>
     <string name="find_keyword_is_empty">查找关键字不能为空</string>
-
-    <string name="exit">退出</string>
-    <string name="unknown_exception_and_report_message_x">未知异常,请告诉我这是什么情况下发生的,谢谢\n代码:%s</string>
-    <string name="keep_backup_file">保留备份文件</string>
-    <string name="keep_backup_file_summary">建议保留备份文件，避免文件异外损坏而无法恢复文件</string>
-    <string name="save_all_without_new_document_message">全部保存将跳过新建文档</string>
-    <string name="reset">重置</string>
-    <string name="custom_symbol_list">自定义符号列表</string>
-    <string name="clear_history">清除记录</string>
-    <string name="fullscreen_mode">全屏模式</string>
-    <string name="disabled_fullscreen_mode_message">重启程序后将关闭全屏模式</string>
-    <string name="enable_fullscreen_mode_message">重启程序后将启用全屏模式</string>
-    <string name="default_theme">默认</string>
-    <string name="dark_theme">黑夜</string>
-    <string name="change_theme">改变主题</string>
-    <string name="confirm_change_theme_message">改变主题不会自动保存当前文档, 确认放弃文档改变而改变主题?</string>
-    <plurals name="x_text_replaced">
-        <item quantity="zero">0 个匹配</item>
-        <item quantity="other">%d 处文本已经替换</item>
-    </plurals>
+    <string name="x_text_replaced">%d 个文本已经替换</string>
     <string-array name="insert_datetime_lang">
         <item>英语</item>
         <item>中文</item>
@@ -249,22 +227,22 @@
         <item>转换为 \\n（Linux/OSX）</item>
         <item>转换为 \\r\\n（Windows）</item>
     </string-array>
-    <string-array name="date_number" translatable="false">
-        <item>〇</item>
-        <item>一</item>
-        <item>二</item>
-        <item>三</item>
-        <item>四</item>
-        <item>五</item>
-        <item>六</item>
-        <item>七</item>
-        <item>八</item>
-        <item>九</item>
-        <item>十</item>
-    </string-array>
-    <string-array name="screen_orientation">
-        <item>自动</item>
-        <item>横屏</item>
-        <item>竖屏</item>
-    </string-array>
+    <string name="screen_orientation">屏幕方向</string>
+    <string name="exit">退出</string>
+    <string name="unknown_exception_and_report_message_x">未知异常,请告诉我这是什么情况下发生的,谢谢\n代码:%s</string>
+    <string name="keep_backup_file">保留备份文件</string>
+    <string name="keep_backup_file_summary">建议保留备份文件，避免文件异外损坏而无法恢复文件</string>
+    <string name="save_all_without_new_document_message">全部保存将跳过新建文档</string>
+    <string name="clear_history">清除记录</string>
+    <string name="custom_symbol_list">自定义符号列表</string>
+    <string name="reset">重置</string>
+    <string name="change_theme">改变主题</string>
+    <string name="dark_theme">黑夜</string>
+    <string name="default_theme">默认</string>
+    <string name="fullscreen_mode">全屏模式</string>
+    <string name="enable_fullscreen_mode_message">重启程序后将启用全屏模式</string>
+    <string name="disabled_fullscreen_mode_message">重启程序后将关闭全屏模式</string>
+    <string name="confirm_change_theme_message">改变主题不会自动保存当前文档, 确认放弃文档改变而改变主题?</string>
+
+    <string name="untitled_file_name">untitled.txt</string>
 </resources>
