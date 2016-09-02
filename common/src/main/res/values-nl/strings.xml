@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Navigeren naar startpositie</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Omhoog navigeren</string>
-    <string name="abc_action_menu_overflow_description">Meer opties</string>
-    <string name="abc_action_mode_done">Gereed</string>
-    <string name="abc_activity_chooser_view_see_all">Alles weergeven</string>
-    <string name="abc_activitychooserview_choose_application">Een app selecteren</string>
-    <string name="abc_capital_off">UIT</string>
-    <string name="abc_capital_on">AAN</string>
-    <string name="abc_search_hint">Zoeken…</string>
-    <string name="abc_searchview_description_clear">Zoekopdracht wissen</string>
-    <string name="abc_searchview_description_query">Zoekopdracht</string>
-    <string name="abc_searchview_description_search">Zoeken</string>
-    <string name="abc_searchview_description_submit">Zoekopdracht verzenden</string>
-    <string name="abc_searchview_description_voice">Gesproken zoekopdracht</string>
-    <string name="abc_shareactionprovider_share_with">Delen met</string>
-    <string name="abc_shareactionprovider_share_with_application">Delen met %s</string>
-    <string name="abc_toolbar_collapse_description">Samenvouwen</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">crash Report</string>
+    <string name="crash_contact">E-mail (optioneel)</string>
+    <string name="crash_comment">Hoe om te crashen (optioneel ):</string>
+    <string name="crash_report_success">Succes, Dank je wel!</string>
+    <string name="crash_stacktrace">stacktrace:</string>
+    <string name="crash_submit">voorleggen</string>
+    <string name="crash_submit_fail_x">Failure: %s</string>
+    <string name="network_unavailable">Netwerkniet beschikbaar</string>
+    <string name="submitting">Het indienen van...</string>
+    <string name="can_not_be_empty">Kanniet leeg zijn</string>
+    <string name="no_data">Geen gegevens</string>
+    <string name="try_agent">Probeer hetnog eens</string>
+    <string name="search_results">Zoekresultaten</string>
+    <string name="directory">directory</string>
+    <string name="authenticate">waarmerken</string>
+    <string name="logout">Uitloggen</string>
+    <string name="selected_x_items">Geselecteerde %d Items</string>
+    <string name="filename">Bestandsnaam:</string>
+    <string name="file_encoding">encoding:</string>
+    <string name="file_save">Save</string>
+    <string name="root_path">Wortel</string>
+    <string name="auto_detection_encoding">Automatische detectie encoding</string>
+    <string name="illegal_filename">illegale bestandsnaam</string>
+    <string name="unknown_path">onbekend pad</string>
+    <string name="open_file">Open bestand</string>
+    <string name="save_file">Sla bestand op</string>
+    <string name="override_file_prompt">%s bestaat, doe je het overschrijven?</string>
+    <string name="filter_by_name">Filter opnaam</string>
+    <string name="can_not_create_folder">Kan mapniet maken</string>
+    <string name="can_not_share_x">Kan bestandniet delen: %s</string>
+    <string name="cancel_select_all">Deselecteer alles</string>
+    <string name="copy">Kopiëren</string>
+    <string name="create_folder">Map aanmaken</string>
+    <string name="cut">Besnoeiing</string>
+    <string name="delete">Verwijder</string>
+    <string name="paste">Plakken</string>
+    <string name="rename">anderenaam geven</string>
+    <string name="rename_fail">hernoemen mislukking</string>
+    <string name="select_all">Selecteer alles</string>
+    <string name="share">Delen</string>
+    <string name="show_hidden_files">Toon verborgen bestanden</string>
+    <string name="sort_by_datetime">Sorteren op datum</string>
+    <string name="sort_by_name">Sorteren opnaam</string>
+    <string name="sort_by_size">Sorteren op Maat</string>
+    <string name="sort_by_type">Sorteren op soort</string>
+    <string name="addToDictionary">Toevoegen aan woordenboek</string>
+    <string name="deleteText">Verwijder tekst</string>
+    <string name="replace">Vervangen</string>
+    <string name="textSelectionCABTitle">Selecteer tekst</string>
+    <string name="selectAll">Selecteer alles</string>
+    <string name="find">Vind</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">nieuwe</string>
+    <string name="open">Open</string>
+    <string name="save">Save</string>
+    <string name="undo">ongedaan maken</string>
+    <string name="redo">opnieuw</string>
+    <string name="save_all">Bewaar alles</string>
+    <string name="save_as">Opslaan als</string>
+    <string name="recent_files">Recente documenten</string>
+    <string name="line_separator">Kabelbreuk</string>
+    <string name="duplication_line">duplicatie lijn</string>
+    <string name="find_in_files">Zoek in files</string>
+    <string name="jump_to_start">Ganaar start</string>
+    <string name="jump_to_end">Ganaar einde</string>
+    <string name="goto_line">Goto lijn</string>
+    <string name="back">Terug</string>
+    <string name="forward">vooruit</string>
+    <string name="document_info">document Info</string>
+    <string name="symbol">Symbool</string>
+    <string name="insert_color">kleurkatern</string>
+    <string name="highlight_language">highlight taal</string>
+    <string name="encoding">codering</string>
+    <string name="read_only">Alleen lezen</string>
+    <string name="insert_datetime">Plaats datetime</string>
+    <string name="edit_mode">Bewerkingsmodus</string>
+    <string name="run">Rennen</string>
+    <string name="file">file</string>
+    <string name="other">anders</string>
+    <string name="view">Uitzicht</string>
+    <string name="edit">Bewerk</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">bevestigen opslaan</string>
+    <string name="confirm_save_msg">Document %s is veranderd, wil je slaan en te verlaten?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="cannt_access_file">Heeft geen toegang tot het bestand: %s</string>
+    <string name="cannt_read_file">Kan bestandniet lezen: %s</string>
+    <string name="ok">OK</string>
+    <string name="read_file_exception">Treedt op uitzondering wanneer gelezen file</string>
+    <string name="init_syntax_msg">Initialiseren syntax...</string>
+    <string name="init_syntax_error">Initialiseren syntax mislukken</string>
+    <string name="init_build_index_error">Build index mislukken</string>
+    <string name="close">Dichtbij</string>
+    <string name="cancel">Annuleer</string>
+    <string name="convert_wrap_char">Omzetten wrap char</string>
+    <string name="path_x">Path: %s</string>
+    <string name="char_x">Tekens: %d</string>
+    <string name="word_x">Woorden: %d</string>
+    <string name="line_number_x">Lijnnummer: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">tab</string>
+    <string name="no_change">Geen verandering!</string>
+    <string name="save_success">Save Succes</string>
+    <string name="find_label">Vind wat:</string>
+    <string name="replace_label">Vervangen door:</string>
+    <string name="case_sensitive">Hoofdlettergevoelig</string>
+    <string name="whole_words_only">Alleen hele woorden</string>
+    <string name="regex">reguliere expressie</string>
+    <string name="in_path">In Pad:</string>
+    <string name="recursively">recursief</string>
+    <string name="cannot_be_empty">Kanniet leeg zijn</string>
+    <string name="path_not_exists">Padniet bestaat</string>
+    <string name="find_not_found">Niet gevonden</string>
+    <string name="previous_occurrence">vorige Voorkomen</string>
+    <string name="next_occurrence">Volgende Voorkomen</string>
+    <string name="replace_all">Vervang alles</string>
+    <string name="searching">Zoeken…</string>
+    <string name="select_lang_to_highlight">Selecteer een taal te markeren</string>
+    <string name="more_menu">meer menu</string>
+    <string name="reopen_with_encoding">Heropenen met codering</string>
+    <string name="document_changed">document veranderd</string>
+    <string name="give_up_document_changed_message">Document is veranderd, uw wijzigingen zullen verloren gaan als je zeniet op te slaan, te bevestigen?</string>
+    <string name="preview_in_browser">Voorbeeld in browser</string>
+    <string name="use_sl4a_in_background_run_script">Gebruik SL4A op de achtergrond run script</string>
+    <string name="use_sl4a_in_terminal_run_script">Gebruik SL4A in terminal run script</string>
+    <string name="please_save_as_file_first">lease opslaannaar eerste bestand</string>
+    <string name="run_fail_message">Call externe applicatie is mislukt</string>
+    <string name="settings">instellingen</string>
+    <string name="editor">Editor</string>
+    <string name="font">doopvont</string>
+    <string name="default_value">Standaard</string>
+    <string name="font_size">Lettertypegrootte</string>
+    <string name="cursor_width">cursor Breedte</string>
+    <string name="touch_to_adjust_text_size">Raak aan om tekstgrootte te veranderen</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Show lineNumber</string>
+    <string name="show_whitespace">Show Whitespace</string>
+    <string name="auto_indent">Auto inspringen</string>
+    <string name="insert_space_for_tab">Steek ruimte voor Tab</string>
+    <string name="indent_size">streepje maat</string>
+    <string name="highlight_and_theme">Highlight en Theme</string>
+    <string name="highlight_the_file_size_limit">Limit hoogtepunt bestandsgrootte</string>
+    <string name="auto_save">Auto save file</string>
+    <string name="remember_last_opened_files">Vergeet laatst geopende bestanden</string>
+    <string name="remember_last_opened_files_summary">Auto Open laatst geopende bestanden bij het opstarten</string>
+    <string name="screen_orientation">Oriëntatie van het scherm</string>
+    <string name="keep_screen_on">Keep scherm op</string>
+    <string name="auto_capitalize">Auto kapitaliseren</string>
+    <string name="feedback">terugkoppeling</string>
+    <string name="donate">schenken</string>
+    <string name="help_translate">Vertaal deze applicatie</string>
+    <string name="about">Over</string>
+    <string name="enable_highlight">inschakelen hoogtepunt</string>
+    <string name="version_x">Versie: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Behoefte om te lezen opslag permissies in te schakelen</string>
+    <string name="file_not_exists">Bestand bestaatniet</string>
+    <string name="cannt_handle_intent_x">Kanniet verwerken opzet: %s</string>
+    <string name="handle_intent_x_error">Er is een fout opgetreden bij het verwerken van opzet: %s</string>
+    <string name="verify_sign_failure">Uw huidige toepassing isniet officieel, ga dannaar https://github.com/jecelyin/920-text-editor-v2/releases downloaden.</string>
+    <string name="press_again_will_exit">Druk weer verlaten</string>
+    <string name="find_replace">Zoeken / Vervangen</string>
+    <string name="find_title">\"%s\" Find Results</string>
+    <string name="zero_matches">0 wedstrijden</string>
+    <string name="chooser_browser">Kiezer browser</string>
+    <string name="find_or_replace">Zoeken / vervangen...</string>
+    <string name="other_application">Andere toepassing...</string>
+    <string name="chooser_application">Kiezer Application</string>
+    <string name="editor_create_unknown_exception">Treedt op onbekende uitzondering als creëren editor</string>
+    <string name="convert_to_uppercase">Omzettennaar hoofdletters</string>
+    <string name="convert_to_lowercase">Omzettennaar kleine letters</string>
+    <string name="duplication_text">duplicatie tekst</string>
+    <string name="tab_size">tab size</string>
+    <string name="new_version_available">Nieuwe versie beschikbaar</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="new_version_update_content">Nieuwste versie: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Downloaden %1$d%%</string>
+    <string name="download_failure_x">Download falen: %s</string>
+    <string name="start_download">Start download</string>
+    <string name="auto_check_updates">Automatisch controleren updates</string>
+    <string name="cannt_download">Kanniet downloaden.</string>
+    <string name="readonly_mode_not_support_this_action">Alleen-lezen modusniet deze actie te ondersteunen</string>
+    <string name="x_text_replaced">%d tekst vervangen</string>
+    <string name="enable_root">inschakelen Root</string>
+    <string name="my_name">Auteur: Jecelyin Peng</string>
+    <string name="qq_group">QQ Groep: 87272821</string>
+    <string name="open_with_external_browser">Open met externe browser</string>
+    <string name="contact_email_optional">Contact e-mail (optioneel)</string>
+    <string name="with_error_logs">error Logs</string>
+    <string name="content">Inhoud</string>
+    <string name="send">sturen</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Terugkoppeling inhoud lengte moet groter zijn dan %d char zijn</string>
+    <string name="feedback_submit_error_x">Submit fout: %s</string>
+    <string name="submit_success">Succesvol verstuurd</string>
+    <string name="writing">schrijf-</string>
+    <string name="keyword">keyword</string>
+    <string name="find_keyword_is_empty">Zoekwoord kanniet leeg zijn</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 gevonden</item>
+        <item quantity="other">%d tekst vervangen</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Engels</item>
+        <item>Chinese</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>Landschap</item>
+        <item>Portret</item>
+    </string-array>
+    <string name="exit">Uitgang</string>
+    <string name="unknown_exception_and_report_message_x">Onbekende uitzondering, Kunt u mij vertellen wat is dit geval gebeurt, dank u \nCode: %s</string>
+    <string name="keep_backup_file">Houd een back-upbestand</string>
+    <string name="keep_backup_file_summary">Stel voor dat je back-upbestanden te houden, voorkomen dat bestand mist voor uitzondering</string>
+    <string name="save_all_without_new_document_message">Bewaar allenieuwe document over te slaan</string>
+    <string name="clear_history">Geschiedenis wissen</string>
+    <string name="custom_symbol_list">symbool lijst Aangepaste</string>
+    <string name="reset">Reset</string>
+    <string name="change_theme">Thema veranderen</string>
+    <string name="dark_theme">Donker thema</string>
+    <string name="default_theme">Default Theme</string>
+    <string name="fullscreen_mode">fullscreen -modus</string>
+    <string name="enable_fullscreen_mode_message">Start de applicatie zal de full screen mode mogelijk te maken</string>
+    <string name="disabled_fullscreen_mode_message">Start de applicatie zal het volledige scherm uit te schakelen</string>
+    <string name="confirm_change_theme_message">Change thema zalniet automatisch documenten op te slaan, bevestig je verwerp document thema te veranderen?</string>
 </resources>

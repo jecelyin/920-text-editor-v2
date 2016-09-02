@@ -1,4 +1,249 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  --><resources>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">Email (Könüllü)</string>
+    <string name="crash_comment">(Könüllü) qəzanecə:</string>
+    <string name="crash_report_success">Success, təşəkkür edirik!</string>
+    <string name="crash_stacktrace">StackTrace:</string>
+    <string name="crash_submit">təqdim</string>
+    <string name="crash_submit_fail_x">Xəta:%s</string>
+    <string name="network_unavailable">İşçilərin sayı Network</string>
+    <string name="submitting">Təqdim...</string>
+    <string name="can_not_be_empty">boş ola bilməz</string>
+    <string name="no_data">Məlumat yoxdur</string>
+    <string name="try_agent">Yenidən cəhd elə</string>
+    <string name="search_results">Axtarışnəticələri</string>
+    <string name="directory">Directory</string>
+    <string name="authenticate">təsdiq etmək</string>
+    <string name="logout">Çıxış</string>
+    <string name="selected_x_items">Seçilmiş %d Items</string>
+    <string name="filename">Fayl adı:</string>
+    <string name="file_encoding">Encoding:</string>
+    <string name="file_save">Yadda saxla</string>
+    <string name="root_path">kök</string>
+    <string name="auto_detection_encoding">Auto aşkar encoding</string>
+    <string name="illegal_filename">qanunsuz fayl</string>
+    <string name="unknown_path">naməlum yol</string>
+    <string name="open_file">Open File</string>
+    <string name="save_file">Fayl saxla</string>
+    <string name="override_file_prompt">%s mövcuddur, bu yalnış edirsiniz?</string>
+    <string name="filter_by_name">Adı ilə Süzgəc</string>
+    <string name="can_not_create_folder">qovluq yaratmaq olmur</string>
+    <string name="can_not_share_x">fayl bölüşmək bilmirəm address: %s</string>
+    <string name="cancel_select_all">Hamısını sil</string>
+    <string name="copy">köçürmək</string>
+    <string name="create_folder">qovluq yaradın</string>
+    <string name="cut">kəsmək</string>
+    <string name="delete">sil</string>
+    <string name="paste">pasta</string>
+    <string name="rename">Rename</string>
+    <string name="rename_fail">uğursuzluq Rename</string>
+    <string name="select_all">bütün seçin</string>
+    <string name="share">səhm</string>
+    <string name="show_hidden_files">Gizli faylları göstər</string>
+    <string name="sort_by_datetime">Tarix Sort</string>
+    <string name="sort_by_name">Adı ilə Sort</string>
+    <string name="sort_by_size">Size görə sırala</string>
+    <string name="sort_by_type">Tipi görə sırala</string>
+    <string name="addToDictionary">lüğət əlavə et</string>
+    <string name="deleteText">Mətn sil</string>
+    <string name="replace">dəyişdirmək</string>
+    <string name="textSelectionCABTitle">Select Text</string>
+    <string name="selectAll">Bütün seçin</string>
+    <string name="find">tapmaq</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">yeni</string>
+    <string name="open">açıq</string>
+    <string name="save">Yadda saxla</string>
+    <string name="undo">qaytar</string>
+    <string name="redo">Yeniden</string>
+    <string name="save_all">Save All</string>
+    <string name="save_as">kimi saxla</string>
+    <string name="recent_files">Son faylları</string>
+    <string name="line_separator">Line Break</string>
+    <string name="duplication_line">Duplication line</string>
+    <string name="find_in_files">faylları tap</string>
+    <string name="jump_to_start">başlamaq üçün Jump</string>
+    <string name="jump_to_end">sonuna Jump</string>
+    <string name="goto_line">Goto line</string>
+    <string name="back">geri</string>
+    <string name="forward">irəli</string>
+    <string name="document_info">Document Info</string>
+    <string name="symbol">rəmz</string>
+    <string name="insert_color">Insert rəng</string>
+    <string name="highlight_language">Highlight</string>
+    <string name="encoding">Encoding</string>
+    <string name="read_only">Yalnız oxumaq üçün</string>
+    <string name="insert_datetime">Datetime daxil edin</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">qaçış</string>
+    <string name="file">fayl</string>
+    <string name="other">digər</string>
+    <string name="view">baxış</string>
+    <string name="edit">redaktə etmək</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">qazanc tƏSDİQ</string>
+    <string name="confirm_save_msg">Document %s dəyişdi saxlamaq və çıxış istəyirsiniz var?</string>
+    <string name="yes">bəli</string>
+    <string name="no">Yox</string>
+    <string name="cannt_access_file">fayl gedə bilməz:%s</string>
+    <string name="cannt_read_file">Fayl oxuna bilmir:%s</string>
+    <string name="ok">tamam</string>
+    <string name="read_file_exception">fayl oxumaq zaman istisna baş verir</string>
+    <string name="init_syntax_msg">sintaksis başlamaq...</string>
+    <string name="init_syntax_error">syntax uğursuz başlamaq</string>
+    <string name="init_build_index_error">uğursuz indeksi Build</string>
+    <string name="close">Yaxın</string>
+    <string name="cancel">ləğv etmək</string>
+    <string name="convert_wrap_char">wrap char Convert</string>
+    <string name="path_x">Path: %s</string>
+    <string name="char_x">Chars: %d</string>
+    <string name="word_x">Words: %d</string>
+    <string name="line_number_x">Line sayı: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">No dəyişiklik!</string>
+    <string name="save_success">Save Success</string>
+    <string name="find_label">Nə axtar:</string>
+    <string name="replace_label">Ilə əvəz:</string>
+    <string name="case_sensitive">həssas Case</string>
+    <string name="whole_words_only">Bütün sözləri yalnız</string>
+    <string name="regex">Daimi ifadə</string>
+    <string name="in_path">Yol In:</string>
+    <string name="recursively">recursively</string>
+    <string name="cannot_be_empty">boş ola bilməz</string>
+    <string name="path_not_exists">Path deyil mövcuddur</string>
+    <string name="find_not_found">Tapılmadı</string>
+    <string name="previous_occurrence">Əvvəlki yaranması</string>
+    <string name="next_occurrence">Next yaranması</string>
+    <string name="replace_all">Hamısını dəyişdirin</string>
+    <string name="searching">Axtarış...</string>
+    <string name="select_lang_to_highlight">vurğulamaq üçün bir dil seçin</string>
+    <string name="more_menu">Ətraflı menyu</string>
+    <string name="reopen_with_encoding">kodlama ilə yenidən</string>
+    <string name="document_changed">Document dəyişdi</string>
+    <string name="give_up_document_changed_message">Document siz onları xilas yoxsa sizin dəyişikliklər itirilmiş olacaq, dəyişdi, təsdiq?</string>
+    <string name="preview_in_browser">brauzerinizin Preview</string>
+    <string name="use_sl4a_in_background_run_script">background run script SL4A istifadə</string>
+    <string name="use_sl4a_in_terminal_run_script">terminal run script SL4A istifadə</string>
+    <string name="please_save_as_file_first">icarə ilk fayl saxlamaq</string>
+    <string name="run_fail_message">Call kənar proqram uğursuz</string>
+    <string name="settings">Settings</string>
+    <string name="editor">Redaktor</string>
+    <string name="font">şrift</string>
+    <string name="default_value">Default</string>
+    <string name="font_size">Şrift ölçüsü</string>
+    <string name="cursor_width">Kursor Eni</string>
+    <string name="touch_to_adjust_text_size">mətn ölçüsünü dəyişdirmək üçün Touch</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Show Linenumber</string>
+    <string name="show_whitespace">Show ağ</string>
+    <string name="auto_indent">Auto girinti</string>
+    <string name="insert_space_for_tab">Tab üçün yer daxil edin</string>
+    <string name="indent_size">girinti size</string>
+    <string name="highlight_and_theme">Highlight və Theme</string>
+    <string name="highlight_the_file_size_limit">Limit məqamı fayl ölçüsü</string>
+    <string name="auto_save">Auto fayl saxlamaq</string>
+    <string name="remember_last_opened_files">son açılan faylları saxla</string>
+    <string name="remember_last_opened_files_summary">açıq Auto son zaman başlanğıc faylları açıldı</string>
+    <string name="screen_orientation">Screen Orientation</string>
+    <string name="keep_screen_on">ekran saxlamaq</string>
+    <string name="auto_capitalize">Auto kapitallaşdırmaq</string>
+    <string name="feedback">Əlaqə</string>
+    <string name="donate">ianə vermək</string>
+    <string name="help_translate">Bu proqram tərcümə</string>
+    <string name="about">haqqında</string>
+    <string name="enable_highlight">qeyd Enable</string>
+    <string name="version_x">Versiya: %s</string>
+    <string name="need_to_enable_read_storage_permissions">oxumaq storage icazələrin imkan lazımdır</string>
+    <string name="file_not_exists">Biz mövcud Fayl</string>
+    <string name="cannt_handle_intent_x">niyyət emal edirik, seçin: %s</string>
+    <string name="handle_intent_x_error">Bir səhv zaman prosesiniyyət meydana gəldi: %s</string>
+    <string name="verify_sign_failure">Cari proqram rəsmi, download https://github.com/jecelyin/920-text-editor-v2/releases gedin.</string>
+    <string name="press_again_will_exit">Press yenidən</string>
+    <string name="find_replace">Axtar / dəyişdirin</string>
+    <string name="find_title">\"%s\" Netice tap</string>
+    <string name="zero_matches">0 oyunları</string>
+    <string name="chooser_browser">Seçici browser</string>
+    <string name="find_or_replace">Dəyişdirin / tap...</string>
+    <string name="other_application">Digər proqram...</string>
+    <string name="chooser_application">Seçici Application</string>
+    <string name="editor_create_unknown_exception">redaktoru yaratmaqnaməlum istisna baş verir</string>
+    <string name="convert_to_uppercase">böyük üçün Convert</string>
+    <string name="convert_to_lowercase">kiçik çevirmək</string>
+    <string name="duplication_text">Duplication mətn</string>
+    <string name="tab_size">Tab ölçüsü</string>
+    <string name="new_version_available">Mövcud New version</string>
+    <string name="upgrade">təkmilləşdirmək</string>
+    <string name="new_version_update_content">Son Version: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">%1$d %% Yükləmə</string>
+    <string name="download_failure_x">uğursuzluq Download: %s</string>
+    <string name="start_download">Yukle Start</string>
+    <string name="auto_check_updates">Auto çek yenilikləri</string>
+    <string name="cannt_download">Download bilmir.</string>
+    <string name="readonly_mode_not_support_this_action">Read- yalnız rejimi bu hərəkətə dəstək vermir</string>
+    <string name="x_text_replaced">%d mətn əvəz edilmişdir</string>
+    <string name="enable_root">Root Enable</string>
+    <string name="my_name">Author: Jecelyin Peng</string>
+    <string name="qq_group">QQ Qrup: 87272821</string>
+    <string name="open_with_external_browser">xarici brauzeri ilə açın</string>
+    <string name="contact_email_optional">Əlaqə e-poçt (isteğe bağlı)</string>
+    <string name="with_error_logs">səhv</string>
+    <string name="content">məzmun</string>
+    <string name="send">Göndərmək</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Əlaqə content uzunluğu %d char daha çox olmalıdır</string>
+    <string name="feedback_submit_error_x">səhv təqdim: %s</string>
+    <string name="submit_success">uğurlar təqdim</string>
+    <string name="writing">yazı</string>
+    <string name="keyword">Açar söz</string>
+    <string name="find_keyword_is_empty">Açar söz boş ola bilməz</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 meslehet</item>
+        <item quantity="other">%d mətn əvəz</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>ingilis</item>
+        <item>çin</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>mənzərə</item>
+        <item>portret</item>
+    </string-array>
+    <string name="exit">çıxış</string>
+    <string name="unknown_exception_and_report_message_x">Unknown istisna, siznCode \ edirik, baş bu haldanə mənə edin: %s</string>
+    <string name="keep_backup_file">bir yedek fayl edin</string>
+    <string name="keep_backup_file_summary">Siz yedek faylları saxlamaq istisna olmaqla fayl misses qarşısını almaq təklif</string>
+    <string name="save_all_without_new_document_message">bütün yeni sənəd keçmək olacaq saxla</string>
+    <string name="clear_history">Clear History</string>
+    <string name="custom_symbol_list">Custom simvolu siyahısı</string>
+    <string name="reset">Reset</string>
+    <string name="change_theme">Change mövzu</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="default_theme">Default Theme</string>
+    <string name="fullscreen_mode">Tam ekran rejimi</string>
+    <string name="enable_fullscreen_mode_message">tam ekran rejimi imkan verəcək proqram yenidən başladın</string>
+    <string name="disabled_fullscreen_mode_message">tam ekran rejimi aradan bırakır proqram yenidən başladın</string>
+    <string name="confirm_change_theme_message">Change mövzu avtomatik sənədləri xilas etməyəcək, siz mövzu dəyişdirmək Sil sənəd təsdiq?</string>
 </resources>

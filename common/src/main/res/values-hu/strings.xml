@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">E-mail (opcionális)</string>
+    <string name="crash_comment">Hogyan összeomlik (opcionális):</string>
+    <string name="crash_report_success">A siker, köszönöm !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">beküldése</string>
+    <string name="crash_submit_fail_x">Hiba: %s</string>
+    <string name="network_unavailable">A hálózatnem érhető</string>
+    <string name="submitting">Beküldés...</string>
+    <string name="can_not_be_empty">Nem lehet üres</string>
+    <string name="no_data">Nincs adat</string>
+    <string name="try_agent">Próbáld újra</string>
+    <string name="search_results">Keresési eredmények</string>
+    <string name="directory">Könyvtár</string>
+    <string name="authenticate">hitelesít</string>
+    <string name="logout">Kijelentkezés</string>
+    <string name="selected_x_items">Kiválasztott %d db</string>
+    <string name="filename">Fájlnév:</string>
+    <string name="file_encoding">kódolás:</string>
+    <string name="file_save">Mentés</string>
+    <string name="root_path">Gyökér</string>
+    <string name="auto_detection_encoding">Automatikus felismerés kódolása</string>
+    <string name="illegal_filename">illegális fájlnév</string>
+    <string name="unknown_path">ismeretlen útvonal</string>
+    <string name="open_file">Fájl megnyitása</string>
+    <string name="save_file">Fájl mentése</string>
+    <string name="override_file_prompt">%s létezik, ugye felülírja azt?</string>
+    <string name="filter_by_name">Szűrésneve</string>
+    <string name="can_not_create_folder">Nem sikerült létrehozni a mappát</string>
+    <string name="can_not_share_x">Nem lehet megosztani a fájlt: %s</string>
+    <string name="cancel_select_all">Kiválasztás megszüntetése</string>
+    <string name="copy">Másolat</string>
+    <string name="create_folder">Mappa létrehozás</string>
+    <string name="cut">Vágott</string>
+    <string name="delete">Töröl</string>
+    <string name="paste">Paszta</string>
+    <string name="rename">átnevezése</string>
+    <string name="rename_fail">átnevezése hiba</string>
+    <string name="select_all">Mindet kiválaszt</string>
+    <string name="share">Ossza meg</string>
+    <string name="show_hidden_files">A rejtett fájlok megjelenítése</string>
+    <string name="sort_by_datetime">Rendezés Dátum</string>
+    <string name="sort_by_name">Név szerinti rendezés</string>
+    <string name="sort_by_size">Méret szerint</string>
+    <string name="sort_by_type">Rendezés típus</string>
+    <string name="addToDictionary">Hozzáadás a szótárhoz</string>
+    <string name="deleteText">szöveg törlése</string>
+    <string name="replace">Cserélje</string>
+    <string name="textSelectionCABTitle">Válassza a szöveg</string>
+    <string name="selectAll">Mindet kiválaszt</string>
+    <string name="find">megtalálja</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">Új</string>
+    <string name="open">Nyisd ki</string>
+    <string name="save">Mentés</string>
+    <string name="undo">kibont</string>
+    <string name="redo">Újra</string>
+    <string name="save_all">Összes mentése</string>
+    <string name="save_as">Mentés másként</string>
+    <string name="recent_files">Legutóbbi fájlok</string>
+    <string name="line_separator">Sortörés</string>
+    <string name="duplication_line">sokszorosítása vonal</string>
+    <string name="find_in_files">Keresés fájlokban</string>
+    <string name="jump_to_start">Ugrás az elejére</string>
+    <string name="jump_to_end">Ugrás vége</string>
+    <string name="goto_line">Goto vonal</string>
+    <string name="back">Hát</string>
+    <string name="forward">Előre</string>
+    <string name="document_info">dokumentum információ</string>
+    <string name="symbol">Szimbólum</string>
+    <string name="insert_color">Insert szín</string>
+    <string name="highlight_language">Kiemelésnyelv</string>
+    <string name="encoding">kódolás</string>
+    <string name="read_only">Csak olvasható</string>
+    <string name="insert_datetime">Helyezzen datetime</string>
+    <string name="edit_mode">edit Mode</string>
+    <string name="run">Futás</string>
+    <string name="file">akta</string>
+    <string name="other">Más</string>
+    <string name="view">Kilátás</string>
+    <string name="edit">szerkesztése</string>
+    <string name="new_filename">névtelen %d</string>
+    <string name="confirm_save">Mentés megerősítése</string>
+    <string name="confirm_save_msg">Dokumentum %s megváltozott, szeretné menteni és kilép?</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="cannt_access_file">Nem lehet elérni a fájlt: %s</string>
+    <string name="cannt_read_file">A fájlnem olvasható: %s</string>
+    <string name="ok">rendben</string>
+    <string name="read_file_exception">Akkor következik be, kivéve, ha olvasható a fájl</string>
+    <string name="init_syntax_msg">Inicializálása szintaxis...</string>
+    <string name="init_syntax_error">Inicializálása szintaxisnem</string>
+    <string name="init_build_index_error">Építsd indexnem</string>
+    <string name="close">Közel</string>
+    <string name="cancel">Megszünteti</string>
+    <string name="convert_wrap_char">Átalakítás pakolás char</string>
+    <string name="path_x">Útvonal: %s</string>
+    <string name="char_x">Karakterek: %d</string>
+    <string name="word_x">Szó: %d</string>
+    <string name="line_number_x">Sor száma: %d</string>
+    <string name="encoding_x">Kódolás: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">Nincs változás!</string>
+    <string name="save_success">Save siker</string>
+    <string name="find_label">Megtalálja, amit:</string>
+    <string name="replace_label">Cseréld ki:</string>
+    <string name="case_sensitive">Kis-nagybetű érzékeny</string>
+    <string name="whole_words_only">Csak egész szavak</string>
+    <string name="regex">Reguláris kifejezés</string>
+    <string name="in_path">Az útvonalon:</string>
+    <string name="recursively">rekurzívan</string>
+    <string name="cannot_be_empty">Nem lehet üres</string>
+    <string name="path_not_exists">Az elérési útnem létezik</string>
+    <string name="find_not_found">Nem található</string>
+    <string name="previous_occurrence">Előző Előfordulás</string>
+    <string name="next_occurrence">Következő Előfordulás</string>
+    <string name="replace_all">Az összes cseréje</string>
+    <string name="searching">Keresés…</string>
+    <string name="select_lang_to_highlight">Válasszonnyelvet kiemelni</string>
+    <string name="more_menu">További menü</string>
+    <string name="reopen_with_encoding">Újranyitása, a kódolás</string>
+    <string name="document_changed">dokumentum megváltozott</string>
+    <string name="give_up_document_changed_message">Dokumentum megváltozott, akkor a módosítások elvesznek, hanem menti őket, erősítse?</string>
+    <string name="preview_in_browser">Preview böngésző</string>
+    <string name="use_sl4a_in_background_run_script">Használja SL4A a háttérben fut script</string>
+    <string name="use_sl4a_in_terminal_run_script">Használja SL4A terminál run script</string>
+    <string name="please_save_as_file_first">bérlet fájlba menteni első</string>
+    <string name="run_fail_message">Hívás külső alkalmazásnem</string>
+    <string name="settings">Beállítások</string>
+    <string name="editor">Szerkesztő</string>
+    <string name="font">Betűtípus</string>
+    <string name="default_value">Alapértelmezett</string>
+    <string name="font_size">Betűméret</string>
+    <string name="cursor_width">kurzor szélessége</string>
+    <string name="touch_to_adjust_text_size">Érintsd meg a szöveg méretét</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">mutatása Linenumber</string>
+    <string name="show_whitespace">mutatása Whitespace</string>
+    <string name="auto_indent">Automatikus behúzás</string>
+    <string name="insert_space_for_tab">Szóköz Tab</string>
+    <string name="indent_size">Behúzás mérete</string>
+    <string name="highlight_and_theme">Jelölje be, és téma</string>
+    <string name="highlight_the_file_size_limit">Limit kiemelni fájl mérete</string>
+    <string name="auto_save">Automatikus fájl mentése</string>
+    <string name="remember_last_opened_files">Emlékezzen az utolsó megnyitott fájlok</string>
+    <string name="remember_last_opened_files_summary">Autonyílt utoljára megnyitott fájlok indításakor</string>
+    <string name="screen_orientation">képernyő tájolása</string>
+    <string name="keep_screen_on">Tartsuk képernyő</string>
+    <string name="auto_capitalize">Auto tőkét</string>
+    <string name="feedback">Visszacsatolás</string>
+    <string name="donate">Adományoz</string>
+    <string name="help_translate">Lefordítása alkalmazás</string>
+    <string name="about">Ról ről</string>
+    <string name="enable_highlight">engedélyezze kiemelés</string>
+    <string name="version_x">Verzió: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Engedélyeznie kell olvasni tárolási engedélyeket</string>
+    <string name="file_not_exists">A fájlnem létezik</string>
+    <string name="cannt_handle_intent_x">Nem tudja feldolgozni szándék: %s</string>
+    <string name="handle_intent_x_error">Hiba történt, amikor a folyamat szándék: %s</string>
+    <string name="verify_sign_failure">A jelenlegi alkalmazásnem hivatalos, kérjük lépjen https://github.com/jecelyin/920-text-editor-v2/releases letöltéséhez.</string>
+    <string name="press_again_will_exit">Nyomja meg újra kilép</string>
+    <string name="find_replace">Keresés / Csere</string>
+    <string name="find_title">\"%s\" Eredménykeresés</string>
+    <string name="zero_matches">0 találat</string>
+    <string name="chooser_browser">Kiválasztó böngésző</string>
+    <string name="find_or_replace">Keresés / Csere...</string>
+    <string name="other_application">Egyéb alkalmazási...</string>
+    <string name="chooser_application">-választó alkalmazás</string>
+    <string name="editor_create_unknown_exception">Akkor következik be, amikor ismeretlen kivétel létrehozása szerkesztő</string>
+    <string name="convert_to_uppercase">Átalakításnagybetűs</string>
+    <string name="convert_to_lowercase">Átalakítás kisbetűs</string>
+    <string name="duplication_text">sokszorosítása szöveg</string>
+    <string name="tab_size">Tab mérete</string>
+    <string name="new_version_available">Új verzió</string>
+    <string name="upgrade">frissítés</string>
+    <string name="new_version_update_content">Legújabb verzió: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Downloading%1$d%%</string>
+    <string name="download_failure_x">Letöltési hiba: %s</string>
+    <string name="start_download">Error</string>
+    <string name="auto_check_updates">Automatikus frissítések ellenőrzése</string>
+    <string name="cannt_download">Nem lehet letölteni.</string>
+    <string name="readonly_mode_not_support_this_action">Read - only módbannem támogatja ezt a műveletet</string>
+    <string name="x_text_replaced">%d szöveg váltotta</string>
+    <string name="enable_root">engedélyezze Root</string>
+    <string name="my_name">Szerző: Jecelyin Peng</string>
+    <string name="qq_group">QQ csoport: 87272821</string>
+    <string name="open_with_external_browser">Nyitott külső böngésző</string>
+    <string name="contact_email_optional">Kapcsolat E-mail (nem kötelező )</string>
+    <string name="with_error_logs">hiba Naplók</string>
+    <string name="content">Tartalom</string>
+    <string name="send">Elküld</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Visszajelzés tartalom hosszanagyobbnak kell lennie, mint %d char</string>
+    <string name="feedback_submit_error_x">Submit hiba:%s</string>
+    <string name="submit_success">Küldje el a siker</string>
+    <string name="writing">Írás</string>
+    <string name="keyword">Kulcsszó</string>
+    <string name="find_keyword_is_empty">Kulcsszónem lehet üres</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 talált</item>
+        <item quantity="other">%d szöveg helyébe</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>angol</item>
+        <item>kínai</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Átalakítás \\n (Linux / OSX )</item>
+        <item>Átalakítás \\ r \\n (Windows)</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>kocsi</item>
+        <item>Tájkép</item>
+        <item>portré</item>
+    </string-array>
+    <string name="exit">Kijárat</string>
+    <string name="unknown_exception_and_report_message_x">Ismeretlen kivétel, Kérem, mondja meg, mi van ebben az esetben történik, köszönöm \ncode: %s</string>
+    <string name="keep_backup_file">Tartsa a biztonsági másolatot</string>
+    <string name="keep_backup_file_summary">Javasoljuk, hogy folyamatosan backup fájlokat,ne fájl hiányzik a kivétel</string>
+    <string name="save_all_without_new_document_message">Az összes mentése kihagyja új dokumentum</string>
+    <string name="clear_history">Előzmények törlése</string>
+    <string name="custom_symbol_list">Egyedi szimbólum lista</string>
+    <string name="reset">Visszaállítás</string>
+    <string name="change_theme">téma módosítása</string>
+    <string name="dark_theme">sötét téma</string>
+    <string name="default_theme">Alapértelmezett téma</string>
+    <string name="fullscreen_mode">Teljes képernyős mód</string>
+    <string name="enable_fullscreen_mode_message">Indítsa újra az alkalmazás lehetővé teszi, hogy a teljes képernyős módban</string>
+    <string name="disabled_fullscreen_mode_message">Indítsa újra az alkalmazás letiltja a teljes képernyős módban</string>
+    <string name="confirm_change_theme_message">Változás témanem fog automatikusan menteni a dokumentumokat, akkor erősítse eldobott dokumentum megváltoztatni témát?</string>
 </resources>

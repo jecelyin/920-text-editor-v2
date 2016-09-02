@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Krmarjenje domov</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Krmarjenje navzgor</string>
-    <string name="abc_action_menu_overflow_description">Več možnosti</string>
-    <string name="abc_action_mode_done">Končano</string>
-    <string name="abc_activity_chooser_view_see_all">Pokaži vse</string>
-    <string name="abc_activitychooserview_choose_application">Izbira aplikacije</string>
-    <string name="abc_capital_off">IZKLOPLJENO</string>
-    <string name="abc_capital_on">VKLOPLJENO</string>
-    <string name="abc_search_hint">Iskanje …</string>
-    <string name="abc_searchview_description_clear">Izbris poizvedbe</string>
-    <string name="abc_searchview_description_query">Iskalna poizvedba</string>
-    <string name="abc_searchview_description_search">Iskanje</string>
-    <string name="abc_searchview_description_submit">Pošiljanje poizvedbe</string>
-    <string name="abc_searchview_description_voice">Glasovno iskanje</string>
-    <string name="abc_shareactionprovider_share_with">Deljenje z</string>
-    <string name="abc_shareactionprovider_share_with_application">Deljenje z:</string>
-    <string name="abc_toolbar_collapse_description">Strni</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">E-pošta (po želji)</string>
+    <string name="crash_comment">Kako crash (neobvezno ):</string>
+    <string name="crash_report_success">Uspeh, Hvala !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">predloži</string>
+    <string name="crash_submit_fail_x">Napaka: %s</string>
+    <string name="network_unavailable">omrežjenina voljo</string>
+    <string name="submitting">Pošiljanje...</string>
+    <string name="can_not_be_empty">ne more biti prazna</string>
+    <string name="no_data">Ni podatkov</string>
+    <string name="try_agent">Poskusi ponovno</string>
+    <string name="search_results">Rezultati iskanja</string>
+    <string name="directory">Imenik</string>
+    <string name="authenticate">Preverjanje pristnosti</string>
+    <string name="logout">Izpisati</string>
+    <string name="selected_x_items">Izbrani %d artikli</string>
+    <string name="filename">Ime datoteke:</string>
+    <string name="file_encoding">kodiranje:</string>
+    <string name="file_save">Shrani</string>
+    <string name="root_path">Root</string>
+    <string name="auto_detection_encoding">kodiranje Samodejno zaznavanje</string>
+    <string name="illegal_filename">nezakonito ime datoteke</string>
+    <string name="unknown_path">neznano pot</string>
+    <string name="open_file">Odpri datoteko</string>
+    <string name="save_file">Shranite datoteko</string>
+    <string name="override_file_prompt">%s obstaja, pa jo preglasijo?</string>
+    <string name="filter_by_name">Filter po imenu</string>
+    <string name="can_not_create_folder">Ne morem ustvariti mape</string>
+    <string name="can_not_share_x">ne more deliti datoteke: %s</string>
+    <string name="cancel_select_all">Počisti vse</string>
+    <string name="copy">Kopirati</string>
+    <string name="create_folder">Ustvari mapo</string>
+    <string name="cut">Cut</string>
+    <string name="delete">Brisanje</string>
+    <string name="paste">paste</string>
+    <string name="rename">preimenovanje</string>
+    <string name="rename_fail">preimenovanjenapako</string>
+    <string name="select_all">Izberi vse</string>
+    <string name="share">Deliti</string>
+    <string name="show_hidden_files">Prikaži skrite datoteke</string>
+    <string name="sort_by_datetime">Razvrsti po Datum</string>
+    <string name="sort_by_name">Razvrsti po Ime</string>
+    <string name="sort_by_size">Razvrsti po velikosti</string>
+    <string name="sort_by_type">Razvrsti po vrsti</string>
+    <string name="addToDictionary">Dodaj v slovar</string>
+    <string name="deleteText">Izbrišite besedilo</string>
+    <string name="replace">Zamenjati</string>
+    <string name="textSelectionCABTitle">Izberite Text</string>
+    <string name="selectAll">Izberi vse</string>
+    <string name="find">Najti</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">New</string>
+    <string name="open">Odprto</string>
+    <string name="save">Shrani</string>
+    <string name="undo">Razveljavi</string>
+    <string name="redo">redo</string>
+    <string name="save_all">Shrani Vse</string>
+    <string name="save_as">Shrani kot</string>
+    <string name="recent_files">Zadnje datoteke</string>
+    <string name="line_separator">Line Break</string>
+    <string name="duplication_line">podvajanje linija</string>
+    <string name="find_in_files">Poišči v datoteke</string>
+    <string name="jump_to_start">Skočina začetek</string>
+    <string name="jump_to_end">Skočina koncu</string>
+    <string name="goto_line">Pojdina linijo</string>
+    <string name="back">Nazaj</string>
+    <string name="forward">naprej</string>
+    <string name="document_info">Info dokument</string>
+    <string name="symbol">simbol</string>
+    <string name="insert_color">barvni vložek</string>
+    <string name="highlight_language">vrhunec jezik</string>
+    <string name="encoding">kodiranje</string>
+    <string name="read_only">Le za branje</string>
+    <string name="insert_datetime">vstavite datetime</string>
+    <string name="edit_mode">Način urejanja</string>
+    <string name="run">Run</string>
+    <string name="file">mapa</string>
+    <string name="other">Ostalo</string>
+    <string name="view">Poglej</string>
+    <string name="edit">Uredi</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">Potrdite shranjevanje</string>
+    <string name="confirm_save_msg">Dokument %s se je spremenila, ali želite shraniti in izhod?</string>
+    <string name="yes">Da</string>
+    <string name="no">no</string>
+    <string name="cannt_access_file">ne morejo dostopati do datoteke: %s</string>
+    <string name="cannt_read_file">ne more prebrati datoteke: %s</string>
+    <string name="ok">v redu</string>
+    <string name="read_file_exception">Se pojavi izjema, kadar se bere datoteko</string>
+    <string name="init_syntax_msg">Inicializacijo sintakso...</string>
+    <string name="init_syntax_error">Inicializacijo sintaksane</string>
+    <string name="init_build_index_error">Build indeksne</string>
+    <string name="close">Zapri</string>
+    <string name="cancel">Prekliči</string>
+    <string name="convert_wrap_char">Pretvarjanje zaviti char</string>
+    <string name="path_x">Pot: %s</string>
+    <string name="char_x">Znakov: %d</string>
+    <string name="word_x">Besede: %d</string>
+    <string name="line_number_x">številka vrstice: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">Ni sprememb!</string>
+    <string name="save_success">Shrani Success</string>
+    <string name="find_label">Poišči kaj:</string>
+    <string name="replace_label">Zamenjaj z:</string>
+    <string name="case_sensitive">malimi črkami</string>
+    <string name="whole_words_only">Samo cele besede</string>
+    <string name="regex">regularni izraz</string>
+    <string name="in_path">Na poti:</string>
+    <string name="recursively">rekurzivno</string>
+    <string name="cannot_be_empty">ne more biti prazna</string>
+    <string name="path_not_exists">Potne obstaja</string>
+    <string name="find_not_found">Ninajdeno</string>
+    <string name="previous_occurrence">Prejšnja Pojavljanje</string>
+    <string name="next_occurrence">Naslednja Pojavljanje</string>
+    <string name="replace_all">Zamenjaj vse</string>
+    <string name="searching">Iskanje…</string>
+    <string name="select_lang_to_highlight">Izberite jezik izpostaviti</string>
+    <string name="more_menu">več meni</string>
+    <string name="reopen_with_encoding">Ponovno odprite s kodiranjem</string>
+    <string name="document_changed">spremenjen dokument</string>
+    <string name="give_up_document_changed_message">Dokument je spremenjen, spremembe bodo izgubili, če jihne shranite, potrdite?</string>
+    <string name="preview_in_browser">Predogled v brskalniku</string>
+    <string name="use_sl4a_in_background_run_script">Uporabite SL4A v ozadju delovanja pisavi</string>
+    <string name="use_sl4a_in_terminal_run_script">Uporabite SL4A v terminal času pisavi</string>
+    <string name="please_save_as_file_first">najem rešitinajprej vložiti</string>
+    <string name="run_fail_message">Call zunanji programni uspelo</string>
+    <string name="settings">Nastavitve</string>
+    <string name="editor">Urednik</string>
+    <string name="font">font</string>
+    <string name="default_value">privzeto</string>
+    <string name="font_size">Velikost pisave</string>
+    <string name="cursor_width">kazalec Širina</string>
+    <string name="touch_to_adjust_text_size">Dotaknite se, da spremenite velikost besedila</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Prikaži Linenumber</string>
+    <string name="show_whitespace">Prikaži presledki</string>
+    <string name="auto_indent">Auto zamik</string>
+    <string name="insert_space_for_tab">Insert prostora za Tab</string>
+    <string name="indent_size">zamik velikost</string>
+    <string name="highlight_and_theme">Vrhunec in Tema</string>
+    <string name="highlight_the_file_size_limit">Velikost Limit Vrhunec datoteke</string>
+    <string name="auto_save">Auto shranite datoteko</string>
+    <string name="remember_last_opened_files">Zapomni si zadnje odprte datoteke</string>
+    <string name="remember_last_opened_files_summary">Autonazadnje odprte odprtih datotek pri zagonu</string>
+    <string name="screen_orientation">zaslon Usmerjenost</string>
+    <string name="keep_screen_on">Odprtinena</string>
+    <string name="auto_capitalize">Auto izkoristiti</string>
+    <string name="feedback">povratne informacije</string>
+    <string name="donate">Donate</string>
+    <string name="help_translate">Prevedi to aplikacijo</string>
+    <string name="about">O</string>
+    <string name="enable_highlight">Omogoči poudarjajo</string>
+    <string name="version_x">Različica: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Morali omogočiti brati dovoljenja za shranjevanje</string>
+    <string name="file_not_exists">Datotekane obstaja</string>
+    <string name="cannt_handle_intent_x">ne more obdelatinamena: %s</string>
+    <string name="handle_intent_x_error">Prišlo je donapake, kadar postopeknamena: %s</string>
+    <string name="verify_sign_failure">Vaša trenutna vlogani uradna, obiščite https://github.com/jecelyin/920-text-editor-v2/releases prenesti.</string>
+    <string name="press_again_will_exit">Pritisnite ponovno izhod</string>
+    <string name="find_replace">Najdi / Zamenjaj</string>
+    <string name="find_title">\"%s\" Iskanje Rezultati</string>
+    <string name="zero_matches">0 zadetkov</string>
+    <string name="chooser_browser">Izbirnik brskalnik</string>
+    <string name="find_or_replace">Najdi / Zamenjaj...</string>
+    <string name="other_application">Druga uporaba...</string>
+    <string name="chooser_application">Izbirnik Uporaba</string>
+    <string name="editor_create_unknown_exception">Se pojavineznano izjemo pri ustvarjanju editor</string>
+    <string name="convert_to_uppercase">Pretvoriti v velike črke</string>
+    <string name="convert_to_lowercase">Pretvoriti v male črke</string>
+    <string name="duplication_text">podvajanje besedilo</string>
+    <string name="tab_size">velikost Tab</string>
+    <string name="new_version_available">Nova različica jena voljo</string>
+    <string name="upgrade">nadgradnja</string>
+    <string name="new_version_update_content">Najnovejša različica: %1$s\n\nSpremembe:\n%2$s</string>
+    <string name="download_progress">Prenos %1$d%%</string>
+    <string name="download_failure_x">Prenosni uspel: %s</string>
+    <string name="start_download">Začni prenos</string>
+    <string name="auto_check_updates">Samodejno preverjanje posodobitev</string>
+    <string name="cannt_download">Ne morem prenesti.</string>
+    <string name="readonly_mode_not_support_this_action">Samo za branjenačinne podpira tega dejanja</string>
+    <string name="x_text_replaced">%d besedilo je bila zamenjana</string>
+    <string name="enable_root">Omogoči Koren</string>
+    <string name="my_name">Avtor: Jecelyin Peng</string>
+    <string name="qq_group">QQ skupina: 87272821</string>
+    <string name="open_with_external_browser">Odpri z zunanjem brskalniku</string>
+    <string name="contact_email_optional">Kontaktni e-naslov (obvezno)</string>
+    <string name="with_error_logs">Dnevnikinapakah</string>
+    <string name="content">vsebina</string>
+    <string name="send">Pošlji</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Povratne informacije dolžina vsebina mora biti večja od %d char</string>
+    <string name="feedback_submit_error_x">Predložinapake: %s</string>
+    <string name="submit_success">predloži uspeh</string>
+    <string name="writing">pisanje</string>
+    <string name="keyword">Ključna beseda</string>
+    <string name="find_keyword_is_empty">Ključna besedane sme biti prazna</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0najdenih</item>
+        <item quantity="other">%d besedilonadomesti</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>angleščina</item>
+        <item>Chinese</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>Pokrajina</item>
+        <item>Portret</item>
+    </string-array>
+    <string name="exit">Izhod</string>
+    <string name="unknown_exception_and_report_message_x">Neznana izjema, prosim povej mi, kaj je v tem primeru zgodilo, Hvala \nCODE: %s</string>
+    <string name="keep_backup_file">Hranite varnostne kopije</string>
+    <string name="keep_backup_file_summary">Predlagamo vam, da varnostne kopije, bi se izognili datotek pogreša za izjemo</string>
+    <string name="save_all_without_new_document_message">Shrani vse bo preskočitinov dokument</string>
+    <string name="clear_history">Izbriši zgodovino</string>
+    <string name="custom_symbol_list">Seznam simbol meri</string>
+    <string name="reset">Ponastavi</string>
+    <string name="change_theme">Spremeni temo</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="default_theme">privzeta tema</string>
+    <string name="fullscreen_mode">celozaslonskinačin</string>
+    <string name="enable_fullscreen_mode_message">Ponovno zaženite aplikacijo bo omogočila celozaslonskeganačina</string>
+    <string name="disabled_fullscreen_mode_message">Ponovno zaženite aplikacijo bo onemogočiti celozaslonskeganačina</string>
+    <string name="confirm_change_theme_message">Spremeni temone bo samodejno shranjevanje dokumentov, potrdite izločanja dokument spremeniti temo?</string>
 </resources>

@@ -1,3 +1,249 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  --><resources>
+    <string name="crash_report">የስንክል ሪፖርት</string>
+    <string name="crash_contact">ኢሜይል (ከተፈለገ )</string>
+    <string name="crash_comment">(አማራጭ) ለብልሽት እንዴት ነው:</string>
+    <string name="crash_report_success">ስኬት, እናመሰግናለን !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">አስገባ</string>
+    <string name="crash_submit_fail_x">አለመሳካት: %s</string>
+    <string name="network_unavailable">አይገኝም አውታረ መረብ</string>
+    <string name="submitting">በማስገባት ላይ...</string>
+    <string name="can_not_be_empty">ባዶ መሆን አይችልም</string>
+    <string name="no_data">ምንም ውሂብ</string>
+    <string name="try_agent">ቲ</string>
+    <string name="search_results">የፍለጋ ውጤቶች</string>
+    <string name="directory">ማውጫ</string>
+    <string name="authenticate">አረጋገጠ</string>
+    <string name="logout">ውጣ</string>
+    <string name="selected_x_items">የተመረጠው %d</string>
+    <string name="filename">የመዝገብ ስም:</string>
+    <string name="file_encoding">ኢንኮዲንግ:</string>
+    <string name="file_save">አስቀምጥ</string>
+    <string name="root_path">ሥር</string>
+    <string name="auto_detection_encoding">ራስ- ማወቅን በኮድ</string>
+    <string name="illegal_filename">ህገወጥ የፋይል ስም</string>
+    <string name="unknown_path">ያልታወቀ መንገድ</string>
+    <string name="open_file">ክፍት ፋይል</string>
+    <string name="save_file">ፋይል አስቀምጥ</string>
+    <string name="override_file_prompt">የ%s አለ, እናንተ ሊሽሩት ነው?</string>
+    <string name="filter_by_name">በስም አጣራ</string>
+    <string name="can_not_create_folder">አቃፊ መፍጠር አልተቻለም</string>
+    <string name="can_not_share_x">ፋይል ማጋራት አይቻልም:%s</string>
+    <string name="cancel_select_all">ሁሉንም አትምረጥ</string>
+    <string name="copy">ግልባጭ</string>
+    <string name="create_folder">አቃፊ ፍጠር</string>
+    <string name="cut">ቆረጠ</string>
+    <string name="delete">ሰርዝ</string>
+    <string name="paste">ለጥፍ</string>
+    <string name="rename">ዳግም ሰይም</string>
+    <string name="rename_fail">አለመሳካት ዳግም ሰይም</string>
+    <string name="select_all">ሁሉንም ምረጥ</string>
+    <string name="share">አጋራ</string>
+    <string name="show_hidden_files">የተደበቁ ፋይሎችን አሳይ</string>
+    <string name="sort_by_datetime">ቀን ደርድር</string>
+    <string name="sort_by_name">በስም ደርድር</string>
+    <string name="sort_by_size">መጠን ደርድር</string>
+    <string name="sort_by_type">ዓይነት ደርድር</string>
+    <string name="addToDictionary">ወደ መዝገበ ቃላት አክል</string>
+    <string name="deleteText">ጽሑፍ ሰርዝ</string>
+    <string name="replace">ተካ</string>
+    <string name="textSelectionCABTitle">ይምረጡ ጽሑፍ</string>
+    <string name="selectAll">ሁሉንም ምረጥ</string>
+    <string name="find">አግኝ</string>
+    <string name="app_name">920 ጽሑፍ አርታዒ</string>
+    <string name="new_file">አዲስ</string>
+    <string name="open">ክፈት</string>
+    <string name="save">አስቀምጥ</string>
+    <string name="undo">ቀልብስ</string>
+    <string name="redo">ድገም</string>
+    <string name="save_all">አስቀምጥ</string>
+    <string name="save_as">አስቀምጥ እንደ</string>
+    <string name="recent_files">የቅርብ ጊዜ ፋይሎች</string>
+    <string name="line_separator">መስመር መግቻ</string>
+    <string name="duplication_line">ድግግሞሽ መስመር</string>
+    <string name="find_in_files">ፋይሎች ውስጥ ያግኙ</string>
+    <string name="jump_to_start">ጄ</string>
+    <string name="jump_to_end">መጨረሻ ዝለል</string>
+    <string name="goto_line">ሂድ መስመር</string>
+    <string name="back">ቢ</string>
+    <string name="forward">ወደፊት</string>
+    <string name="document_info">ሰነድ</string>
+    <string name="symbol">ምልክት</string>
+    <string name="insert_color">አስገባ ቀለም</string>
+    <string name="highlight_language">ድምቀት ቋንቋ</string>
+    <string name="encoding">ኢንኮዲንግ</string>
+    <string name="read_only">ለማንበብ ብቻ የተፈቀደ</string>
+    <string name="insert_datetime">አስገባ</string>
+    <string name="edit_mode">አርትዕ</string>
+    <string name="run">ሩጫ</string>
+    <string name="file">ፋይል</string>
+    <string name="other">ሌላ</string>
+    <string name="view">ይመልከቱ</string>
+    <string name="edit">አርትዕ</string>
+    <string name="new_filename">ያልተሰጠው %d</string>
+    <string name="confirm_save">ለማስቀመጥ ያረጋግጡ</string>
+    <string name="confirm_save_msg">ሰነድ ወደ%s, ተቀይሯል ማስቀመጥ እና መውጣት ይፈልጋሉ ነው?</string>
+    <string name="yes">አዎ</string>
+    <string name="no">አይ</string>
+    <string name="cannt_access_file">ፋይል መድረስ አልተቻለም: %s</string>
+    <string name="cannt_read_file">ፋይል ማንበብ አልተቻለም: %s</string>
+    <string name="ok">እሺ</string>
+    <string name="read_file_exception">ፋይል ለማንበብ ጊዜ ልዩ ሁኔታ የሚከሰተው</string>
+    <string name="init_syntax_msg">አገባብ መጀመር...</string>
+    <string name="init_syntax_error">የአገባብ የቀሩት ማስጀመር</string>
+    <string name="init_build_index_error">የቀሩት ኢንዴክስ ይገንቡ</string>
+    <string name="close">ገጠመ</string>
+    <string name="cancel">ሰርዝ</string>
+    <string name="convert_wrap_char">መጠቅለያ ቁምፊ ቀይር</string>
+    <string name="path_x">ዱካ:%s</string>
+    <string name="char_x">ያልተፈቀዱ:%d</string>
+    <string name="word_x">ቃላት:%d</string>
+    <string name="line_number_x">መስመር ቁጥር:</string>
+    <string name="encoding_x">ኢንኮዲንግ: %s</string>
+    <string name="tab">ትር</string>
+    <string name="no_change">ምንም ለውጥ የለም !</string>
+    <string name="save_success">አስቀምጥ ስኬት</string>
+    <string name="find_label">ምን ያግኙ:</string>
+    <string name="replace_label">ጋር ተካ:</string>
+    <string name="case_sensitive">ስሱ መያዣ</string>
+    <string name="whole_words_only">ሙሉ ቃላትን ብቻ</string>
+    <string name="regex">መደበኛ አገላለጽ</string>
+    <string name="in_path">ዱካ ውስጥ:</string>
+    <string name="recursively">Recursively</string>
+    <string name="cannot_be_empty">ባዶ መሆን አይችልም</string>
+    <string name="path_not_exists">ዱካ አይደለም አለ</string>
+    <string name="find_not_found">አልተገኘም</string>
+    <string name="previous_occurrence">ቀዳሚ አጋጣሚ</string>
+    <string name="next_occurrence">ቀጣይ አጋጣሚ</string>
+    <string name="replace_all">ሁሉንም ተካ</string>
+    <string name="searching">ፈልግ...</string>
+    <string name="select_lang_to_highlight">ለማጉላት አንድ ቋንቋ ይምረጡ</string>
+    <string name="more_menu">ተጨማሪ ምናሌ</string>
+    <string name="reopen_with_encoding">በኮድ ጋር ዳግም ክፈት</string>
+    <string name="document_changed">ሰነድ ተለውጧል</string>
+    <string name="give_up_document_changed_message">ሰነድ</string>
+    <string name="preview_in_browser">አሳሽ ውስጥ ቅድመ እይታ</string>
+    <string name="use_sl4a_in_background_run_script">የዳራ አሂድ ስክሪፕት ውስጥ SL4A ይጠቀሙ</string>
+    <string name="use_sl4a_in_terminal_run_script">የተርሚናል አሂድ ስክሪፕት ውስጥ SL4A ይጠቀሙ</string>
+    <string name="please_save_as_file_first">የኪራይ መጀመሪያ ፋይል ማስቀመጥ</string>
+    <string name="run_fail_message">የጥሪ ውጫዊ መተግበሪያ አልተሳካም</string>
+    <string name="settings">ቅንብሮች</string>
+    <string name="editor">አርታዒ</string>
+    <string name="font">ቅርጸ ቁምፊ</string>
+    <string name="default_value">ነባሪ</string>
+    <string name="font_size">የፊደል መጠን</string>
+    <string name="cursor_width">ጠቋሚ ስፋት</string>
+    <string name="touch_to_adjust_text_size">የጽሑፍ መጠን ለመቀየር ይንኩ</string>
+    <string name="word_wrap_in_editor">ራስ- wordwrap</string>
+    <string name="show_linenumber">አሳይ Linenumber</string>
+    <string name="show_whitespace">አሳይ ነጭ ቦታ</string>
+    <string name="auto_indent">ራስ- ገብ</string>
+    <string name="insert_space_for_tab">ትር ቦታ አስገባ</string>
+    <string name="indent_size">ገብ</string>
+    <string name="highlight_and_theme">ድምቀት እና ጭብጥ</string>
+    <string name="highlight_the_file_size_limit">ገድብ ድምቀት የፋይል መጠን</string>
+    <string name="auto_save">ራስ- ፋይል ለማስቀመጥ</string>
+    <string name="remember_last_opened_files">ለመጨረሻ ጊዜ ተከፈተ አስታውስ</string>
+    <string name="remember_last_opened_files_summary">ክፍት ራስ ለመጨረሻ ጊዜ የጅምር ፋይሎች ከፈተ</string>
+    <string name="screen_orientation">የማያ ገጽ አቀማመጥ</string>
+    <string name="keep_screen_on">ላይ ማያ ገጽ አስቀምጥ</string>
+    <string name="auto_capitalize">ራስ- ይተልቃል</string>
+    <string name="feedback">ግብረ-መልስ</string>
+    <string name="donate">ለገሠ</string>
+    <string name="help_translate">ይህን መተግበሪያ ተርጉም</string>
+    <string name="about">ስለ</string>
+    <string name="enable_highlight">ድምቀት አንቃ</string>
+    <string name="version_x">ስሪት: %s</string>
+    <string name="need_to_enable_read_storage_permissions">ማንበብ ማከማቻ ፍቃዶችን ማንቃት አለብዎት</string>
+    <string name="file_not_exists">ፋይል</string>
+    <string name="cannt_handle_intent_x">አልችልም</string>
+    <string name="handle_intent_x_error">An error occurred when process intent: %s</string>
+    <string name="verify_sign_failure">የአሁኑ መተግበሪያ አይደለም ይፋ ነው, እሱን ለማውረድ https://github.com/jecelyin/920-text-editor-v2/releases ይሂዱ.</string>
+    <string name="press_again_will_exit">ፕሬስ እንደገና</string>
+    <string name="find_replace">አግኝ / ተካ</string>
+    <string name="find_title">\"%s\" ውጤቶች አግኝ</string>
+    <string name="zero_matches">0 ተዛማጆች</string>
+    <string name="chooser_browser">መራጭ አሳሽ</string>
+    <string name="find_or_replace">ተካ / አግኝ...</string>
+    <string name="other_application">ሌላ</string>
+    <string name="chooser_application">መራጭ ማመልከቻ</string>
+    <string name="editor_create_unknown_exception">አርታዒ ሲፈጥሩ ያልታወቀ ለየት ያለ የሚከሰተው</string>
+    <string name="convert_to_uppercase">ወደ ዓብይ ቀይር</string>
+    <string name="convert_to_lowercase">ፊደል ለውጥ</string>
+    <string name="duplication_text">ድግግሞሽ ጽሑፍ</string>
+    <string name="tab_size">የትር መጠን</string>
+    <string name="new_version_available">ይገኛል አዲስ ስሪት</string>
+    <string name="upgrade">አሻሽል</string>
+    <string name="new_version_update_content">በጣም የቅርብ ጊዜ ስሪት: %1$s\n\nአዘምነውታል: \n%2$s</string>
+    <string name="download_progress">%1$d%% በማውረድ ላይ</string>
+    <string name="download_failure_x">ማውረድ አልተሳካም: %s</string>
+    <string name="start_download">ማውረድ ጀምር</string>
+    <string name="auto_check_updates">ራስ- ፍተሻ ዝማኔዎች</string>
+    <string name="cannt_download">ይችላልን</string>
+    <string name="readonly_mode_not_support_this_action">ተነባቢ - ብቻ ሁነታ አይደግፍም</string>
+    <string name="x_text_replaced">ከ%d ጽሑፍ ተተክቷል</string>
+    <string name="enable_root">ሥር አንቃ</string>
+    <string name="my_name">Author: Jecelyin Peng</string>
+    <string name="qq_group">QQ Group: 87272821</string>
+    <string name="open_with_external_browser">ውጫዊ አሳሽ ጋር ክፈት</string>
+    <string name="contact_email_optional">የእውቂያ ኢሜይል (ከተፈለገ )</string>
+    <string name="with_error_logs">ስህተት ምዝግብ ማስታወሻዎች</string>
+    <string name="content">ይዘት</string>
+    <string name="send">ላክ</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">ግብረ መልስ ይዘት ርዝመት ከ%d ቁምፊዎች የበለጠ መሆን አለበት</string>
+    <string name="feedback_submit_error_x">ስህተት አስገባ: %s</string>
+    <string name="submit_success">ስኬት አስገባ</string>
+    <string name="writing">መጻፍ</string>
+    <string name="keyword">ቁልፍ ቃል</string>
+    <string name="find_keyword_is_empty">ቁልፍ ቃል ባዶ መሆን አይችልም</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 አልተገኘም</item>
+        <item quantity="other">ከ%d ጽሑፍ ይተካል</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>እንግሊዝኛ</item>
+        <item>ቻይንኛ</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>ራስ-</item>
+        <item>ያገር አካባቢ</item>
+        <item>የቁም</item>
+    </string-array>
+    <string name="exit">ውጣ</string>
+    <string name="unknown_exception_and_report_message_x">የማይታወቅ ለየት ያለ, አንተnCode \ እናመሰግናለን, እየተከናወነ ይህ ጉዳይ ምን እንደሆነ ንገረኝ እባክህ:%s</string>
+    <string name="keep_backup_file">K</string>
+    <string name="keep_backup_file_summary">እርስዎ, የመጠባበቂያ ቅጂ ፋይሎች መጠበቅ በስተቀር ፋይል ዒላማውን ለማስወገድ እንመክራለን</string>
+    <string name="save_all_without_new_document_message">ሁሉም አዲስ ሰነድ መዝለል ሊያድን</string>
+    <string name="clear_history">ታሪክ አጽዳ</string>
+    <string name="custom_symbol_list">ሴ</string>
+    <string name="reset">ብጁ ምልክት ዝርዝር</string>
+    <string name="change_theme">ገጽታ ለውጥ</string>
+    <string name="dark_theme">ጨለማ ገጽታ</string>
+    <string name="default_theme">ነባሪ ገጽታ</string>
+    <string name="fullscreen_mode">ሙሉ ማያ ገጽ ሁነታ</string>
+    <string name="enable_fullscreen_mode_message">ሙሉ ማያ ገጽ ሁነታ ለማንቃት የመተግበሪያ ዳግም ያስጀምሩት</string>
+    <string name="disabled_fullscreen_mode_message">ሙሉ ማያ ገጽ ሁነታ ያደርገዋል መተግበሪያ ዳግም አስጀምር</string>
+    <string name="confirm_change_theme_message">ገጽታ ለውጥ በራስ ሰነድ ማስቀመጥ, ከ ገጽታ ለመቀየር ማስወገድ ሰነድ ያረጋግጣሉ?</string>
 </resources>

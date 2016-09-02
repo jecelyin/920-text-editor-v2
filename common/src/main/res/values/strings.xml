@@ -27,7 +27,7 @@
     <string name="crash_submit_fail_x">Failure: %s</string>
     <string name="network_unavailable">Network Unavailable</string>
     <string name="submitting">Submitting…</string>
-    <string name="can_not_be_empty">Can\'t be empty</string>
+    <string name="can_not_be_empty">Can not be empty</string>
     <string name="no_data">No Data</string>
     <string name="try_agent">Try again</string>
     <string name="search_results">Search Results</string>
@@ -46,8 +46,8 @@
     <string name="save_file">Save File</string>
     <string name="override_file_prompt">%s exists，do you override it？</string>
     <string name="filter_by_name">Filter by Name</string>
-    <string name="can_not_create_folder">Can\'t create folder</string>
-    <string name="can_not_share_x">Can\'t share file: %s</string>
+    <string name="can_not_create_folder">Can not create folder</string>
+    <string name="can_not_share_x">Can not share file: %s</string>
     <string name="cancel_select_all">Deselect All</string>
     <string name="copy">Copy</string>
     <string name="create_folder">Create folder</string>
@@ -104,8 +104,8 @@
     <string name="confirm_save_msg">Document %s has changed，do you want to save and exit?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="cannt_access_file">Can\'t access file: %s</string>
-    <string name="cannt_read_file">Can\'t read file: %s</string>
+    <string name="cannt_access_file">Can not access file: %s</string>
+    <string name="cannt_read_file">Can not read file: %s</string>
     <string name="ok">OK</string>
     <string name="read_file_exception">Occurs exception when read file</string>
     <string name="init_syntax_msg">Initialize syntax…</string>
@@ -175,7 +175,7 @@
     <string name="version_x">Version: %s</string>
     <string name="need_to_enable_read_storage_permissions">Need to enable read storage permissions</string>
     <string name="file_not_exists">File not exists</string>
-    <string name="cannt_handle_intent_x">Can\'t process intent: %s</string>
+    <string name="cannt_handle_intent_x">Can not process intent: %s</string>
     <string name="handle_intent_x_error">An error occurred when process intent: %s</string>
     <string name="verify_sign_failure">Your current application is not official, please go to https://github.com/jecelyin/920-text-editor-v2/releases download it.</string>
     <string name="press_again_will_exit">Press again will exit</string>
@@ -193,12 +193,12 @@
     <string name="tab_size">Tab size</string>
     <string name="new_version_available">New version available</string>
     <string name="upgrade">Upgrade</string>
-    <string name="new_version_update_content">Latest Version: %1$s\n\nWhat\'s New:\n%2$s</string>
+    <string name="new_version_update_content">Latest Version: %1$s\n\nChanges:\n%2$s</string>
     <string name="download_progress">Downloading %1$d%%</string>
     <string name="download_failure_x">Download failure: %s</string>
     <string name="start_download">Start Download</string>
     <string name="auto_check_updates">Auto check updates</string>
-    <string name="cannt_download">Can\'t download.</string>
+    <string name="cannt_download">Can not download.</string>
     <string name="readonly_mode_not_support_this_action">Read-only mode does not support this action</string>
     <string name="x_text_replaced">%d text has been replaced</string>
     <string name="enable_root">Enable Root</string>
@@ -233,7 +233,8 @@
         <item>Portrait</item>
     </string-array>
     <string name="exit">Exit</string>
-    <string name="unknown_exception_and_report_message_x">Unknown exception, Please tell me what is this case happening, Thank you\nCode: %s</string>
+    <string name="unknown_exception_and_report_message_x">Unknown exception, Please tell me what is this case happening
+        , Thank you\nCode: %s</string>
     <string name="keep_backup_file">Keep a backup file</string>
     <string name="keep_backup_file_summary">Suggest you keep backup files, avoid file misses for exception</string>
     <string name="save_all_without_new_document_message">Save all will skip new document</string>

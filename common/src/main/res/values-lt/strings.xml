@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Eiti į pagrindinį puslapį</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Eiti į viršų</string>
-    <string name="abc_action_menu_overflow_description">Daugiau parinkčių</string>
-    <string name="abc_action_mode_done">Atlikta</string>
-    <string name="abc_activity_chooser_view_see_all">Peržiūrėti viską</string>
-    <string name="abc_activitychooserview_choose_application">Pasirinkti programą</string>
-    <string name="abc_capital_off">IŠJUNGTI</string>
-    <string name="abc_capital_on">ĮJUNGTI</string>
-    <string name="abc_search_hint">Ieškoti...</string>
-    <string name="abc_searchview_description_clear">Išvalyti užklausą</string>
-    <string name="abc_searchview_description_query">Paieškos užklausa</string>
-    <string name="abc_searchview_description_search">Paieška</string>
-    <string name="abc_searchview_description_submit">Pateikti užklausą</string>
-    <string name="abc_searchview_description_voice">Paieška balsu</string>
-    <string name="abc_shareactionprovider_share_with">Bendrinti naudojant</string>
-    <string name="abc_shareactionprovider_share_with_application">Bendrinti naudojant „%s“</string>
-    <string name="abc_toolbar_collapse_description">Sutraukti</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">avarijos ataskaita</string>
+    <string name="crash_contact">Paštas (neprivalomas)</string>
+    <string name="crash_comment">Kaip į avariją (neprivalomas):</string>
+    <string name="crash_report_success">Sėkmė, ačiū !</string>
+    <string name="crash_stacktrace">stacktrace:</string>
+    <string name="crash_submit">Pateikti</string>
+    <string name="crash_submit_fail_x">Klaida: %s</string>
+    <string name="network_unavailable">Tinkloneprieinamas</string>
+    <string name="submitting">Siunčiamas...</string>
+    <string name="can_not_be_empty">Negali būti tuščias</string>
+    <string name="no_data">Nėra duomenų</string>
+    <string name="try_agent">Bandyk išnaujo</string>
+    <string name="search_results">Paieškos rezultatai</string>
+    <string name="directory">katalogas</string>
+    <string name="authenticate">Atpažinkite</string>
+    <string name="logout">Atsijungti</string>
+    <string name="selected_x_items">Pasirinkti %d elementų</string>
+    <string name="filename">Failo pavadinimas:</string>
+    <string name="file_encoding">kodavimas:</string>
+    <string name="file_save">Sutaupyti</string>
+    <string name="root_path">šaknis</string>
+    <string name="auto_detection_encoding">Automatinis aptikimas kodavimas</string>
+    <string name="illegal_filename">neteisėtas failo pavadinimas</string>
+    <string name="unknown_path">nežinoma kelias</string>
+    <string name="open_file">Atidaryti failą</string>
+    <string name="save_file">Išsaugoti failą</string>
+    <string name="override_file_prompt">%s egzistuoja, ar tu ją perrašyti?</string>
+    <string name="filter_by_name">Filtruoti pagal Vardas</string>
+    <string name="can_not_create_folder">Nepavyko sukurti aplanko</string>
+    <string name="can_not_share_x">Negali pasidalinti failą: %s</string>
+    <string name="cancel_select_all">Atzymeti visus pasirinkimus</string>
+    <string name="copy">kopija</string>
+    <string name="create_folder">Sukurti aplanką</string>
+    <string name="cut">supjaustyti</string>
+    <string name="delete">panaikinti</string>
+    <string name="paste">pasta</string>
+    <string name="rename">pervadinti</string>
+    <string name="rename_fail">pervadintinesėkmę</string>
+    <string name="select_all">Pasirinkti viską</string>
+    <string name="share">dalis</string>
+    <string name="show_hidden_files">Rodyti paslėptus failus</string>
+    <string name="sort_by_datetime">Rūšiuoti pagal datą</string>
+    <string name="sort_by_name">Rūšiuoti pagal Pavadinimą</string>
+    <string name="sort_by_size">Rūšiuoti pagal Dydis</string>
+    <string name="sort_by_type">Rūšiuoti pagal tipą</string>
+    <string name="addToDictionary">Įterpti į žodyną</string>
+    <string name="deleteText">Išbraukti</string>
+    <string name="replace">pakeisti</string>
+    <string name="textSelectionCABTitle">Pasirinkite tekstas</string>
+    <string name="selectAll">Pasirinkti viską</string>
+    <string name="find">rasti</string>
+    <string name="app_name">920 Teksto redaktorius</string>
+    <string name="new_file">naujas</string>
+    <string name="open">Atviras</string>
+    <string name="save">Sutaupyti</string>
+    <string name="undo">anuliuoti</string>
+    <string name="redo">redo</string>
+    <string name="save_all">Išsaugoti viską</string>
+    <string name="save_as">Išsaugoti kaip</string>
+    <string name="recent_files">Naujausi failai</string>
+    <string name="line_separator">trūkio</string>
+    <string name="duplication_line">dubliavimo linija</string>
+    <string name="find_in_files">Rasti failus</string>
+    <string name="jump_to_start">Peršokti pradėti</string>
+    <string name="jump_to_end">Pereiti į pabaigos</string>
+    <string name="goto_line">Pereiti linija</string>
+    <string name="back">atgal</string>
+    <string name="forward">Pirmyn</string>
+    <string name="document_info">Dokumento informacija</string>
+    <string name="symbol">simbolis</string>
+    <string name="insert_color">Įdėkite spalva</string>
+    <string name="highlight_language">Pažymėkite kalba</string>
+    <string name="encoding">kodavimas</string>
+    <string name="read_only">Tik skaitymui</string>
+    <string name="insert_datetime">Įdėkite datetime</string>
+    <string name="edit_mode">Redaguoti režimas</string>
+    <string name="run">paleisti</string>
+    <string name="file">byla</string>
+    <string name="other">kitas</string>
+    <string name="view">vaizdas</string>
+    <string name="edit">Redaguoti</string>
+    <string name="new_filename">Untitled %d</string>
+    <string name="confirm_save">Patvirtinti išsaugoti</string>
+    <string name="confirm_save_msg">Dokumento %s pakeitė, arnorite išsaugoti ir išeiti?</string>
+    <string name="yes">taip</string>
+    <string name="no">ne</string>
+    <string name="cannt_access_file">Nepavyksta pasiekti failą: %s</string>
+    <string name="cannt_read_file">Negalite perskaityti failą: %s</string>
+    <string name="ok">Gerai</string>
+    <string name="read_file_exception">Būna išimčių, kai skaityti failą</string>
+    <string name="init_syntax_msg">Inicijuoti sintaksę...</string>
+    <string name="init_syntax_error">Inicijuoti sintaksė žlugti</string>
+    <string name="init_build_index_error">Sukurti indeksą žlugti</string>
+    <string name="close">Uždaryti</string>
+    <string name="cancel">atšaukti</string>
+    <string name="convert_wrap_char">Konvertuoti wrap char</string>
+    <string name="path_x">Kelias: %s</string>
+    <string name="char_x">Simbolių: %d</string>
+    <string name="word_x">Žodžiai: %d</string>
+    <string name="line_number_x">Eilutėsnumeris: %d</string>
+    <string name="encoding_x">Kodavimas: %s</string>
+    <string name="tab">kortelė</string>
+    <string name="no_change">Jokių pokyčių!</string>
+    <string name="save_success">Išsaugoti Sėkmės</string>
+    <string name="find_label">Sužinosite:</string>
+    <string name="replace_label">Pakeisti:</string>
+    <string name="case_sensitive">raidės</string>
+    <string name="whole_words_only">tik visa žodžiai</string>
+    <string name="regex">Įprastoji išraiška</string>
+    <string name="in_path">Be Kelias:</string>
+    <string name="recursively">rekursyviai</string>
+    <string name="cannot_be_empty">Negali būti tuščias</string>
+    <string name="path_not_exists">Keliasne egzistuoja</string>
+    <string name="find_not_found">Nerastas</string>
+    <string name="previous_occurrence">Ankstesnis atsiradimas</string>
+    <string name="next_occurrence">Kitas atsiradimas</string>
+    <string name="replace_all">pakeisti viską</string>
+    <string name="searching">Paieška…</string>
+    <string name="select_lang_to_highlight">Pasirinkite kalbą pabrėžti</string>
+    <string name="more_menu">daugiau Meniu</string>
+    <string name="reopen_with_encoding">Išnaujo su kodavimo</string>
+    <string name="document_changed">Dokumento pasikeitė</string>
+    <string name="give_up_document_changed_message">Dokumento pasikeitė, jūsų pakeitimai bus prarasti, jei jūsneturite juos išsaugoti, patvirtinti?</string>
+    <string name="preview_in_browser">Peržiūrėtinaršyklėje</string>
+    <string name="use_sl4a_in_background_run_script">Naudokite SL4A į fone paleisti scenarijų</string>
+    <string name="use_sl4a_in_terminal_run_script">Naudokite SL4A gnybtų paleisti scenarijų</string>
+    <string name="please_save_as_file_first">Lizingas išsaugoti į failą pirmas</string>
+    <string name="run_fail_message">Skambučių išorės prašymasnepavyko</string>
+    <string name="settings">Nustatymai</string>
+    <string name="editor">redaktorius</string>
+    <string name="font">šriftas</string>
+    <string name="default_value">Numatytas</string>
+    <string name="font_size">Šrifto dydis</string>
+    <string name="cursor_width">žymeklis Plotis</string>
+    <string name="touch_to_adjust_text_size">Palieskite, kad pakeisti teksto dydį</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Rodyti eilutėsnumerį</string>
+    <string name="show_whitespace">Rodyti Tarpai</string>
+    <string name="auto_indent">Auto įtrauka</string>
+    <string name="insert_space_for_tab">Įdėkite vietos Tab</string>
+    <string name="indent_size">įtrauka dydis</string>
+    <string name="highlight_and_theme">Pažymėkite ir tema</string>
+    <string name="highlight_the_file_size_limit">Riba akcentas failo dydis</string>
+    <string name="auto_save">Automatinis išsaugoti failą</string>
+    <string name="remember_last_opened_files">Įsiminti Paskutinį kartą atidaryta failus</string>
+    <string name="remember_last_opened_files_summary">Auto atvira paskutinis atidaryta failus, kai paleisties</string>
+    <string name="screen_orientation">ekrano padėtis</string>
+    <string name="keep_screen_on">Laikyti ekraną</string>
+    <string name="auto_capitalize">Auto pasinaudoti</string>
+    <string name="feedback">grįžtamasis ryšys</string>
+    <string name="donate">Paaukok</string>
+    <string name="help_translate">Versti šį prašymą</string>
+    <string name="about">apie</string>
+    <string name="enable_highlight">Įjungti paryškinti</string>
+    <string name="version_x">Versija: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Reikia, kad būtų galima skaityti saugojimo leidimus</string>
+    <string name="file_not_exists">Failonėra</string>
+    <string name="cannt_handle_intent_x">Negali tvarkyti tikslą: %s</string>
+    <string name="handle_intent_x_error">Įvyko klaida, kai proceso tikslą: %s</string>
+    <string name="verify_sign_failure">Jūsų dabartinė programa yrane oficialiai, eikite į https://github.com/jecelyin/920-text-editor-v2/releases jį atsisiųsti.</string>
+    <string name="press_again_will_exit">Paspauskite dar kartą, išeis</string>
+    <string name="find_replace">Rasti / pakeisti</string>
+    <string name="find_title">\"%s\" Ieškoti Rezultatai</string>
+    <string name="zero_matches">0 atitikmenų</string>
+    <string name="chooser_browser">parinkiklisnaršyklė</string>
+    <string name="find_or_replace">Rasti / pakeisti...</string>
+    <string name="other_application">Kita taikymas...</string>
+    <string name="chooser_application">parinkiklis taikymas</string>
+    <string name="editor_create_unknown_exception">Būnanežinomas išimtis, kai sukurti redaktorius</string>
+    <string name="convert_to_uppercase">Konvertuoti į didžiąsias</string>
+    <string name="convert_to_lowercase">Konvertuoti į mažąsias</string>
+    <string name="duplication_text">dubliavimo tekstas</string>
+    <string name="tab_size">skirtukas dydis</string>
+    <string name="new_version_available">Nauja versija</string>
+    <string name="upgrade">Patobulinti</string>
+    <string name="new_version_update_content">Paskutinė versija: %1$s\n\nLaukiama:\n%2$s</string>
+    <string name="download_progress">Atsisiuntimas %1$d%%</string>
+    <string name="download_failure_x">Parsisiųstinepakankamumas: %s</string>
+    <string name="start_download">pradėti siuntimą</string>
+    <string name="auto_check_updates">Automatinis patikrinimas atnaujinimai</string>
+    <string name="cannt_download">Negalima atsisiųsti.</string>
+    <string name="readonly_mode_not_support_this_action">Read-only modenepalaiko šio veiksmo</string>
+    <string name="x_text_replaced">%d tekstas buvo pakeistas</string>
+    <string name="enable_root">Įjungti Root</string>
+    <string name="my_name">Autorius: Jecelyin Peng</string>
+    <string name="qq_group">QQ Grupė: 87272821</string>
+    <string name="open_with_external_browser">Atverti su išorėsnaršyklėje</string>
+    <string name="contact_email_optional">Kontaktinė paštas (neprivalomas )</string>
+    <string name="with_error_logs">klaidų Įrašai</string>
+    <string name="content">Turinys</string>
+    <string name="send">siųsti</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Atsiliepimai turinys ilgis turi būti didesnisnei:%d char</string>
+    <string name="feedback_submit_error_x">Pateikti klaidą: %s</string>
+    <string name="submit_success">pateikti sėkmę</string>
+    <string name="writing">rašymas</string>
+    <string name="keyword">Raktažodis</string>
+    <string name="find_keyword_is_empty">Raktažodisnegali būti tuščias</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">rasta 0</item>
+        <item quantity="other">%d tekstas pakeistas</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Anglų</item>
+        <item>Kinijos</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Konvertuoti į \\n（Linux/OSX）</item>
+        <item>Konvertuoti į \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Automatinis</item>
+        <item>kraštovaizdis</item>
+        <item>portretas</item>
+    </string-array>
+    <string name="exit">išeiti</string>
+    <string name="unknown_exception_and_report_message_x">Nėra išimtis, pasakykite man, kas yra šiuo atveju vyksta, ačiū \ NCODE: %s</string>
+    <string name="keep_backup_file">Laikyti atsarginės kopijos failą</string>
+    <string name="keep_backup_file_summary">Siūlau jums laikyti atsarginių kopijų failus, išvengti failųnepataikė dėl išimties</string>
+    <string name="save_all_without_new_document_message">Išsaugoti visi bus praleistinaują dokumentą</string>
+    <string name="clear_history">Išvalyti istoriją</string>
+    <string name="custom_symbol_list">Pasirinktinis simbolis sąrašas</string>
+    <string name="reset">Atstatyti</string>
+    <string name="change_theme">Pakeisti tema</string>
+    <string name="dark_theme">Tamsiai tema</string>
+    <string name="default_theme">Įprasta tema</string>
+    <string name="fullscreen_mode">Per visą ekraną režimas</string>
+    <string name="enable_fullscreen_mode_message">Išnaujo paleiskite programą leis viso ekrano režimą</string>
+    <string name="disabled_fullscreen_mode_message">Išnaujo paleiskite programą bus išjungti viso ekrano režimą</string>
+    <string name="confirm_change_theme_message">Pakeisti temanebus automatiškai išsaugoti dokumentus, Jūs patvirtinate išmesti dokumentą pakeisti tema?</string>
 </resources>

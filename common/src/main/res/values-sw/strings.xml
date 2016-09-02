@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Nenda mwanzo</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Nenda juu</string>
-    <string name="abc_action_menu_overflow_description">Chaguo zaidi</string>
-    <string name="abc_action_mode_done">Nimemaliza</string>
-    <string name="abc_activity_chooser_view_see_all">Angalia zote</string>
-    <string name="abc_activitychooserview_choose_application">Chagua programu</string>
-    <string name="abc_capital_off">IMEZIMWA</string>
-    <string name="abc_capital_on">IMEWASHWA</string>
-    <string name="abc_search_hint">Tafuta…</string>
-    <string name="abc_searchview_description_clear">Futa hoja</string>
-    <string name="abc_searchview_description_query">Hoja ya utafutaji</string>
-    <string name="abc_searchview_description_search">Tafuta</string>
-    <string name="abc_searchview_description_submit">Wasilisha hoja</string>
-    <string name="abc_searchview_description_voice">Tafuta kwa kutamka</string>
-    <string name="abc_shareactionprovider_share_with">Shiriki na:</string>
-    <string name="abc_shareactionprovider_share_with_application">Shiriki na %s</string>
-    <string name="abc_toolbar_collapse_description">Kunja</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">Ripoti ajali</string>
+    <string name="crash_contact">Barua pepe (Hiari)</string>
+    <string name="crash_comment">Jinsi ya ajali (Hiari):</string>
+    <string name="crash_report_success">Mafanikio, Asante!</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">kuwasilisha</string>
+    <string name="crash_submit_fail_x">Kushindwa: %s</string>
+    <string name="network_unavailable">Network Mauzo</string>
+    <string name="submitting">Kuwasilisha...</string>
+    <string name="can_not_be_empty">Haiwezi kuwa tupu</string>
+    <string name="no_data">hakuna Data</string>
+    <string name="try_agent">Jaribu tena</string>
+    <string name="search_results">Matokeo</string>
+    <string name="directory">Saraka</string>
+    <string name="authenticate">Thibitisha</string>
+    <string name="logout">logout</string>
+    <string name="selected_x_items">Kuchaguliwa %d Vitu</string>
+    <string name="filename">Jina la faili:</string>
+    <string name="file_encoding">encoding:</string>
+    <string name="file_save">Save</string>
+    <string name="root_path">mizizi</string>
+    <string name="auto_detection_encoding">Auto kugundua encoding</string>
+    <string name="illegal_filename">filename haramu</string>
+    <string name="unknown_path">njiangeni</string>
+    <string name="open_file">Open File</string>
+    <string name="save_file">Ila Picha</string>
+    <string name="override_file_prompt">%s ipo, je, kuifuta?</string>
+    <string name="filter_by_name">Chuja kwa Jina</string>
+    <string name="can_not_create_folder">Huwezi kuunda folder</string>
+    <string name="can_not_share_x">Haiwezi kushiriki file:%s</string>
+    <string name="cancel_select_all">Tengua All</string>
+    <string name="copy">Copy</string>
+    <string name="create_folder">kujenga folder</string>
+    <string name="cut">Cut</string>
+    <string name="delete">kufuta</string>
+    <string name="paste">Paste</string>
+    <string name="rename">rename</string>
+    <string name="rename_fail">kubadili jina kushindwa</string>
+    <string name="select_all">kuchagua wote</string>
+    <string name="share">Kushiriki</string>
+    <string name="show_hidden_files">Kuonyesha files siri</string>
+    <string name="sort_by_datetime">Panga kwa Tarehe</string>
+    <string name="sort_by_name">Panga kwa Jina</string>
+    <string name="sort_by_size">Panga kwa ukubwa</string>
+    <string name="sort_by_type">Panga kwa Aina</string>
+    <string name="addToDictionary">Kuongeza kamusi</string>
+    <string name="deleteText">kufuta Nakala</string>
+    <string name="replace">nafasi</string>
+    <string name="textSelectionCABTitle">Select Nakala</string>
+    <string name="selectAll">chagua zote</string>
+    <string name="find">kupata</string>
+    <string name="app_name">920 Nakala Mhariri</string>
+    <string name="new_file">New</string>
+    <string name="open">Open</string>
+    <string name="save">Save</string>
+    <string name="undo">Tendua</string>
+    <string name="redo">Rudia</string>
+    <string name="save_all">Save All</string>
+    <string name="save_as">Ila kama</string>
+    <string name="recent_files">mafaili ya hivi karibuni</string>
+    <string name="line_separator">mstari Break</string>
+    <string name="duplication_line">kurudia line</string>
+    <string name="find_in_files">Kupata katika mafaili</string>
+    <string name="jump_to_start">Rukia kuanza</string>
+    <string name="jump_to_end">Rukia mwisho</string>
+    <string name="goto_line">goto line</string>
+    <string name="back">Back</string>
+    <string name="forward">mbele</string>
+    <string name="document_info">hati Info</string>
+    <string name="symbol">ishara</string>
+    <string name="insert_color">Insert rangi</string>
+    <string name="highlight_language">lugha Highlight</string>
+    <string name="encoding">encoding</string>
+    <string name="read_only">kusoma tu</string>
+    <string name="insert_datetime">kuingiza DATETIME</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">Run</string>
+    <string name="file">faili</string>
+    <string name="other">nyingine</string>
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">kuthibitisha kuokoa</string>
+    <string name="confirm_save_msg">Hati %s imebadilika, kufanya unataka kuokoana exit?</string>
+    <string name="yes">Ndiyo</string>
+    <string name="no">hakuna</string>
+    <string name="cannt_access_file">Hawawezi kupata faili:%s</string>
+    <string name="cannt_read_file">Huwezi kusoma faili:%s</string>
+    <string name="ok">sawa</string>
+    <string name="read_file_exception">Hutokea ubaguzi wakati kusoma faili</string>
+    <string name="init_syntax_msg">Initialize syntax...</string>
+    <string name="init_syntax_error">Initialize syntax kushindwa</string>
+    <string name="init_build_index_error">Kujenga index kushindwa</string>
+    <string name="close">karibu</string>
+    <string name="cancel">kufuta</string>
+    <string name="convert_wrap_char">Kubadilisha wrap char</string>
+    <string name="path_x">Njia: %s</string>
+    <string name="char_x">Chars: %d</string>
+    <string name="word_x">Maneno: %d</string>
+    <string name="line_number_x">Mstarinambari:%d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">tab</string>
+    <string name="no_change">Hakuna mabadiliko !</string>
+    <string name="save_success">Save Mafanikio</string>
+    <string name="find_label">Kupatanini:</string>
+    <string name="replace_label">Nafasi Pamoja:</string>
+    <string name="case_sensitive">Uchunguzinyeti</string>
+    <string name="whole_words_only">Manenonzima tu</string>
+    <string name="regex">mara kwa mara kujieleza</string>
+    <string name="in_path">Katika Njia:</string>
+    <string name="recursively">recursively</string>
+    <string name="cannot_be_empty">Haiwezi kuwa tupu</string>
+    <string name="path_not_exists">Njia si ipo</string>
+    <string name="find_not_found">Haipatikani</string>
+    <string name="previous_occurrence">Matukio uliopita</string>
+    <string name="next_occurrence">Matukio ijayo</string>
+    <string name="replace_all">nafasi All</string>
+    <string name="searching">Search...</string>
+    <string name="select_lang_to_highlight">Kuchagua lugha kuonyesha</string>
+    <string name="more_menu">zaidi menu</string>
+    <string name="reopen_with_encoding">Reopenna encoding</string>
+    <string name="document_changed">hati iliyopita</string>
+    <string name="give_up_document_changed_message">Hati imebadilika, mabadiliko yako itakuwa waliopotea kama huna kuwaokoa, kuthibitisha?</string>
+    <string name="preview_in_browser">Preview katika browser</string>
+    <string name="use_sl4a_in_background_run_script">Matumizi SL4A katika background kukimbia script</string>
+    <string name="use_sl4a_in_terminal_run_script">Matumizi SL4A katika terminal kukimbia script</string>
+    <string name="please_save_as_file_first">kukodisha kuokoana faili kwanza</string>
+    <string name="run_fail_message">Wito programu yanje alishindwa</string>
+    <string name="settings">mazingira</string>
+    <string name="editor">mhariri</string>
+    <string name="font">font</string>
+    <string name="default_value">default</string>
+    <string name="font_size">ukubwa wa herufi</string>
+    <string name="cursor_width">mshale upana</string>
+    <string name="touch_to_adjust_text_size">Gusa ili kubadili ukubwa wa maandishi</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">show Linenumber</string>
+    <string name="show_whitespace">show Whitespace</string>
+    <string name="auto_indent">Auto Indent</string>
+    <string name="insert_space_for_tab">Kuingizanafasi kwa ajili ya Tab</string>
+    <string name="indent_size">Indent ukubwa</string>
+    <string name="highlight_and_theme">Highlightna mandhari</string>
+    <string name="highlight_the_file_size_limit">ukubwa kikomo kuonyesha faili</string>
+    <string name="auto_save">Auto kuokoa faili</string>
+    <string name="remember_last_opened_files">Kumbuka files mwisho kufunguliwa</string>
+    <string name="remember_last_opened_files_summary">Auto wazi mwisho kufunguliwa files wakati startup</string>
+    <string name="screen_orientation">screen Mwelekeo</string>
+    <string name="keep_screen_on">Weka screen juu ya</string>
+    <string name="auto_capitalize">Auto capitalize</string>
+    <string name="feedback">maoni</string>
+    <string name="donate">kuchangia</string>
+    <string name="help_translate">Tafsiri maombi haya</string>
+    <string name="about">kuhusu</string>
+    <string name="enable_highlight">kuwawezesha kuonyesha</string>
+    <string name="version_x">Version: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Unahitaji kuwezesha ruhusa kusoma hifadhi</string>
+    <string name="file_not_exists">Faili si ipo</string>
+    <string name="cannt_handle_intent_x">Hawezi mchakato dhamira:%s</string>
+    <string name="handle_intent_x_error">Ni kosa ilitokea wakati mchakato dhamira:%s</string>
+    <string name="verify_sign_failure">maombi yako ya sasa si rasmi, tafadhali kwenda https://github.com/jecelyin/920-text-editor-v2/releases kushushani.</string>
+    <string name="press_again_will_exit">Press tena exit</string>
+    <string name="find_replace">Kupata / Nafasi</string>
+    <string name="find_title">\"%s\" Kupata Matokeo</string>
+    <string name="zero_matches">0 mechi</string>
+    <string name="chooser_browser">Chooser kisakuzi</string>
+    <string name="find_or_replace">Kupata / Nafasi...</string>
+    <string name="other_application">Nyingine maombi...</string>
+    <string name="chooser_application">Chooser Maombi</string>
+    <string name="editor_create_unknown_exception">Hutokea ubaguzi haijulikani wakati kujenga mhariri</string>
+    <string name="convert_to_uppercase">Kubadilishana uppercase</string>
+    <string name="convert_to_lowercase">Kubadilishana Herufi za chini</string>
+    <string name="duplication_text">kurudia maandishi</string>
+    <string name="tab_size">ukubwa tab</string>
+    <string name="new_version_available">New toleo inapatikana</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="new_version_update_content">Latest Version: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Kupakua %1$d%%</string>
+    <string name="download_failure_x">Download kushindwa:%s</string>
+    <string name="start_download">kuanza Download</string>
+    <string name="auto_check_updates">updates Auto kuangalia</string>
+    <string name="cannt_download">Haiwezi kupakua.</string>
+    <string name="readonly_mode_not_support_this_action">Kusoma tu mode hakiingiliani hatua hii</string>
+    <string name="x_text_replaced">%d maandishi imekuwa kubadilishwa</string>
+    <string name="enable_root">kuwawezesha Root</string>
+    <string name="my_name">Mwandishi: Jecelyin Peng</string>
+    <string name="qq_group">QQ Group: 87272821</string>
+    <string name="open_with_external_browser">Openna browsernje</string>
+    <string name="contact_email_optional">Mawasiliano barua pepe (optional)</string>
+    <string name="with_error_logs">Kumbukumbu makosa</string>
+    <string name="content">maudhui</string>
+    <string name="send">kutuma</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Maoni yaliyomo urefu lazima kuwa kubwa kuliko %d char</string>
+    <string name="feedback_submit_error_x">Kuwasilisha kosa:%s</string>
+    <string name="submit_success">kuwasilisha mafanikio</string>
+    <string name="writing">kuandika</string>
+    <string name="keyword">Keyword</string>
+    <string name="find_keyword_is_empty">Keyword haiwezi kuwa tupu</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 kupatikana</item>
+        <item quantity="other">%d maandishi kubadilishwa</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>english</item>
+        <item>Kichina</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Kubadilishana \\n（Linux/OSX）</item>
+        <item>Kubadilishana \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>mazingira</item>
+        <item>Taswira</item>
+    </string-array>
+    <string name="exit">Utgång</string>
+    <string name="unknown_exception_and_report_message_x">Haijulikani ubaguzi, Tafadhali kuniambianinini kesi hii kinatokea, Asante \nCode:%s</string>
+    <string name="keep_backup_file">Kuweka faili la akiba</string>
+    <string name="keep_backup_file_summary">Pendekeza wewe kuweka mafaili Backup, kuepuka file misses kwa ubaguzi</string>
+    <string name="save_all_without_new_document_message">Ila wote watakuwa ruka hati mpya</string>
+    <string name="clear_history">Futa Historia</string>
+    <string name="custom_symbol_list">Desturi orodha ishara</string>
+    <string name="reset">Rudisha</string>
+    <string name="change_theme">mabadiliko ya mandhari</string>
+    <string name="dark_theme">giza mandhari</string>
+    <string name="default_theme">default Theme</string>
+    <string name="fullscreen_mode">Mode fullscreen</string>
+    <string name="enable_fullscreen_mode_message">Upya maombi itawezesha full screen mode</string>
+    <string name="disabled_fullscreen_mode_message">Upya maombi italemaza full screen mode</string>
+    <string name="confirm_change_theme_message">Mabadiliko ya mandhari si auto kuokoanyaraka, unathibitisha Discard hati ya kubadilisha mandhari?</string>
 </resources>

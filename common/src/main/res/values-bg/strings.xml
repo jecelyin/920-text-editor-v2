@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="crash_report">Crash Доклад</string>
+    <string name="crash_contact">Email (по избор)</string>
+    <string name="crash_comment">Как да се блъсне (по избор):</string>
+    <string name="crash_report_success">Успех, Благодаря ви !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Подайте</string>
+    <string name="crash_submit_fail_x">Неспазването: %s</string>
+    <string name="network_unavailable">Няма достъп до мрежата</string>
+    <string name="submitting">Подаване на...</string>
+    <string name="can_not_be_empty">Не може да бъде празно</string>
+    <string name="no_data">Няма данни</string>
+    <string name="try_agent">Опитай пак</string>
+    <string name="search_results">Резултати от търсенето</string>
+    <string name="directory">указател</string>
+    <string name="authenticate">за установяване на автентичността</string>
+    <string name="logout">Излез от профила си</string>
+    <string name="selected_x_items">Избрани %d артикули</string>
+    <string name="filename">Име на файл:</string>
+    <string name="file_encoding">Encoding:</string>
+    <string name="file_save">Save</string>
+    <string name="root_path">корен</string>
+    <string name="auto_detection_encoding">кодиране Auto откриване</string>
+    <string name="illegal_filename">невалидно име на файл</string>
+    <string name="unknown_path">неизвестен път</string>
+    <string name="open_file">Отворете файла</string>
+    <string name="save_file">Запишете файла</string>
+    <string name="override_file_prompt">%s съществува, да го замени?</string>
+    <string name="filter_by_name">Филтър по име</string>
+    <string name="can_not_create_folder">Не мога</string>
+    <string name="can_not_share_x">Не може да споделите файл: %s</string>
+    <string name="cancel_select_all">Отмяна на избора All</string>
+    <string name="copy">копие</string>
+    <string name="create_folder">Създай папка</string>
+    <string name="cut">Разрез</string>
+    <string name="delete">Изтрий</string>
+    <string name="paste">паста</string>
+    <string name="rename">преименувам</string>
+    <string name="rename_fail">Преименуване на неуспех</string>
+    <string name="select_all">Избери всички</string>
+    <string name="share">Дял</string>
+    <string name="show_hidden_files">Показване на скритите файлове</string>
+    <string name="sort_by_datetime">Сортиране по Дата</string>
+    <string name="sort_by_name">Сортиране по име</string>
+    <string name="sort_by_size">Сортиране по размер</string>
+    <string name="sort_by_type">Сортиране по Тип</string>
+    <string name="addToDictionary">Добави</string>
+    <string name="deleteText">Изтриване на текст</string>
+    <string name="replace">Замяна</string>
+    <string name="textSelectionCABTitle">Изберете Текст</string>
+    <string name="selectAll">Избери всички</string>
+    <string name="find">намирам</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">нов</string>
+    <string name="open">отворено</string>
+    <string name="save">Save</string>
+    <string name="undo">премахвам</string>
+    <string name="redo">ремонтирам</string>
+    <string name="save_all">Запази всичко</string>
+    <string name="save_as">Запази като</string>
+    <string name="recent_files">Последни файлове</string>
+    <string name="line_separator">Line Break</string>
+    <string name="duplication_line">Дублирането линия</string>
+    <string name="find_in_files">Намерете в файлове</string>
+    <string name="jump_to_start">Направо да започнете</string>
+    <string name="jump_to_end">Направо към края</string>
+    <string name="goto_line">Иди на линия</string>
+    <string name="back">обратно</string>
+    <string name="forward">напред</string>
+    <string name="document_info">Документ Info</string>
+    <string name="symbol">символ</string>
+    <string name="insert_color">цвят Insert</string>
+    <string name="highlight_language">Highlight език</string>
+    <string name="encoding">Encoding</string>
+    <string name="read_only">Само за четене</string>
+    <string name="insert_datetime">Поставете дата и час</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">бягане</string>
+    <string name="file">досие</string>
+    <string name="other">друг</string>
+    <string name="view">изглед</string>
+    <string name="edit">редактиране</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">Потвърждаване на запазването</string>
+    <string name="confirm_save_msg">Документ %s се е променило, искаш ли да се спаси и да излезете?</string>
+    <string name="yes">да</string>
+    <string name="no">Не</string>
+    <string name="cannt_access_file">Няма достъп до файл: %s</string>
+    <string name="cannt_read_file">Не може да се чете файл: %s</string>
+    <string name="ok">Добре</string>
+    <string name="read_file_exception">Среща се прави изключение, когато се чете файл</string>
+    <string name="init_syntax_msg">Инициализиране синтаксис...</string>
+    <string name="init_syntax_error">Инициализиране синтаксис провалят</string>
+    <string name="init_build_index_error">Изграждане индекс се провали</string>
+    <string name="close">° С</string>
+    <string name="cancel">Отказ</string>
+    <string name="convert_wrap_char">Конвертиране обвивка Чар</string>
+    <string name="path_x">Path: %s</string>
+    <string name="char_x">Знаци: %d</string>
+    <string name="word_x">Думи: %d</string>
+    <string name="line_number_x">Линия номер: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">Раздел</string>
+    <string name="no_change">Не</string>
+    <string name="save_success">Save Success</string>
+    <string name="find_label">Намери какво:</string>
+    <string name="replace_label">Замени с:</string>
+    <string name="case_sensitive">Различаващ главни от малки букви</string>
+    <string name="whole_words_only">само цели думи</string>
+    <string name="regex">Редовен израз</string>
+    <string name="in_path">В Path:</string>
+    <string name="recursively">Рекурсивно</string>
+    <string name="cannot_be_empty">Не може да бъде празно</string>
+    <string name="path_not_exists">Path не съществува</string>
+    <string name="find_not_found">Не е намерена</string>
+    <string name="previous_occurrence">Предишна Възникване</string>
+    <string name="next_occurrence">следващото появяване</string>
+    <string name="replace_all">Замяна на всички</string>
+    <string name="searching">Търсене…</string>
+    <string name="select_lang_to_highlight">Изберете език, за да се подчертаят</string>
+    <string name="more_menu">Повече меню</string>
+    <string name="reopen_with_encoding">Отворете отново с кодиране</string>
+    <string name="document_changed">Документ променило</string>
+    <string name="give_up_document_changed_message">Документът се е променило, промените ще бъдат загубени, ако не ги спаси, потвърди?</string>
+    <string name="preview_in_browser">предварителен преглед</string>
+    <string name="use_sl4a_in_background_run_script">Използвайте SL4A в фон тече скрипт</string>
+    <string name="use_sl4a_in_terminal_run_script">Използвайте SL4A в терминал изпълнява скрипт</string>
+    <string name="please_save_as_file_first">лизинг спаси да подаде първи</string>
+    <string name="run_fail_message">Call външно приложение се провали</string>
+    <string name="settings">Настройки</string>
+    <string name="editor">Редактор</string>
+    <string name="font">Font</string>
+    <string name="default_value">По подразбиране</string>
+    <string name="font_size">Размер на шрифта</string>
+    <string name="cursor_width">Cursor Ширина</string>
+    <string name="touch_to_adjust_text_size">Докоснете, за да промените размера на шрифта</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Покажи Linenumber</string>
+    <string name="show_whitespace">Покажи Празни символи</string>
+    <string name="auto_indent">Auto отстъп</string>
+    <string name="insert_space_for_tab">Поставете пространство за Tab</string>
+    <string name="indent_size">Тире размер</string>
+    <string name="highlight_and_theme">Маркирайте и Theme</string>
+    <string name="highlight_the_file_size_limit">размер Limit маркирайте файл</string>
+    <string name="auto_save">Автозапис файл</string>
+    <string name="remember_last_opened_files">Запомни последните отворени файлове</string>
+    <string name="remember_last_opened_files_summary">Auto отворен последно отваряните файлове, когато стартиране</string>
+    <string name="screen_orientation">Ориентация на екрана</string>
+    <string name="keep_screen_on">Пазете екрана на</string>
+    <string name="auto_capitalize">Auto капитализира</string>
+    <string name="feedback">F</string>
+    <string name="donate">Дарете</string>
+    <string name="help_translate">Превод на заявление</string>
+    <string name="about">Относно</string>
+    <string name="enable_highlight">Активиране на осветяване</string>
+    <string name="version_x">Версия: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Необходимо е да се даде възможност на права за четене за съхранение</string>
+    <string name="file_not_exists">Файлът не съществува</string>
+    <string name="cannt_handle_intent_x">Не може да се обработи намерение: %S</string>
+    <string name="handle_intent_x_error">Възникнала е грешка, когато процес намерение: %S</string>
+    <string name="verify_sign_failure">Текущият ви молба не е официална, моля отидете на https://github.com/jecelyin/920-text-editor-v2/releases го изтеглите.</string>
+    <string name="press_again_will_exit">Натиснете отново ще излезете</string>
+    <string name="find_replace">Намери / Замяна</string>
+    <string name="find_title">\"%s\" Намери Резултати</string>
+    <string name="zero_matches">0 мачове</string>
+    <string name="chooser_browser">за избор на браузър</string>
+    <string name="find_or_replace">Намери / Замяна на...</string>
+    <string name="other_application">Друго приложение...</string>
+    <string name="chooser_application">за избор на приложения</string>
+    <string name="editor_create_unknown_exception">Среща неизвестен изключение, когато се създаде редактор</string>
+    <string name="convert_to_uppercase">Конвертиране в главни букви</string>
+    <string name="convert_to_lowercase">Конвертиране в малки букви</string>
+    <string name="duplication_text">Дублирането на текст</string>
+    <string name="tab_size">размер Tab</string>
+    <string name="new_version_available">N</string>
+    <string name="upgrade">U</string>
+    <string name="new_version_update_content">Последната версия: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Изтеглянето %1$d%%</string>
+    <string name="download_failure_x">Свали недостатъчност: %s</string>
+    <string name="start_download">Започнете Download</string>
+    <string name="auto_check_updates">Автоматична проверка актуализации</string>
+    <string name="cannt_download">Не може да се изтегли.</string>
+    <string name="readonly_mode_not_support_this_action">Режим само за четене не поддържа това действие</string>
+    <string name="x_text_replaced">% Г текст е заменен</string>
+    <string name="enable_root">Активиране на Root</string>
+    <string name="my_name">Автор: Jecelyin Peng</string>
+    <string name="qq_group">QQ група:</string>
+    <string name="open_with_external_browser">Open с външен браузър</string>
+    <string name="contact_email_optional">Свържи се с електронна поща (по избор)</string>
+    <string name="with_error_logs">Дневници за грешка</string>
+    <string name="content">съдържание</string>
+    <string name="send">изпращам</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Обратна връзка дължина съдържание трябва да бъде по-голяма, отколкото %d Чар</string>
+    <string name="feedback_submit_error_x">Знаете грешка: %s</string>
+    <string name="submit_success">Знаете успех</string>
+    <string name="writing">писане</string>
+    <string name="keyword">Ключова дума</string>
+    <string name="find_keyword_is_empty">Ключова дума не може да е празно</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 намерени</item>
+        <item quantity="other">%d текст заменя</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Английски</item>
+        <item>Китайски</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Конвертиране в \\n（Linux/OSX）</item>
+        <item>Конвертиране в \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Автоматичен</item>
+        <item>пейзаж</item>
+        <item>Портрет</item>
+    </string-array>
+    <string name="exit">изход</string>
+    <string name="unknown_exception_and_report_message_x">Неизвестна изключение, Моля, кажете ми какво е това дело случва, Благодаря \nCode: %S</string>
+    <string name="keep_backup_file">Дръжте архивен файл</string>
+    <string name="keep_backup_file_summary">Предлагам ви да се запази архивиране на файлове, избягване на файлове пропуска за изключение</string>
+    <string name="save_all_without_new_document_message">Запазване на всички ще пропусне нов документ</string>
+    <string name="clear_history">Чиста история</string>
+    <string name="custom_symbol_list">списък по поръчка символ</string>
+    <string name="reset">Нулиране</string>
+    <string name="change_theme">Промяна на темата</string>
+    <string name="dark_theme">Тъмно Theme</string>
+    <string name="default_theme">Default Theme</string>
+    <string name="fullscreen_mode">режим на цял екран</string>
+    <string name="enable_fullscreen_mode_message">Рестартирайте програмата ще даде възможност на режима на цял екран</string>
+    <string name="disabled_fullscreen_mode_message">Рестартирайте приложението ще деактивира режима на цял екран</string>
+    <string name="confirm_change_theme_message">Промяна на темата не автоматично ще спаси документи, вие потвърждавате, изхвърляне документ да се промени тема?</string>
 </resources>

@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">Netfang (Valfrjálst )</string>
+    <string name="crash_comment">Hvernig á að hrun (Valfrjálst ):</string>
+    <string name="crash_report_success">Velgengni, Takk !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Senda</string>
+    <string name="crash_submit_fail_x">Bilun: %s</string>
+    <string name="network_unavailable">netkerfi</string>
+    <string name="submitting">Sendi...</string>
+    <string name="can_not_be_empty">Má ekki vera autt</string>
+    <string name="no_data">Engin gögn</string>
+    <string name="try_agent">Reyndu aftur</string>
+    <string name="search_results">leitarniðurstöður</string>
+    <string name="directory">Skrá</string>
+    <string name="authenticate">sannvotta</string>
+    <string name="logout">Að skrá þig út</string>
+    <string name="selected_x_items">Valdar %d Items</string>
+    <string name="filename">Skráarnafn:</string>
+    <string name="file_encoding">kóðun:</string>
+    <string name="file_save">Vista</string>
+    <string name="root_path">Root</string>
+    <string name="auto_detection_encoding">Auto uppgötvun kóðun</string>
+    <string name="illegal_filename">ólöglegt skráarheiti</string>
+    <string name="unknown_path">óþekkt Slóð</string>
+    <string name="open_file">Opna skrá</string>
+    <string name="save_file">Vista skrá</string>
+    <string name="override_file_prompt">%s til, þú yfir hana?</string>
+    <string name="filter_by_name">Sía eftirnafni</string>
+    <string name="can_not_create_folder">Get ekki búið til möppuna</string>
+    <string name="can_not_share_x">Get ekki deila skrána: %s</string>
+    <string name="cancel_select_all">afvelja alla</string>
+    <string name="copy">Afrita</string>
+    <string name="create_folder">Búa til möppu</string>
+    <string name="cut">Skera</string>
+    <string name="delete">eyða</string>
+    <string name="paste">Líma</string>
+    <string name="rename">endurnefna</string>
+    <string name="rename_fail">endurnefna bilun</string>
+    <string name="select_all">Velja allt</string>
+    <string name="share">Deila</string>
+    <string name="show_hidden_files">Sýna faldar skrár</string>
+    <string name="sort_by_datetime">Raða eftir dagsetningu</string>
+    <string name="sort_by_name">Raða eftir Nafn</string>
+    <string name="sort_by_size">Raða eftir stærð</string>
+    <string name="sort_by_type">Raða eftir tegund</string>
+    <string name="addToDictionary">Bæta við orðabók</string>
+    <string name="deleteText">eyða texta</string>
+    <string name="replace">Skipta</string>
+    <string name="textSelectionCABTitle">Veldu Text</string>
+    <string name="selectAll">Velja allt</string>
+    <string name="find">finna</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">nýtt</string>
+    <string name="open">Open</string>
+    <string name="save">Vista</string>
+    <string name="undo">Afturkalla</string>
+    <string name="redo">Endurtaka</string>
+    <string name="save_all">Vista All</string>
+    <string name="save_as">Vista sem</string>
+    <string name="recent_files">Nýlegar skrár</string>
+    <string name="line_separator">línuskil</string>
+    <string name="duplication_line">endurtekning lína</string>
+    <string name="find_in_files">Finna í skrá</string>
+    <string name="jump_to_start">Hoppa til að byrja</string>
+    <string name="jump_to_end">Hoppa til enda</string>
+    <string name="goto_line">goto línu</string>
+    <string name="back">Back</string>
+    <string name="forward">Forward</string>
+    <string name="document_info">Document Upplýsingar</string>
+    <string name="symbol">tákn</string>
+    <string name="insert_color">Setja inn lit</string>
+    <string name="highlight_language">Highlight tungumál</string>
+    <string name="encoding">kóðun</string>
+    <string name="read_only">Lesið aðeins</string>
+    <string name="insert_datetime">Settu DATETIME</string>
+    <string name="edit_mode">Breyta Mode</string>
+    <string name="run">Run</string>
+    <string name="file">File</string>
+    <string name="other">Annað</string>
+    <string name="view">Útsýni</string>
+    <string name="edit">Breyta</string>
+    <string name="new_filename">án titils %d</string>
+    <string name="confirm_save">Staðfesta að vista</string>
+    <string name="confirm_save_msg">Skjalið %s hefur breyst, viltu vista og loka?</string>
+    <string name="yes">Já</string>
+    <string name="no">engin</string>
+    <string name="cannt_access_file">Get ekki aðgang skrána: %s</string>
+    <string name="cannt_read_file">Get ekki lesið skrána: %s</string>
+    <string name="ok">OK</string>
+    <string name="read_file_exception">Kemur undantekningu þegar lesið skrána</string>
+    <string name="init_syntax_msg">Frumstilla setningafræði...</string>
+    <string name="init_syntax_error">Frumstilla setningafræði mistakast</string>
+    <string name="init_build_index_error">Byggja vísitölu mistakast</string>
+    <string name="close">Loka</string>
+    <string name="cancel">Hætta</string>
+    <string name="convert_wrap_char">Umbreyta hula bleikju</string>
+    <string name="path_x">Slóð: %s</string>
+    <string name="char_x">Stafir: %d</string>
+    <string name="word_x">Orð: %d</string>
+    <string name="line_number_x">Línanúmer: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">Engin breyting!</string>
+    <string name="save_success">Vista Velgengni</string>
+    <string name="find_label">Finndu Hvað:</string>
+    <string name="replace_label">Skipta út með:</string>
+    <string name="case_sensitive">tilfellinæmur</string>
+    <string name="whole_words_only">Aðeins stök orð</string>
+    <string name="regex">Regluleg segð</string>
+    <string name="in_path">Í Path:</string>
+    <string name="recursively">endurkvæmt</string>
+    <string name="cannot_be_empty">Má ekki vera autt</string>
+    <string name="path_not_exists">Path ekki til</string>
+    <string name="find_not_found">Ekki fundið</string>
+    <string name="previous_occurrence">fyrri Tilvist</string>
+    <string name="next_occurrence">næsta Tilvist</string>
+    <string name="replace_all">Skipta All</string>
+    <string name="searching">Leita...</string>
+    <string name="select_lang_to_highlight">Veldu tungumál til að lýsa</string>
+    <string name="more_menu">meira matseðill</string>
+    <string name="reopen_with_encoding">Enduropna við kóðun</string>
+    <string name="document_changed">skjal breytt</string>
+    <string name="give_up_document_changed_message">Skjalið hefur breyst, breytingar þínar glatast ef þú vistar ekki þá, staðfesta?</string>
+    <string name="preview_in_browser">Preview í vafranum</string>
+    <string name="use_sl4a_in_background_run_script">Notkun SL4A í bakgrunni hlaupa handriti</string>
+    <string name="use_sl4a_in_terminal_run_script">Notkun SL4A í flugstöðinni hlaupa handriti</string>
+    <string name="please_save_as_file_first">leigja vista í skrá fyrst</string>
+    <string name="run_fail_message">Call utanaðkomandi forrit mistókst</string>
+    <string name="settings">Stillingar</string>
+    <string name="editor">ritstjóri</string>
+    <string name="font">font</string>
+    <string name="default_value">Sjálfgefið</string>
+    <string name="font_size">Leturstærð</string>
+    <string name="cursor_width">Breidd bendill</string>
+    <string name="touch_to_adjust_text_size">Snertu til að breyta textastærð</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Sýna línu NUMBER</string>
+    <string name="show_whitespace">Sýna Bilstafir</string>
+    <string name="auto_indent">Auto inndrátt</string>
+    <string name="insert_space_for_tab">Settu pláss fyrir Tab</string>
+    <string name="indent_size">inndráttur stærð</string>
+    <string name="highlight_and_theme">Highlight og Þema</string>
+    <string name="highlight_the_file_size_limit">Takmarka hápunktur skráarstærð</string>
+    <string name="auto_save">Auto vista skrána</string>
+    <string name="remember_last_opened_files">Mundu síðustu opnaðar skrár</string>
+    <string name="remember_last_opened_files_summary">Auto opinn síðast opnað skrár þegar gangsetning</string>
+    <string name="screen_orientation">skjástefnu</string>
+    <string name="keep_screen_on">Halda skjár á</string>
+    <string name="auto_capitalize">Autonýta</string>
+    <string name="feedback">athugasemdir</string>
+    <string name="donate">Styrkja</string>
+    <string name="help_translate">Þýða þessa umsókn</string>
+    <string name="about">um</string>
+    <string name="enable_highlight">Virkja hápunkt</string>
+    <string name="version_x">Útgáfa: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Þarftu að gera að lesa geymsla heimildir</string>
+    <string name="file_not_exists">Skrá ekki til staðar</string>
+    <string name="cannt_handle_intent_x">Get ekki unnið úr ásetningi: %s</string>
+    <string name="handle_intent_x_error">An error occurred when process intent: %s</string>
+    <string name="verify_sign_failure">núverandi umsókn er ekki opinbert, vinsamlegast farðu til https://github.com/jecelyin/920-text-editor-v2/releases sækja það.</string>
+    <string name="press_again_will_exit">Ýttu aftur mun hætta</string>
+    <string name="find_replace">Finndu / Skipta</string>
+    <string name="find_title">\"%s\" Finna Úrslit</string>
+    <string name="zero_matches">0 samsvaranir</string>
+    <string name="chooser_browser">chooser vafra</string>
+    <string name="find_or_replace">Finndu / Skipta...</string>
+    <string name="other_application">Annað forrit...</string>
+    <string name="chooser_application">chooser Umsókn</string>
+    <string name="editor_create_unknown_exception">Kemur óþekkta undantekningu þegar búið ritstjóri</string>
+    <string name="convert_to_uppercase">Umbreyta í hástafi</string>
+    <string name="convert_to_lowercase">Umbreyta til lágstafir</string>
+    <string name="duplication_text">endurtekning texta</string>
+    <string name="tab_size">Tab stærð</string>
+    <string name="new_version_available">Ný útgáfa í boði</string>
+    <string name="upgrade">uppfærsla</string>
+    <string name="new_version_update_content">Nýjustu Version:%1$s \n \nChanges: \n%2$s</string>
+    <string name="download_progress">Sæki %1$d%%</string>
+    <string name="download_failure_x">Download bilun: %s</string>
+    <string name="start_download">byrja Niðurhal</string>
+    <string name="auto_check_updates">Auto athuga uppfærslur</string>
+    <string name="cannt_download">Ekki er hægt að sækja.</string>
+    <string name="readonly_mode_not_support_this_action">Lesa-eini háttur styður ekki þessa aðgerð</string>
+    <string name="x_text_replaced">%d texti hefur verið skipt</string>
+    <string name="enable_root">Virkja Root</string>
+    <string name="my_name">Höfundur: Jecelyin Peng</string>
+    <string name="qq_group">QQ Group: 87272821</string>
+    <string name="open_with_external_browser">Opna með ytri vafra</string>
+    <string name="contact_email_optional">Netfang tengiliðar (valfrjálst )</string>
+    <string name="with_error_logs">Villa Logs</string>
+    <string name="content">innihald</string>
+    <string name="send">Senda</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Athugasemdir innihald lengd verður að vera meiri en %d stafir</string>
+    <string name="feedback_submit_error_x">Senda villu: %s</string>
+    <string name="submit_success">Senda árangri</string>
+    <string name="writing">Ritun</string>
+    <string name="keyword">Leitarorð</string>
+    <string name="find_keyword_is_empty">Leitarorð má ekki vera autt</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 fundust</item>
+        <item quantity="other">%d texta í stað</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Enska</item>
+        <item>Kínverska</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Umbreyta til \\n（Linux/OSX）</item>
+        <item>Umbreyta til \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>Landscape</item>
+        <item>Portrait</item>
+    </string-array>
+    <string name="exit">Hætta</string>
+    <string name="unknown_exception_and_report_message_x">Unknown undantekning, Vinsamlegast segðu mér hvað er þetta raunin gerast, Þakka þér \nCode: %s</string>
+    <string name="keep_backup_file">Halda afrit skrá</string>
+    <string name="keep_backup_file_summary">Legg til að þú að halda skrár, forðast skrá saknar fyrir undantekninga</string>
+    <string name="save_all_without_new_document_message">Sparið allt mun sleppanýtt skjal</string>
+    <string name="clear_history">Clear History</string>
+    <string name="custom_symbol_list">Custom tákn listi</string>
+    <string name="reset">endurstilla</string>
+    <string name="change_theme">Breyta þema</string>
+    <string name="dark_theme">Dark Þema</string>
+    <string name="default_theme">Sjálfgefið Þema</string>
+    <string name="fullscreen_mode">Fullscreen Mode</string>
+    <string name="enable_fullscreen_mode_message">Endurræsa forritið munu gera á öllum skjánum</string>
+    <string name="disabled_fullscreen_mode_message">Endurræsa forritið mun slökkva á öllum skjánum</string>
+    <string name="confirm_change_theme_message">Breyta þema mun ekki sjálfvirkt vista skjölin, staðfestir þú fleygja skjal til að breyta þema?</string>
 </resources>

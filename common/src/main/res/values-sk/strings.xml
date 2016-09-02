@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Prejsť na plochu</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Prejsť hore</string>
-    <string name="abc_action_menu_overflow_description">Ďalšie možnosti</string>
-    <string name="abc_action_mode_done">Hotovo</string>
-    <string name="abc_activity_chooser_view_see_all">Zobraziť všetko</string>
-    <string name="abc_activitychooserview_choose_application">Zvoľte aplikáciu</string>
-    <string name="abc_capital_off">VYP.</string>
-    <string name="abc_capital_on">ZAP.</string>
-    <string name="abc_search_hint">Vyhľadať…</string>
-    <string name="abc_searchview_description_clear">Vymazať dopyt</string>
-    <string name="abc_searchview_description_query">Vyhľadávací dopyt</string>
-    <string name="abc_searchview_description_search">Hľadať</string>
-    <string name="abc_searchview_description_submit">Odoslať dopyt</string>
-    <string name="abc_searchview_description_voice">Hlasové vyhľadávanie</string>
-    <string name="abc_shareactionprovider_share_with">Zdieľať pomocou</string>
-    <string name="abc_shareactionprovider_share_with_application">Zdieľať pomocou %s</string>
-    <string name="abc_toolbar_collapse_description">Zbaliť</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">crash Report</string>
+    <string name="crash_contact">E - mail (voliteľný )</string>
+    <string name="crash_comment">Ako k havárii (voliteľné ):</string>
+    <string name="crash_report_success">Success, ďakujem !</string>
+    <string name="crash_stacktrace">StackTrace:</string>
+    <string name="crash_submit">Predložiť</string>
+    <string name="crash_submit_fail_x">Zlyhanie: %s</string>
+    <string name="network_unavailable">sieťnie je k dispozícii</string>
+    <string name="submitting">Odovzdanie...</string>
+    <string name="can_not_be_empty">Nemôže byť prázdne</string>
+    <string name="no_data">Žiadne dáta</string>
+    <string name="try_agent">skúste to znova</string>
+    <string name="search_results">Výsledky vyhľadávania</string>
+    <string name="directory">adresár</string>
+    <string name="authenticate">overiť</string>
+    <string name="logout">Odhlásiť sa</string>
+    <string name="selected_x_items">Vybrané %d položiek</string>
+    <string name="filename">Názov súboru:</string>
+    <string name="file_encoding">kódovanie:</string>
+    <string name="file_save">uložiť</string>
+    <string name="root_path">koreň</string>
+    <string name="auto_detection_encoding">kódovanie Automatická detekcia</string>
+    <string name="illegal_filename">ilegálne súboru</string>
+    <string name="unknown_path">neznáme cesta</string>
+    <string name="open_file">Otvorený súbor</string>
+    <string name="save_file">Uloženie súboru</string>
+    <string name="override_file_prompt">%s existuje, vy ju prepísať?</string>
+    <string name="filter_by_name">Filter podľa mena</string>
+    <string name="can_not_create_folder">Nemožno vytvoriť priečinok</string>
+    <string name="can_not_share_x">Nemožno zdieľať súbor: %s</string>
+    <string name="cancel_select_all">Odznačiť všetko</string>
+    <string name="copy">kópie</string>
+    <string name="create_folder">Vytvoriť priečinok</string>
+    <string name="cut">rez</string>
+    <string name="delete">vymazať</string>
+    <string name="paste">pasta</string>
+    <string name="rename">premenovať</string>
+    <string name="rename_fail">premenovať zlyhanie</string>
+    <string name="select_all">Vybrať všetko</string>
+    <string name="share">zdieľam</string>
+    <string name="show_hidden_files">Zobrazovať skryté súbory</string>
+    <string name="sort_by_datetime">Triediť podľa Dátum</string>
+    <string name="sort_by_name">Triediť podľa mena</string>
+    <string name="sort_by_size">Triediť podľa veľkosti</string>
+    <string name="sort_by_type">Usporiadať podľa typu</string>
+    <string name="addToDictionary">Pridať do slovníka</string>
+    <string name="deleteText">zmazať text</string>
+    <string name="replace">vymeniť</string>
+    <string name="textSelectionCABTitle">select Text</string>
+    <string name="selectAll">Vybrať všetko</string>
+    <string name="find">Nájsť</string>
+    <string name="app_name">920 Textový editor</string>
+    <string name="new_file">Nový</string>
+    <string name="open">Otvorený</string>
+    <string name="save">uložiť</string>
+    <string name="undo">Vrátenie späť</string>
+    <string name="redo">prerobiť</string>
+    <string name="save_all">Uložiť všetko</string>
+    <string name="save_as">Uložiť ako</string>
+    <string name="recent_files">Nedávne súbory</string>
+    <string name="line_separator">prestávka linka</string>
+    <string name="duplication_line">zdvojenie linka</string>
+    <string name="find_in_files">Nájsť v súboroch</string>
+    <string name="jump_to_start">Skočiť späťna začiatok</string>
+    <string name="jump_to_end">Prejsťna koniec</string>
+    <string name="goto_line">goto linka</string>
+    <string name="back">späť</string>
+    <string name="forward">vpred</string>
+    <string name="document_info">informácie o dokumente</string>
+    <string name="symbol">symbol</string>
+    <string name="insert_color">vložka farba</string>
+    <string name="highlight_language">jazyk Vrcholom</string>
+    <string name="encoding">kódovanie</string>
+    <string name="read_only">Ibana čítanie</string>
+    <string name="insert_datetime">Vložte datetime</string>
+    <string name="edit_mode">edit Mode</string>
+    <string name="run">beh</string>
+    <string name="file">súbor</string>
+    <string name="other">ostatné</string>
+    <string name="view">pohľad</string>
+    <string name="edit">editovať</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">potvrdiť uložiť</string>
+    <string name="confirm_save_msg">Dokument %s zmenil, chceš uložiť a ukončiť?</string>
+    <string name="yes">Áno</string>
+    <string name="no">nie</string>
+    <string name="cannt_access_file">Nemožno získať prístup k súboru: %s</string>
+    <string name="cannt_read_file">Nemožno čítať súbor: %s</string>
+    <string name="ok">OK</string>
+    <string name="read_file_exception">Dôjde k výnimke pri čítaní súboru</string>
+    <string name="init_syntax_msg">Inicializovať syntaxe...</string>
+    <string name="init_syntax_error">Inicializovať syntax zlyhať</string>
+    <string name="init_build_index_error">Budovať index zlyhanie</string>
+    <string name="close">Zavrieť</string>
+    <string name="cancel">Zrušiť</string>
+    <string name="convert_wrap_char">Prevod zábal char</string>
+    <string name="path_x">Cesta: %s</string>
+    <string name="char_x">Znaky: %d</string>
+    <string name="word_x">Slová: %d</string>
+    <string name="line_number_x">číslo riadku: %d</string>
+    <string name="encoding_x">Kódovanie: %s</string>
+    <string name="tab">pútko</string>
+    <string name="no_change">Žiadna zmena!</string>
+    <string name="save_success">Uložiť Úspech</string>
+    <string name="find_label">Nájsť čo:</string>
+    <string name="replace_label">Nahradiť s:</string>
+    <string name="case_sensitive">veľké a malé písmená</string>
+    <string name="whole_words_only">Iba celé slová</string>
+    <string name="regex">Regulárny výraz</string>
+    <string name="in_path">V Path:</string>
+    <string name="recursively">rekurzívne</string>
+    <string name="cannot_be_empty">Nemôže byť prázdne</string>
+    <string name="path_not_exists">Cestanebola existuje</string>
+    <string name="find_not_found">Nenájdené</string>
+    <string name="previous_occurrence">Predchádzajúce Výskyt</string>
+    <string name="next_occurrence">vedľa Výskyt</string>
+    <string name="replace_all">nahradiť všetko</string>
+    <string name="searching">Vyhľadanie…</string>
+    <string name="select_lang_to_highlight">Vyberte jazyk pre zvýraznenie</string>
+    <string name="more_menu">more menu</string>
+    <string name="reopen_with_encoding">Znovu otvoriť s kódovaním</string>
+    <string name="document_changed">dokument zmenený</string>
+    <string name="give_up_document_changed_message">Dokument sa zmenil, zmeny budú, aknechcete uložiť je stratený, potvrdiť?</string>
+    <string name="preview_in_browser">Náhľad v prehliadači</string>
+    <string name="use_sl4a_in_background_run_script">Použite SL4Ana pozadí behu skriptu</string>
+    <string name="use_sl4a_in_terminal_run_script">Použite SL4A v terminálnom behu skriptu</string>
+    <string name="please_save_as_file_first">prenájom uložiť do súboru ako prvý</string>
+    <string name="run_fail_message">Call externé aplikácie zlyhalo</string>
+    <string name="settings">nastavenie</string>
+    <string name="editor">Editor</string>
+    <string name="font">font</string>
+    <string name="default_value">štandardné</string>
+    <string name="font_size">Veľkosť písma</string>
+    <string name="cursor_width">kurzor Šírka</string>
+    <string name="touch_to_adjust_text_size">Dotykom zmeniť veľkosť textu</string>
+    <string name="word_wrap_in_editor">auto wordwrap</string>
+    <string name="show_linenumber">show LineNumber</string>
+    <string name="show_whitespace">show whitespace</string>
+    <string name="auto_indent">auto odsadenie</string>
+    <string name="insert_space_for_tab">Vložte priestor pre Tab</string>
+    <string name="indent_size">zarážka veľkosť</string>
+    <string name="highlight_and_theme">Vrcholom a Theme</string>
+    <string name="highlight_the_file_size_limit">Limit veľkosti súboru Vrcholom</string>
+    <string name="auto_save">Automatické uloženie súboru</string>
+    <string name="remember_last_opened_files">Nezabudnite, posledný otvorené súbory</string>
+    <string name="remember_last_opened_files_summary">Auto otvorenénaposledy otvorených súborov pri spustení</string>
+    <string name="screen_orientation">Orientácia obrazovky</string>
+    <string name="keep_screen_on">obrazovku ďalej</string>
+    <string name="auto_capitalize">auto zarábať</string>
+    <string name="feedback">spätná väzba</string>
+    <string name="donate">darovať</string>
+    <string name="help_translate">Preložiť túto aplikáciu</string>
+    <string name="about">o</string>
+    <string name="enable_highlight">aktivovať zvýraznenie</string>
+    <string name="version_x">Verzia: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Jenutné povoliť povoleniena čítanie pre uchovávanie</string>
+    <string name="file_not_exists">Súbornebol existuje</string>
+    <string name="cannt_handle_intent_x">Nemožno spracovať zámer: %s</string>
+    <string name="handle_intent_x_error">Došlo k chybe pri procese zámer: %s</string>
+    <string name="verify_sign_failure">Vaša súčasná aplikácianie je oficiálny, prejditena https://github.com/jecelyin/920-text-editor-v2/releases stiahnuť.</string>
+    <string name="press_again_will_exit">Ďalším stlačením tlačidla bude ukončený</string>
+    <string name="find_replace">Nájsť / Nahradiť</string>
+    <string name="find_title">\"%s\" Nájsť výsledky</string>
+    <string name="zero_matches">0 zápasy</string>
+    <string name="chooser_browser">chooser prehliadač</string>
+    <string name="find_or_replace">Nájsť / Nahradiť...</string>
+    <string name="other_application">Iné aplikácie...</string>
+    <string name="chooser_application">chooser Aplikácia</string>
+    <string name="editor_create_unknown_exception">Vyskytuje saneznámy výnimku pri vytváraní editora</string>
+    <string name="convert_to_uppercase">Previesťna veľké písmená</string>
+    <string name="convert_to_lowercase">Previesťna malé písmená</string>
+    <string name="duplication_text">duplikácia texte</string>
+    <string name="tab_size">veľkosť Karta</string>
+    <string name="new_version_available">Nová verzia je k dispozícii</string>
+    <string name="upgrade">upgrade</string>
+    <string name="new_version_update_content">Posledná verzia: %1$s\n\nZměny: \n%2$s</string>
+    <string name="download_progress">Sťahovanie %1$d%%</string>
+    <string name="download_failure_x">Sťahovanie zlyhalo: %s</string>
+    <string name="start_download">začať stiahnutie</string>
+    <string name="auto_check_updates">Aktualizácia Automatická kontrola</string>
+    <string name="cannt_download">Nemožno stiahnuť.</string>
+    <string name="readonly_mode_not_support_this_action">Read - only modenepodporuje túto akciu</string>
+    <string name="x_text_replaced">%d text bolnahradený</string>
+    <string name="enable_root">aktivovať Root</string>
+    <string name="my_name">Autor: Jecelyin Peng</string>
+    <string name="qq_group">QQ Skupina: 87272821</string>
+    <string name="open_with_external_browser">Otvoriť s externým prehliadači</string>
+    <string name="contact_email_optional">Kontaktný e - mail (voliteľný )</string>
+    <string name="with_error_logs">chyba Protokoly</string>
+    <string name="content">obsah</string>
+    <string name="send">odoslať</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Spätná väzba dĺžka obsah musí byť väčší ako %d char</string>
+    <string name="feedback_submit_error_x">Vloženie chyba: %s</string>
+    <string name="submit_success">Vloženie úspech</string>
+    <string name="writing">písanie</string>
+    <string name="keyword">kľúčové slovo</string>
+    <string name="find_keyword_is_empty">Kľúčové slovonemôže byť prázdny</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0nájdených</item>
+        <item quantity="other">%d textunahradená</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Angličtina</item>
+        <item>čínsky</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Previesťna \\n（Linux/OSX）</item>
+        <item>Previesťna \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>auto</item>
+        <item>krajina</item>
+        <item>portrét</item>
+    </string-array>
+    <string name="exit">Východ</string>
+    <string name="unknown_exception_and_report_message_x">Neznáma výnimka, prosím, povedzte mi, čo je v tomto prípade deje, Thank you \nCode: %s</string>
+    <string name="keep_backup_file">Zachovať záložný súbor</string>
+    <string name="keep_backup_file_summary">Odporúčam vám držať záložných súborov, vyhnúť sa minie súborov pre výnimku</string>
+    <string name="save_all_without_new_document_message">Uložiť všetko vynechánový dokument</string>
+    <string name="clear_history">Vymazať históriu</string>
+    <string name="custom_symbol_list">Vlastný zoznam symbol</string>
+    <string name="reset">Reštartovať</string>
+    <string name="change_theme">zmeniť tému</string>
+    <string name="dark_theme">tmavý Theme</string>
+    <string name="default_theme">Prednastavená téma</string>
+    <string name="fullscreen_mode">fullscreen mód</string>
+    <string name="enable_fullscreen_mode_message">Reštartujte program umožní režime celej obrazovky</string>
+    <string name="disabled_fullscreen_mode_message">Reštartujte program bude vypnúť režim celej obrazovky</string>
+    <string name="confirm_change_theme_message">Zmeniť témunebude automaticky ukladať dokumenty potvrdzujete odhodených dokument zmeniť tému?</string>
 </resources>

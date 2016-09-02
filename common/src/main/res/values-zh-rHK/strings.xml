@@ -1,23 +1,247 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">瀏覽主頁</string>
-    <string name="abc_action_bar_home_description_format">%1$s：%2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s (%2$s)：%3$s</string>
-    <string name="abc_action_bar_up_description">向上瀏覽</string>
-    <string name="abc_action_menu_overflow_description">更多選項</string>
-    <string name="abc_action_mode_done">完成</string>
-    <string name="abc_activity_chooser_view_see_all">顯示全部</string>
-    <string name="abc_activitychooserview_choose_application">選擇應用程式</string>
-    <string name="abc_capital_off">關閉</string>
-    <string name="abc_capital_on">開啟</string>
-    <string name="abc_search_hint">搜尋…</string>
-    <string name="abc_searchview_description_clear">清除查詢</string>
-    <string name="abc_searchview_description_query">搜尋查詢</string>
-    <string name="abc_searchview_description_search">搜尋</string>
-    <string name="abc_searchview_description_submit">提交查詢</string>
-    <string name="abc_searchview_description_voice">語音搜尋</string>
-    <string name="abc_shareactionprovider_share_with">分享對象</string>
-    <string name="abc_shareactionprovider_share_with_application">與「%s」分享</string>
-    <string name="abc_toolbar_collapse_description">收合</string>
-    <string name="status_bar_notification_info_overflow">999 +</string>
+    <string name="crash_report">崩潰報告</string>
+    <string name="crash_contact">Email（可選）</string>
+    <string name="crash_comment">如何崩潰（可選）：</string>
+    <string name="crash_report_success">提交成功！</string>
+    <string name="crash_stacktrace">堆棧跟踪：</string>
+    <string name="crash_submit">提交</string>
+    <string name="crash_submit_fail_x">提交失敗：%s</string>
+    <string name="network_unavailable">網絡不可用</string>
+    <string name="submitting">正在提交…</string>
+    <string name="can_not_be_empty">不能為空</string>
+    <string name="no_data">沒有數據</string>
+    <string name="try_agent">重試</string>
+    <string name="search_results">搜索結果</string>
+    <string name="directory">目錄</string>
+    <string name="authenticate">認證</string>
+    <string name="logout">登出</string>
+    <string name="selected_x_items">已選中 %d 個項目</string>
+    <string name="filename">文件名：</string>
+    <string name="file_encoding">編碼：</string>
+    <string name="file_save">保存</string>
+    <string name="root_path">根目录</string>
+    <string name="auto_detection_encoding">自動檢測編碼</string>
+    <string name="illegal_filename">非法文件名</string>
+    <string name="unknown_path">未知路徑</string>
+    <string name="open_file">打開文件</string>
+    <string name="save_file">保存文件</string>
+    <string name="override_file_prompt">%s 已經存在，確認要覆蓋它？</string>
+    <string name="filter_by_name">按名稱過濾</string>
+    <string name="can_not_create_folder">無法創建文件夾</string>
+    <string name="can_not_share_x">不能共享文件：%s</string>
+    <string name="cancel_select_all">全部取消</string>
+    <string name="copy">複製</string>
+    <string name="create_folder">創建文件夾</string>
+    <string name="cut">剪切</string>
+    <string name="delete">刪除</string>
+    <string name="paste">粘貼</string>
+    <string name="rename">重命名</string>
+    <string name="rename_fail">重命名失敗</string>
+    <string name="select_all">全選</string>
+    <string name="share">分享</string>
+    <string name="show_hidden_files">顯示隱藏文件</string>
+    <string name="sort_by_datetime">按日期排序</string>
+    <string name="sort_by_name">按名稱排序</string>
+    <string name="sort_by_size">按大小排序</string>
+    <string name="sort_by_type">按類型</string>
+    <string name="addToDictionary">添加到字典</string>
+    <string name="deleteText">刪除文本</string>
+    <string name="replace">替換</string>
+    <string name="textSelectionCABTitle">選擇文本</string>
+    <string name="selectAll">全選</string>
+    <string name="find">查找</string>
+    <string name="app_name">920文本編輯器</string>
+    <string name="new_file">新建</string>
+    <string name="open">打開</string>
+    <string name="save">保存</string>
+    <string name="undo">恢復</string>
+    <string name="redo">重做</string>
+    <string name="save_all">保存全部</string>
+    <string name="save_as">另存為</string>
+    <string name="recent_files">最近的文件</string>
+    <string name="line_separator">換行符</string>
+    <string name="duplication_line">複製行</string>
+    <string name="find_in_files">在文件中查找</string>
+    <string name="jump_to_start">跳轉到開始</string>
+    <string name="jump_to_end">跳轉到結束</string>
+    <string name="goto_line">轉到行</string>
+    <string name="back">上個位置</string>
+    <string name="forward">下個位置</string>
+    <string name="document_info">文檔信息</string>
+    <string name="symbol">符號</string>
+    <string name="insert_color">插入顏色</string>
+    <string name="highlight_language">高亮語言</string>
+    <string name="encoding">編碼</string>
+    <string name="read_only">只讀</string>
+    <string name="insert_datetime">插入日期時間</string>
+    <string name="edit_mode">編輯模式</string>
+    <string name="run">運行</string>
+    <string name="file">文件</string>
+    <string name="other">其他</string>
+    <string name="view">視圖</string>
+    <string name="edit">編輯</string>
+    <string name="new_filename">無標題%d</string>
+    <string name="confirm_save">確認保存</string>
+    <string name="confirm_save_msg">文檔 %s 已發生變化，你想要保存並退出？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="cannt_access_file">無法訪問文件： %s</string>
+    <string name="cannt_read_file">無法讀取文件：%s</string>
+    <string name="ok">確定</string>
+    <string name="read_file_exception">讀取文件時發生異常</string>
+    <string name="init_syntax_msg">初始化語法...</string>
+    <string name="init_syntax_error">初始化失敗語法</string>
+    <string name="init_build_index_error">建立索引失敗</string>
+    <string name="close">關閉</string>
+    <string name="cancel">取消</string>
+    <string name="convert_wrap_char">轉換換行符</string>
+    <string name="path_x">路徑： %s</string>
+    <string name="char_x">字符數：%d</string>
+    <string name="word_x">詞數：%d</string>
+    <string name="line_number_x">行數：%d</string>
+    <string name="encoding_x">編碼： %s</string>
+    <string name="tab">製表符</string>
+    <string name="no_change">沒有任何改變</string>
+    <string name="save_success">保存成功</string>
+    <string name="find_label">查找：</string>
+    <string name="replace_label">替換：</string>
+    <string name="case_sensitive">區分大小寫</string>
+    <string name="whole_words_only">整個單詞</string>
+    <string name="regex">正則表達式</string>
+    <string name="in_path">路徑：</string>
+    <string name="recursively">遞歸</string>
+    <string name="cannot_be_empty">不能為空</string>
+    <string name="path_not_exists">路徑不存在</string>
+    <string name="find_not_found">未找到</string>
+    <string name="previous_occurrence">向上查找</string>
+    <string name="next_occurrence">查找下一個</string>
+    <string name="replace_all">全部替換</string>
+    <string name="searching">搜索中…</string>
+    <string name="select_lang_to_highlight">選擇高亮語言</string>
+    <string name="more_menu">更多菜單</string>
+    <string name="reopen_with_encoding">使用該編碼重新打開</string>
+    <string name="document_changed">文檔已經改變</string>
+    <string name="give_up_document_changed_message">文件已經改變，重新打開將放棄改變，確認要放棄？</string>
+    <string name="preview_in_browser">在瀏覽器預覽</string>
+    <string name="use_sl4a_in_background_run_script">使用SL4A在後台運行腳本</string>
+    <string name="use_sl4a_in_terminal_run_script">使用SL4A在終端中運行腳本</string>
+    <string name="please_save_as_file_first">請先保存為文件</string>
+    <string name="run_fail_message">調用外部應用程序失敗</string>
+    <string name="settings">設置</string>
+    <string name="editor">編輯器</string>
+    <string name="font">字體</string>
+    <string name="default_value">默認值</string>
+    <string name="font_size">字體大小</string>
+    <string name="cursor_width">光標寬度</string>
+    <string name="touch_to_adjust_text_size">多點觸摸縮放字體大小</string>
+    <string name="word_wrap_in_editor">自動換行</string>
+    <string name="show_linenumber">顯示行號</string>
+    <string name="show_whitespace">顯示空白</string>
+    <string name="auto_indent">自動縮進</string>
+    <string name="insert_space_for_tab">使用空格代替製表符</string>
+    <string name="indent_size">縮進大小</string>
+    <string name="highlight_and_theme">突出與主題</string>
+    <string name="highlight_the_file_size_limit">限制高亮的文件大小</string>
+    <string name="auto_save">自動保存文件</string>
+    <string name="remember_last_opened_files">記住上次打開的文件</string>
+    <string name="remember_last_opened_files_summary">啟動編輯器時自動打開上次打開的文件</string>
+    <string name="screen_orientation">屏幕方向</string>
+    <string name="keep_screen_on">保持屏幕常亮</string>
+    <string name="auto_capitalize">自動大寫</string>
+    <string name="feedback">意見反饋</string>
+    <string name="donate">捐贈</string>
+    <string name="help_translate">翻譯此應用程序</string>
+    <string name="about">關於</string>
+    <string name="enable_highlight">啟用語法高亮</string>
+    <string name="version_x">版本： %s的</string>
+    <string name="need_to_enable_read_storage_permissions">需要啟用讀取存儲權限</string>
+    <string name="file_not_exists">文件不存在</string>
+    <string name="cannt_handle_intent_x">無法處理來源信息： %s</string>
+    <string name="handle_intent_x_error">處理來源：%s 時發生錯誤</string>
+    <string name="verify_sign_failure">您當前的應用程序是不是官方的，請到https://github.com/jecelyin/920-text-editor-v2/releases下載。</string>
+    <string name="press_again_will_exit">再次按將退出</string>
+    <string name="find_replace">查找/替換</string>
+    <string name="find_title">\"%s\" 查找结果</string>
+    <string name="zero_matches">0 個匹配</string>
+    <string name="chooser_browser">選擇一個瀏覽器</string>
+    <string name="find_or_replace">查找/替換...</string>
+    <string name="other_application">其他應用軟件...</string>
+    <string name="chooser_application">選擇程序</string>
+    <string name="editor_create_unknown_exception">創建編輯器時發生未知異常</string>
+    <string name="convert_to_uppercase">轉換為大寫</string>
+    <string name="convert_to_lowercase">轉換為小寫</string>
+    <string name="duplication_text">重複選中文本</string>
+    <string name="tab_size">製表符大小</string>
+    <string name="new_version_available">可用的新版本</string>
+    <string name="upgrade">升級</string>
+    <string name="new_version_update_content">最新版本: %1$s\n\n更新日誌:\n%2$s</string>
+    <string name="auto_check_updates">自動檢查更新</string>
+    <string name="cannt_download">無法下載。</string>
+    <string name="readonly_mode_not_support_this_action">只讀模式不支持此操作</string>
+    <string name="x_text_replaced">%d 個文本已經替換</string>
+    <string name="enable_root">啟用Root</string>
+    <string name="my_name">作者：%s</string>
+    <string name="open_with_external_browser">打開外部瀏覽器</string>
+    <string name="contact_email_optional">聯繫Email（可選）</string>
+    <string name="with_error_logs">錯誤日誌</string>
+    <string name="content">內容</string>
+    <string name="send">發送</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">反反饋內容長度必須大於%d個字</string>
+    <string name="feedback_submit_error_x">提交錯誤：%s</string>
+    <string name="submit_success">提交成功</string>
+    <string name="writing">正在寫入</string>
+    <string name="keyword">關鍵字</string>
+    <string name="find_keyword_is_empty">關鍵字不能為空</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0找到</item>
+        <item quantity="other">%d個文本替換</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>英語</item>
+        <item>中文</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>轉換到\\ N（ Linux的/ OSX）</item>
+        <item>轉換到\\ \\ -  [R N（視窗）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>汽車</item>
+        <item>景觀</item>
+        <item>肖像</item>
+    </string-array>
+    <string name="exit">出口</string>
+    <string name="unknown_exception_and_report_message_x">未知異常，請告訴我這是什麼情況下發生的，謝謝\nCode ： %s的</string>
+    <string name="keep_backup_file">保留的備份文件</string>
+    <string name="keep_backup_file_summary">建議您保留的備份文件，避免文件例外失誤</string>
+    <string name="save_all_without_new_document_message">保存所有將跳過新的文件</string>
+    <string name="clear_history">清除歷史記錄</string>
+    <string name="custom_symbol_list">自定義符號列表</string>
+    <string name="reset">重啟</string>
+    <string name="change_theme">更改主題</string>
+    <string name="dark_theme">黑暗主題</string>
+    <string name="default_theme">默認主題</string>
+    <string name="fullscreen_mode">全屏模式</string>
+    <string name="enable_fullscreen_mode_message">重新啟動應用程序將啟用全屏模式</string>
+    <string name="disabled_fullscreen_mode_message">重新啟動應用程序將禁用全屏模式</string>
+    <string name="confirm_change_theme_message">更改主題不會自動保存的文檔，在您確認丟棄的文件更改主題？</string>
 </resources>

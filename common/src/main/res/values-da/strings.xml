@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">E-mail (valgfrit )</string>
+    <string name="crash_comment">Hvordan til at gåned (valgfrit ):</string>
+    <string name="crash_report_success">Succes, tak !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Indsende</string>
+    <string name="crash_submit_fail_x">Fejl: %s</string>
+    <string name="network_unavailable">Netværk ikke tilgængelig</string>
+    <string name="submitting">Sender...</string>
+    <string name="can_not_be_empty">Kan ikke være tom</string>
+    <string name="no_data">Ingen data</string>
+    <string name="try_agent">Prøv igen</string>
+    <string name="search_results">Søgeresultater</string>
+    <string name="directory">Vejviser</string>
+    <string name="authenticate">Godkend</string>
+    <string name="logout">Log ud</string>
+    <string name="selected_x_items">Valgte %d elementer</string>
+    <string name="filename">Filnavn:</string>
+    <string name="file_encoding">Encoding:</string>
+    <string name="file_save">Spare</string>
+    <string name="root_path">Rod</string>
+    <string name="auto_detection_encoding">Automatisk detektering kodning</string>
+    <string name="illegal_filename">ugyldigt filnavn</string>
+    <string name="unknown_path">ukendt sti</string>
+    <string name="open_file">Åben fil</string>
+    <string name="save_file">Gem filen</string>
+    <string name="override_file_prompt">%s findes, du tilsidesætte den?</string>
+    <string name="filter_by_name">Filtrer efternavn</string>
+    <string name="can_not_create_folder">Kan ikke oprette mappe</string>
+    <string name="can_not_share_x">Kan ikke dele fil: %s</string>
+    <string name="cancel_select_all">Fravælg alle</string>
+    <string name="copy">Kopi</string>
+    <string name="create_folder">Opret mappe</string>
+    <string name="cut">Skære</string>
+    <string name="delete">Slette</string>
+    <string name="paste">Indsæt</string>
+    <string name="rename">Omdøb</string>
+    <string name="rename_fail">Omdøb fiasko</string>
+    <string name="select_all">Vælg alle</string>
+    <string name="share">Del</string>
+    <string name="show_hidden_files">Vis skjulte filer</string>
+    <string name="sort_by_datetime">Sorter efter dato</string>
+    <string name="sort_by_name">Sorter efternavn</string>
+    <string name="sort_by_size">Sorter efter størrelse</string>
+    <string name="sort_by_type">Sorter efter type</string>
+    <string name="addToDictionary">Tilføj til ordbog</string>
+    <string name="deleteText">Slette</string>
+    <string name="replace">Erstatte</string>
+    <string name="textSelectionCABTitle">Vælg tekst</string>
+    <string name="selectAll">Vælg alle</string>
+    <string name="find">Find</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">Ny</string>
+    <string name="open">Åben</string>
+    <string name="save">Spare</string>
+    <string name="undo">Fortryd</string>
+    <string name="redo">redo</string>
+    <string name="save_all">Gem alle</string>
+    <string name="save_as">Gem som</string>
+    <string name="recent_files">Nylige filer</string>
+    <string name="line_separator">linjeskift</string>
+    <string name="duplication_line">Gentagelser linje</string>
+    <string name="find_in_files">Find i filer</string>
+    <string name="jump_to_start">Hop til start</string>
+    <string name="jump_to_end">Hop til enden</string>
+    <string name="goto_line">Goto line</string>
+    <string name="back">Tilbage</string>
+    <string name="forward">Forward</string>
+    <string name="document_info">dokument Info</string>
+    <string name="symbol">Symbol</string>
+    <string name="insert_color">Indsæt farve</string>
+    <string name="highlight_language">Fremhæv sprog</string>
+    <string name="encoding">Kodning</string>
+    <string name="read_only">Læs kun</string>
+    <string name="insert_datetime">Indsæt datetime</string>
+    <string name="edit_mode">Edit mode</string>
+    <string name="run">Løb</string>
+    <string name="file">Fil</string>
+    <string name="other">Andre</string>
+    <string name="view">Udsigt</string>
+    <string name="edit">Redigere</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">Bekræft gem</string>
+    <string name="confirm_save_msg">Document %s er ændret, vil du gemme og afslutte?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Ingen</string>
+    <string name="cannt_access_file">Kan ikke få adgang til filen: %s</string>
+    <string name="cannt_read_file">Kan ikke læse filen: %s</string>
+    <string name="ok">Okay</string>
+    <string name="read_file_exception">Opstår undtagelse,når det læses fil</string>
+    <string name="init_syntax_msg">Initialiser syntaks...</string>
+    <string name="init_syntax_error">Initialiser syntaks mislykkes</string>
+    <string name="init_build_index_error">Error</string>
+    <string name="close">Tæt</string>
+    <string name="cancel">Ophæve</string>
+    <string name="convert_wrap_char">Konverter wrap char</string>
+    <string name="path_x">Sti: %s</string>
+    <string name="char_x">Tegn: %d</string>
+    <string name="word_x">Ord: %d</string>
+    <string name="line_number_x">Linjenummer: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">Ingen ændring!</string>
+    <string name="save_success">Gem succes</string>
+    <string name="find_label">Find hvad:</string>
+    <string name="replace_label">Erstat med:</string>
+    <string name="case_sensitive">versalfølsom</string>
+    <string name="whole_words_only">Hele ord kun</string>
+    <string name="regex">Regulært udtryk</string>
+    <string name="in_path">I Sti:</string>
+    <string name="recursively">rekursivt</string>
+    <string name="cannot_be_empty">Kan ikke være tom</string>
+    <string name="path_not_exists">Sti ikke eksisterer</string>
+    <string name="find_not_found">Ikke fundet</string>
+    <string name="previous_occurrence">Forrige Forekomst</string>
+    <string name="next_occurrence">Næste Forekomst</string>
+    <string name="replace_all">Erstat alle</string>
+    <string name="searching">Søge…</string>
+    <string name="select_lang_to_highlight">Vælg et sprog for at fremhæve</string>
+    <string name="more_menu">Mere menu</string>
+    <string name="reopen_with_encoding">Åbn med kodning</string>
+    <string name="document_changed">dokument ændret</string>
+    <string name="give_up_document_changed_message">Dokument har ændret sig, dine ændringer vil gå tabt hvis du ikke gemmer dem, bekræfte?</string>
+    <string name="preview_in_browser">Vis i browser</string>
+    <string name="use_sl4a_in_background_run_script">Error</string>
+    <string name="use_sl4a_in_terminal_run_script">Brug SL4A i terminal køre script</string>
+    <string name="please_save_as_file_first">lease gem til fil først</string>
+    <string name="run_fail_message">Ring eksternt program mislykkedes</string>
+    <string name="settings">Indstillinger</string>
+    <string name="editor">Editor</string>
+    <string name="font">Skrifttype</string>
+    <string name="default_value">Misligholdelse</string>
+    <string name="font_size">Skriftstørrelse</string>
+    <string name="cursor_width">Cursor Bredde</string>
+    <string name="touch_to_adjust_text_size">Tryk for at ændre tekststørrelse</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Vis linienummer</string>
+    <string name="show_whitespace">Vis Mellemrum</string>
+    <string name="auto_indent">Auto indrykning</string>
+    <string name="insert_space_for_tab">Indsæt plads til Tab</string>
+    <string name="indent_size">indrykning størrelse</string>
+    <string name="highlight_and_theme">Fremhæv og Tema</string>
+    <string name="highlight_the_file_size_limit">Begræns highlight filstørrelse</string>
+    <string name="auto_save">Auto gemme fil</string>
+    <string name="remember_last_opened_files">Husk sidste åbnede filer</string>
+    <string name="remember_last_opened_files_summary">Automatisk åbne sidst åbnede filer,når opstart</string>
+    <string name="screen_orientation">Screen Orientering</string>
+    <string name="keep_screen_on">Hold skærmen på</string>
+    <string name="auto_capitalize">Auto kapitalisere</string>
+    <string name="feedback">Feedback</string>
+    <string name="donate">Doner</string>
+    <string name="help_translate">Error</string>
+    <string name="about">Om</string>
+    <string name="enable_highlight">Aktivér højdepunkt</string>
+    <string name="version_x">Version: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Behov for at aktivere læst tilladelser opbevaring</string>
+    <string name="file_not_exists">Fil ikke eksisterer</string>
+    <string name="cannt_handle_intent_x">Kan ikke behandle hensigt: %s</string>
+    <string name="handle_intent_x_error">Der opstod en fejl under processen hensigt: %s</string>
+    <string name="verify_sign_failure">Dinnuværende program er ikke officiel, skal du gå til https://github.com/jecelyin/920-text-editor-v2/releases hente den.</string>
+    <string name="press_again_will_exit">Tryk igen vil gå ud</string>
+    <string name="find_replace">Find / Erstat</string>
+    <string name="find_title">\"%s\" Find Resultater</string>
+    <string name="zero_matches">0 kampe</string>
+    <string name="chooser_browser">Vælger browser</string>
+    <string name="find_or_replace">Find / Erstat...</string>
+    <string name="other_application">Andre ansøgning...</string>
+    <string name="chooser_application">Vælger Application</string>
+    <string name="editor_create_unknown_exception">Forekommer ukendt undtagelse,når skabe editor</string>
+    <string name="convert_to_uppercase">Konverter til store bogstaver</string>
+    <string name="convert_to_lowercase">Konverter til små bogstaver</string>
+    <string name="duplication_text">Gentagelser tekst</string>
+    <string name="tab_size">Tab størrelse</string>
+    <string name="new_version_available">Ny version tilgængelig</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="new_version_update_content">Seneste version: %1$s\n\nÆndringer:\n%2$s</string>
+    <string name="download_progress">Download af %1$d%%<</string>
+    <string name="download_failure_x">Hent fiasko: %s</string>
+    <string name="start_download">Start download</string>
+    <string name="auto_check_updates">Automatisk kontrol opdateringer</string>
+    <string name="cannt_download">Kan ikke downloade.</string>
+    <string name="readonly_mode_not_support_this_action">Skrivebeskyttet tilstand understøtter ikke denne handling</string>
+    <string name="x_text_replaced">% D tekst er blevet erstattet</string>
+    <string name="enable_root">Aktivér Root</string>
+    <string name="my_name">Forfatter: Jecelyin Peng</string>
+    <string name="qq_group">QQ Group: 87272821</string>
+    <string name="open_with_external_browser">Åbn med ekstern browser</string>
+    <string name="contact_email_optional">Kontakt email (valgfrit)</string>
+    <string name="with_error_logs">Fejl Logs</string>
+    <string name="content">Tilfreds</string>
+    <string name="send">Sende</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Feedback indhold længde skal være større end %d char</string>
+    <string name="feedback_submit_error_x">Indsend fejl:%s</string>
+    <string name="submit_success">Indsend succes</string>
+    <string name="writing">Skrivning</string>
+    <string name="keyword">Søgeord</string>
+    <string name="find_keyword_is_empty">Søgeord kan ikke være tom</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 fundet</item>
+        <item quantity="other">%d tekst erstattet</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>engelsk</item>
+        <item>kinesisk</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Konverter til \\n（Linux/OSX）</item>
+        <item>Konverter til \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>Error</item>
+        <item>Portræt</item>
+    </string-array>
+    <string name="exit">Udgang</string>
+    <string name="unknown_exception_and_report_message_x">Ukendt undtagelse, Fortæl mig, hvad der er denne sag sker, tak \nCode: %s</string>
+    <string name="keep_backup_file">Hold en backup-fil</string>
+    <string name="keep_backup_file_summary">Foreslå du holde backup filer, undgå fil misser til undtagelse</string>
+    <string name="save_all_without_new_document_message">Gem alle vil springenyt dokument</string>
+    <string name="clear_history">Ryd historik</string>
+    <string name="custom_symbol_list">symbol liste Brugerdefineret</string>
+    <string name="reset">Nulstil</string>
+    <string name="change_theme">Skift tema</string>
+    <string name="dark_theme">Mørk Theme</string>
+    <string name="default_theme">Standard Theme</string>
+    <string name="fullscreen_mode">Fuldskærmstilstand</string>
+    <string name="enable_fullscreen_mode_message">Genstart programmet vil gøre det muligt fuld skærm</string>
+    <string name="disabled_fullscreen_mode_message">Genstart programmet vil deaktivere fuld skærm</string>
+    <string name="confirm_change_theme_message">Skift tema vil ikke automatisk gemme dokumenter, du bekræfter discard dokument til at ændre tema?</string>
 </resources>

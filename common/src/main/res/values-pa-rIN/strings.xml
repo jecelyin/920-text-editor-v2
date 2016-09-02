@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">ਹੋਮ ਨੈਵੀਗੇਟ ਕਰੋ</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">ਉੱਪਰ ਨੈਵੀਗੇਟ ਕਰੋ</string>
-    <string name="abc_action_menu_overflow_description">ਹੋਰ ਚੋਣਾਂ</string>
-    <string name="abc_action_mode_done">ਹੋ ਗਿਆ</string>
-    <string name="abc_activity_chooser_view_see_all">ਸਭ ਦੇਖੋ</string>
-    <string name="abc_activitychooserview_choose_application">ਇੱਕ ਐਪ ਚੁਣੋ</string>
-    <string name="abc_capital_off">ਬੰਦ</string>
-    <string name="abc_capital_on">ਤੇ</string>
-    <string name="abc_search_hint">ਖੋਜ…</string>
-    <string name="abc_searchview_description_clear">ਸਵਾਲ ਹਟਾਓ</string>
-    <string name="abc_searchview_description_query">ਸਵਾਲ ਖੋਜੋ</string>
-    <string name="abc_searchview_description_search">ਖੋਜੋ</string>
-    <string name="abc_searchview_description_submit">ਸਵਾਲ ਪ੍ਰਸਤੁਤ ਕਰੋ</string>
-    <string name="abc_searchview_description_voice">ਵੌਇਸ ਖੋਜ</string>
-    <string name="abc_shareactionprovider_share_with">ਇਸ ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string>
-    <string name="abc_shareactionprovider_share_with_application">%s ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string>
-    <string name="abc_toolbar_collapse_description">ਨਸ਼ਟ ਕਰੋ</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">ਕਰੈਸ਼ ਰਿਪੋਰਟ</string>
+    <string name="crash_contact">ਈਮੇਲ (ਅਖ਼ਤਿਆਰੀ)</string>
+    <string name="crash_comment">ਕਰਨਾ ਹੈ (ਅਖ਼ਤਿਆਰੀ) ਕਰੈਸ਼ ਦਾ ਤਰੀਕਾ ਦੱਸੋ:</string>
+    <string name="crash_report_success">ਸਫਲਤਾ, ਤੁਹਾਡਾ ਧੰਨਵਾਦ !</string>
+    <string name="crash_stacktrace">ਸਟੈਕਟਰੇਸ:</string>
+    <string name="crash_submit">ਪੇਸ਼ ਕਰੋ</string>
+    <string name="crash_submit_fail_x">ਫੇਲ੍ਹ ਹੈ:%s</string>
+    <string name="network_unavailable">ਨੈੱਟਵਰਕ ਉਪਲੱਬਧ</string>
+    <string name="submitting">ਪੇਸ਼...</string>
+    <string name="can_not_be_empty">ਖਾਲੀ ਨਾ ਹੋ ਸਕਦਾ ਹੈ</string>
+    <string name="no_data">ਕੋਈ ਡਾਟਾ</string>
+    <string name="try_agent">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="search_results">ਖੋਜ ਨਤੀਜੇ</string>
+    <string name="directory">ਡਾਇਰੈਕਟਰੀ</string>
+    <string name="authenticate">ਪ੍ਰਮਾਣਿਤ</string>
+    <string name="logout">ਲਾੱਗ ਆਊਟ, ਬਾਹਰ ਆਉਣਾ</string>
+    <string name="selected_x_items">ਚੁਣੇ %d ਆਇਟਮ</string>
+    <string name="filename">ਫਾਈਲ ਦਾ ਨਾਮ:</string>
+    <string name="file_encoding">ਇੰਕੋਡਿੰਗ:</string>
+    <string name="file_save">ਸੰਭਾਲੋ</string>
+    <string name="root_path">ਰੂਟ</string>
+    <string name="auto_detection_encoding">ਆਟੋ ਖੋਜ ਇੰਕੋਡਿੰਗ</string>
+    <string name="illegal_filename">ਗੈਰ-ਕਾਨੂੰਨੀ ਫਾਇਲ</string>
+    <string name="unknown_path">ਅਣਜਾਣ ਹੈ ਮਾਰਗ</string>
+    <string name="open_file">ਫਾਇਲ ਖੋਲ੍ਹੋ</string>
+    <string name="save_file">ਫਾਇਲ ਸੰਭਾਲੋ</string>
+    <string name="override_file_prompt">%s ਮੌਜੂਦ ਹੈ, ਤੁਹਾਨੂੰ ਇਸ ਨੂੰ ਅਣਡਿੱਠਾ ਕਰ ਰਹੇ ਹੋ?</string>
+    <string name="filter_by_name">ਫਿਲਟਰ ਦਾ ਨਾਮ ਦੇ ਕੇ</string>
+    <string name="can_not_create_folder">ਫੋਲਡਰ ਬਣਾਇਆ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
+    <string name="can_not_share_x">ਫਾਇਲ ਸ਼ੇਅਰ ਨਾ ਕਰ ਸਕਦਾ ਹੈ:%s</string>
+    <string name="cancel_select_all">ਚੋਣ ਹਟਾਓ ਸਾਰੇ</string>
+    <string name="copy">ਕਾਪੀ ਕਰੋ</string>
+    <string name="create_folder">ਫੋਲਡਰ ਬਣਾਓ</string>
+    <string name="cut">ਕੱਟੋ</string>
+    <string name="delete">ਹਟਾਓ</string>
+    <string name="paste">ਚੇਪੋ</string>
+    <string name="rename">ਬਦਲੋ</string>
+    <string name="rename_fail">ਅਸਫਲਤਾ ਬਦਲੋ</string>
+    <string name="select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
+    <string name="share">ਨਿਯਤ ਕਰੋ</string>
+    <string name="show_hidden_files">ਲੁਕਵੀ ਫਾਇਲ ਵੇਖੋ</string>
+    <string name="sort_by_datetime">ਮਿਤੀ ਦੁਆਰਾ ਕ੍ਰਮਬੱਧ</string>
+    <string name="sort_by_name">ਨਾਮ ਦੁਆਰਾ ਕ੍ਰਮਬੱਧ</string>
+    <string name="sort_by_size">ਆਕਾਰ ਦੇ ਕੇ ਕ੍ਰਮਬੱਧ</string>
+    <string name="sort_by_type">ਕਿਸਮ ਦੇ ਕੇ ਕ੍ਰਮਬੱਧ</string>
+    <string name="addToDictionary">ਕੋਸ਼ ਵਿੱਚ ਜੋੜੋ ਨੂੰ</string>
+    <string name="deleteText">ਪਾਠ ਹਟਾਓ</string>
+    <string name="replace">ਤਬਦੀਲ</string>
+    <string name="textSelectionCABTitle">ਪਾਠ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="selectAll">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
+    <string name="find">ਲੱਭੋ</string>
+    <string name="app_name">920 ਟੈਕਸਟ ਐਡੀਟਰ</string>
+    <string name="new_file">ਨਿਊ</string>
+    <string name="open">ਓਪਨ</string>
+    <string name="save">ਸੰਭਾਲੋ</string>
+    <string name="undo">ਵਾਪਿਸ</string>
+    <string name="redo">ਮੁੜ</string>
+    <string name="save_all">ਸਾਰੇ ਸੰਭਾਲੋ</string>
+    <string name="save_as">ਬਤੌਰ ਮਹਿਫ਼ੂਜ਼ ਕਰੋ</string>
+    <string name="recent_files">ਹਾਲੀਆ ਫਾਇਲ</string>
+    <string name="line_separator">ਲਾਈਨ ਬਰੇਕ</string>
+    <string name="duplication_line">ਡੁਪਲੀਕੇਸ਼ਨ ਲਾਈਨ</string>
+    <string name="find_in_files">ਫਾਇਲ ਵਿੱਚ ਲੱਭੋ</string>
+    <string name="jump_to_start">ਸ਼ੁਰੂ ਕਰਨ ਲਈ 'ਤੇ ਜਾਓ</string>
+    <string name="jump_to_end">ਦਾ ਅੰਤ ਕਰਨ ਲਈ ਇਸ 'ਤੇ ਜਾਓ</string>
+    <string name="goto_line">ਜਾਓ ਲਾਈਨ</string>
+    <string name="back">ਵਾਪਸ</string>
+    <string name="forward">ਅੱਗੇ</string>
+    <string name="document_info">ਦਸਤਾਵੇਜ਼ ਜਾਣਕਾਰੀ</string>
+    <string name="symbol">ਪੂਰਵ</string>
+    <string name="insert_color">ਰੰਗ ਨੂੰ ਸੰਮਿਲਿਤ ਕਰੋ</string>
+    <string name="highlight_language">ਹਾਈਲਾਈਟ ਭਾਸ਼ਾ</string>
+    <string name="encoding">ਇੰਕੋਡਿੰਗ</string>
+    <string name="read_only">ਸਿਰਫ ਪੜ੍ਹਨ ਲਈ</string>
+    <string name="insert_datetime">DATETIME ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="edit_mode">ਮੋਡ ਸੋਧ</string>
+    <string name="run">ਚਲਾਓ</string>
+    <string name="file">ਫਾਇਲ</string>
+    <string name="other">ਹੋਰ</string>
+    <string name="view">ਦੇਖੋ</string>
+    <string name="edit">ਸੋਧ</string>
+    <string name="new_filename">ਸਿਰਲੇਖ %d</string>
+    <string name="confirm_save">ਨੂੰ ਬਚਾਉਣ ਦੀ ਪੁਸ਼ਟੀ</string>
+    <string name="confirm_save_msg">ਦਸਤਾਵੇਜ਼ %s ਨੂੰ, ਬਦਲ ਗਿਆ ਹੈ ਤੁਹਾਨੂੰ ਬਚਾਉਣ ਅਤੇ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="yes">ਜੀ</string>
+    <string name="no">ਕੋਈ</string>
+    <string name="cannt_access_file">ਫਾਇਲ ਤੱਕ ਪਹੁੰਚ ਨਾ ਕਰ ਸਕਦਾ ਹੈ:%s</string>
+    <string name="cannt_read_file">ਫਾਇਲ ਨੂੰ ਪੜ੍ਹ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ:%s</string>
+    <string name="ok">ਠੀਕ ਹੈ</string>
+    <string name="read_file_exception">ਜਦ ਫਾਇਲ ਪੜ੍ਹਨ ਅਪਵਾਦ ਹੁੰਦਾ ਹੈ</string>
+    <string name="init_syntax_msg">ਸੰਟੈਕਸ ਸ਼ੁਰੂ...</string>
+    <string name="init_syntax_error">ਸ਼ੁਰੂ ਸੰਟੈਕਸ ਫੇਲ</string>
+    <string name="init_build_index_error">ਇੰਡੈਕਸ ਬਣਾਓ ਫੇਲ</string>
+    <string name="close">ਬੰਦ ਕਰੋ</string>
+    <string name="cancel">ਰੱਦ ਕਰੋ</string>
+    <string name="convert_wrap_char">ਬਦਲੋ ਆਵਰਣ char</string>
+    <string name="path_x">ਮਾਰਗ ਹੈ:%s</string>
+    <string name="char_x">ਅੱਖਰ:%d</string>
+    <string name="word_x">ਸ਼ਬਦ:%d</string>
+    <string name="line_number_x">ਲਾਈਨ ਨੰਬਰ: %d</string>
+    <string name="encoding_x">ਇੰਕੋਡਿੰਗ:%s</string>
+    <string name="tab">ਟੈਬ</string>
+    <string name="no_change">ਕੋਈ ਤਬਦੀਲੀ !</string>
+    <string name="save_success">ਸਫਲਤਾ ਸੰਭਾਲੋ</string>
+    <string name="find_label">ਕੀ ਲੱਭੋ:</string>
+    <string name="replace_label">ਨਾਲ ਤਬਦੀਲ:</string>
+    <string name="case_sensitive">ਕੇਸ ਸੰਵੇਦਨਸ਼ੀਲ</string>
+    <string name="whole_words_only">ਸਿਰਫ ਪੂਰਾ ਸ਼ਬਦ</string>
+    <string name="regex">ਨਿਯਮਤ ਸਮੀਕਰਨ</string>
+    <string name="in_path">ਮਾਰਗ ਵਿੱਚ:</string>
+    <string name="recursively">ਲਗਾਤਾਰ</string>
+    <string name="cannot_be_empty">ਖਾਲੀ ਨਾ ਹੋ ਸਕਦਾ ਹੈ</string>
+    <string name="path_not_exists">ਮਾਰਗ ਮੌਜੂਦ ਨਾ</string>
+    <string name="find_not_found">ਨਹੀਂ ਲਭਿਆ</string>
+    <string name="previous_occurrence">ਪਿਛਲੀ ਮੌਜੂਦਗੀ</string>
+    <string name="next_occurrence">ਅਗਲੀ ਮੌਜੂਦਗੀ</string>
+    <string name="replace_all">ਸਾਰੇ ਤਬਦੀਲ</string>
+    <string name="searching">ਖੋਜ...</string>
+    <string name="select_lang_to_highlight">ਹਾਈਲਾਈਟ ਕਰਨ ਲਈ ਇੱਕ ਭਾਸ਼ਾ ਚੁਣੋ</string>
+    <string name="more_menu">ਹੋਰ ਮੇਨੂ</string>
+    <string name="reopen_with_encoding">ਇੰਕੋਡਿੰਗ ਨਾਲ ਦੁਬਾਰਾ ਖੋਲ੍ਹੋ</string>
+    <string name="document_changed">ਦਸਤਾਵੇਜ਼ ਨੂੰ ਤਬਦੀਲ</string>
+    <string name="give_up_document_changed_message">ਦਸਤਾਵੇਜ਼ ਬਦਲ ਗਿਆ ਹੈ, ਜੇ ਤੁਹਾਨੂੰ ਨਾ ਸੰਭਾਲਿਆ ਆਪਣੇ ਬਦਲਾਅ ਖਤਮ ਹੋ ਜਾਣਗੇ, ਦੀ ਪੁਸ਼ਟੀ?</string>
+    <string name="preview_in_browser">ਬਰਾਊਜ਼ਰ ਵਿੱਚ ਜਾਣਕਾਰੀ</string>
+    <string name="use_sl4a_in_background_run_script">ਦੀ ਪਿੱਠਭੂਮੀ ਚਲਾਓ ਸਕਰਿਪਟ ਵਿੱਚ SL4A ਵਰਤੋ</string>
+    <string name="use_sl4a_in_terminal_run_script">ਟਰਮੀਨਲ ਚਲਾਓ ਸਕਰਿਪਟ ਵਿੱਚ SL4A ਵਰਤੋ</string>
+    <string name="please_save_as_file_first">ਲੀਜ਼ ਪਹਿਲੀ ਦਾਇਰ ਕਰਨ ਨੂੰ ਬਚਾਉਣ</string>
+    <string name="run_fail_message">ਕਾਲ ਬਾਹਰੀ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਅਸਫਲ</string>
+    <string name="settings">ਸੈਟਿੰਗ</string>
+    <string name="editor">ਸੰਪਾਦਕ</string>
+    <string name="font">Font</string>
+    <string name="default_value">ਮੂਲ</string>
+    <string name="font_size">ਫੋਟ ਦੇ ਅਕਾਰ</string>
+    <string name="cursor_width">ਕਰਸਰ ਚੌੜਾਈ</string>
+    <string name="touch_to_adjust_text_size">ਪਾਠ ਆਕਾਰ ਨੂੰ ਤਬਦੀਲ ਕਰਨ ਲਈ ਛੂਹੋ</string>
+    <string name="word_wrap_in_editor">ਆਟੋ wordwrap</string>
+    <string name="show_linenumber">ਵੇਖੋ Linenumber</string>
+    <string name="show_whitespace">ਵੇਖੋ ਖਾਲੀ</string>
+    <string name="auto_indent">ਆਟੋ ਹਾਸ਼ੀਏ</string>
+    <string name="insert_space_for_tab">ਟੈਬ ਲਈ ਸਪੇਸ ਪਾਓ</string>
+    <string name="indent_size">ਹਾਸ਼ੀਏ ਦਾ ਆਕਾਰ</string>
+    <string name="highlight_and_theme">ਹਾਈਲਾਈਟ ਅਤੇ ਥੀਮ</string>
+    <string name="highlight_the_file_size_limit">ਸੀਮਾ ਹਾਈਲਾਈਟ ਫਾਇਲ ਆਕਾਰ</string>
+    <string name="auto_save">ਆਟੋ ਫਾਇਲ ਨੂੰ ਬਚਾਉਣ</string>
+    <string name="remember_last_opened_files">ਪਿਛਲੇ ਖੋਲ੍ਹਿਆ ਫਾਇਲ ਨੂੰ ਯਾਦ ਰੱਖੋ</string>
+    <string name="remember_last_opened_files_summary">ਆਟੋ ਓਪਨ ਪਿਛਲੇ ਜਦ ਸ਼ੁਰੂਆਤੀ ਖੋਲ੍ਹਿਆ ਫਾਇਲ</string>
+    <string name="screen_orientation">ਸਕਰੀਨ ਸਥਿਤੀ</string>
+    <string name="keep_screen_on">'ਤੇ ਸਕਰੀਨ ਨੂੰ ਰੱਖੋ</string>
+    <string name="auto_capitalize">ਆਟੋ ਉਠਾਉਣਾ</string>
+    <string name="feedback">ਸੁਝਾਅ</string>
+    <string name="donate">ਦਾਨ</string>
+    <string name="help_translate">ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਅਨੁਵਾਦ</string>
+    <string name="about">ਬਾਰੇ</string>
+    <string name="enable_highlight">ਹਾਈਲਾਈਟ ਯੋਗ ਕਰੋ</string>
+    <string name="version_x">ਵਰਜਨ: %s</string>
+    <string name="need_to_enable_read_storage_permissions">ਪੜ੍ਹਨ ਦੀ ਸਟੋਰੇਜ਼ ਅਧਿਕਾਰ ਨੂੰ ਯੋਗ ਕਰਨ ਦੀ ਲੋੜ ਹੈ</string>
+    <string name="file_not_exists">ਫਾਇਲ ਮੌਜੂਦ ਹੈ, ਨਾ</string>
+    <string name="cannt_handle_intent_x">ਇਰਾਦਾ ਤੇ ਕਾਰਵਾਈ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ:%s</string>
+    <string name="handle_intent_x_error">ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ, ਜਦ ਕਾਰਜ ਨੂੰ ਦੇ ਇਰਾਦੇ ਹੈ:%s</string>
+    <string name="verify_sign_failure">ਤੁਹਾਡਾ ਮੌਜੂਦਾ ਐਪਲੀਕੇਸ਼ਨ ਅਧਿਕਾਰੀ ਨਹੀ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ https://github.com/jecelyin/920-text-editor-v2/releases ਨੂੰ ਜਾਣ ਲਈ ਇਸ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ.</string>
+    <string name="press_again_will_exit">ਪ੍ਰੈਸ ਨੂੰ ਮੁੜ ਬੰਦ ਹੋ ਜਾਵੇਗਾ</string>
+    <string name="find_replace">ਲੱਭੋ / ਤਬਦੀਲ</string>
+    <string name="find_title">\"%s\" ਨਤੀਜੇ ਲੱਭੋ</string>
+    <string name="zero_matches">0 ਮੈਚ</string>
+    <string name="chooser_browser">ਚੋਣਕਾਰ ਬਰਾਊਜ਼ਰ</string>
+    <string name="find_or_replace">ਲੱਭੋ / ਤਬਦੀਲ...</string>
+    <string name="other_application">ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ...</string>
+    <string name="chooser_application">ਚੋਣਕਾਰ ਐਪਲੀਕੇਸ਼ਨ</string>
+    <string name="editor_create_unknown_exception">ਅਣਜਾਣ ਹੈ ਅਪਵਾਦ ਹੈ ਜਦ ਸੰਪਾਦਕ ਨੂੰ ਬਣਾਉਣ ਵਾਪਰਦਾ ਹੈ</string>
+    <string name="convert_to_uppercase">ਵੱਡੇ ਨੂੰ ਬਦਲੋ</string>
+    <string name="convert_to_lowercase">ਛੋਟੇ ਬਦਲੋ</string>
+    <string name="duplication_text">ਡੁਪਲੀਕੇਸ਼ਨ ਨੂੰ ਪਾਠ</string>
+    <string name="tab_size">ਟੈਬ ਦਾ ਆਕਾਰ</string>
+    <string name="new_version_available">ਨਵ ਵਰਜਨ ਉਪਲੱਬਧ</string>
+    <string name="upgrade">ਅੱਪਗਰੇਡ</string>
+    <string name="new_version_update_content">ਤਾਜ਼ਾ ਵਰਜਨ:%1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">%1$d%% ਡਾਊਨਲੋਡ</string>
+    <string name="download_failure_x">ਡਾਊਨਲੋਡ ਅਸਫਲਤਾ ਹੈ:%s</string>
+    <string name="start_download">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ</string>
+    <string name="auto_check_updates">ਆਟੋ ਚੈੱਕ ਅੱਪਡੇਟ</string>
+    <string name="cannt_download">ਡਾਊਨਲੋਡ ਨਾ ਕਰ ਸਕਦਾ.</string>
+    <string name="readonly_mode_not_support_this_action">ਸਿਰਫ-ਪੜ੍ਹਨ ਮੋਡ ਇਸ ਕਾਰਵਾਈ ਸਹਾਇਕ ਨਹੀ ਹੈ</string>
+    <string name="x_text_replaced">%d ਪਾਠ ਨੂੰ ਬਦਲ ਦਿੱਤਾ ਗਿਆ ਹੈ</string>
+    <string name="enable_root">ਰੂਟ ਯੋਗ ਕਰੋ</string>
+    <string name="my_name">ਲੇਖਕ: Jecelyin Peng</string>
+    <string name="qq_group">QQ ਗਰੁੱਪ: 87272821</string>
+    <string name="open_with_external_browser">ਬਾਹਰੀ ਬਰਾਊਜ਼ਰ ਨਾਲ ਖੋਲ੍ਹੋ</string>
+    <string name="contact_email_optional">ਸੰਪਰਕ ਈਮੇਲ (ਵਿਕਲਪਿਕ)</string>
+    <string name="with_error_logs">ਗਲਤੀ ਲਾਗ</string>
+    <string name="content">ਸਮੱਗਰੀ</string>
+    <string name="send">ਭੇਜੋ</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">ਫੀਡਬੈਕ ਸਮੱਗਰੀ ਨੂੰ ਲੰਬਾਈ %d ਅੱਖਰ ਵੱਧ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
+    <string name="feedback_submit_error_x">ਗਲਤੀ ਪੇਸ਼ ਹੈ:%s</string>
+    <string name="submit_success">ਦੀ ਸਫਲਤਾ ਪੇਸ਼</string>
+    <string name="writing">ਲਿਖਣਾ</string>
+    <string name="keyword">ਕੀਵਰਡ</string>
+    <string name="find_keyword_is_empty">ਕੀਵਰਡ ਖਾਲੀ ਨਾ ਹੋ ਸਕਦਾ ਹੈ</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 ਪਤਾ ਲੱਗਿਆ ਹੈ</item>
+        <item quantity="other">%d ਨੂੰ ਪਾਠ ਤਬਦੀਲ</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>ਅੰਗਰੇਜ਼ੀ</item>
+        <item>ਚੀਨੀ</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>ਆਟੋ</item>
+        <item>ਭੂ</item>
+        <item>ਤਸਵੀਰ</item>
+    </string-array>
+    <string name="exit">ਨਿਕਾਸ</string>
+    <string name="unknown_exception_and_report_message_x">ਅਣਜਾਣ ਅਪਵਾਦ, ਕਿਰਪਾ ਕਰਕੇ ਮੈਨੂੰ ਦੱਸੋ ਕਿ ਇਸ ਕੇਸ ਹੋ ਰਿਹਾ ਹੈ ਕੀ ਹੈ, ਧੰਨਵਾਦ ਹੈ ਕਿ ਤੁਹਾਨੂੰ \nCode ਹੈ:%s</string>
+    <string name="keep_backup_file">ਬੈਕਅੱਪ ਫਾਇਲ ਰੱਖੋ</string>
+    <string name="keep_backup_file_summary">ਤੁਹਾਨੂੰ ਬੈਕਅੱਪ ਫਾਇਲ ਰੱਖਣ, ਅਪਵਾਦ ਲਈ ਫਾਇਲ ਮਿਸ ਬਚਣ ਦਾ ਸੁਝਾਅ</string>
+    <string name="save_all_without_new_document_message">ਸੰਭਾਲੋ ਸਾਰੇ ਨਵ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਛੱਡ ਦੇਵੇਗਾ</string>
+    <string name="clear_history">ਆਸਮਾਨ ਇਤਿਹਾਸ</string>
+    <string name="custom_symbol_list">ਕਸਟਮ ਪ੍ਰਤੀਕ ਸੂਚੀ '</string>
+    <string name="reset">ਰੀਸੈਟ</string>
+    <string name="change_theme">ਬਦਲੋ ਥੀਮ</string>
+    <string name="dark_theme">ਹਨੇਰੇ ਥੀਮ</string>
+    <string name="default_theme">ਮੂਲ ਸਰੂਪ</string>
+    <string name="fullscreen_mode">ਪੂਰੀ ਸਕਰੀਨ ਮੋਡ</string>
+    <string name="enable_fullscreen_mode_message">ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਪੂਰੀ ਸਕਰੀਨ ਮੋਡ ਯੋਗ ਕਰੇਗਾ ਨੂੰ ਮੁੜ ਚਾਲੂ</string>
+    <string name="disabled_fullscreen_mode_message">ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਪੂਰੀ ਸਕਰੀਨ ਮੋਡ ਨੂੰ ਅਯੋਗ ਕਰ ਦੇਵੇਗਾ ਮੁੜ ਚਾਲੂ</string>
+    <string name="confirm_change_theme_message">ਬਦਲੋ ਥੀਮ ਆਟੋ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਬਚਾ ਨਾ ਕਰੇਗਾ, ਤੁਹਾਨੂੰ ਡਿਸਕਾਰਡ ਦਸਤਾਵੇਜ਼ ਦੀ ਪੁਸ਼ਟੀ ਥੀਮ ਨੂੰ ਤਬਦੀਲ ਕਰਨ ਲਈ?</string>
 </resources>

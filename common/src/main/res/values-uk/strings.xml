@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Перейти на головний</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Перейти вгору</string>
-    <string name="abc_action_menu_overflow_description">Інші опції</string>
-    <string name="abc_action_mode_done">Готово</string>
-    <string name="abc_activity_chooser_view_see_all">Переглянути всі</string>
-    <string name="abc_activitychooserview_choose_application">Вибрати програму</string>
-    <string name="abc_capital_off">ВИМК.</string>
-    <string name="abc_capital_on">УВІМК.</string>
-    <string name="abc_search_hint">Пошук…</string>
-    <string name="abc_searchview_description_clear">Очистити запит</string>
-    <string name="abc_searchview_description_query">Пошуковий запит</string>
-    <string name="abc_searchview_description_search">Пошук</string>
-    <string name="abc_searchview_description_submit">Надіслати запит</string>
-    <string name="abc_searchview_description_voice">Голосовий пошук</string>
-    <string name="abc_shareactionprovider_share_with">Надіслати через</string>
-    <string name="abc_shareactionprovider_share_with_application">Надіслати через %s</string>
-    <string name="abc_toolbar_collapse_description">Згорнути</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">краш Звіт</string>
+    <string name="crash_contact">E - mail (не обов'язково )</string>
+    <string name="crash_comment">Як розбити (необов'язково ):</string>
+    <string name="crash_report_success">Успіх, спасибі !</string>
+    <string name="crash_stacktrace">StackTrace:</string>
+    <string name="crash_submit">уявити</string>
+    <string name="crash_submit_fail_x">Помилка: %s</string>
+    <string name="network_unavailable">мережа недоступна</string>
+    <string name="submitting">Додаю...</string>
+    <string name="can_not_be_empty">Не може бути порожнім</string>
+    <string name="no_data">Немає даних</string>
+    <string name="try_agent">Спробуйте ще раз</string>
+    <string name="search_results">Результати пошуку</string>
+    <string name="directory">каталог</string>
+    <string name="authenticate">перевіряти справжність</string>
+    <string name="logout">Вийти</string>
+    <string name="selected_x_items">Вибрані %d товари</string>
+    <string name="filename">Файл:</string>
+    <string name="file_encoding">кодування:</string>
+    <string name="file_save">зберегти</string>
+    <string name="root_path">корінь</string>
+    <string name="auto_detection_encoding">кодування Автоматичне визначення</string>
+    <string name="illegal_filename">Недопустима назва файлу</string>
+    <string name="unknown_path">невідому путь</string>
+    <string name="open_file">Відкрити файл</string>
+    <string name="save_file">Зберегти файл</string>
+    <string name="override_file_prompt">%s існує, ви перевизначити його?</string>
+    <string name="filter_by_name">Фільтр по імені</string>
+    <string name="can_not_create_folder">Неможливо створити папку</string>
+    <string name="can_not_share_x">Неможливо розділити файл: %s</string>
+    <string name="cancel_select_all">Скасувати всі</string>
+    <string name="copy">копія</string>
+    <string name="create_folder">створити папку</string>
+    <string name="cut">вирізати</string>
+    <string name="delete">видаляти</string>
+    <string name="paste">клейстер</string>
+    <string name="rename">перейменовувати</string>
+    <string name="rename_fail">перейменувати збій</string>
+    <string name="select_all">Вибрати все</string>
+    <string name="share">частка</string>
+    <string name="show_hidden_files">Показувати приховані файли</string>
+    <string name="sort_by_datetime">Сортування за датою</string>
+    <string name="sort_by_name">Сортувати за назвою</string>
+    <string name="sort_by_size">Сортувати за розміром</string>
+    <string name="sort_by_type">Сортувати по типу</string>
+    <string name="addToDictionary">Додати в словник</string>
+    <string name="deleteText">видалити текст</string>
+    <string name="replace">заміщати</string>
+    <string name="textSelectionCABTitle">вибір тексту</string>
+    <string name="selectAll">Вибрати все</string>
+    <string name="find">знайти</string>
+    <string name="app_name">920 Текстовий редактор</string>
+    <string name="new_file">новий</string>
+    <string name="open">ВІДЧИНЕНО</string>
+    <string name="save">зберегти</string>
+    <string name="undo">розстібати</string>
+    <string name="redo">переробляти</string>
+    <string name="save_all">Зберегти все</string>
+    <string name="save_as">Зберегти як</string>
+    <string name="recent_files">останні файли</string>
+    <string name="line_separator">розрив рядка</string>
+    <string name="duplication_line">дублювання лінія</string>
+    <string name="find_in_files">Знайти в файлах</string>
+    <string name="jump_to_start">Перехід до початку</string>
+    <string name="jump_to_end">Перейти до кінця</string>
+    <string name="goto_line">Гото лінія</string>
+    <string name="back">назад</string>
+    <string name="forward">вперед</string>
+    <string name="document_info">інформаційний документ</string>
+    <string name="symbol">символ</string>
+    <string name="insert_color">вставити колір</string>
+    <string name="highlight_language">мова Виділіть</string>
+    <string name="encoding">кодування</string>
+    <string name="read_only">Лише для читання</string>
+    <string name="insert_datetime">Error</string>
+    <string name="edit_mode">режим редагування</string>
+    <string name="run">прогін</string>
+    <string name="file">файл</string>
+    <string name="other">Інший</string>
+    <string name="view">вид</string>
+    <string name="edit">редагувати</string>
+    <string name="new_filename">Untitled %d</string>
+    <string name="confirm_save">підтвердити зберегти</string>
+    <string name="confirm_save_msg">Документ %s змінився, ви хочете, щоб зберегти і вийти?</string>
+    <string name="yes">Так</string>
+    <string name="no">Немає</string>
+    <string name="cannt_access_file">Неможливо отримати доступ до файлу: %s</string>
+    <string name="cannt_read_file">Неможливо прочитати файл: %s</string>
+    <string name="ok">добре</string>
+    <string name="read_file_exception">Відбувається виняток при читанні файлу</string>
+    <string name="init_syntax_msg">Ініціалізувати синтаксис...</string>
+    <string name="init_syntax_error">Ініціалізувати синтаксис терпіти невдачу</string>
+    <string name="init_build_index_error">Побудувати індекс терпіти невдачу</string>
+    <string name="close">близько</string>
+    <string name="cancel">скасувати</string>
+    <string name="convert_wrap_char">Перетворити обгорткового напівкоксу</string>
+    <string name="path_x">Шлях: %s</string>
+    <string name="char_x">Символів: %d</string>
+    <string name="word_x">Words: %d</string>
+    <string name="line_number_x">Номер рядка: %d</string>
+    <string name="encoding_x">Кодування: %s</string>
+    <string name="tab">таб</string>
+    <string name="no_change">Без змін!</string>
+    <string name="save_success">зберегти успіх</string>
+    <string name="find_label">Знайти що:</string>
+    <string name="replace_label">Замінити:</string>
+    <string name="case_sensitive">чутливий до регістру</string>
+    <string name="whole_words_only">Тільки цілі слова</string>
+    <string name="regex">Регулярний вираз</string>
+    <string name="in_path">В дорозі:</string>
+    <string name="recursively">рекурсивний</string>
+    <string name="cannot_be_empty">Не може бути порожнім</string>
+    <string name="path_not_exists">Шлях не існує</string>
+    <string name="find_not_found">Не знайдено</string>
+    <string name="previous_occurrence">Попередня Подія</string>
+    <string name="next_occurrence">Наступна Подія</string>
+    <string name="replace_all">замінити всі</string>
+    <string name="searching">Пошук...</string>
+    <string name="select_lang_to_highlight">Виберіть мову, щоб виділити</string>
+    <string name="more_menu">більше меню</string>
+    <string name="reopen_with_encoding">Відновити з кодуванням</string>
+    <string name="document_changed">документ змінений</string>
+    <string name="give_up_document_changed_message">Документ змінився ще раз, ви втрачені, якщо ви не збережете їх, підтвердити?</string>
+    <string name="preview_in_browser">Попередній перегляд в браузері</string>
+    <string name="use_sl4a_in_background_run_script">Використовуйте SL4A в фоновому режимі виконання сценарію</string>
+    <string name="use_sl4a_in_terminal_run_script">Використовуйте SL4A в сценарії терміналу виконання</string>
+    <string name="please_save_as_file_first">оренда зберегти файл першої</string>
+    <string name="run_fail_message">Виклик зовнішнього застосування не вдалося</string>
+    <string name="settings">настройки</string>
+    <string name="editor">редактор</string>
+    <string name="font">шрифт</string>
+    <string name="default_value">дефолт</string>
+    <string name="font_size">Розмір шрифту</string>
+    <string name="cursor_width">курсор Ширина</string>
+    <string name="touch_to_adjust_text_size">Натисніть, щоб змінити розмір шрифту</string>
+    <string name="word_wrap_in_editor">авто WordWrap</string>
+    <string name="show_linenumber">Показати LineNumber</string>
+    <string name="show_whitespace">Показати Прогалини</string>
+    <string name="auto_indent">автовідступ</string>
+    <string name="insert_space_for_tab">Вставити простір для Tab</string>
+    <string name="indent_size">відступ розмір</string>
+    <string name="highlight_and_theme">Виділіть і Theme</string>
+    <string name="highlight_the_file_size_limit">Файл невеликого розміру Родзинкою</string>
+    <string name="auto_save">Автоматичне збереження файлу</string>
+    <string name="remember_last_opened_files">Пам'ятайте, останні відкриті файли</string>
+    <string name="remember_last_opened_files_summary">Авто останні відкриті відкриті файли при запуску</string>
+    <string name="screen_orientation">орієнтація екрана</string>
+    <string name="keep_screen_on">Тримайте екран на</string>
+    <string name="auto_capitalize">авто капіталізувати</string>
+    <string name="feedback">зворотний зв'язок</string>
+    <string name="donate">жертвувати</string>
+    <string name="help_translate">Перевести це додаток</string>
+    <string name="about">про</string>
+    <string name="enable_highlight">включити виділення</string>
+    <string name="version_x">Версія: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Передусім потрібно увімкнути дозволу читання для зберігання</string>
+    <string name="file_not_exists">Файл не існує</string>
+    <string name="cannt_handle_intent_x">Неможливо обробити намір: %s</string>
+    <string name="handle_intent_x_error">Помилка сталася, коли намір процесу: %s</string>
+    <string name="verify_sign_failure">Ваше поточне додаток не є офіційною, будь ласка, перейдіть на https://github.com/jecelyin/920-text-editor-v2/releases завантажити його.</string>
+    <string name="press_again_will_exit">Повторне натискання призведе до виходу</string>
+    <string name="find_replace">Знайти / Замінити</string>
+    <string name="find_title">\"%s\" Знайти результати</string>
+    <string name="zero_matches">0 матчів</string>
+    <string name="chooser_browser">селектор браузер</string>
+    <string name="find_or_replace">Знайти / Замінити...</string>
+    <string name="other_application">Інша програма...</string>
+    <string name="chooser_application">селектор Застосування</string>
+    <string name="editor_create_unknown_exception">Відбувається невідоме виключення при створенні редактора</string>
+    <string name="convert_to_uppercase">Перетворити в верхній регістр</string>
+    <string name="convert_to_lowercase">Перетворити в нижній регістр</string>
+    <string name="duplication_text">дублювання текст</string>
+    <string name="tab_size">розмір Tab</string>
+    <string name="new_version_available">Доступна нова версія</string>
+    <string name="upgrade">модернізація</string>
+    <string name="new_version_update_content">Остання версія: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Завантаження %1$d%%</string>
+    <string name="download_failure_x">Помилка при завантаженні: %s</string>
+    <string name="start_download">почати завантаження</string>
+    <string name="auto_check_updates">автоматичної перевірки оновлень</string>
+    <string name="cannt_download">Неможливо завантажити.</string>
+    <string name="readonly_mode_not_support_this_action">Тільки для читання режим не підтримує цю дію</string>
+    <string name="x_text_replaced">%d текст був замінений</string>
+    <string name="enable_root">Enable Root</string>
+    <string name="my_name">Автор: Jecelyin Пен</string>
+    <string name="qq_group">QQ Група: 87272821</string>
+    <string name="open_with_external_browser">Відкрити за допомогою зовнішнього браузера</string>
+    <string name="contact_email_optional">Контактна адреса електронної пошти (за бажанням )</string>
+    <string name="with_error_logs">журнали помилок</string>
+    <string name="content">зміст</string>
+    <string name="send">послати</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Зворотній зв'язок довжина вмісту повинна бути більше, ніж %d символ</string>
+    <string name="feedback_submit_error_x">Надіслати повідомлення про помилку: %s</string>
+    <string name="submit_success">Надіслати успіх</string>
+    <string name="writing">писемність</string>
+    <string name="keyword">ключове слово</string>
+    <string name="find_keyword_is_empty">Ключове слово не може бути порожнім</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 знайдено</item>
+        <item quantity="other">%d текст замінений</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>англійська</item>
+        <item>китайський</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>автоматичний</item>
+        <item>пейзаж</item>
+        <item>портрет</item>
+    </string-array>
+    <string name="exit">ВХІД</string>
+    <string name="unknown_exception_and_report_message_x">Невідоме виключення, будь ласка, скажіть мені, що цей випадок відбувається, спасибі \nCode: %s</string>
+    <string name="keep_backup_file">Тримайте файл резервної копії</string>
+    <string name="keep_backup_file_summary">Пропонуємо Вам зберігати резервні копії файлів, уникнути промахів файлів для виключення</string>
+    <string name="save_all_without_new_document_message">Зберегти все пропустить новий документ</string>
+    <string name="clear_history">Чиста історія</string>
+    <string name="custom_symbol_list">Вибірковий список символів</string>
+    <string name="reset">скидання</string>
+    <string name="change_theme">змінити тему</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="default_theme">за замовчуванням Theme</string>
+    <string name="fullscreen_mode">повноекранний режим</string>
+    <string name="enable_fullscreen_mode_message">Перезапустіть додаток дозволить повноекранний режим</string>
+    <string name="disabled_fullscreen_mode_message">Перезапустіть додаток буде відключити повноекранний режим</string>
+    <string name="confirm_change_theme_message">Змінити тему не буде автоматично зберігати документи, ви підтверджуєте, скинуті документ змінити тему?</string>
 </resources>

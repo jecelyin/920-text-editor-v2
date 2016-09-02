@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="crash_report">bater Informe</string>
+    <string name="crash_contact">Correo-e (opcional)</string>
+    <string name="crash_comment">Como a falla (opcional):</string>
+    <string name="crash_report_success">Éxito, grazas!</string>
+    <string name="crash_stacktrace">stacktrace:</string>
+    <string name="crash_submit">someter</string>
+    <string name="crash_submit_fail_x">Erro:%s</string>
+    <string name="network_unavailable">rede dispoñible</string>
+    <string name="submitting">Sometendo...</string>
+    <string name="can_not_be_empty">non pode estar baleiro</string>
+    <string name="no_data">no Fecha</string>
+    <string name="try_agent">ténteo denovo</string>
+    <string name="search_results">resultados da busca</string>
+    <string name="directory">guía</string>
+    <string name="authenticate">autenticar</string>
+    <string name="logout">saír</string>
+    <string name="selected_x_items">Seleccionados %d elementos</string>
+    <string name="filename">Nome de arquivo:</string>
+    <string name="file_encoding">E</string>
+    <string name="file_save">gardar</string>
+    <string name="root_path">raíz</string>
+    <string name="auto_detection_encoding">codificación de detección automática</string>
+    <string name="illegal_filename">filename ilegal</string>
+    <string name="unknown_path">camiño descoñecido</string>
+    <string name="open_file">Open File</string>
+    <string name="save_file">gardar Arquivo</string>
+    <string name="override_file_prompt">%s existe, substituílo?</string>
+    <string name="filter_by_name">Filtrar pornome</string>
+    <string name="can_not_create_folder">Non se pode crear o cartafol</string>
+    <string name="can_not_share_x">Non se pode compartir o ficheiro: %s</string>
+    <string name="cancel_select_all">desmarcar todo</string>
+    <string name="copy">copia</string>
+    <string name="create_folder">crear cartafol</string>
+    <string name="cut">corte</string>
+    <string name="delete">eliminar</string>
+    <string name="paste">colar</string>
+    <string name="rename">rebatizar</string>
+    <string name="rename_fail">renomear fallo</string>
+    <string name="select_all">Seleccionar todo</string>
+    <string name="share">acción</string>
+    <string name="show_hidden_files">Mostrar ficheiros ocultos</string>
+    <string name="sort_by_datetime">Ordenar por data</string>
+    <string name="sort_by_name">Ordenar pornome</string>
+    <string name="sort_by_size">Ordenar por Tamaño</string>
+    <string name="sort_by_type">Ordenar por Tipo</string>
+    <string name="addToDictionary">No dicionario</string>
+    <string name="deleteText">Error</string>
+    <string name="replace">substituír</string>
+    <string name="textSelectionCABTitle">Seleccione Texto</string>
+    <string name="selectAll">Seleccionar todo</string>
+    <string name="find">atopar</string>
+    <string name="app_name">920 Editor de Texto</string>
+    <string name="new_file">novo</string>
+    <string name="open">aberto</string>
+    <string name="save">gardar</string>
+    <string name="undo">desfacer</string>
+    <string name="redo">refacer</string>
+    <string name="save_all">gardar todo</string>
+    <string name="save_as">Gardar como</string>
+    <string name="recent_files">arquivos recentes</string>
+    <string name="line_separator">salto de liña</string>
+    <string name="duplication_line">liña de duplicación</string>
+    <string name="find_in_files">Buscar en ficheiros</string>
+    <string name="jump_to_start">Ir iniciar</string>
+    <string name="jump_to_end">Ir final</string>
+    <string name="goto_line">liña Goto</string>
+    <string name="back">de volta</string>
+    <string name="forward">á fronte</string>
+    <string name="document_info">Información do documento</string>
+    <string name="symbol">símbolo</string>
+    <string name="insert_color">inserción de cor</string>
+    <string name="highlight_language">linguaxe destaque</string>
+    <string name="encoding">codificación</string>
+    <string name="read_only">só lectura</string>
+    <string name="insert_datetime">inserir hora</string>
+    <string name="edit_mode">edit mode</string>
+    <string name="run">carreira</string>
+    <string name="file">arquivo</string>
+    <string name="other">Outra</string>
+    <string name="view">vista</string>
+    <string name="edit">editar</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">confirmar gardar</string>
+    <string name="confirm_save_msg">Documento %s cambiou, quere gardar e saír?</string>
+    <string name="yes">si</string>
+    <string name="no">non</string>
+    <string name="cannt_access_file">Non se pode acceder ao ficheiro:%s</string>
+    <string name="cannt_read_file">Non foi posíbel ler o ficheiro:%s</string>
+    <string name="ok">Ok</string>
+    <string name="read_file_exception">Ocorre excepción ao ler o ficheiro</string>
+    <string name="init_syntax_msg">Arrincar sintaxe...</string>
+    <string name="init_syntax_error">Arrincar sintaxe falla</string>
+    <string name="init_build_index_error">Construír índice de falla</string>
+    <string name="close">preto</string>
+    <string name="cancel">cancelar</string>
+    <string name="convert_wrap_char">Converter envoltura de char</string>
+    <string name="path_x">Camiño: %s</string>
+    <string name="char_x">Caracteres: %d</string>
+    <string name="word_x">Palabras: %d</string>
+    <string name="line_number_x">Número de liña: %d</string>
+    <string name="encoding_x">Codificación: %s</string>
+    <string name="tab">separador</string>
+    <string name="no_change">Ningún cambio !</string>
+    <string name="save_success">gardar Éxito</string>
+    <string name="find_label">Buscar o que:</string>
+    <string name="replace_label">Substituír por:</string>
+    <string name="case_sensitive">Error</string>
+    <string name="whole_words_only">Só palabras completas</string>
+    <string name="regex">expresión regular</string>
+    <string name="in_path">En Camiño:</string>
+    <string name="recursively">recursively</string>
+    <string name="cannot_be_empty">non pode estar baleiro</string>
+    <string name="path_not_exists">Camiñonon existe</string>
+    <string name="find_not_found">Non atopado</string>
+    <string name="previous_occurrence">aparición Anterior</string>
+    <string name="next_occurrence">seguinte ocorrencia</string>
+    <string name="replace_all">substituír todo</string>
+    <string name="searching">Buscar...</string>
+    <string name="select_lang_to_highlight">Seleccione un idioma para destacar</string>
+    <string name="more_menu">menú máis</string>
+    <string name="reopen_with_encoding">Reabrir con codificación</string>
+    <string name="document_changed">documento cambiou</string>
+    <string name="give_up_document_changed_message">Documento foi modificado, os cambios perderanse senon garda-los, confirmar?</string>
+    <string name="preview_in_browser">Vernonavegador</string>
+    <string name="use_sl4a_in_background_run_script">Use SL4Ano guión executado fondo</string>
+    <string name="use_sl4a_in_terminal_run_script">Use SL4A en realizar script de terminal</string>
+    <string name="please_save_as_file_first">aluguer gardar en arquivo primeiro</string>
+    <string name="run_fail_message">aplicación externa chamada fallou</string>
+    <string name="settings">configuración</string>
+    <string name="editor">editor</string>
+    <string name="font">fonte</string>
+    <string name="default_value">defecto</string>
+    <string name="font_size">Tamaño de letra</string>
+    <string name="cursor_width">Error</string>
+    <string name="touch_to_adjust_text_size">Preme para cambiar o tamaño do texto</string>
+    <string name="word_wrap_in_editor">wordwrap Auto</string>
+    <string name="show_linenumber">amosar linenumber</string>
+    <string name="show_whitespace">amosar Whitespace</string>
+    <string name="auto_indent">recuar Auto</string>
+    <string name="insert_space_for_tab">Inserir espazo Tab</string>
+    <string name="indent_size">tamaño traveseiro</string>
+    <string name="highlight_and_theme">Destacados e tema</string>
+    <string name="highlight_the_file_size_limit">tamaño do ficheiro destaque límite</string>
+    <string name="auto_save">Auto gardar o ficheiro</string>
+    <string name="remember_last_opened_files">Marca últimos arquivos abertos</string>
+    <string name="remember_last_opened_files_summary">Auto aberta pasado abriu arquivos cando arranque</string>
+    <string name="screen_orientation">orientación da pantalla</string>
+    <string name="keep_screen_on">manteña pantalla</string>
+    <string name="auto_capitalize">auto capitalizar</string>
+    <string name="feedback">Suxestións</string>
+    <string name="donate">doar</string>
+    <string name="help_translate">Traducir esta aplicación</string>
+    <string name="about">sobre</string>
+    <string name="enable_highlight">activar destaque</string>
+    <string name="version_x">Versión: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Necesario activar permisos de almacenamento de lectura</string>
+    <string name="file_not_exists">Ficheironon existe</string>
+    <string name="cannt_handle_intent_x">non pode procesar intención:%s</string>
+    <string name="handle_intent_x_error">Produciuse un erro cando o proceso intención:%s</string>
+    <string name="verify_sign_failure">Error</string>
+    <string name="press_again_will_exit">Prema denovo para saír</string>
+    <string name="find_replace">Buscar / Reemplazar</string>
+    <string name="find_title">\"%s\" Resultados da Busca</string>
+    <string name="zero_matches">0 partidos</string>
+    <string name="chooser_browser">navegador Chooser</string>
+    <string name="find_or_replace">Buscar / substituír...</string>
+    <string name="other_application">Outra aplicación...</string>
+    <string name="chooser_application">selector de Aplicacións</string>
+    <string name="editor_create_unknown_exception">Ocorre excepción descoñecida cando crear editor</string>
+    <string name="convert_to_uppercase">Converter a maiúsculas</string>
+    <string name="convert_to_lowercase">Converter a minúsculas</string>
+    <string name="duplication_text">texto duplicación</string>
+    <string name="tab_size">tamaño tab</string>
+    <string name="new_version_available">Nova versión dispoñíbel</string>
+    <string name="upgrade">actualización</string>
+    <string name="new_version_update_content">Última versión: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Baixando %1$d%%</string>
+    <string name="download_failure_x">Descargar fallo:%s</string>
+    <string name="start_download">iniciar descarga</string>
+    <string name="auto_check_updates">actualizacións de verificación Auto</string>
+    <string name="cannt_download">Non se pode descargar.</string>
+    <string name="readonly_mode_not_support_this_action">O modo de só lecturanon soporta esta acción</string>
+    <string name="x_text_replaced">%d texto foi substituído</string>
+    <string name="enable_root">activar Root</string>
+    <string name="my_name">Autor: Jecelyin Peng</string>
+    <string name="qq_group">QQ Grupo: 87272821</string>
+    <string name="open_with_external_browser">Abrir conavegador externo</string>
+    <string name="contact_email_optional">Correo-e (opcional)</string>
+    <string name="with_error_logs">Rexistros de erro</string>
+    <string name="content">contido</string>
+    <string name="send">enviar</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">lonxitude de contido de producto debe ser maior que %d de char</string>
+    <string name="feedback_submit_error_x">Enviar erro: %s</string>
+    <string name="submit_success">someta éxito</string>
+    <string name="writing">escrita</string>
+    <string name="keyword">palabra clave</string>
+    <string name="find_keyword_is_empty">Contrasinalnon pode estar baleiro</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 atopada</item>
+        <item quantity="other">%d texto substituído</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Inglés</item>
+        <item>chinés</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Converter a \\n（Linux/OSX）</item>
+        <item>Converter a \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>automático</item>
+        <item>paisaxe</item>
+        <item>retrato</item>
+    </string-array>
+    <string name="exit">saída</string>
+    <string name="unknown_exception_and_report_message_x">Excepción descoñecida, por favor, me diga o que éneste caso ocorre, Grazas \nCode:%s</string>
+    <string name="keep_backup_file">Manter un ficheiro de copia de seguridade</string>
+    <string name="keep_backup_file_summary">Suxiro que manteña os arquivos de copia de seguridade, evitar accidentes de ficheiro para exclusión</string>
+    <string name="save_all_without_new_document_message">Garde todo o ignoraránovo documento</string>
+    <string name="clear_history">borrar Historial</string>
+    <string name="custom_symbol_list">lista de símbolo personalizado</string>
+    <string name="reset">restablecer</string>
+    <string name="change_theme">cambiar tema</string>
+    <string name="dark_theme">tema escuro</string>
+    <string name="default_theme">tema por defecto</string>
+    <string name="fullscreen_mode">modo de pantalla completa</string>
+    <string name="enable_fullscreen_mode_message">Reinicie a aplicación permitirá que o modo de pantalla completa</string>
+    <string name="disabled_fullscreen_mode_message">Reinicie a aplicación pode desactivar o modo de pantalla completa</string>
+    <string name="confirm_change_theme_message">Cambiar temanon será auto gardar documentos, confirma documento descartar para cambiar o tema?</string>
 </resources>

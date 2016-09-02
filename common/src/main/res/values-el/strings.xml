@@ -1,4 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="crash_report">Crash Έκθεση</string>
+    <string name="crash_contact">Email (προαιρετικό )</string>
+    <string name="crash_comment">Πώς να συντριβή (Προαιρετικό ):</string>
+    <string name="crash_report_success">Επιτυχία, σας ευχαριστώ!</string>
+    <string name="crash_stacktrace">stacktrace:</string>
+    <string name="crash_submit">Υποτάσσομαι</string>
+    <string name="crash_submit_fail_x">Αποτυχία: %s</string>
+    <string name="network_unavailable">δίκτυο Μη διαθέσιμο</string>
+    <string name="submitting">Υποβάλλοντας...</string>
+    <string name="can_not_be_empty">δεν μπορεί να είναι κενό</string>
+    <string name="no_data">Χωρίς δεδομένα</string>
+    <string name="try_agent">Προσπάθησε ξανά</string>
+    <string name="search_results">Αποτελέσματα αναζήτησης</string>
+    <string name="directory">Τηλεφωνικός κατάλογος</string>
+    <string name="authenticate">Πιστοποιώ την αυθεντικότητα</string>
+    <string name="logout">Αποσυνδέομαι</string>
+    <string name="selected_x_items">Επιλεγμένα %d στοιχεία</string>
+    <string name="filename">Όνομα αρχείου:</string>
+    <string name="file_encoding">κωδικοποίηση:</string>
+    <string name="file_save">Αποθηκεύσετε</string>
+    <string name="root_path">Ρίζα</string>
+    <string name="auto_detection_encoding">κωδικοποίηση αυτόματη ανίχνευση</string>
+    <string name="illegal_filename">μη επιτρεπτό όνομα αρχείου</string>
+    <string name="unknown_path">άγνωστο μονοπάτι</string>
+    <string name="open_file">Άνοιγμα αρχείου</string>
+    <string name="save_file">Αποθηκεύσετε το αρχείο</string>
+    <string name="override_file_prompt">Υπάρχει %s, δεν μπορείτε να παρακάμψετε ;</string>
+    <string name="filter_by_name">Φίλτρο ανά Όνομα</string>
+    <string name="can_not_create_folder">Δεν είναι δυνατή η δημιουργία φακέλου</string>
+    <string name="can_not_share_x">Δεν είναι δυνατή η κοινή χρήση του αρχείου: %s</string>
+    <string name="cancel_select_all">Αποεπιλογή όλων</string>
+    <string name="copy">Αντίγραφο</string>
+    <string name="create_folder">ΔΗΜΙΟΥΡΓΩ φακελο</string>
+    <string name="cut">Τομή</string>
+    <string name="delete">Διαγράφω</string>
+    <string name="paste">Πάστα</string>
+    <string name="rename">Μετονομάζω</string>
+    <string name="rename_fail">Μετονομασία αποτυχία</string>
+    <string name="select_all">Επιλογή όλων</string>
+    <string name="share">Μερίδιο</string>
+    <string name="show_hidden_files">Εμφάνιση κρυφών αρχείων</string>
+    <string name="sort_by_datetime">Ταξινόμηση κατά Ημερομηνία</string>
+    <string name="sort_by_name">Ταξινόμηση κατά Όνομα</string>
+    <string name="sort_by_size">Ταξινόμηση κατά μέγεθος</string>
+    <string name="sort_by_type">Ταξινόμηση κατά Τύπος</string>
+    <string name="addToDictionary">Προσθήκη στο λεξικό</string>
+    <string name="deleteText">Διαγραφή κειμένου</string>
+    <string name="replace">Αντικαθιστώ</string>
+    <string name="textSelectionCABTitle">Επιλογή κειμένου</string>
+    <string name="selectAll">Επιλογή όλων</string>
+    <string name="find">Εύρημα</string>
+    <string name="app_name">920 επεξεργαστή κειμένου</string>
+    <string name="new_file">Νέος</string>
+    <string name="open">Ανοιχτό</string>
+    <string name="save">Αποθηκεύσετε</string>
+    <string name="undo">Ξεκάνω</string>
+    <string name="redo">Ξανακάνω</string>
+    <string name="save_all">Αποθήκευση όλων</string>
+    <string name="save_as">Αποθήκευση ως</string>
+    <string name="recent_files">Πρόσφατα αρχεία</string>
+    <string name="line_separator">Διακοπή της γραμμής</string>
+    <string name="duplication_line">γραμμή αλληλεπικάλυψη</string>
+    <string name="find_in_files">Βρείτε σε αρχεία</string>
+    <string name="jump_to_start">Μετάβαση για να ξεκινήσει</string>
+    <string name="jump_to_end">Μετάβαση σε άκρο</string>
+    <string name="goto_line">Μετάβαση στη γραμμή</string>
+    <string name="back">Πίσω</string>
+    <string name="forward">Προς τα εμπρός</string>
+    <string name="document_info">Πληροφορίες εγγράφου</string>
+    <string name="symbol">Σύμβολο</string>
+    <string name="insert_color">χρώμα ένθετο</string>
+    <string name="highlight_language">γλώσσα highlight</string>
+    <string name="encoding">κωδικοποίηση</string>
+    <string name="read_only">Μόνο για ανάγνωση</string>
+    <string name="insert_datetime">εισάγετε datetime</string>
+    <string name="edit_mode">Λειτουργία επεξεργασίας</string>
+    <string name="run">Τρέξιμο</string>
+    <string name="file">Αρχείο</string>
+    <string name="other">Άλλα</string>
+    <string name="view">Θέα</string>
+    <string name="edit">Επεξεργασία</string>
+    <string name="new_filename">άτιτλο %d</string>
+    <string name="confirm_save">Επιβεβαίωση σώσει</string>
+    <string name="confirm_save_msg">Το έγγραφο %s έχει αλλάξει, θέλετε να αποθηκεύσετε και εξόδου;</string>
+    <string name="yes">Ναί</string>
+    <string name="no">Όχι</string>
+    <string name="cannt_access_file">Δεν είναι δυνατή η πρόσβαση στο αρχείο: %s</string>
+    <string name="cannt_read_file">Δεν είναι δυνατή η ανάγνωση του αρχείου: %s</string>
+    <string name="ok">Εντάξει</string>
+    <string name="read_file_exception">Εμφανίζεται εξαίρεση, όταν η ανάγνωση του αρχείου</string>
+    <string name="init_syntax_msg">Αρχικοποίηση σύνταξη...</string>
+    <string name="init_syntax_error">Αρχικοποίηση σύνταξη αποτύχει</string>
+    <string name="init_build_index_error">Κατασκευάστηκε δείκτη αποτύχει</string>
+    <string name="close">Κοντά</string>
+    <string name="cancel">Ματαίωση</string>
+    <string name="convert_wrap_char">Μετατροπή wrap char</string>
+    <string name="path_x">Διαδρομή: %s</string>
+    <string name="char_x">Χαρακτήρες: %d</string>
+    <string name="word_x">Λέξεις: %d</string>
+    <string name="line_number_x">αριθμός γραμμής: %d</string>
+    <string name="encoding_x">Κωδικοποίηση: %s</string>
+    <string name="tab">Αυτί</string>
+    <string name="no_change">Καμία αλλαγή!</string>
+    <string name="save_success">Αποθήκευση επιτυχία</string>
+    <string name="find_label">Βρείτε τι:</string>
+    <string name="replace_label">Αντικατέστησε με:</string>
+    <string name="case_sensitive">case sensitive</string>
+    <string name="whole_words_only">Ολόκληρες λέξεις μόνο</string>
+    <string name="regex">Κοινή έκφραση</string>
+    <string name="in_path">Στο Path:</string>
+    <string name="recursively">αναδρομικά</string>
+    <string name="cannot_be_empty">δεν μπορεί να είναι κενό</string>
+    <string name="path_not_exists">Δεν υπάρχει μονοπάτι</string>
+    <string name="find_not_found">Δεν βρέθηκε</string>
+    <string name="previous_occurrence">Προηγούμενο Εμφάνιση</string>
+    <string name="next_occurrence">επόμενο Εμφάνιση</string>
+    <string name="replace_all">Αντικατάσταση όλων</string>
+    <string name="searching">Έρευνα…</string>
+    <string name="select_lang_to_highlight">Επιλέξτε μια γλώσσα για να επισημάνετε</string>
+    <string name="more_menu">μενού περισσότερα</string>
+    <string name="reopen_with_encoding">Ανοίξτε ξανά με την κωδικοποίηση</string>
+    <string name="document_changed">έγγραφο άλλαξε</string>
+    <string name="give_up_document_changed_message">Το έγγραφο έχει αλλάξει, οι αλλαγές σας θα χαθούν αν δεν τις αποθηκεύσετε, επιβεβαιώστε ;</string>
+    <string name="preview_in_browser">Προεπισκόπηση σε πρόγραμμα περιήγησης</string>
+    <string name="use_sl4a_in_background_run_script">Χρησιμοποιήστε SL4A στο παρασκήνιο σενάριο τρέξιμο</string>
+    <string name="use_sl4a_in_terminal_run_script">Χρησιμοποιήστε SL4A στο τερματικό σενάριο τρέξιμο</string>
+    <string name="please_save_as_file_first">μίσθωσης αποθηκεύσετε να υποβάλει την πρώτη</string>
+    <string name="run_fail_message">Πρόσκληση εξωτερική εφαρμογή απέτυχε</string>
+    <string name="settings">Ρυθμίσεις</string>
+    <string name="editor">Συντάκτης</string>
+    <string name="font">Γραμματοσειρά</string>
+    <string name="default_value">Αθέτηση</string>
+    <string name="font_size">Μέγεθος γραμματοσειράς</string>
+    <string name="cursor_width">Δρομέας Πλάτος</string>
+    <string name="touch_to_adjust_text_size">Αγγίξτε για να αλλάξετε το μέγεθος του κειμένου</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Εμφάνιση Linenumber</string>
+    <string name="show_whitespace">Εμφάνιση Κενό</string>
+    <string name="auto_indent">Auto Εσοχή</string>
+    <string name="insert_space_for_tab">Εισάγετε χώρο για Tab</string>
+    <string name="indent_size">παύλα μέγεθος</string>
+    <string name="highlight_and_theme">Highlight και το θέμα</string>
+    <string name="highlight_the_file_size_limit">Μέγεθος αρχείου όριο αποκορύφωμα</string>
+    <string name="auto_save">Αυτόματη αποθήκευση αρχείων</string>
+    <string name="remember_last_opened_files">Θυμηθείτε την τελευταία άνοιξαν τα αρχεία</string>
+    <string name="remember_last_opened_files_summary">Αυτόματη ανοιχτή άνοιξε την περασμένη αρχεία όταν την εκκίνηση</string>
+    <string name="screen_orientation">Προσανατολισμός οθόνης</string>
+    <string name="keep_screen_on">οθόνης Κρατήστε την</string>
+    <string name="auto_capitalize">Αυτόματη κεφαλαιοποίηση</string>
+    <string name="feedback">Ανατροφοδότηση</string>
+    <string name="donate">Προσφέρω</string>
+    <string name="help_translate">Μετάφραση αυτής της εφαρμογής</string>
+    <string name="about">Για</string>
+    <string name="enable_highlight">Ενεργοποίηση αποκορύφωμα</string>
+    <string name="version_x">Έκδοση: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Πρέπει να ενεργοποιήσετε τα δικαιώματα αποθήκευσης διαβάσετε</string>
+    <string name="file_not_exists">Το αρχείο δεν υπάρχει</string>
+    <string name="cannt_handle_intent_x">δεν μπορεί να επεξεργαστεί την πρόθεση: %s</string>
+    <string name="handle_intent_x_error">Παρουσιάστηκε σφάλμα κατά την πρόθεση διαδικασία: %s</string>
+    <string name="verify_sign_failure">τρέχουσα εφαρμογή σας δεν είναι επίσημη, παρακαλώ πηγαίνετε στο https://github.com/jecelyin/920-text-editor-v2/releases κατεβάσετε.</string>
+    <string name="press_again_will_exit">Πατήστε ξανά θα βγείτε</string>
+    <string name="find_replace">Εύρεση / Αντικατάσταση</string>
+    <string name="find_title">\"%s\" Εύρεση αποτελεσμάτων</string>
+    <string name="zero_matches">0 αγώνες</string>
+    <string name="chooser_browser">πρόγραμμα περιήγησης επιλογέα</string>
+    <string name="find_or_replace">Εύρεση / Αντικατάσταση...</string>
+    <string name="other_application">Άλλη εφαρμογή...</string>
+    <string name="chooser_application">επιλογέα Εφαρμογή</string>
+    <string name="editor_create_unknown_exception">Εμφανίζεται άγνωστη εξαίρεση κατά τη δημιουργία editor</string>
+    <string name="convert_to_uppercase">Μετατροπή σε κεφαλαία</string>
+    <string name="convert_to_lowercase">Μετατροπή σε πεζά</string>
+    <string name="duplication_text">κειμένου αλληλεπικάλυψη</string>
+    <string name="tab_size">μέγεθος καρτέλα</string>
+    <string name="new_version_available">Νέα έκδοση διαθέσιμη</string>
+    <string name="upgrade">Αναβαθμίζω</string>
+    <string name="new_version_update_content">Τελευταία Έκδοση: %1$s\n\nΟι αλλαγές:\n%2$s</string>
+    <string name="download_progress">Κατεβάζοντας %1$d%%<</string>
+    <string name="download_failure_x">Κατεβάστε αποτυχίας: %s</string>
+    <string name="start_download">Ξεκινήστε Λήψη</string>
+    <string name="auto_check_updates">αυτόματες ενημερώσεις επιταγή</string>
+    <string name="cannt_download">Δεν είναι δυνατή η λήψη.</string>
+    <string name="readonly_mode_not_support_this_action">Λειτουργία μόνο για ανάγνωση δεν υποστηρίζει αυτήν την ενέργεια</string>
+    <string name="x_text_replaced">%d κείμενο έχει αντικατασταθεί</string>
+    <string name="enable_root">Ενεργοποίηση Root</string>
+    <string name="my_name">Συντάκτης: Jecelyin Peng</string>
+    <string name="qq_group">QQ Ομάδα: 87272821</string>
+    <string name="open_with_external_browser">Άνοιγμα με εξωτερικό πρόγραμμα περιήγησης</string>
+    <string name="contact_email_optional">Επικοινωνία με e-mail (προαιρετικό )</string>
+    <string name="with_error_logs">αρχεία καταγραφής των σφαλμάτων</string>
+    <string name="content">Περιεχόμενο</string>
+    <string name="send">Στείλετε</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Feedback μήκος του περιεχομένου πρέπει να είναι μεγαλύτερο από %d char</string>
+    <string name="feedback_submit_error_x">Υποβολή σφάλμα: %s</string>
+    <string name="submit_success">Υποβολή επιτυχία</string>
+    <string name="writing">Γράψιμο</string>
+    <string name="keyword">Λέξη-κλειδί</string>
+    <string name="find_keyword_is_empty">Λέξη-κλειδί δεν μπορεί να είναι κενό</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">βρέθηκαν 0</item>
+        <item quantity="other">%d κείμενο αντικαταστάθηκε</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Αγγλικά</item>
+        <item>κινέζικο</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Μετατροπή σε \\n（Linux/OSX）</item>
+        <item>Μετατροπή σε \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Αυτο</item>
+        <item>Τοπίο</item>
+        <item>Πορτρέτο</item>
+    </string-array>
+    <string name="exit">Έξοδος</string>
+    <string name="unknown_exception_and_report_message_x">Άγνωστη εξαίρεση, παρακαλώ να μου πείτε τι είναι αυτή η περίπτωση συμβαίνει, ευχαριστώ \nCode: %s</string>
+    <string name="keep_backup_file">Κρατήστε ένα αρχείο αντιγράφου ασφαλείας</string>
+    <string name="keep_backup_file_summary">Σας προτείνω να κρατήσετε backup των αρχείων, την αποφυγή ατυχημάτων αρχείου για εξαίρεση</string>
+    <string name="save_all_without_new_document_message">Αποθηκεύστε όλα θα παραλείψετε νέο έγγραφο</string>
+    <string name="clear_history">Καθαρισμός ιστορικού</string>
+    <string name="custom_symbol_list">κατάλογος σύμβολο έθιμο</string>
+    <string name="reset">Επαναφορά</string>
+    <string name="change_theme">Άλλαξε θέμα</string>
+    <string name="dark_theme">σκούρο θέμα</string>
+    <string name="default_theme">προεπιλεγμένο θέμα</string>
+    <string name="fullscreen_mode">ΛΕΙΤΟΥΡΓΙΑ ΠΛΗΡΟΥΣ ΟΘΟΝΗΣ</string>
+    <string name="enable_fullscreen_mode_message">Επανεκκινήστε την εφαρμογή θα επιτρέψει τη λειτουργία πλήρους οθόνης</string>
+    <string name="disabled_fullscreen_mode_message">Επανεκκίνηση της εφαρμογής θα απενεργοποιήσετε τη λειτουργία πλήρους οθόνης</string>
+    <string name="confirm_change_theme_message">Αλλαγή θέματος δεν θα αυτόματη αποθήκευση εγγράφων, μπορείτε να επιβεβαιώσει το έγγραφο απόρριψης για να αλλάξετε το θέμα ;</string>
 </resources>

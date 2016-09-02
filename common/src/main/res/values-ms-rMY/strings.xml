@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Navigasi skrin utama</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Navigasi ke atas</string>
-    <string name="abc_action_menu_overflow_description">Lagi pilihan</string>
-    <string name="abc_action_mode_done">Selesai</string>
-    <string name="abc_activity_chooser_view_see_all">Lihat semua</string>
-    <string name="abc_activitychooserview_choose_application">Pilih apl</string>
-    <string name="abc_capital_off">MATI</string>
-    <string name="abc_capital_on">HIDUP</string>
-    <string name="abc_search_hint">Cari…</string>
-    <string name="abc_searchview_description_clear">Kosongkan pertanyaan</string>
-    <string name="abc_searchview_description_query">Pertanyaan carian</string>
-    <string name="abc_searchview_description_search">Cari</string>
-    <string name="abc_searchview_description_submit">Serah pertanyaan</string>
-    <string name="abc_searchview_description_voice">Carian suara</string>
-    <string name="abc_shareactionprovider_share_with">Kongsi dengan</string>
-    <string name="abc_shareactionprovider_share_with_application">Kongsi dengan %s</string>
-    <string name="abc_toolbar_collapse_description">Runtuhkan</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">Laporan kemalangan</string>
+    <string name="crash_contact">E-mel (pilihan)</string>
+    <string name="crash_comment">Bagaimana untuk kemalangan (Pilihan):</string>
+    <string name="crash_report_success">Kejayaan, Terima kasih!</string>
+    <string name="crash_stacktrace">surih tindanan:</string>
+    <string name="crash_submit">hantar</string>
+    <string name="crash_submit_fail_x">Kegagalan:%s</string>
+    <string name="network_unavailable">rangkaian Unavailable</string>
+    <string name="submitting">Menyerahkan...</string>
+    <string name="can_not_be_empty">tidak boleh kosong</string>
+    <string name="no_data">Tiada data</string>
+    <string name="try_agent">Cuba lagi</string>
+    <string name="search_results">Keputusan Carian</string>
+    <string name="directory">Direktori</string>
+    <string name="authenticate">mengesahkan</string>
+    <string name="logout">Log keluar</string>
+    <string name="selected_x_items">Dipilih %d Item</string>
+    <string name="filename">Nama fail:</string>
+    <string name="file_encoding">Encoding:</string>
+    <string name="file_save">Simpan</string>
+    <string name="root_path">root</string>
+    <string name="auto_detection_encoding">pengekodan Auto pengesanan</string>
+    <string name="illegal_filename">nama fail yang tidak sah</string>
+    <string name="unknown_path">jalan yang tidak diketahui</string>
+    <string name="open_file">Buka fail</string>
+    <string name="save_file">Simpan fail</string>
+    <string name="override_file_prompt">%s wujud, adakah anda mengatasinya?</string>
+    <string name="filter_by_name">Pilih Nama</string>
+    <string name="can_not_create_folder">Tidak dapat mencipta folder</string>
+    <string name="can_not_share_x">Tidak dapat berkongsi fail:%s</string>
+    <string name="cancel_select_all">Nyahpilih Semua</string>
+    <string name="copy">Salinan</string>
+    <string name="create_folder">Buat folder</string>
+    <string name="cut">Cut</string>
+    <string name="delete">Padam</string>
+    <string name="paste">paste</string>
+    <string name="rename">Nama semula</string>
+    <string name="rename_fail">Nama semula kegagalan</string>
+    <string name="select_all">Pilih semua</string>
+    <string name="share">Kongsi</string>
+    <string name="show_hidden_files">Menunjukkan fail tersembunyi</string>
+    <string name="sort_by_datetime">Susun mengikut Tarikh</string>
+    <string name="sort_by_name">Susun mengikut Nama</string>
+    <string name="sort_by_size">Susun mengikut Saiz</string>
+    <string name="sort_by_type">Susun mengikut Jenis</string>
+    <string name="addToDictionary">Tambah ke kamus</string>
+    <string name="deleteText">Padam teks</string>
+    <string name="replace">Ganti</string>
+    <string name="textSelectionCABTitle">Pilih Text</string>
+    <string name="selectAll">Pilih semua</string>
+    <string name="find">Cari</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">Baru</string>
+    <string name="open">Dibuka</string>
+    <string name="save">Simpan</string>
+    <string name="undo">Buat asal</string>
+    <string name="redo">Buat semula</string>
+    <string name="save_all">Simpan semua</string>
+    <string name="save_as">Simpan sebagai</string>
+    <string name="recent_files">fail baru-baru ini</string>
+    <string name="line_separator">Line Break</string>
+    <string name="duplication_line">garis Duplication</string>
+    <string name="find_in_files">Cari di dalam fail</string>
+    <string name="jump_to_start">Lompat ke mula</string>
+    <string name="jump_to_end">Lompat ke akhir</string>
+    <string name="goto_line">Goto talian</string>
+    <string name="back">Kembali</string>
+    <string name="forward">Forward</string>
+    <string name="document_info">Document Info</string>
+    <string name="symbol">Lambang</string>
+    <string name="insert_color">warna Insert</string>
+    <string name="highlight_language">bahasa Highlight</string>
+    <string name="encoding">pengekodan</string>
+    <string name="read_only">Baca sahaja</string>
+    <string name="insert_datetime">masukkan datetime</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">Run</string>
+    <string name="file">fail</string>
+    <string name="other">lain-lain</string>
+    <string name="view">Lihat</string>
+    <string name="edit">Edit</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">Sahkan menyelamatkan</string>
+    <string name="confirm_save_msg">Dokumen %s telah berubah, anda ingin menyimpan dan keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tiada</string>
+    <string name="cannt_access_file">Tidak dapat mengakses fail:%s</string>
+    <string name="cannt_read_file">Tidak dapat membaca fail:%s</string>
+    <string name="ok">okey</string>
+    <string name="read_file_exception">Berlaku kecuali apabila membaca fail</string>
+    <string name="init_syntax_msg">Memulakan sintaks...</string>
+    <string name="init_syntax_error">Memulakan sintaks gagal</string>
+    <string name="init_build_index_error">Membina indeks gagal</string>
+    <string name="close">Tutup</string>
+    <string name="cancel">Batal</string>
+    <string name="convert_wrap_char">Menukar char bungkus</string>
+    <string name="path_x">Laluan</string>
+    <string name="char_x">Aksara:%d</string>
+    <string name="word_x">Perkataan: %d</string>
+    <string name="line_number_x">Nombor baris:%d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">tab</string>
+    <string name="no_change">Tiada perubahan!</string>
+    <string name="save_success">Simpan Kejayaan</string>
+    <string name="find_label">Cari apa:</string>
+    <string name="replace_label">Gantikan With:</string>
+    <string name="case_sensitive">kes sensitif</string>
+    <string name="whole_words_only">Seluruh perkataan sahaja</string>
+    <string name="regex">Ekspresi biasa</string>
+    <string name="in_path">Dalam laluan:</string>
+    <string name="recursively">rekursif</string>
+    <string name="cannot_be_empty">tidak boleh kosong</string>
+    <string name="path_not_exists">Path tidak wujud</string>
+    <string name="find_not_found">Tidak ditemui</string>
+    <string name="previous_occurrence">Kejadian sebelum</string>
+    <string name="next_occurrence">Kejadian Next</string>
+    <string name="replace_all">Ganti Semua</string>
+    <string name="searching">Cari...</string>
+    <string name="select_lang_to_highlight">Pilih bahasa untuk menyerlahkan</string>
+    <string name="more_menu">lebih menu</string>
+    <string name="reopen_with_encoding">Buka semula dengan pengekodan</string>
+    <string name="document_changed">dokumen berubah</string>
+    <string name="give_up_document_changed_message">Dokumen telah berubah, perubahan yang anda akan hilang jika anda tidak menyelamatkan mereka, mengesahkan?</string>
+    <string name="preview_in_browser">Preview dalam pelayar</string>
+    <string name="use_sl4a_in_background_run_script">Gunakan SL4A di latar belakang run skrip</string>
+    <string name="use_sl4a_in_terminal_run_script">Gunakan SL4A dalam skrip run terminal</string>
+    <string name="please_save_as_file_first">pajakan simpan ke fail pertama</string>
+    <string name="run_fail_message">perisian luar Panggilan gagal</string>
+    <string name="settings">Tetapan</string>
+    <string name="editor">editor</string>
+    <string name="font">font</string>
+    <string name="default_value">lalai</string>
+    <string name="font_size">Saiz huruf</string>
+    <string name="cursor_width">kursor Lebar</string>
+    <string name="touch_to_adjust_text_size">Sentuh untuk menukar saiz teks</string>
+    <string name="word_wrap_in_editor">Auto wordwrap</string>
+    <string name="show_linenumber">Show Linenumber</string>
+    <string name="show_whitespace">Show Whitespace</string>
+    <string name="auto_indent">Auto Inden</string>
+    <string name="insert_space_for_tab">Memasukkan ruang untuk Tab</string>
+    <string name="indent_size">saiz inden</string>
+    <string name="highlight_and_theme">Serlahkan dan Tema</string>
+    <string name="highlight_the_file_size_limit">saiz had fail kemuncak</string>
+    <string name="auto_save">Auto menyimpan fail</string>
+    <string name="remember_last_opened_files">Ingat fail terakhir dibuka</string>
+    <string name="remember_last_opened_files_summary">Auto terakhir dibuka membuka fail apabila permulaan</string>
+    <string name="screen_orientation">Orientasi skrin</string>
+    <string name="keep_screen_on">Pastikan skrin pada</string>
+    <string name="auto_capitalize">Auto kesempatan</string>
+    <string name="feedback">Maklumbalas</string>
+    <string name="donate">Donate</string>
+    <string name="help_translate">Terjemah permohonan ini</string>
+    <string name="about">Mengenai</string>
+    <string name="enable_highlight">membolehkan kemuncak</string>
+    <string name="version_x">Versi: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Perlu untuk membolehkan kebenaran penyimpanan membaca</string>
+    <string name="file_not_exists">Fail tidak wujud</string>
+    <string name="cannt_handle_intent_x">Tidak dapat memprosesniat:%s</string>
+    <string name="handle_intent_x_error">Ralat berlaku semasa prosesniat:%s</string>
+    <string name="verify_sign_failure">permohonan semasa anda adalah tidak rasmi, sila pergi ke https://github.com/jecelyin/920-text-editor-v2/releases memuat turun.</string>
+    <string name="press_again_will_exit">Tekan sekali lagi akan keluar</string>
+    <string name="find_replace">Cari / Ganti</string>
+    <string name="find_title">\"%s\" Cari Keputusan</string>
+    <string name="zero_matches">0 perlawanan</string>
+    <string name="chooser_browser">pelayar Chooser</string>
+    <string name="find_or_replace">Cari / Ganti...</string>
+    <string name="other_application">aplikasi lain...</string>
+    <string name="chooser_application">Chooser Permohonan</string>
+    <string name="editor_create_unknown_exception">Berlaku pengecualian diketahui apabila mencipta editor</string>
+    <string name="convert_to_uppercase">Menukar kepada huruf besar</string>
+    <string name="convert_to_lowercase">Menukar kepada huruf kecil</string>
+    <string name="duplication_text">teks Duplication</string>
+    <string name="tab_size">saiz tab</string>
+    <string name="new_version_available">Versi baru tersedia</string>
+    <string name="upgrade">Naik taraf</string>
+    <string name="new_version_update_content">Versi Terkini:%1$s\n\nPerubahan: \n%2$s</string>
+    <string name="download_progress">Memuat turun %1$d%%</string>
+    <string name="download_failure_x">Kegagalan muat turun:%s</string>
+    <string name="start_download">mula turun</string>
+    <string name="auto_check_updates">Kemas kini automatik daftar</string>
+    <string name="cannt_download">Tidak boleh memuat turun.</string>
+    <string name="readonly_mode_not_support_this_action">Mod baca sahaja tidak menyokong tindakan ini</string>
+    <string name="x_text_replaced">%d teks telah diganti</string>
+    <string name="enable_root">membolehkan Root</string>
+    <string name="my_name">Pengarang Jecelyin Peng</string>
+    <string name="qq_group">QQ Kumpulan: 87272821</string>
+    <string name="open_with_external_browser">Terbuka dengan pelayar luar</string>
+    <string name="contact_email_optional">Kenalan e-mel (pilihan)</string>
+    <string name="with_error_logs">Balak ralat</string>
+    <string name="content">Kandungan</string>
+    <string name="send">menghantar</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Maklumbalas panjang kandungan mesti lebih besar daripada %d char</string>
+    <string name="feedback_submit_error_x">Hantar ralat: %s</string>
+    <string name="submit_success">hantar kejayaan</string>
+    <string name="writing">Penulisan</string>
+    <string name="keyword">Kata-kata</string>
+    <string name="find_keyword_is_empty">Kata-kata tidak boleh kosong</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 dijumpai</item>
+        <item quantity="other">%d teks digantikan</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>English</item>
+        <item>Cina</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Tukar kepada \\n（Linux/OSX）</item>
+        <item>Tukar kepada \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>Landscape</item>
+        <item>Portrait</item>
+    </string-array>
+    <string name="exit">keluar</string>
+    <string name="unknown_exception_and_report_message_x">Tidak diketahui pengecualian, Sila beritahu saya apa yang kes ini berlaku, Terima kasih \nCode:%s</string>
+    <string name="keep_backup_file">Simpan fail sandaran</string>
+    <string name="keep_backup_file_summary">Cadangkan anda menyimpan fail sandaran, mengelakkan tersasar fail untuk pengecualian</string>
+    <string name="save_all_without_new_document_message">Simpan semua akan melangkau dokumen baru</string>
+    <string name="clear_history">Sejarah jelas</string>
+    <string name="custom_symbol_list">senarai simbol Custom</string>
+    <string name="reset">Reset</string>
+    <string name="change_theme">Tukar tema</string>
+    <string name="dark_theme">Tema Dark</string>
+    <string name="default_theme">Tema Asal</string>
+    <string name="fullscreen_mode">Mod skrin penuh</string>
+    <string name="enable_fullscreen_mode_message">Mulakan semula permohonan itu akan membolehkan mod skrin penuh</string>
+    <string name="disabled_fullscreen_mode_message">Mulakan semula permohonan itu akan mematikan mod skrin penuh</string>
+    <string name="confirm_change_theme_message">Tukar tema tidak akan menyimpan auto dokumen, anda mengesahkan dokumen membuang untuk menukar tema?</string>
 </resources>

@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Mag-navigate patungo sa home</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Mag-navigate pataas</string>
-    <string name="abc_action_menu_overflow_description">Higit pang mga opsyon</string>
-    <string name="abc_action_mode_done">Tapos na</string>
-    <string name="abc_activity_chooser_view_see_all">Tingnan lahat</string>
-    <string name="abc_activitychooserview_choose_application">Pumili ng isang app</string>
-    <string name="abc_capital_off">I-OFF</string>
-    <string name="abc_capital_on">I-ON</string>
-    <string name="abc_search_hint">Maghanap…</string>
-    <string name="abc_searchview_description_clear">I-clear ang query</string>
-    <string name="abc_searchview_description_query">Query sa paghahanap</string>
-    <string name="abc_searchview_description_search">Maghanap</string>
-    <string name="abc_searchview_description_submit">Isumite ang query</string>
-    <string name="abc_searchview_description_voice">Paghahanap gamit ang boses</string>
-    <string name="abc_shareactionprovider_share_with">Ibahagi sa/kay</string>
-    <string name="abc_shareactionprovider_share_with_application">Ibahagi sa/kay %s</string>
-    <string name="abc_toolbar_collapse_description">I-collapse</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">Email (Opsiyonal)</string>
+    <string name="crash_comment">Paano pag-crash (Opsiyonal):</string>
+    <string name="crash_report_success">Tagumpay, Salamat sa iyo!</string>
+    <string name="crash_stacktrace">stacktrace:</string>
+    <string name="crash_submit">Ipasa</string>
+    <string name="crash_submit_fail_x">Pagkabigo:%s</string>
+    <string name="network_unavailable">network Unavailable</string>
+    <string name="submitting">Ang pagpadalanang...</string>
+    <string name="can_not_be_empty">Hindi maaaring walang laman</string>
+    <string name="no_data">No Data</string>
+    <string name="try_agent">subukan muli</string>
+    <string name="search_results">Mga Resultang Paghahanap</string>
+    <string name="directory">Directory</string>
+    <string name="authenticate">patunayan</string>
+    <string name="logout">Logout</string>
+    <string name="selected_x_items">Napiling %d Items</string>
+    <string name="filename">File Name:</string>
+    <string name="file_encoding">Encoding:</string>
+    <string name="file_save">I-save ang</string>
+    <string name="root_path">ugat</string>
+    <string name="auto_detection_encoding">Auto detection encoding</string>
+    <string name="illegal_filename">illegal filename</string>
+    <string name="unknown_path">unknown landas</string>
+    <string name="open_file">Buksan ang File</string>
+    <string name="save_file">I-save ang File</string>
+    <string name="override_file_prompt">%s umiiral, huwag mong i-override ito?</string>
+    <string name="filter_by_name">Salain sa pamamagitanng Pangalan</string>
+    <string name="can_not_create_folder">Hindi makalikha folder</string>
+    <string name="can_not_share_x">ay hindi maaaring ibahagi file:%s</string>
+    <string name="cancel_select_all">Alisin sa pagkakapili ang lahat</string>
+    <string name="copy">Kopya</string>
+    <string name="create_folder">lumikhang folder</string>
+    <string name="cut">hiwa</string>
+    <string name="delete">alisin</string>
+    <string name="paste">Paki</string>
+    <string name="rename">Palitan ang pangalanng</string>
+    <string name="rename_fail">Palitan ang pangalanng kabiguan</string>
+    <string name="select_all">Piliin lahat</string>
+    <string name="share">magbahagi</string>
+    <string name="show_hidden_files">Ipakita ang mganakatagong file</string>
+    <string name="sort_by_datetime">Pagsunud-sunurin ayon Petsa</string>
+    <string name="sort_by_name">Pagsunud-sunurin ayon Pangalan</string>
+    <string name="sort_by_size">Pagsunud-sunurin ayon Size</string>
+    <string name="sort_by_type">Pagsunud-sunurin ayon sa pamamagitanng Uri</string>
+    <string name="addToDictionary">Idagdag sa talahulugan</string>
+    <string name="deleteText">Burahin Text</string>
+    <string name="replace">palitan</string>
+    <string name="textSelectionCABTitle">Piliin ang Teksto</string>
+    <string name="selectAll">Piliin lahat</string>
+    <string name="find">mahanap</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">bago</string>
+    <string name="open">bukas</string>
+    <string name="save">I-save ang</string>
+    <string name="undo">Pawalang-bisa</string>
+    <string name="redo">Gawing muli</string>
+    <string name="save_all">Iligtas lahat</string>
+    <string name="save_as">I-save bilang</string>
+    <string name="recent_files">Kamakailang mga file</string>
+    <string name="line_separator">line Break</string>
+    <string name="duplication_line">Duplication line</string>
+    <string name="find_in_files">Hanapin sa mga file</string>
+    <string name="jump_to_start">Tumalon sa simulan</string>
+    <string name="jump_to_end">Tumalon sa dulo</string>
+    <string name="goto_line">Goto linya</string>
+    <string name="back">likod</string>
+    <string name="forward">pasulong</string>
+    <string name="document_info">Impormasyon Document</string>
+    <string name="symbol">simbolo</string>
+    <string name="insert_color">insert kulay</string>
+    <string name="highlight_language">I-highlight ang wika</string>
+    <string name="encoding">Encoding</string>
+    <string name="read_only">Basahin lamang</string>
+    <string name="insert_datetime">ipasok datetime</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">tumakbo</string>
+    <string name="file">talaksan</string>
+    <string name="other">iba</string>
+    <string name="view">tingnan</string>
+    <string name="edit">Edit</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">Kumpirmahin save</string>
+    <string name="confirm_save_msg">Document %s aynagbago, ang gusto mong i-save at exit?</string>
+    <string name="yes">Oo</string>
+    <string name="no">Hindi</string>
+    <string name="cannt_access_file">Hindi ma-access ang file: %s</string>
+    <string name="cannt_read_file">Hindi mabasa ang file: %s</string>
+    <string name="ok">OK</string>
+    <string name="read_file_exception">Nangyayari exception kapagnabasa file</string>
+    <string name="init_syntax_msg">Magpasimula syntax...</string>
+    <string name="init_syntax_error">Magpasimula syntax mabibigo</string>
+    <string name="init_build_index_error">Bumuo index mabibigo</string>
+    <string name="close">malapit</string>
+    <string name="cancel">kanselahin</string>
+    <string name="convert_wrap_char">I-convert ang wrap char</string>
+    <string name="path_x">Path: %s</string>
+    <string name="char_x">Chars: %d</string>
+    <string name="word_x">Words: %d</string>
+    <string name="line_number_x">number Line: %d</string>
+    <string name="encoding_x">Encoding: %s</string>
+    <string name="tab">tab</string>
+    <string name="no_change">Walang pagbabago!</string>
+    <string name="save_success">I-save Tagumpay</string>
+    <string name="find_label">Hanapin ang ano:</string>
+    <string name="replace_label">Palitanng:</string>
+    <string name="case_sensitive">case sensitive</string>
+    <string name="whole_words_only">Buong mga salita lamang</string>
+    <string name="regex">regularna expression</string>
+    <string name="in_path">Sa Path:</string>
+    <string name="recursively">recursively</string>
+    <string name="cannot_be_empty">Hindi maaaring walang laman</string>
+    <string name="path_not_exists">Path hindi umiiral</string>
+    <string name="find_not_found">Hindi mahanap</string>
+    <string name="previous_occurrence">Previous pangyayari</string>
+    <string name="next_occurrence">Next pangyayari</string>
+    <string name="replace_all">palitan lahat</string>
+    <string name="searching">Paghahanap...</string>
+    <string name="select_lang_to_highlight">Pumiling isang wika upang i-highlight</string>
+    <string name="more_menu">Higit pang mga menu</string>
+    <string name="reopen_with_encoding">Muling buksan sa encoding</string>
+    <string name="document_changed">Documentnagbago</string>
+    <string name="give_up_document_changed_message">Document aynagbago, ang iyong mga pagbabago ay mawawala kung hindi mo i-save ang mga ito, kumpirmahin?</string>
+    <string name="preview_in_browser">Preview in browser</string>
+    <string name="use_sl4a_in_background_run_script">Gamitin SL4A sa background run script</string>
+    <string name="use_sl4a_in_terminal_run_script">Gamitin SL4A sa terminal run script</string>
+    <string name="please_save_as_file_first">lease save upang maghain unang</string>
+    <string name="run_fail_message">Nabigo Call panlabasna aplikasyon</string>
+    <string name="settings">Setting</string>
+    <string name="editor">Editor</string>
+    <string name="font">font</string>
+    <string name="default_value">default</string>
+    <string name="font_size">Laking font</string>
+    <string name="cursor_width">cursor Lapad</string>
+    <string name="touch_to_adjust_text_size">Pindutin upang baguhin ang laking teksto</string>
+    <string name="word_wrap_in_editor">auto WordWrap</string>
+    <string name="show_linenumber">show Linenumber</string>
+    <string name="show_whitespace">show Whitespace</string>
+    <string name="auto_indent">auto -indent</string>
+    <string name="insert_space_for_tab">Magsingitng espasyo para sa Tab</string>
+    <string name="indent_size">indent laki</string>
+    <string name="highlight_and_theme">I-highlight at Theme</string>
+    <string name="highlight_the_file_size_limit">laki Limit highlight file</string>
+    <string name="auto_save">Auto -save ang file</string>
+    <string name="remember_last_opened_files">Tandaan huling binuksan mga file</string>
+    <string name="remember_last_opened_files_summary">Auto open huling binuksan mga file kapag startup</string>
+    <string name="screen_orientation">Screen orientation</string>
+    <string name="keep_screen_on">Panatilihin ang screen sa</string>
+    <string name="auto_capitalize">auto magsamantala</string>
+    <string name="feedback">feedback</string>
+    <string name="donate">mag-abuloy</string>
+    <string name="help_translate">Isalin ang application</string>
+    <string name="about">tungkol sa</string>
+    <string name="enable_highlight">paganahin highlight</string>
+    <string name="version_x">Bersyon: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Kailangan mo upang paganahin ang basahin permissions storage</string>
+    <string name="file_not_exists">Ang file ay hindi umiiral</string>
+    <string name="cannt_handle_intent_x">Hindi maproseso layunin:%s</string>
+    <string name="handle_intent_x_error">Maynaganapna error kapag proseso layunin:%s</string>
+    <string name="verify_sign_failure">Ang iyong kasalukuyang application ay hindi opisyal, mangyaring pumunta sa https://github.com/jecelyin/920-text-editor-v2/releases -download ito.</string>
+    <string name="press_again_will_exit">Pindutin muli ay lumabas</string>
+    <string name="find_replace">Hanapin / Palitan</string>
+    <string name="find_title">\"%s\" Hanapin Resulta</string>
+    <string name="zero_matches">0 mga tugma</string>
+    <string name="chooser_browser">tagapili browser</string>
+    <string name="find_or_replace">Hanapin / Palitan...</string>
+    <string name="other_application">Ibang application...</string>
+    <string name="chooser_application">tagapili Application</string>
+    <string name="editor_create_unknown_exception">Nangyayari unknown exception kapag lumikha editor</string>
+    <string name="convert_to_uppercase">I-convert sa uppercase</string>
+    <string name="convert_to_lowercase">I-convert sa lowercase</string>
+    <string name="duplication_text">Duplication text</string>
+    <string name="tab_size">laki tab</string>
+    <string name="new_version_available">Bagong bersyonna magagamit</string>
+    <string name="upgrade">I-upgrade</string>
+    <string name="new_version_update_content">Pinakabagong Bersyon: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Nagda-downloadng %1$d%%</string>
+    <string name="download_failure_x">I-download ang kabiguan: %s</string>
+    <string name="start_download">Start download</string>
+    <string name="auto_check_updates">update Auto check</string>
+    <string name="cannt_download">Hindi ma-download.</string>
+    <string name="readonly_mode_not_support_this_action">Read-only mode ay hindi sumusuporta sa ang aksyonna ito</string>
+    <string name="x_text_replaced">%d text ay pinalitan</string>
+    <string name="enable_root">paganahin Root</string>
+    <string name="my_name">Author: Jecelyin Peng</string>
+    <string name="qq_group">QQ grupo: 87272821</string>
+    <string name="open_with_external_browser">Buksan gamit ang panlabasna browser</string>
+    <string name="contact_email_optional">Makipag-ugnay sa email (opsyonal)</string>
+    <string name="with_error_logs">error Logs</string>
+    <string name="content">nilalaman</string>
+    <string name="send">magpadala</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Feedback habangnilalaman ay dapatna mas malaki kaysa sa %d char</string>
+    <string name="feedback_submit_error_x">Isumite ang error: %s</string>
+    <string name="submit_success">Isumite ang tagumpay</string>
+    <string name="writing">pagsulat</string>
+    <string name="keyword">keyword</string>
+    <string name="find_keyword_is_empty">Keyword Hindi maaaring walang laman</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0natagpuan</item>
+        <item quantity="other">%d text papalitan</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Ingles</item>
+        <item>Tsino</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>tanawin</item>
+        <item>larawan</item>
+    </string-array>
+    <string name="exit">lumabas</string>
+    <string name="unknown_exception_and_report_message_x">Unknown exception, Mangyaring sabihin sa akin kung ano ang kasong itonangyayari, Salamat sa iyo \nCode:%s</string>
+    <string name="keep_backup_file">Panatilihin ang isang backup file</string>
+    <string name="keep_backup_file_summary">Magmungkahing mong panatilihin backup file, iwasan misses file para exception</string>
+    <string name="save_all_without_new_document_message">I-save ang lahat ay laktawan bagong dokumento</string>
+    <string name="clear_history">clear History</string>
+    <string name="custom_symbol_list">listahan Custom simbolo</string>
+    <string name="reset">I-reset</string>
+    <string name="change_theme">Baguhin ang tema</string>
+    <string name="dark_theme">dark Theme</string>
+    <string name="default_theme">default Theme</string>
+    <string name="fullscreen_mode">fullscreen Mode</string>
+    <string name="enable_fullscreen_mode_message">I-restart ang application ay paganahin ang full screen mode</string>
+    <string name="disabled_fullscreen_mode_message">I-restart ang application ay hindi paganahin ang full screen mode</string>
+    <string name="confirm_change_theme_message">Baguhin ang tema ay hindi auto save ang mga dokumento, kumpirmahin mo itapon dokumento upang baguhin ang tema?</string>
 </resources>

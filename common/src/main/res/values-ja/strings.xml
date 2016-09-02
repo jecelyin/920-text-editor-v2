@@ -25,7 +25,7 @@
     <string name="crash_report_success">成功は、ありがとうございます！</string>
     <string name="crash_stacktrace">スタックトレース：</string>
     <string name="crash_submit">提出します</string>
-    <string name="crash_submit_fail_x">失敗： ％ sの</string>
+    <string name="crash_submit_fail_x">失敗： %s</string>
     <string name="network_unavailable">利用できないネットワーク</string>
     <string name="submitting">送信しています...</string>
     <string name="can_not_be_empty">空にすることはできません</string>
@@ -35,7 +35,7 @@
     <string name="directory">Error</string>
     <string name="authenticate">認証する</string>
     <string name="logout">ログアウト</string>
-    <string name="selected_x_items">選択した％ d個のアイテム</string>
+    <string name="selected_x_items">選択した %d 個のアイテム</string>
     <string name="filename">ファイル名：</string>
     <string name="file_encoding">エンコーディング：</string>
     <string name="file_save">セーブ</string>
@@ -45,10 +45,10 @@
     <string name="unknown_path">未知のパス</string>
     <string name="open_file">オープンファイル</string>
     <string name="save_file">ファイルを保存</string>
-    <string name="override_file_prompt">％ sが存在し、あなたはそれを上書きしますか？</string>
+    <string name="override_file_prompt">%s が存在し、あなたはそれを上書きしますか？</string>
     <string name="filter_by_name">名前によるフィルタ</string>
     <string name="can_not_create_folder">フォルダを作成することはできません。</string>
-    <string name="can_not_share_x">ファイルを共有することはできません： ％ sの</string>
+    <string name="can_not_share_x">ファイルを共有することはできません： %s</string>
     <string name="cancel_select_all">すべての選択を解除</string>
     <string name="copy">コピー</string>
     <string name="create_folder">フォルダーを作る</string>
@@ -100,13 +100,13 @@
     <string name="other">他の</string>
     <string name="view">ビュー</string>
     <string name="edit">編集</string>
-    <string name="new_filename">無題％ dの</string>
+    <string name="new_filename">無題%d</string>
     <string name="confirm_save">保存確認</string>
-    <string name="confirm_save_msg">ドキュメント％ sは、変更あなたが保存して終了したいですか？</string>
+    <string name="confirm_save_msg">ドキュメント %s は、変更あなたが保存して終了したいですか？</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-    <string name="cannt_access_file">ファイルにアクセスできません： ％ sの</string>
-    <string name="cannt_read_file">ファイルを読み取ることができません： ％ sの</string>
+    <string name="cannt_access_file">ファイルにアクセスできません：%s</string>
+    <string name="cannt_read_file">ファイルを読み取ることができません：%s</string>
     <string name="ok">[OK]</string>
     <string name="read_file_exception">ファイルを読み込むときに、例外を発生します。</string>
     <string name="init_syntax_msg">構文を初期化します...</string>
@@ -115,11 +115,11 @@
     <string name="close">閉じる</string>
     <string name="cancel">キャンセル</string>
     <string name="convert_wrap_char">ラップ文字を変換します</string>
-    <string name="path_x">パス： ％ sの</string>
-    <string name="char_x">文字数： ％d件</string>
-    <string name="word_x">言葉： ％d件</string>
-    <string name="line_number_x">行番号： ％dの</string>
-    <string name="encoding_x">エンコード： ％ sの</string>
+    <string name="path_x">パス：%s</string>
+    <string name="char_x">文字数：%d</string>
+    <string name="word_x">言葉：%d</string>
+    <string name="line_number_x">行番号：%d</string>
+    <string name="encoding_x">エンコード：%s</string>
     <string name="tab">タブ</string>
     <string name="no_change">変化なし！</string>
     <string name="save_success">保存成功</string>
@@ -173,15 +173,15 @@
     <string name="help_translate">このアプリケーションを翻訳</string>
     <string name="about">約</string>
     <string name="enable_highlight">ハイライトを有効にします</string>
-    <string name="version_x">バージョン： ％ sの</string>
+    <string name="version_x">バージョン： %s</string>
     <string name="need_to_enable_read_storage_permissions">読みストレージ権限を有効にする必要があります</string>
     <string name="file_not_exists">いない存在するファイル</string>
-    <string name="cannt_handle_intent_x">意図を処理することはできません： ％ sの</string>
-    <string name="handle_intent_x_error">エラーがときに、プロセスの意図を発生しました： ％ sの</string>
+    <string name="cannt_handle_intent_x">意図を処理することはできません： %s</string>
+    <string name="handle_intent_x_error">エラーがときに、プロセスの意図を発生しました： %s</string>
     <string name="verify_sign_failure">あなたの現在のアプリケーションではなく、公式である、それをダウンロードhttps://github.com/jecelyin/920-text-editor-v2/releasesをご覧ください。</string>
     <string name="press_again_will_exit">もう一度押すと終了します</string>
     <string name="find_replace">検索/置換</string>
-    <string name="find_title">\"％s \"の結果を探します</string>
+    <string name="find_title">\"%s\" 結果を探します</string>
     <string name="zero_matches">0試合</string>
     <string name="chooser_browser">セレクタブラウザ</string>
     <string name="find_or_replace">検索/置換...</string>
@@ -194,16 +194,16 @@
     <string name="tab_size">タブサイズ</string>
     <string name="new_version_available">利用可能な新バージョン</string>
     <string name="upgrade">アップグレード</string>
-    <string name="new_version_update_content">最新バージョン： ％ 1 $ sの\n個の\のnChangesます：\n ％ 2 $ sの</string>
-    <string name="download_progress">％ 1 $ d個の%%をダウンロード</string>
-    <string name="download_failure_x">失敗をダウンロードしてください： ％ sの</string>
+    <string name="new_version_update_content">最新バージョン：%1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Downloading %1$d%%</string>
+    <string name="download_failure_x">Download failure: %s</string>
     <string name="start_download">ダウンロードを開始します</string>
     <string name="auto_check_updates">自動チェックアップデート</string>
     <string name="cannt_download">ダウンロードできません。</string>
     <string name="readonly_mode_not_support_this_action">読み取り専用モードでは、このアクションをサポートしていません</string>
-    <string name="x_text_replaced">％ dのテキストが置き換えられています</string>
+    <string name="x_text_replaced">%d のテキストが置き換えられています</string>
     <string name="enable_root">ルートを有効にします</string>
-    <string name="my_name">著者： Jecelyin鵬</string>
+    <string name="my_name">著者： Jecelyin Peng</string>
     <string name="qq_group">QQグループ： 87272821</string>
     <string name="open_with_external_browser">外部ブラウザで開きます</string>
     <string name="contact_email_optional">連絡先の電子メール（オプション）</string>
@@ -218,15 +218,15 @@
     <string name="find_keyword_is_empty">キーワードは空白にすることはできません</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0見つかりました</item>
-        <item quantity="other">％ d個のテキストが置き換えられ</item>
+        <item quantity="other">%d 個のテキストが置き換えられ</item>
     </plurals>
     <string-array name="insert_datetime_lang">
         <item>英語</item>
         <item>中国語</item>
     </string-array>
     <string-array name="wrap_char_list">
-        <item>n個を\\に変換する（Linux / OSX ）</item>
-        <item>R \\n個を\\に変換します（ Windowsの場合）</item>
+        <item>変換 \\n（Linux/OSX）</item>
+        <item>変換 \\r\\n（Windows）</item>
     </string-array>
     <string-array name="screen_orientation">
         <item>オート</item>
@@ -234,7 +234,7 @@
         <item>肖像画</item>
     </string-array>
     <string name="exit">出口</string>
-    <string name="unknown_exception_and_report_message_x">不明な例外は、あなたがnCode社を\ありがとう、起こってこのような場合であるものを教えてください： ％ sの</string>
+    <string name="unknown_exception_and_report_message_x">不明な例外は、あなたがnCode社を\ありがとう、起こってこのような場合であるものを教えてください：%s</string>
     <string name="keep_backup_file">バックアップファイルを保管してください</string>
     <string name="keep_backup_file_summary">あなたは、バックアップファイルを保持例外のファイルのミスを避ける提案</string>
     <string name="save_all_without_new_document_message">すべての新しいドキュメントをスキップします保存</string>

@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Visa startsidan</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Navigera uppåt</string>
-    <string name="abc_action_menu_overflow_description">Fler alternativ</string>
-    <string name="abc_action_mode_done">Klart</string>
-    <string name="abc_activity_chooser_view_see_all">Visa alla</string>
-    <string name="abc_activitychooserview_choose_application">Välj en app</string>
-    <string name="abc_capital_off">AV</string>
-    <string name="abc_capital_on">PÅ</string>
-    <string name="abc_search_hint">Sök …</string>
-    <string name="abc_searchview_description_clear">Ta bort frågan</string>
-    <string name="abc_searchview_description_query">Sökfråga</string>
-    <string name="abc_searchview_description_search">Sök</string>
-    <string name="abc_searchview_description_submit">Skicka fråga</string>
-    <string name="abc_searchview_description_voice">Röstsökning</string>
-    <string name="abc_shareactionprovider_share_with">Dela med</string>
-    <string name="abc_shareactionprovider_share_with_application">Dela med %s</string>
-    <string name="abc_toolbar_collapse_description">Komprimera</string>
-    <string name="status_bar_notification_info_overflow">>999</string>
+    <string name="crash_report">Crash Report</string>
+    <string name="crash_contact">E-post (tillval )</string>
+    <string name="crash_comment">Hur att krascha (tillval ):</string>
+    <string name="crash_report_success">Framgång, tack !</string>
+    <string name="crash_stacktrace">stacktrace:</string>
+    <string name="crash_submit">Skicka</string>
+    <string name="crash_submit_fail_x">Fel: %s</string>
+    <string name="network_unavailable">nätverk Ej tillgänglig</string>
+    <string name="submitting">Skickar...</string>
+    <string name="can_not_be_empty">Kan inte vara tom</string>
+    <string name="no_data">Inga data</string>
+    <string name="try_agent">Försök igen</string>
+    <string name="search_results">sökresultat</string>
+    <string name="directory">katalog</string>
+    <string name="authenticate">autentisera</string>
+    <string name="logout">Logga ut</string>
+    <string name="selected_x_items">Valda %d objekt</string>
+    <string name="filename">Filnamn:</string>
+    <string name="file_encoding">kodning:</string>
+    <string name="file_save">Spara</string>
+    <string name="root_path">Rot</string>
+    <string name="auto_detection_encoding">Automatiska detektionskodning</string>
+    <string name="illegal_filename">olagligt filnamn</string>
+    <string name="unknown_path">okänd bana</string>
+    <string name="open_file">Öppna fil</string>
+    <string name="save_file">Spara fil</string>
+    <string name="override_file_prompt">%s existerar, du åsidosätta den?</string>
+    <string name="filter_by_name">Filtrera efternamn</string>
+    <string name="can_not_create_folder">Kan inte skapa mapp</string>
+    <string name="can_not_share_x">Det går inte att dela filen: %s</string>
+    <string name="cancel_select_all">Avmarkera alla</string>
+    <string name="copy">Kopiera</string>
+    <string name="create_folder">Skapa mapp</string>
+    <string name="cut">Skära</string>
+    <string name="delete">Radera</string>
+    <string name="paste">Klistra in</string>
+    <string name="rename">Döpa om</string>
+    <string name="rename_fail">döpa om misslyckande</string>
+    <string name="select_all">Välj alla</string>
+    <string name="share">Dela med sig</string>
+    <string name="show_hidden_files">Visa dolda filer</string>
+    <string name="sort_by_datetime">Sortera efter datum</string>
+    <string name="sort_by_name">Sortera efternamn</string>
+    <string name="sort_by_size">Sortera efter storlek</string>
+    <string name="sort_by_type">Sortera efter typ</string>
+    <string name="addToDictionary">Lägg till i ordlista</string>
+    <string name="deleteText">Radera text</string>
+    <string name="replace">Byta ut</string>
+    <string name="textSelectionCABTitle">Välj Text</string>
+    <string name="selectAll">Välj alla</string>
+    <string name="find">Hitta</string>
+    <string name="app_name">920 Textredigeraren</string>
+    <string name="new_file">Ny</string>
+    <string name="open">Öppen</string>
+    <string name="save">Spara</string>
+    <string name="undo">Ångra</string>
+    <string name="redo">Göra om</string>
+    <string name="save_all">Rädda alla</string>
+    <string name="save_as">Spara som</string>
+    <string name="recent_files">senaste filer</string>
+    <string name="line_separator">Radbrytning</string>
+    <string name="duplication_line">duplicering linje</string>
+    <string name="find_in_files">Hitta i filer</string>
+    <string name="jump_to_start">Hoppa för att starta</string>
+    <string name="jump_to_end">Hoppa till slutet</string>
+    <string name="goto_line">goto linje</string>
+    <string name="back">Tillbaka</string>
+    <string name="forward">Framåt</string>
+    <string name="document_info">dokument~~POS=TRUNC</string>
+    <string name="symbol">Symbol</string>
+    <string name="insert_color">Sätt färg</string>
+    <string name="highlight_language">markera språk</string>
+    <string name="encoding">kodning</string>
+    <string name="read_only">read only</string>
+    <string name="insert_datetime">infoga datetime</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">Springa</string>
+    <string name="file">Fil</string>
+    <string name="other">Andra</string>
+    <string name="view">Se</string>
+    <string name="edit">Redigera</string>
+    <string name="new_filename">untitled %d</string>
+    <string name="confirm_save">Bekräfta spara</string>
+    <string name="confirm_save_msg">Dokument %s har ändrats, vill du spara och avsluta?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="cannt_access_file">Det går inte att komma åt filen: %s</string>
+    <string name="cannt_read_file">Det går inte att läsa filen: %s</string>
+    <string name="ok">ok</string>
+    <string name="read_file_exception">Inträffar undantagnär läsa filen</string>
+    <string name="init_syntax_msg">Initiera syntax...</string>
+    <string name="init_syntax_error">Initiera syntax misslyckas</string>
+    <string name="init_build_index_error">Bygga index misslyckas</string>
+    <string name="close">Stänga</string>
+    <string name="cancel">Annullera</string>
+    <string name="convert_wrap_char">Konvertera wrap char</string>
+    <string name="path_x">Path: %s</string>
+    <string name="char_x">Tecken: %d</string>
+    <string name="word_x">Ord: %d</string>
+    <string name="line_number_x">Radnummer: %d</string>
+    <string name="encoding_x">Kodning: %s</string>
+    <string name="tab">Flik</string>
+    <string name="no_change">Ingen förändring!</string>
+    <string name="save_success">Spara Framgång</string>
+    <string name="find_label">Hitta vad:</string>
+    <string name="replace_label">Ersätta med:</string>
+    <string name="case_sensitive">Skiftlägeskänsliga</string>
+    <string name="whole_words_only">endast hela ord</string>
+    <string name="regex">Vanligt uttryck</string>
+    <string name="in_path">I Path:</string>
+    <string name="recursively">rekursivt</string>
+    <string name="cannot_be_empty">Kan inte vara tom</string>
+    <string name="path_not_exists">Banan inte existerar</string>
+    <string name="find_not_found">Hittades inte</string>
+    <string name="previous_occurrence">tidigare förekomst</string>
+    <string name="next_occurrence">Nästa Förekomst</string>
+    <string name="replace_all">Ersätt alla</string>
+    <string name="searching">Sök…</string>
+    <string name="select_lang_to_highlight">Välj ett språk för att markera</string>
+    <string name="more_menu">menyn mer</string>
+    <string name="reopen_with_encoding">Återuppta med kodning</string>
+    <string name="document_changed">dokument har ändrats</string>
+    <string name="give_up_document_changed_message">Dokument har förändrats, dina ändringar kommer att gå förlorade om du inte sparar dem, bekräfta?</string>
+    <string name="preview_in_browser">Förhandsvisning i webbläsare</string>
+    <string name="use_sl4a_in_background_run_script">Använd SL4A i bakgrunden kör skript</string>
+    <string name="use_sl4a_in_terminal_run_script">Använd SL4A i terminal kör skript</string>
+    <string name="please_save_as_file_first">leasing spara till fil först</string>
+    <string name="run_fail_message">Samtals externt program misslyckades</string>
+    <string name="settings">inställningar</string>
+    <string name="editor">Redaktör</string>
+    <string name="font">Font</string>
+    <string name="default_value">Standard</string>
+    <string name="font_size">Textstorlek</string>
+    <string name="cursor_width">markören Bredd</string>
+    <string name="touch_to_adjust_text_size">Tryck här för att ändra textstorlek</string>
+    <string name="word_wrap_in_editor">auto wordwrap</string>
+    <string name="show_linenumber">show Linenumber</string>
+    <string name="show_whitespace">Visa blanktecken</string>
+    <string name="auto_indent">Automatiskt indrag</string>
+    <string name="insert_space_for_tab">Infoga utrymme för Tab</string>
+    <string name="indent_size">indrag storlek</string>
+    <string name="highlight_and_theme">Markera och Tema</string>
+    <string name="highlight_the_file_size_limit">Gräns markera filstorlek</string>
+    <string name="auto_save">Autosparfilen</string>
+    <string name="remember_last_opened_files">Kom ihåg senast öppnade filer</string>
+    <string name="remember_last_opened_files_summary">Auto öppna senast öppnade filernär start</string>
+    <string name="screen_orientation">Skärmorientering</string>
+    <string name="keep_screen_on">Håll skärmen på</string>
+    <string name="auto_capitalize">auto kapitalisera</string>
+    <string name="feedback">Återkoppling</string>
+    <string name="donate">Donera</string>
+    <string name="help_translate">Översätta denna applikation</string>
+    <string name="about">Handla om</string>
+    <string name="enable_highlight">aktivera höjdpunkt</string>
+    <string name="version_x">Version: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Fordras läsa lagrings behörigheter</string>
+    <string name="file_not_exists">Fil inte existerar</string>
+    <string name="cannt_handle_intent_x">Kan inte behandla uppsåt: %s</string>
+    <string name="handle_intent_x_error">Ett fel uppstodnär processen uppsåt: %s</string>
+    <string name="verify_sign_failure">Din aktuella ansökan är inte officiell, gå till https://github.com/jecelyin/920-text-editor-v2/releases hämta den.</string>
+    <string name="press_again_will_exit">Tryck igen för att avsluta</string>
+    <string name="find_replace">Sök / Ersätt</string>
+    <string name="find_title">\"%s\" Hitta Resultat</string>
+    <string name="zero_matches">0 matchningar</string>
+    <string name="chooser_browser">Väljaren webbläsare</string>
+    <string name="find_or_replace">Sök / Ersätt...</string>
+    <string name="other_application">Andra program...</string>
+    <string name="chooser_application">Väljaren Application</string>
+    <string name="editor_create_unknown_exception">Inträffar okänt undantagnär skapa redaktör</string>
+    <string name="convert_to_uppercase">Konvertera till versaler</string>
+    <string name="convert_to_lowercase">Konvertera till gemener</string>
+    <string name="duplication_text">duplicering text</string>
+    <string name="tab_size">fliken storlek</string>
+    <string name="new_version_available">Ny version tillgänglig</string>
+    <string name="upgrade">uppgradering</string>
+    <string name="new_version_update_content">Senaste version: %1$s\n\nÄndringarna:\n%2$s</string>
+    <string name="download_progress">Nedladdning av %1$d%%</string>
+    <string name="download_failure_x">Hämta fel: %s</string>
+    <string name="start_download">Startanedladdning</string>
+    <string name="auto_check_updates">uppdateringar auto check</string>
+    <string name="cannt_download">Det går inte att hämta.</string>
+    <string name="readonly_mode_not_support_this_action">Skrivskyddat  läge inte stödja denna åtgärd</string>
+    <string name="x_text_replaced">%d text har ersatts</string>
+    <string name="enable_root">aktivera root</string>
+    <string name="my_name">Författare: Jecelyin Peng</string>
+    <string name="qq_group">QQ Grupp: 87272821</string>
+    <string name="open_with_external_browser">Öppna med extern webbläsare</string>
+    <string name="contact_email_optional">Kontakta e-post (tillval )</string>
+    <string name="with_error_logs">felloggar</string>
+    <string name="content">Innehåll</string>
+    <string name="send">Skicka</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Feedback innehållslängden måste vara större än %d char</string>
+    <string name="feedback_submit_error_x">Skicka in fel: %s</string>
+    <string name="submit_success">lämna framgång</string>
+    <string name="writing">Skrift</string>
+    <string name="keyword">Nyckelord</string>
+    <string name="find_keyword_is_empty">Sökord kan inte vara tom</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 hittade</item>
+        <item quantity="other">%d texten ersättas</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Engelska</item>
+        <item>kinesisk</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Konvertera till \\n（Linux/OSX）</item>
+        <item>Konvertera till \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Bil</item>
+        <item>Landskap</item>
+        <item>Porträtt</item>
+    </string-array>
+    <string name="exit">Utgång</string>
+    <string name="unknown_exception_and_report_message_x">Okänd undantag, säg vad är detta fall händer, tack \nCode: %s</string>
+    <string name="keep_backup_file">Håll en säkerhetskopia</string>
+    <string name="keep_backup_file_summary">Föreslår att du håller säkerhetskopior, undvika fil missar för undantag</string>
+    <string name="save_all_without_new_document_message">Spara alla hopparnytt dokument</string>
+    <string name="clear_history">Rensa historik</string>
+    <string name="custom_symbol_list">Anpassad symbol listan</string>
+    <string name="reset">Återställa</string>
+    <string name="change_theme">Byta tema</string>
+    <string name="dark_theme">mörkt tema</string>
+    <string name="default_theme">standard~~POS=TRUNC</string>
+    <string name="fullscreen_mode">Fullskärmsläge</string>
+    <string name="enable_fullscreen_mode_message">Starta programmet gör det möjligt för helskärmsläge</string>
+    <string name="disabled_fullscreen_mode_message">Starta programmet kommer att stänga av fullskärmsläge</string>
+    <string name="confirm_change_theme_message">Ändra tema kommer inte automatiskt spara dokument, bekräftar du kasse dokument att ändra tema?</string>
 </resources>

@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
     <string name="crash_report">崩溃报告</string>
     <string name="crash_contact">Email（可选）</string>
@@ -181,9 +200,6 @@
     <string name="new_version_available">发现新版本</string>
     <string name="upgrade">更新</string>
     <string name="new_version_update_content">最新版本: %1$s\n\n更新日志:\n%2$s</string>
-    <string name="download_progress">正在下载：%1$d%%</string>
-    <string name="download_failure_x">下载失败：%s</string>
-    <string name="start_download">开始下载</string>
     <string name="auto_check_updates">自动检查更新</string>
     <string name="cannt_download">无法下载</string>
     <string name="readonly_mode_not_support_this_action">只读模式不支持此操作</string>

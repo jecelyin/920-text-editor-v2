@@ -1,22 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Boshiga o‘tish</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Yuqoriga o‘tish</string>
-    <string name="abc_action_menu_overflow_description">Qo‘shimcha sozlamalar</string>
-    <string name="abc_action_mode_done">Tayyor</string>
-    <string name="abc_activity_chooser_view_see_all">Barchasini ko‘rish</string>
-    <string name="abc_activitychooserview_choose_application">Dastur tanlang</string>
-    <string name="abc_capital_off">O‘CHIQ</string>
-    <string name="abc_capital_on">YONIQ</string>
-    <string name="abc_search_hint">Qidirish…</string>
-    <string name="abc_searchview_description_clear">So‘rovni tozalash</string>
-    <string name="abc_searchview_description_query">So‘rovni izlash</string>
-    <string name="abc_searchview_description_search">Qidirish</string>
-    <string name="abc_searchview_description_submit">So‘rov yaratish</string>
-    <string name="abc_searchview_description_voice">Ovozli qidiruv</string>
-    <string name="abc_shareactionprovider_share_with">Bo‘lishish:</string>
-    <string name="abc_toolbar_collapse_description">Yig‘ish</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="crash_report">Crash Hisobot</string>
+    <string name="crash_contact">Email (majburiy emas )</string>
+    <string name="crash_comment">(Majburiy emas ) qulab tushgan qanday:</string>
+    <string name="crash_report_success">Muvaffaqiyat, rahmat !</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Submit</string>
+    <string name="crash_submit_fail_x">Etishmovchiligi: %s</string>
+    <string name="network_unavailable">Mavjud emas Network</string>
+    <string name="submitting">Topshirish...</string>
+    <string name="can_not_be_empty">bo'sh bo'lishi mumkin emas</string>
+    <string name="no_data">No Data</string>
+    <string name="try_agent">Qayta urinib ko'ring</string>
+    <string name="search_results">Qidiruvnatijalari</string>
+    <string name="directory">Directory</string>
+    <string name="authenticate">rasmiylashtirmoq</string>
+    <string name="logout">Chiqish</string>
+    <string name="selected_x_items">Tanlangan %d mahsulotlari</string>
+    <string name="filename">Faylnomi:</string>
+    <string name="file_encoding">kodlash:</string>
+    <string name="file_save">saqlash</string>
+    <string name="root_path">ildiz</string>
+    <string name="auto_detection_encoding">Avto va yomonni farq kodlash</string>
+    <string name="illegal_filename">noqonuniy filename</string>
+    <string name="unknown_path">noma'lum path</string>
+    <string name="open_file">Open File</string>
+    <string name="save_file">File saqlash</string>
+    <string name="override_file_prompt">%s mavjud, uni bekor qilasiz?</string>
+    <string name="filter_by_name">Nomi bo'yicha filtrlash</string>
+    <string name="can_not_create_folder">jildni yaratib bo'lmadi</string>
+    <string name="can_not_share_x">Faylni almashish mumkin emas: %s</string>
+    <string name="cancel_select_all">Barchasini bekor</string>
+    <string name="copy">nusxa</string>
+    <string name="create_folder">papkani yaratish</string>
+    <string name="cut">kesilgan</string>
+    <string name="delete">o'chirish</string>
+    <string name="paste">Paste</string>
+    <string name="rename">Nomini o'zgartirish</string>
+    <string name="rename_fail">qobiliyatsiznomini o'zgartirish</string>
+    <string name="select_all">Hammasini belgilash</string>
+    <string name="share">Share</string>
+    <string name="show_hidden_files">yashirin fayllar</string>
+    <string name="sort_by_datetime">Sana bo'yicha saralash</string>
+    <string name="sort_by_name">Nomi bo'yicha saralash</string>
+    <string name="sort_by_size">Hajmi bo'yicha saralash</string>
+    <string name="sort_by_type">Turi bo'yicha saralash</string>
+    <string name="addToDictionary">Lug'atga qo'shish</string>
+    <string name="deleteText">matni o'chirish</string>
+    <string name="replace">almashtiring</string>
+    <string name="textSelectionCABTitle">tanlang Matn</string>
+    <string name="selectAll">Hammasini belgilash</string>
+    <string name="find">topish</string>
+    <string name="app_name">920 Matn muharriri</string>
+    <string name="new_file">yangi</string>
+    <string name="open">ochiq</string>
+    <string name="save">saqlash</string>
+    <string name="undo">bartaraf</string>
+    <string name="redo">qayta</string>
+    <string name="save_all">saqlash barcha</string>
+    <string name="save_as">sifatida saqlash</string>
+    <string name="recent_files">Yangi fayllar</string>
+    <string name="line_separator">Line break</string>
+    <string name="duplication_line">sonini ko'paytirish liniyasi</string>
+    <string name="find_in_files">fayllarni topishingiz</string>
+    <string name="jump_to_start">boshlash O'tish</string>
+    <string name="jump_to_end">oxirida O'tish</string>
+    <string name="goto_line">Goto liniyasi</string>
+    <string name="back">orqaga</string>
+    <string name="forward">olg'a</string>
+    <string name="document_info">hujjat ma'lumot</string>
+    <string name="symbol">belgi</string>
+    <string name="insert_color">Insert rang</string>
+    <string name="highlight_language">ta'kidlash tili</string>
+    <string name="encoding">kodlash</string>
+    <string name="read_only">Faqat o'qish</string>
+    <string name="insert_datetime">DATETIME joylashtiring</string>
+    <string name="edit_mode">Edit Mode</string>
+    <string name="run">yugurish</string>
+    <string name="file">Fayl</string>
+    <string name="other">boshqa</string>
+    <string name="view">ko'rinish</string>
+    <string name="edit">Edit</string>
+    <string name="new_filename">Untitled %d</string>
+    <string name="confirm_save">saqlab tasdiqlang</string>
+    <string name="confirm_save_msg">Document %s has changed，do you want to save and exit?</string>
+    <string name="yes">ha</string>
+    <string name="no">yo'q</string>
+    <string name="cannt_access_file">Faylni kirish mumkin emas: %s</string>
+    <string name="cannt_read_file">Faylni o'qib bo'lmadi: %s</string>
+    <string name="ok">OK</string>
+    <string name="read_file_exception">Faylni o'qib istisno uchraydi</string>
+    <string name="init_syntax_msg">Matnni sintaksisi rang boshla...</string>
+    <string name="init_syntax_error">Matnni sintaksisi rang barbod boshla</string>
+    <string name="init_build_index_error">muvaffaqiyatsizlikka katalog yaratish</string>
+    <string name="close">yaqin</string>
+    <string name="cancel">Bekor qilish</string>
+    <string name="convert_wrap_char">o'tkazish CHAR aylantirish</string>
+    <string name="path_x">Yo'l: %s</string>
+    <string name="char_x">Belgilar: %d</string>
+    <string name="word_x">So'zlar: %d</string>
+    <string name="line_number_x">Satr raqami: %d</string>
+    <string name="encoding_x">Kodlash: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">No o'zgarish !</string>
+    <string name="save_success">saqlash muvaffaqiyati</string>
+    <string name="find_label">Topasiz:</string>
+    <string name="replace_label">Bilan almashtiring:</string>
+    <string name="case_sensitive">Katta-kichik harfni farqlash</string>
+    <string name="whole_words_only">Barcha so'zlar faqat</string>
+    <string name="regex">muntazam ifoda</string>
+    <string name="in_path">Yo'ldan:</string>
+    <string name="recursively">özyinelemeli</string>
+    <string name="cannot_be_empty">bo'sh bo'lishi mumkin emas</string>
+    <string name="path_not_exists">Yo'l emas mavjud</string>
+    <string name="find_not_found">Topilmadi</string>
+    <string name="previous_occurrence">Oldingi paydo</string>
+    <string name="next_occurrence">Keyingi paydo</string>
+    <string name="replace_all">Hammasini almashtirish</string>
+    <string name="searching">Qidiruv...</string>
+    <string name="select_lang_to_highlight">ta'kidlash uchun tilni tanlang</string>
+    <string name="more_menu">Qo'shimcha menyu</string>
+    <string name="reopen_with_encoding">kodlash bilan qayta</string>
+    <string name="document_changed">hujjat o'zgardi</string>
+    <string name="give_up_document_changed_message">Hujjat siz ularni saqlash bo'lmasa sizning o'zgarishlar yo'qoladi, o'zgardi, tasdiqlash?</string>
+    <string name="preview_in_browser">brauzerida Ko'rib chiqish</string>
+    <string name="use_sl4a_in_background_run_script">fon Run alifbosida SL4A foydalaning</string>
+    <string name="use_sl4a_in_terminal_run_script">terminal ishga tushirish alifbosida SL4A foydalaning</string>
+    <string name="please_save_as_file_first">lizing birinchi faylga yozib oling</string>
+    <string name="run_fail_message">Call tashqi Dastur Muvaffaqiyatsiz</string>
+    <string name="settings">Sozlamalar</string>
+    <string name="editor">muharrir</string>
+    <string name="font">shrift</string>
+    <string name="default_value">Default</string>
+    <string name="font_size">shrift o'lchami</string>
+    <string name="cursor_width">kursor kengligi</string>
+    <string name="touch_to_adjust_text_size">matn o'lchamini o'zgartirish uchun bosing</string>
+    <string name="word_wrap_in_editor">Avto WordWrap</string>
+    <string name="show_linenumber">Show Linenumber</string>
+    <string name="show_whitespace">Show bo'shliqlar</string>
+    <string name="auto_indent">avtomatik tab</string>
+    <string name="insert_space_for_tab">Tab uchun joy joylashtiring</string>
+    <string name="indent_size">indent hajmi</string>
+    <string name="highlight_and_theme">Ta'kidlash va Mavzuni</string>
+    <string name="highlight_the_file_size_limit">Limit ta'kidlash Fayl hajmi</string>
+    <string name="auto_save">Avto faylni saqlab</string>
+    <string name="remember_last_opened_files">O'tgan ochildi fayllarni eslab</string>
+    <string name="remember_last_opened_files_summary">ochiq Avto so'nggi paytda boshlang'ich fayllarni ochib</string>
+    <string name="screen_orientation">Screen Yo'llanma</string>
+    <string name="keep_screen_on">ekranni saqlang</string>
+    <string name="auto_capitalize">Avto xarfdan</string>
+    <string name="feedback">aloqa</string>
+    <string name="donate">hadya etmoq</string>
+    <string name="help_translate">Bu dasturni tarjima</string>
+    <string name="about">atrofida</string>
+    <string name="enable_highlight">ta'kidlash yoqish</string>
+    <string name="version_x">Version: %s</string>
+    <string name="need_to_enable_read_storage_permissions">o'qib saqlash ruxsatini faollashtirish kerak</string>
+    <string name="file_not_exists">emas, balki mavjud Fayl</string>
+    <string name="cannt_handle_intent_x">sa'y-harakatlarimizni qayta bo'lmadi:%s</string>
+    <string name="handle_intent_x_error">Xato bo'lsa jarayoni sa'y-harakatlarimizni yuz berdi: %s</string>
+    <string name="verify_sign_failure">Sizning hozirgi dastur emas rasmiy emas, uni yuklab https://github.com/jecelyin/920-text-editor-v2/releases o'ting iltimos.</string>
+    <string name="press_again_will_exit">Matbuot yana chiqish qiladi</string>
+    <string name="find_replace">Topish / almashtirish</string>
+    <string name="find_title">\"%s\"natijalari topish</string>
+    <string name="zero_matches">0 o'yinlari</string>
+    <string name="chooser_browser">tanlovchi brauzer</string>
+    <string name="find_or_replace">Almashtiring / top...</string>
+    <string name="other_application">Boshqa dastur...</string>
+    <string name="chooser_application">tanlovchi Application</string>
+    <string name="editor_create_unknown_exception">muharriri yaratishnoma'lum istisno uchraydi</string>
+    <string name="convert_to_uppercase">bosh harfga aylantirish</string>
+    <string name="convert_to_lowercase">kichikligi aylantirish</string>
+    <string name="duplication_text">sonini ko'paytirish, matn</string>
+    <string name="tab_size">Tab hajmi</string>
+    <string name="new_version_available">mavjud yangi versiyasi</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="new_version_update_content">Oxirgi versiyasi: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">%1$d%% yuklab</string>
+    <string name="download_failure_x">etishmovchiligi ko'chirib: %s</string>
+    <string name="start_download">Yuklashni boshlash</string>
+    <string name="auto_check_updates">Avto tekshirish yangilanishlar</string>
+    <string name="cannt_download">yuklab bo'lmadi.</string>
+    <string name="readonly_mode_not_support_this_action">Faqat o'qish rejimida, bu harakatni qo'llab-quvvatlamaydi</string>
+    <string name="x_text_replaced">%d matn o'rniga qilindi</string>
+    <string name="enable_root">Root yoqish</string>
+    <string name="my_name">Muallif: Jecelyin Peng</string>
+    <string name="qq_group">QQ Group: 87272821</string>
+    <string name="open_with_external_browser">tashqi brauzeri bilan ochiq</string>
+    <string name="contact_email_optional">Aloqa email (ixtiyoriy)</string>
+    <string name="with_error_logs">xato Qaydlar</string>
+    <string name="content">Tarkib</string>
+    <string name="send">yuborish</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Aloqa tarkib uzunligi %d char ko'proq bo'lishi kerak</string>
+    <string name="feedback_submit_error_x">xato Submit: %s</string>
+    <string name="submit_success">muvaffaqiyat Submit</string>
+    <string name="writing">Yozish</string>
+    <string name="keyword">So'z</string>
+    <string name="find_keyword_is_empty">So'z bo'sh bo'lishi mumkin emas</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 topildi</item>
+        <item quantity="other">%d matn o'rniga</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Ingliz tili</item>
+        <item>Xitoy</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Convert to \\n（Linux/OSX）</item>
+        <item>Convert to \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Avto</item>
+        <item>Landshaft</item>
+        <item>portret</item>
+    </string-array>
+    <string name="exit">Chiqish</string>
+    <string name="unknown_exception_and_report_message_x">Unknown istisno, siznCode \ rahmat, sodir bu holinima meni Iltimos: %s</string>
+    <string name="keep_backup_file">zaxira faylni saqlang</string>
+    <string name="keep_backup_file_summary">Agar, zaxira fayllarni saqlab istisno uchun fayl sog'inib oldini taklif</string>
+    <string name="save_all_without_new_document_message">barcha yangi hujjatni o'tish qiladi saqlash</string>
+    <string name="clear_history">Clear History</string>
+    <string name="custom_symbol_list">Custom ramzi ro'yxati</string>
+    <string name="reset">o'rnatish</string>
+    <string name="change_theme">o'zgartirish mavzusi</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="default_theme">Default Theme</string>
+    <string name="fullscreen_mode">To'liq ekran rejimiga</string>
+    <string name="enable_fullscreen_mode_message">to'liq ekran holatini imkon beradi dasturni qayta yoqing</string>
+    <string name="disabled_fullscreen_mode_message">to'liq ekran holatini o'chirib beradi dasturni qayta yoqing</string>
+    <string name="confirm_change_theme_message">Change mavzusi auto hujjatlarni saqlab bo'lmaydi, siz mavzuni o'zgartirish tashlandiq hujjatni tasdiqlash?</string>
 </resources>

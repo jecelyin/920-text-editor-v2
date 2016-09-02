@@ -1,23 +1,251 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
-    <string name="abc_action_bar_home_description">Перейти на главный экран</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Перейти вверх</string>
-    <string name="abc_action_menu_overflow_description">Другие параметры</string>
-    <string name="abc_action_mode_done">Готово</string>
-    <string name="abc_activity_chooser_view_see_all">Показать все</string>
-    <string name="abc_activitychooserview_choose_application">Выбрать приложение</string>
-    <string name="abc_capital_off">ОТКЛ.</string>
-    <string name="abc_capital_on">ВКЛ.</string>
-    <string name="abc_search_hint">Поиск</string>
-    <string name="abc_searchview_description_clear">Удалить запрос</string>
-    <string name="abc_searchview_description_query">Поисковый запрос</string>
-    <string name="abc_searchview_description_search">Поиск</string>
-    <string name="abc_searchview_description_submit">Отправить запрос</string>
-    <string name="abc_searchview_description_voice">Голосовой поиск</string>
-    <string name="abc_shareactionprovider_share_with">Открыть доступ</string>
-    <string name="abc_shareactionprovider_share_with_application">Открыть доступ пользователю %s</string>
-    <string name="abc_toolbar_collapse_description">Свернуть</string>
-    <string name="status_bar_notification_info_overflow">>999</string>
+    <string name="crash_report">Отчет о сбое</string>
+    <string name="crash_contact">E-mail (необязательно)</string>
+    <string name="crash_comment">Как разбить (необязательно):</string>
+    <string name="crash_report_success">Успех, спасибо !</string>
+    <string name="crash_stacktrace">Трассировки стека:</string>
+    <string name="crash_submit">Отправить</string>
+    <string name="crash_submit_fail_x">Ошибка: %s</string>
+    <string name="network_unavailable">Сеть недоступна</string>
+    <string name="submitting">Добавляю...</string>
+    <string name="can_not_be_empty">Не может быть пустым</string>
+    <string name="no_data">Нет данных</string>
+    <string name="try_agent">Попробуй еще раз</string>
+    <string name="search_results">результаты поиска</string>
+    <string name="directory">каталог</string>
+    <string name="authenticate">проверять подлинность</string>
+    <string name="logout">Выйти</string>
+    <string name="selected_x_items">Выбранные %d товары</string>
+    <string name="filename">Имя файла:</string>
+    <string name="file_encoding">Кодирование:</string>
+    <string name="file_save">Сохранить</string>
+    <string name="root_path">корень</string>
+    <string name="auto_detection_encoding">кодирование Автоматическое определение</string>
+    <string name="illegal_filename">незаконное имя файла</string>
+    <string name="unknown_path">неизвестный путь</string>
+    <string name="open_file">Открыть файл</string>
+    <string name="save_file">Сохранить файл</string>
+    <string name="override_file_prompt">%s существует, вы переопределить его?</string>
+    <string name="filter_by_name">Фильтр по имени</string>
+    <string name="can_not_create_folder">Невозможно создать папку</string>
+    <string name="can_not_share_x">Не удается разделить файл: %s</string>
+    <string name="cancel_select_all">Убрать выделение со всего</string>
+    <string name="copy">копия</string>
+    <string name="create_folder">Создать папку</string>
+    <string name="cut">Порез</string>
+    <string name="delete">Удалить</string>
+    <string name="paste">Вставить</string>
+    <string name="rename">переименовывать</string>
+    <string name="rename_fail">Переименовать сбой</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="share">Поделиться</string>
+    <string name="show_hidden_files">Показать скрытые файлы</string>
+    <string name="sort_by_datetime">Сортировка по дате</string>
+    <string name="sort_by_name">Сортировать по имени</string>
+    <string name="sort_by_size">Сортировать по размеру</string>
+    <string name="sort_by_type">Сортировать по типу</string>
+    <string name="addToDictionary">Добавить в словарь</string>
+    <string name="deleteText">Удалить текст</string>
+    <string name="replace">замещать</string>
+    <string name="textSelectionCABTitle">Выбор текста</string>
+    <string name="selectAll">Выбрать все</string>
+    <string name="find">найти</string>
+    <string name="app_name">920 Текстовый редактор</string>
+    <string name="new_file">новый</string>
+    <string name="open">открыто</string>
+    <string name="save">Сохранить</string>
+    <string name="undo">расстегивать</string>
+    <string name="redo">переделывать</string>
+    <string name="save_all">Сохранить все</string>
+    <string name="save_as">Сохранить как</string>
+    <string name="recent_files">Недавние файлы</string>
+    <string name="line_separator">Разрыв строки</string>
+    <string name="duplication_line">Дублирование линия</string>
+    <string name="find_in_files">Найти в файлах</string>
+    <string name="jump_to_start">Переход к началу</string>
+    <string name="jump_to_end">Перейти к концу</string>
+    <string name="goto_line">Гото линия</string>
+    <string name="back">назад</string>
+    <string name="forward">Вперед</string>
+    <string name="document_info">Информационный документ</string>
+    <string name="symbol">Символ</string>
+    <string name="insert_color">Вставить цвет</string>
+    <string name="highlight_language">язык Выделите</string>
+    <string name="encoding">кодирование</string>
+    <string name="read_only">только для чтения</string>
+    <string name="insert_datetime">Вставка DateTime</string>
+    <string name="edit_mode">Режим редактирования</string>
+    <string name="run">Бег</string>
+    <string name="file">файл</string>
+    <string name="other">Другие</string>
+    <string name="view">Посмотреть</string>
+    <string name="edit">редактировать</string>
+    <string name="new_filename">Untitled %d</string>
+    <string name="confirm_save">Подтвердить сохранить</string>
+    <string name="confirm_save_msg">Документ %s изменился, вы хотите, чтобы сохранить и выйти?</string>
+    <string name="yes">да</string>
+    <string name="no">Нет</string>
+    <string name="cannt_access_file">Не удается получить доступ к файлу: %s</string>
+    <string name="cannt_read_file">Не удается прочитать файл: %s</string>
+    <string name="ok">ОК</string>
+    <string name="read_file_exception">Происходит исключение при чтении файла</string>
+    <string name="init_syntax_msg">Инициализировать синтаксис...</string>
+    <string name="init_syntax_error">Инициализировать синтаксис терпеть неудачу</string>
+    <string name="init_build_index_error">Построить индекс терпеть неудачу</string>
+    <string name="close">Закрыть</string>
+    <string name="cancel">Отмена</string>
+    <string name="convert_wrap_char">Преобразовать оберточной полукокса</string>
+    <string name="path_x">Путь: %s</string>
+    <string name="char_x">Символов: %d</string>
+    <string name="word_x">Words: %d</string>
+    <string name="line_number_x">Номер строки: %d</string>
+    <string name="encoding_x">Кодирование: %s</string>
+    <string name="tab">таб</string>
+    <string name="no_change">Без изменений!</string>
+    <string name="save_success">Сохранить успех</string>
+    <string name="find_label">Найти то, что:</string>
+    <string name="replace_label">Заменить:</string>
+    <string name="case_sensitive">Деликатный случай</string>
+    <string name="whole_words_only">Только целые слова</string>
+    <string name="regex">Регулярное выражение</string>
+    <string name="in_path">В пути:</string>
+    <string name="recursively">Рекурсивный</string>
+    <string name="cannot_be_empty">Не может быть пустым</string>
+    <string name="path_not_exists">Путь не существует</string>
+    <string name="find_not_found">Не найдено</string>
+    <string name="previous_occurrence">Предыдущая Происшествие</string>
+    <string name="next_occurrence">Следующая Происшествие</string>
+    <string name="replace_all">Заменить все</string>
+    <string name="searching">Поиск…</string>
+    <string name="select_lang_to_highlight">Выберите язык, чтобы выделить</string>
+    <string name="more_menu">Больше меню</string>
+    <string name="reopen_with_encoding">Возобновить с кодированием</string>
+    <string name="document_changed">Документ изменен</string>
+    <string name="give_up_document_changed_message">Документ изменился, ваши изменения будут потеряны, если вы не сохраните их, подтвердить?</string>
+    <string name="preview_in_browser">Предварительный просмотр в браузере</string>
+    <string name="use_sl4a_in_background_run_script">Используйте SL4A в фоновом режиме выполнения сценария</string>
+    <string name="use_sl4a_in_terminal_run_script">Используйте SL4A в сценарии терминала выполнения</string>
+    <string name="please_save_as_file_first">аренда сохранить в файл первой</string>
+    <string name="run_fail_message">Вызов внешнего приложения не удалось</string>
+    <string name="settings">настройки</string>
+    <string name="editor">редактор</string>
+    <string name="font">Шрифт</string>
+    <string name="default_value">По умолчанию</string>
+    <string name="font_size">Размер шрифта</string>
+    <string name="cursor_width">Курсор Ширина</string>
+    <string name="touch_to_adjust_text_size">Нажмите, чтобы изменить размер шрифта</string>
+    <string name="word_wrap_in_editor">Авто WordWrap</string>
+    <string name="show_linenumber">Показать LineNumber</string>
+    <string name="show_whitespace">Показать Пробелы</string>
+    <string name="auto_indent">Автоотступ</string>
+    <string name="insert_space_for_tab">Вставить пространство для Tab</string>
+    <string name="indent_size">Отступ размер</string>
+    <string name="highlight_and_theme">Выделите и Theme</string>
+    <string name="highlight_the_file_size_limit">Ограничить размер файла Изюминкой</string>
+    <string name="auto_save">Автоматическое сохранение файла</string>
+    <string name="remember_last_opened_files">Помните, последние открытые файлы</string>
+    <string name="remember_last_opened_files_summary">Авто последние открытые открытые файлы при запуске</string>
+    <string name="screen_orientation">Ориентация экрана</string>
+    <string name="keep_screen_on">Оставьте экран включенным</string>
+    <string name="auto_capitalize">Авто капитализировать</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="donate">жертвовать</string>
+    <string name="help_translate">Перевести это приложение</string>
+    <string name="about">Около</string>
+    <string name="enable_highlight">Включить выделение</string>
+    <string name="version_x">Версия: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Необходимо включить разрешения чтения для хранения</string>
+    <string name="file_not_exists">Файл не существует</string>
+    <string name="cannt_handle_intent_x">Невозможно обработать намерение: %s</string>
+    <string name="handle_intent_x_error">Ошибка произошла, когда намерение процесса: %s</string>
+    <string name="verify_sign_failure">Ваше текущее приложение не является официальной, пожалуйста, перейдите на https://github.com/jecelyin/920-text-editor-v2/releases загрузить его.</string>
+    <string name="press_again_will_exit">Повторное нажатие приведет к выходу</string>
+    <string name="find_replace">Найти / Заменить</string>
+    <string name="find_title">\"%s\" Найти результаты</string>
+    <string name="zero_matches">0 матчей</string>
+    <string name="chooser_browser">Селектор браузер</string>
+    <string name="find_or_replace">Найти / Заменить...</string>
+    <string name="other_application">Другое приложение...</string>
+    <string name="chooser_application">Селектор Применение</string>
+    <string name="editor_create_unknown_exception">Происходит неизвестное исключение при создании редактора</string>
+    <string name="convert_to_uppercase">Преобразовать в верхний регистр</string>
+    <string name="convert_to_lowercase">Преобразовать в нижний регистр</string>
+    <string name="duplication_text">Дублирование текст</string>
+    <string name="tab_size">размер Tab</string>
+    <string name="new_version_available">Доступна новая версия</string>
+    <string name="upgrade">Обновить</string>
+    <string name="new_version_update_content">Последняя версия: %1$s\n\nChanges:\n%2$s</string>
+    <string name="download_progress">Загрузка %1$d%%</string>
+    <string name="download_failure_x">Ошибка при загрузке: %s</string>
+    <string name="start_download">Начать загрузку</string>
+    <string name="auto_check_updates">автоматической проверки обновлений</string>
+    <string name="cannt_download">Не удается загрузить.</string>
+    <string name="readonly_mode_not_support_this_action">Только для чтения режим не поддерживает это действие</string>
+    <string name="x_text_replaced">%d текст был заменен</string>
+    <string name="enable_root">Enable Root</string>
+    <string name="my_name">Автор: Jecelyin Пэн</string>
+    <string name="qq_group">QQ Группа: 87272821</string>
+    <string name="open_with_external_browser">Открыть с помощью внешнего браузера</string>
+    <string name="contact_email_optional">Контактный адрес электронной почты (по желанию)</string>
+    <string name="with_error_logs">Журналы ошибок</string>
+    <string name="content">содержание</string>
+    <string name="send">послать</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Обратная связь длина содержимого должна быть больше, чем %d символ</string>
+    <string name="feedback_submit_error_x">Отправить сообщение об ошибке: %s</string>
+    <string name="submit_success">Сообщить об успехе</string>
+    <string name="writing">Письмо</string>
+    <string name="keyword">Ключевое слово</string>
+    <string name="find_keyword_is_empty">Ключевое слово не может быть пустым</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 найдено</item>
+        <item quantity="other">%d текст заменен</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>английский</item>
+        <item>Китайский</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Преобразовать в \\n（Linux/OSX）</item>
+        <item>Преобразовать в \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Авто</item>
+        <item>Пейзаж</item>
+        <item>Портрет</item>
+    </string-array>
+    <string name="exit">Выход</string>
+    <string name="unknown_exception_and_report_message_x">Неизвестное исключение, пожалуйста, скажите мне, что этот случай происходит, спасибо \nCode: %s</string>
+    <string name="keep_backup_file">Держите файл резервной копии</string>
+    <string name="keep_backup_file_summary">Предлагаем Вам хранить резервные копии файлов, избежать промахов файлов для исключения</string>
+    <string name="save_all_without_new_document_message">Сохранить все пропустит новый документ</string>
+    <string name="clear_history">Чистая история</string>
+    <string name="custom_symbol_list">Выборочный список символов</string>
+    <string name="reset">Сброс</string>
+    <string name="change_theme">Менять тему</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="default_theme">По умолчанию Theme</string>
+    <string name="fullscreen_mode">Полноэкранный режим</string>
+    <string name="enable_fullscreen_mode_message">Перезапустите приложение позволит полноэкранный режим</string>
+    <string name="disabled_fullscreen_mode_message">Перезапустите приложение будет отключить полноэкранный режим</string>
+    <string name="confirm_change_theme_message">Изменить тему не будет автоматически сохранять документы, вы подтверждаете, сброшенные документ изменить тему?</string>
 </resources>
