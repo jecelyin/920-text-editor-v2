@@ -105,11 +105,19 @@ public class UIUtils {
         showConfirmDialog(context, null, message, callback);
     }
     public static void showConfirmDialog(Context context, CharSequence title, CharSequence message, final OnClickCallback callback) {
+        showConfirmDialog(context, title, message, callback, context.getString(android.R.string.ok), context.getString(android.R.string.cancel));
+    }
+
+    public static void showConfirmDialog(Context context, @StringRes int title, @StringRes int message, final OnClickCallback callback, @StringRes int postiveRes, @StringRes int negativeRes) {
+        showConfirmDialog(context, title == 0 ? null : context.getString(title), context.getString(message), callback, context.getString(postiveRes), context.getString(negativeRes));
+    }
+
+    public static void showConfirmDialog(Context context, CharSequence title, CharSequence message, final OnClickCallback callback, String postiveStr, String negativeStr) {
         MaterialDialog.Builder dialog = new MaterialDialog.Builder(context)
                 .title(title)
                 .content(message)
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
+                .positiveText(postiveStr)
+                .negativeText(negativeStr)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {

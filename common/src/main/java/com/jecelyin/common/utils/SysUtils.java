@@ -147,4 +147,8 @@ public class SysUtils {
         Signature signature = packageInfo.signatures[0];
         return signature.toByteArray();
     }
+
+    public static String getSDCardDir(Context context) {
+        return Environment.getExternalStorageDirectory().getPath();
+    }
 }

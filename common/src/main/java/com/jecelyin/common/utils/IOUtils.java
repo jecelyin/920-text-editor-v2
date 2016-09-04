@@ -32,6 +32,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.util.Arrays;
 
@@ -155,11 +156,21 @@ public class IOUtils {
             return false;
         }
 
+        try {
+            return copyFile(new FileInputStream(oldLocation), new FileOutputStream(newLocation, false));
+        } catch (Exception ex) {
+            L.e(ex);
+            return false;
+        }
+    }
+
+    public static boolean copyFile(InputStream inputStream, OutputStream outputStream) {
+
         BufferedInputStream reader = null;
         BufferedOutputStream writer = null;
         try {
-            reader = new BufferedInputStream(new FileInputStream(oldLocation));
-            writer = new BufferedOutputStream(new FileOutputStream(newLocation, false));
+            reader = new BufferedInputStream(inputStream);
+            writer = new BufferedOutputStream(outputStream);
 
             byte[] buff = new byte[8192];
             int numChars;
@@ -169,7 +180,6 @@ public class IOUtils {
 
             return true;
         } catch (Exception ex) {
-            L.e("IOException when transferring " + oldLocation.getPath() + " to " + newLocation.getPath());
             return false;
         } finally {
             try {

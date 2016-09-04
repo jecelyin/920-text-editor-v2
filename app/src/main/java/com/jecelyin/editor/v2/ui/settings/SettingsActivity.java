@@ -18,7 +18,7 @@
 
 package com.jecelyin.editor.v2.ui.settings;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -45,8 +45,14 @@ import com.jecelyin.editor.v2.R;
  */
 public class SettingsActivity extends BaseActivity {
 
-    public static void startActivity(Context context) {
-        context.startActivity(new Intent(context, SettingsActivity.class));
+    public static void startActivity(Activity activity, int requestCode) {
+        activity.startActivityForResult(new Intent(activity, SettingsActivity.class), requestCode);
+    }
+
+    public static boolean isTranslateAction(Intent it) {
+        String key = it.getStringExtra("key");
+
+        return "pref_translate".equals(key);
     }
 
     @Override

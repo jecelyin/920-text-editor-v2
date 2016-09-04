@@ -245,4 +245,9 @@
     <string name="confirm_change_theme_message">改变主题不会自动保存当前文档, 确认放弃文档改变而改变主题?</string>
 
     <string name="untitled_file_name">untitled.txt</string>
+    <string name="translate_confirm_message">要打开 getlocalization.com 网站翻译, 请按“网站翻译“按钮, 在本地翻译请按“本地翻译“按钮</string>
+    <string name="translate_external_text">网站翻译</string>
+    <string name="translate_internal_text">本地翻译</string>
+    <string name="cannt_load_lang_file">无法加载语言文件</string>
+    <string name="local_translate_message">翻译完成后请Email: jecelyin@gmail.com, 谢谢</string>
 </resources>

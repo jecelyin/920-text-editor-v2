@@ -18,6 +18,7 @@
 
 package com.jecelyin.editor.v2.ui.settings;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
 
+import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.preference.JecListPreference;
@@ -98,7 +100,21 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
                 startActivity(it);
                 break;
             case "pref_translate":
-                BrowserActivity.startActivity(getActivity(), getString(R.string.help_translate), "https://www.getlocalization.com/920_Text_Editor_v2/");
+                UIUtils.OnClickCallback callback = new UIUtils.OnClickCallback() {
+                    @Override
+                    public void onOkClick() {
+                        BrowserActivity.startActivity(getActivity(), getString(R.string.help_translate), "https://www.getlocalization.com/920_Text_Editor_v2/");
+                    }
+
+                    @Override
+                    public void onCancelClick() {
+                        Intent it = new Intent();
+                        it.putExtra("key", "pref_translate");
+                        getActivity().setResult(Activity.RESULT_OK, it);
+                        getActivity().finish();
+                    }
+                };
+                UIUtils.showConfirmDialog(getActivity(), 0, R.string.translate_confirm_message, callback, R.string.translate_external_text, R.string.translate_internal_text);
                 break;
             case "pref_feedback":
                 FeedbackActivity.startActivity(getActivity(), null);

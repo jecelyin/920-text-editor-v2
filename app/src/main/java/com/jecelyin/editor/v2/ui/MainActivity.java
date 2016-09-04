@@ -62,6 +62,7 @@ import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
 import com.jecelyin.editor.v2.task.CheckUpgradeTask;
 import com.jecelyin.editor.v2.task.ClusterCommand;
+import com.jecelyin.editor.v2.task.LocalTranslateTask;
 import com.jecelyin.editor.v2.ui.dialog.ChangeThemeDialog;
 import com.jecelyin.editor.v2.ui.dialog.CharsetsDialog;
 import com.jecelyin.editor.v2.ui.dialog.GotoLineDialog;
@@ -95,6 +96,7 @@ public class MainActivity extends BaseActivity
     private static final int RC_OPEN_FILE = 1;
     private final static int RC_SAVE = 3;
     private static final int RC_PERMISSION_STORAGE = 2;
+    private static final int RC_SETTINGS = 5;
 
     Toolbar mToolbar;
     LinearLayout mLoadingLayout;
@@ -493,7 +495,7 @@ public class MainActivity extends BaseActivity
                 new RunDialog(this).show();
                 break;
             case R.id.m_settings:
-                SettingsActivity.startActivity(this);
+                SettingsActivity.startActivity(this, RC_SETTINGS);
                 break;
             case R.id.m_exit:
                 if (tabManager != null)
@@ -596,6 +598,11 @@ public class MainActivity extends BaseActivity
                 String file = FileExplorerActivity.getFile(data);
                 String encoding = FileExplorerActivity.getFileEncoding(data);
                 tabManager.getEditorAdapter().getCurrentEditorDelegate().saveTo(new File(file), encoding);
+                break;
+            case RC_SETTINGS:
+                if (SettingsActivity.isTranslateAction(data)) {
+                    new LocalTranslateTask(this).execute();
+                }
                 break;
         }
     }
