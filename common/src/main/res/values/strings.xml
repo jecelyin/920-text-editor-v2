@@ -249,4 +249,5 @@
     <string name="translate_internal_text">Local Translate</string>
     <string name="cannt_load_lang_file">Can not load language file</string>
     <string name="local_translate_message">Please send it to jecelyin@gmail.com after you finish the translation thanks!</string>
+    <string name="untitled_file_name">untitled.txt</string>
 </resources>
