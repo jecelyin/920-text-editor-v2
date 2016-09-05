@@ -20,6 +20,7 @@ package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Debug;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.TextWatcher;
@@ -29,6 +30,7 @@ import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.ReadFileListener;
 import com.jecelyin.editor.v2.common.SaveListener;
@@ -45,7 +47,6 @@ import com.jecelyin.editor.v2.highlight.jedit.syntax.SyntaxStyle;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor.v2.io.FileReader;
 import com.jecelyin.editor.v2.task.SaveTask;
-import com.jecelyin.editor.v2.Pref;
 import com.stericson.RootTools.RootTools;
 
 import java.io.File;
@@ -175,9 +176,14 @@ public class Document implements ReadFileListener, TextWatcher {
             return;
         }
 
+        // start tracing to "/sdcard/textview.trace"
+        if(L.debug)Debug.startMethodTracing("textview");
+
         editorDelegate.mEditText.setLineNumber(lineNumber);
         editorDelegate.mEditText.setText(spannableStringBuilder);
         editorDelegate.onLoadFinish();
+        // stop tracing
+        if(L.debug)Debug.stopMethodTracing();
     }
 
     @Override

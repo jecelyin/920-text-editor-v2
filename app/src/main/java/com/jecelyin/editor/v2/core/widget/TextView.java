@@ -7637,7 +7637,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
      * @param selEnd The new selection end location.
      */
     protected void onSelectionChanged(int selStart, int selEnd) {
-        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED);
+//        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED);
     }
 
     /**

@@ -34,6 +34,7 @@ import android.view.View;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
 import com.jecelyin.editor.v2.common.OnVisibilityChangedListener;
@@ -48,7 +49,6 @@ import com.jecelyin.editor.v2.ui.dialog.FinderDialog;
 import com.jecelyin.editor.v2.utils.AppUtils;
 import com.jecelyin.editor.v2.view.EditorView;
 import com.jecelyin.editor.v2.view.menu.MenuDef;
-import com.jecelyin.editor.v2.Pref;
 
 import java.io.File;
 
@@ -419,7 +419,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
 
     @Override
     public void afterTextChanged(Editable s) {
-        noticeMenuChanged();
+        if (loaded)
+            noticeMenuChanged();
     }
 
     private class EditorSelectionActionModeCallback implements ActionMode.Callback {
