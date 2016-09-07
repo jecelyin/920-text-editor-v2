@@ -47,7 +47,7 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/menuNavView"
         android:fitsSystemWindows="false"
-        android:layout_width="180dp"
+        android:layout_width="210dp"
         android:layout_height="match_parent"
         android:layout_gravity="end|right">
 
