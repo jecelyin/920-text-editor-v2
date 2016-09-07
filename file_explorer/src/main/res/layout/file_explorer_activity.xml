@@ -46,6 +46,7 @@
                 android:layout_marginRight="8dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:textColor="#333"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
