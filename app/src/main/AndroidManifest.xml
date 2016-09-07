@@ -101,6 +101,7 @@
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.BrowserActivity" />
         <activity android:name=".ui.FeedbackActivity" />
+        <activity android:name=".ui.SpeedActivity" />
 
     </application>
 

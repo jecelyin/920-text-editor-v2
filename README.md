@@ -1,5 +1,8 @@
 ## 920 Text Editor
 **920 Text Editor is a Free, Open Source and no Ad software for android**
+
+### [Donate 920 Text Editor](https://jecelyin.github.io/donate/?project=920%20Text%20Editor)
+
  
  ![Screenshot1](https://github.com/jecelyin/920-text-editor-v2/blob/master/ui/preview.png?raw=true)
 

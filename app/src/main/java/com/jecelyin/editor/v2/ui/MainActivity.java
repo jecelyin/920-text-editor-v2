@@ -125,8 +125,14 @@ public class MainActivity extends BaseActivity
     }
 
     private void requestWriteExternalStoragePermission() {
-        final String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+        final String[] permissions = new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE
+                , Manifest.permission.WRITE_EXTERNAL_STORAGE
+                , Manifest.permission.WRITE_MEDIA_STORAGE
+        };
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_MEDIA_STORAGE)
+                ) {
             UIUtils.showConfirmDialog(this, null, getString(R.string.need_to_enable_read_storage_permissions), new UIUtils.OnClickCallback() {
                 @Override
                 public void onOkClick() {
@@ -161,12 +167,7 @@ public class MainActivity extends BaseActivity
         mDrawerLayout = (AnyDrawerLayout) findViewById(R.id.drawer_layout);
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
-        findViewById(R.id.changeThemeBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new ChangeThemeDialog(getContext()).show();
-            }
-        });
+
         SymbolBarLayout symbolBarLayout = (SymbolBarLayout) findViewById(R.id.symbolBarLayout);
         symbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
             @Override
@@ -419,6 +420,10 @@ public class MainActivity extends BaseActivity
                 tabManager.newTab();
                 break;
             case R.id.m_open:
+//                if (L.debug) {
+//                    SpeedActivity.startActicity(this);
+//                    break;
+//                }
                 FileExplorerActivity.startPickFileActivity(this, null, RC_OPEN_FILE);
                 break;
             case R.id.m_goto_line:
@@ -457,6 +462,9 @@ public class MainActivity extends BaseActivity
                     }
                 };
                 doClusterCommand(command);
+                break;
+            case R.id.m_theme:
+                new ChangeThemeDialog(getContext()).show();
                 break;
             case R.id.m_fullscreen:
                 boolean fullscreenMode = pref.isFullScreenMode();

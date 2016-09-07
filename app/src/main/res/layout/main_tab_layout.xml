@@ -41,18 +41,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:id="@+id/changeThemeBtn"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/m_theme"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/change_theme"
-                    android:layout_margin="5dp"
-                    android:scaleType="center"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" />
-
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView

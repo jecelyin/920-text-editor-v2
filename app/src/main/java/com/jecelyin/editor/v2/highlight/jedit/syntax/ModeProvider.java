@@ -35,14 +35,13 @@ import javax.xml.parsers.SAXParserFactory;
 public class ModeProvider {
     public static ModeProvider instance = new ModeProvider();
 
-    private final LinkedHashMap<String, Mode> modes = new LinkedHashMap<>(220);
-    private AssetManager assets;
-
-    public ModeProvider() {
+    private static final LinkedHashMap<String, Mode> modes = new LinkedHashMap<>(Catalog.modes.length);
+    static {
         for (Mode mode : Catalog.modes) {
             modes.put(mode.getName().toUpperCase(), mode);
         }
     }
+    private AssetManager assets;
 
     //{{{ removeAll() method
 //	public void removeAll()

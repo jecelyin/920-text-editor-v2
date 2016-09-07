@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
+    <string name="crash_report">Rapporto sul blocco</string>
+    <string name="crash_contact">Email (facoltativa)</string>
+    <string name="crash_comment">come ricreare il blocco (Optional):</string>
+    <string name="crash_report_success">Successo, Grazie!</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Invia</string>
+    <string name="crash_submit_fail_x">Errore: %s</string>
+    <string name="network_unavailable">Rete non disponibile</string>
+    <string name="submitting">In invio…</string>
+    <string name="can_not_be_empty">Non puo\' essere vuoto</string>
+    <string name="no_data">Nessun Dato</string>
+    <string name="try_agent">Riprova</string>
+    <string name="search_results">Resultati ricerca</string>
+    <string name="directory">Cartella</string>
+    <string name="authenticate">Autenticazione</string>
+    <string name="logout">Logout</string>
+    <string name="selected_x_items">Selezionati %d oggetti</string>
+    <string name="filename">Nome documento:</string>
+    <string name="file_encoding">codifica:</string>
+    <string name="file_save">Salva</string>
+    <string name="root_path">Root</string>
+    <string name="auto_detection_encoding">Auto rilevamento codifica</string>
+    <string name="illegal_filename">nome documento illegale</string>
+    <string name="unknown_path">percorso sconosciuto</string>
+    <string name="open_file">Apri documento</string>
+    <string name="save_file">Salva documento</string>
+    <string name="override_file_prompt">%s esiste，sovrascrivere？</string>
+    <string name="filter_by_name">Filtra per nome</string>
+    <string name="can_not_create_folder">Non posso condividere cartella</string>
+    <string name="can_not_share_x">Non posso condividere documento: %s</string>
+    <string name="cancel_select_all">Deseleziona tutti</string>
+    <string name="copy">Copia</string>
+    <string name="create_folder">Crea cartella</string>
+    <string name="cut">Taglia</string>
+    <string name="delete">Cancella</string>
+    <string name="paste">Incolla</string>
+    <string name="rename">Rinomina</string>
+    <string name="rename_fail">Rinomina fallita</string>
+    <string name="select_all">Seleziona Tutto</string>
+    <string name="share">Condividi</string>
+    <string name="show_hidden_files">Mostra file nascosti</string>
+    <string name="sort_by_datetime">Ordina per Data</string>
+    <string name="sort_by_name">Ordina per Nome</string>
+    <string name="sort_by_size">Ordina per dimensione</string>
+    <string name="sort_by_type">Ordina per Tipo</string>
+    <string name="addToDictionary">Aggiungi al dizionario</string>
+    <string name="deleteText">Cancella Testo</string>
+    <string name="replace">Sostituisci</string>
+    <string name="textSelectionCABTitle">Seleziona Testo</string>
+    <string name="selectAll">Seleziona Tutto</string>
+    <string name="find">Cerca</string>
     <string name="app_name">920 Text Editor</string>
     <string name="new_file">Nuovo</string>
     <string name="open">Apri</string>
@@ -8,9 +77,8 @@
     <string name="redo">Rifai modifica</string>
     <string name="save_all">Salva Tutti</string>
     <string name="save_as">Salva come</string>
-    <string name="recent_files">File Recenti</string>
+    <string name="recent_files">Documenti Recenti</string>
     <string name="line_separator">Fine Linea</string>
-    <string name="select_all">Seleziona Tutto</string>
     <string name="duplication_line">Duplicazione di linea</string>
     <string name="find_in_files">Cerca in files</string>
     <string name="jump_to_start">Salta all\'inizio</string>
@@ -19,14 +87,14 @@
     <string name="back">Indietro</string>
     <string name="forward">Avanti</string>
     <string name="document_info">Info Documento</string>
-    <string name="symbol">Symbolo</string>
-    <string name="insert_color">Insert color</string>
-    <string name="highlight_language">Highlight language</string>
+    <string name="symbol">Simbolo</string>
+    <string name="insert_color">Inserisci colore</string>
+    <string name="highlight_language">Linguaggio evidenz.</string>
     <string name="encoding">Codifica</string>
     <string name="read_only">Sola lettura</string>
     <string name="insert_datetime">Inserisci DataOra</string>
     <string name="edit_mode">modalita Modifica</string>
-    <string name="run">Run</string>
+    <string name="run">Esegui</string>
     <string name="file">File</string>
     <string name="other">Altro</string>
     <string name="view">Visualizza</string>
@@ -108,7 +176,7 @@
     <string name="need_to_enable_read_storage_permissions">Necessario abilitare permesso di lettura archivio</string>
     <string name="file_not_exists">il File non esiste</string>
     <string name="cannt_handle_intent_x">Non posso processare l\'intent: %s</string>
-    <string name="handle_intent_x_error">si e\' verificato un errore mentre processavo processaavo l\'intent: %s</string>
+    <string name="handle_intent_x_error">si e\' verificato un errore mentre processavo l\'intent: %s</string>
     <string name="verify_sign_failure">la tua applicazione attuale non e\' ufficiale, pregasi scaricarla da https://github.com/jecelyin/920-text-editor-v2/releases </string>
     <string name="press_again_will_exit">Premi ancora per uscire</string>
     <string name="find_replace">Cerca/Sostituisci</string>
@@ -116,9 +184,9 @@
     <string name="zero_matches">0 corrispondenze</string>
     <string name="chooser_browser">Scegli browser</string>
     <string name="find_or_replace">Cerca/Sostituisci…</string>
-    <string name="other_application">Altra Applicazione…</string>????????????
-    <string name="chooser_application">Chooser Applicationw</string>
-    <string name="editor_create_unknown_exception">Occurs unknown exception when create editor</string>
+    <string name="other_application">Altra Applicazione…</string>
+    <string name="chooser_application">Scelta Applicazione</string>
+    <string name="editor_create_unknown_exception">Si e\' verificato un errore sconosciuto durante la create editor</string>
     <string name="convert_to_uppercase">Converti in maiuscolo</string>
     <string name="convert_to_lowercase">Converti in minuscolo</string>
     <string name="duplication_text">Duplica testo</string>
@@ -132,7 +200,6 @@
     <string name="x_text_replaced">%d testo sostituito</string>
     <string name="enable_root">Abilita Root</string>
     <string name="my_name">Autore: Jecelyin Peng</string>
-    <string name="qq_group">QQ Group: 87272821</string>
     <string name="open_with_external_browser">Apri con browser esterno</string>
     <string name="contact_email_optional">Contatto email (opzionale)</string>
     <string name="with_error_logs">Logs Errori</string>
@@ -142,8 +209,8 @@
     <string name="feedback_submit_error_x">Errore invio feedback: %s</string>
     <string name="submit_success">Feedback inviato</string>
     <string name="writing">In scrittura</string>
-    <string name="keyword">Keyword</string>
-    <string name="find_keyword_is_empty">Keyword non puo\' essere vuota</string>
+    <string name="keyword">parola chiave</string>
+    <string name="find_keyword_is_empty">parola chiave non puo\' essere vuota</string>
     <plurals name="x_text_replaced">
         <item quantity="zero">0 trovate</item>
         <item quantity="other">%d testi sostituiti</item>
@@ -176,61 +243,10 @@
     <string name="enable_fullscreen_mode_message">Il riavvio dell\'app attivera\' il modo Schermo Intero</string>
     <string name="disabled_fullscreen_mode_message">Il riavvio dell\'app disattivera\' il modo Schermo Intero</string>
     <string name="confirm_change_theme_message">Il Cambio Tema non salvera\' i documenti, Confermi il Non salvataggio dei documenti per il Cambio Tema?</string>
-    <!-- untranslation -->
-    <string name="crash_report">Crash Report</string>
-    <string name="crash_contact">Email (Optional)</string>
-    <string name="crash_comment">How to crash (Optional):</string>
-    <string name="crash_report_success">Success, Thank you!</string>
-    <string name="crash_stacktrace">Stacktrace:</string>
-    <string name="crash_submit">Submit</string>
-    <string name="crash_submit_fail_x">Failure: %s</string>
-    <string name="network_unavailable">Network Unavailable</string>
-    <string name="submitting">Submitting…</string>
-    <string name="can_not_be_empty">Can not be empty</string>
-    <string name="no_data">No Data</string>
-    <string name="try_agent">Try again</string>
-    <string name="search_results">Search Results</string>
-    <string name="directory">Directory</string>
-    <string name="authenticate">Authenticate</string>
-    <string name="logout">Logout</string>
-    <string name="selected_x_items">Selected %d Items</string>
-    <string name="filename">File Name:</string>
-    <string name="file_encoding">Encoding:</string>
-    <string name="file_save">Save</string>
-    <string name="root_path">Root</string>
-    <string name="auto_detection_encoding">Auto detection encoding</string>
-    <string name="illegal_filename">illegal filename</string>
-    <string name="unknown_path">unknown path</string>
-    <string name="open_file">Open File</string>
-    <string name="save_file">Save File</string>
-    <string name="override_file_prompt">%s exists，do you override it？</string>
-    <string name="filter_by_name">Filter by Name</string>
-    <string name="can_not_create_folder">Can not create folder</string>
-    <string name="can_not_share_x">Can not share file: %s</string>
-    <string name="cancel_select_all">Deselect All</string>
-    <string name="copy">Copy</string>
-    <string name="create_folder">Create folder</string>
-    <string name="cut">Cut</string>
-    <string name="delete">Delete</string>
-    <string name="paste">Paste</string>
-    <string name="rename">Rename</string>
-    <string name="rename_fail">Rename failure</string>
-    <string name="share">Share</string>
-    <string name="show_hidden_files">Show hidden files</string>
-    <string name="sort_by_datetime">Sort by Date</string>
-    <string name="sort_by_name">Sort by Name</string>
-    <string name="sort_by_size">Sort by Size</string>
-    <string name="sort_by_type">Sort by Type</string>
-    <string name="addToDictionary">Add to dictionary</string>
-    <string name="deleteText">Delete Text</string>
-    <string name="replace">Replace</string>
-    <string name="textSelectionCABTitle">Select Text</string>
-    <string name="selectAll">Select All</string>
-    <string name="find">Find</string>
-    <string name="translate_confirm_message">To open getlocalization.com website translation, please press the "Website Translate" button in the local press translation "Local Translate" button</string>
-    <string name="translate_external_text">Website Translate</string>
-    <string name="translate_internal_text">Local Translate</string>
-    <string name="cannt_load_lang_file">Can not load language file</string>
-    <string name="local_translate_message">Please send it to jecelyin@gmail.com after you finish the translation thanks!</string>
+    <string name="translate_confirm_message">Per aprire la traduzione sul sito getlocalization.com , premi il bottone "Traduzione su sito Web"  per tradurre localmente premi il bottone "Traduzione Locale"</string>
+    <string name="translate_external_text">Traduzione su sito Web</string>
+    <string name="translate_internal_text">Traduzione Locale</string>
+    <string name="cannt_load_lang_file">Non riesco a caricare il file di linguaggio</string>
+    <string name="local_translate_message">Quando hai finito la traduzione ti prego di inviarla a jecelyin@gmail.com Grazie!</string>
     <string name="untitled_file_name">untitled.txt</string>
 </resources>

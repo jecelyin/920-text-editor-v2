@@ -20,6 +20,7 @@ package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Debug;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -139,6 +140,10 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         this.orientation = context.getResources().getConfiguration().orientation;
 
         editorView.setVisibilityChangedListener(this);
+
+        // start tracing to "/sdcard/textview.trace"
+        if(L.debug) Debug.startMethodTracing("textview");
+
         init();
     }
 
@@ -164,6 +169,9 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             mEditText.setEnabled(false);
         }
         loaded = true;
+
+        // stop tracing
+        if(L.debug)Debug.stopMethodTracing();
     }
 
     public Context getContext() {

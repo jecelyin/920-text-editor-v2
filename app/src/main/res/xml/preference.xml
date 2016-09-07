@@ -111,9 +111,9 @@
         android:key="pref_auto_check_updates"
         android:title="@string/auto_check_updates" />
 
-    <Preference
-        android:key="pref_donate"
-        android:title="@string/donate" />
+    <!--<Preference-->
+        <!--android:key="pref_donate"-->
+        <!--android:title="@string/donate" />-->
 
     <Preference
         android:key="pref_feedback"

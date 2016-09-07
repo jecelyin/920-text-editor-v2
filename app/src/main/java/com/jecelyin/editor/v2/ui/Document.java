@@ -20,7 +20,6 @@ package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Debug;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.TextWatcher;
@@ -176,14 +175,10 @@ public class Document implements ReadFileListener, TextWatcher {
             return;
         }
 
-        // start tracing to "/sdcard/textview.trace"
-        if(L.debug)Debug.startMethodTracing("textview");
-
         editorDelegate.mEditText.setLineNumber(lineNumber);
         editorDelegate.mEditText.setText(spannableStringBuilder);
         editorDelegate.onLoadFinish();
-        // stop tracing
-        if(L.debug)Debug.stopMethodTracing();
+
     }
 
     @Override

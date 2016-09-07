@@ -88,7 +88,7 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         findPreference("pref_about").setOnPreferenceClickListener(this);
         findPreference("pref_translate").setOnPreferenceClickListener(this);
         findPreference("pref_feedback").setOnPreferenceClickListener(this);
-        findPreference("pref_donate").setOnPreferenceClickListener(this);
+//        findPreference("pref_donate").setOnPreferenceClickListener(this);
     }
 
     @Override

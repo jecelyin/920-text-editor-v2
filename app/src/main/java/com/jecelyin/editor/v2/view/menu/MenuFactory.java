@@ -121,6 +121,7 @@ public class MenuFactory {
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FIND,  R.id.m_back,           Command.CommandEnum.BACK,           R.drawable.m_back, R.string.back));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.FIND,  R.id.m_forward,        Command.CommandEnum.FORWARD,        R.drawable.m_forward, R.string.forward));
 
+        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_theme,          Command.CommandEnum.THEME,          R.drawable.m_theme, R.string.change_theme));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_fullscreen,     Command.CommandEnum.FULL_SCREEN,    R.drawable.m_fullscreen, R.string.fullscreen_mode));
         menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_info,           Command.CommandEnum.DOC_INFO,       R.drawable.m_info, R.string.document_info));
 //        menuItemInfos.add(new MenuItemInfo(MenuGroup.VIEW,  R.id.m_symbol,         Command.CommandEnum.NONE, R.drawable.m_symbol, R.string.symbol));

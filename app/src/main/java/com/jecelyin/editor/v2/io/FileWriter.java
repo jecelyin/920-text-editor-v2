@@ -67,11 +67,11 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
     @Override
     protected Exception doInBackground(Editable... params) {
 
-        if(backupFile.exists()) {
-            if(!backupFile.delete()) {
-                return new IOException("Couldn't remove old backup file " + backupFile);
-            }
-        }
+//        if(backupFile.exists()) {
+//            if(!backupFile.delete()) {
+//                return new IOException("Couldn't remove old backup file " + backupFile);
+//            }
+//        }
 
         if(file.isFile() && !IOUtils.copyFile(file, backupFile)) {
             return new IOException("Couldn't copy file " + file
