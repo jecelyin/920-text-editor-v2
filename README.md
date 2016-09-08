@@ -75,5 +75,5 @@
 **Special thanks to donated friend (特别感谢捐赠了的朋友):**
 
 You can download from:
-* [https://market.android.com/details?id=com.jecelyin.editor](https://market.android.com/details?id=com.jecelyin.editor)
+* [https://play.google.com/store/apps/details?id=com.jecelyin.editor.v2](https://play.google.com/store/apps/details?id=com.jecelyin.editor.v2)
 * [https://github.com/jecelyin/920-text-editor-v2/releases](https://github.com/jecelyin/920-text-editor-v2/releases)
