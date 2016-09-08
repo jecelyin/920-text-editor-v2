@@ -31,8 +31,15 @@ import android.os.Environment;
 import android.os.Looper;
 import android.util.TypedValue;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -150,5 +157,74 @@ public class SysUtils {
 
     public static String getSDCardDir(Context context) {
         return Environment.getExternalStorageDirectory().getPath();
+    }
+
+    /* Checks if external storage is available for read and write */
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    /* Checks if external storage is available to at least read */
+    public boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static List<String> getStorageDirectories(boolean removableStorageOnly)
+    {
+        List<String> list = new ArrayList<String>();
+        String internalPath = Environment.getExternalStorageDirectory().getPath();
+
+        BufferedReader buf_reader = null;
+        try {
+            buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
+            String line;
+            while ((line = buf_reader.readLine()) != null) {
+                StringTokenizer tokens = new StringTokenizer(line, " ");
+                String unused = tokens.nextToken(); //device
+                String mountPoint = tokens.nextToken(); //mount point
+
+                unused = tokens.nextToken(); //file system
+                if ("tmpfs".equals(unused))
+                    continue;
+                List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
+                boolean readonly = flags.contains("ro");
+
+                if (removableStorageOnly && mountPoint.equals(internalPath)) {
+                } else if (mountPoint.startsWith("/mnt/") || mountPoint.startsWith("/storage")
+                        || mountPoint.startsWith("/sdcard")){
+                    list.add(mountPoint);
+                }
+            }
+
+        } catch (Exception ex) {
+            L.e(ex);
+        } finally {
+            if (buf_reader != null) {
+                try {
+                    buf_reader.close();
+                } catch (IOException ex) {}
+            }
+        }
+        return list;
+    }
+
+    public static boolean isRemovableMediaStoragePath(String path) {
+        List<String> directories = getStorageDirectories(true);
+
+        for (String directory : directories) {
+            if (path.startsWith(directory))
+                return true;
+        }
+
+        return false;
     }
 }

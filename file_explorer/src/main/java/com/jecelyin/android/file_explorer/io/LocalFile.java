@@ -27,6 +27,11 @@ import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
 import com.jecelyin.common.utils.IOUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -143,7 +148,10 @@ public class LocalFile extends JecFile {
             throw new NullPointerException();
 
         File[] files = file.listFiles();
-
+        if (files.length == 0) {
+            listener.onResult(new LocalFile[0]);
+            return;
+        }
         LocalFile[] localFiles = new LocalFile[files.length];
         for (int i = 0; i < files.length; i++) {
             localFiles[i] = new LocalFile(files[i].getPath());
@@ -180,6 +188,16 @@ public class LocalFile extends JecFile {
     @Override
     public void upload(LocalFile file, BoolResultListener resultListener, ProgressUpdateListener progressUpdateListener) {
 
+    }
+
+    @Override
+    public OutputStream getOutputStream() throws IOException {
+        return new FileOutputStream(file);
+    }
+
+    @Override
+    public InputStream getInputStream() throws IOException {
+        return new FileInputStream(file);
     }
 
     @Override

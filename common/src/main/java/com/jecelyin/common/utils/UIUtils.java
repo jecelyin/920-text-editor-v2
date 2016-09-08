@@ -61,6 +61,7 @@ public class UIUtils {
     }
 
     public static void toast(Context context, Throwable t) {
+        L.e(t);
         Toast.makeText(context.getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
     }
 

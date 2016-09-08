@@ -24,6 +24,10 @@ import com.jecelyin.android.file_explorer.listener.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
@@ -450,6 +454,10 @@ public abstract class JecFile implements Parcelable
     public abstract void copyTo(JecFile dest, BoolResultListener listener);
 
     public abstract void upload(LocalFile file, BoolResultListener resultListener, ProgressUpdateListener progressUpdateListener);
+
+    public abstract OutputStream getOutputStream() throws IOException;
+
+    public abstract InputStream getInputStream() throws IOException;
 
     /**
      * Returns the pathname string of this abstract pathname.  This is just the

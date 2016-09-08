@@ -128,11 +128,8 @@ public class MainActivity extends BaseActivity
         final String[] permissions = new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE
                 , Manifest.permission.WRITE_EXTERNAL_STORAGE
-                , Manifest.permission.WRITE_MEDIA_STORAGE
         };
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_MEDIA_STORAGE)
-                ) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             UIUtils.showConfirmDialog(this, null, getString(R.string.need_to_enable_read_storage_permissions), new UIUtils.OnClickCallback() {
                 @Override
                 public void onOkClick() {
@@ -147,6 +144,19 @@ public class MainActivity extends BaseActivity
         } else {
             ActivityCompat.requestPermissions(MainActivity.this, permissions, RC_PERMISSION_STORAGE);
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        // Write external store permission requires a restart
+        for (int i = 0; i < permissions.length; i++) {
+            //Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permissions[i])
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                requestWriteExternalStoragePermission();
+                return;
+            }
+        }
+        start();
     }
 
     @Override
@@ -196,15 +206,16 @@ public class MainActivity extends BaseActivity
         String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
 
-        if (savedInstanceState == null && pref.isAutoCheckUpdates()) {
-            new CheckUpgradeTask(this).checkVersion(version);
-        }
-
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                ) {
             requestWriteExternalStoragePermission();
         } else {
             start();
+
+            if (savedInstanceState == null && pref.isAutoCheckUpdates()) {
+                new CheckUpgradeTask(this).checkVersion(version);
+            }
         }
     }
 
@@ -251,19 +262,6 @@ public class MainActivity extends BaseActivity
         } else if(Pref.SCREEN_ORIENTATION_PORTRAIT == orgi) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        // Write external store permission requires a restart
-        for (int i = 0; i < permissions.length; i++) {
-            //Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permissions[i])
-            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                requestWriteExternalStoragePermission();
-                return;
-            }
-        }
-        start();
     }
 
     private void start() {

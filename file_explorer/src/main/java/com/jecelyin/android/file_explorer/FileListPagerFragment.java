@@ -299,6 +299,10 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             path.listFiles(new FileListResultListener() {
                 @Override
                 public void onResult(JecFile[] result) {
+                    if (result.length == 0) {
+                        taskResult.setResult(result);
+                        return;
+                    }
                     if (!showHiddenFiles) {
                         List<JecFile> list = new ArrayList<>(result.length);
                         for (JecFile file : result) {
