@@ -73,7 +73,9 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
 //            }
 //        }
 
-        if(file.isFile() && !IOUtils.copyFile(file, backupFile)) {
+        if(file.isFile() && (orgiFile == null
+                ? !IOUtils.copyFile(file, backupFile)
+                : !RootTools.copyFile(file.getPath(), backupFile.getPath(), true, true))) {
             return new IOException("Couldn't copy file " + file
                     + " to backup file " + backupFile);
         }

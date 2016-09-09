@@ -41,7 +41,7 @@ public class LocalTranslateTask extends JecAsyncTask<Void, Void, Boolean> {
 
     public LocalTranslateTask(Context context) {
         this.context = context;
-        stringsFile = new File(SysUtils.getSDCardDir(context), "920.strings.xml");
+        stringsFile = new File(SysUtils.getAppStoragePath(context), "920.strings.xml");
     }
 
     @Override

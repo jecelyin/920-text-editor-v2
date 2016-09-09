@@ -446,7 +446,13 @@ public class MainActivity extends BaseActivity
             case R.id.m_menu:
                 hideSoftInput();
 
-                mDrawerLayout.openDrawer(GravityCompat.END);
+                mDrawerLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mDrawerLayout.openDrawer(GravityCompat.END);
+                    }
+                }, 200);
+
                 break;
             case R.id.m_save_all:
                 commandEnum = Command.CommandEnum.SAVE;

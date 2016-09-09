@@ -125,11 +125,11 @@ public class Document implements ReadFileListener, TextWatcher {
         }
         root = false;
         if ((!file.canRead() || !file.canWrite()) && pref.isRootable()) {
-            rootFile = new File(SysUtils.getCacheDir(context), file.getName() + ".root");
+            rootFile = new File(SysUtils.getAppStoragePath(context), file.getName() + ".root");
             if (rootFile.exists())
                 rootFile.delete();
 
-            root = RootTools.copyFile(file.getPath(), rootFile.getPath(), false, false);
+            root = RootTools.copyFile(file.getPath(), rootFile.getPath(), false, true);
         }
         if(!file.canRead() && !root) {
             UIUtils.alert(context, context.getString(R.string.cannt_read_file, file.getPath()));

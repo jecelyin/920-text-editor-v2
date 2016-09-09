@@ -53,7 +53,7 @@ public class SpeedActivity extends JecActivity {
         editText.setInputType(editText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
         setContentView(editText);
 
-        FileReader fr = new FileReader(new File(SysUtils.getSDCardDir(this), "1/TextView.java"), "utf-8");
+        FileReader fr = new FileReader(new File(SysUtils.getAppStoragePath(this), "1/TextView.java"), "utf-8");
         long t1 = System.currentTimeMillis();
         fr.read();
         long t2 = System.currentTimeMillis();

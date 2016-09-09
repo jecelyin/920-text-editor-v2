@@ -155,8 +155,12 @@ public class SysUtils {
         return signature.toByteArray();
     }
 
-    public static String getSDCardDir(Context context) {
-        return Environment.getExternalStorageDirectory().getPath();
+    public static String getAppStoragePath(Context context) {
+        File path = new File(Environment.getExternalStorageDirectory(), context.getPackageName());
+        if (!path.exists()) {
+            path.mkdirs();
+        }
+        return path.getPath();
     }
 
     /* Checks if external storage is available for read and write */
