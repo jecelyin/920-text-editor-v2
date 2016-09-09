@@ -68,7 +68,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
 
     private SavedState savedState;
     private int orientation;
-    private boolean loaded = false;
+    private boolean loaded = true;
 
     public EditorDelegate(SavedState ss) {
         savedState = ss;
@@ -148,6 +148,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     public void onLoadStart() {
+        loaded = false;
         mEditText.setEnabled(false);
         mEditorView.setLoading(true);
     }
