@@ -193,13 +193,19 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public void onRefresh() {
-        task = new ScanFilesTask(getActivity(), path, isRoot);
+        UpdateRootInfo updateRootInfo = new UpdateRootInfo() {
+
+            @Override
+            public void onUpdate(boolean root, JecFile f) {
+                isRoot = root;
+                path = f;
+            }
+        };
+        task = new ScanFilesTask(getActivity(), path, isRoot, updateRootInfo);
         task.setTaskListener(new TaskListener<JecFile[]>() {
             @Override
             public void onCompleted() {
                 binding.explorerSwipeRefreshLayout.setRefreshing(false);
-                isRoot = task.isRoot;
-                path = task.path;
             }
 
             @Override
@@ -272,15 +278,21 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         onRefresh();
     }
 
+    private static interface UpdateRootInfo {
+        public void onUpdate(boolean root, JecFile path);
+    }
+
     private static class ScanFilesTask extends JecAsyncTask<Void, Void, JecFile[]> {
+        private final UpdateRootInfo updateRootInfo;
         private JecFile path;
         private boolean isRoot;
         private final Context context;
 
-        private ScanFilesTask(Context context, JecFile path, boolean isRoot) {
+        private ScanFilesTask(Context context, JecFile path, boolean isRoot, UpdateRootInfo updateRootInfo) {
             this.context = context.getApplicationContext();
             this.path = path;
             this.isRoot = isRoot;
+            this.updateRootInfo = updateRootInfo;
         }
 
         @Override
@@ -296,6 +308,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             if (isRoot && !canRead && !(path instanceof RootFile)) {
                 path = new RootFile(path.getPath());
             }
+            updateRootInfo.onUpdate(isRoot, path);
             path.listFiles(new FileListResultListener() {
                 @Override
                 public void onResult(JecFile[] result) {
