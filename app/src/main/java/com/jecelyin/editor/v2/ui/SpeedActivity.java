@@ -21,19 +21,15 @@ package com.jecelyin.editor.v2.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 
+import com.jecelyin.common.adapter.ViewPagerAdapter;
 import com.jecelyin.common.app.JecActivity;
-import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.SysUtils;
-import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
-import com.jecelyin.editor.v2.core.widget.JecEditText;
-import com.jecelyin.editor.v2.io.FileReader;
-
-import java.io.File;
+import com.jecelyin.editor.v2.R;
+import com.jecelyin.editor.v2.view.TabViewPager;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -48,22 +44,40 @@ public class SpeedActivity extends JecActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        JecEditText editText = new JecEditText(getContext());
-        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        editText.setInputType(editText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
-        setContentView(editText);
+        setContentView(R.layout.speed_activity);
+//        JecEditText editText = new JecEditText(getContext());
+//        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        editText.setInputType(editText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
+//        setContentView(editText);
+//
+//        FileReader fr = new FileReader(new File(SysUtils.getAppStoragePath(this), "1/TextView.java"), "utf-8");
+//        long t1 = System.currentTimeMillis();
+//        fr.read();
+//        long t2 = System.currentTimeMillis();
+//        SpannableStringBuilder ssb = fr.getBuffer();
+//        Debug.startMethodTracing("textview");
+//        long t3 = System.currentTimeMillis();
+//        editText.setText(ssb);
+//        long t4 = System.currentTimeMillis();
+//        Debug.stopMethodTracing();
+//
+//        L.d("Speed: #1=%f, #2=%f", (t2 - t1) / 1000f, (t4 - t3) / 1000f);
+        TabViewPager pager = (TabViewPager) findViewById(R.id.tab_pager);
+        TestViewPagerAdapter adapter = new TestViewPagerAdapter();
+        pager.setAdapter(adapter);
+        adapter.count = 1;
+        adapter.notifyDataSetChanged();
+    }
+    static class TestViewPagerAdapter extends ViewPagerAdapter {
+        public int count = 0;
+        @Override
+        public View getView(int position, ViewGroup pager) {
+            return LayoutInflater.from(pager.getContext()).inflate(R.layout.editor, pager, false);
+        }
 
-        FileReader fr = new FileReader(new File(SysUtils.getAppStoragePath(this), "1/TextView.java"), "utf-8");
-        long t1 = System.currentTimeMillis();
-        fr.read();
-        long t2 = System.currentTimeMillis();
-        SpannableStringBuilder ssb = fr.getBuffer();
-        Debug.startMethodTracing("textview");
-        long t3 = System.currentTimeMillis();
-        editText.setText(ssb);
-        long t4 = System.currentTimeMillis();
-        Debug.stopMethodTracing();
-
-        L.d("Speed: #1=%f, #2=%f", (t2 - t1) / 1000f, (t4 - t3) / 1000f);
+        @Override
+        public int getCount() {
+            return count;
+        }
     }
 }
