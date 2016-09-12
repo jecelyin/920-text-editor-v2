@@ -94,7 +94,7 @@ import java.util.List;
  * href="{@docRoot}training/implementing-navigation/nav-drawer.html">Creating a Navigation
  * Drawer</a>.</p>
  */
-public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
+public class TranslucentDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
     private static final String TAG = "DrawerLayout";
 
     @IntDef({STATE_IDLE, STATE_DRAGGING, STATE_SETTLING})
@@ -357,15 +357,15 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
 
     static final DrawerLayoutCompatImpl IMPL;
 
-    public AnyDrawerLayout(Context context) {
+    public TranslucentDrawerLayout(Context context) {
         this(context, null);
     }
 
-    public AnyDrawerLayout(Context context, AttributeSet attrs) {
+    public TranslucentDrawerLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AnyDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
+    public TranslucentDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
         final float density = getResources().getDisplayMetrics().density;
@@ -2023,7 +2023,7 @@ public class AnyDrawerLayout extends ViewGroup implements DrawerLayoutImpl {
         }
 
         public void removeCallbacks() {
-            AnyDrawerLayout.this.removeCallbacks(mPeekRunnable);
+            TranslucentDrawerLayout.this.removeCallbacks(mPeekRunnable);
         }
 
         @Override

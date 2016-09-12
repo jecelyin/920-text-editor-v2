@@ -77,7 +77,7 @@ import com.jecelyin.editor.v2.view.TabViewPager;
 import com.jecelyin.editor.v2.view.menu.MenuDef;
 import com.jecelyin.editor.v2.view.menu.MenuFactory;
 import com.jecelyin.editor.v2.view.menu.MenuItemInfo;
-import com.jecelyin.editor.v2.widget.AnyDrawerLayout;
+import com.jecelyin.editor.v2.widget.TranslucentDrawerLayout;
 import com.jecelyin.editor.v2.widget.SymbolBarLayout;
 
 import java.io.File;
@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity
     LinearLayout mLoadingLayout;
     TabViewPager mTabPager;
     RecyclerView mMenuRecyclerView;
-    AnyDrawerLayout mDrawerLayout;
+    TranslucentDrawerLayout mDrawerLayout;
     RecyclerView mTabRecyclerView;
     TextView mVersionTextView;
 
@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity
         mLoadingLayout = (LinearLayout) findViewById(R.id.loading_layout);
         mTabPager = (TabViewPager) findViewById(R.id.tab_pager);
         mMenuRecyclerView = (RecyclerView) findViewById(R.id.menuRecyclerView);
-        mDrawerLayout = (AnyDrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (TranslucentDrawerLayout) findViewById(R.id.drawer_layout);
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
 
