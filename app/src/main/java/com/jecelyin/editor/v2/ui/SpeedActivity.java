@@ -62,6 +62,7 @@ public class SpeedActivity extends JecActivity {
 //        Debug.stopMethodTracing();
 //
 //        L.d("Speed: #1=%f, #2=%f", (t2 - t1) / 1000f, (t4 - t3) / 1000f);
+        setStatusBarColor((ViewGroup) findViewById(R.id.drawer_layout));
         TabViewPager pager = (TabViewPager) findViewById(R.id.tab_pager);
         TestViewPagerAdapter adapter = new TestViewPagerAdapter();
         pager.setAdapter(adapter);
