@@ -205,16 +205,20 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         task.setTaskListener(new TaskListener<JecFile[]>() {
             @Override
             public void onCompleted() {
-                binding.explorerSwipeRefreshLayout.setRefreshing(false);
+                if (binding.explorerSwipeRefreshLayout != null)
+                    binding.explorerSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onSuccess(JecFile[] result) {
-                adapter.setData(result);
+                if (adapter != null)
+                    adapter.setData(result);
             }
 
             @Override
             public void onError(Exception e) {
+                if (binding.explorerSwipeRefreshLayout == null)
+                    return;
                 binding.explorerSwipeRefreshLayout.setRefreshing(false);
                 UIUtils.toast(getContext(), e);
             }
