@@ -112,6 +112,7 @@ public class EditorAdapter extends ViewPagerAdapter {
     public void setPrimaryItem(ViewGroup container, int position, Object object) {
         super.setPrimaryItem(container, position, object);
         currentPosition = position;
+        setEditorView(position, (EditorView) object);
     }
 
     public EditorDelegate getCurrentEditorDelegate() {

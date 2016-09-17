@@ -104,6 +104,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     private void init() {
+        if (document != null)
+            return;
         document = new Document(context, this);
         mEditText.setReadOnly(Pref.getInstance(context).isReadOnly());
         mEditText.setCustomSelectionActionModeCallback(new EditorSelectionActionModeCallback());
