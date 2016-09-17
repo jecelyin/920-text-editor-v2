@@ -124,23 +124,19 @@ public class BottomDrawerLayout extends ViewGroup {
     }
 
     int getPaddingLeftWithForeground() {
-        return isForegroundInsidePadding() ? Math.max(mPaddingLeft, mForegroundPaddingLeft) :
-            mPaddingLeft + mForegroundPaddingLeft;
+        return mPaddingLeft + mForegroundPaddingLeft;
     }
 
     int getPaddingRightWithForeground() {
-        return isForegroundInsidePadding() ? Math.max(mPaddingRight, mForegroundPaddingRight) :
-            mPaddingRight + mForegroundPaddingRight;
+        return mPaddingRight + mForegroundPaddingRight;
     }
 
     private int getPaddingTopWithForeground() {
-        return isForegroundInsidePadding() ? Math.max(mPaddingTop, mForegroundPaddingTop) :
-            mPaddingTop + mForegroundPaddingTop;
+        return mPaddingTop + mForegroundPaddingTop;
     }
 
     private int getPaddingBottomWithForeground() {
-        return isForegroundInsidePadding() ? Math.max(mPaddingBottom, mForegroundPaddingBottom) :
-            mPaddingBottom + mForegroundPaddingBottom;
+        return mPaddingBottom + mForegroundPaddingBottom;
     }
 
 
