@@ -1105,6 +1105,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
 //
 //            case android.R.styleable.TextView_textEditSuggestionItemLayout:
 //                mTextEditSuggestionItemLayout = a.getResourceId(attr, 0);
+        mTextEditSuggestionItemLayout = R.layout.text_edit_suggestion_item;
 //                break;
 //
 //            case android.R.styleable.TextView_textIsSelectable:
