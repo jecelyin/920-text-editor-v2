@@ -581,6 +581,8 @@ public class MainActivity extends BaseActivity
 
     public void doCommand(Command command) {
         clusterCommand = null;
+        if (tabManager == null || tabManager.getEditorAdapter() == null)
+            return;
         EditorDelegate editorDelegate = tabManager.getEditorAdapter().getCurrentEditorDelegate();
         if (editorDelegate != null)
             editorDelegate.doCommand(command);

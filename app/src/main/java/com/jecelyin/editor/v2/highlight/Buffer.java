@@ -22,6 +22,7 @@ package com.jecelyin.editor.v2.highlight;
 import android.content.Context;
 import android.text.Editable;
 
+import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
 import com.jecelyin.editor.v2.highlight.jedit.LineManager;
 import com.jecelyin.editor.v2.highlight.jedit.Mode;
@@ -34,6 +35,7 @@ import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.TokenHandler;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.TokenMarker;
 import com.jecelyin.editor.v2.highlight.jedit.util.IntegerArray;
+
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -198,8 +200,10 @@ public class Buffer {
     public void markTokens(int lineIndex, TokenHandler tokenHandler) {
         Segment seg = new Segment();
 
-        if (lineIndex < 0 || lineIndex >= lineMgr.getLineCount())
-            throw new ArrayIndexOutOfBoundsException("lineCount=" + lineMgr.getLineCount() + "; index=" + lineIndex);
+        if (lineIndex < 0 || lineIndex >= lineMgr.getLineCount()) {
+            L.e(new ArrayIndexOutOfBoundsException("lineCount=" + lineMgr.getLineCount() + "; index=" + lineIndex));
+            return;
+        }
 
         int firstInvalidLineContext = lineMgr.getFirstInvalidLineContext();
         int start;

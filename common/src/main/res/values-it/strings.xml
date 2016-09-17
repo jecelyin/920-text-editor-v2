@@ -249,4 +249,5 @@
     <string name="cannt_load_lang_file">Non riesco a caricare il file di linguaggio</string>
     <string name="local_translate_message">Quando hai finito la traduzione ti prego di inviarla a jecelyin@gmail.com Grazie!</string>
     <string name="untitled_file_name">untitled.txt</string>
+    <string name="editor_initialing">Editor initialing…</string>
 </resources>

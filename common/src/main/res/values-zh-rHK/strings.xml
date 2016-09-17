@@ -250,4 +250,5 @@
     <string name="translate_internal_text">本地翻譯</string>
     <string name="cannt_load_lang_file">無法加載語言文件</string>
     <string name="local_translate_message">翻譯完後請Email给: jecelyin@gmail.com, 謝謝</string>
+    <string name="editor_initialing">編輯器正在初始化中…</string>
 </resources>

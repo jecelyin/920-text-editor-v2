@@ -87,7 +87,14 @@ public class RunDialog extends AbstractDialog {
     }
 
     private void onItemClick(int i) {
-        String path = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate().getPath();
+        String path = null;
+        try {
+            path = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate().getPath();
+        } catch (Exception e) {
+            L.e(e);
+            UIUtils.toast(context, R.string.editor_in_init);
+            return;
+        }
         if(TextUtils.isEmpty(path)) {
             UIUtils.toast(context, R.string.please_save_as_file_first);
             return;
