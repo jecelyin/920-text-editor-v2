@@ -92,7 +92,7 @@ public class RunDialog extends AbstractDialog {
             path = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate().getPath();
         } catch (Exception e) {
             L.e(e);
-            UIUtils.toast(context, R.string.editor_in_init);
+            UIUtils.toast(context, R.string.editor_initialing);
             return;
         }
         if(TextUtils.isEmpty(path)) {

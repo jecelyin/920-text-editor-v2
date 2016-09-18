@@ -20,6 +20,7 @@ package com.jecelyin.android.file_explorer.adapter;
 
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
@@ -36,6 +37,7 @@ import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
 import com.jecelyin.common.adapter.BindingViewHolder;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.StringUtils;
+import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,7 +45,7 @@ import java.util.Calendar;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<FileListItemBinding>> {
+public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<FileListItemBinding>> implements FastScrollRecyclerView.SectionedAdapter {
     private JecFile[] data;
     private final String year;
     private final SparseIntArray checkedArray;
@@ -87,6 +89,22 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         }
         itemCount = index;
         notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public String getSectionName(int position) {
+        JecFile file = getItem(position);
+        char c = file.getName().charAt(0);
+
+        if ( (c >= '0' && c <= '9')
+            || (c >= 'a' && c <= 'z')
+            || (c >= 'A' && c <= 'Z')
+                ) {
+            return String.valueOf(c);
+        }
+
+        return "#";
     }
 
     public JecFile getItem(int position) {
