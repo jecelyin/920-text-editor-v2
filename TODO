@@ -3,7 +3,6 @@
 清空剪贴板功能
 不换行时,向右拖会跳回
 add fast scroller to explorer
-default language to english
 监控文件改变
 -new file can't save
 勾选了“记住最后打开的文件”后，下次启动软件时，打开的不是最后打开的那个文件
