@@ -674,7 +674,7 @@ public class DynamicLayout extends Layout
         return mEllipsizedWidth;
     }
 
-    private static class ChangeWatcher implements TextWatcher, SpanWatcher {
+    public static class ChangeWatcher implements TextWatcher, SpanWatcher {
         public ChangeWatcher(DynamicLayout layout) {
             mLayout = new WeakReference<DynamicLayout>(layout);
         }

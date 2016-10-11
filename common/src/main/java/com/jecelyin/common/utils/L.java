@@ -18,6 +18,7 @@
 
 package com.jecelyin.common.utils;
 
+import android.os.Debug;
 import android.util.Log;
 
 import com.jecelyin.common.app.JecApp;
@@ -29,6 +30,8 @@ public class L {
 
     private static final String TAG = "JecLog";
     public static boolean debug = false;
+    private static long tracingStartTime;
+    private static String tracingName;
 
     private static String getTag() {
         if (!debug)
@@ -54,6 +57,25 @@ public class L {
         int lineNumber = stack.getLineNumber();
 
         return className + "." + methodName + "#" + lineNumber;
+    }
+
+    public static void startTracing(String name) {
+        if (!debug)
+            return;
+        Debug.startMethodTracing(name);
+        tracingName = name;
+        tracingStartTime = System.currentTimeMillis();
+    }
+
+    public static void stopTracing() {
+        if (!debug)
+            return;
+
+        long tracingStopTime = System.currentTimeMillis();
+        Debug.stopMethodTracing();
+
+        float ts = (tracingStopTime - tracingStartTime) / 1000f;
+        L.d("Tracing Name: " + tracingName + " Consuming Time: " + ts + "s");
     }
 
     public static int v(String tag, String msg) {

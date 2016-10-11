@@ -9494,7 +9494,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         }
     }
 
-    private static class ChangeWatcher implements TextWatcher, SpanWatcher {
+    public static class ChangeWatcher implements TextWatcher, SpanWatcher {
         private WeakReference<TextView> textView;
 //        private CharSequence mBeforeText;
 

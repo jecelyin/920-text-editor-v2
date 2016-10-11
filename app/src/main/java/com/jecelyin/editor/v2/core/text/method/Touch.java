@@ -245,7 +245,7 @@ public class Touch {
         return ds.length > 0 && ds[0].mIsSelectionStarted;
     }
 
-    private static class DragState implements NoCopySpan {
+    public static class DragState implements NoCopySpan {
         public float mX;
         public float mY;
         public int mScrollX;

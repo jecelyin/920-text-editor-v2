@@ -24,17 +24,27 @@ import android.text.GetChars;
 import android.text.GraphicsOperations;
 import android.text.InputFilter;
 import android.text.NoCopySpan;
+import android.text.ParcelableSpan;
 import android.text.SpanWatcher;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.LineBackgroundSpan;
+import android.text.style.MetricAffectingSpan;
+import android.text.style.ParagraphStyle;
+import android.text.style.ReplacementSpan;
+import android.text.style.SuggestionSpan;
+import android.text.style.URLSpan;
 import android.util.Log;
 
 import com.jecelyin.editor.v2.core.graphics.CanvasCompat;
+import com.jecelyin.editor.v2.core.text.method.Touch;
 import com.jecelyin.editor.v2.core.util.ArrayUtils;
 import com.jecelyin.editor.v2.core.util.EmptyArray;
 import com.jecelyin.editor.v2.core.util.GrowingArrayUtils;
+import com.jecelyin.editor.v2.core.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.IdentityHashMap;
@@ -870,6 +880,44 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
         return i == null ? 0 : mSpanFlags[i];
     }
 
+    private boolean isInstance(Class kind, Object span) {
+//        L.d("isInstance kind(" + kind + ") == span(" + span.getClass() + ")");
+
+        if (ParagraphStyle.class == kind) {
+            return span instanceof ParagraphStyle;
+        } else if (DynamicLayout.ChangeWatcher.class == kind) {
+            return span instanceof DynamicLayout.ChangeWatcher;
+        } else if (ReplacementSpan.class == kind) {
+            return span instanceof ReplacementSpan;
+        } else if (TextWatcher.class == kind) {
+            return span instanceof TextWatcher;
+        } else if (SpanWatcher.class == kind) {
+            return span instanceof SpanWatcher;
+        } else if (MetricAffectingSpan.class == kind) {
+            return span instanceof MetricAffectingSpan;
+        } else if (ClickableSpan.class == kind) {
+            return span instanceof ClickableSpan;
+        } else if (Touch.DragState.class == kind) {
+            return span instanceof Touch.DragState;
+        } else if (SuggestionSpan.class == kind) {
+            return span instanceof SuggestionSpan;
+        } else if (URLSpan.class == kind) {
+            return span instanceof URLSpan;
+        } else if (ParcelableSpan.class == kind) {
+            return span instanceof ParcelableSpan;
+        } else if (TextView.ChangeWatcher.class == kind) {
+            return span instanceof TextView.ChangeWatcher;
+        } else if (ForegroundColorSpan.class == kind) {
+            return span instanceof ForegroundColorSpan;
+        } else if (LineBackgroundSpan.class == kind) {
+            return span instanceof LineBackgroundSpan;
+        } else if (Object.class == kind) {
+            return true;
+        }
+
+        return kind.isInstance(span);
+    }
+
     /**
      * Return an array of the spans of the specified type that overlap
      * the specified range of the buffer.  The kind may be Object.class to get
@@ -915,7 +963,8 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
                 if (spanEnd >= queryStart &&
                     (spanStart == spanEnd || queryStart == queryEnd ||
                         (spanStart != queryEnd && spanEnd != queryStart)) &&
-                        kind.isInstance(mSpans[i])) {
+//                        kind.isInstance(mSpans[i])) {
+                        isInstance(kind, mSpans[i])) {
                     count++;
                 }
                 if ((i & 1) != 0) {
@@ -953,7 +1002,8 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
             if (spanEnd >= queryStart &&
                     (spanStart == spanEnd || queryStart == queryEnd ||
                         (spanStart != queryEnd && spanEnd != queryStart)) &&
-                        kind.isInstance(mSpans[i])) {
+//                        kind.isInstance(mSpans[i])) {
+                        isInstance(kind, mSpans[i])) {
                 int prio = mSpanFlags[i] & SPAN_PRIORITY;
                 if (prio != 0) {
                     int j;
@@ -1006,9 +1056,12 @@ public class SpannableStringBuilder implements CharSequence, GetChars, Spannable
         if (i < mSpanCount) {
             int st = resolveGap(mSpanStarts[i]);
             int en = resolveGap(mSpanEnds[i]);
-            if (st > start && st < limit && kind.isInstance(mSpans[i]))
+//            if (st > start && st < limit && kind.isInstance(mSpans[i]))
+            boolean instance = isInstance(kind, mSpans[i]);
+            if (st > start && st < limit && instance)
                 limit = st;
-            if (en > start && en < limit && kind.isInstance(mSpans[i]))
+//            if (en > start && en < limit && kind.isInstance(mSpans[i]))
+            if (en > start && en < limit && instance)
                 limit = en;
             if (st < limit && (i & 1) != 0) {
                 limit = nextSpanTransitionRec(start, limit, kind, rightChild(i));
