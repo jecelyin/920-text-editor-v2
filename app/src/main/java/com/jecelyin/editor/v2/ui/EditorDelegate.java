@@ -106,6 +106,9 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     private void init() {
         if (document != null)
             return;
+        // start tracing to "/sdcard/textview.trace"
+        if(L.debug) Debug.startMethodTracing("textview");
+
         document = new Document(context, this);
         mEditText.setReadOnly(Pref.getInstance(context).isReadOnly());
         mEditText.setCustomSelectionActionModeCallback(new EditorSelectionActionModeCallback());
@@ -142,9 +145,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         this.orientation = context.getResources().getConfiguration().orientation;
 
         editorView.setVisibilityChangedListener(this);
-
-        // start tracing to "/sdcard/textview.trace"
-        if(L.debug) Debug.startMethodTracing("textview");
 
         init();
     }
