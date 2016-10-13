@@ -95,6 +95,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.RemoteViews.RemoteView;
 import android.widget.Scroller;
 
+import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
@@ -4988,7 +4989,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             }
 
             if (curs >= 0) {
-                bringPointIntoView(curs);
+//                bringPointIntoView(curs);
             }
         } else {
             bringTextIntoView();

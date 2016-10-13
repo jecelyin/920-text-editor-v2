@@ -41,45 +41,47 @@ public class Touch {
         final int horizontalPadding = widget.getTotalPaddingLeft() + widget.getTotalPaddingRight();
         final int availableWidth = widget.getWidth() - horizontalPadding;
 
-        final int top = layout.getLineForVertical(y);
-        Layout.Alignment a = layout.getParagraphAlignment(top);
-        boolean ltr = layout.getParagraphDirection(top) > 0;
+//        final int top = layout.getLineForVertical(y);
+//        Layout.Alignment a = layout.getParagraphAlignment(top);
+//        boolean ltr = layout.getParagraphDirection(top) > 0;
+//
+//        int left, right;
+//        if (widget.getHorizontallyScrolling()) {
+//            final int verticalPadding = widget.getTotalPaddingTop() + widget.getTotalPaddingBottom();
+//            final int bottom = layout.getLineForVertical(y + widget.getHeight() - verticalPadding);
+//
+//            left = Integer.MAX_VALUE;
+//            right = 0;
+//
+//            for (int i = top; i <= bottom; i++) {
+//                left = (int) Math.min(left, layout.getLineLeft(i));
+//                right = (int) Math.max(right, layout.getLineRight(i));
+//            }
+//        } else {
+//            left = 0;
+//            right = availableWidth;
+//        }
 
-        int left, right;
-        if (widget.getHorizontallyScrolling()) {
-            final int verticalPadding = widget.getTotalPaddingTop() + widget.getTotalPaddingBottom();
-            final int bottom = layout.getLineForVertical(y + widget.getHeight() - verticalPadding);
+//        final int actualWidth = right - left;
+        x = Math.max(0, x);
+        x = Math.min(x, availableWidth);
+//        if (actualWidth < availableWidth) {
+//            if (a == Layout.Alignment.ALIGN_CENTER) {
+//                x = left - ((availableWidth - actualWidth) / 2);
+//            } else if ((ltr && (a == Layout.Alignment.ALIGN_OPPOSITE)) ||
+//                       (!ltr && (a == Layout.Alignment.ALIGN_NORMAL)) ||
+//                       (a == Layout.Alignment.ALIGN_RIGHT)) {
+//                // align_opposite does NOT mean align_right, we need the paragraph
+//                // direction to resolve it to left or right
+//                x = left - (availableWidth - actualWidth);
+//            } else {
+//                x = left;
+//            }
+//        } else {
+//            x = Math.min(x, right - availableWidth);
+//            x = Math.max(x, left);
+//        }
 
-            left = Integer.MAX_VALUE;
-            right = 0;
-
-            for (int i = top; i <= bottom; i++) {
-                left = (int) Math.min(left, layout.getLineLeft(i));
-                right = (int) Math.max(right, layout.getLineRight(i));
-            }
-        } else {
-            left = 0;
-            right = availableWidth;
-        }
-
-        final int actualWidth = right - left;
-
-        if (actualWidth < availableWidth) {
-            if (a == Layout.Alignment.ALIGN_CENTER) {
-                x = left - ((availableWidth - actualWidth) / 2);
-            } else if ((ltr && (a == Layout.Alignment.ALIGN_OPPOSITE)) ||
-                       (!ltr && (a == Layout.Alignment.ALIGN_NORMAL)) ||
-                       (a == Layout.Alignment.ALIGN_RIGHT)) {
-                // align_opposite does NOT mean align_right, we need the paragraph
-                // direction to resolve it to left or right
-                x = left - (availableWidth - actualWidth);
-            } else {
-                x = left;
-            }
-        } else {
-            x = Math.min(x, right - availableWidth);
-            x = Math.max(x, left);
-        }
 
         widget.scrollTo(x, y);
     }

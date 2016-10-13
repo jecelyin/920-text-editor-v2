@@ -99,7 +99,8 @@ public class FlingRunnable implements Runnable
                 final Scroller scroller = mScroller;
                 boolean more = scroller.computeScrollOffset();
 
-                int x = scroller.getCurrX();
+//                int x = scroller.getCurrX();
+                int x = mWidget.getScrollX();
                 int y = scroller.getCurrY();
 
                 Layout layout = mWidget.getLayout();
