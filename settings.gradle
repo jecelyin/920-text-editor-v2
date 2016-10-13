@@ -1,1 +1,1 @@
-include ':common', ':app', ':styles', ':file_explorer'
+include ':common', ':app', ':styles', ':file_explorer', ':tools'

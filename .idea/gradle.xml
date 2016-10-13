@@ -6,7 +6,6 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.14.1" />
-        <option name="gradleJvm" value="1.7" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -14,6 +13,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/file_explorer" />
             <option value="$PROJECT_DIR$/styles" />
+            <option value="$PROJECT_DIR$/tools" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
