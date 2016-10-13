@@ -29,8 +29,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,6 +43,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class XML2JSON {
+    private static StringBuilder javaCode = new StringBuilder();
+
     public static void main(String[] args) {
         File f = new File(".");
         String path = f.getAbsolutePath();
@@ -53,6 +57,14 @@ public class XML2JSON {
             }
         });
 
+        javaCode.append("package com.jecelyin.editor.v2.highlight;\n" +
+                "\n" +
+                "import java.util.HashMap;\n" +
+                "\n" +
+                "public class Languages {\n" +
+                "    public final static HashMap<String, String> map = new HashMap<>();\n" +
+                "    \n" +
+                "    static {\n" );
         try {
             for (File file : files) {
 //                String xml = readFile(file);
@@ -62,10 +74,27 @@ public class XML2JSON {
 
                 o("File: %s", file.getName());
                 parseXml(file);
-                break;
             }
         }catch (Exception e) {
             e.printStackTrace();
+        }
+        javaCode.append("    }\n" +
+                "}");
+
+        writeFile(new File(path, "app/src/main/java/com/jecelyin/editor/v2/highlight/Languages.java"), javaCode.toString());
+    }
+
+    public static boolean writeFile(File file, String text) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write(text);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            file.delete();
+            return false;
         }
     }
 
@@ -98,7 +127,10 @@ public class XML2JSON {
             if (item.getNodeType() == Node.ELEMENT_NODE) {
                 JSONObject jsonObject = new JSONObject();
                 parseNode((Element)item, jsonObject);
-                o("json: %s", jsonObject.toString());
+//                o("json: %s", jsonObject.toString());
+                javaCode.append("        map.put(\"").append(file.getName()).append("\", \"")
+                .append(jsonObject.toString().replaceAll("\\\"","\\\\\""))
+                .append("\");\n");
                 break;
             }
         }
