@@ -33,3 +33,6 @@ sl4a的打开选择920报错
 bottom symbol bar visible on activity recreate
 
 启动时转太久了
+
+每次启动后，下面的工具条仍然存在，虽然是只读模式
+只读必须重启
