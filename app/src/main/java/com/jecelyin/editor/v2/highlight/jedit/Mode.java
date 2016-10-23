@@ -49,7 +49,7 @@ public class Mode {
         this.fileNameGlob = fileNameGlob;
         this.firstLineGlob = firstLineGlob;
         this.name = name;
-        this.file = "syntax/" + syntaxFilename;
+        this.file = syntaxFilename;
         this.ignoreWhitespace = true;
         props = new Hashtable<String, Object>();
         init();

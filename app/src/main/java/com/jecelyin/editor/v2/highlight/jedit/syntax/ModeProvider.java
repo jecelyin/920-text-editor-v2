@@ -41,7 +41,6 @@ public class ModeProvider {
             modes.put(mode.getName().toUpperCase(), mode);
         }
     }
-    private AssetManager assets;
 
     //{{{ removeAll() method
 //	public void removeAll()
@@ -251,11 +250,4 @@ public class ModeProvider {
         L.e(file, e);
     } //}}}
 
-    public void setAssets(AssetManager assets) {
-        this.assets = assets;
-    }
-
-    public AssetManager getAssets() {
-        return assets;
-    }
 }
