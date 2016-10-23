@@ -1,0 +1,33 @@
+/*
+ * Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+ *
+ * This file is part of 920 Text Editor.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.jecelyin.editor.v2.highlight.lang;
+
+import com.jecelyin.editor.v2.highlight.LangDefine;
+
+/**
+ * @author Jecelyin Peng <jecelyin@gmail.com>
+ */
+public class UrlLang implements LangDefine {
+    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",-=<>/?^&*\",\"NAME\":\"wordBreakChars\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DOMAINNAME\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"MARK_PREVIOUS\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\":\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"MATCH_TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(?=\\\\b[\\\\w.:-]+@(\\\\b))\"},{\"tag\":\"END\",\"text\":\"$1\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"MATCH_TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\\\\b)[\\\\w.-]+((?=/))\"},{\"tag\":\"END\",\"text\":\"$1\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"MATCH_TYPE\":\"OPERATOR\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"MARK_FOLLOWING\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"LITERAL4\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"FALSE\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"MATCH_TYPE\":\"OPERATOR\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"=\"},{\"tag\":\"END\",\"text\":\"&\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL2\",\"DELEGATE\":\"DOMAINNAME\",\"MATCH_TYPE\":\"OPERATOR\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"://\"},{\"tag\":\"END\",\"text\":\"/\"}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"SCHEMES\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"SCHEMES\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"aaa\"},{\"tag\":\"KEYWORD1\",\"text\":\"aaas\"},{\"tag\":\"KEYWORD1\",\"text\":\"acap\"},{\"tag\":\"KEYWORD1\",\"text\":\"cap\"},{\"tag\":\"KEYWORD1\",\"text\":\"cid\"},{\"tag\":\"KEYWORD1\",\"text\":\"crid\"},{\"tag\":\"KEYWORD1\",\"text\":\"data\"},{\"tag\":\"KEYWORD1\",\"text\":\"dav\"},{\"tag\":\"KEYWORD1\",\"text\":\"dict\"},{\"tag\":\"KEYWORD1\",\"text\":\"dns\"},{\"tag\":\"KEYWORD1\",\"text\":\"fax\"},{\"tag\":\"KEYWORD1\",\"text\":\"ftp\"},{\"tag\":\"KEYWORD1\",\"text\":\"file\"},{\"tag\":\"KEYWORD1\",\"text\":\"ftp\"},{\"tag\":\"KEYWORD1\",\"text\":\"go\"},{\"tag\":\"KEYWORD1\",\"text\":\"gopher\"},{\"tag\":\"KEYWORD1\",\"text\":\"h323\"},{\"tag\":\"KEYWORD1\",\"text\":\"http\"},{\"tag\":\"KEYWORD1\",\"text\":\"https\"},{\"tag\":\"KEYWORD1\",\"text\":\"icap\"},{\"tag\":\"KEYWORD1\",\"text\":\"im\"},{\"tag\":\"KEYWORD1\",\"text\":\"imap\"},{\"tag\":\"KEYWORD1\",\"text\":\"info\"},{\"tag\":\"KEYWORD1\",\"text\":\"ipp\"},{\"tag\":\"KEYWORD1\",\"text\":\"iris\"},{\"tag\":\"KEYWORD1\",\"text\":\"ldap\"},{\"tag\":\"KEYWORD1\",\"text\":\"mid\"},{\"tag\":\"KEYWORD1\",\"text\":\"modem\"},{\"tag\":\"KEYWORD1\",\"text\":\"msrp\"},{\"tag\":\"KEYWORD1\",\"text\":\"mtqp\"},{\"tag\":\"KEYWORD1\",\"text\":\"mupdate\"},{\"tag\":\"KEYWORD1\",\"text\":\"news\"},{\"tag\":\"KEYWORD1\",\"text\":\"nfs\"},{\"tag\":\"KEYWORD1\",\"text\":\"nntp\"},{\"tag\":\"KEYWORD1\",\"text\":\"opaquelocktoken\"},{\"tag\":\"KEYWORD1\",\"text\":\"pop\"},{\"tag\":\"KEYWORD1\",\"text\":\"pres\"},{\"tag\":\"KEYWORD1\",\"text\":\"prospero\"},{\"tag\":\"KEYWORD1\",\"text\":\"rtsp\"},{\"tag\":\"KEYWORD1\",\"text\":\"service\"},{\"tag\":\"KEYWORD1\",\"text\":\"shttp\"},{\"tag\":\"KEYWORD1\",\"text\":\"snmp\"},{\"tag\":\"KEYWORD1\",\"text\":\"tag\"},{\"tag\":\"KEYWORD1\",\"text\":\"telnet\"},{\"tag\":\"KEYWORD1\",\"text\":\"tftp\"},{\"tag\":\"KEYWORD1\",\"text\":\"thismessage\"},{\"tag\":\"KEYWORD1\",\"text\":\"tip\"},{\"tag\":\"KEYWORD1\",\"text\":\"tv\"},{\"tag\":\"KEYWORD1\",\"text\":\"urn\"},{\"tag\":\"KEYWORD1\",\"text\":\"vemmi\"},{\"tag\":\"KEYWORD1\",\"text\":\"wais\"},{\"tag\":\"KEYWORD1\",\"text\":\"xmlrpc.beep\"},{\"tag\":\"KEYWORD1\",\"text\":\"xmpp\"},{\"tag\":\"KEYWORD2\",\"text\":\"chrome\"},{\"tag\":\"KEYWORD2\",\"text\":\"cvs\"},{\"tag\":\"KEYWORD2\",\"text\":\"feed\"},{\"tag\":\"KEYWORD2\",\"text\":\"fish\"},{\"tag\":\"KEYWORD2\",\"text\":\"gg\"},{\"tag\":\"KEYWORD2\",\"text\":\"gizmoproject\"},{\"tag\":\"KEYWORD2\",\"text\":\"irc\"},{\"tag\":\"KEYWORD2\",\"text\":\"ircs\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyparc\"},{\"tag\":\"KEYWORD2\",\"text\":\"lastfm\"},{\"tag\":\"KEYWORD2\",\"text\":\"ldaps\"},{\"tag\":\"KEYWORD2\",\"text\":\"(other\"},{\"tag\":\"KEYWORD2\",\"text\":\"mms\"},{\"tag\":\"KEYWORD2\",\"text\":\"nsfw\"},{\"tag\":\"KEYWORD2\",\"text\":\"psyc\"},{\"tag\":\"KEYWORD2\",\"text\":\"rsync\"},{\"tag\":\"KEYWORD2\",\"text\":\"secondlife\"},{\"tag\":\"KEYWORD2\",\"text\":\"sftp\"},{\"tag\":\"KEYWORD2\",\"text\":\"skype\"},{\"tag\":\"KEYWORD2\",\"text\":\"ssh\"},{\"tag\":\"KEYWORD2\",\"text\":\"smb\"},{\"tag\":\"KEYWORD2\",\"text\":\"soldat\"},{\"tag\":\"KEYWORD2\",\"text\":\"teamspeak\"},{\"tag\":\"KEYWORD2\",\"text\":\"unreal\"},{\"tag\":\"KEYWORD2\",\"text\":\"ut2004\"},{\"tag\":\"KEYWORD2\",\"text\":\"ventrilo\"},{\"tag\":\"KEYWORD2\",\"text\":\"webcal\"},{\"tag\":\"KEYWORD2\",\"text\":\"wyciwyg\"},{\"tag\":\"KEYWORD2\",\"text\":\"xfire\"},{\"tag\":\"KEYWORD2\",\"text\":\"ymsgr\"}]}]}]}";
+
+    @Override
+    public String langDefine() {
+        return JSON;
+    }
+}

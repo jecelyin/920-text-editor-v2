@@ -1,0 +1,33 @@
+/*
+ * Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+ *
+ * This file is part of 920 Text Editor.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.jecelyin.editor.v2.highlight.lang;
+
+import com.jecelyin.editor.v2.highlight.LangDefine;
+
+/**
+ * @author Jecelyin Peng <jecelyin@gmail.com>
+ */
+public class ZptLang implements LangDefine {
+    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"<!--\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"-->\",\"NAME\":\"commentEnd\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<!--\"},{\"tag\":\"END\",\"text\":\"-->\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"JAVASCRIPT\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<SCRIPT\"},{\"tag\":\"END\",\"text\":\"<\\/SCRIPT>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"CSS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<STYLE\"},{\"tag\":\"END\",\"text\":\"<\\/STYLE>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"DELEGATE\":\"xml::DTD-TAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<!\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"TAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"&\"},{\"tag\":\"END\",\"text\":\";\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"TAGS\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"ATTRIBUTE\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"ATTRIBUTE\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"tal\"},{\"tag\":\"KEYWORD3\",\"text\":\"attributes\"},{\"tag\":\"KEYWORD3\",\"text\":\"define\"},{\"tag\":\"KEYWORD3\",\"text\":\"condition\"},{\"tag\":\"KEYWORD3\",\"text\":\"content\"},{\"tag\":\"KEYWORD3\",\"text\":\"omit-tag\"},{\"tag\":\"KEYWORD3\",\"text\":\"on-error\"},{\"tag\":\"KEYWORD3\",\"text\":\"repeat\"},{\"tag\":\"KEYWORD3\",\"text\":\"replace\"},{\"tag\":\"KEYWORD1\",\"text\":\"metal\"},{\"tag\":\"KEYWORD3\",\"text\":\"define-macro\"},{\"tag\":\"KEYWORD3\",\"text\":\"define-slot\"},{\"tag\":\"KEYWORD3\",\"text\":\"fill-slot\"},{\"tag\":\"KEYWORD3\",\"text\":\"use-macro\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"ATTRIBUTE\",\"DEFAULT\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\";\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"$$\",\"attrs\":{\"TYPE\":\"LITERAL2\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"KEYWORD2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"${\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD4\",\"text\":\"exists\"},{\"tag\":\"KEYWORD4\",\"text\":\"nocall\"},{\"tag\":\"KEYWORD4\",\"text\":\"not\"},{\"tag\":\"KEYWORD4\",\"text\":\"path\"},{\"tag\":\"KEYWORD4\",\"text\":\"python\"},{\"tag\":\"KEYWORD4\",\"text\":\"string\"},{\"tag\":\"KEYWORD4\",\"text\":\"structure\"},{\"tag\":\"LITERAL3\",\"text\":\"CONTEXTS\"},{\"tag\":\"LITERAL3\",\"text\":\"attrs\"},{\"tag\":\"LITERAL3\",\"text\":\"container\"},{\"tag\":\"LITERAL3\",\"text\":\"default\"},{\"tag\":\"LITERAL3\",\"text\":\"here\"},{\"tag\":\"LITERAL3\",\"text\":\"modules\"},{\"tag\":\"LITERAL3\",\"text\":\"nothing\"},{\"tag\":\"LITERAL3\",\"text\":\"options\"},{\"tag\":\"LITERAL3\",\"text\":\"repeat\"},{\"tag\":\"LITERAL3\",\"text\":\"request\"},{\"tag\":\"LITERAL3\",\"text\":\"root\"},{\"tag\":\"LITERAL3\",\"text\":\"template\"},{\"tag\":\"LITERAL3\",\"text\":\"user\"},{\"tag\":\"LITERAL3\",\"text\":\"index\"},{\"tag\":\"LITERAL3\",\"text\":\"number\"},{\"tag\":\"LITERAL3\",\"text\":\"even\"},{\"tag\":\"LITERAL3\",\"text\":\"odd\"},{\"tag\":\"LITERAL3\",\"text\":\"start\"},{\"tag\":\"LITERAL3\",\"text\":\"end\"},{\"tag\":\"LITERAL3\",\"text\":\"first\"},{\"tag\":\"LITERAL3\",\"text\":\"last\"},{\"tag\":\"LITERAL3\",\"text\":\"length\"},{\"tag\":\"LITERAL3\",\"text\":\"letter\"},{\"tag\":\"LITERAL3\",\"text\":\"Letter\"},{\"tag\":\"LITERAL3\",\"text\":\"roman\"},{\"tag\":\"LITERAL3\",\"text\":\"Roman\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"JAVASCRIPT\",\"DEFAULT\":\"MARKUP\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"javascript::MAIN\"}},{\"tag\":\"SEQ\",\"text\":\"SRC=\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"BACK_TO_HTML\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"BACK_TO_HTML\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"zpt::MAIN\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CSS\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"css::MAIN\"}}]}]}";
+
+    @Override
+    public String langDefine() {
+        return JSON;
+    }
+}

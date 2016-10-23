@@ -42,13 +42,24 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+
 public class XML2JSON {
-    private static StringBuilder javaCode = new StringBuilder();
+    private static File assetsPath;
+    private static File highlightPath;
+    private static File langPath;
 
     public static void main(String[] args) {
         File f = new File(".");
         String path = f.getAbsolutePath();
-        File syntax = new File(path, "app/src/main/assets/syntax");
+
+        highlightPath = new File(path, "app/src/main/java/com/jecelyin/editor/v2/highlight");
+        assetsPath = new File(path, "tools/assets");
+        File syntax = new File(assetsPath, "syntax");
+
+        langPath = new File(highlightPath, "lang");
+        for (File f2 : langPath.listFiles()) {
+            f2.delete();
+        }
 
         File[] files = syntax.listFiles(new FilenameFilter() {
             @Override
@@ -57,31 +68,20 @@ public class XML2JSON {
             }
         });
 
-        javaCode.append("package com.jecelyin.editor.v2.highlight;\n" +
-                "\n" +
-                "import java.util.HashMap;\n" +
-                "\n" +
-                "public class Languages {\n" +
-                "    public final static HashMap<String, String> map = new HashMap<>();\n" +
-                "    \n" +
-                "    static {\n" );
+        StringBuilder mapCode = new StringBuilder();
         try {
             for (File file : files) {
-//                String xml = readFile(file);
-//                JSONObject jsonObject = XML.toJSONObject(xml);
-//                String jsonString = jsonObject.toString();
-//                System.out.println("xml: " + file.getPath());
-
                 o("File: %s", file.getName());
-                parseXml(file);
+                parseXml(file, mapCode);
             }
+
+            String langMap = readFile(new File(assetsPath, "lang_map.tpl"));
+            langMap = langMap.replace("@MAP_LIST@", mapCode.toString());
+            writeFile(new File(highlightPath, "LangMap.java"), langMap);
         }catch (Exception e) {
             e.printStackTrace();
         }
-        javaCode.append("    }\n" +
-                "}");
 
-        writeFile(new File(path, "app/src/main/java/com/jecelyin/editor/v2/highlight/Languages.java"), javaCode.toString());
     }
 
     public static boolean writeFile(File file, String text) {
@@ -102,7 +102,48 @@ public class XML2JSON {
         System.out.println(String.format(format, args));
     }
 
-    private static void parseXml(final File file) throws Exception {
+    private static String fileNameToClassName(String filename) {
+        StringBuilder sb = new StringBuilder(filename.length());
+        int size = filename.length();
+        sb.append(Character.toUpperCase(filename.charAt(0)));
+        for (int i = 1; i < size; i++) {
+            char c = filename.charAt(i);
+            if (c == '_') {
+                i++;
+                sb.append(Character.toUpperCase(filename.charAt(i)));
+            } else if (c == '.') {
+                return sb.toString();
+            } else {
+                sb.append(filename.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+
+    private static CharSequence textString(String string) {
+        StringBuilder sb = new StringBuilder(string.length() * 2);
+        int size = string.length();
+        for (int i = 0; i < size; i++) {
+            char c = string.charAt(i);
+            switch (c) {
+                case '\\':
+                    sb.append("\\\\");
+                    break;
+                case '"':
+                    sb.append("\\\"");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+        return sb.toString();
+    }
+
+    private static void parseXml(final File file, StringBuilder mapCode) throws Exception {
+        String defineTpl = readFile(new File(assetsPath, "lang_define.tpl"));
+        String clsName = fileNameToClassName(file.getName()) + "Lang";
+
         DocumentBuilderFactory dbFactory
                 = DocumentBuilderFactory.newInstance();
 //        dbFactory.setValidating(false);
@@ -111,7 +152,7 @@ public class XML2JSON {
             @Override
             public InputSource resolveEntity(String s, String systemId) throws SAXException, IOException {
                 if (systemId.contains("xmode.dtd")) {
-                    return new InputSource(new FileInputStream(new File(file.getParentFile().getParent(), "xmode.dtd")));
+                    return new InputSource(new FileInputStream(new File(assetsPath, "xmode.dtd")));
                 }
                 return null;
             }
@@ -127,11 +168,15 @@ public class XML2JSON {
             if (item.getNodeType() == Node.ELEMENT_NODE) {
                 JSONObject jsonObject = new JSONObject();
                 parseNode((Element)item, jsonObject);
-//                o("json: %s", jsonObject.toString());
-                javaCode.append("        map.put(\"").append(file.getName()).append("\", \"")
-                .append(jsonObject.toString().replaceAll("\\\"","\\\\\""))
-                .append("\");\n");
-                break;
+
+                mapCode.append("        map.put( \"")
+                        .append(file.getName()).append("\", new ").append(clsName).append("() );\n");
+
+                String defineText = defineTpl.replace("@CLASS_NAME@", clsName);
+                defineText = defineText.replace("@LANG_DEFINE@", textString(jsonObject.toString()));
+
+                File langFile = new File(langPath, clsName + ".java");
+                writeFile(langFile, defineText);
             }
         }
     }
