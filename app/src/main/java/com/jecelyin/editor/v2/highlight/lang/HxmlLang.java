@@ -19,15 +19,50 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class HxmlLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"attrs\":{\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"--next\"},{\"tag\":\"KEYWORD1\",\"text\":\"-cpp\"},{\"tag\":\"KEYWORD1\",\"text\":\"-js\"},{\"tag\":\"KEYWORD1\",\"text\":\"-as3\"},{\"tag\":\"KEYWORD1\",\"text\":\"-swf\"},{\"tag\":\"KEYWORD1\",\"text\":\"-swf9\"},{\"tag\":\"KEYWORD1\",\"text\":\"-neko\"},{\"tag\":\"KEYWORD1\",\"text\":\"-php\"},{\"tag\":\"KEYWORD1\",\"text\":\"-xml\"},{\"tag\":\"KEYWORD2\",\"text\":\"-cp\"},{\"tag\":\"KEYWORD2\",\"text\":\"-main\"},{\"tag\":\"KEYWORD2\",\"text\":\"-lib\"},{\"tag\":\"KEYWORD2\",\"text\":\"-D\"},{\"tag\":\"KEYWORD2\",\"text\":\"-v\"},{\"tag\":\"KEYWORD2\",\"text\":\"-debug\"},{\"tag\":\"KEYWORD2\",\"text\":\"-swf-version\"},{\"tag\":\"KEYWORD2\",\"text\":\"-swf-header\"},{\"tag\":\"KEYWORD2\",\"text\":\"-swf-lib\"},{\"tag\":\"KEYWORD2\",\"text\":\"-x\"},{\"tag\":\"KEYWORD2\",\"text\":\"-resource\"},{\"tag\":\"KEYWORD2\",\"text\":\"-exclude\"},{\"tag\":\"KEYWORD2\",\"text\":\"-prompt\"},{\"tag\":\"KEYWORD2\",\"text\":\"-cmd\"},{\"tag\":\"KEYWORD3\",\"text\":\"--flash-strict\"},{\"tag\":\"KEYWORD3\",\"text\":\"--no-traces\"},{\"tag\":\"KEYWORD3\",\"text\":\"--flash-use-stage\"},{\"tag\":\"KEYWORD3\",\"text\":\"--neko-source\"},{\"tag\":\"KEYWORD3\",\"text\":\"--gen-hx-classes\"},{\"tag\":\"KEYWORD3\",\"text\":\"--display\"},{\"tag\":\"KEYWORD3\",\"text\":\"--no-output\"},{\"tag\":\"KEYWORD3\",\"text\":\"--times\"},{\"tag\":\"KEYWORD3\",\"text\":\"--no-inline\"},{\"tag\":\"KEYWORD3\",\"text\":\"--no-opt\"},{\"tag\":\"KEYWORD3\",\"text\":\"--php-front\"},{\"tag\":\"KEYWORD3\",\"text\":\"--js-namespace\"},{\"tag\":\"KEYWORD3\",\"text\":\"--remap\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "#";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "true";
+        PROPERTY2.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.IGNORE_CASE = "FALSE";
+        KEYWORDS1.add("KEYWORD1", new String[]{"--next", "-cpp", "-js", "-as3", "-swf", "-swf9", "-neko", "-php", "-xml", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"-cp", "-main", "-lib", "-D", "-v", "-debug", "-swf-version", "-swf-header", "-swf-lib", "-x", "-resource", "-exclude", "-prompt", "-cmd", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"--flash-strict", "--no-traces", "--flash-use-stage", "--neko-source", "--gen-hx-classes", "--display", "--no-output", "--times", "--no-inline", "--no-opt", "--php-front", "--js-namespace", "--remap", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

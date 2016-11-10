@@ -29,7 +29,6 @@ import com.jecelyin.editor.v2.highlight.jedit.Mode;
 import com.jecelyin.editor.v2.highlight.jedit.Segment;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.DefaultTokenHandler;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.DummyTokenHandler;
-import com.jecelyin.editor.v2.highlight.jedit.syntax.ModeProvider;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.ParserRuleSet;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.TokenHandler;
@@ -54,7 +53,7 @@ public class Buffer {
         lineMgr = new LineManager();
         integerArray = new IntegerArray();
 
-        ModeProvider.instance.setAssets(context.getAssets());
+//        ModeProvider.instance.setAssets(context.getAssets());
     }
 
     public LineManager getLineManager() {

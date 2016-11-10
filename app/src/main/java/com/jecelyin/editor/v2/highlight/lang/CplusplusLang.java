@@ -19,15 +19,181 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CplusplusLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"//\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",+-=<>/?^&*\",\"NAME\":\"wordBreakChars\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(\",\"NAME\":\"unalignedOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\")\",\"NAME\":\"unalignedCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(?!^\\\\s*(#|//)).*(\\\\b(if|while|for)\\\\s*\\\\(.*\\\\)|\\\\b(else|do)\\\\b)[^{;]*$\",\"NAME\":\"indentNextLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"^\\\\s*((.*case\\\\b.*|[\\\\p{Alpha}_][\\\\p{Alnum}_]*)\\\\s*(slots)?:(?!:)).*$\",\"NAME\":\"unindentThisLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\":\",\"NAME\":\"electricKeys\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"KEYWORD2\",\"DELEGATE\":\"CPP\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"LEX\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"CORE\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"LEX\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"::\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"c::LEX\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CORE\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"c::CORE\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD3\",\"text\":\"catch\"},{\"tag\":\"KEYWORD3\",\"text\":\"class\"},{\"tag\":\"KEYWORD3\",\"text\":\"const_cast\"},{\"tag\":\"KEYWORD1\",\"text\":\"delete\"},{\"tag\":\"KEYWORD3\",\"text\":\"dynamic_cast\"},{\"tag\":\"KEYWORD1\",\"text\":\"explicit\"},{\"tag\":\"KEYWORD2\",\"text\":\"export\"},{\"tag\":\"KEYWORD1\",\"text\":\"friend\"},{\"tag\":\"KEYWORD3\",\"text\":\"mutable\"},{\"tag\":\"KEYWORD2\",\"text\":\"namespace\"},{\"tag\":\"KEYWORD1\",\"text\":\"new\"},{\"tag\":\"KEYWORD3\",\"text\":\"operator\"},{\"tag\":\"KEYWORD1\",\"text\":\"private\"},{\"tag\":\"KEYWORD1\",\"text\":\"protected\"},{\"tag\":\"KEYWORD1\",\"text\":\"public\"},{\"tag\":\"KEYWORD1\",\"text\":\"signals\"},{\"tag\":\"KEYWORD1\",\"text\":\"slots\"},{\"tag\":\"KEYWORD3\",\"text\":\"reinterpret_cast\"},{\"tag\":\"KEYWORD3\",\"text\":\"static_assert\"},{\"tag\":\"KEYWORD3\",\"text\":\"static_cast\"},{\"tag\":\"KEYWORD3\",\"text\":\"template\"},{\"tag\":\"LITERAL2\",\"text\":\"this\"},{\"tag\":\"KEYWORD1\",\"text\":\"throw\"},{\"tag\":\"KEYWORD1\",\"text\":\"try\"},{\"tag\":\"KEYWORD3\",\"text\":\"typeid\"},{\"tag\":\"KEYWORD3\",\"text\":\"typename\"},{\"tag\":\"KEYWORD2\",\"text\":\"using\"},{\"tag\":\"KEYWORD1\",\"text\":\"virtual\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CPP\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"include\\\\b\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"c::INCLUDE\",\"HASH_CHAR\":\"include\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"define\\\\b\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"DEFINE\",\"HASH_CHAR\":\"define\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"endif\\\\b\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"c::LEX\",\"HASH_CHAR\":\"endif\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"elif\\\\b\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"c::CONDITION\",\"HASH_CHAR\":\"elif\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"if\\\\b\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"c::CONDITION\",\"HASH_CHAR\":\"if\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"LEX\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"MARKUP\",\"text\":\"ifdef\"},{\"tag\":\"MARKUP\",\"text\":\"ifndef\"},{\"tag\":\"MARKUP\",\"text\":\"else\"},{\"tag\":\"MARKUP\",\"text\":\"error\"},{\"tag\":\"MARKUP\",\"text\":\"line\"},{\"tag\":\"MARKUP\",\"text\":\"pragma\"},{\"tag\":\"MARKUP\",\"text\":\"undef\"},{\"tag\":\"MARKUP\",\"text\":\"warning\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DEFINE\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"LEX\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"CORE\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "//";
+        PROPERTY3.NAME = "lineComment";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = ",+-=<>/?^&*";
+        PROPERTY4.NAME = "wordBreakChars";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "{";
+        PROPERTY5.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = "}";
+        PROPERTY6.NAME = "indentCloseBrackets";
+        PROPERTY PROPERTY7 = new PROPERTY();
+        PROPERTY7.VALUE = "(";
+        PROPERTY7.NAME = "unalignedOpenBrackets";
+        PROPERTY PROPERTY8 = new PROPERTY();
+        PROPERTY8.VALUE = ")";
+        PROPERTY8.NAME = "unalignedCloseBrackets";
+        PROPERTY PROPERTY9 = new PROPERTY();
+        PROPERTY9.VALUE = "(?!^\\s*(#|//)).*(\\b(if|while|for)\\s*\\(.*\\)|\\b(else|do)\\b)[^{;]*$";
+        PROPERTY9.NAME = "indentNextLine";
+        PROPERTY PROPERTY10 = new PROPERTY();
+        PROPERTY10.VALUE = "^\\s*((.*case\\b.*|[\\p{Alpha}_][\\p{Alnum}_]*)\\s*(slots)?:(?!:)).*$";
+        PROPERTY10.NAME = "unindentThisLine";
+        PROPERTY PROPERTY11 = new PROPERTY();
+        PROPERTY11.VALUE = ":";
+        PROPERTY11.NAME = "electricKeys";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.AT_WHITESPACE_END = "TRUE";
+        EOL_SPAN1.TYPE = "KEYWORD2";
+        EOL_SPAN1.DELEGATE = "CPP";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "LEX";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "CORE";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "LEX";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.IGNORE_CASE = "FALSE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "::";
+        SEQ1.TYPE = "OPERATOR";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "c::LEX";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CORE";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.IGNORE_CASE = "FALSE";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "c::CORE";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"this", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"delete", "explicit", "friend", "new", "private", "protected", "public", "signals", "slots", "throw", "try", "virtual", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"export", "namespace", "using", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"catch", "class", "const_cast", "dynamic_cast", "mutable", "operator", "reinterpret_cast", "static_assert", "static_cast", "template", "typeid", "typename", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CPP";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP1 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP1.text = "include\\b";
+        EOL_SPAN_REGEXP1.TYPE = "MARKUP";
+        EOL_SPAN_REGEXP1.DELEGATE = "c::INCLUDE";
+        EOL_SPAN_REGEXP1.HASH_CHAR = "include";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP2 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP2.text = "define\\b";
+        EOL_SPAN_REGEXP2.TYPE = "MARKUP";
+        EOL_SPAN_REGEXP2.DELEGATE = "DEFINE";
+        EOL_SPAN_REGEXP2.HASH_CHAR = "define";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP3 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP3.text = "endif\\b";
+        EOL_SPAN_REGEXP3.TYPE = "MARKUP";
+        EOL_SPAN_REGEXP3.DELEGATE = "c::LEX";
+        EOL_SPAN_REGEXP3.HASH_CHAR = "endif";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP4 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP4.text = "elif\\b";
+        EOL_SPAN_REGEXP4.TYPE = "MARKUP";
+        EOL_SPAN_REGEXP4.DELEGATE = "c::CONDITION";
+        EOL_SPAN_REGEXP4.HASH_CHAR = "elif";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP5 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP5.text = "if\\b";
+        EOL_SPAN_REGEXP5.TYPE = "MARKUP";
+        EOL_SPAN_REGEXP5.DELEGATE = "c::CONDITION";
+        EOL_SPAN_REGEXP5.HASH_CHAR = "if";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "LEX";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("MARKUP", new String[]{"ifdef", "ifndef", "else", "error", "line", "pragma", "undef", "warning", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.EOL_SPAN_REGEXP = new EOL_SPAN_REGEXP[] { EOL_SPAN_REGEXP1, EOL_SPAN_REGEXP2, EOL_SPAN_REGEXP3, EOL_SPAN_REGEXP4, EOL_SPAN_REGEXP5, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES5() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DEFINE";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.IGNORE_CASE = "FALSE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "#";
+        SEQ1.TYPE = "OPERATOR";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "LEX";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "CORE";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), RULES5(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

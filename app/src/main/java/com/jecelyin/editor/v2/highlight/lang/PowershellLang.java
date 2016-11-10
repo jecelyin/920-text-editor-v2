@@ -19,15 +19,360 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class PowershellLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"<#\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#>\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"PS_OPERATOR\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"-eq\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ne\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-gt\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ge\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-lt\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-le\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ieq\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ine\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-igt\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ige\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ilt\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ile\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ceq\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cne\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cgt\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cge\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-clt\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cle\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-like\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-notlike\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-match\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-notmatch\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ilike\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-inotlike\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-imatch\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-inotmatch\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-clike\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cnotlike\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cmatch\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cnotmatch\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-contains\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-notcontains\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-icontains\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-inotcontains\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ccontains\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-cnotcontains\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-isnot\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-is\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-as\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-replace\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-ireplace\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-creplace\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-and\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-or\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-band\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-bor\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-not\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-bnot\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-f\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-xor\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-bxor\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"--\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"++\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"`\",\"attrs\":{\"TYPE\":\"OPERATOR\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"PS_PREVAR\"},\"child\":[{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"$foreach\"},{\"tag\":\"KEYWORD2\",\"text\":\"$LastExitCode\"},{\"tag\":\"KEYWORD2\",\"text\":\"$Match\"},{\"tag\":\"KEYWORD2\",\"text\":\"$OFS\"},{\"tag\":\"KEYWORD2\",\"text\":\"$StackTrace\"},{\"tag\":\"KEYWORD2\",\"text\":\"$Error\"},{\"tag\":\"KEYWORD2\",\"text\":\"$DebugPreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$PROFILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"$HOME\"},{\"tag\":\"KEYWORD2\",\"text\":\"$Host\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MaximumHistoryCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MaximumAliasCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"$input\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ReportErrorShowSource\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ExecutionContext\"},{\"tag\":\"KEYWORD2\",\"text\":\"$true\"},{\"tag\":\"KEYWORD2\",\"text\":\"$VerbosePreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ShellId\"},{\"tag\":\"KEYWORD2\",\"text\":\"$false\"},{\"tag\":\"KEYWORD2\",\"text\":\"$switch\"},{\"tag\":\"KEYWORD2\",\"text\":\"$null\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MaximumFunctionCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"$line\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ConsoleFileName\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ReportErrorShowStackTrace\"},{\"tag\":\"KEYWORD2\",\"text\":\"$FormatEnumerationLimit\"},{\"tag\":\"KEYWORD2\",\"text\":\"$PSHOME\"},{\"tag\":\"KEYWORD2\",\"text\":\"$lastWord\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MyInvocation\"},{\"tag\":\"KEYWORD2\",\"text\":\"$PWD\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ReportErrorShowExceptionClass\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ProgressPreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ErrorActionPreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$args\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MaximumErrorCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"$NestedPromptLevel\"},{\"tag\":\"KEYWORD2\",\"text\":\"$WhatIfPreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ReportErrorShowInnerException\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ErrorView\"},{\"tag\":\"KEYWORD2\",\"text\":\"$WarningPreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$PID\"},{\"tag\":\"KEYWORD2\",\"text\":\"$ConfirmPreference\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MaximumDriveCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"$MaximumVariableCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"$this\"},{\"tag\":\"KEYWORD2\",\"text\":\"$$\"},{\"tag\":\"KEYWORD2\",\"text\":\"$^\"},{\"tag\":\"KEYWORD2\",\"text\":\"$_\"},{\"tag\":\"KEYWORD2\",\"text\":\"$?\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"NO_WORD_SEP\":\"-\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<#\"},{\"tag\":\"END\",\"text\":\"#>\"}]},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[\\\\$]+[a-zA-Z_\\\\x7f-\\\\xff][a-zA-Z0-9_\\\\x7f-\\\\xff]*\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"HASH_CHAR\":\"$\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"PS_PREVAR\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"PS_OPERATOR\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\".\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"::\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\">>\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LABEL\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"begin\"},{\"tag\":\"KEYWORD1\",\"text\":\"break\"},{\"tag\":\"KEYWORD1\",\"text\":\"catch\"},{\"tag\":\"KEYWORD1\",\"text\":\"continue\"},{\"tag\":\"KEYWORD1\",\"text\":\"default\"},{\"tag\":\"KEYWORD1\",\"text\":\"do\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"elseif\"},{\"tag\":\"KEYWORD1\",\"text\":\"end\"},{\"tag\":\"KEYWORD1\",\"text\":\"filter\"},{\"tag\":\"KEYWORD1\",\"text\":\"finally\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"foreach\"},{\"tag\":\"KEYWORD1\",\"text\":\"function\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"in\"},{\"tag\":\"KEYWORD1\",\"text\":\"param\"},{\"tag\":\"KEYWORD1\",\"text\":\"process\"},{\"tag\":\"KEYWORD1\",\"text\":\"return\"},{\"tag\":\"KEYWORD1\",\"text\":\"switch\"},{\"tag\":\"KEYWORD1\",\"text\":\"throw\"},{\"tag\":\"KEYWORD1\",\"text\":\"trap\"},{\"tag\":\"KEYWORD1\",\"text\":\"try\"},{\"tag\":\"KEYWORD1\",\"text\":\"until\"},{\"tag\":\"KEYWORD1\",\"text\":\"where\"},{\"tag\":\"KEYWORD1\",\"text\":\"while\"},{\"tag\":\"KEYWORD1\",\"text\":\"ref\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add-Content\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add-History\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add-Member\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add-PSSnapin\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add-Type\"},{\"tag\":\"KEYWORD3\",\"text\":\"Checkpoint-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Clear-Content\"},{\"tag\":\"KEYWORD3\",\"text\":\"Clear-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"Clear-History\"},{\"tag\":\"KEYWORD3\",\"text\":\"Clear-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Clear-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"Clear-Variable\"},{\"tag\":\"KEYWORD3\",\"text\":\"Compare-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Complete-Transaction\"},{\"tag\":\"KEYWORD3\",\"text\":\"Connect-WSMan\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertFrom-Csv\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertFrom-SecureString\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertFrom-StringData\"},{\"tag\":\"KEYWORD3\",\"text\":\"Convert-Path\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertTo-Csv\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertTo-Html\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertTo-SecureString\"},{\"tag\":\"KEYWORD3\",\"text\":\"ConvertTo-Xml\"},{\"tag\":\"KEYWORD3\",\"text\":\"Copy-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Copy-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"Debug-Process\"},{\"tag\":\"KEYWORD3\",\"text\":\"Disable-ComputerRestore\"},{\"tag\":\"KEYWORD3\",\"text\":\"Disable-PSBreakpoint\"},{\"tag\":\"KEYWORD3\",\"text\":\"Disable-PSSessionConfiguration\"},{\"tag\":\"KEYWORD3\",\"text\":\"Disable-WSManCredSSP\"},{\"tag\":\"KEYWORD3\",\"text\":\"Disconnect-WSMan\"},{\"tag\":\"KEYWORD3\",\"text\":\"Enable-ComputerRestore\"},{\"tag\":\"KEYWORD3\",\"text\":\"Enable-PSBreakpoint\"},{\"tag\":\"KEYWORD3\",\"text\":\"Enable-PSSessionConfiguration\"},{\"tag\":\"KEYWORD3\",\"text\":\"Enable-WSManCredSSP\"},{\"tag\":\"KEYWORD3\",\"text\":\"Enter-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"Exit-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-Alias\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-Clixml\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-Console\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-Counter\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-Csv\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-FormatData\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-ModuleMember\"},{\"tag\":\"KEYWORD3\",\"text\":\"Export-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"ForEach-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Format-Custom\"},{\"tag\":\"KEYWORD3\",\"text\":\"Format-List\"},{\"tag\":\"KEYWORD3\",\"text\":\"Format-Table\"},{\"tag\":\"KEYWORD3\",\"text\":\"Format-Wide\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Acl\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Alias\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-AuthenticodeSignature\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-ChildItem\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Command\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-ComputerRestorePoint\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Content\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Counter\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Credential\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Culture\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Date\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Event\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-EventSubscriber\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-ExecutionPolicy\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-FormatData\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Help\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-History\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Host\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-HotFix\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Job\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Location\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Member\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Module\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PfxCertificate\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Process\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSBreakpoint\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSCallStack\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSDrive\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSProvider\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSSessionConfiguration\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-PSSnapin\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Random\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-TraceSource\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Transaction\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-UICulture\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Unique\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-Variable\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-WinEvent\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-WmiObject\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-WSManCredSSP\"},{\"tag\":\"KEYWORD3\",\"text\":\"Get-WSManInstance\"},{\"tag\":\"KEYWORD3\",\"text\":\"Group-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-Alias\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-Clixml\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-Counter\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-Csv\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-LocalizedData\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-Module\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"Invoke-Command\"},{\"tag\":\"KEYWORD3\",\"text\":\"Invoke-Expression\"},{\"tag\":\"KEYWORD3\",\"text\":\"Invoke-History\"},{\"tag\":\"KEYWORD3\",\"text\":\"Invoke-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Invoke-WmiMethod\"},{\"tag\":\"KEYWORD3\",\"text\":\"Invoke-WSManAction\"},{\"tag\":\"KEYWORD3\",\"text\":\"Join-Path\"},{\"tag\":\"KEYWORD3\",\"text\":\"Limit-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"Measure-Command\"},{\"tag\":\"KEYWORD3\",\"text\":\"Measure-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Move-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Move-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Alias\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Event\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Module\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-ModuleManifest\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-PSDrive\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-TimeSpan\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-Variable\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-WebServiceProxy\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-WSManInstance\"},{\"tag\":\"KEYWORD3\",\"text\":\"New-WSManSessionOption\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-Default\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-File\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-GridView\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-Host\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-Null\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-Printer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Out-String\"},{\"tag\":\"KEYWORD3\",\"text\":\"Pop-Location\"},{\"tag\":\"KEYWORD3\",\"text\":\"Push-Location\"},{\"tag\":\"KEYWORD3\",\"text\":\"Read-Host\"},{\"tag\":\"KEYWORD3\",\"text\":\"Receive-Job\"},{\"tag\":\"KEYWORD3\",\"text\":\"Register-EngineEvent\"},{\"tag\":\"KEYWORD3\",\"text\":\"Register-ObjectEvent\"},{\"tag\":\"KEYWORD3\",\"text\":\"Register-PSSessionConfiguration\"},{\"tag\":\"KEYWORD3\",\"text\":\"Register-WmiEvent\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-Event\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-Job\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-Module\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-PSBreakpoint\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-PSDrive\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-PSSession\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-PSSnapin\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-Variable\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-WmiObject\"},{\"tag\":\"KEYWORD3\",\"text\":\"Remove-WSManInstance\"},{\"tag\":\"KEYWORD3\",\"text\":\"Rename-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Rename-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Rename-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"Reset-ComputerMachinePassword\"},{\"tag\":\"KEYWORD3\",\"text\":\"Resolve-Path\"},{\"tag\":\"KEYWORD3\",\"text\":\"Restart-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Restart-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Restore-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Resume-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Select-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Select-String\"},{\"tag\":\"KEYWORD3\",\"text\":\"Select-Xml\"},{\"tag\":\"KEYWORD3\",\"text\":\"Send-MailMessage\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Acl\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Alias\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-AuthenticodeSignature\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Content\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Date\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-ExecutionPolicy\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Item\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-ItemProperty\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Location\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-PSBreakpoint\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-PSDebug\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-PSSessionConfiguration\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-StrictMode\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-TraceSource\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-Variable\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-WmiInstance\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-WSManInstance\"},{\"tag\":\"KEYWORD3\",\"text\":\"Set-WSManQuickConfig\"},{\"tag\":\"KEYWORD3\",\"text\":\"Show-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"Sort-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Split-Path\"},{\"tag\":\"KEYWORD3\",\"text\":\"Start-Job\"},{\"tag\":\"KEYWORD3\",\"text\":\"Start-Process\"},{\"tag\":\"KEYWORD3\",\"text\":\"Start-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Start-Sleep\"},{\"tag\":\"KEYWORD3\",\"text\":\"Start-Transaction\"},{\"tag\":\"KEYWORD3\",\"text\":\"Start-Transcript\"},{\"tag\":\"KEYWORD3\",\"text\":\"Stop-Computer\"},{\"tag\":\"KEYWORD3\",\"text\":\"Stop-Job\"},{\"tag\":\"KEYWORD3\",\"text\":\"Stop-Process\"},{\"tag\":\"KEYWORD3\",\"text\":\"Stop-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Stop-Transcript\"},{\"tag\":\"KEYWORD3\",\"text\":\"Suspend-Service\"},{\"tag\":\"KEYWORD3\",\"text\":\"Tee-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Test-ComputerSecureChannel\"},{\"tag\":\"KEYWORD3\",\"text\":\"Test-Connection\"},{\"tag\":\"KEYWORD3\",\"text\":\"Test-ModuleManifest\"},{\"tag\":\"KEYWORD3\",\"text\":\"Test-Path\"},{\"tag\":\"KEYWORD3\",\"text\":\"Test-WSMan\"},{\"tag\":\"KEYWORD3\",\"text\":\"Trace-Command\"},{\"tag\":\"KEYWORD3\",\"text\":\"Undo-Transaction\"},{\"tag\":\"KEYWORD3\",\"text\":\"Unregister-Event\"},{\"tag\":\"KEYWORD3\",\"text\":\"Unregister-PSSessionConfiguration\"},{\"tag\":\"KEYWORD3\",\"text\":\"Update-FormatData\"},{\"tag\":\"KEYWORD3\",\"text\":\"Update-List\"},{\"tag\":\"KEYWORD3\",\"text\":\"Update-TypeData\"},{\"tag\":\"KEYWORD3\",\"text\":\"Use-Transaction\"},{\"tag\":\"KEYWORD3\",\"text\":\"Wait-Event\"},{\"tag\":\"KEYWORD3\",\"text\":\"Wait-Job\"},{\"tag\":\"KEYWORD3\",\"text\":\"Wait-Process\"},{\"tag\":\"KEYWORD3\",\"text\":\"Where-Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Debug\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Error\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-EventLog\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Host\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Output\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Progress\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Verbose\"},{\"tag\":\"KEYWORD3\",\"text\":\"Write-Warning\"},{\"tag\":\"KEYWORD3\",\"text\":\"ac\"},{\"tag\":\"KEYWORD3\",\"text\":\"asnp\"},{\"tag\":\"KEYWORD3\",\"text\":\"cat\"},{\"tag\":\"KEYWORD3\",\"text\":\"cd\"},{\"tag\":\"KEYWORD3\",\"text\":\"chdir\"},{\"tag\":\"KEYWORD3\",\"text\":\"clc\"},{\"tag\":\"KEYWORD3\",\"text\":\"clear\"},{\"tag\":\"KEYWORD3\",\"text\":\"clhy\"},{\"tag\":\"KEYWORD3\",\"text\":\"cli\"},{\"tag\":\"KEYWORD3\",\"text\":\"clp\"},{\"tag\":\"KEYWORD3\",\"text\":\"cls\"},{\"tag\":\"KEYWORD3\",\"text\":\"clv\"},{\"tag\":\"KEYWORD3\",\"text\":\"compare\"},{\"tag\":\"KEYWORD3\",\"text\":\"copy\"},{\"tag\":\"KEYWORD3\",\"text\":\"cp\"},{\"tag\":\"KEYWORD3\",\"text\":\"cpi\"},{\"tag\":\"KEYWORD3\",\"text\":\"cpp\"},{\"tag\":\"KEYWORD3\",\"text\":\"cvpa\"},{\"tag\":\"KEYWORD3\",\"text\":\"dbp\"},{\"tag\":\"KEYWORD3\",\"text\":\"del\"},{\"tag\":\"KEYWORD3\",\"text\":\"diff\"},{\"tag\":\"KEYWORD3\",\"text\":\"dir\"},{\"tag\":\"KEYWORD3\",\"text\":\"ebp\"},{\"tag\":\"KEYWORD3\",\"text\":\"echo\"},{\"tag\":\"KEYWORD3\",\"text\":\"emm\"},{\"tag\":\"KEYWORD3\",\"text\":\"epal\"},{\"tag\":\"KEYWORD3\",\"text\":\"epcsv\"},{\"tag\":\"KEYWORD3\",\"text\":\"EPSN\"},{\"tag\":\"KEYWORD3\",\"text\":\"erase\"},{\"tag\":\"KEYWORD3\",\"text\":\"ETSN\"},{\"tag\":\"KEYWORD3\",\"text\":\"EXSN\"},{\"tag\":\"KEYWORD3\",\"text\":\"fc\"},{\"tag\":\"KEYWORD3\",\"text\":\"fl\"},{\"tag\":\"KEYWORD3\",\"text\":\"ft\"},{\"tag\":\"KEYWORD3\",\"text\":\"fw\"},{\"tag\":\"KEYWORD3\",\"text\":\"gal\"},{\"tag\":\"KEYWORD3\",\"text\":\"gbp\"},{\"tag\":\"KEYWORD3\",\"text\":\"gc\"},{\"tag\":\"KEYWORD3\",\"text\":\"gci\"},{\"tag\":\"KEYWORD3\",\"text\":\"gcm\"},{\"tag\":\"KEYWORD3\",\"text\":\"gcs\"},{\"tag\":\"KEYWORD3\",\"text\":\"gdr\"},{\"tag\":\"KEYWORD3\",\"text\":\"ghy\"},{\"tag\":\"KEYWORD3\",\"text\":\"gi\"},{\"tag\":\"KEYWORD3\",\"text\":\"gjb\"},{\"tag\":\"KEYWORD3\",\"text\":\"gl\"},{\"tag\":\"KEYWORD3\",\"text\":\"gm\"},{\"tag\":\"KEYWORD3\",\"text\":\"gmo\"},{\"tag\":\"KEYWORD3\",\"text\":\"gp\"},{\"tag\":\"KEYWORD3\",\"text\":\"gps\"},{\"tag\":\"KEYWORD3\",\"text\":\"grid\"},{\"tag\":\"KEYWORD3\",\"text\":\"group\"},{\"tag\":\"KEYWORD3\",\"text\":\"gsn\"},{\"tag\":\"KEYWORD3\",\"text\":\"gsnp\"},{\"tag\":\"KEYWORD3\",\"text\":\"gsv\"},{\"tag\":\"KEYWORD3\",\"text\":\"gu\"},{\"tag\":\"KEYWORD3\",\"text\":\"gv\"},{\"tag\":\"KEYWORD3\",\"text\":\"gwmi\"},{\"tag\":\"KEYWORD3\",\"text\":\"h\"},{\"tag\":\"KEYWORD3\",\"text\":\"history\"},{\"tag\":\"KEYWORD3\",\"text\":\"icm\"},{\"tag\":\"KEYWORD3\",\"text\":\"iex\"},{\"tag\":\"KEYWORD3\",\"text\":\"ihy\"},{\"tag\":\"KEYWORD3\",\"text\":\"ii\"},{\"tag\":\"KEYWORD3\",\"text\":\"imo\"},{\"tag\":\"KEYWORD3\",\"text\":\"ipal\"},{\"tag\":\"KEYWORD3\",\"text\":\"ipcsv\"},{\"tag\":\"KEYWORD3\",\"text\":\"IPSN\"},{\"tag\":\"KEYWORD3\",\"text\":\"iwmi\"},{\"tag\":\"KEYWORD3\",\"text\":\"kill\"},{\"tag\":\"KEYWORD3\",\"text\":\"lp\"},{\"tag\":\"KEYWORD3\",\"text\":\"ls\"},{\"tag\":\"KEYWORD3\",\"text\":\"man\"},{\"tag\":\"KEYWORD3\",\"text\":\"md\"},{\"tag\":\"KEYWORD3\",\"text\":\"measure\"},{\"tag\":\"KEYWORD3\",\"text\":\"mi\"},{\"tag\":\"KEYWORD3\",\"text\":\"mount\"},{\"tag\":\"KEYWORD3\",\"text\":\"move\"},{\"tag\":\"KEYWORD3\",\"text\":\"mp\"},{\"tag\":\"KEYWORD3\",\"text\":\"mv\"},{\"tag\":\"KEYWORD3\",\"text\":\"nal\"},{\"tag\":\"KEYWORD3\",\"text\":\"ndr\"},{\"tag\":\"KEYWORD3\",\"text\":\"ni\"},{\"tag\":\"KEYWORD3\",\"text\":\"nmo\"},{\"tag\":\"KEYWORD3\",\"text\":\"nsn\"},{\"tag\":\"KEYWORD3\",\"text\":\"nv\"},{\"tag\":\"KEYWORD3\",\"text\":\"ogv\"},{\"tag\":\"KEYWORD3\",\"text\":\"oh\"},{\"tag\":\"KEYWORD3\",\"text\":\"popd\"},{\"tag\":\"KEYWORD3\",\"text\":\"ps\"},{\"tag\":\"KEYWORD3\",\"text\":\"pushd\"},{\"tag\":\"KEYWORD3\",\"text\":\"pwd\"},{\"tag\":\"KEYWORD3\",\"text\":\"r\"},{\"tag\":\"KEYWORD3\",\"text\":\"rbp\"},{\"tag\":\"KEYWORD3\",\"text\":\"rcjb\"},{\"tag\":\"KEYWORD3\",\"text\":\"rd\"},{\"tag\":\"KEYWORD3\",\"text\":\"rdr\"},{\"tag\":\"KEYWORD3\",\"text\":\"ren\"},{\"tag\":\"KEYWORD3\",\"text\":\"ri\"},{\"tag\":\"KEYWORD3\",\"text\":\"rjb\"},{\"tag\":\"KEYWORD3\",\"text\":\"rm\"},{\"tag\":\"KEYWORD3\",\"text\":\"rmdir\"},{\"tag\":\"KEYWORD3\",\"text\":\"rni\"},{\"tag\":\"KEYWORD3\",\"text\":\"rnp\"},{\"tag\":\"KEYWORD3\",\"text\":\"rp\"},{\"tag\":\"KEYWORD3\",\"text\":\"rsn\"},{\"tag\":\"KEYWORD3\",\"text\":\"rsnp\"},{\"tag\":\"KEYWORD3\",\"text\":\"rv\"},{\"tag\":\"KEYWORD3\",\"text\":\"rvpa\"},{\"tag\":\"KEYWORD3\",\"text\":\"rwmi\"},{\"tag\":\"KEYWORD3\",\"text\":\"sajb\"},{\"tag\":\"KEYWORD3\",\"text\":\"sal\"},{\"tag\":\"KEYWORD3\",\"text\":\"sasv\"},{\"tag\":\"KEYWORD3\",\"text\":\"sbp\"},{\"tag\":\"KEYWORD3\",\"text\":\"sc\"},{\"tag\":\"KEYWORD3\",\"text\":\"select\"},{\"tag\":\"KEYWORD3\",\"text\":\"set\"},{\"tag\":\"KEYWORD3\",\"text\":\"si\"},{\"tag\":\"KEYWORD3\",\"text\":\"sl\"},{\"tag\":\"KEYWORD3\",\"text\":\"sleep\"},{\"tag\":\"KEYWORD3\",\"text\":\"sort\"},{\"tag\":\"KEYWORD3\",\"text\":\"sp\"},{\"tag\":\"KEYWORD3\",\"text\":\"spjb\"},{\"tag\":\"KEYWORD3\",\"text\":\"spps\"},{\"tag\":\"KEYWORD3\",\"text\":\"spsv\"},{\"tag\":\"KEYWORD3\",\"text\":\"start\"},{\"tag\":\"KEYWORD3\",\"text\":\"sv\"},{\"tag\":\"KEYWORD3\",\"text\":\"swmi\"},{\"tag\":\"KEYWORD3\",\"text\":\"tee\"},{\"tag\":\"KEYWORD3\",\"text\":\"type\"},{\"tag\":\"KEYWORD3\",\"text\":\"wjb\"},{\"tag\":\"KEYWORD3\",\"text\":\"write\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "<#";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "#>";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "#";
+        PROPERTY3.NAME = "lineComment";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "{";
+        PROPERTY4.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "}";
+        PROPERTY5.NAME = "indentCloseBrackets";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "PS_OPERATOR";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "-eq";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "-ne";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "-gt";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "-ge";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "-lt";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "-le";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "-ieq";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "-ine";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "-igt";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "-ige";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "-ilt";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "-ile";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "-ceq";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "-cne";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "-cgt";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "-cge";
+        SEQ16.TYPE = "OPERATOR";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "-clt";
+        SEQ17.TYPE = "OPERATOR";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "-cle";
+        SEQ18.TYPE = "OPERATOR";
+        SEQ SEQ19 = new SEQ();
+        SEQ19.text = "-like";
+        SEQ19.TYPE = "OPERATOR";
+        SEQ SEQ20 = new SEQ();
+        SEQ20.text = "-notlike";
+        SEQ20.TYPE = "OPERATOR";
+        SEQ SEQ21 = new SEQ();
+        SEQ21.text = "-match";
+        SEQ21.TYPE = "OPERATOR";
+        SEQ SEQ22 = new SEQ();
+        SEQ22.text = "-notmatch";
+        SEQ22.TYPE = "OPERATOR";
+        SEQ SEQ23 = new SEQ();
+        SEQ23.text = "-ilike";
+        SEQ23.TYPE = "OPERATOR";
+        SEQ SEQ24 = new SEQ();
+        SEQ24.text = "-inotlike";
+        SEQ24.TYPE = "OPERATOR";
+        SEQ SEQ25 = new SEQ();
+        SEQ25.text = "-imatch";
+        SEQ25.TYPE = "OPERATOR";
+        SEQ SEQ26 = new SEQ();
+        SEQ26.text = "-inotmatch";
+        SEQ26.TYPE = "OPERATOR";
+        SEQ SEQ27 = new SEQ();
+        SEQ27.text = "-clike";
+        SEQ27.TYPE = "OPERATOR";
+        SEQ SEQ28 = new SEQ();
+        SEQ28.text = "-cnotlike";
+        SEQ28.TYPE = "OPERATOR";
+        SEQ SEQ29 = new SEQ();
+        SEQ29.text = "-cmatch";
+        SEQ29.TYPE = "OPERATOR";
+        SEQ SEQ30 = new SEQ();
+        SEQ30.text = "-cnotmatch";
+        SEQ30.TYPE = "OPERATOR";
+        SEQ SEQ31 = new SEQ();
+        SEQ31.text = "-contains";
+        SEQ31.TYPE = "OPERATOR";
+        SEQ SEQ32 = new SEQ();
+        SEQ32.text = "-notcontains";
+        SEQ32.TYPE = "OPERATOR";
+        SEQ SEQ33 = new SEQ();
+        SEQ33.text = "-icontains";
+        SEQ33.TYPE = "OPERATOR";
+        SEQ SEQ34 = new SEQ();
+        SEQ34.text = "-inotcontains";
+        SEQ34.TYPE = "OPERATOR";
+        SEQ SEQ35 = new SEQ();
+        SEQ35.text = "-ccontains";
+        SEQ35.TYPE = "OPERATOR";
+        SEQ SEQ36 = new SEQ();
+        SEQ36.text = "-cnotcontains";
+        SEQ36.TYPE = "OPERATOR";
+        SEQ SEQ37 = new SEQ();
+        SEQ37.text = "-isnot";
+        SEQ37.TYPE = "OPERATOR";
+        SEQ SEQ38 = new SEQ();
+        SEQ38.text = "-is";
+        SEQ38.TYPE = "OPERATOR";
+        SEQ SEQ39 = new SEQ();
+        SEQ39.text = "-as";
+        SEQ39.TYPE = "OPERATOR";
+        SEQ SEQ40 = new SEQ();
+        SEQ40.text = "-replace";
+        SEQ40.TYPE = "OPERATOR";
+        SEQ SEQ41 = new SEQ();
+        SEQ41.text = "-ireplace";
+        SEQ41.TYPE = "OPERATOR";
+        SEQ SEQ42 = new SEQ();
+        SEQ42.text = "-creplace";
+        SEQ42.TYPE = "OPERATOR";
+        SEQ SEQ43 = new SEQ();
+        SEQ43.text = "-and";
+        SEQ43.TYPE = "OPERATOR";
+        SEQ SEQ44 = new SEQ();
+        SEQ44.text = "-or";
+        SEQ44.TYPE = "OPERATOR";
+        SEQ SEQ45 = new SEQ();
+        SEQ45.text = "-band";
+        SEQ45.TYPE = "OPERATOR";
+        SEQ SEQ46 = new SEQ();
+        SEQ46.text = "-bor";
+        SEQ46.TYPE = "OPERATOR";
+        SEQ SEQ47 = new SEQ();
+        SEQ47.text = "-not";
+        SEQ47.TYPE = "OPERATOR";
+        SEQ SEQ48 = new SEQ();
+        SEQ48.text = "-bnot";
+        SEQ48.TYPE = "OPERATOR";
+        SEQ SEQ49 = new SEQ();
+        SEQ49.text = "-f";
+        SEQ49.TYPE = "OPERATOR";
+        SEQ SEQ50 = new SEQ();
+        SEQ50.text = "-xor";
+        SEQ50.TYPE = "OPERATOR";
+        SEQ SEQ51 = new SEQ();
+        SEQ51.text = "-bxor";
+        SEQ51.TYPE = "OPERATOR";
+        SEQ SEQ52 = new SEQ();
+        SEQ52.text = "+=";
+        SEQ52.TYPE = "OPERATOR";
+        SEQ SEQ53 = new SEQ();
+        SEQ53.text = "-=";
+        SEQ53.TYPE = "OPERATOR";
+        SEQ SEQ54 = new SEQ();
+        SEQ54.text = "*=";
+        SEQ54.TYPE = "OPERATOR";
+        SEQ SEQ55 = new SEQ();
+        SEQ55.text = "/=";
+        SEQ55.TYPE = "OPERATOR";
+        SEQ SEQ56 = new SEQ();
+        SEQ56.text = "%=";
+        SEQ56.TYPE = "OPERATOR";
+        SEQ SEQ57 = new SEQ();
+        SEQ57.text = "--";
+        SEQ57.TYPE = "OPERATOR";
+        SEQ SEQ58 = new SEQ();
+        SEQ58.text = "++";
+        SEQ58.TYPE = "OPERATOR";
+        SEQ SEQ59 = new SEQ();
+        SEQ59.text = "+";
+        SEQ59.TYPE = "OPERATOR";
+        SEQ SEQ60 = new SEQ();
+        SEQ60.text = "*";
+        SEQ60.TYPE = "OPERATOR";
+        SEQ SEQ61 = new SEQ();
+        SEQ61.text = "/";
+        SEQ61.TYPE = "OPERATOR";
+        SEQ SEQ62 = new SEQ();
+        SEQ62.text = "%";
+        SEQ62.TYPE = "OPERATOR";
+        SEQ SEQ63 = new SEQ();
+        SEQ63.text = "=";
+        SEQ63.TYPE = "OPERATOR";
+        SEQ SEQ64 = new SEQ();
+        SEQ64.text = "!";
+        SEQ64.TYPE = "OPERATOR";
+        SEQ SEQ65 = new SEQ();
+        SEQ65.text = "`";
+        SEQ65.TYPE = "OPERATOR";
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, SEQ19, SEQ20, SEQ21, SEQ22, SEQ23, SEQ24, SEQ25, SEQ26, SEQ27, SEQ28, SEQ29, SEQ30, SEQ31, SEQ32, SEQ33, SEQ34, SEQ35, SEQ36, SEQ37, SEQ38, SEQ39, SEQ40, SEQ41, SEQ42, SEQ43, SEQ44, SEQ45, SEQ46, SEQ47, SEQ48, SEQ49, SEQ50, SEQ51, SEQ52, SEQ53, SEQ54, SEQ55, SEQ56, SEQ57, SEQ58, SEQ59, SEQ60, SEQ61, SEQ62, SEQ63, SEQ64, SEQ65, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "PS_PREVAR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD2", new String[]{"$foreach", "$LastExitCode", "$Match", "$OFS", "$StackTrace", "$Error", "$DebugPreference", "$PROFILE", "$HOME", "$Host", "$MaximumHistoryCount", "$MaximumAliasCount", "$input", "$ReportErrorShowSource", "$ExecutionContext", "$true", "$VerbosePreference", "$ShellId", "$false", "$switch", "$null", "$MaximumFunctionCount", "$line", "$ConsoleFileName", "$ReportErrorShowStackTrace", "$FormatEnumerationLimit", "$PSHOME", "$lastWord", "$MyInvocation", "$PWD", "$ReportErrorShowExceptionClass", "$ProgressPreference", "$ErrorActionPreference", "$args", "$MaximumErrorCount", "$NestedPromptLevel", "$WhatIfPreference", "$ReportErrorShowInnerException", "$ErrorView", "$WarningPreference", "$PID", "$ConfirmPreference", "$MaximumDriveCount", "$MaximumVariableCount", "$this", "$$", "$^", "$_", "$?", });
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.NO_WORD_SEP = "-";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "<#";
+        END END1 = new END();
+        END1.text = "#>";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "[\\$]+[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*";
+        SEQ_REGEXP1.TYPE = "KEYWORD2";
+        SEQ_REGEXP1.HASH_CHAR = "$";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "PS_PREVAR";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "PS_OPERATOR";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL4";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "LITERAL1";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "'";
+        END END3 = new END();
+        END3.text = "'";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ",";
+        SEQ1.TYPE = "MARKUP";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ".";
+        SEQ2.TYPE = "MARKUP";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "::";
+        SEQ3.TYPE = "MARKUP";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "|";
+        SEQ4.TYPE = "MARKUP";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "{";
+        SEQ5.TYPE = "MARKUP";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "}";
+        SEQ6.TYPE = "MARKUP";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = ">";
+        SEQ7.TYPE = "MARKUP";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = ">>";
+        SEQ8.TYPE = "MARKUP";
+        SPAN SPAN4 = new SPAN();
+        SPAN4.TYPE = "LABEL";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "[";
+        END END4 = new END();
+        END4.text = "]";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "(";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS1.MATCH_TYPE = "MARKUP";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = ")";
+        SEQ9.TYPE = "MARKUP";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"begin", "break", "catch", "continue", "default", "do", "else", "elseif", "end", "filter", "finally", "for", "foreach", "function", "if", "in", "param", "process", "return", "switch", "throw", "trap", "try", "until", "where", "while", "ref", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"Add-Computer", "Add-Content", "Add-History", "Add-Member", "Add-PSSnapin", "Add-Type", "Checkpoint-Computer", "Clear-Content", "Clear-EventLog", "Clear-History", "Clear-Item", "Clear-ItemProperty", "Clear-Variable", "Compare-Object", "Complete-Transaction", "Connect-WSMan", "ConvertFrom-Csv", "ConvertFrom-SecureString", "ConvertFrom-StringData", "Convert-Path", "ConvertTo-Csv", "ConvertTo-Html", "ConvertTo-SecureString", "ConvertTo-Xml", "Copy-Item", "Copy-ItemProperty", "Debug-Process", "Disable-ComputerRestore", "Disable-PSBreakpoint", "Disable-PSSessionConfiguration", "Disable-WSManCredSSP", "Disconnect-WSMan", "Enable-ComputerRestore", "Enable-PSBreakpoint", "Enable-PSSessionConfiguration", "Enable-WSManCredSSP", "Enter-PSSession", "Exit-PSSession", "Export-Alias", "Export-Clixml", "Export-Console", "Export-Counter", "Export-Csv", "Export-FormatData", "Export-ModuleMember", "Export-PSSession", "ForEach-Object", "Format-Custom", "Format-List", "Format-Table", "Format-Wide", "Get-Acl", "Get-Alias", "Get-AuthenticodeSignature", "Get-ChildItem", "Get-Command", "Get-ComputerRestorePoint", "Get-Content", "Get-Counter", "Get-Credential", "Get-Culture", "Get-Date", "Get-Event", "Get-EventLog", "Get-EventSubscriber", "Get-ExecutionPolicy", "Get-FormatData", "Get-Help", "Get-History", "Get-Host", "Get-HotFix", "Get-Item", "Get-ItemProperty", "Get-Job", "Get-Location", "Get-Member", "Get-Module", "Get-PfxCertificate", "Get-Process", "Get-PSBreakpoint", "Get-PSCallStack", "Get-PSDrive", "Get-PSProvider", "Get-PSSession", "Get-PSSessionConfiguration", "Get-PSSnapin", "Get-Random", "Get-Service", "Get-TraceSource", "Get-Transaction", "Get-UICulture", "Get-Unique", "Get-Variable", "Get-WinEvent", "Get-WmiObject", "Get-WSManCredSSP", "Get-WSManInstance", "Group-Object", "Import-Alias", "Import-Clixml", "Import-Counter", "Import-Csv", "Import-LocalizedData", "Import-Module", "Import-PSSession", "Invoke-Command", "Invoke-Expression", "Invoke-History", "Invoke-Item", "Invoke-WmiMethod", "Invoke-WSManAction", "Join-Path", "Limit-EventLog", "Measure-Command", "Measure-Object", "Move-Item", "Move-ItemProperty", "New-Alias", "New-Event", "New-EventLog", "New-Item", "New-ItemProperty", "New-Module", "New-ModuleManifest", "New-Object", "New-PSDrive", "New-PSSession", "New-Service", "New-TimeSpan", "New-Variable", "New-WebServiceProxy", "New-WSManInstance", "New-WSManSessionOption", "Out-Default", "Out-File", "Out-GridView", "Out-Host", "Out-Null", "Out-Printer", "Out-String", "Pop-Location", "Push-Location", "Read-Host", "Receive-Job", "Register-EngineEvent", "Register-ObjectEvent", "Register-PSSessionConfiguration", "Register-WmiEvent", "Remove-Computer", "Remove-Event", "Remove-EventLog", "Remove-Item", "Remove-ItemProperty", "Remove-Job", "Remove-Module", "Remove-PSBreakpoint", "Remove-PSDrive", "Remove-PSSession", "Remove-PSSnapin", "Remove-Variable", "Remove-WmiObject", "Remove-WSManInstance", "Rename-Computer", "Rename-Item", "Rename-ItemProperty", "Reset-ComputerMachinePassword", "Resolve-Path", "Restart-Computer", "Restart-Service", "Restore-Computer", "Resume-Service", "Select-Object", "Select-String", "Select-Xml", "Send-MailMessage", "Set-Acl", "Set-Alias", "Set-AuthenticodeSignature", "Set-Content", "Set-Date", "Set-ExecutionPolicy", "Set-Item", "Set-ItemProperty", "Set-Location", "Set-PSBreakpoint", "Set-PSDebug", "Set-PSSessionConfiguration", "Set-Service", "Set-StrictMode", "Set-TraceSource", "Set-Variable", "Set-WmiInstance", "Set-WSManInstance", "Set-WSManQuickConfig", "Show-EventLog", "Sort-Object", "Split-Path", "Start-Job", "Start-Process", "Start-Service", "Start-Sleep", "Start-Transaction", "Start-Transcript", "Stop-Computer", "Stop-Job", "Stop-Process", "Stop-Service", "Stop-Transcript", "Suspend-Service", "Tee-Object", "Test-ComputerSecureChannel", "Test-Connection", "Test-ModuleManifest", "Test-Path", "Test-WSMan", "Trace-Command", "Undo-Transaction", "Unregister-Event", "Unregister-PSSessionConfiguration", "Update-FormatData", "Update-List", "Update-TypeData", "Use-Transaction", "Wait-Event", "Wait-Job", "Wait-Process", "Where-Object", "Write-Debug", "Write-Error", "Write-EventLog", "Write-Host", "Write-Output", "Write-Progress", "Write-Verbose", "Write-Warning", "ac", "asnp", "cat", "cd", "chdir", "clc", "clear", "clhy", "cli", "clp", "cls", "clv", "compare", "copy", "cp", "cpi", "cpp", "cvpa", "dbp", "del", "diff", "dir", "ebp", "echo", "emm", "epal", "epcsv", "EPSN", "erase", "ETSN", "EXSN", "fc", "fl", "ft", "fw", "gal", "gbp", "gc", "gci", "gcm", "gcs", "gdr", "ghy", "gi", "gjb", "gl", "gm", "gmo", "gp", "gps", "grid", "group", "gsn", "gsnp", "gsv", "gu", "gv", "gwmi", "h", "history", "icm", "iex", "ihy", "ii", "imo", "ipal", "ipcsv", "IPSN", "iwmi", "kill", "lp", "ls", "man", "md", "measure", "mi", "mount", "move", "mp", "mv", "nal", "ndr", "ni", "nmo", "nsn", "nv", "ogv", "oh", "popd", "ps", "pushd", "pwd", "r", "rbp", "rcjb", "rd", "rdr", "ren", "ri", "rjb", "rm", "rmdir", "rni", "rnp", "rp", "rsn", "rsnp", "rv", "rvpa", "rwmi", "sajb", "sal", "sasv", "sbp", "sc", "select", "set", "si", "sl", "sleep", "sort", "sp", "spjb", "spps", "spsv", "start", "sv", "swmi", "tee", "type", "wjb", "write", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

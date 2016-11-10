@@ -19,15 +19,54 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class TexinfoLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"@c\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"@c\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"@comment\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "@c";
+        PROPERTY1.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "@c";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "@comment";
+        EOL_SPAN2.TYPE = "COMMENT1";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "@";
+        MARK_FOLLOWING1.TYPE = "KEYWORD1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "{";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "}";
+        SEQ2.TYPE = "OPERATOR";
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

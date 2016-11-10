@@ -19,15 +19,447 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class ClojureLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\";\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".*+!-_?/\",\"NAME\":\"noWordSep\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(\",\"NAME\":\"unalignedOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\")\",\"NAME\":\"unalignedCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"multipleBracketIndent\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"([0-9]+)|(([0-9]*\\\\.[0-9]+)M?)|([0-9]+/[0-9]+)\",\"IGNORE_CASE\":\"FALSE\",\"NO_WORD_SEP\":\".*+!-_?/\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"*\"},{\"tag\":\"END\",\"text\":\"*\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#^(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"@(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"^(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"`(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#_(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#^[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"@[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"^[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LABEL\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#^{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"@{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"^{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LABEL\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#^#{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"@#{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"^#{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'#{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LABEL\",\"DELEGATE\":\"MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SEQ\",\"text\":\"#'\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"'\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LITERAL3\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"^\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LABEL\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"@\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LABEL\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\".\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LITERAL3\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#^\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"MARKUP\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";;;;\",\"attrs\":{\"TYPE\":\"COMMENT4\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";;;\",\"attrs\":{\"TYPE\":\"COMMENT3\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";;\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"DELEGATE\":\"REGEXPS\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"STRINGS\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\(.|newline|space|tab)\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LITERAL2\",\"HASH_CHAR\":\"\\\\\"}},{\"tag\":\"SEQ\",\"text\":\".\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LITERAL4\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\":\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"KEYWORD4\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"assert\"},{\"tag\":\"KEYWORD1\",\"text\":\"binding\"},{\"tag\":\"KEYWORD1\",\"text\":\"bound-fn\"},{\"tag\":\"KEYWORD1\",\"text\":\"bound-fn*\"},{\"tag\":\"KEYWORD1\",\"text\":\"comment\"},{\"tag\":\"KEYWORD1\",\"text\":\"compile\"},{\"tag\":\"KEYWORD1\",\"text\":\"gen-class\"},{\"tag\":\"KEYWORD1\",\"text\":\"gen-interface\"},{\"tag\":\"KEYWORD1\",\"text\":\"declare\"},{\"tag\":\"KEYWORD1\",\"text\":\"def\"},{\"tag\":\"KEYWORD1\",\"text\":\"definline\"},{\"tag\":\"KEYWORD1\",\"text\":\"definterceptor\"},{\"tag\":\"KEYWORD1\",\"text\":\"definterceptorfn\"},{\"tag\":\"KEYWORD1\",\"text\":\"definterface\"},{\"tag\":\"KEYWORD1\",\"text\":\"defmacro\"},{\"tag\":\"KEYWORD1\",\"text\":\"defmethod\"},{\"tag\":\"KEYWORD1\",\"text\":\"defmulti\"},{\"tag\":\"KEYWORD1\",\"text\":\"defn\"},{\"tag\":\"KEYWORD1\",\"text\":\"defn-\"},{\"tag\":\"KEYWORD1\",\"text\":\"defon-request\"},{\"tag\":\"KEYWORD1\",\"text\":\"defonce\"},{\"tag\":\"KEYWORD1\",\"text\":\"defprotocol\"},{\"tag\":\"KEYWORD1\",\"text\":\"defrecord\"},{\"tag\":\"KEYWORD1\",\"text\":\"defstruct\"},{\"tag\":\"KEYWORD1\",\"text\":\"deftest\"},{\"tag\":\"KEYWORD1\",\"text\":\"deftest-\"},{\"tag\":\"KEYWORD1\",\"text\":\"deftype\"},{\"tag\":\"KEYWORD1\",\"text\":\"extend\"},{\"tag\":\"KEYWORD1\",\"text\":\"extenders\"},{\"tag\":\"KEYWORD1\",\"text\":\"extend-protocol\"},{\"tag\":\"KEYWORD1\",\"text\":\"extend-type\"},{\"tag\":\"KEYWORD1\",\"text\":\"get-method\"},{\"tag\":\"KEYWORD1\",\"text\":\"methods\"},{\"tag\":\"KEYWORD1\",\"text\":\"prefers\"},{\"tag\":\"KEYWORD1\",\"text\":\"prefer-method\"},{\"tag\":\"KEYWORD1\",\"text\":\"remove-all-methods\"},{\"tag\":\"KEYWORD1\",\"text\":\"remove-method\"},{\"tag\":\"KEYWORD1\",\"text\":\"eval\"},{\"tag\":\"KEYWORD1\",\"text\":\"fn\"},{\"tag\":\"KEYWORD1\",\"text\":\"partial\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"import\"},{\"tag\":\"KEYWORD1\",\"text\":\"intern\"},{\"tag\":\"KEYWORD1\",\"text\":\"loaded-libs\"},{\"tag\":\"KEYWORD1\",\"text\":\"refer\"},{\"tag\":\"KEYWORD1\",\"text\":\"refer-clojure\"},{\"tag\":\"KEYWORD1\",\"text\":\"reify\"},{\"tag\":\"KEYWORD1\",\"text\":\"require\"},{\"tag\":\"KEYWORD1\",\"text\":\"the-ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"use\"},{\"tag\":\"KEYWORD1\",\"text\":\"all-ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"alias\"},{\"tag\":\"KEYWORD1\",\"text\":\"create-ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"find-keyword\"},{\"tag\":\"KEYWORD1\",\"text\":\"find-ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"in-ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-name\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-map\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-aliases\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-interns\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-publics\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-imports\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-refers\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-resolve\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-unmap\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns-unalias\"},{\"tag\":\"KEYWORD1\",\"text\":\"remove-ns\"},{\"tag\":\"KEYWORD2\",\"text\":\"case\"},{\"tag\":\"KEYWORD2\",\"text\":\"cond\"},{\"tag\":\"KEYWORD2\",\"text\":\"condp\"},{\"tag\":\"KEYWORD2\",\"text\":\"cond->\"},{\"tag\":\"KEYWORD2\",\"text\":\"cond->>\"},{\"tag\":\"KEYWORD2\",\"text\":\"destructure\"},{\"tag\":\"KEYWORD2\",\"text\":\"do\"},{\"tag\":\"KEYWORD2\",\"text\":\"doall\"},{\"tag\":\"KEYWORD2\",\"text\":\"dorun\"},{\"tag\":\"KEYWORD2\",\"text\":\"doseq\"},{\"tag\":\"KEYWORD2\",\"text\":\"dosync\"},{\"tag\":\"KEYWORD2\",\"text\":\"dotimes\"},{\"tag\":\"KEYWORD2\",\"text\":\"doto\"},{\"tag\":\"KEYWORD2\",\"text\":\"for\"},{\"tag\":\"KEYWORD2\",\"text\":\"if\"},{\"tag\":\"KEYWORD2\",\"text\":\"if-let\"},{\"tag\":\"KEYWORD2\",\"text\":\"if-not\"},{\"tag\":\"KEYWORD2\",\"text\":\"if-some\"},{\"tag\":\"KEYWORD2\",\"text\":\"let\"},{\"tag\":\"KEYWORD2\",\"text\":\"letfn\"},{\"tag\":\"KEYWORD2\",\"text\":\"loop\"},{\"tag\":\"KEYWORD2\",\"text\":\"recur\"},{\"tag\":\"KEYWORD2\",\"text\":\"sync\"},{\"tag\":\"KEYWORD2\",\"text\":\"trampoline\"},{\"tag\":\"KEYWORD2\",\"text\":\"try\"},{\"tag\":\"KEYWORD2\",\"text\":\"catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"finally\"},{\"tag\":\"KEYWORD2\",\"text\":\"throw\"},{\"tag\":\"KEYWORD2\",\"text\":\"while\"},{\"tag\":\"KEYWORD2\",\"text\":\"when\"},{\"tag\":\"KEYWORD2\",\"text\":\"when-first\"},{\"tag\":\"KEYWORD2\",\"text\":\"when-let\"},{\"tag\":\"KEYWORD2\",\"text\":\"when-not\"},{\"tag\":\"KEYWORD2\",\"text\":\"when-some\"},{\"tag\":\"KEYWORD3\",\"text\":\"alter\"},{\"tag\":\"KEYWORD3\",\"text\":\"alter-meta!\"},{\"tag\":\"KEYWORD3\",\"text\":\"alter-var-root\"},{\"tag\":\"KEYWORD3\",\"text\":\"commute\"},{\"tag\":\"KEYWORD3\",\"text\":\"compare-and-set!\"},{\"tag\":\"KEYWORD3\",\"text\":\"ensure\"},{\"tag\":\"KEYWORD3\",\"text\":\"ref\"},{\"tag\":\"KEYWORD3\",\"text\":\"ref-history-count\"},{\"tag\":\"KEYWORD3\",\"text\":\"ref-max-history\"},{\"tag\":\"KEYWORD3\",\"text\":\"ref-min-history\"},{\"tag\":\"KEYWORD3\",\"text\":\"ref-set\"},{\"tag\":\"KEYWORD3\",\"text\":\"reset!\"},{\"tag\":\"KEYWORD3\",\"text\":\"reset-meta!\"},{\"tag\":\"KEYWORD3\",\"text\":\"set!\"},{\"tag\":\"KEYWORD3\",\"text\":\"swap!\"},{\"tag\":\"KEYWORD3\",\"text\":\"agent\"},{\"tag\":\"KEYWORD3\",\"text\":\"agent-error\"},{\"tag\":\"KEYWORD3\",\"text\":\"agent-errors\"},{\"tag\":\"KEYWORD3\",\"text\":\"add-watch\"},{\"tag\":\"KEYWORD3\",\"text\":\"await\"},{\"tag\":\"KEYWORD3\",\"text\":\"await-for\"},{\"tag\":\"KEYWORD3\",\"text\":\"clear-agent-errors\"},{\"tag\":\"KEYWORD3\",\"text\":\"error-handler\"},{\"tag\":\"KEYWORD3\",\"text\":\"error-mode\"},{\"tag\":\"KEYWORD3\",\"text\":\"get-validator\"},{\"tag\":\"KEYWORD3\",\"text\":\"release-pending-sends\"},{\"tag\":\"KEYWORD3\",\"text\":\"remove-watch\"},{\"tag\":\"KEYWORD3\",\"text\":\"restart-agent\"},{\"tag\":\"KEYWORD3\",\"text\":\"send\"},{\"tag\":\"KEYWORD3\",\"text\":\"send-off\"},{\"tag\":\"KEYWORD3\",\"text\":\"send-via\"},{\"tag\":\"KEYWORD3\",\"text\":\"set-agent-send-executor!\"},{\"tag\":\"KEYWORD3\",\"text\":\"set-agent-send-off-executor!\"},{\"tag\":\"KEYWORD3\",\"text\":\"set-error-handler!\"},{\"tag\":\"KEYWORD3\",\"text\":\"set-error-mode!\"},{\"tag\":\"KEYWORD3\",\"text\":\"set-validator!\"},{\"tag\":\"KEYWORD3\",\"text\":\"shutdown-agents\"},{\"tag\":\"KEYWORD3\",\"text\":\"future\"},{\"tag\":\"KEYWORD3\",\"text\":\"future-call\"},{\"tag\":\"KEYWORD3\",\"text\":\"future-cancel\"},{\"tag\":\"KEYWORD3\",\"text\":\"deliver\"},{\"tag\":\"KEYWORD3\",\"text\":\"deref\"},{\"tag\":\"KEYWORD3\",\"text\":\"locking\"},{\"tag\":\"KEYWORD3\",\"text\":\"pcalls\"},{\"tag\":\"KEYWORD3\",\"text\":\"pmap\"},{\"tag\":\"KEYWORD3\",\"text\":\"promise\"},{\"tag\":\"KEYWORD3\",\"text\":\"delay\"},{\"tag\":\"KEYWORD3\",\"text\":\"force\"},{\"tag\":\"KEYWORD3\",\"text\":\"amap\"},{\"tag\":\"KEYWORD3\",\"text\":\"map\"},{\"tag\":\"KEYWORD3\",\"text\":\"mapcat\"},{\"tag\":\"KEYWORD3\",\"text\":\"mapv\"},{\"tag\":\"KEYWORD3\",\"text\":\"map-indexed\"},{\"tag\":\"KEYWORD3\",\"text\":\"filter\"},{\"tag\":\"KEYWORD3\",\"text\":\"filterv\"},{\"tag\":\"KEYWORD3\",\"text\":\"sort\"},{\"tag\":\"KEYWORD3\",\"text\":\"sort-by\"},{\"tag\":\"KEYWORD3\",\"text\":\"get-thread-bindings\"},{\"tag\":\"KEYWORD3\",\"text\":\"gensym\"},{\"tag\":\"KEYWORD3\",\"text\":\"memoize\"},{\"tag\":\"KEYWORD3\",\"text\":\"meta\"},{\"tag\":\"KEYWORD3\",\"text\":\"vary-meta\"},{\"tag\":\"KEYWORD3\",\"text\":\"name\"},{\"tag\":\"KEYWORD3\",\"text\":\"namespace\"},{\"tag\":\"KEYWORD3\",\"text\":\"resolve\"},{\"tag\":\"KEYWORD3\",\"text\":\"quote\"},{\"tag\":\"KEYWORD3\",\"text\":\"unquote\"},{\"tag\":\"KEYWORD3\",\"text\":\"unquote-splicing\"},{\"tag\":\"KEYWORD3\",\"text\":\"var\"},{\"tag\":\"KEYWORD3\",\"text\":\"find-var\"},{\"tag\":\"KEYWORD3\",\"text\":\"var-get\"},{\"tag\":\"KEYWORD3\",\"text\":\"var-set\"},{\"tag\":\"KEYWORD3\",\"text\":\"empty\"},{\"tag\":\"KEYWORD3\",\"text\":\"new\"},{\"tag\":\"KEYWORD3\",\"text\":\"array-map\"},{\"tag\":\"KEYWORD3\",\"text\":\"atom\"},{\"tag\":\"KEYWORD3\",\"text\":\"bigdec\"},{\"tag\":\"KEYWORD3\",\"text\":\"bigint\"},{\"tag\":\"KEYWORD3\",\"text\":\"biginteger\"},{\"tag\":\"KEYWORD3\",\"text\":\"boolean\"},{\"tag\":\"KEYWORD3\",\"text\":\"boolean-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"booleans\"},{\"tag\":\"KEYWORD3\",\"text\":\"byte\"},{\"tag\":\"KEYWORD3\",\"text\":\"byte-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"bytes\"},{\"tag\":\"KEYWORD3\",\"text\":\"cast\"},{\"tag\":\"KEYWORD3\",\"text\":\"char\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"chars\"},{\"tag\":\"KEYWORD3\",\"text\":\"construct-proxy\"},{\"tag\":\"KEYWORD3\",\"text\":\"create-struct\"},{\"tag\":\"KEYWORD3\",\"text\":\"denominator\"},{\"tag\":\"KEYWORD3\",\"text\":\"double\"},{\"tag\":\"KEYWORD3\",\"text\":\"double-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"doubles\"},{\"tag\":\"KEYWORD3\",\"text\":\"enumeration-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"float\"},{\"tag\":\"KEYWORD3\",\"text\":\"float-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"floats\"},{\"tag\":\"KEYWORD3\",\"text\":\"get-proxy-class\"},{\"tag\":\"KEYWORD3\",\"text\":\"hash\"},{\"tag\":\"KEYWORD3\",\"text\":\"hash-combine\"},{\"tag\":\"KEYWORD3\",\"text\":\"hash-map\"},{\"tag\":\"KEYWORD3\",\"text\":\"hash-ordered-coll\"},{\"tag\":\"KEYWORD3\",\"text\":\"hash-set\"},{\"tag\":\"KEYWORD3\",\"text\":\"hash-unordered-coll\"},{\"tag\":\"KEYWORD3\",\"text\":\"init-proxy\"},{\"tag\":\"KEYWORD3\",\"text\":\"int\"},{\"tag\":\"KEYWORD3\",\"text\":\"int-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"interpose\"},{\"tag\":\"KEYWORD3\",\"text\":\"ints\"},{\"tag\":\"KEYWORD3\",\"text\":\"list\"},{\"tag\":\"KEYWORD3\",\"text\":\"list*\"},{\"tag\":\"KEYWORD3\",\"text\":\"long\"},{\"tag\":\"KEYWORD3\",\"text\":\"long-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"longs\"},{\"tag\":\"KEYWORD3\",\"text\":\"make-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"num\"},{\"tag\":\"KEYWORD3\",\"text\":\"numerator\"},{\"tag\":\"KEYWORD3\",\"text\":\"partition\"},{\"tag\":\"KEYWORD3\",\"text\":\"partition-all\"},{\"tag\":\"KEYWORD3\",\"text\":\"partition-by\"},{\"tag\":\"KEYWORD3\",\"text\":\"proxy\"},{\"tag\":\"KEYWORD3\",\"text\":\"proxy-call-with-super\"},{\"tag\":\"KEYWORD3\",\"text\":\"proxy-mappings\"},{\"tag\":\"KEYWORD3\",\"text\":\"proxy-name\"},{\"tag\":\"KEYWORD3\",\"text\":\"proxy-super\"},{\"tag\":\"KEYWORD3\",\"text\":\"rationalize\"},{\"tag\":\"KEYWORD3\",\"text\":\"seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"seque\"},{\"tag\":\"KEYWORD3\",\"text\":\"sequence\"},{\"tag\":\"KEYWORD3\",\"text\":\"set\"},{\"tag\":\"KEYWORD3\",\"text\":\"short\"},{\"tag\":\"KEYWORD3\",\"text\":\"short-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"shorts\"},{\"tag\":\"KEYWORD3\",\"text\":\"sorted-map\"},{\"tag\":\"KEYWORD3\",\"text\":\"sorted-map-by\"},{\"tag\":\"KEYWORD3\",\"text\":\"sorted-set\"},{\"tag\":\"KEYWORD3\",\"text\":\"sorted-set-by\"},{\"tag\":\"KEYWORD3\",\"text\":\"struct\"},{\"tag\":\"KEYWORD3\",\"text\":\"struct-map\"},{\"tag\":\"KEYWORD3\",\"text\":\"str\"},{\"tag\":\"KEYWORD3\",\"text\":\"symbol\"},{\"tag\":\"KEYWORD3\",\"text\":\"tree-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"type\"},{\"tag\":\"KEYWORD3\",\"text\":\"update-proxy\"},{\"tag\":\"KEYWORD3\",\"text\":\"vec\"},{\"tag\":\"KEYWORD3\",\"text\":\"vector\"},{\"tag\":\"KEYWORD3\",\"text\":\"vector-of\"},{\"tag\":\"KEYWORD3\",\"text\":\"xml-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\".\"},{\"tag\":\"KEYWORD3\",\"text\":\"..\"},{\"tag\":\"KEYWORD3\",\"text\":\"aclone\"},{\"tag\":\"KEYWORD3\",\"text\":\"ancestors\"},{\"tag\":\"KEYWORD3\",\"text\":\"bases\"},{\"tag\":\"KEYWORD3\",\"text\":\"bean\"},{\"tag\":\"KEYWORD3\",\"text\":\"class\"},{\"tag\":\"KEYWORD3\",\"text\":\"derive\"},{\"tag\":\"KEYWORD3\",\"text\":\"descendants\"},{\"tag\":\"KEYWORD3\",\"text\":\"file-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"iterator-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"make-hierarchy\"},{\"tag\":\"KEYWORD3\",\"text\":\"namespace-munge\"},{\"tag\":\"KEYWORD3\",\"text\":\"object-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"parents\"},{\"tag\":\"KEYWORD3\",\"text\":\"primitives-classnames\"},{\"tag\":\"KEYWORD3\",\"text\":\"supers\"},{\"tag\":\"KEYWORD3\",\"text\":\"underive\"},{\"tag\":\"KEYWORD3\",\"text\":\"memfn\"},{\"tag\":\"KEYWORD3\",\"text\":\"apply\"},{\"tag\":\"KEYWORD3\",\"text\":\"eval\"},{\"tag\":\"KEYWORD3\",\"text\":\"load\"},{\"tag\":\"KEYWORD3\",\"text\":\"load-file\"},{\"tag\":\"KEYWORD3\",\"text\":\"load-reader\"},{\"tag\":\"KEYWORD3\",\"text\":\"load-string\"},{\"tag\":\"KEYWORD3\",\"text\":\"read\"},{\"tag\":\"KEYWORD3\",\"text\":\"read-line\"},{\"tag\":\"KEYWORD3\",\"text\":\"read-string\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-bindings\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-bindings*\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-in-str\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-loading-context\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-local-vars\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-meta\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-open\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-out-str\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-precision\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-redefs\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-redefs-fn\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-test\"},{\"tag\":\"KEYWORD3\",\"text\":\"with-test-out\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-boolean\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-byte\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-char\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-double\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-float\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-int\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-long\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset-short\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-escape-string\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-name-string\"},{\"tag\":\"KEYWORD3\",\"text\":\"clojure-version\"},{\"tag\":\"KEYWORD3\",\"text\":\"compare\"},{\"tag\":\"KEYWORD3\",\"text\":\"complement\"},{\"tag\":\"KEYWORD3\",\"text\":\"default-data-readers\"},{\"tag\":\"KEYWORD3\",\"text\":\"every-pred\"},{\"tag\":\"KEYWORD3\",\"text\":\"juxt\"},{\"tag\":\"KEYWORD3\",\"text\":\"ex-data\"},{\"tag\":\"KEYWORD3\",\"text\":\"ex-info\"},{\"tag\":\"KEYWORD3\",\"text\":\"identity\"},{\"tag\":\"KEYWORD3\",\"text\":\"keyword\"},{\"tag\":\"KEYWORD3\",\"text\":\"line-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"macroexpand-1\"},{\"tag\":\"KEYWORD3\",\"text\":\"macroexpand\"},{\"tag\":\"KEYWORD3\",\"text\":\"parse\"},{\"tag\":\"KEYWORD3\",\"text\":\"pr\"},{\"tag\":\"KEYWORD3\",\"text\":\"prn\"},{\"tag\":\"KEYWORD3\",\"text\":\"print\"},{\"tag\":\"KEYWORD3\",\"text\":\"printf\"},{\"tag\":\"KEYWORD3\",\"text\":\"println\"},{\"tag\":\"KEYWORD3\",\"text\":\"pr-str\"},{\"tag\":\"KEYWORD3\",\"text\":\"prn-str\"},{\"tag\":\"KEYWORD3\",\"text\":\"print-dup\"},{\"tag\":\"KEYWORD3\",\"text\":\"print-str\"},{\"tag\":\"KEYWORD3\",\"text\":\"println-str\"},{\"tag\":\"KEYWORD3\",\"text\":\"flush\"},{\"tag\":\"KEYWORD3\",\"text\":\"format\"},{\"tag\":\"KEYWORD3\",\"text\":\"io!\"},{\"tag\":\"KEYWORD3\",\"text\":\"newline\"},{\"tag\":\"KEYWORD3\",\"text\":\"rand\"},{\"tag\":\"KEYWORD3\",\"text\":\"rand-int\"},{\"tag\":\"KEYWORD3\",\"text\":\"rand-nth\"},{\"tag\":\"KEYWORD3\",\"text\":\"re-find\"},{\"tag\":\"KEYWORD3\",\"text\":\"re-groups\"},{\"tag\":\"KEYWORD3\",\"text\":\"re-matcher\"},{\"tag\":\"KEYWORD3\",\"text\":\"re-matches\"},{\"tag\":\"KEYWORD3\",\"text\":\"re-pattern\"},{\"tag\":\"KEYWORD3\",\"text\":\"re-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"slurp\"},{\"tag\":\"KEYWORD3\",\"text\":\"spit\"},{\"tag\":\"KEYWORD3\",\"text\":\"test\"},{\"tag\":\"KEYWORD3\",\"text\":\"time\"},{\"tag\":\"KEYWORD3\",\"text\":\"transient\"},{\"tag\":\"KEYWORD3\",\"text\":\"assoc!\"},{\"tag\":\"KEYWORD3\",\"text\":\"conj!\"},{\"tag\":\"KEYWORD3\",\"text\":\"disj!\"},{\"tag\":\"KEYWORD3\",\"text\":\"dissoc!\"},{\"tag\":\"KEYWORD3\",\"text\":\"persistent!\"},{\"tag\":\"KEYWORD3\",\"text\":\"pop!\"},{\"tag\":\"KEYWORD3\",\"text\":\"accessor\"},{\"tag\":\"KEYWORD3\",\"text\":\"aget\"},{\"tag\":\"KEYWORD3\",\"text\":\"alength\"},{\"tag\":\"KEYWORD3\",\"text\":\"areduce\"},{\"tag\":\"KEYWORD3\",\"text\":\"aset\"},{\"tag\":\"KEYWORD3\",\"text\":\"assoc\"},{\"tag\":\"KEYWORD3\",\"text\":\"assoc-in\"},{\"tag\":\"KEYWORD3\",\"text\":\"butlast\"},{\"tag\":\"KEYWORD3\",\"text\":\"comp\"},{\"tag\":\"KEYWORD3\",\"text\":\"comparator\"},{\"tag\":\"KEYWORD3\",\"text\":\"concat\"},{\"tag\":\"KEYWORD3\",\"text\":\"conj\"},{\"tag\":\"KEYWORD3\",\"text\":\"cons\"},{\"tag\":\"KEYWORD3\",\"text\":\"constantly\"},{\"tag\":\"KEYWORD3\",\"text\":\"count\"},{\"tag\":\"KEYWORD3\",\"text\":\"cycle\"},{\"tag\":\"KEYWORD3\",\"text\":\"disj\"},{\"tag\":\"KEYWORD3\",\"text\":\"dissoc\"},{\"tag\":\"KEYWORD3\",\"text\":\"distinct\"},{\"tag\":\"KEYWORD3\",\"text\":\"drop\"},{\"tag\":\"KEYWORD3\",\"text\":\"drop-last\"},{\"tag\":\"KEYWORD3\",\"text\":\"drop-while\"},{\"tag\":\"KEYWORD3\",\"text\":\"ffirst\"},{\"tag\":\"KEYWORD3\",\"text\":\"find\"},{\"tag\":\"KEYWORD3\",\"text\":\"first\"},{\"tag\":\"KEYWORD3\",\"text\":\"flatten\"},{\"tag\":\"KEYWORD3\",\"text\":\"fnext\"},{\"tag\":\"KEYWORD3\",\"text\":\"fnil\"},{\"tag\":\"KEYWORD3\",\"text\":\"frequencies\"},{\"tag\":\"KEYWORD3\",\"text\":\"frest\"},{\"tag\":\"KEYWORD3\",\"text\":\"get\"},{\"tag\":\"KEYWORD3\",\"text\":\"get-in\"},{\"tag\":\"KEYWORD3\",\"text\":\"group-by\"},{\"tag\":\"KEYWORD3\",\"text\":\"interleave\"},{\"tag\":\"KEYWORD3\",\"text\":\"into\"},{\"tag\":\"KEYWORD3\",\"text\":\"into-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"iterate\"},{\"tag\":\"KEYWORD3\",\"text\":\"key\"},{\"tag\":\"KEYWORD3\",\"text\":\"keep\"},{\"tag\":\"KEYWORD3\",\"text\":\"keep-indexed\"},{\"tag\":\"KEYWORD3\",\"text\":\"keys\"},{\"tag\":\"KEYWORD3\",\"text\":\"last\"},{\"tag\":\"KEYWORD3\",\"text\":\"lazy-cat\"},{\"tag\":\"KEYWORD3\",\"text\":\"lazy-cons\"},{\"tag\":\"KEYWORD3\",\"text\":\"lazy-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"max\"},{\"tag\":\"KEYWORD3\",\"text\":\"max-key\"},{\"tag\":\"KEYWORD3\",\"text\":\"merge\"},{\"tag\":\"KEYWORD3\",\"text\":\"merge-with\"},{\"tag\":\"KEYWORD3\",\"text\":\"min\"},{\"tag\":\"KEYWORD3\",\"text\":\"min-key\"},{\"tag\":\"KEYWORD3\",\"text\":\"mix-collection-hash\"},{\"tag\":\"KEYWORD3\",\"text\":\"munge\"},{\"tag\":\"KEYWORD3\",\"text\":\"next\"},{\"tag\":\"KEYWORD3\",\"text\":\"nfirst\"},{\"tag\":\"KEYWORD3\",\"text\":\"nnext\"},{\"tag\":\"KEYWORD3\",\"text\":\"nth\"},{\"tag\":\"KEYWORD3\",\"text\":\"nthnext\"},{\"tag\":\"KEYWORD3\",\"text\":\"nthrest\"},{\"tag\":\"KEYWORD3\",\"text\":\"peek\"},{\"tag\":\"KEYWORD3\",\"text\":\"pop\"},{\"tag\":\"KEYWORD3\",\"text\":\"put\"},{\"tag\":\"KEYWORD3\",\"text\":\"pvalues\"},{\"tag\":\"KEYWORD3\",\"text\":\"range\"},{\"tag\":\"KEYWORD3\",\"text\":\"reduce\"},{\"tag\":\"KEYWORD3\",\"text\":\"reduced\"},{\"tag\":\"KEYWORD3\",\"text\":\"reduce-kv\"},{\"tag\":\"KEYWORD3\",\"text\":\"reductions\"},{\"tag\":\"KEYWORD3\",\"text\":\"remove\"},{\"tag\":\"KEYWORD3\",\"text\":\"repeat\"},{\"tag\":\"KEYWORD3\",\"text\":\"repeatedly\"},{\"tag\":\"KEYWORD3\",\"text\":\"replace\"},{\"tag\":\"KEYWORD3\",\"text\":\"replicate\"},{\"tag\":\"KEYWORD3\",\"text\":\"rest\"},{\"tag\":\"KEYWORD3\",\"text\":\"reverse\"},{\"tag\":\"KEYWORD3\",\"text\":\"rfirst\"},{\"tag\":\"KEYWORD3\",\"text\":\"rrest\"},{\"tag\":\"KEYWORD3\",\"text\":\"rseq\"},{\"tag\":\"KEYWORD3\",\"text\":\"rsubseq\"},{\"tag\":\"KEYWORD3\",\"text\":\"second\"},{\"tag\":\"KEYWORD3\",\"text\":\"select-keys\"},{\"tag\":\"KEYWORD3\",\"text\":\"shuffle\"},{\"tag\":\"KEYWORD3\",\"text\":\"some\"},{\"tag\":\"KEYWORD3\",\"text\":\"some->\"},{\"tag\":\"KEYWORD3\",\"text\":\"some->>\"},{\"tag\":\"KEYWORD3\",\"text\":\"some-fn\"},{\"tag\":\"KEYWORD3\",\"text\":\"split-at\"},{\"tag\":\"KEYWORD3\",\"text\":\"split-with\"},{\"tag\":\"KEYWORD3\",\"text\":\"subs\"},{\"tag\":\"KEYWORD3\",\"text\":\"subseq\"},{\"tag\":\"KEYWORD3\",\"text\":\"subvec\"},{\"tag\":\"KEYWORD3\",\"text\":\"take\"},{\"tag\":\"KEYWORD3\",\"text\":\"take-last\"},{\"tag\":\"KEYWORD3\",\"text\":\"take-nth\"},{\"tag\":\"KEYWORD3\",\"text\":\"take-while\"},{\"tag\":\"KEYWORD3\",\"text\":\"to-array\"},{\"tag\":\"KEYWORD3\",\"text\":\"to-array-2d\"},{\"tag\":\"KEYWORD3\",\"text\":\"update-in\"},{\"tag\":\"KEYWORD3\",\"text\":\"val\"},{\"tag\":\"KEYWORD3\",\"text\":\"vals\"},{\"tag\":\"KEYWORD3\",\"text\":\"resultset-seq\"},{\"tag\":\"KEYWORD3\",\"text\":\"zipmap\"},{\"tag\":\"KEYWORD4\",\"text\":\"&\"},{\"tag\":\"KEYWORD4\",\"text\":\"*1\"},{\"tag\":\"KEYWORD4\",\"text\":\"*2\"},{\"tag\":\"KEYWORD4\",\"text\":\"*3\"},{\"tag\":\"KEYWORD4\",\"text\":\"*agent*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*clojure-version*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*command-line-args*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*compile-files*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*compile-path*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*compiler-options*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*data-readers*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*default-data-reader-fn*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*e\"},{\"tag\":\"KEYWORD4\",\"text\":\"*file*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*flush-on-newline*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*err*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*in*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*out*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*ns*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*open-url-script*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-base*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-dup*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-length*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-level*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-miser-width*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-meta*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-pprint-dispatch*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-pretty*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-radix*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-readably*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-right-margin*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*print-suppress-namespaces*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*read-eval*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*unchecked-math*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*warn-on-reflection*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*current*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*sb*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*stack*\"},{\"tag\":\"KEYWORD4\",\"text\":\"*state*\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-add\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-add-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-byte\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-char\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-dec\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-dec-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-divide-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-double\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-float\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-inc\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-inc-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-long\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-multiply\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-negate\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-negate-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-remainder-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-short\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-subtract\"},{\"tag\":\"FUNCTION\",\"text\":\"unchecked-subtract-int\"},{\"tag\":\"FUNCTION\",\"text\":\"unsigned-bit-shift-right\"},{\"tag\":\"FUNCTION\",\"text\":\"browse-url\"},{\"tag\":\"FUNCTION\",\"text\":\"diff\"},{\"tag\":\"FUNCTION\",\"text\":\"diff-similar\"},{\"tag\":\"FUNCTION\",\"text\":\"parse-timestamp\"},{\"tag\":\"FUNCTION\",\"text\":\"read-instant-calendar\"},{\"tag\":\"FUNCTION\",\"text\":\"read-instant-date\"},{\"tag\":\"FUNCTION\",\"text\":\"read-instant-timestamp\"},{\"tag\":\"FUNCTION\",\"text\":\"validated\"},{\"tag\":\"FUNCTION\",\"text\":\"as-file\"},{\"tag\":\"FUNCTION\",\"text\":\"as-relative-path\"},{\"tag\":\"FUNCTION\",\"text\":\"as-url\"},{\"tag\":\"FUNCTION\",\"text\":\"copy\"},{\"tag\":\"FUNCTION\",\"text\":\"delete-file\"},{\"tag\":\"FUNCTION\",\"text\":\"file\"},{\"tag\":\"FUNCTION\",\"text\":\"input-stream\"},{\"tag\":\"FUNCTION\",\"text\":\"output-stream\"},{\"tag\":\"FUNCTION\",\"text\":\"make-input-stream\"},{\"tag\":\"FUNCTION\",\"text\":\"make-output-stream\"},{\"tag\":\"FUNCTION\",\"text\":\"make-parents\"},{\"tag\":\"FUNCTION\",\"text\":\"make-reader\"},{\"tag\":\"FUNCTION\",\"text\":\"make-writer\"},{\"tag\":\"FUNCTION\",\"text\":\"reader\"},{\"tag\":\"FUNCTION\",\"text\":\"resource\"},{\"tag\":\"FUNCTION\",\"text\":\"writer\"},{\"tag\":\"FUNCTION\",\"text\":\"cl-format\"},{\"tag\":\"FUNCTION\",\"text\":\"code-dispatch\"},{\"tag\":\"FUNCTION\",\"text\":\"formatter\"},{\"tag\":\"FUNCTION\",\"text\":\"formatter-out\"},{\"tag\":\"FUNCTION\",\"text\":\"fresh-line\"},{\"tag\":\"FUNCTION\",\"text\":\"get-pretty-writer\"},{\"tag\":\"FUNCTION\",\"text\":\"pp\"},{\"tag\":\"FUNCTION\",\"text\":\"pprint\"},{\"tag\":\"FUNCTION\",\"text\":\"pprint-indent\"},{\"tag\":\"FUNCTION\",\"text\":\"pprint-logical-block\"},{\"tag\":\"FUNCTION\",\"text\":\"pprint-newline\"},{\"tag\":\"FUNCTION\",\"text\":\"pprint-tab\"},{\"tag\":\"FUNCTION\",\"text\":\"print-length-loop\"},{\"tag\":\"FUNCTION\",\"text\":\"print-table\"},{\"tag\":\"FUNCTION\",\"text\":\"set-pprint-dispatch\"},{\"tag\":\"FUNCTION\",\"text\":\"simple-dispatch\"},{\"tag\":\"FUNCTION\",\"text\":\"with-pprint-dispatch\"},{\"tag\":\"FUNCTION\",\"text\":\"write\"},{\"tag\":\"FUNCTION\",\"text\":\"write-out\"},{\"tag\":\"FUNCTION\",\"text\":\"difference\"},{\"tag\":\"FUNCTION\",\"text\":\"index\"},{\"tag\":\"FUNCTION\",\"text\":\"intersection\"},{\"tag\":\"FUNCTION\",\"text\":\"join\"},{\"tag\":\"FUNCTION\",\"text\":\"map-invert\"},{\"tag\":\"FUNCTION\",\"text\":\"project\"},{\"tag\":\"FUNCTION\",\"text\":\"rename\"},{\"tag\":\"FUNCTION\",\"text\":\"rename-keys\"},{\"tag\":\"FUNCTION\",\"text\":\"select\"},{\"tag\":\"FUNCTION\",\"text\":\"union\"},{\"tag\":\"FUNCTION\",\"text\":\"e\"},{\"tag\":\"FUNCTION\",\"text\":\"print-cause-trace\"},{\"tag\":\"FUNCTION\",\"text\":\"print-stack-trace\"},{\"tag\":\"FUNCTION\",\"text\":\"print-throwable\"},{\"tag\":\"FUNCTION\",\"text\":\"print-trace-element\"},{\"tag\":\"FUNCTION\",\"text\":\"root-cause\"},{\"tag\":\"FUNCTION\",\"text\":\"capitalize\"},{\"tag\":\"FUNCTION\",\"text\":\"escape\"},{\"tag\":\"FUNCTION\",\"text\":\"join\"},{\"tag\":\"FUNCTION\",\"text\":\"lower-case\"},{\"tag\":\"FUNCTION\",\"text\":\"re-quote-replacement\"},{\"tag\":\"FUNCTION\",\"text\":\"replace-first\"},{\"tag\":\"FUNCTION\",\"text\":\"split\"},{\"tag\":\"FUNCTION\",\"text\":\"split-lines\"},{\"tag\":\"FUNCTION\",\"text\":\"trim\"},{\"tag\":\"FUNCTION\",\"text\":\"trim-newline\"},{\"tag\":\"FUNCTION\",\"text\":\"triml\"},{\"tag\":\"FUNCTION\",\"text\":\"trimr\"},{\"tag\":\"FUNCTION\",\"text\":\"upper-case\"},{\"tag\":\"FUNCTION\",\"text\":\"are\"},{\"tag\":\"FUNCTION\",\"text\":\"assert-any\"},{\"tag\":\"FUNCTION\",\"text\":\"assert-expr\"},{\"tag\":\"FUNCTION\",\"text\":\"assert-predicate\"},{\"tag\":\"FUNCTION\",\"text\":\"compose-fixtures\"},{\"tag\":\"FUNCTION\",\"text\":\"is\"},{\"tag\":\"FUNCTION\",\"text\":\"join-fixtures\"},{\"tag\":\"FUNCTION\",\"text\":\"testing\"},{\"tag\":\"FUNCTION\",\"text\":\"try-expr\"},{\"tag\":\"FUNCTION\",\"text\":\"use-fixtures\"},{\"tag\":\"FUNCTION\",\"text\":\"keywordize-keys\"},{\"tag\":\"FUNCTION\",\"text\":\"macroexpand-all\"},{\"tag\":\"FUNCTION\",\"text\":\"postwalk\"},{\"tag\":\"FUNCTION\",\"text\":\"postwalk-demo\"},{\"tag\":\"FUNCTION\",\"text\":\"postwalk-replace\"},{\"tag\":\"FUNCTION\",\"text\":\"prewalk\"},{\"tag\":\"FUNCTION\",\"text\":\"prewalk-demo\"},{\"tag\":\"FUNCTION\",\"text\":\"prewalk-replace\"},{\"tag\":\"FUNCTION\",\"text\":\"stringify-keys\"},{\"tag\":\"FUNCTION\",\"text\":\"walk\"},{\"tag\":\"FUNCTION\",\"text\":\"attrs\"},{\"tag\":\"FUNCTION\",\"text\":\"content\"},{\"tag\":\"FUNCTION\",\"text\":\"content-handler\"},{\"tag\":\"FUNCTION\",\"text\":\"element\"},{\"tag\":\"FUNCTION\",\"text\":\"emit\"},{\"tag\":\"FUNCTION\",\"text\":\"emit-element\"},{\"tag\":\"FUNCTION\",\"text\":\"parse\"},{\"tag\":\"FUNCTION\",\"text\":\"startparse-sax\"},{\"tag\":\"FUNCTION\",\"text\":\"tag\"},{\"tag\":\"FUNCTION\",\"text\":\"append-child\"},{\"tag\":\"FUNCTION\",\"text\":\"children\"},{\"tag\":\"FUNCTION\",\"text\":\"down\"},{\"tag\":\"FUNCTION\",\"text\":\"edit\"},{\"tag\":\"FUNCTION\",\"text\":\"insert-child\"},{\"tag\":\"FUNCTION\",\"text\":\"insert-left\"},{\"tag\":\"FUNCTION\",\"text\":\"insert-right\"},{\"tag\":\"FUNCTION\",\"text\":\"left\"},{\"tag\":\"FUNCTION\",\"text\":\"leftmost\"},{\"tag\":\"FUNCTION\",\"text\":\"lefts\"},{\"tag\":\"FUNCTION\",\"text\":\"make-node\"},{\"tag\":\"FUNCTION\",\"text\":\"next\"},{\"tag\":\"FUNCTION\",\"text\":\"node\"},{\"tag\":\"FUNCTION\",\"text\":\"path\"},{\"tag\":\"FUNCTION\",\"text\":\"prev\"},{\"tag\":\"FUNCTION\",\"text\":\"remove\"},{\"tag\":\"FUNCTION\",\"text\":\"replace\"},{\"tag\":\"FUNCTION\",\"text\":\"right\"},{\"tag\":\"FUNCTION\",\"text\":\"rightmost\"},{\"tag\":\"FUNCTION\",\"text\":\"rights\"},{\"tag\":\"FUNCTION\",\"text\":\"root\"},{\"tag\":\"FUNCTION\",\"text\":\"seq-zip\"},{\"tag\":\"FUNCTION\",\"text\":\"up\"},{\"tag\":\"FUNCTION\",\"text\":\"vector-zip\"},{\"tag\":\"FUNCTION\",\"text\":\"xml-zip\"},{\"tag\":\"FUNCTION\",\"text\":\"zipper\"},{\"tag\":\"LITERAL3\",\"text\":\"associative?\"},{\"tag\":\"LITERAL3\",\"text\":\"atom?\"},{\"tag\":\"LITERAL3\",\"text\":\"blank?\"},{\"tag\":\"LITERAL3\",\"text\":\"bound?\"},{\"tag\":\"LITERAL3\",\"text\":\"branch?\"},{\"tag\":\"LITERAL3\",\"text\":\"char?\"},{\"tag\":\"LITERAL3\",\"text\":\"class?\"},{\"tag\":\"LITERAL3\",\"text\":\"contains?\"},{\"tag\":\"LITERAL3\",\"text\":\"counted?\"},{\"tag\":\"LITERAL3\",\"text\":\"decimal?\"},{\"tag\":\"LITERAL3\",\"text\":\"delay?\"},{\"tag\":\"LITERAL3\",\"text\":\"distinct?\"},{\"tag\":\"LITERAL3\",\"text\":\"empty?\"},{\"tag\":\"LITERAL3\",\"text\":\"end?\"},{\"tag\":\"LITERAL3\",\"text\":\"even?\"},{\"tag\":\"LITERAL3\",\"text\":\"every?\"},{\"tag\":\"LITERAL3\",\"text\":\"false?\"},{\"tag\":\"LITERAL3\",\"text\":\"float?\"},{\"tag\":\"LITERAL3\",\"text\":\"fn?\"},{\"tag\":\"LITERAL3\",\"text\":\"function?\"},{\"tag\":\"LITERAL3\",\"text\":\"future?\"},{\"tag\":\"LITERAL3\",\"text\":\"future-cancelled?\"},{\"tag\":\"LITERAL3\",\"text\":\"future-done?\"},{\"tag\":\"LITERAL3\",\"text\":\"extends?\"},{\"tag\":\"LITERAL3\",\"text\":\"identical?\"},{\"tag\":\"LITERAL3\",\"text\":\"ifn?\"},{\"tag\":\"LITERAL3\",\"text\":\"instance?\"},{\"tag\":\"LITERAL3\",\"text\":\"integer?\"},{\"tag\":\"LITERAL3\",\"text\":\"isa?\"},{\"tag\":\"LITERAL3\",\"text\":\"keyword?\"},{\"tag\":\"LITERAL3\",\"text\":\"list?\"},{\"tag\":\"LITERAL3\",\"text\":\"map?\"},{\"tag\":\"LITERAL3\",\"text\":\"neg?\"},{\"tag\":\"LITERAL3\",\"text\":\"nil?\"},{\"tag\":\"LITERAL3\",\"text\":\"not-any?\"},{\"tag\":\"LITERAL3\",\"text\":\"not-empty\"},{\"tag\":\"LITERAL3\",\"text\":\"not-every?\"},{\"tag\":\"LITERAL3\",\"text\":\"number?\"},{\"tag\":\"LITERAL3\",\"text\":\"odd?\"},{\"tag\":\"LITERAL3\",\"text\":\"pos?\"},{\"tag\":\"LITERAL3\",\"text\":\"ratio?\"},{\"tag\":\"LITERAL3\",\"text\":\"rational?\"},{\"tag\":\"LITERAL3\",\"text\":\"realized?\"},{\"tag\":\"LITERAL3\",\"text\":\"record?\"},{\"tag\":\"LITERAL3\",\"text\":\"reduced?\"},{\"tag\":\"LITERAL3\",\"text\":\"reversible?\"},{\"tag\":\"LITERAL3\",\"text\":\"satisfies?\"},{\"tag\":\"LITERAL3\",\"text\":\"seq?\"},{\"tag\":\"LITERAL3\",\"text\":\"sequential?\"},{\"tag\":\"LITERAL3\",\"text\":\"set?\"},{\"tag\":\"LITERAL3\",\"text\":\"some?\"},{\"tag\":\"LITERAL3\",\"text\":\"sorted?\"},{\"tag\":\"LITERAL3\",\"text\":\"string?\"},{\"tag\":\"LITERAL3\",\"text\":\"subset?\"},{\"tag\":\"LITERAL3\",\"text\":\"successful?\"},{\"tag\":\"LITERAL3\",\"text\":\"superset?\"},{\"tag\":\"LITERAL3\",\"text\":\"symbol?\"},{\"tag\":\"LITERAL3\",\"text\":\"true?\"},{\"tag\":\"LITERAL3\",\"text\":\"var?\"},{\"tag\":\"LITERAL3\",\"text\":\"vector?\"},{\"tag\":\"LITERAL3\",\"text\":\"zero?\"},{\"tag\":\"LITERAL3\",\"text\":\"quot\"},{\"tag\":\"LITERAL4\",\"text\":\"nil\"},{\"tag\":\"LITERAL4\",\"text\":\"true\"},{\"tag\":\"LITERAL4\",\"text\":\"false\"},{\"tag\":\"OPERATOR\",\"text\":\"+\"},{\"tag\":\"OPERATOR\",\"text\":\"+'\"},{\"tag\":\"OPERATOR\",\"text\":\"-\"},{\"tag\":\"OPERATOR\",\"text\":\"-'\"},{\"tag\":\"OPERATOR\",\"text\":\"=\"},{\"tag\":\"OPERATOR\",\"text\":\"==\"},{\"tag\":\"OPERATOR\",\"text\":\"as->\"},{\"tag\":\"OPERATOR\",\"text\":\"->\"},{\"tag\":\"OPERATOR\",\"text\":\"->>\"},{\"tag\":\"OPERATOR\",\"text\":\">=\"},{\"tag\":\"OPERATOR\",\"text\":\">\"},{\"tag\":\"OPERATOR\",\"text\":\"<=\"},{\"tag\":\"OPERATOR\",\"text\":\"<\"},{\"tag\":\"OPERATOR\",\"text\":\"/\"},{\"tag\":\"OPERATOR\",\"text\":\"*\"},{\"tag\":\"OPERATOR\",\"text\":\"*'\"},{\"tag\":\"OPERATOR\",\"text\":\"%\"},{\"tag\":\"OPERATOR\",\"text\":\"and\"},{\"tag\":\"OPERATOR\",\"text\":\"or\"},{\"tag\":\"OPERATOR\",\"text\":\"inc\"},{\"tag\":\"OPERATOR\",\"text\":\"inc'\"},{\"tag\":\"OPERATOR\",\"text\":\"dec\"},{\"tag\":\"OPERATOR\",\"text\":\"dec'\"},{\"tag\":\"OPERATOR\",\"text\":\"mod\"},{\"tag\":\"OPERATOR\",\"text\":\"not\"},{\"tag\":\"OPERATOR\",\"text\":\"not=\"},{\"tag\":\"OPERATOR\",\"text\":\"rem\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-and\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-and-not\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-clear\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-flip\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-or\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-not\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-set\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-shift-right\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-shift-left\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-test\"},{\"tag\":\"OPERATOR\",\"text\":\"bit-xor\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"STRINGS\",\"HIGHLIGHT_DIGITS\":\"FALSE\",\"DEFAULT\":\"LITERAL1\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\.\",\"attrs\":{\"AT_WORD_START\":\"FALSE\",\"TYPE\":\"LABEL\",\"HASH_CHAR\":\"\\\\\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"INVALID\",\"text\":\"\\\"\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"REGEXPS\",\"HIGHLIGHT_DIGITS\":\"FALSE\",\"DEFAULT\":\"LITERAL1\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\.\",\"attrs\":{\"AT_WORD_START\":\"FALSE\",\"TYPE\":\"LABEL\",\"HASH_CHAR\":\"\\\\\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"INVALID\",\"text\":\"\\\"\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = ";";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = ".*+!-_?/";
+        PROPERTY2.NAME = "noWordSep";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "(";
+        PROPERTY3.NAME = "unalignedOpenBrackets";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = ")";
+        PROPERTY4.NAME = "unalignedCloseBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "true";
+        PROPERTY5.NAME = "multipleBracketIndent";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "([0-9]+)|(([0-9]*\\.[0-9]+)M?)|([0-9]+/[0-9]+)";
+        RULES1.IGNORE_CASE = "FALSE";
+        RULES1.NO_WORD_SEP = ".*+!-_?/";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "KEYWORD4";
+        SPAN1.DELEGATE = "MAIN";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "*";
+        END END1 = new END();
+        END1.text = "*";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "MARKUP";
+        SPAN2.DELEGATE = "MAIN";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "#^(";
+        END END2 = new END();
+        END2.text = ")";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "LITERAL3";
+        SPAN3.DELEGATE = "MAIN";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "@(";
+        END END3 = new END();
+        END3.text = ")";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.TYPE = "LITERAL3";
+        SPAN4.DELEGATE = "MAIN";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "^(";
+        END END4 = new END();
+        END4.text = ")";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        SPAN SPAN5 = new SPAN();
+        SPAN5.TYPE = "LITERAL3";
+        SPAN5.DELEGATE = "MAIN";
+        BEGIN BEGIN5 = new BEGIN();
+        BEGIN5.text = "`(";
+        END END5 = new END();
+        END5.text = ")";
+        SPAN5.END = new END[] { END5, };
+
+        SPAN5.BEGIN = new BEGIN[] { BEGIN5, };
+
+        SPAN SPAN6 = new SPAN();
+        SPAN6.TYPE = "LITERAL3";
+        SPAN6.DELEGATE = "MAIN";
+        BEGIN BEGIN6 = new BEGIN();
+        BEGIN6.text = "'(";
+        END END6 = new END();
+        END6.text = ")";
+        SPAN6.END = new END[] { END6, };
+
+        SPAN6.BEGIN = new BEGIN[] { BEGIN6, };
+
+        SPAN SPAN7 = new SPAN();
+        SPAN7.TYPE = "COMMENT3";
+        SPAN7.DELEGATE = "MAIN";
+        BEGIN BEGIN7 = new BEGIN();
+        BEGIN7.text = "#_(";
+        END END7 = new END();
+        END7.text = ")";
+        SPAN7.END = new END[] { END7, };
+
+        SPAN7.BEGIN = new BEGIN[] { BEGIN7, };
+
+        SPAN SPAN8 = new SPAN();
+        SPAN8.TYPE = "KEYWORD1";
+        SPAN8.DELEGATE = "MAIN";
+        BEGIN BEGIN8 = new BEGIN();
+        BEGIN8.text = "#(";
+        END END8 = new END();
+        END8.text = ")";
+        SPAN8.END = new END[] { END8, };
+
+        SPAN8.BEGIN = new BEGIN[] { BEGIN8, };
+
+        SPAN SPAN9 = new SPAN();
+        SPAN9.TYPE = "MARKUP";
+        SPAN9.DELEGATE = "MAIN";
+        BEGIN BEGIN9 = new BEGIN();
+        BEGIN9.text = "(";
+        END END9 = new END();
+        END9.text = ")";
+        SPAN9.END = new END[] { END9, };
+
+        SPAN9.BEGIN = new BEGIN[] { BEGIN9, };
+
+        SPAN SPAN10 = new SPAN();
+        SPAN10.TYPE = "MARKUP";
+        SPAN10.DELEGATE = "MAIN";
+        BEGIN BEGIN10 = new BEGIN();
+        BEGIN10.text = "#^[";
+        END END10 = new END();
+        END10.text = "]";
+        SPAN10.END = new END[] { END10, };
+
+        SPAN10.BEGIN = new BEGIN[] { BEGIN10, };
+
+        SPAN SPAN11 = new SPAN();
+        SPAN11.TYPE = "LITERAL3";
+        SPAN11.DELEGATE = "MAIN";
+        BEGIN BEGIN11 = new BEGIN();
+        BEGIN11.text = "@[";
+        END END11 = new END();
+        END11.text = "]";
+        SPAN11.END = new END[] { END11, };
+
+        SPAN11.BEGIN = new BEGIN[] { BEGIN11, };
+
+        SPAN SPAN12 = new SPAN();
+        SPAN12.TYPE = "LITERAL3";
+        SPAN12.DELEGATE = "MAIN";
+        BEGIN BEGIN12 = new BEGIN();
+        BEGIN12.text = "^[";
+        END END12 = new END();
+        END12.text = "]";
+        SPAN12.END = new END[] { END12, };
+
+        SPAN12.BEGIN = new BEGIN[] { BEGIN12, };
+
+        SPAN SPAN13 = new SPAN();
+        SPAN13.TYPE = "LITERAL3";
+        SPAN13.DELEGATE = "MAIN";
+        BEGIN BEGIN13 = new BEGIN();
+        BEGIN13.text = "'[";
+        END END13 = new END();
+        END13.text = "]";
+        SPAN13.END = new END[] { END13, };
+
+        SPAN13.BEGIN = new BEGIN[] { BEGIN13, };
+
+        SPAN SPAN14 = new SPAN();
+        SPAN14.TYPE = "LABEL";
+        SPAN14.DELEGATE = "MAIN";
+        BEGIN BEGIN14 = new BEGIN();
+        BEGIN14.text = "[";
+        END END14 = new END();
+        END14.text = "]";
+        SPAN14.END = new END[] { END14, };
+
+        SPAN14.BEGIN = new BEGIN[] { BEGIN14, };
+
+        SPAN SPAN15 = new SPAN();
+        SPAN15.TYPE = "MARKUP";
+        SPAN15.DELEGATE = "MAIN";
+        BEGIN BEGIN15 = new BEGIN();
+        BEGIN15.text = "#^{";
+        END END15 = new END();
+        END15.text = "}";
+        SPAN15.END = new END[] { END15, };
+
+        SPAN15.BEGIN = new BEGIN[] { BEGIN15, };
+
+        SPAN SPAN16 = new SPAN();
+        SPAN16.TYPE = "LITERAL3";
+        SPAN16.DELEGATE = "MAIN";
+        BEGIN BEGIN16 = new BEGIN();
+        BEGIN16.text = "@{";
+        END END16 = new END();
+        END16.text = "}";
+        SPAN16.END = new END[] { END16, };
+
+        SPAN16.BEGIN = new BEGIN[] { BEGIN16, };
+
+        SPAN SPAN17 = new SPAN();
+        SPAN17.TYPE = "LITERAL3";
+        SPAN17.DELEGATE = "MAIN";
+        BEGIN BEGIN17 = new BEGIN();
+        BEGIN17.text = "^{";
+        END END17 = new END();
+        END17.text = "}";
+        SPAN17.END = new END[] { END17, };
+
+        SPAN17.BEGIN = new BEGIN[] { BEGIN17, };
+
+        SPAN SPAN18 = new SPAN();
+        SPAN18.TYPE = "LITERAL3";
+        SPAN18.DELEGATE = "MAIN";
+        BEGIN BEGIN18 = new BEGIN();
+        BEGIN18.text = "'{";
+        END END18 = new END();
+        END18.text = "}";
+        SPAN18.END = new END[] { END18, };
+
+        SPAN18.BEGIN = new BEGIN[] { BEGIN18, };
+
+        SPAN SPAN19 = new SPAN();
+        SPAN19.TYPE = "LABEL";
+        SPAN19.DELEGATE = "MAIN";
+        BEGIN BEGIN19 = new BEGIN();
+        BEGIN19.text = "{";
+        END END19 = new END();
+        END19.text = "}";
+        SPAN19.END = new END[] { END19, };
+
+        SPAN19.BEGIN = new BEGIN[] { BEGIN19, };
+
+        SPAN SPAN20 = new SPAN();
+        SPAN20.TYPE = "MARKUP";
+        SPAN20.DELEGATE = "MAIN";
+        BEGIN BEGIN20 = new BEGIN();
+        BEGIN20.text = "#^#{";
+        END END20 = new END();
+        END20.text = "}";
+        SPAN20.END = new END[] { END20, };
+
+        SPAN20.BEGIN = new BEGIN[] { BEGIN20, };
+
+        SPAN SPAN21 = new SPAN();
+        SPAN21.TYPE = "LITERAL3";
+        SPAN21.DELEGATE = "MAIN";
+        BEGIN BEGIN21 = new BEGIN();
+        BEGIN21.text = "@#{";
+        END END21 = new END();
+        END21.text = "}";
+        SPAN21.END = new END[] { END21, };
+
+        SPAN21.BEGIN = new BEGIN[] { BEGIN21, };
+
+        SPAN SPAN22 = new SPAN();
+        SPAN22.TYPE = "LITERAL3";
+        SPAN22.DELEGATE = "MAIN";
+        BEGIN BEGIN22 = new BEGIN();
+        BEGIN22.text = "^#{";
+        END END22 = new END();
+        END22.text = "}";
+        SPAN22.END = new END[] { END22, };
+
+        SPAN22.BEGIN = new BEGIN[] { BEGIN22, };
+
+        SPAN SPAN23 = new SPAN();
+        SPAN23.TYPE = "LITERAL3";
+        SPAN23.DELEGATE = "MAIN";
+        BEGIN BEGIN23 = new BEGIN();
+        BEGIN23.text = "'#{";
+        END END23 = new END();
+        END23.text = "}";
+        SPAN23.END = new END[] { END23, };
+
+        SPAN23.BEGIN = new BEGIN[] { BEGIN23, };
+
+        SPAN SPAN24 = new SPAN();
+        SPAN24.TYPE = "LABEL";
+        SPAN24.DELEGATE = "MAIN";
+        BEGIN BEGIN24 = new BEGIN();
+        BEGIN24.text = "#{";
+        END END24 = new END();
+        END24.text = "}";
+        SPAN24.END = new END[] { END24, };
+
+        SPAN24.BEGIN = new BEGIN[] { BEGIN24, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "#'";
+        SEQ1.AT_WORD_START = "TRUE";
+        SEQ1.TYPE = "KEYWORD2";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "'";
+        MARK_FOLLOWING1.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING1.TYPE = "LITERAL3";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "^";
+        MARK_FOLLOWING2.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING2.TYPE = "LABEL";
+        MARK_FOLLOWING MARK_FOLLOWING3 = new MARK_FOLLOWING();
+        MARK_FOLLOWING3.text = "@";
+        MARK_FOLLOWING3.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING3.TYPE = "LABEL";
+        MARK_FOLLOWING MARK_FOLLOWING4 = new MARK_FOLLOWING();
+        MARK_FOLLOWING4.text = ".";
+        MARK_FOLLOWING4.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING4.TYPE = "LITERAL3";
+        MARK_FOLLOWING MARK_FOLLOWING5 = new MARK_FOLLOWING();
+        MARK_FOLLOWING5.text = "#^";
+        MARK_FOLLOWING5.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING5.TYPE = "MARKUP";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = ";;;;";
+        EOL_SPAN1.TYPE = "COMMENT4";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = ";;;";
+        EOL_SPAN2.TYPE = "COMMENT3";
+        EOL_SPAN EOL_SPAN3 = new EOL_SPAN();
+        EOL_SPAN3.text = ";;";
+        EOL_SPAN3.TYPE = "COMMENT2";
+        EOL_SPAN EOL_SPAN4 = new EOL_SPAN();
+        EOL_SPAN4.text = ";";
+        EOL_SPAN4.TYPE = "COMMENT1";
+        SPAN SPAN25 = new SPAN();
+        SPAN25.TYPE = "LITERAL2";
+        SPAN25.DELEGATE = "REGEXPS";
+        SPAN25.ESCAPE = "\\";
+        BEGIN BEGIN25 = new BEGIN();
+        BEGIN25.text = "#\"";
+        END END25 = new END();
+        END25.text = "\"";
+        SPAN25.END = new END[] { END25, };
+
+        SPAN25.BEGIN = new BEGIN[] { BEGIN25, };
+
+        SPAN SPAN26 = new SPAN();
+        SPAN26.TYPE = "LITERAL1";
+        SPAN26.DELEGATE = "STRINGS";
+        SPAN26.ESCAPE = "\\";
+        BEGIN BEGIN26 = new BEGIN();
+        BEGIN26.text = "\"";
+        END END26 = new END();
+        END26.text = "\"";
+        SPAN26.END = new END[] { END26, };
+
+        SPAN26.BEGIN = new BEGIN[] { BEGIN26, };
+
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "\\\\(.|newline|space|tab)";
+        SEQ_REGEXP1.AT_WORD_START = "TRUE";
+        SEQ_REGEXP1.TYPE = "LITERAL2";
+        SEQ_REGEXP1.HASH_CHAR = "\\";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ".";
+        SEQ2.AT_WORD_START = "TRUE";
+        SEQ2.TYPE = "LITERAL4";
+        MARK_FOLLOWING MARK_FOLLOWING6 = new MARK_FOLLOWING();
+        MARK_FOLLOWING6.text = ":";
+        MARK_FOLLOWING6.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING6.TYPE = "KEYWORD4";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("OPERATOR", new String[]{"+", "+'", "-", "-'", "=", "==", "as->", "->", "->>", ">=", ">", "<=", "<", "/", "*", "*'", "%", "and", "or", "inc", "inc'", "dec", "dec'", "mod", "not", "not=", "rem", "bit-and", "bit-and-not", "bit-clear", "bit-flip", "bit-or", "bit-not", "bit-set", "bit-shift-right", "bit-shift-left", "bit-test", "bit-xor", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"assert", "binding", "bound-fn", "bound-fn*", "comment", "compile", "gen-class", "gen-interface", "declare", "def", "definline", "definterceptor", "definterceptorfn", "definterface", "defmacro", "defmethod", "defmulti", "defn", "defn-", "defon-request", "defonce", "defprotocol", "defrecord", "defstruct", "deftest", "deftest-", "deftype", "extend", "extenders", "extend-protocol", "extend-type", "get-method", "methods", "prefers", "prefer-method", "remove-all-methods", "remove-method", "eval", "fn", "partial", "ns", "import", "intern", "loaded-libs", "refer", "refer-clojure", "reify", "require", "the-ns", "use", "all-ns", "alias", "create-ns", "find-keyword", "find-ns", "in-ns", "ns-name", "ns-map", "ns-aliases", "ns-interns", "ns-publics", "ns-imports", "ns-refers", "ns-resolve", "ns-unmap", "ns-unalias", "remove-ns", });
+        KEYWORDS1.add("LITERAL4", new String[]{"nil", "true", "false", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"case", "cond", "condp", "cond->", "cond->>", "destructure", "do", "doall", "dorun", "doseq", "dosync", "dotimes", "doto", "for", "if", "if-let", "if-not", "if-some", "let", "letfn", "loop", "recur", "sync", "trampoline", "try", "catch", "finally", "throw", "while", "when", "when-first", "when-let", "when-not", "when-some", });
+        KEYWORDS1.add("FUNCTION", new String[]{"unchecked-add", "unchecked-add-int", "unchecked-byte", "unchecked-char", "unchecked-dec", "unchecked-dec-int", "unchecked-divide-int", "unchecked-double", "unchecked-float", "unchecked-inc", "unchecked-inc-int", "unchecked-int", "unchecked-long", "unchecked-multiply", "unchecked-negate", "unchecked-negate-int", "unchecked-remainder-int", "unchecked-short", "unchecked-subtract", "unchecked-subtract-int", "unsigned-bit-shift-right", "browse-url", "diff", "diff-similar", "parse-timestamp", "read-instant-calendar", "read-instant-date", "read-instant-timestamp", "validated", "as-file", "as-relative-path", "as-url", "copy", "delete-file", "file", "input-stream", "output-stream", "make-input-stream", "make-output-stream", "make-parents", "make-reader", "make-writer", "reader", "resource", "writer", "cl-format", "code-dispatch", "formatter", "formatter-out", "fresh-line", "get-pretty-writer", "pp", "pprint", "pprint-indent", "pprint-logical-block", "pprint-newline", "pprint-tab", "print-length-loop", "print-table", "set-pprint-dispatch", "simple-dispatch", "with-pprint-dispatch", "write", "write-out", "difference", "index", "intersection", "join", "map-invert", "project", "rename", "rename-keys", "select", "union", "e", "print-cause-trace", "print-stack-trace", "print-throwable", "print-trace-element", "root-cause", "capitalize", "escape", "join", "lower-case", "re-quote-replacement", "replace-first", "split", "split-lines", "trim", "trim-newline", "triml", "trimr", "upper-case", "are", "assert-any", "assert-expr", "assert-predicate", "compose-fixtures", "is", "join-fixtures", "testing", "try-expr", "use-fixtures", "keywordize-keys", "macroexpand-all", "postwalk", "postwalk-demo", "postwalk-replace", "prewalk", "prewalk-demo", "prewalk-replace", "stringify-keys", "walk", "attrs", "content", "content-handler", "element", "emit", "emit-element", "parse", "startparse-sax", "tag", "append-child", "children", "down", "edit", "insert-child", "insert-left", "insert-right", "left", "leftmost", "lefts", "make-node", "next", "node", "path", "prev", "remove", "replace", "right", "rightmost", "rights", "root", "seq-zip", "up", "vector-zip", "xml-zip", "zipper", });
+        KEYWORDS1.add("LITERAL3", new String[]{"associative?", "atom?", "blank?", "bound?", "branch?", "char?", "class?", "contains?", "counted?", "decimal?", "delay?", "distinct?", "empty?", "end?", "even?", "every?", "false?", "float?", "fn?", "function?", "future?", "future-cancelled?", "future-done?", "extends?", "identical?", "ifn?", "instance?", "integer?", "isa?", "keyword?", "list?", "map?", "neg?", "nil?", "not-any?", "not-empty", "not-every?", "number?", "odd?", "pos?", "ratio?", "rational?", "realized?", "record?", "reduced?", "reversible?", "satisfies?", "seq?", "sequential?", "set?", "some?", "sorted?", "string?", "subset?", "successful?", "superset?", "symbol?", "true?", "var?", "vector?", "zero?", "quot", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"alter", "alter-meta!", "alter-var-root", "commute", "compare-and-set!", "ensure", "ref", "ref-history-count", "ref-max-history", "ref-min-history", "ref-set", "reset!", "reset-meta!", "set!", "swap!", "agent", "agent-error", "agent-errors", "add-watch", "await", "await-for", "clear-agent-errors", "error-handler", "error-mode", "get-validator", "release-pending-sends", "remove-watch", "restart-agent", "send", "send-off", "send-via", "set-agent-send-executor!", "set-agent-send-off-executor!", "set-error-handler!", "set-error-mode!", "set-validator!", "shutdown-agents", "future", "future-call", "future-cancel", "deliver", "deref", "locking", "pcalls", "pmap", "promise", "delay", "force", "amap", "map", "mapcat", "mapv", "map-indexed", "filter", "filterv", "sort", "sort-by", "get-thread-bindings", "gensym", "memoize", "meta", "vary-meta", "name", "namespace", "resolve", "quote", "unquote", "unquote-splicing", "var", "find-var", "var-get", "var-set", "empty", "new", "array-map", "atom", "bigdec", "bigint", "biginteger", "boolean", "boolean-array", "booleans", "byte", "byte-array", "bytes", "cast", "char", "char-array", "chars", "construct-proxy", "create-struct", "denominator", "double", "double-array", "doubles", "enumeration-seq", "float", "float-array", "floats", "get-proxy-class", "hash", "hash-combine", "hash-map", "hash-ordered-coll", "hash-set", "hash-unordered-coll", "init-proxy", "int", "int-array", "interpose", "ints", "list", "list*", "long", "long-array", "longs", "make-array", "num", "numerator", "partition", "partition-all", "partition-by", "proxy", "proxy-call-with-super", "proxy-mappings", "proxy-name", "proxy-super", "rationalize", "seq", "seque", "sequence", "set", "short", "short-array", "shorts", "sorted-map", "sorted-map-by", "sorted-set", "sorted-set-by", "struct", "struct-map", "str", "symbol", "tree-seq", "type", "update-proxy", "vec", "vector", "vector-of", "xml-seq", ".", "..", "aclone", "ancestors", "bases", "bean", "class", "derive", "descendants", "file-seq", "iterator-seq", "make-hierarchy", "namespace-munge", "object-array", "parents", "primitives-classnames", "supers", "underive", "memfn", "apply", "eval", "load", "load-file", "load-reader", "load-string", "read", "read-line", "read-string", "with-bindings", "with-bindings*", "with-in-str", "with-loading-context", "with-local-vars", "with-meta", "with-open", "with-out-str", "with-precision", "with-redefs", "with-redefs-fn", "with-test", "with-test-out", "aset-boolean", "aset-byte", "aset-char", "aset-double", "aset-float", "aset-int", "aset-long", "aset-short", "char-escape-string", "char-name-string", "clojure-version", "compare", "complement", "default-data-readers", "every-pred", "juxt", "ex-data", "ex-info", "identity", "keyword", "line-seq", "macroexpand-1", "macroexpand", "parse", "pr", "prn", "print", "printf", "println", "pr-str", "prn-str", "print-dup", "print-str", "println-str", "flush", "format", "io!", "newline", "rand", "rand-int", "rand-nth", "re-find", "re-groups", "re-matcher", "re-matches", "re-pattern", "re-seq", "slurp", "spit", "test", "time", "transient", "assoc!", "conj!", "disj!", "dissoc!", "persistent!", "pop!", "accessor", "aget", "alength", "areduce", "aset", "assoc", "assoc-in", "butlast", "comp", "comparator", "concat", "conj", "cons", "constantly", "count", "cycle", "disj", "dissoc", "distinct", "drop", "drop-last", "drop-while", "ffirst", "find", "first", "flatten", "fnext", "fnil", "frequencies", "frest", "get", "get-in", "group-by", "interleave", "into", "into-array", "iterate", "key", "keep", "keep-indexed", "keys", "last", "lazy-cat", "lazy-cons", "lazy-seq", "max", "max-key", "merge", "merge-with", "min", "min-key", "mix-collection-hash", "munge", "next", "nfirst", "nnext", "nth", "nthnext", "nthrest", "peek", "pop", "put", "pvalues", "range", "reduce", "reduced", "reduce-kv", "reductions", "remove", "repeat", "repeatedly", "replace", "replicate", "rest", "reverse", "rfirst", "rrest", "rseq", "rsubseq", "second", "select-keys", "shuffle", "some", "some->", "some->>", "some-fn", "split-at", "split-with", "subs", "subseq", "subvec", "take", "take-last", "take-nth", "take-while", "to-array", "to-array-2d", "update-in", "val", "vals", "resultset-seq", "zipmap", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"&", "*1", "*2", "*3", "*agent*", "*clojure-version*", "*command-line-args*", "*compile-files*", "*compile-path*", "*compiler-options*", "*data-readers*", "*default-data-reader-fn*", "*e", "*file*", "*flush-on-newline*", "*err*", "*in*", "*out*", "*ns*", "*open-url-script*", "*print-base*", "*print-dup*", "*print-length*", "*print-level*", "*print-miser-width*", "*print-meta*", "*print-pprint-dispatch*", "*print-pretty*", "*print-radix*", "*print-readably*", "*print-right-margin*", "*print-suppress-namespaces*", "*read-eval*", "*unchecked-math*", "*warn-on-reflection*", "*current*", "*sb*", "*stack*", "*state*", });
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, EOL_SPAN3, EOL_SPAN4, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, SPAN5, SPAN6, SPAN7, SPAN8, SPAN9, SPAN10, SPAN11, SPAN12, SPAN13, SPAN14, SPAN15, SPAN16, SPAN17, SPAN18, SPAN19, SPAN20, SPAN21, SPAN22, SPAN23, SPAN24, SPAN25, SPAN26, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, MARK_FOLLOWING3, MARK_FOLLOWING4, MARK_FOLLOWING5, MARK_FOLLOWING6, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "STRINGS";
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.IGNORE_CASE = "TRUE";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "\\\\.";
+        SEQ_REGEXP1.AT_WORD_START = "FALSE";
+        SEQ_REGEXP1.TYPE = "LABEL";
+        SEQ_REGEXP1.HASH_CHAR = "\\";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("INVALID", new String[]{"\"", });
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "REGEXPS";
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.IGNORE_CASE = "TRUE";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "\\\\.";
+        SEQ_REGEXP1.AT_WORD_START = "FALSE";
+        SEQ_REGEXP1.TYPE = "LABEL";
+        SEQ_REGEXP1.HASH_CHAR = "\\";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("INVALID", new String[]{"\"", });
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

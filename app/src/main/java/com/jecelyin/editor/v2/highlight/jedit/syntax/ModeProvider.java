@@ -3,26 +3,14 @@ package com.jecelyin.editor.v2.highlight.jedit.syntax;
 
 //{{{ Imports
 
-import android.content.res.AssetManager;
-
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.highlight.jedit.Mode;
 import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
-import com.jecelyin.editor.v2.highlight.jedit.util.IOUtilities;
 
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 //}}}
 
 /**
@@ -167,83 +155,6 @@ public class ModeProvider {
         modes.put(name, mode);
     } //}}}
 
-    //{{{ loadMode() method
-    public void loadMode(Mode mode, XModeHandler xmh) {
-        String fileName = (String) mode.getFile();
-
-        L.d("Loading edit mode " + fileName);
-        //fix  Can't create default XMLReader; is system property org.xml.sax.driver set?
-        System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
-
-        XMLReader parser;
-        try {
-            SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-            SAXParser saxParser = saxParserFactory.newSAXParser();
-            parser = saxParser.getXMLReader();
-        } catch (Exception saxe) {
-            L.e(saxe.getMessage(), saxe);
-            return;
-        }
-        mode.setTokenMarker(xmh.getTokenMarker());
-
-        InputStream grammar;
-
-//		try
-//		{
-//			grammar = new BufferedInputStream(
-//					new FileInputStream(fileName));
-//		}
-//		catch (FileNotFoundException e1)
-//		{
-//			InputStream resource = ModeProvider.class.getResourceAsStream(fileName);
-//			if (resource == null)
-//				error(fileName, e1);
-//			grammar = new BufferedInputStream(resource);
-//		}
-
-        try {
-            grammar = new BufferedInputStream(assets.open(fileName));
-        } catch (IOException e) {
-            L.e(e);
-            return;
-        }
-
-        try {
-            InputSource isrc = new InputSource(grammar);
-            isrc.setSystemId("jedit.jar");
-            parser.setContentHandler(xmh);
-            parser.setDTDHandler(xmh);
-            parser.setEntityResolver(xmh);
-            parser.setErrorHandler(xmh);
-            parser.parse(isrc);
-
-//			mode.setProperties(xmh.getModeProperties()); //TODO:
-        } catch (Throwable e) {
-            error(fileName, e);
-        } finally {
-            IOUtilities.closeQuietly(grammar);
-        }
-    } //}}}
-
-    //{{{ loadMode() method
-    public void loadMode(Mode mode) {
-        XModeHandler xmh = new XModeHandler(mode.getName()) {
-            @Override
-            public void error(String what, Object subst) {
-                L.e(what, subst);
-            }
-
-            @Override
-            public TokenMarker getTokenMarker(String modeName) {
-                Mode mode = getMode(modeName);
-                if (mode == null)
-                    return null;
-                else
-                    return mode.getTokenMarker();
-            }
-        };
-        loadMode(mode, xmh);
-    } //}}}
 
     //{{{ error() method
     protected void error(String file, Throwable e) {

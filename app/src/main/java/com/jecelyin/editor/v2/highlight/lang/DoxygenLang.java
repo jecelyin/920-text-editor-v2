@@ -19,15 +19,157 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class DoxygenLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"AT_LINE_START\":\"TRUE\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"+=\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"AT_LINE_START\":\"TRUE\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"`\"},{\"tag\":\"END\",\"text\":\"`\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"YES\"},{\"tag\":\"KEYWORD3\",\"text\":\"NO\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DOXYGEN\",\"DEFAULT\":\"COMMENT3\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"COMMENT3\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<!--\"},{\"tag\":\"END\",\"text\":\"-->\"}]},{\"tag\":\"SEQ\",\"text\":\"<<\",\"attrs\":{\"TYPE\":\"COMMENT3\"}},{\"tag\":\"SEQ\",\"text\":\"<=\",\"attrs\":{\"TYPE\":\"COMMENT3\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"COMMENT3\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"MARKUP\",\"DELEGATE\":\"xml::TAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"LABEL\",\"text\":\"\\\\a\"},{\"tag\":\"LABEL\",\"text\":\"\\\\addindex\"},{\"tag\":\"LABEL\",\"text\":\"\\\\addtogroup\"},{\"tag\":\"LABEL\",\"text\":\"\\\\anchor\"},{\"tag\":\"LABEL\",\"text\":\"\\\\arg\"},{\"tag\":\"LABEL\",\"text\":\"\\\\attention\"},{\"tag\":\"LABEL\",\"text\":\"\\\\author\"},{\"tag\":\"LABEL\",\"text\":\"\\\\b\"},{\"tag\":\"LABEL\",\"text\":\"\\\\brief\"},{\"tag\":\"LABEL\",\"text\":\"\\\\bug\"},{\"tag\":\"LABEL\",\"text\":\"\\\\c\"},{\"tag\":\"LABEL\",\"text\":\"\\\\callgraph\"},{\"tag\":\"LABEL\",\"text\":\"\\\\callergraph\"},{\"tag\":\"LABEL\",\"text\":\"\\\\category\"},{\"tag\":\"LABEL\",\"text\":\"\\\\class\"},{\"tag\":\"LABEL\",\"text\":\"\\\\code\"},{\"tag\":\"LABEL\",\"text\":\"\\\\cond\"},{\"tag\":\"LABEL\",\"text\":\"\\\\copybrief\"},{\"tag\":\"LABEL\",\"text\":\"\\\\copydetails\"},{\"tag\":\"LABEL\",\"text\":\"\\\\copydoc\"},{\"tag\":\"LABEL\",\"text\":\"\\\\date\"},{\"tag\":\"LABEL\",\"text\":\"\\\\def\"},{\"tag\":\"LABEL\",\"text\":\"\\\\defgroup\"},{\"tag\":\"LABEL\",\"text\":\"\\\\deprecated\"},{\"tag\":\"LABEL\",\"text\":\"\\\\details\"},{\"tag\":\"LABEL\",\"text\":\"\\\\dir\"},{\"tag\":\"LABEL\",\"text\":\"\\\\dontinclude\"},{\"tag\":\"LABEL\",\"text\":\"\\\\dot\"},{\"tag\":\"LABEL\",\"text\":\"\\\\dotfile\"},{\"tag\":\"LABEL\",\"text\":\"\\\\e\"},{\"tag\":\"LABEL\",\"text\":\"\\\\else\"},{\"tag\":\"LABEL\",\"text\":\"\\\\elseif\"},{\"tag\":\"LABEL\",\"text\":\"\\\\em\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endcode\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endcond\"},{\"tag\":\"LABEL\",\"text\":\"\\\\enddot\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endhtmlonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endif\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endlatexonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endlink\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endmanonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endmsc\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endverbatim\"},{\"tag\":\"LABEL\",\"text\":\"\\\\endxmlonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\enum\"},{\"tag\":\"LABEL\",\"text\":\"\\\\example\"},{\"tag\":\"LABEL\",\"text\":\"\\\\exception\"},{\"tag\":\"LABEL\",\"text\":\"\\\\extends\"},{\"tag\":\"LABEL\",\"text\":\"\\\\f$\"},{\"tag\":\"LABEL\",\"text\":\"\\\\f[\"},{\"tag\":\"LABEL\",\"text\":\"\\\\f]\"},{\"tag\":\"LABEL\",\"text\":\"\\\\f{\"},{\"tag\":\"LABEL\",\"text\":\"\\\\f}\"},{\"tag\":\"LABEL\",\"text\":\"\\\\file\"},{\"tag\":\"LABEL\",\"text\":\"\\\\fn\"},{\"tag\":\"LABEL\",\"text\":\"\\\\headerfile\"},{\"tag\":\"LABEL\",\"text\":\"\\\\hideinitializer\"},{\"tag\":\"LABEL\",\"text\":\"\\\\htmlinclude\"},{\"tag\":\"LABEL\",\"text\":\"\\\\htmlonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\if\"},{\"tag\":\"LABEL\",\"text\":\"\\\\ifnot\"},{\"tag\":\"LABEL\",\"text\":\"\\\\image\"},{\"tag\":\"LABEL\",\"text\":\"\\\\implements\"},{\"tag\":\"LABEL\",\"text\":\"\\\\include\"},{\"tag\":\"LABEL\",\"text\":\"\\\\includelineno\"},{\"tag\":\"LABEL\",\"text\":\"\\\\ingroup\"},{\"tag\":\"LABEL\",\"text\":\"\\\\internal\"},{\"tag\":\"LABEL\",\"text\":\"\\\\invariant\"},{\"tag\":\"LABEL\",\"text\":\"\\\\interface\"},{\"tag\":\"LABEL\",\"text\":\"\\\\latexonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\li\"},{\"tag\":\"LABEL\",\"text\":\"\\\\line\"},{\"tag\":\"LABEL\",\"text\":\"\\\\link\"},{\"tag\":\"LABEL\",\"text\":\"\\\\mainpage\"},{\"tag\":\"LABEL\",\"text\":\"\\\\manonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\memberof\"},{\"tag\":\"LABEL\",\"text\":\"\\\\msc\"},{\"tag\":\"LABEL\",\"text\":\"\\\\n\"},{\"tag\":\"LABEL\",\"text\":\"\\\\name\"},{\"tag\":\"LABEL\",\"text\":\"\\\\namespace\"},{\"tag\":\"LABEL\",\"text\":\"\\\\nosubgrouping\"},{\"tag\":\"LABEL\",\"text\":\"\\\\note\"},{\"tag\":\"LABEL\",\"text\":\"\\\\overload\"},{\"tag\":\"LABEL\",\"text\":\"\\\\p\"},{\"tag\":\"LABEL\",\"text\":\"\\\\package\"},{\"tag\":\"LABEL\",\"text\":\"\\\\page\"},{\"tag\":\"LABEL\",\"text\":\"\\\\par\"},{\"tag\":\"LABEL\",\"text\":\"\\\\paragraph\"},{\"tag\":\"LABEL\",\"text\":\"\\\\param\"},{\"tag\":\"LABEL\",\"text\":\"\\\\param[in]\"},{\"tag\":\"LABEL\",\"text\":\"\\\\param[out]\"},{\"tag\":\"LABEL\",\"text\":\"\\\\param[in,out]\"},{\"tag\":\"LABEL\",\"text\":\"\\\\post\"},{\"tag\":\"LABEL\",\"text\":\"\\\\pre\"},{\"tag\":\"LABEL\",\"text\":\"\\\\private\"},{\"tag\":\"LABEL\",\"text\":\"\\\\privatesection\"},{\"tag\":\"LABEL\",\"text\":\"\\\\property\"},{\"tag\":\"LABEL\",\"text\":\"\\\\protected\"},{\"tag\":\"LABEL\",\"text\":\"\\\\protectedsection\"},{\"tag\":\"LABEL\",\"text\":\"\\\\protocol\"},{\"tag\":\"LABEL\",\"text\":\"\\\\public\"},{\"tag\":\"LABEL\",\"text\":\"\\\\publicsection\"},{\"tag\":\"LABEL\",\"text\":\"\\\\ref\"},{\"tag\":\"LABEL\",\"text\":\"\\\\relates\"},{\"tag\":\"LABEL\",\"text\":\"\\\\relatesalso\"},{\"tag\":\"LABEL\",\"text\":\"\\\\remarks\"},{\"tag\":\"LABEL\",\"text\":\"\\\\return\"},{\"tag\":\"LABEL\",\"text\":\"\\\\retval\"},{\"tag\":\"LABEL\",\"text\":\"\\\\sa\"},{\"tag\":\"LABEL\",\"text\":\"\\\\section\"},{\"tag\":\"LABEL\",\"text\":\"\\\\see\"},{\"tag\":\"LABEL\",\"text\":\"\\\\showinitializer\"},{\"tag\":\"LABEL\",\"text\":\"\\\\since\"},{\"tag\":\"LABEL\",\"text\":\"\\\\skip\"},{\"tag\":\"LABEL\",\"text\":\"\\\\skipline\"},{\"tag\":\"LABEL\",\"text\":\"\\\\struct\"},{\"tag\":\"LABEL\",\"text\":\"\\\\subpage\"},{\"tag\":\"LABEL\",\"text\":\"\\\\subsection\"},{\"tag\":\"LABEL\",\"text\":\"\\\\subsubsection\"},{\"tag\":\"LABEL\",\"text\":\"\\\\test\"},{\"tag\":\"LABEL\",\"text\":\"\\\\throw\"},{\"tag\":\"LABEL\",\"text\":\"\\\\todo\"},{\"tag\":\"LABEL\",\"text\":\"\\\\tparam\"},{\"tag\":\"LABEL\",\"text\":\"\\\\typedef\"},{\"tag\":\"LABEL\",\"text\":\"\\\\union\"},{\"tag\":\"LABEL\",\"text\":\"\\\\until\"},{\"tag\":\"LABEL\",\"text\":\"\\\\var\"},{\"tag\":\"LABEL\",\"text\":\"\\\\verbatim\"},{\"tag\":\"LABEL\",\"text\":\"\\\\verbinclude\"},{\"tag\":\"LABEL\",\"text\":\"\\\\version\"},{\"tag\":\"LABEL\",\"text\":\"\\\\warning\"},{\"tag\":\"LABEL\",\"text\":\"\\\\weakgroup\"},{\"tag\":\"LABEL\",\"text\":\"\\\\xmlonly\"},{\"tag\":\"LABEL\",\"text\":\"\\\\xrefitem\"},{\"tag\":\"LABEL\",\"text\":\"\\\\$\"},{\"tag\":\"LABEL\",\"text\":\"\\\\@\"},{\"tag\":\"LABEL\",\"text\":\"\\\\\\\\\"},{\"tag\":\"LABEL\",\"text\":\"\\\\&\"},{\"tag\":\"LABEL\",\"text\":\"\\\\~\"},{\"tag\":\"LABEL\",\"text\":\"\\\\<\"},{\"tag\":\"LABEL\",\"text\":\"\\\\>\"},{\"tag\":\"LABEL\",\"text\":\"\\\\#\"},{\"tag\":\"LABEL\",\"text\":\"\\\\%\"},{\"tag\":\"LABEL\",\"text\":\"\\\\\\\"\"},{\"tag\":\"LABEL\",\"text\":\"@a\"},{\"tag\":\"LABEL\",\"text\":\"@addindex\"},{\"tag\":\"LABEL\",\"text\":\"@addtogroup\"},{\"tag\":\"LABEL\",\"text\":\"@anchor\"},{\"tag\":\"LABEL\",\"text\":\"@arg\"},{\"tag\":\"LABEL\",\"text\":\"@attention\"},{\"tag\":\"LABEL\",\"text\":\"@author\"},{\"tag\":\"LABEL\",\"text\":\"@b\"},{\"tag\":\"LABEL\",\"text\":\"@brief\"},{\"tag\":\"LABEL\",\"text\":\"@bug\"},{\"tag\":\"LABEL\",\"text\":\"@c\"},{\"tag\":\"LABEL\",\"text\":\"@callgraph\"},{\"tag\":\"LABEL\",\"text\":\"@callergraph\"},{\"tag\":\"LABEL\",\"text\":\"@category\"},{\"tag\":\"LABEL\",\"text\":\"@class\"},{\"tag\":\"LABEL\",\"text\":\"@code\"},{\"tag\":\"LABEL\",\"text\":\"@cond\"},{\"tag\":\"LABEL\",\"text\":\"@copybrief\"},{\"tag\":\"LABEL\",\"text\":\"@copydetails\"},{\"tag\":\"LABEL\",\"text\":\"@copydoc\"},{\"tag\":\"LABEL\",\"text\":\"@date\"},{\"tag\":\"LABEL\",\"text\":\"@def\"},{\"tag\":\"LABEL\",\"text\":\"@defgroup\"},{\"tag\":\"LABEL\",\"text\":\"@deprecated\"},{\"tag\":\"LABEL\",\"text\":\"@details\"},{\"tag\":\"LABEL\",\"text\":\"@dir\"},{\"tag\":\"LABEL\",\"text\":\"@dontinclude\"},{\"tag\":\"LABEL\",\"text\":\"@dot\"},{\"tag\":\"LABEL\",\"text\":\"@dotfile\"},{\"tag\":\"LABEL\",\"text\":\"@e\"},{\"tag\":\"LABEL\",\"text\":\"@else\"},{\"tag\":\"LABEL\",\"text\":\"@elseif\"},{\"tag\":\"LABEL\",\"text\":\"@em\"},{\"tag\":\"LABEL\",\"text\":\"@endcode\"},{\"tag\":\"LABEL\",\"text\":\"@endcond\"},{\"tag\":\"LABEL\",\"text\":\"@enddot\"},{\"tag\":\"LABEL\",\"text\":\"@endhtmlonly\"},{\"tag\":\"LABEL\",\"text\":\"@endif\"},{\"tag\":\"LABEL\",\"text\":\"@endlatexonly\"},{\"tag\":\"LABEL\",\"text\":\"@endlink\"},{\"tag\":\"LABEL\",\"text\":\"@endmanonly\"},{\"tag\":\"LABEL\",\"text\":\"@endmsc\"},{\"tag\":\"LABEL\",\"text\":\"@endverbatim\"},{\"tag\":\"LABEL\",\"text\":\"@endxmlonly\"},{\"tag\":\"LABEL\",\"text\":\"@enum\"},{\"tag\":\"LABEL\",\"text\":\"@example\"},{\"tag\":\"LABEL\",\"text\":\"@exception\"},{\"tag\":\"LABEL\",\"text\":\"@extends\"},{\"tag\":\"LABEL\",\"text\":\"@f$\"},{\"tag\":\"LABEL\",\"text\":\"@f[\"},{\"tag\":\"LABEL\",\"text\":\"@f]\"},{\"tag\":\"LABEL\",\"text\":\"@f{\"},{\"tag\":\"LABEL\",\"text\":\"@f}\"},{\"tag\":\"LABEL\",\"text\":\"@file\"},{\"tag\":\"LABEL\",\"text\":\"@fn\"},{\"tag\":\"LABEL\",\"text\":\"@headerfile\"},{\"tag\":\"LABEL\",\"text\":\"@hideinitializer\"},{\"tag\":\"LABEL\",\"text\":\"@htmlinclude\"},{\"tag\":\"LABEL\",\"text\":\"@htmlonly\"},{\"tag\":\"LABEL\",\"text\":\"@if\"},{\"tag\":\"LABEL\",\"text\":\"@ifnot\"},{\"tag\":\"LABEL\",\"text\":\"@image\"},{\"tag\":\"LABEL\",\"text\":\"@implements\"},{\"tag\":\"LABEL\",\"text\":\"@include\"},{\"tag\":\"LABEL\",\"text\":\"@includelineno\"},{\"tag\":\"LABEL\",\"text\":\"@ingroup\"},{\"tag\":\"LABEL\",\"text\":\"@internal\"},{\"tag\":\"LABEL\",\"text\":\"@invariant\"},{\"tag\":\"LABEL\",\"text\":\"@interface\"},{\"tag\":\"LABEL\",\"text\":\"@latexonly\"},{\"tag\":\"LABEL\",\"text\":\"@li\"},{\"tag\":\"LABEL\",\"text\":\"@line\"},{\"tag\":\"LABEL\",\"text\":\"@link\"},{\"tag\":\"LABEL\",\"text\":\"@mainpage\"},{\"tag\":\"LABEL\",\"text\":\"@manonly\"},{\"tag\":\"LABEL\",\"text\":\"@memberof\"},{\"tag\":\"LABEL\",\"text\":\"@msc\"},{\"tag\":\"LABEL\",\"text\":\"@n\"},{\"tag\":\"LABEL\",\"text\":\"@name\"},{\"tag\":\"LABEL\",\"text\":\"@namespace\"},{\"tag\":\"LABEL\",\"text\":\"@nosubgrouping\"},{\"tag\":\"LABEL\",\"text\":\"@note\"},{\"tag\":\"LABEL\",\"text\":\"@overload\"},{\"tag\":\"LABEL\",\"text\":\"@p\"},{\"tag\":\"LABEL\",\"text\":\"@package\"},{\"tag\":\"LABEL\",\"text\":\"@page\"},{\"tag\":\"LABEL\",\"text\":\"@par\"},{\"tag\":\"LABEL\",\"text\":\"@paragraph\"},{\"tag\":\"LABEL\",\"text\":\"@param\"},{\"tag\":\"LABEL\",\"text\":\"@param[in]\"},{\"tag\":\"LABEL\",\"text\":\"@param[out]\"},{\"tag\":\"LABEL\",\"text\":\"@param[in,out]\"},{\"tag\":\"LABEL\",\"text\":\"@post\"},{\"tag\":\"LABEL\",\"text\":\"@pre\"},{\"tag\":\"LABEL\",\"text\":\"@private\"},{\"tag\":\"LABEL\",\"text\":\"@privatesection\"},{\"tag\":\"LABEL\",\"text\":\"@property\"},{\"tag\":\"LABEL\",\"text\":\"@protected\"},{\"tag\":\"LABEL\",\"text\":\"@protectedsection\"},{\"tag\":\"LABEL\",\"text\":\"@protocol\"},{\"tag\":\"LABEL\",\"text\":\"@public\"},{\"tag\":\"LABEL\",\"text\":\"@publicsection\"},{\"tag\":\"LABEL\",\"text\":\"@ref\"},{\"tag\":\"LABEL\",\"text\":\"@relates\"},{\"tag\":\"LABEL\",\"text\":\"@relatesalso\"},{\"tag\":\"LABEL\",\"text\":\"@remarks\"},{\"tag\":\"LABEL\",\"text\":\"@return\"},{\"tag\":\"LABEL\",\"text\":\"@retval\"},{\"tag\":\"LABEL\",\"text\":\"@sa\"},{\"tag\":\"LABEL\",\"text\":\"@section\"},{\"tag\":\"LABEL\",\"text\":\"@see\"},{\"tag\":\"LABEL\",\"text\":\"@showinitializer\"},{\"tag\":\"LABEL\",\"text\":\"@since\"},{\"tag\":\"LABEL\",\"text\":\"@skip\"},{\"tag\":\"LABEL\",\"text\":\"@skipline\"},{\"tag\":\"LABEL\",\"text\":\"@struct\"},{\"tag\":\"LABEL\",\"text\":\"@subpage\"},{\"tag\":\"LABEL\",\"text\":\"@subsection\"},{\"tag\":\"LABEL\",\"text\":\"@subsubsection\"},{\"tag\":\"LABEL\",\"text\":\"@test\"},{\"tag\":\"LABEL\",\"text\":\"@throw\"},{\"tag\":\"LABEL\",\"text\":\"@todo\"},{\"tag\":\"LABEL\",\"text\":\"@tparam\"},{\"tag\":\"LABEL\",\"text\":\"@typedef\"},{\"tag\":\"LABEL\",\"text\":\"@union\"},{\"tag\":\"LABEL\",\"text\":\"@until\"},{\"tag\":\"LABEL\",\"text\":\"@var\"},{\"tag\":\"LABEL\",\"text\":\"@verbatim\"},{\"tag\":\"LABEL\",\"text\":\"@verbinclude\"},{\"tag\":\"LABEL\",\"text\":\"@version\"},{\"tag\":\"LABEL\",\"text\":\"@warning\"},{\"tag\":\"LABEL\",\"text\":\"@weakgroup\"},{\"tag\":\"LABEL\",\"text\":\"@xmlonly\"},{\"tag\":\"LABEL\",\"text\":\"@xrefitem\"},{\"tag\":\"LABEL\",\"text\":\"@$\"},{\"tag\":\"LABEL\",\"text\":\"@@\"},{\"tag\":\"LABEL\",\"text\":\"@\\\\\"},{\"tag\":\"LABEL\",\"text\":\"@&\"},{\"tag\":\"LABEL\",\"text\":\"@~\"},{\"tag\":\"LABEL\",\"text\":\"@<\"},{\"tag\":\"LABEL\",\"text\":\"@>\"},{\"tag\":\"LABEL\",\"text\":\"@#\"},{\"tag\":\"LABEL\",\"text\":\"@%\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "#";
+        PROPERTY1.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "=";
+        MARK_PREVIOUS1.TYPE = "KEYWORD1";
+        MARK_PREVIOUS1.AT_LINE_START = "TRUE";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS2 = new MARK_PREVIOUS();
+        MARK_PREVIOUS2.text = "+=";
+        MARK_PREVIOUS2.TYPE = "KEYWORD1";
+        MARK_PREVIOUS2.AT_LINE_START = "TRUE";
+        MARK_PREVIOUS2.MATCH_TYPE = "OPERATOR";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "TRUE";
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.ESCAPE = "\\";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.NO_LINE_BREAK = "TRUE";
+        SPAN3.TYPE = "LITERAL1";
+        SPAN3.ESCAPE = "\\";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "`";
+        END END3 = new END();
+        END3.text = "`";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD2", new String[]{"YES", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"NO", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, MARK_PREVIOUS2, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DOXYGEN";
+        RULES1.DEFAULT = "COMMENT3";
+        RULES1.IGNORE_CASE = "TRUE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "*";
+        SEQ1.TYPE = "COMMENT3";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "COMMENT1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "<!--";
+        END END2 = new END();
+        END2.text = "-->";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "<<";
+        SEQ2.TYPE = "COMMENT3";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "<=";
+        SEQ3.TYPE = "COMMENT3";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "<";
+        SEQ4.TYPE = "COMMENT3";
+        SPAN SPAN3 = new SPAN();
+        SPAN3.NO_LINE_BREAK = "TRUE";
+        SPAN3.TYPE = "MARKUP";
+        SPAN3.DELEGATE = "xml::TAGS";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "<";
+        END END3 = new END();
+        END3.text = ">";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LABEL", new String[]{"\\a", "\\addindex", "\\addtogroup", "\\anchor", "\\arg", "\\attention", "\\author", "\\b", "\\brief", "\\bug", "\\c", "\\callgraph", "\\callergraph", "\\category", "\\class", "\\code", "\\cond", "\\copybrief", "\\copydetails", "\\copydoc", "\\date", "\\def", "\\defgroup", "\\deprecated", "\\details", "\\dir", "\\dontinclude", "\\dot", "\\dotfile", "\\e", "\\else", "\\elseif", "\\em", "\\endcode", "\\endcond", "\\enddot", "\\endhtmlonly", "\\endif", "\\endlatexonly", "\\endlink", "\\endmanonly", "\\endmsc", "\\endverbatim", "\\endxmlonly", "\\enum", "\\example", "\\exception", "\\extends", "\\f$", "\\f[", "\\f]", "\\f{", "\\f}", "\\file", "\\fn", "\\headerfile", "\\hideinitializer", "\\htmlinclude", "\\htmlonly", "\\if", "\\ifnot", "\\image", "\\implements", "\\include", "\\includelineno", "\\ingroup", "\\internal", "\\invariant", "\\interface", "\\latexonly", "\\li", "\\line", "\\link", "\\mainpage", "\\manonly", "\\memberof", "\\msc", "\\n", "\\name", "\\namespace", "\\nosubgrouping", "\\note", "\\overload", "\\p", "\\package", "\\page", "\\par", "\\paragraph", "\\param", "\\param[in]", "\\param[out]", "\\param[in,out]", "\\post", "\\pre", "\\private", "\\privatesection", "\\property", "\\protected", "\\protectedsection", "\\protocol", "\\public", "\\publicsection", "\\ref", "\\relates", "\\relatesalso", "\\remarks", "\\return", "\\retval", "\\sa", "\\section", "\\see", "\\showinitializer", "\\since", "\\skip", "\\skipline", "\\struct", "\\subpage", "\\subsection", "\\subsubsection", "\\test", "\\throw", "\\todo", "\\tparam", "\\typedef", "\\union", "\\until", "\\var", "\\verbatim", "\\verbinclude", "\\version", "\\warning", "\\weakgroup", "\\xmlonly", "\\xrefitem", "\\$", "\\@", "\\\\", "\\&", "\\~", "\\<", "\\>", "\\#", "\\%", "\\\"", "@a", "@addindex", "@addtogroup", "@anchor", "@arg", "@attention", "@author", "@b", "@brief", "@bug", "@c", "@callgraph", "@callergraph", "@category", "@class", "@code", "@cond", "@copybrief", "@copydetails", "@copydoc", "@date", "@def", "@defgroup", "@deprecated", "@details", "@dir", "@dontinclude", "@dot", "@dotfile", "@e", "@else", "@elseif", "@em", "@endcode", "@endcond", "@enddot", "@endhtmlonly", "@endif", "@endlatexonly", "@endlink", "@endmanonly", "@endmsc", "@endverbatim", "@endxmlonly", "@enum", "@example", "@exception", "@extends", "@f$", "@f[", "@f]", "@f{", "@f}", "@file", "@fn", "@headerfile", "@hideinitializer", "@htmlinclude", "@htmlonly", "@if", "@ifnot", "@image", "@implements", "@include", "@includelineno", "@ingroup", "@internal", "@invariant", "@interface", "@latexonly", "@li", "@line", "@link", "@mainpage", "@manonly", "@memberof", "@msc", "@n", "@name", "@namespace", "@nosubgrouping", "@note", "@overload", "@p", "@package", "@page", "@par", "@paragraph", "@param", "@param[in]", "@param[out]", "@param[in,out]", "@post", "@pre", "@private", "@privatesection", "@property", "@protected", "@protectedsection", "@protocol", "@public", "@publicsection", "@ref", "@relates", "@relatesalso", "@remarks", "@return", "@retval", "@sa", "@section", "@see", "@showinitializer", "@since", "@skip", "@skipline", "@struct", "@subpage", "@subsection", "@subsubsection", "@test", "@throw", "@todo", "@tparam", "@typedef", "@union", "@until", "@var", "@verbatim", "@verbinclude", "@version", "@warning", "@weakgroup", "@xmlonly", "@xrefitem", "@$", "@@", "@\\", "@&", "@~", "@<", "@>", "@#", "@%", });
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,61 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class BinsourceAgcLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\";\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[+-]*[0-7]+[ \\\\t]\",\"attrs\":{\"HASH_CHARS\":\"+-01234567\",\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[+-]*[0-7]+$\",\"attrs\":{\"HASH_CHARS\":\"+-01234567\",\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[+-]*[0-7]+[,$]\",\"attrs\":{\"HASH_CHARS\":\"+-01234567\",\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"DIGIT\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"BANK\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = ";";
+        PROPERTY1.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = ";";
+        EOL_SPAN1.TYPE = "COMMENT2";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "[+-]*[0-7]+[ \\t]";
+        SEQ_REGEXP1.HASH_CHARS = "+-01234567";
+        SEQ_REGEXP1.AT_WORD_START = "TRUE";
+        SEQ_REGEXP1.TYPE = "DIGIT";
+        SEQ_REGEXP SEQ_REGEXP2 = new SEQ_REGEXP();
+        SEQ_REGEXP2.text = "[+-]*[0-7]+$";
+        SEQ_REGEXP2.HASH_CHARS = "+-01234567";
+        SEQ_REGEXP2.AT_WORD_START = "TRUE";
+        SEQ_REGEXP2.TYPE = "DIGIT";
+        SEQ_REGEXP SEQ_REGEXP3 = new SEQ_REGEXP();
+        SEQ_REGEXP3.text = "[+-]*[0-7]+[,$]";
+        SEQ_REGEXP3.HASH_CHARS = "+-01234567";
+        SEQ_REGEXP3.AT_WORD_START = "TRUE";
+        SEQ_REGEXP3.TYPE = "DIGIT";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("FUNCTION", new String[]{"BANK", });
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, SEQ_REGEXP2, SEQ_REGEXP3, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

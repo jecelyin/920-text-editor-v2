@@ -19,15 +19,79 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class MysqlLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"--\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"ADD\"},{\"tag\":\"KEYWORD1\",\"text\":\"ALL\"},{\"tag\":\"KEYWORD1\",\"text\":\"ALTER\"},{\"tag\":\"KEYWORD1\",\"text\":\"ANALYZE\"},{\"tag\":\"KEYWORD1\",\"text\":\"AND\"},{\"tag\":\"KEYWORD1\",\"text\":\"AS\"},{\"tag\":\"KEYWORD1\",\"text\":\"ASC\"},{\"tag\":\"KEYWORD1\",\"text\":\"ASENSITIVE\"},{\"tag\":\"KEYWORD1\",\"text\":\"BEFORE\"},{\"tag\":\"KEYWORD1\",\"text\":\"BETWEEN\"},{\"tag\":\"KEYWORD1\",\"text\":\"BIGINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"BINARY\"},{\"tag\":\"KEYWORD1\",\"text\":\"BLOB\"},{\"tag\":\"KEYWORD1\",\"text\":\"BOTH\"},{\"tag\":\"KEYWORD1\",\"text\":\"BY\"},{\"tag\":\"KEYWORD1\",\"text\":\"CALL\"},{\"tag\":\"KEYWORD1\",\"text\":\"CASCADE\"},{\"tag\":\"KEYWORD1\",\"text\":\"CASE\"},{\"tag\":\"KEYWORD1\",\"text\":\"CHANGE\"},{\"tag\":\"KEYWORD1\",\"text\":\"CHAR\"},{\"tag\":\"KEYWORD1\",\"text\":\"CHARACTER\"},{\"tag\":\"KEYWORD1\",\"text\":\"CHECK\"},{\"tag\":\"KEYWORD1\",\"text\":\"COLLATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"COLUMN\"},{\"tag\":\"KEYWORD1\",\"text\":\"CONDITION\"},{\"tag\":\"KEYWORD1\",\"text\":\"CONNECTION\"},{\"tag\":\"KEYWORD1\",\"text\":\"CONSTRAINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"CONTINUE\"},{\"tag\":\"KEYWORD1\",\"text\":\"CONVERT\"},{\"tag\":\"KEYWORD1\",\"text\":\"CREATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"CROSS\"},{\"tag\":\"KEYWORD1\",\"text\":\"CURRENT_DATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"CURRENT_TIME\"},{\"tag\":\"KEYWORD1\",\"text\":\"CURRENT_TIMESTAMP\"},{\"tag\":\"KEYWORD1\",\"text\":\"CURRENT_USER\"},{\"tag\":\"KEYWORD1\",\"text\":\"CURSOR\"},{\"tag\":\"KEYWORD1\",\"text\":\"DATABASE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DATABASES\"},{\"tag\":\"KEYWORD1\",\"text\":\"DAY_HOUR\"},{\"tag\":\"KEYWORD1\",\"text\":\"DAY_MICROSECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"DAY_MINUTE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DAY_SECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"DEC\"},{\"tag\":\"KEYWORD1\",\"text\":\"DECIMAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"DECLARE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DEFAULT\"},{\"tag\":\"KEYWORD1\",\"text\":\"DELAYED\"},{\"tag\":\"KEYWORD1\",\"text\":\"DELETE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DESC\"},{\"tag\":\"KEYWORD1\",\"text\":\"DESCRIBE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DETERMINISTIC\"},{\"tag\":\"KEYWORD1\",\"text\":\"DISTINCT\"},{\"tag\":\"KEYWORD1\",\"text\":\"DISTINCTROW\"},{\"tag\":\"KEYWORD1\",\"text\":\"DIV\"},{\"tag\":\"KEYWORD1\",\"text\":\"DOUBLE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DROP\"},{\"tag\":\"KEYWORD1\",\"text\":\"DUAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"EACH\"},{\"tag\":\"KEYWORD1\",\"text\":\"ELSE\"},{\"tag\":\"KEYWORD1\",\"text\":\"ELSEIF\"},{\"tag\":\"KEYWORD1\",\"text\":\"ENCLOSED\"},{\"tag\":\"KEYWORD1\",\"text\":\"ESCAPED\"},{\"tag\":\"KEYWORD1\",\"text\":\"EXISTS\"},{\"tag\":\"KEYWORD1\",\"text\":\"EXIT\"},{\"tag\":\"KEYWORD1\",\"text\":\"EXPLAIN\"},{\"tag\":\"KEYWORD1\",\"text\":\"FALSE\"},{\"tag\":\"KEYWORD1\",\"text\":\"FETCH\"},{\"tag\":\"KEYWORD1\",\"text\":\"FLOAT\"},{\"tag\":\"KEYWORD1\",\"text\":\"FOR\"},{\"tag\":\"KEYWORD1\",\"text\":\"FORCE\"},{\"tag\":\"KEYWORD1\",\"text\":\"FOREIGN\"},{\"tag\":\"KEYWORD1\",\"text\":\"FROM\"},{\"tag\":\"KEYWORD1\",\"text\":\"FULLTEXT\"},{\"tag\":\"KEYWORD1\",\"text\":\"GOTO\"},{\"tag\":\"KEYWORD1\",\"text\":\"GRANT\"},{\"tag\":\"KEYWORD1\",\"text\":\"GROUP\"},{\"tag\":\"KEYWORD1\",\"text\":\"HAVING\"},{\"tag\":\"KEYWORD1\",\"text\":\"HIGH_PRIORITY\"},{\"tag\":\"KEYWORD1\",\"text\":\"HOUR_MICROSECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"HOUR_MINUTE\"},{\"tag\":\"KEYWORD1\",\"text\":\"HOUR_SECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"IF\"},{\"tag\":\"KEYWORD1\",\"text\":\"IGNORE\"},{\"tag\":\"KEYWORD1\",\"text\":\"IN\"},{\"tag\":\"KEYWORD1\",\"text\":\"INDEX\"},{\"tag\":\"KEYWORD1\",\"text\":\"INFILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"INNER\"},{\"tag\":\"KEYWORD1\",\"text\":\"INOUT\"},{\"tag\":\"KEYWORD1\",\"text\":\"INSENSITIVE\"},{\"tag\":\"KEYWORD1\",\"text\":\"INSERT\"},{\"tag\":\"KEYWORD1\",\"text\":\"INT\"},{\"tag\":\"KEYWORD1\",\"text\":\"INTEGER\"},{\"tag\":\"KEYWORD1\",\"text\":\"INTERVAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"INTO\"},{\"tag\":\"KEYWORD1\",\"text\":\"IS\"},{\"tag\":\"KEYWORD1\",\"text\":\"ITERATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"JOIN\"},{\"tag\":\"KEYWORD1\",\"text\":\"KEY\"},{\"tag\":\"KEYWORD1\",\"text\":\"KEYS\"},{\"tag\":\"KEYWORD1\",\"text\":\"KILL\"},{\"tag\":\"KEYWORD1\",\"text\":\"LEADING\"},{\"tag\":\"KEYWORD1\",\"text\":\"LEAVE\"},{\"tag\":\"KEYWORD1\",\"text\":\"LEFT\"},{\"tag\":\"KEYWORD1\",\"text\":\"LIKE\"},{\"tag\":\"KEYWORD1\",\"text\":\"LIMIT\"},{\"tag\":\"KEYWORD1\",\"text\":\"LINES\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOAD\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOCALTIME\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOCALTIMESTAMP\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOCK\"},{\"tag\":\"KEYWORD1\",\"text\":\"LONG\"},{\"tag\":\"KEYWORD1\",\"text\":\"LONGBLOB\"},{\"tag\":\"KEYWORD1\",\"text\":\"LONGTEXT\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOOP\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOW_PRIORITY\"},{\"tag\":\"KEYWORD1\",\"text\":\"MATCH\"},{\"tag\":\"KEYWORD1\",\"text\":\"MEDIUMBLOB\"},{\"tag\":\"KEYWORD1\",\"text\":\"MEDIUMINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"MEDIUMTEXT\"},{\"tag\":\"KEYWORD1\",\"text\":\"MIDDLEINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"MINUTE_MICROSECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"MINUTE_SECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"MOD\"},{\"tag\":\"KEYWORD1\",\"text\":\"MODIFIES\"},{\"tag\":\"KEYWORD1\",\"text\":\"NATURAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"NOT\"},{\"tag\":\"KEYWORD1\",\"text\":\"NO_WRITE_TO_BINLOG\"},{\"tag\":\"KEYWORD1\",\"text\":\"NULL\"},{\"tag\":\"KEYWORD1\",\"text\":\"NUMERIC\"},{\"tag\":\"KEYWORD1\",\"text\":\"ON\"},{\"tag\":\"KEYWORD1\",\"text\":\"OPTIMIZE\"},{\"tag\":\"KEYWORD1\",\"text\":\"OPTION\"},{\"tag\":\"KEYWORD1\",\"text\":\"OPTIONALLY\"},{\"tag\":\"KEYWORD1\",\"text\":\"OR\"},{\"tag\":\"KEYWORD1\",\"text\":\"ORDER\"},{\"tag\":\"KEYWORD1\",\"text\":\"OUT\"},{\"tag\":\"KEYWORD1\",\"text\":\"OUTER\"},{\"tag\":\"KEYWORD1\",\"text\":\"OUTFILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"PRECISION\"},{\"tag\":\"KEYWORD1\",\"text\":\"PRIMARY\"},{\"tag\":\"KEYWORD1\",\"text\":\"PROCEDURE\"},{\"tag\":\"KEYWORD1\",\"text\":\"PURGE\"},{\"tag\":\"KEYWORD1\",\"text\":\"READ\"},{\"tag\":\"KEYWORD1\",\"text\":\"READS\"},{\"tag\":\"KEYWORD1\",\"text\":\"REAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"REFERENCES\"},{\"tag\":\"KEYWORD1\",\"text\":\"REGEXP\"},{\"tag\":\"KEYWORD1\",\"text\":\"RENAME\"},{\"tag\":\"KEYWORD1\",\"text\":\"REPEAT\"},{\"tag\":\"KEYWORD1\",\"text\":\"REPLACE\"},{\"tag\":\"KEYWORD1\",\"text\":\"REQUIRE\"},{\"tag\":\"KEYWORD1\",\"text\":\"RESTRICT\"},{\"tag\":\"KEYWORD1\",\"text\":\"RETURN\"},{\"tag\":\"KEYWORD1\",\"text\":\"REVOKE\"},{\"tag\":\"KEYWORD1\",\"text\":\"RIGHT\"},{\"tag\":\"KEYWORD1\",\"text\":\"RLIKE\"},{\"tag\":\"KEYWORD1\",\"text\":\"SCHEMA\"},{\"tag\":\"KEYWORD1\",\"text\":\"SCHEMAS\"},{\"tag\":\"KEYWORD1\",\"text\":\"SECOND_MICROSECOND\"},{\"tag\":\"KEYWORD1\",\"text\":\"SELECT\"},{\"tag\":\"KEYWORD1\",\"text\":\"SENSITIVE\"},{\"tag\":\"KEYWORD1\",\"text\":\"SEPARATOR\"},{\"tag\":\"KEYWORD1\",\"text\":\"SET\"},{\"tag\":\"KEYWORD1\",\"text\":\"SHOW\"},{\"tag\":\"KEYWORD1\",\"text\":\"SMALLINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"SONAME\"},{\"tag\":\"KEYWORD1\",\"text\":\"SPATIAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"SPECIFIC\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQL\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQLEXCEPTION\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQLSTATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQLWARNING\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQL_BIG_RESULT\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQL_CALC_FOUND_ROWS\"},{\"tag\":\"KEYWORD1\",\"text\":\"SQL_SMALL_RESULT\"},{\"tag\":\"KEYWORD1\",\"text\":\"SSL\"},{\"tag\":\"KEYWORD1\",\"text\":\"STARTING\"},{\"tag\":\"KEYWORD1\",\"text\":\"STRAIGHT_JOIN\"},{\"tag\":\"KEYWORD1\",\"text\":\"TABLE\"},{\"tag\":\"KEYWORD1\",\"text\":\"TERMINATED\"},{\"tag\":\"KEYWORD1\",\"text\":\"THEN\"},{\"tag\":\"KEYWORD1\",\"text\":\"TINYBLOB\"},{\"tag\":\"KEYWORD1\",\"text\":\"TINYINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"TINYTEXT\"},{\"tag\":\"KEYWORD1\",\"text\":\"TO\"},{\"tag\":\"KEYWORD1\",\"text\":\"TRAILING\"},{\"tag\":\"KEYWORD1\",\"text\":\"TRIGGER\"},{\"tag\":\"KEYWORD1\",\"text\":\"TRUE\"},{\"tag\":\"KEYWORD1\",\"text\":\"UNDO\"},{\"tag\":\"KEYWORD1\",\"text\":\"UNION\"},{\"tag\":\"KEYWORD1\",\"text\":\"UNIQUE\"},{\"tag\":\"KEYWORD1\",\"text\":\"UNLOCK\"},{\"tag\":\"KEYWORD1\",\"text\":\"UNSIGNED\"},{\"tag\":\"KEYWORD1\",\"text\":\"UPDATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"USAGE\"},{\"tag\":\"KEYWORD1\",\"text\":\"USE\"},{\"tag\":\"KEYWORD1\",\"text\":\"USING\"},{\"tag\":\"KEYWORD1\",\"text\":\"UTC_DATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"UTC_TIME\"},{\"tag\":\"KEYWORD1\",\"text\":\"UTC_TIMESTAMP\"},{\"tag\":\"KEYWORD1\",\"text\":\"VALUES\"},{\"tag\":\"KEYWORD1\",\"text\":\"VARBINARY\"},{\"tag\":\"KEYWORD1\",\"text\":\"VARCHAR\"},{\"tag\":\"KEYWORD1\",\"text\":\"VARCHARACTER\"},{\"tag\":\"KEYWORD1\",\"text\":\"VARYING\"},{\"tag\":\"KEYWORD1\",\"text\":\"WHEN\"},{\"tag\":\"KEYWORD1\",\"text\":\"WHERE\"},{\"tag\":\"KEYWORD1\",\"text\":\"WHILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"WITH\"},{\"tag\":\"KEYWORD1\",\"text\":\"WRITE\"},{\"tag\":\"KEYWORD1\",\"text\":\"XOR\"},{\"tag\":\"KEYWORD1\",\"text\":\"YEAR_MONTH\"},{\"tag\":\"KEYWORD1\",\"text\":\"ZEROFILL\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "--";
+        PROPERTY3.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.ESCAPE = "\\";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "LITERAL1";
+        SPAN3.ESCAPE = "\\";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "'";
+        END END3 = new END();
+        END3.text = "'";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"ADD", "ALL", "ALTER", "ANALYZE", "AND", "AS", "ASC", "ASENSITIVE", "BEFORE", "BETWEEN", "BIGINT", "BINARY", "BLOB", "BOTH", "BY", "CALL", "CASCADE", "CASE", "CHANGE", "CHAR", "CHARACTER", "CHECK", "COLLATE", "COLUMN", "CONDITION", "CONNECTION", "CONSTRAINT", "CONTINUE", "CONVERT", "CREATE", "CROSS", "CURRENT_DATE", "CURRENT_TIME", "CURRENT_TIMESTAMP", "CURRENT_USER", "CURSOR", "DATABASE", "DATABASES", "DAY_HOUR", "DAY_MICROSECOND", "DAY_MINUTE", "DAY_SECOND", "DEC", "DECIMAL", "DECLARE", "DEFAULT", "DELAYED", "DELETE", "DESC", "DESCRIBE", "DETERMINISTIC", "DISTINCT", "DISTINCTROW", "DIV", "DOUBLE", "DROP", "DUAL", "EACH", "ELSE", "ELSEIF", "ENCLOSED", "ESCAPED", "EXISTS", "EXIT", "EXPLAIN", "FALSE", "FETCH", "FLOAT", "FOR", "FORCE", "FOREIGN", "FROM", "FULLTEXT", "GOTO", "GRANT", "GROUP", "HAVING", "HIGH_PRIORITY", "HOUR_MICROSECOND", "HOUR_MINUTE", "HOUR_SECOND", "IF", "IGNORE", "IN", "INDEX", "INFILE", "INNER", "INOUT", "INSENSITIVE", "INSERT", "INT", "INTEGER", "INTERVAL", "INTO", "IS", "ITERATE", "JOIN", "KEY", "KEYS", "KILL", "LEADING", "LEAVE", "LEFT", "LIKE", "LIMIT", "LINES", "LOAD", "LOCALTIME", "LOCALTIMESTAMP", "LOCK", "LONG", "LONGBLOB", "LONGTEXT", "LOOP", "LOW_PRIORITY", "MATCH", "MEDIUMBLOB", "MEDIUMINT", "MEDIUMTEXT", "MIDDLEINT", "MINUTE_MICROSECOND", "MINUTE_SECOND", "MOD", "MODIFIES", "NATURAL", "NOT", "NO_WRITE_TO_BINLOG", "NULL", "NUMERIC", "ON", "OPTIMIZE", "OPTION", "OPTIONALLY", "OR", "ORDER", "OUT", "OUTER", "OUTFILE", "PRECISION", "PRIMARY", "PROCEDURE", "PURGE", "READ", "READS", "REAL", "REFERENCES", "REGEXP", "RENAME", "REPEAT", "REPLACE", "REQUIRE", "RESTRICT", "RETURN", "REVOKE", "RIGHT", "RLIKE", "SCHEMA", "SCHEMAS", "SECOND_MICROSECOND", "SELECT", "SENSITIVE", "SEPARATOR", "SET", "SHOW", "SMALLINT", "SONAME", "SPATIAL", "SPECIFIC", "SQL", "SQLEXCEPTION", "SQLSTATE", "SQLWARNING", "SQL_BIG_RESULT", "SQL_CALC_FOUND_ROWS", "SQL_SMALL_RESULT", "SSL", "STARTING", "STRAIGHT_JOIN", "TABLE", "TERMINATED", "THEN", "TINYBLOB", "TINYINT", "TINYTEXT", "TO", "TRAILING", "TRIGGER", "TRUE", "UNDO", "UNION", "UNIQUE", "UNLOCK", "UNSIGNED", "UPDATE", "USAGE", "USE", "USING", "UTC_DATE", "UTC_TIME", "UTC_TIMESTAMP", "VALUES", "VARBINARY", "VARCHAR", "VARCHARACTER", "VARYING", "WHEN", "WHERE", "WHILE", "WITH", "WRITE", "XOR", "YEAR_MONTH", "ZEROFILL", });
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

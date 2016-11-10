@@ -19,15 +19,97 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class OutlineLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"//\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{12}\",\"attrs\":{\"TYPE\":\"COMMENT4\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{11}\",\"attrs\":{\"TYPE\":\"COMMENT3\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{10}\",\"attrs\":{\"TYPE\":\"COMMENT2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{9}\",\"attrs\":{\"TYPE\":\"COMMENT1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{8}\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{7}\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{6}\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{5}\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{4}\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{3}\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{2}\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{1}\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"^\\\\s{0}\",\"attrs\":{\"TYPE\":\"LABEL\",\"AT_LINE_START\":\"TRUE\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "//";
+        PROPERTY3.NAME = "lineComment";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "true";
+        PROPERTY4.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP1 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP1.text = "^\\s{12}";
+        EOL_SPAN_REGEXP1.TYPE = "COMMENT4";
+        EOL_SPAN_REGEXP1.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP2 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP2.text = "^\\s{11}";
+        EOL_SPAN_REGEXP2.TYPE = "COMMENT3";
+        EOL_SPAN_REGEXP2.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP3 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP3.text = "^\\s{10}";
+        EOL_SPAN_REGEXP3.TYPE = "COMMENT2";
+        EOL_SPAN_REGEXP3.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP4 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP4.text = "^\\s{9}";
+        EOL_SPAN_REGEXP4.TYPE = "COMMENT1";
+        EOL_SPAN_REGEXP4.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP5 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP5.text = "^\\s{8}";
+        EOL_SPAN_REGEXP5.TYPE = "LITERAL4";
+        EOL_SPAN_REGEXP5.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP6 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP6.text = "^\\s{7}";
+        EOL_SPAN_REGEXP6.TYPE = "LITERAL3";
+        EOL_SPAN_REGEXP6.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP7 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP7.text = "^\\s{6}";
+        EOL_SPAN_REGEXP7.TYPE = "LITERAL2";
+        EOL_SPAN_REGEXP7.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP8 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP8.text = "^\\s{5}";
+        EOL_SPAN_REGEXP8.TYPE = "LITERAL1";
+        EOL_SPAN_REGEXP8.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP9 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP9.text = "^\\s{4}";
+        EOL_SPAN_REGEXP9.TYPE = "KEYWORD4";
+        EOL_SPAN_REGEXP9.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP10 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP10.text = "^\\s{3}";
+        EOL_SPAN_REGEXP10.TYPE = "KEYWORD3";
+        EOL_SPAN_REGEXP10.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP11 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP11.text = "^\\s{2}";
+        EOL_SPAN_REGEXP11.TYPE = "KEYWORD2";
+        EOL_SPAN_REGEXP11.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP12 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP12.text = "^\\s{1}";
+        EOL_SPAN_REGEXP12.TYPE = "KEYWORD1";
+        EOL_SPAN_REGEXP12.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP13 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP13.text = "^\\s{0}";
+        EOL_SPAN_REGEXP13.TYPE = "LABEL";
+        EOL_SPAN_REGEXP13.AT_LINE_START = "TRUE";
+        RULES1.EOL_SPAN_REGEXP = new EOL_SPAN_REGEXP[] { EOL_SPAN_REGEXP1, EOL_SPAN_REGEXP2, EOL_SPAN_REGEXP3, EOL_SPAN_REGEXP4, EOL_SPAN_REGEXP5, EOL_SPAN_REGEXP6, EOL_SPAN_REGEXP7, EOL_SPAN_REGEXP8, EOL_SPAN_REGEXP9, EOL_SPAN_REGEXP10, EOL_SPAN_REGEXP11, EOL_SPAN_REGEXP12, EOL_SPAN_REGEXP13, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,47 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SipLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"\\\\d+\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"MARK_PREVIOUS\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"REGISTER\"},{\"tag\":\"KEYWORD1\",\"text\":\"INVITE\"},{\"tag\":\"KEYWORD1\",\"text\":\"ACK\"},{\"tag\":\"KEYWORD1\",\"text\":\"CANCEL\"},{\"tag\":\"KEYWORD1\",\"text\":\"OPTIONS\"},{\"tag\":\"KEYWORD1\",\"text\":\"BYE\"},{\"tag\":\"KEYWORD1\",\"text\":\"REFER\"},{\"tag\":\"KEYWORD1\",\"text\":\"NOTIFY\"},{\"tag\":\"KEYWORD1\",\"text\":\"MESSAGE\"},{\"tag\":\"KEYWORD1\",\"text\":\"SUBSCRIBE\"},{\"tag\":\"KEYWORD1\",\"text\":\"INFO\"},{\"tag\":\"KEYWORD1\",\"text\":\"PRACK\"},{\"tag\":\"KEYWORD1\",\"text\":\"UPDATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"PUBLISH\"},{\"tag\":\"KEYWORD2\",\"text\":\"Accept\"},{\"tag\":\"KEYWORD2\",\"text\":\"Accept-Contact\"},{\"tag\":\"KEYWORD2\",\"text\":\"Accept-Language\"},{\"tag\":\"KEYWORD2\",\"text\":\"Alert-Info\"},{\"tag\":\"KEYWORD2\",\"text\":\"Allow\"},{\"tag\":\"KEYWORD2\",\"text\":\"Allow-Events\"},{\"tag\":\"KEYWORD2\",\"text\":\"Authentication-Info\"},{\"tag\":\"KEYWORD2\",\"text\":\"Authorization\"},{\"tag\":\"KEYWORD2\",\"text\":\"Call-ID\"},{\"tag\":\"KEYWORD2\",\"text\":\"Call-Info\"},{\"tag\":\"KEYWORD2\",\"text\":\"Contact\"},{\"tag\":\"KEYWORD2\",\"text\":\"Content-Disposition\"},{\"tag\":\"KEYWORD2\",\"text\":\"Content-Encoding\"},{\"tag\":\"KEYWORD2\",\"text\":\"Content-Language\"},{\"tag\":\"KEYWORD2\",\"text\":\"Content-Length\"},{\"tag\":\"KEYWORD2\",\"text\":\"Content-Type\"},{\"tag\":\"KEYWORD2\",\"text\":\"CSeq\"},{\"tag\":\"KEYWORD2\",\"text\":\"Date\"},{\"tag\":\"KEYWORD2\",\"text\":\"Encryption\"},{\"tag\":\"KEYWORD2\",\"text\":\"Error-Info\"},{\"tag\":\"KEYWORD2\",\"text\":\"Event\"},{\"tag\":\"KEYWORD2\",\"text\":\"Expires\"},{\"tag\":\"KEYWORD2\",\"text\":\"From\"},{\"tag\":\"KEYWORD2\",\"text\":\"Hide\"},{\"tag\":\"KEYWORD2\",\"text\":\"In-Reply-To\"},{\"tag\":\"KEYWORD2\",\"text\":\"Max-Forwards\"},{\"tag\":\"KEYWORD2\",\"text\":\"Min-Expires\"},{\"tag\":\"KEYWORD2\",\"text\":\"Min-SE\"},{\"tag\":\"KEYWORD2\",\"text\":\"MIME-Version\"},{\"tag\":\"KEYWORD2\",\"text\":\"Organization\"},{\"tag\":\"KEYWORD2\",\"text\":\"P-Asserted-Identity\"},{\"tag\":\"KEYWORD2\",\"text\":\"P-Preferred-Identity\"},{\"tag\":\"KEYWORD2\",\"text\":\"Path\"},{\"tag\":\"KEYWORD2\",\"text\":\"Priority\"},{\"tag\":\"KEYWORD2\",\"text\":\"Privacy\"},{\"tag\":\"KEYWORD2\",\"text\":\"Proxy-Authenticate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Proxy-Authentication-Info\"},{\"tag\":\"KEYWORD2\",\"text\":\"Proxy-Authorization\"},{\"tag\":\"KEYWORD2\",\"text\":\"Proxy-Require\"},{\"tag\":\"KEYWORD2\",\"text\":\"RAck\"},{\"tag\":\"KEYWORD2\",\"text\":\"Reason\"},{\"tag\":\"KEYWORD2\",\"text\":\"Record-Route\"},{\"tag\":\"KEYWORD2\",\"text\":\"Refer-Sub\"},{\"tag\":\"KEYWORD2\",\"text\":\"Refer-To\"},{\"tag\":\"KEYWORD2\",\"text\":\"Referred-By\"},{\"tag\":\"KEYWORD2\",\"text\":\"Reject-Contact\"},{\"tag\":\"KEYWORD2\",\"text\":\"Remote-Party-ID\"},{\"tag\":\"KEYWORD2\",\"text\":\"Replaces\"},{\"tag\":\"KEYWORD2\",\"text\":\"Reply-To\"},{\"tag\":\"KEYWORD2\",\"text\":\"Request-Disposition\"},{\"tag\":\"KEYWORD2\",\"text\":\"Require\"},{\"tag\":\"KEYWORD2\",\"text\":\"Retry-After\"},{\"tag\":\"KEYWORD2\",\"text\":\"Route\"},{\"tag\":\"KEYWORD2\",\"text\":\"RSeq\"},{\"tag\":\"KEYWORD2\",\"text\":\"Security-Client\"},{\"tag\":\"KEYWORD2\",\"text\":\"Security-Server\"},{\"tag\":\"KEYWORD2\",\"text\":\"Security-Verify\"},{\"tag\":\"KEYWORD2\",\"text\":\"Server\"},{\"tag\":\"KEYWORD2\",\"text\":\"Service-Route\"},{\"tag\":\"KEYWORD2\",\"text\":\"Session-Expires\"},{\"tag\":\"KEYWORD2\",\"text\":\"SIP-ETag\"},{\"tag\":\"KEYWORD2\",\"text\":\"SIP-If-Match\"},{\"tag\":\"KEYWORD2\",\"text\":\"Subject\"},{\"tag\":\"KEYWORD2\",\"text\":\"Subscription-State\"},{\"tag\":\"KEYWORD2\",\"text\":\"Supported\"},{\"tag\":\"KEYWORD2\",\"text\":\"Suppress-Body-If-Match\"},{\"tag\":\"KEYWORD2\",\"text\":\"Suppress-Notify-If-Match\"},{\"tag\":\"KEYWORD2\",\"text\":\"Timestamp\"},{\"tag\":\"KEYWORD2\",\"text\":\"To\"},{\"tag\":\"KEYWORD2\",\"text\":\"Unsupported\"},{\"tag\":\"KEYWORD2\",\"text\":\"User-Agent\"},{\"tag\":\"KEYWORD2\",\"text\":\"Via\"},{\"tag\":\"KEYWORD2\",\"text\":\"Warning\"},{\"tag\":\"KEYWORD2\",\"text\":\"WWW-Authenticate\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "true";
+        PROPERTY1.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "\\d+";
+        RULES1.IGNORE_CASE = "FALSE";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "=";
+        MARK_PREVIOUS1.TYPE = "KEYWORD3";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"REGISTER", "INVITE", "ACK", "CANCEL", "OPTIONS", "BYE", "REFER", "NOTIFY", "MESSAGE", "SUBSCRIBE", "INFO", "PRACK", "UPDATE", "PUBLISH", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"Accept", "Accept-Contact", "Accept-Language", "Alert-Info", "Allow", "Allow-Events", "Authentication-Info", "Authorization", "Call-ID", "Call-Info", "Contact", "Content-Disposition", "Content-Encoding", "Content-Language", "Content-Length", "Content-Type", "CSeq", "Date", "Encryption", "Error-Info", "Event", "Expires", "From", "Hide", "In-Reply-To", "Max-Forwards", "Min-Expires", "Min-SE", "MIME-Version", "Organization", "P-Asserted-Identity", "P-Preferred-Identity", "Path", "Priority", "Privacy", "Proxy-Authenticate", "Proxy-Authentication-Info", "Proxy-Authorization", "Proxy-Require", "RAck", "Reason", "Record-Route", "Refer-Sub", "Refer-To", "Referred-By", "Reject-Contact", "Remote-Party-ID", "Replaces", "Reply-To", "Request-Disposition", "Require", "Retry-After", "Route", "RSeq", "Security-Client", "Security-Server", "Security-Verify", "Server", "Service-Route", "Session-Expires", "SIP-ETag", "SIP-If-Match", "Subject", "Subscription-State", "Supported", "Suppress-Body-If-Match", "Suppress-Notify-If-Match", "Timestamp", "To", "Unsupported", "User-Agent", "Via", "Warning", "WWW-Authenticate", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

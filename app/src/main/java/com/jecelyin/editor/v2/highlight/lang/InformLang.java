@@ -19,15 +19,211 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class InformLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"!\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",+-=<>/?^&*\",\"NAME\":\"wordBreakChars\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{[\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}]\",\"NAME\":\"indentCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*(((if|while)\\\\s*\\\\(|else\\\\s*|else\\\\s+if\\\\s*\\\\(|for\\\\s*\\\\(.*\\\\))[^{;]*)\",\"NAME\":\"indentNextLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"false\",\"NAME\":\"doubleBracketIndent\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"(\\\\$[\\\\p{XDigit}]|[\\\\p{Digit}])\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"InformInnerText\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"==\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"]\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"[\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\".&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\".#\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-->\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"::\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\":\",\"attrs\":{\"AT_WHITESPACE_END\":\"FALSE\",\"TYPE\":\"LABEL\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"has\"},{\"tag\":\"KEYWORD1\",\"text\":\"hasnt\"},{\"tag\":\"KEYWORD1\",\"text\":\"in\"},{\"tag\":\"KEYWORD1\",\"text\":\"notin\"},{\"tag\":\"KEYWORD1\",\"text\":\"ofclass\"},{\"tag\":\"KEYWORD1\",\"text\":\"provides\"},{\"tag\":\"KEYWORD1\",\"text\":\"or\"},{\"tag\":\"LITERAL2\",\"text\":\"char\"},{\"tag\":\"LITERAL2\",\"text\":\"string\"},{\"tag\":\"LITERAL2\",\"text\":\"address\"},{\"tag\":\"LITERAL2\",\"text\":\"name\"},{\"tag\":\"LITERAL2\",\"text\":\"a\"},{\"tag\":\"LITERAL2\",\"text\":\"an\"},{\"tag\":\"LITERAL2\",\"text\":\"the\"},{\"tag\":\"LITERAL2\",\"text\":\"The\"},{\"tag\":\"LITERAL2\",\"text\":\"property\"},{\"tag\":\"LITERAL2\",\"text\":\"object\"},{\"tag\":\"KEYWORD1\",\"text\":\"break\"},{\"tag\":\"KEYWORD1\",\"text\":\"continue\"},{\"tag\":\"KEYWORD1\",\"text\":\"do\"},{\"tag\":\"KEYWORD1\",\"text\":\"until\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"give\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"inversion\"},{\"tag\":\"KEYWORD1\",\"text\":\"jump\"},{\"tag\":\"KEYWORD1\",\"text\":\"move\"},{\"tag\":\"KEYWORD2\",\"text\":\"to\"},{\"tag\":\"KEYWORD1\",\"text\":\"objectloop\"},{\"tag\":\"KEYWORD1\",\"text\":\"remove\"},{\"tag\":\"KEYWORD1\",\"text\":\"return\"},{\"tag\":\"KEYWORD1\",\"text\":\"rfalse\"},{\"tag\":\"KEYWORD1\",\"text\":\"rtrue\"},{\"tag\":\"KEYWORD1\",\"text\":\"string\"},{\"tag\":\"KEYWORD1\",\"text\":\"switch\"},{\"tag\":\"KEYWORD1\",\"text\":\"while\"},{\"tag\":\"KEYWORD1\",\"text\":\"with\"},{\"tag\":\"FUNCTION\",\"text\":\"new_line\"},{\"tag\":\"FUNCTION\",\"text\":\"print\"},{\"tag\":\"FUNCTION\",\"text\":\"print_ret\"},{\"tag\":\"FUNCTION\",\"text\":\"box\"},{\"tag\":\"FUNCTION\",\"text\":\"font\"},{\"tag\":\"KEYWORD2\",\"text\":\"on\"},{\"tag\":\"KEYWORD2\",\"text\":\"off\"},{\"tag\":\"FUNCTION\",\"text\":\"quit\"},{\"tag\":\"FUNCTION\",\"text\":\"read\"},{\"tag\":\"FUNCTION\",\"text\":\"restore\"},{\"tag\":\"FUNCTION\",\"text\":\"save\"},{\"tag\":\"FUNCTION\",\"text\":\"spaces\"},{\"tag\":\"FUNCTION\",\"text\":\"style\"},{\"tag\":\"KEYWORD2\",\"text\":\"roman\"},{\"tag\":\"KEYWORD2\",\"text\":\"bold\"},{\"tag\":\"KEYWORD2\",\"text\":\"underline\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"fixed\"},{\"tag\":\"FUNCTION\",\"text\":\"score\"},{\"tag\":\"FUNCTION\",\"text\":\"time\"},{\"tag\":\"KEYWORD3\",\"text\":\"Abbreviate\"},{\"tag\":\"KEYWORD3\",\"text\":\"Array\"},{\"tag\":\"KEYWORD3\",\"text\":\"Attribute\"},{\"tag\":\"KEYWORD3\",\"text\":\"Class\"},{\"tag\":\"KEYWORD3\",\"text\":\"Constant\"},{\"tag\":\"KEYWORD3\",\"text\":\"Default\"},{\"tag\":\"KEYWORD3\",\"text\":\"End\"},{\"tag\":\"KEYWORD3\",\"text\":\"Endif\"},{\"tag\":\"KEYWORD3\",\"text\":\"Extend\"},{\"tag\":\"KEYWORD3\",\"text\":\"Global\"},{\"tag\":\"KEYWORD3\",\"text\":\"Ifdef\"},{\"tag\":\"KEYWORD3\",\"text\":\"Ifndef\"},{\"tag\":\"KEYWORD3\",\"text\":\"Ifnot\"},{\"tag\":\"KEYWORD3\",\"text\":\"Iftrue\"},{\"tag\":\"KEYWORD3\",\"text\":\"Iffalse\"},{\"tag\":\"KEYWORD3\",\"text\":\"Import\"},{\"tag\":\"KEYWORD3\",\"text\":\"Include\"},{\"tag\":\"KEYWORD3\",\"text\":\"Link\"},{\"tag\":\"KEYWORD3\",\"text\":\"Lowstring\"},{\"tag\":\"KEYWORD3\",\"text\":\"Message\"},{\"tag\":\"KEYWORD3\",\"text\":\"Object\"},{\"tag\":\"KEYWORD3\",\"text\":\"Property\"},{\"tag\":\"KEYWORD3\",\"text\":\"Replace\"},{\"tag\":\"KEYWORD3\",\"text\":\"Serial\"},{\"tag\":\"KEYWORD3\",\"text\":\"Switches\"},{\"tag\":\"KEYWORD3\",\"text\":\"Statusline\"},{\"tag\":\"KEYWORD3\",\"text\":\"System_file\"},{\"tag\":\"KEYWORD3\",\"text\":\"Verb\"},{\"tag\":\"KEYWORD3\",\"text\":\"private\"},{\"tag\":\"LITERAL2\",\"text\":\"false\"},{\"tag\":\"LITERAL2\",\"text\":\"true\"},{\"tag\":\"LITERAL2\",\"text\":\"null\"},{\"tag\":\"LITERAL2\",\"text\":\"super\"},{\"tag\":\"LITERAL2\",\"text\":\"self\"},{\"tag\":\"INVALID\",\"text\":\"this\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"InformInnerText\",\"DEFAULT\":\"LITERAL1\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"\\\\\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"@@\",\"attrs\":{\"TYPE\":\"LITERAL2\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "!";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = ",+-=<>/?^&*";
+        PROPERTY2.NAME = "wordBreakChars";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "{[";
+        PROPERTY3.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "}]";
+        PROPERTY4.NAME = "indentCloseBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "\\s*(((if|while)\\s*\\(|else\\s*|else\\s+if\\s*\\(|for\\s*\\(.*\\))[^{;]*)";
+        PROPERTY5.NAME = "indentNextLine";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = "false";
+        PROPERTY6.NAME = "doubleBracketIndent";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "(\\$[\\p{XDigit}]|[\\p{Digit}])";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "!";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.DELEGATE = "InformInnerText";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL2";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "#";
+        EOL_SPAN2.TYPE = "KEYWORD2";
+        EOL_SPAN EOL_SPAN3 = new EOL_SPAN();
+        EOL_SPAN3.text = "!";
+        EOL_SPAN3.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "==";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = ">=";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "<=";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "~=";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "+";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "-";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "$";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "/";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "*";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = ">";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "<";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "%";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "&";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "|";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "^";
+        SEQ16.TYPE = "OPERATOR";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "~";
+        SEQ17.TYPE = "OPERATOR";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "}";
+        SEQ18.TYPE = "OPERATOR";
+        SEQ SEQ19 = new SEQ();
+        SEQ19.text = "{";
+        SEQ19.TYPE = "OPERATOR";
+        SEQ SEQ20 = new SEQ();
+        SEQ20.text = "]";
+        SEQ20.TYPE = "OPERATOR";
+        SEQ SEQ21 = new SEQ();
+        SEQ21.text = "[";
+        SEQ21.TYPE = "OPERATOR";
+        SEQ SEQ22 = new SEQ();
+        SEQ22.text = ".&";
+        SEQ22.TYPE = "OPERATOR";
+        SEQ SEQ23 = new SEQ();
+        SEQ23.text = ".#";
+        SEQ23.TYPE = "OPERATOR";
+        SEQ SEQ24 = new SEQ();
+        SEQ24.text = "-->";
+        SEQ24.TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "(";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ25 = new SEQ();
+        SEQ25.text = ")";
+        SEQ25.TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS2 = new MARK_PREVIOUS();
+        MARK_PREVIOUS2.text = "::";
+        MARK_PREVIOUS2.TYPE = "FUNCTION";
+        MARK_PREVIOUS2.MATCH_TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS3 = new MARK_PREVIOUS();
+        MARK_PREVIOUS3.text = ":";
+        MARK_PREVIOUS3.AT_WHITESPACE_END = "FALSE";
+        MARK_PREVIOUS3.TYPE = "LABEL";
+        MARK_PREVIOUS3.MATCH_TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"char", "string", "address", "name", "a", "an", "the", "The", "property", "object", "false", "true", "null", "super", "self", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"has", "hasnt", "in", "notin", "ofclass", "provides", "or", "break", "continue", "do", "until", "for", "give", "if", "else", "inversion", "jump", "move", "objectloop", "remove", "return", "rfalse", "rtrue", "string", "switch", "while", "with", });
+        KEYWORDS1.add("INVALID", new String[]{"this", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"to", "on", "off", "roman", "bold", "underline", "reverse", "fixed", });
+        KEYWORDS1.add("FUNCTION", new String[]{"new_line", "print", "print_ret", "box", "font", "quit", "read", "restore", "save", "spaces", "style", "score", "time", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"Abbreviate", "Array", "Attribute", "Class", "Constant", "Default", "End", "Endif", "Extend", "Global", "Ifdef", "Ifndef", "Ifnot", "Iftrue", "Iffalse", "Import", "Include", "Link", "Lowstring", "Message", "Object", "Property", "Replace", "Serial", "Switches", "Statusline", "System_file", "Verb", "private", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, MARK_PREVIOUS2, MARK_PREVIOUS3, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, EOL_SPAN3, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, SEQ19, SEQ20, SEQ21, SEQ22, SEQ23, SEQ24, SEQ25, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "InformInnerText";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.IGNORE_CASE = "FALSE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "^";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "~";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "@";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "\\";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "@@";
+        SEQ5.TYPE = "LITERAL2";
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

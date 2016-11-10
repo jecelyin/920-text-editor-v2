@@ -19,15 +19,83 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class MqscLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"COMMENT1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\",\"MATCH_TYPE\":\"OPERATOR\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"('\"},{\"tag\":\"END\",\"text\":\"')\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL2\",\"ESCAPE\":\"\\\\\",\"MATCH_TYPE\":\"OPERATOR\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"all\"},{\"tag\":\"KEYWORD1\",\"text\":\"alter\"},{\"tag\":\"KEYWORD1\",\"text\":\"alt\"},{\"tag\":\"KEYWORD1\",\"text\":\"clear\"},{\"tag\":\"KEYWORD1\",\"text\":\"define\"},{\"tag\":\"KEYWORD1\",\"text\":\"def\"},{\"tag\":\"KEYWORD1\",\"text\":\"delete\"},{\"tag\":\"KEYWORD1\",\"text\":\"display\"},{\"tag\":\"KEYWORD1\",\"text\":\"dis\"},{\"tag\":\"KEYWORD1\",\"text\":\"end\"},{\"tag\":\"KEYWORD1\",\"text\":\"like\"},{\"tag\":\"KEYWORD1\",\"text\":\"ping\"},{\"tag\":\"KEYWORD1\",\"text\":\"refresh\"},{\"tag\":\"KEYWORD1\",\"text\":\"ref\"},{\"tag\":\"KEYWORD1\",\"text\":\"replace\"},{\"tag\":\"KEYWORD1\",\"text\":\"reset\"},{\"tag\":\"KEYWORD1\",\"text\":\"resolve\"},{\"tag\":\"KEYWORD1\",\"text\":\"resume\"},{\"tag\":\"KEYWORD1\",\"text\":\"start\"},{\"tag\":\"KEYWORD1\",\"text\":\"stop\"},{\"tag\":\"KEYWORD1\",\"text\":\"suspend\"},{\"tag\":\"KEYWORD2\",\"text\":\"channel\"},{\"tag\":\"KEYWORD2\",\"text\":\"chl\"},{\"tag\":\"KEYWORD2\",\"text\":\"chstatus\"},{\"tag\":\"KEYWORD2\",\"text\":\"chst\"},{\"tag\":\"KEYWORD2\",\"text\":\"clusqmgr\"},{\"tag\":\"KEYWORD2\",\"text\":\"process\"},{\"tag\":\"KEYWORD2\",\"text\":\"proc\"},{\"tag\":\"KEYWORD2\",\"text\":\"namelist\"},{\"tag\":\"KEYWORD2\",\"text\":\"nl\"},{\"tag\":\"KEYWORD2\",\"text\":\"qalias\"},{\"tag\":\"KEYWORD2\",\"text\":\"qa\"},{\"tag\":\"KEYWORD2\",\"text\":\"qcluster\"},{\"tag\":\"KEYWORD2\",\"text\":\"qc\"},{\"tag\":\"KEYWORD2\",\"text\":\"qlocal\"},{\"tag\":\"KEYWORD2\",\"text\":\"ql\"},{\"tag\":\"KEYWORD2\",\"text\":\"qmodel\"},{\"tag\":\"KEYWORD2\",\"text\":\"qm\"},{\"tag\":\"KEYWORD2\",\"text\":\"qmgr\"},{\"tag\":\"KEYWORD2\",\"text\":\"qremote\"},{\"tag\":\"KEYWORD2\",\"text\":\"qr\"},{\"tag\":\"KEYWORD2\",\"text\":\"queue\"},{\"tag\":\"MARKUP\",\"text\":\"altdate\"},{\"tag\":\"MARKUP\",\"text\":\"alttime\"},{\"tag\":\"MARKUP\",\"text\":\"applicid\"},{\"tag\":\"MARKUP\",\"text\":\"appltype\"},{\"tag\":\"MARKUP\",\"text\":\"authorev\"},{\"tag\":\"MARKUP\",\"text\":\"batches\"},{\"tag\":\"MARKUP\",\"text\":\"batchint\"},{\"tag\":\"MARKUP\",\"text\":\"batchsz\"},{\"tag\":\"MARKUP\",\"text\":\"boqname\"},{\"tag\":\"MARKUP\",\"text\":\"bothresh\"},{\"tag\":\"MARKUP\",\"text\":\"bufsrcvd\"},{\"tag\":\"MARKUP\",\"text\":\"bufssent\"},{\"tag\":\"MARKUP\",\"text\":\"bytsrcvd\"},{\"tag\":\"MARKUP\",\"text\":\"bytssent\"},{\"tag\":\"MARKUP\",\"text\":\"ccsid\"},{\"tag\":\"MARKUP\",\"text\":\"chad\"},{\"tag\":\"MARKUP\",\"text\":\"chadev\"},{\"tag\":\"MARKUP\",\"text\":\"chadexit\"},{\"tag\":\"MARKUP\",\"text\":\"channel\"},{\"tag\":\"MARKUP\",\"text\":\"chltype\"},{\"tag\":\"MARKUP\",\"text\":\"chstada\"},{\"tag\":\"MARKUP\",\"text\":\"chstati\"},{\"tag\":\"MARKUP\",\"text\":\"clusdate\"},{\"tag\":\"MARKUP\",\"text\":\"clusinfo\"},{\"tag\":\"MARKUP\",\"text\":\"clusnl\"},{\"tag\":\"MARKUP\",\"text\":\"clusqmgr\"},{\"tag\":\"MARKUP\",\"text\":\"clusqt\"},{\"tag\":\"MARKUP\",\"text\":\"cluster\"},{\"tag\":\"MARKUP\",\"text\":\"clustime\"},{\"tag\":\"MARKUP\",\"text\":\"clwldata\"},{\"tag\":\"MARKUP\",\"text\":\"clwlexit\"},{\"tag\":\"MARKUP\",\"text\":\"clwlwen\"},{\"tag\":\"MARKUP\",\"text\":\"cmdlevel\"},{\"tag\":\"MARKUP\",\"text\":\"commandq\"},{\"tag\":\"MARKUP\",\"text\":\"conname\"},{\"tag\":\"MARKUP\",\"text\":\"convert\"},{\"tag\":\"MARKUP\",\"text\":\"crdate\"},{\"tag\":\"MARKUP\",\"text\":\"crtime\"},{\"tag\":\"MARKUP\",\"text\":\"curdepth\"},{\"tag\":\"MARKUP\",\"text\":\"curluwid\"},{\"tag\":\"MARKUP\",\"text\":\"curmsgs\"},{\"tag\":\"MARKUP\",\"text\":\"curseqno\"},{\"tag\":\"MARKUP\",\"text\":\"deadq\"},{\"tag\":\"MARKUP\",\"text\":\"defbind\"},{\"tag\":\"MARKUP\",\"text\":\"defprty\"},{\"tag\":\"MARKUP\",\"text\":\"defpsist\"},{\"tag\":\"MARKUP\",\"text\":\"defsopt\"},{\"tag\":\"MARKUP\",\"text\":\"deftype\"},{\"tag\":\"MARKUP\",\"text\":\"defxmitq\"},{\"tag\":\"MARKUP\",\"text\":\"descr\"},{\"tag\":\"MARKUP\",\"text\":\"discint\"},{\"tag\":\"MARKUP\",\"text\":\"distl\"},{\"tag\":\"MARKUP\",\"text\":\"envrdata\"},{\"tag\":\"MARKUP\",\"text\":\"get\"},{\"tag\":\"MARKUP\",\"text\":\"hardenbo\"},{\"tag\":\"MARKUP\",\"text\":\"hbint\"},{\"tag\":\"MARKUP\",\"text\":\"indoubt\"},{\"tag\":\"MARKUP\",\"text\":\"inhibtev\"},{\"tag\":\"MARKUP\",\"text\":\"initq\"},{\"tag\":\"MARKUP\",\"text\":\"ipprocs\"},{\"tag\":\"MARKUP\",\"text\":\"jobname\"},{\"tag\":\"MARKUP\",\"text\":\"localev\"},{\"tag\":\"MARKUP\",\"text\":\"longrts\"},{\"tag\":\"MARKUP\",\"text\":\"longrty\"},{\"tag\":\"MARKUP\",\"text\":\"longtmr\"},{\"tag\":\"MARKUP\",\"text\":\"lstluwid\"},{\"tag\":\"MARKUP\",\"text\":\"lstmsgda\"},{\"tag\":\"MARKUP\",\"text\":\"lstmsgti\"},{\"tag\":\"MARKUP\",\"text\":\"lstseqno\"},{\"tag\":\"MARKUP\",\"text\":\"maxdepth\"},{\"tag\":\"MARKUP\",\"text\":\"maxhands\"},{\"tag\":\"MARKUP\",\"text\":\"maxmsgl\"},{\"tag\":\"MARKUP\",\"text\":\"maxprty\"},{\"tag\":\"MARKUP\",\"text\":\"maxumsgs\"},{\"tag\":\"MARKUP\",\"text\":\"mcaname\"},{\"tag\":\"MARKUP\",\"text\":\"mcastat\"},{\"tag\":\"MARKUP\",\"text\":\"mcatype\"},{\"tag\":\"MARKUP\",\"text\":\"mcauser\"},{\"tag\":\"MARKUP\",\"text\":\"modename\"},{\"tag\":\"MARKUP\",\"text\":\"mrdata\"},{\"tag\":\"MARKUP\",\"text\":\"mrexit\"},{\"tag\":\"MARKUP\",\"text\":\"mrrty\"},{\"tag\":\"MARKUP\",\"text\":\"mrtmr\"},{\"tag\":\"MARKUP\",\"text\":\"msgdata\"},{\"tag\":\"MARKUP\",\"text\":\"msgdlvsq\"},{\"tag\":\"MARKUP\",\"text\":\"msgexit\"},{\"tag\":\"MARKUP\",\"text\":\"msgs\"},{\"tag\":\"MARKUP\",\"text\":\"namcount\"},{\"tag\":\"MARKUP\",\"text\":\"names\"},{\"tag\":\"MARKUP\",\"text\":\"netprty\"},{\"tag\":\"MARKUP\",\"text\":\"npmspeed\"},{\"tag\":\"MARKUP\",\"text\":\"opprocs\"},{\"tag\":\"MARKUP\",\"text\":\"password\"},{\"tag\":\"MARKUP\",\"text\":\"perfmev\"},{\"tag\":\"MARKUP\",\"text\":\"platform\"},{\"tag\":\"MARKUP\",\"text\":\"process\"},{\"tag\":\"MARKUP\",\"text\":\"put\"},{\"tag\":\"MARKUP\",\"text\":\"putaut\"},{\"tag\":\"MARKUP\",\"text\":\"qdepthhi\"},{\"tag\":\"MARKUP\",\"text\":\"qdepthlo\"},{\"tag\":\"MARKUP\",\"text\":\"qdphiev\"},{\"tag\":\"MARKUP\",\"text\":\"qdploev\"},{\"tag\":\"MARKUP\",\"text\":\"qdpmaxev\"},{\"tag\":\"MARKUP\",\"text\":\"qmid\"},{\"tag\":\"MARKUP\",\"text\":\"qmname\"},{\"tag\":\"MARKUP\",\"text\":\"qmtype\"},{\"tag\":\"MARKUP\",\"text\":\"qsvciev\"},{\"tag\":\"MARKUP\",\"text\":\"qsvcint\"},{\"tag\":\"MARKUP\",\"text\":\"qtype\"},{\"tag\":\"MARKUP\",\"text\":\"rcvdata\"},{\"tag\":\"MARKUP\",\"text\":\"rcvexit\"},{\"tag\":\"MARKUP\",\"text\":\"remoteev\"},{\"tag\":\"MARKUP\",\"text\":\"repos\"},{\"tag\":\"MARKUP\",\"text\":\"reposnl\"},{\"tag\":\"MARKUP\",\"text\":\"retintvl\"},{\"tag\":\"MARKUP\",\"text\":\"rname\"},{\"tag\":\"MARKUP\",\"text\":\"rqmname\"},{\"tag\":\"MARKUP\",\"text\":\"scope\"},{\"tag\":\"MARKUP\",\"text\":\"scydata\"},{\"tag\":\"MARKUP\",\"text\":\"scyexit\"},{\"tag\":\"MARKUP\",\"text\":\"senddata\"},{\"tag\":\"MARKUP\",\"text\":\"sendexit\"},{\"tag\":\"MARKUP\",\"text\":\"seqwrap\"},{\"tag\":\"MARKUP\",\"text\":\"share\"},{\"tag\":\"MARKUP\",\"text\":\"shortrts\"},{\"tag\":\"MARKUP\",\"text\":\"shortrty\"},{\"tag\":\"MARKUP\",\"text\":\"shorttmr\"},{\"tag\":\"MARKUP\",\"text\":\"status\"},{\"tag\":\"MARKUP\",\"text\":\"stopreq\"},{\"tag\":\"MARKUP\",\"text\":\"strstpev\"},{\"tag\":\"MARKUP\",\"text\":\"suspend\"},{\"tag\":\"MARKUP\",\"text\":\"syncpt\"},{\"tag\":\"MARKUP\",\"text\":\"targq\"},{\"tag\":\"MARKUP\",\"text\":\"tpname\"},{\"tag\":\"MARKUP\",\"text\":\"trigdata\"},{\"tag\":\"MARKUP\",\"text\":\"trigdpth\"},{\"tag\":\"MARKUP\",\"text\":\"trigger\"},{\"tag\":\"MARKUP\",\"text\":\"trigint\"},{\"tag\":\"MARKUP\",\"text\":\"trigmpri\"},{\"tag\":\"MARKUP\",\"text\":\"trigtype\"},{\"tag\":\"MARKUP\",\"text\":\"trptype\"},{\"tag\":\"MARKUP\",\"text\":\"type\"},{\"tag\":\"MARKUP\",\"text\":\"usage\"},{\"tag\":\"MARKUP\",\"text\":\"userdata\"},{\"tag\":\"MARKUP\",\"text\":\"userid\"},{\"tag\":\"MARKUP\",\"text\":\"xmitq\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "*";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "true";
+        PROPERTY2.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "*";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN1.AT_LINE_START = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "\\";
+        SPAN1.MATCH_TYPE = "OPERATOR";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "('";
+        END END1 = new END();
+        END1.text = "')";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "TRUE";
+        SPAN2.TYPE = "LITERAL2";
+        SPAN2.ESCAPE = "\\";
+        SPAN2.MATCH_TYPE = "OPERATOR";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "(";
+        END END2 = new END();
+        END2.text = ")";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "+";
+        SEQ1.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("MARKUP", new String[]{"altdate", "alttime", "applicid", "appltype", "authorev", "batches", "batchint", "batchsz", "boqname", "bothresh", "bufsrcvd", "bufssent", "bytsrcvd", "bytssent", "ccsid", "chad", "chadev", "chadexit", "channel", "chltype", "chstada", "chstati", "clusdate", "clusinfo", "clusnl", "clusqmgr", "clusqt", "cluster", "clustime", "clwldata", "clwlexit", "clwlwen", "cmdlevel", "commandq", "conname", "convert", "crdate", "crtime", "curdepth", "curluwid", "curmsgs", "curseqno", "deadq", "defbind", "defprty", "defpsist", "defsopt", "deftype", "defxmitq", "descr", "discint", "distl", "envrdata", "get", "hardenbo", "hbint", "indoubt", "inhibtev", "initq", "ipprocs", "jobname", "localev", "longrts", "longrty", "longtmr", "lstluwid", "lstmsgda", "lstmsgti", "lstseqno", "maxdepth", "maxhands", "maxmsgl", "maxprty", "maxumsgs", "mcaname", "mcastat", "mcatype", "mcauser", "modename", "mrdata", "mrexit", "mrrty", "mrtmr", "msgdata", "msgdlvsq", "msgexit", "msgs", "namcount", "names", "netprty", "npmspeed", "opprocs", "password", "perfmev", "platform", "process", "put", "putaut", "qdepthhi", "qdepthlo", "qdphiev", "qdploev", "qdpmaxev", "qmid", "qmname", "qmtype", "qsvciev", "qsvcint", "qtype", "rcvdata", "rcvexit", "remoteev", "repos", "reposnl", "retintvl", "rname", "rqmname", "scope", "scydata", "scyexit", "senddata", "sendexit", "seqwrap", "share", "shortrts", "shortrty", "shorttmr", "status", "stopreq", "strstpev", "suspend", "syncpt", "targq", "tpname", "trigdata", "trigdpth", "trigger", "trigint", "trigmpri", "trigtype", "trptype", "type", "usage", "userdata", "userid", "xmitq", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"all", "alter", "alt", "clear", "define", "def", "delete", "display", "dis", "end", "like", "ping", "refresh", "ref", "replace", "reset", "resolve", "resume", "start", "stop", "suspend", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"channel", "chl", "chstatus", "chst", "clusqmgr", "process", "proc", "namelist", "nl", "qalias", "qa", "qcluster", "qc", "qlocal", "ql", "qmodel", "qm", "qmgr", "qremote", "qr", "queue", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

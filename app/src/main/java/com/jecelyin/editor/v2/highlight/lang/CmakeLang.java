@@ -19,15 +19,145 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CmakeLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"4\",\"NAME\":\"indentSize\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\",\"NAME\":\"firstlineGlob\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"none\",\"NAME\":\"wrap\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"false\",\"NAME\":\"noTabs\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"8\",\"NAME\":\"tabSize\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"0\",\"NAME\":\"maxLineLen\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"_\",\"NAME\":\"noWordSep\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"none\",\"NAME\":\"folding\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"customSettings\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"false\",\"NAME\":\"deepIndent\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"1000\",\"NAME\":\"collapseFolds\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"KEYWORD2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"${\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"LITERAL\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"OPERATOR\",\"text\":\"AND\"},{\"tag\":\"OPERATOR\",\"text\":\"BOOL\"},{\"tag\":\"OPERATOR\",\"text\":\"CACHE\"},{\"tag\":\"OPERATOR\",\"text\":\"COMMAND\"},{\"tag\":\"OPERATOR\",\"text\":\"DEFINED\"},{\"tag\":\"OPERATOR\",\"text\":\"DOC\"},{\"tag\":\"OPERATOR\",\"text\":\"EQUAL\"},{\"tag\":\"OPERATOR\",\"text\":\"EXISTS\"},{\"tag\":\"OPERATOR\",\"text\":\"FALSE\"},{\"tag\":\"OPERATOR\",\"text\":\"GREATER\"},{\"tag\":\"OPERATOR\",\"text\":\"INTERNAL\"},{\"tag\":\"OPERATOR\",\"text\":\"LESS\"},{\"tag\":\"OPERATOR\",\"text\":\"MATCHES\"},{\"tag\":\"OPERATOR\",\"text\":\"NAME\"},{\"tag\":\"OPERATOR\",\"text\":\"NAMES\"},{\"tag\":\"OPERATOR\",\"text\":\"NAME_WE\"},{\"tag\":\"OPERATOR\",\"text\":\"NOT\"},{\"tag\":\"OPERATOR\",\"text\":\"OFF\"},{\"tag\":\"OPERATOR\",\"text\":\"ON\"},{\"tag\":\"OPERATOR\",\"text\":\"OR\"},{\"tag\":\"OPERATOR\",\"text\":\"PATH\"},{\"tag\":\"OPERATOR\",\"text\":\"PATHS\"},{\"tag\":\"OPERATOR\",\"text\":\"PROGRAM\"},{\"tag\":\"OPERATOR\",\"text\":\"STREQUAL\"},{\"tag\":\"OPERATOR\",\"text\":\"STRGREATER\"},{\"tag\":\"OPERATOR\",\"text\":\"STRING\"},{\"tag\":\"OPERATOR\",\"text\":\"STRLESS\"},{\"tag\":\"OPERATOR\",\"text\":\"TRUE\"},{\"tag\":\"KEYWORD4\",\"text\":\"FOREACH\"},{\"tag\":\"KEYWORD4\",\"text\":\"ELSE\"},{\"tag\":\"KEYWORD4\",\"text\":\"ELSEIF\"},{\"tag\":\"KEYWORD4\",\"text\":\"IF\"},{\"tag\":\"KEYWORD4\",\"text\":\"MACRO\"},{\"tag\":\"KEYWORD4\",\"text\":\"ENDIF\"},{\"tag\":\"KEYWORD4\",\"text\":\"ENDWHILE\"},{\"tag\":\"KEYWORD4\",\"text\":\"ENDFOREACH\"},{\"tag\":\"KEYWORD4\",\"text\":\"ENDMACRO\"},{\"tag\":\"KEYWORD4\",\"text\":\"WHILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_CUSTOM_COMMAND\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_CUSTOM_TARGET\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_DEFINITIONS\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_DEPENDENCIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_EXECUTABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_LIBRARY\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_SUBDIRECTORY\"},{\"tag\":\"KEYWORD2\",\"text\":\"ADD_TEST\"},{\"tag\":\"KEYWORD2\",\"text\":\"AUX_SOURCE_DIRECTORY\"},{\"tag\":\"KEYWORD2\",\"text\":\"BUILD_COMMAND\"},{\"tag\":\"KEYWORD2\",\"text\":\"BUILD_NAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"CMAKE_MINIMUM_REQUIRED\"},{\"tag\":\"KEYWORD2\",\"text\":\"CONFIGURE_FILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"CREATE_TEST_SOURCELIST\"},{\"tag\":\"KEYWORD2\",\"text\":\"ENABLE_LANGUAGE\"},{\"tag\":\"KEYWORD2\",\"text\":\"ENABLE_TESTING\"},{\"tag\":\"KEYWORD2\",\"text\":\"EXEC_PROGRAM\"},{\"tag\":\"KEYWORD2\",\"text\":\"EXECUTE_PROCESS\"},{\"tag\":\"KEYWORD2\",\"text\":\"EXPORT_LIBRARY_DEPENDENCIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"FILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"FIND_FILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"FIND_LIBRARY\"},{\"tag\":\"KEYWORD2\",\"text\":\"FIND_PACKAGE\"},{\"tag\":\"KEYWORD2\",\"text\":\"FIND_PATH\"},{\"tag\":\"KEYWORD2\",\"text\":\"FIND_PROGRAM\"},{\"tag\":\"KEYWORD2\",\"text\":\"FLTK_WRAP_UI\"},{\"tag\":\"KEYWORD2\",\"text\":\"GET_CMAKE_PROPERTY\"},{\"tag\":\"KEYWORD2\",\"text\":\"GET_DIRECTORY_PROPERTY\"},{\"tag\":\"KEYWORD2\",\"text\":\"GET_FILENAME_COMPONENT\"},{\"tag\":\"KEYWORD2\",\"text\":\"GET_SOURCE_FILE_PROPERTY\"},{\"tag\":\"KEYWORD2\",\"text\":\"GET_TARGET_PROPERTY\"},{\"tag\":\"KEYWORD2\",\"text\":\"GET_TEST_PROPERTY\"},{\"tag\":\"KEYWORD2\",\"text\":\"INCLUDE\"},{\"tag\":\"KEYWORD2\",\"text\":\"INCLUDE_DIRECTORIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"INCLUDE_EXTERNAL_MSPROJECT\"},{\"tag\":\"KEYWORD2\",\"text\":\"INCLUDE_REGULAR_EXPRESSION\"},{\"tag\":\"KEYWORD2\",\"text\":\"INSTALL\"},{\"tag\":\"KEYWORD2\",\"text\":\"INSTALL_FILES\"},{\"tag\":\"KEYWORD2\",\"text\":\"INSTALL_PROGRAMS\"},{\"tag\":\"KEYWORD2\",\"text\":\"INSTALL_TARGETS\"},{\"tag\":\"KEYWORD2\",\"text\":\"LINK_DIRECTORIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"LINK_LIBRARIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"LIST\"},{\"tag\":\"KEYWORD2\",\"text\":\"LOAD_CACHE\"},{\"tag\":\"KEYWORD2\",\"text\":\"LOAD_COMMAND\"},{\"tag\":\"KEYWORD2\",\"text\":\"MAKE_DIRECTORY\"},{\"tag\":\"KEYWORD2\",\"text\":\"MARK_AS_ADVANCED\"},{\"tag\":\"KEYWORD2\",\"text\":\"MATH\"},{\"tag\":\"KEYWORD2\",\"text\":\"MESSAGE\"},{\"tag\":\"KEYWORD2\",\"text\":\"OPTION\"},{\"tag\":\"KEYWORD2\",\"text\":\"OUTPUT_REQUIRED_FILES\"},{\"tag\":\"KEYWORD2\",\"text\":\"PROJECT\"},{\"tag\":\"KEYWORD2\",\"text\":\"QT_WRAP_CPP\"},{\"tag\":\"KEYWORD2\",\"text\":\"QT_WRAP_UI\"},{\"tag\":\"KEYWORD2\",\"text\":\"REMOVE\"},{\"tag\":\"KEYWORD2\",\"text\":\"REMOVE_DEFINITIONS\"},{\"tag\":\"KEYWORD2\",\"text\":\"SEPARATE_ARGUMENTS\"},{\"tag\":\"KEYWORD2\",\"text\":\"SET\"},{\"tag\":\"KEYWORD2\",\"text\":\"SET_DIRECTORY_PROPERTIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"SET_SOURCE_FILES_PROPERTIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"SET_TARGET_PROPERTIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"SET_TESTS_PROPERTIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"SITE_NAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"SOURCE_GROUP\"},{\"tag\":\"KEYWORD2\",\"text\":\"STRING\"},{\"tag\":\"KEYWORD2\",\"text\":\"SUBDIR_DEPENDS\"},{\"tag\":\"KEYWORD2\",\"text\":\"SUBDIRS\"},{\"tag\":\"KEYWORD2\",\"text\":\"TARGET_LINK_LIBRARIES\"},{\"tag\":\"KEYWORD2\",\"text\":\"TRY_COMPILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"TRY_RUN\"},{\"tag\":\"KEYWORD2\",\"text\":\"USE_MANGLED_MESA\"},{\"tag\":\"KEYWORD2\",\"text\":\"UTILITY_SOURCE\"},{\"tag\":\"KEYWORD2\",\"text\":\"VARIABLE_REQUIRES\"},{\"tag\":\"KEYWORD2\",\"text\":\"VTK_MAKE_INSTANTIATOR\"},{\"tag\":\"KEYWORD2\",\"text\":\"VTK_WRAP_JAVA\"},{\"tag\":\"KEYWORD2\",\"text\":\"VTK_WRAP_PYTHON\"},{\"tag\":\"KEYWORD2\",\"text\":\"VTK_WRAP_TCL\"},{\"tag\":\"KEYWORD2\",\"text\":\"WRITE_FILE\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"LITERAL\",\"DEFAULT\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"KEYWORD2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"${\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "#";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "4";
+        PROPERTY2.NAME = "indentSize";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "";
+        PROPERTY3.NAME = "firstlineGlob";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "none";
+        PROPERTY4.NAME = "wrap";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "false";
+        PROPERTY5.NAME = "noTabs";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = "8";
+        PROPERTY6.NAME = "tabSize";
+        PROPERTY PROPERTY7 = new PROPERTY();
+        PROPERTY7.VALUE = "0";
+        PROPERTY7.NAME = "maxLineLen";
+        PROPERTY PROPERTY8 = new PROPERTY();
+        PROPERTY8.VALUE = "_";
+        PROPERTY8.NAME = "noWordSep";
+        PROPERTY PROPERTY9 = new PROPERTY();
+        PROPERTY9.VALUE = "none";
+        PROPERTY9.NAME = "folding";
+        PROPERTY PROPERTY10 = new PROPERTY();
+        PROPERTY10.VALUE = "true";
+        PROPERTY10.NAME = "customSettings";
+        PROPERTY PROPERTY11 = new PROPERTY();
+        PROPERTY11.VALUE = "false";
+        PROPERTY11.NAME = "deepIndent";
+        PROPERTY PROPERTY12 = new PROPERTY();
+        PROPERTY12.VALUE = "1000";
+        PROPERTY12.NAME = "collapseFolds";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, PROPERTY12, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "KEYWORD2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "${";
+        END END1 = new END();
+        END1.text = "}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "$";
+        MARK_FOLLOWING1.TYPE = "KEYWORD2";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.DELEGATE = "LITERAL";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "(";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ")";
+        SEQ1.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("OPERATOR", new String[]{"AND", "BOOL", "CACHE", "COMMAND", "DEFINED", "DOC", "EQUAL", "EXISTS", "FALSE", "GREATER", "INTERNAL", "LESS", "MATCHES", "NAME", "NAMES", "NAME_WE", "NOT", "OFF", "ON", "OR", "PATH", "PATHS", "PROGRAM", "STREQUAL", "STRGREATER", "STRING", "STRLESS", "TRUE", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"ADD_CUSTOM_COMMAND", "ADD_CUSTOM_TARGET", "ADD_DEFINITIONS", "ADD_DEPENDENCIES", "ADD_EXECUTABLE", "ADD_LIBRARY", "ADD_SUBDIRECTORY", "ADD_TEST", "AUX_SOURCE_DIRECTORY", "BUILD_COMMAND", "BUILD_NAME", "CMAKE_MINIMUM_REQUIRED", "CONFIGURE_FILE", "CREATE_TEST_SOURCELIST", "ENABLE_LANGUAGE", "ENABLE_TESTING", "EXEC_PROGRAM", "EXECUTE_PROCESS", "EXPORT_LIBRARY_DEPENDENCIES", "FILE", "FIND_FILE", "FIND_LIBRARY", "FIND_PACKAGE", "FIND_PATH", "FIND_PROGRAM", "FLTK_WRAP_UI", "GET_CMAKE_PROPERTY", "GET_DIRECTORY_PROPERTY", "GET_FILENAME_COMPONENT", "GET_SOURCE_FILE_PROPERTY", "GET_TARGET_PROPERTY", "GET_TEST_PROPERTY", "INCLUDE", "INCLUDE_DIRECTORIES", "INCLUDE_EXTERNAL_MSPROJECT", "INCLUDE_REGULAR_EXPRESSION", "INSTALL", "INSTALL_FILES", "INSTALL_PROGRAMS", "INSTALL_TARGETS", "LINK_DIRECTORIES", "LINK_LIBRARIES", "LIST", "LOAD_CACHE", "LOAD_COMMAND", "MAKE_DIRECTORY", "MARK_AS_ADVANCED", "MATH", "MESSAGE", "OPTION", "OUTPUT_REQUIRED_FILES", "PROJECT", "QT_WRAP_CPP", "QT_WRAP_UI", "REMOVE", "REMOVE_DEFINITIONS", "SEPARATE_ARGUMENTS", "SET", "SET_DIRECTORY_PROPERTIES", "SET_SOURCE_FILES_PROPERTIES", "SET_TARGET_PROPERTIES", "SET_TESTS_PROPERTIES", "SITE_NAME", "SOURCE_GROUP", "STRING", "SUBDIR_DEPENDS", "SUBDIRS", "TARGET_LINK_LIBRARIES", "TRY_COMPILE", "TRY_RUN", "USE_MANGLED_MESA", "UTILITY_SOURCE", "VARIABLE_REQUIRES", "VTK_MAKE_INSTANTIATOR", "VTK_WRAP_JAVA", "VTK_WRAP_PYTHON", "VTK_WRAP_TCL", "WRITE_FILE", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"FOREACH", "ELSE", "ELSEIF", "IF", "MACRO", "ENDIF", "ENDWHILE", "ENDFOREACH", "ENDMACRO", "WHILE", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "LITERAL";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.ESCAPE = "\\";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "KEYWORD2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "${";
+        END END1 = new END();
+        END1.text = "}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "$";
+        MARK_FOLLOWING1.TYPE = "KEYWORD2";
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

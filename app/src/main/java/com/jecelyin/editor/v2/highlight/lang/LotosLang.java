@@ -19,15 +19,82 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LotosLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*)\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*(let|library|process|specification|type|>>).*|\\\\s*(\\\\(|\\\\[\\\\]|\\\\[>|\\\\|\\\\||\\\\|\\\\|\\\\||\\\\|\\\\[.*\\\\]\\\\||\\\\[.*\\\\]\\\\s*->)\\\\s*\",\"NAME\":\"indentNextLines\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"FALSE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(*\"},{\"tag\":\"END\",\"text\":\"*)\"}]},{\"tag\":\"SEQ\",\"text\":\">>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"[>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|||\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"||\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|[\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"]|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"[]\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"accept\"},{\"tag\":\"KEYWORD1\",\"text\":\"actualizedby\"},{\"tag\":\"KEYWORD1\",\"text\":\"any\"},{\"tag\":\"KEYWORD1\",\"text\":\"behavior\"},{\"tag\":\"KEYWORD1\",\"text\":\"behaviour\"},{\"tag\":\"KEYWORD1\",\"text\":\"choice\"},{\"tag\":\"KEYWORD1\",\"text\":\"endlib\"},{\"tag\":\"KEYWORD1\",\"text\":\"endproc\"},{\"tag\":\"KEYWORD1\",\"text\":\"endspec\"},{\"tag\":\"KEYWORD1\",\"text\":\"endtype\"},{\"tag\":\"KEYWORD1\",\"text\":\"eqns\"},{\"tag\":\"KEYWORD1\",\"text\":\"exit\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"forall\"},{\"tag\":\"KEYWORD1\",\"text\":\"formaleqns\"},{\"tag\":\"KEYWORD1\",\"text\":\"formalopns\"},{\"tag\":\"KEYWORD1\",\"text\":\"formalsorts\"},{\"tag\":\"KEYWORD1\",\"text\":\"hide\"},{\"tag\":\"KEYWORD1\",\"text\":\"i\"},{\"tag\":\"KEYWORD1\",\"text\":\"in\"},{\"tag\":\"KEYWORD1\",\"text\":\"is\"},{\"tag\":\"KEYWORD1\",\"text\":\"let\"},{\"tag\":\"KEYWORD1\",\"text\":\"library\"},{\"tag\":\"KEYWORD1\",\"text\":\"noexit\"},{\"tag\":\"KEYWORD1\",\"text\":\"of\"},{\"tag\":\"KEYWORD1\",\"text\":\"ofsort\"},{\"tag\":\"KEYWORD1\",\"text\":\"opnnames\"},{\"tag\":\"KEYWORD1\",\"text\":\"opns\"},{\"tag\":\"KEYWORD1\",\"text\":\"par\"},{\"tag\":\"KEYWORD1\",\"text\":\"process\"},{\"tag\":\"KEYWORD1\",\"text\":\"renamedby\"},{\"tag\":\"KEYWORD1\",\"text\":\"sortnames\"},{\"tag\":\"KEYWORD1\",\"text\":\"sorts\"},{\"tag\":\"KEYWORD1\",\"text\":\"specification\"},{\"tag\":\"KEYWORD1\",\"text\":\"stop\"},{\"tag\":\"KEYWORD1\",\"text\":\"type\"},{\"tag\":\"KEYWORD1\",\"text\":\"using\"},{\"tag\":\"KEYWORD1\",\"text\":\"where\"},{\"tag\":\"KEYWORD2\",\"text\":\"Bit\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Bool\"},{\"tag\":\"KEYWORD2\",\"text\":\"DecDigit\"},{\"tag\":\"KEYWORD2\",\"text\":\"DecString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Element\"},{\"tag\":\"KEYWORD2\",\"text\":\"FBool\"},{\"tag\":\"KEYWORD2\",\"text\":\"HexDigit\"},{\"tag\":\"KEYWORD2\",\"text\":\"HexString\"},{\"tag\":\"KEYWORD2\",\"text\":\"OctDigit\"},{\"tag\":\"KEYWORD2\",\"text\":\"Octet\"},{\"tag\":\"KEYWORD2\",\"text\":\"OctString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Nat\"},{\"tag\":\"KEYWORD2\",\"text\":\"NonEmptyString\"},{\"tag\":\"KEYWORD2\",\"text\":\"OctetString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Set\"},{\"tag\":\"KEYWORD2\",\"text\":\"String\"},{\"tag\":\"KEYWORD2\",\"text\":\"BasicNaturalNumber\"},{\"tag\":\"KEYWORD2\",\"text\":\"BasicNonEmptyString\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitNatRepr\"},{\"tag\":\"KEYWORD2\",\"text\":\"Boolean\"},{\"tag\":\"KEYWORD2\",\"text\":\"FBoolean\"},{\"tag\":\"KEYWORD2\",\"text\":\"DecNatRepr\"},{\"tag\":\"KEYWORD2\",\"text\":\"HexNatRepr\"},{\"tag\":\"KEYWORD2\",\"text\":\"NatRepresentations\"},{\"tag\":\"KEYWORD2\",\"text\":\"NaturalNumber\"},{\"tag\":\"KEYWORD2\",\"text\":\"OctNatRepr\"},{\"tag\":\"KEYWORD2\",\"text\":\"RicherNonEmptyString\"},{\"tag\":\"KEYWORD2\",\"text\":\"String0\"},{\"tag\":\"KEYWORD2\",\"text\":\"String1\"},{\"tag\":\"LITERAL1\",\"text\":\"false\"},{\"tag\":\"LITERAL1\",\"text\":\"true\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "(*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*)";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "\\s*(let|library|process|specification|type|>>).*|\\s*(\\(|\\[\\]|\\[>|\\|\\||\\|\\|\\||\\|\\[.*\\]\\||\\[.*\\]\\s*->)\\s*";
+        PROPERTY3.NAME = "indentNextLines";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "(*";
+        END END1 = new END();
+        END1.text = "*)";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ">>";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "[>";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "|||";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "||";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "|[";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "]|";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "[]";
+        SEQ7.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL1", new String[]{"false", "true", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"accept", "actualizedby", "any", "behavior", "behaviour", "choice", "endlib", "endproc", "endspec", "endtype", "eqns", "exit", "for", "forall", "formaleqns", "formalopns", "formalsorts", "hide", "i", "in", "is", "let", "library", "noexit", "of", "ofsort", "opnnames", "opns", "par", "process", "renamedby", "sortnames", "sorts", "specification", "stop", "type", "using", "where", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"Bit", "BitString", "Bool", "DecDigit", "DecString", "Element", "FBool", "HexDigit", "HexString", "OctDigit", "Octet", "OctString", "Nat", "NonEmptyString", "OctetString", "Set", "String", "BasicNaturalNumber", "BasicNonEmptyString", "BitNatRepr", "Boolean", "FBoolean", "DecNatRepr", "HexNatRepr", "NatRepresentations", "NaturalNumber", "OctNatRepr", "RicherNonEmptyString", "String0", "String1", });
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

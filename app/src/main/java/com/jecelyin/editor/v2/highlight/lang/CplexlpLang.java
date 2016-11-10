@@ -19,15 +19,102 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CplexlpLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"+-/*^=<>\\\\\",\"NAME\":\"wordBreakChars\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"\\\\d+(?:\\\\.\\\\d+)?|\\\\d+(?:\\\\.\\\\d+)?e\\\\d+\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"\\\\\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\">=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"maximize\"},{\"tag\":\"KEYWORD1\",\"text\":\"maximum\"},{\"tag\":\"KEYWORD1\",\"text\":\"minimize\"},{\"tag\":\"KEYWORD1\",\"text\":\"minimum\"},{\"tag\":\"KEYWORD1\",\"text\":\"min\"},{\"tag\":\"KEYWORD1\",\"text\":\"max\"},{\"tag\":\"KEYWORD1\",\"text\":\"s.t.\"},{\"tag\":\"KEYWORD1\",\"text\":\"st.\"},{\"tag\":\"KEYWORD1\",\"text\":\"st\"},{\"tag\":\"KEYWORD1\",\"text\":\"end\"},{\"tag\":\"KEYWORD1\",\"text\":\"bounds\"},{\"tag\":\"KEYWORD1\",\"text\":\"bound\"},{\"tag\":\"KEYWORD1\",\"text\":\"generals\"},{\"tag\":\"KEYWORD1\",\"text\":\"general\"},{\"tag\":\"KEYWORD1\",\"text\":\"gen\"},{\"tag\":\"KEYWORD1\",\"text\":\"integers\"},{\"tag\":\"KEYWORD1\",\"text\":\"integer\"},{\"tag\":\"KEYWORD1\",\"text\":\"int\"},{\"tag\":\"KEYWORD1\",\"text\":\"binaries\"},{\"tag\":\"KEYWORD1\",\"text\":\"binary\"},{\"tag\":\"KEYWORD1\",\"text\":\"bin\"},{\"tag\":\"SEQ\",\"text\":\"infinity\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"AT_LINE_START\":\"FALSE\"}},{\"tag\":\"SEQ\",\"text\":\"inf\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"AT_LINE_START\":\"FALSE\"}},{\"tag\":\"SEQ\",\"text\":\"free\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"AT_LINE_START\":\"FALSE\"}}]},{\"tag\":\"SEQ\",\"text\":\"subject to\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}},{\"tag\":\"SEQ\",\"text\":\"such that\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[A-z_ ][\\\\w(),]+(?=:)\",\"attrs\":{\"HASH_CHARS\":\"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz_\",\"TYPE\":\"LABEL\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[A-z_][\\\\w!\\\"#$%&()/,.;?@_`'{}|~]*\",\"attrs\":{\"HASH_CHARS\":\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_\",\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"FALSE\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "+-/*^=<>\\";
+        PROPERTY1.NAME = "wordBreakChars";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "\\d+(?:\\.\\d+)?|\\d+(?:\\.\\d+)?e\\d+";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "\\";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ">=";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "=>";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = ">";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "<=";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "=<";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "<";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = ":";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "=";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "+";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "-";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "*";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "/";
+        SEQ12.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"maximize", "maximum", "minimize", "minimum", "min", "max", "s.t.", "st.", "st", "end", "bounds", "bound", "generals", "general", "gen", "integers", "integer", "int", "binaries", "binary", "bin", });
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "subject to";
+        SEQ13.TYPE = "KEYWORD1";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "such that";
+        SEQ14.TYPE = "KEYWORD1";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "[A-z_ ][\\w(),]+(?=:)";
+        SEQ_REGEXP1.HASH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz_";
+        SEQ_REGEXP1.TYPE = "LABEL";
+        SEQ_REGEXP1.AT_LINE_START = "TRUE";
+        SEQ_REGEXP SEQ_REGEXP2 = new SEQ_REGEXP();
+        SEQ_REGEXP2.text = "[A-z_][\\w!\"#$%&()/,.;?@_`'{}|~]*";
+        SEQ_REGEXP2.HASH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+        SEQ_REGEXP2.AT_WORD_START = "TRUE";
+        SEQ_REGEXP2.TYPE = "KEYWORD2";
+        SEQ_REGEXP2.AT_LINE_START = "FALSE";
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, SEQ_REGEXP2, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,150 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class UrlLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",-=<>/?^&*\",\"NAME\":\"wordBreakChars\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DOMAINNAME\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"MARK_PREVIOUS\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\":\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"MATCH_TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(?=\\\\b[\\\\w.:-]+@(\\\\b))\"},{\"tag\":\"END\",\"text\":\"$1\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"MATCH_TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\\\\b)[\\\\w.-]+((?=/))\"},{\"tag\":\"END\",\"text\":\"$1\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"MATCH_TYPE\":\"OPERATOR\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"[0-9][0-9a-zA-Z]*\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"MARK_FOLLOWING\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"LITERAL4\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"FALSE\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"MATCH_TYPE\":\"OPERATOR\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"=\"},{\"tag\":\"END\",\"text\":\"&\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL2\",\"DELEGATE\":\"DOMAINNAME\",\"MATCH_TYPE\":\"OPERATOR\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"://\"},{\"tag\":\"END\",\"text\":\"/\"}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"SCHEMES\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"SCHEMES\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"aaa\"},{\"tag\":\"KEYWORD1\",\"text\":\"aaas\"},{\"tag\":\"KEYWORD1\",\"text\":\"acap\"},{\"tag\":\"KEYWORD1\",\"text\":\"cap\"},{\"tag\":\"KEYWORD1\",\"text\":\"cid\"},{\"tag\":\"KEYWORD1\",\"text\":\"crid\"},{\"tag\":\"KEYWORD1\",\"text\":\"data\"},{\"tag\":\"KEYWORD1\",\"text\":\"dav\"},{\"tag\":\"KEYWORD1\",\"text\":\"dict\"},{\"tag\":\"KEYWORD1\",\"text\":\"dns\"},{\"tag\":\"KEYWORD1\",\"text\":\"fax\"},{\"tag\":\"KEYWORD1\",\"text\":\"ftp\"},{\"tag\":\"KEYWORD1\",\"text\":\"file\"},{\"tag\":\"KEYWORD1\",\"text\":\"ftp\"},{\"tag\":\"KEYWORD1\",\"text\":\"go\"},{\"tag\":\"KEYWORD1\",\"text\":\"gopher\"},{\"tag\":\"KEYWORD1\",\"text\":\"h323\"},{\"tag\":\"KEYWORD1\",\"text\":\"http\"},{\"tag\":\"KEYWORD1\",\"text\":\"https\"},{\"tag\":\"KEYWORD1\",\"text\":\"icap\"},{\"tag\":\"KEYWORD1\",\"text\":\"im\"},{\"tag\":\"KEYWORD1\",\"text\":\"imap\"},{\"tag\":\"KEYWORD1\",\"text\":\"info\"},{\"tag\":\"KEYWORD1\",\"text\":\"ipp\"},{\"tag\":\"KEYWORD1\",\"text\":\"iris\"},{\"tag\":\"KEYWORD1\",\"text\":\"ldap\"},{\"tag\":\"KEYWORD1\",\"text\":\"mid\"},{\"tag\":\"KEYWORD1\",\"text\":\"modem\"},{\"tag\":\"KEYWORD1\",\"text\":\"msrp\"},{\"tag\":\"KEYWORD1\",\"text\":\"mtqp\"},{\"tag\":\"KEYWORD1\",\"text\":\"mupdate\"},{\"tag\":\"KEYWORD1\",\"text\":\"news\"},{\"tag\":\"KEYWORD1\",\"text\":\"nfs\"},{\"tag\":\"KEYWORD1\",\"text\":\"nntp\"},{\"tag\":\"KEYWORD1\",\"text\":\"opaquelocktoken\"},{\"tag\":\"KEYWORD1\",\"text\":\"pop\"},{\"tag\":\"KEYWORD1\",\"text\":\"pres\"},{\"tag\":\"KEYWORD1\",\"text\":\"prospero\"},{\"tag\":\"KEYWORD1\",\"text\":\"rtsp\"},{\"tag\":\"KEYWORD1\",\"text\":\"service\"},{\"tag\":\"KEYWORD1\",\"text\":\"shttp\"},{\"tag\":\"KEYWORD1\",\"text\":\"snmp\"},{\"tag\":\"KEYWORD1\",\"text\":\"tag\"},{\"tag\":\"KEYWORD1\",\"text\":\"telnet\"},{\"tag\":\"KEYWORD1\",\"text\":\"tftp\"},{\"tag\":\"KEYWORD1\",\"text\":\"thismessage\"},{\"tag\":\"KEYWORD1\",\"text\":\"tip\"},{\"tag\":\"KEYWORD1\",\"text\":\"tv\"},{\"tag\":\"KEYWORD1\",\"text\":\"urn\"},{\"tag\":\"KEYWORD1\",\"text\":\"vemmi\"},{\"tag\":\"KEYWORD1\",\"text\":\"wais\"},{\"tag\":\"KEYWORD1\",\"text\":\"xmlrpc.beep\"},{\"tag\":\"KEYWORD1\",\"text\":\"xmpp\"},{\"tag\":\"KEYWORD2\",\"text\":\"chrome\"},{\"tag\":\"KEYWORD2\",\"text\":\"cvs\"},{\"tag\":\"KEYWORD2\",\"text\":\"feed\"},{\"tag\":\"KEYWORD2\",\"text\":\"fish\"},{\"tag\":\"KEYWORD2\",\"text\":\"gg\"},{\"tag\":\"KEYWORD2\",\"text\":\"gizmoproject\"},{\"tag\":\"KEYWORD2\",\"text\":\"irc\"},{\"tag\":\"KEYWORD2\",\"text\":\"ircs\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyparc\"},{\"tag\":\"KEYWORD2\",\"text\":\"lastfm\"},{\"tag\":\"KEYWORD2\",\"text\":\"ldaps\"},{\"tag\":\"KEYWORD2\",\"text\":\"(other\"},{\"tag\":\"KEYWORD2\",\"text\":\"mms\"},{\"tag\":\"KEYWORD2\",\"text\":\"nsfw\"},{\"tag\":\"KEYWORD2\",\"text\":\"psyc\"},{\"tag\":\"KEYWORD2\",\"text\":\"rsync\"},{\"tag\":\"KEYWORD2\",\"text\":\"secondlife\"},{\"tag\":\"KEYWORD2\",\"text\":\"sftp\"},{\"tag\":\"KEYWORD2\",\"text\":\"skype\"},{\"tag\":\"KEYWORD2\",\"text\":\"ssh\"},{\"tag\":\"KEYWORD2\",\"text\":\"smb\"},{\"tag\":\"KEYWORD2\",\"text\":\"soldat\"},{\"tag\":\"KEYWORD2\",\"text\":\"teamspeak\"},{\"tag\":\"KEYWORD2\",\"text\":\"unreal\"},{\"tag\":\"KEYWORD2\",\"text\":\"ut2004\"},{\"tag\":\"KEYWORD2\",\"text\":\"ventrilo\"},{\"tag\":\"KEYWORD2\",\"text\":\"webcal\"},{\"tag\":\"KEYWORD2\",\"text\":\"wyciwyg\"},{\"tag\":\"KEYWORD2\",\"text\":\"xfire\"},{\"tag\":\"KEYWORD2\",\"text\":\"ymsgr\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = ",-=<>/?^&*";
+        PROPERTY1.NAME = "wordBreakChars";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DOMAINNAME";
+        RULES1.IGNORE_CASE = "TRUE";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "@";
+        MARK_PREVIOUS1.TYPE = "LITERAL2";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS2 = new MARK_PREVIOUS();
+        MARK_PREVIOUS2.text = ":";
+        MARK_PREVIOUS2.TYPE = "LITERAL2";
+        MARK_PREVIOUS2.MATCH_TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS3 = new MARK_PREVIOUS();
+        MARK_PREVIOUS3.text = "/";
+        MARK_PREVIOUS3.TYPE = "LITERAL2";
+        MARK_PREVIOUS3.MATCH_TYPE = "OPERATOR";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.NO_WORD_BREAK = "TRUE";
+        SPAN_REGEXP1.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP1.MATCH_TYPE = "LITERAL2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "(?=\\b[\\w.:-]+@(\\b))";
+        END END1 = new END();
+        END1.text = "$1";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.NO_WORD_BREAK = "TRUE";
+        SPAN_REGEXP2.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP2.MATCH_TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "(\\b)[\\w.-]+((?=/))";
+        END END2 = new END();
+        END2.text = "$1";
+        SPAN_REGEXP2.END = new END[] { END2, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "/";
+        EOL_SPAN1.TYPE = "LITERAL4";
+        EOL_SPAN1.MATCH_TYPE = "OPERATOR";
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, MARK_PREVIOUS2, MARK_PREVIOUS3, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "[0-9][0-9a-zA-Z]*";
+        RULES1.IGNORE_CASE = "FALSE";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "?";
+        MARK_FOLLOWING1.TYPE = "LITERAL2";
+        MARK_FOLLOWING1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "/";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "+";
+        SEQ2.TYPE = "LITERAL4";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.NO_WORD_BREAK = "FALSE";
+        SPAN_REGEXP1.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP1.TYPE = "LITERAL1";
+        SPAN_REGEXP1.MATCH_TYPE = "OPERATOR";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "=";
+        END END1 = new END();
+        END1.text = "&";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_WORD_BREAK = "TRUE";
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL2";
+        SPAN1.DELEGATE = "DOMAINNAME";
+        SPAN1.MATCH_TYPE = "OPERATOR";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "://";
+        END END2 = new END();
+        END2.text = "/";
+        SPAN1.END = new END[] { END2, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN2, };
+
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "SCHEMES";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "SCHEMES";
+        RULES1.IGNORE_CASE = "TRUE";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"aaa", "aaas", "acap", "cap", "cid", "crid", "data", "dav", "dict", "dns", "fax", "ftp", "file", "ftp", "go", "gopher", "h323", "http", "https", "icap", "im", "imap", "info", "ipp", "iris", "ldap", "mid", "modem", "msrp", "mtqp", "mupdate", "news", "nfs", "nntp", "opaquelocktoken", "pop", "pres", "prospero", "rtsp", "service", "shttp", "snmp", "tag", "telnet", "tftp", "thismessage", "tip", "tv", "urn", "vemmi", "wais", "xmlrpc.beep", "xmpp", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"chrome", "cvs", "feed", "fish", "gg", "gizmoproject", "irc", "ircs", "keyparc", "lastfm", "ldaps", "(other", "mms", "nsfw", "psyc", "rsync", "secondlife", "sftp", "skype", "ssh", "smb", "soldat", "teamspeak", "unreal", "ut2004", "ventrilo", "webcal", "wyciwyg", "xfire", "ymsgr", });
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

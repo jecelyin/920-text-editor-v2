@@ -19,15 +19,67 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CvsCommitLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"FALSE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"CVS:\",\"attrs\":{\"TYPE\":\"COMMENT1\",\"AT_LINE_START\":\"TRUE\",\"DELEGATE\":\"CHANGED\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CHANGED\",\"DEFAULT\":\"COMMENT2\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"CVS:\",\"attrs\":{\"TYPE\":\"COMMENT1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"Committing in\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}},{\"tag\":\"SEQ\",\"text\":\"Added Files:\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}},{\"tag\":\"SEQ\",\"text\":\"Modified Files:\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}},{\"tag\":\"SEQ\",\"text\":\"Removed Files:\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "true";
+        PROPERTY1.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "CVS:";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN1.AT_LINE_START = "TRUE";
+        EOL_SPAN1.DELEGATE = "CHANGED";
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CHANGED";
+        RULES1.DEFAULT = "COMMENT2";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "CVS:";
+        SEQ1.TYPE = "COMMENT1";
+        SEQ1.AT_LINE_START = "TRUE";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "Committing in";
+        SEQ2.TYPE = "KEYWORD1";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "Added Files:";
+        SEQ3.TYPE = "KEYWORD1";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "Modified Files:";
+        SEQ4.TYPE = "KEYWORD1";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "Removed Files:";
+        SEQ5.TYPE = "KEYWORD1";
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

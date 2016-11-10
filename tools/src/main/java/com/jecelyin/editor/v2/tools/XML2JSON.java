@@ -36,17 +36,20 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 
 
 public class XML2JSON {
     private static File assetsPath;
     private static File highlightPath;
     private static File langPath;
+    private static String langDefineTpl;
+    private static String langDefineClassTpl;
+    private static HashMap<String, Integer> classCounter = new HashMap<>();
 
     public static void main(String[] args) {
         File f = new File(".");
@@ -55,6 +58,13 @@ public class XML2JSON {
         highlightPath = new File(path, "app/src/main/java/com/jecelyin/editor/v2/highlight");
         assetsPath = new File(path, "tools/assets");
         File syntax = new File(assetsPath, "syntax");
+        try {
+            langDefineTpl = readFile(new File(assetsPath, "lang_define.tpl"));
+            langDefineClassTpl = readFile(new File(assetsPath, "lang_define_class.tpl"));
+        }catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
 
         langPath = new File(highlightPath, "lang");
         for (File f2 : langPath.listFiles()) {
@@ -120,8 +130,9 @@ public class XML2JSON {
         return sb.toString();
     }
 
-    private static CharSequence textString(String string) {
+    private static String textString(String string) {
         StringBuilder sb = new StringBuilder(string.length() * 2);
+        sb.append('"');
         int size = string.length();
         for (int i = 0; i < size; i++) {
             char c = string.charAt(i);
@@ -137,11 +148,11 @@ public class XML2JSON {
                     break;
             }
         }
+        sb.append('"');
         return sb.toString();
     }
 
     private static void parseXml(final File file, StringBuilder mapCode) throws Exception {
-        String defineTpl = readFile(new File(assetsPath, "lang_define.tpl"));
         String clsName = fileNameToClassName(file.getName()) + "Lang";
 
         DocumentBuilderFactory dbFactory
@@ -166,53 +177,85 @@ public class XML2JSON {
             Node item = nList.item(i);
             o("node " + item.getNodeName() + " " + item.getNodeType());
             if (item.getNodeType() == Node.ELEMENT_NODE) {
-                JSONObject jsonObject = new JSONObject();
-                parseNode((Element)item, jsonObject);
+                String code = langDefineTpl + " " + langDefineClassTpl;
+                code = code.replace("@CLASS_NAME@", clsName);
+
+                classCounter.clear();
+
+                StringBuilder innerClass = new StringBuilder();
+                code = parseNode((Element)item, code, null, innerClass);
+                code = code.replace("@INNER_CLASS@", innerClass.toString());
 
                 mapCode.append("        map.put( \"")
                         .append(file.getName()).append("\", new ").append(clsName).append("() );\n");
 
-                String defineText = defineTpl.replace("@CLASS_NAME@", clsName);
-                defineText = defineText.replace("@LANG_DEFINE@", textString(jsonObject.toString()));
-
                 File langFile = new File(langPath, clsName + ".java");
-                writeFile(langFile, defineText);
+                writeFile(langFile, code);
             }
         }
     }
 
-    private static void parseNode(Element item, JSONObject jsonObject) {
+    private static String parseNode(Element item, String code, StringBuilder childrenCode, StringBuilder innerClass) {
 //        o("  name: %s", item.getTagName());
+        StringBuilder sb = new StringBuilder();
+
         NamedNodeMap attributes = item.getAttributes();
         int length = attributes.getLength();
         JSONObject attrs = new JSONObject();
         for (int i = 0; i < length; i++) {
             Node node = attributes.item(i);
             attrs.put(node.getNodeName(), node.getNodeValue());
+            sb.append("        map.put(\"").append(node.getNodeName()).append("\", \"")
+                    .append(node.getNodeValue()).append("\");\n");
         }
-        jsonObject.put("tag", item.getNodeName());
-        if (attrs.length() > 0)
-            jsonObject.put("attrs", attrs);
 
-        List<JSONObject> childs = new ArrayList<>();
+        boolean withoutRoot = false;
+        String nodeName = item.getNodeName();
+        if (code == null) {
+            withoutRoot = true;
+
+            code = "private static " + langDefineClassTpl;
+            if (!classCounter.containsKey(nodeName)) {
+                classCounter.put(nodeName, 0);
+            }
+            int count = classCounter.get(nodeName) + 1;
+            classCounter.put(nodeName, count);
+            String cls = fileNameToClassName(nodeName) + String.valueOf(count);
+            code = code.replace("@CLASS_NAME@", cls);
+
+            childrenCode.append("            new ")
+            .append(cls).append("(),\n");
+        }
+
+        code = code.replace("@TAG@", nodeName);
+        code = code.replace("@ATTRS@", sb.toString());
+        sb.setLength(0);
 
         NodeList childNodes = item.getChildNodes();
         length = childNodes.getLength();
+        StringBuilder childSb = new StringBuilder();
 
+        String text = "null";
         for (int i = 0; i < length; i++) {
             Node child = childNodes.item(i);
 
             short nodeType = child.getNodeType();
             if (nodeType == Node.ELEMENT_NODE) {
-                JSONObject childObj = new JSONObject();
-                parseNode((Element) child, childObj);
-                childs.add(childObj);
+
+                parseNode((Element) child, null, childSb, innerClass);
             } else if (nodeType == Node.TEXT_NODE) {
-                jsonObject.put("text", child.getTextContent().trim());
+                text = textString(child.getTextContent().trim());
             }
         }
-        if (!childs.isEmpty())
-            jsonObject.put("child", childs);
+        code = code.replace("@TEXT@", text);
+        code = code.replace("@CHILDREN@", childSb.toString());
+
+        if (withoutRoot) {
+            code = code.replace("@INNER_CLASS@", "");
+            innerClass.append("\n\n").append(code).append("\n\n");
+        }
+
+        return code;
     }
 
     public static String readFile(File file) throws IOException {

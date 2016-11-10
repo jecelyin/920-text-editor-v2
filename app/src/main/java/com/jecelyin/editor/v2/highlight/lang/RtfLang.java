@@ -19,15 +19,42 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class RtfLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"RULES\",\"text\":\"\",\"child\":[{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\'\\\\w\\\\d\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"ESCAPE\":\"\\\\\\\\\",\"HASH_CHAR\":\"\\\\'\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"\\\\*\\\\\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"\\\\\",\"attrs\":{\"TYPE\":\"KEYWORD1\"}}]}]}";
+        private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "{";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "}";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "\\\\'\\w\\d";
+        SEQ_REGEXP1.TYPE = "LITERAL2";
+        SEQ_REGEXP1.ESCAPE = "\\\\";
+        SEQ_REGEXP1.HASH_CHAR = "\\'";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "\\*\\";
+        MARK_FOLLOWING1.TYPE = "KEYWORD2";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "\\";
+        MARK_FOLLOWING2.TYPE = "KEYWORD1";
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, };
+
+        return RULES1;
     }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+
 }

@@ -19,15 +19,74 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class EiffelLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"--\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"--\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"alias\"},{\"tag\":\"KEYWORD1\",\"text\":\"all\"},{\"tag\":\"KEYWORD1\",\"text\":\"and\"},{\"tag\":\"KEYWORD1\",\"text\":\"as\"},{\"tag\":\"KEYWORD1\",\"text\":\"check\"},{\"tag\":\"KEYWORD1\",\"text\":\"class\"},{\"tag\":\"KEYWORD1\",\"text\":\"creation\"},{\"tag\":\"KEYWORD1\",\"text\":\"debug\"},{\"tag\":\"KEYWORD1\",\"text\":\"deferred\"},{\"tag\":\"KEYWORD1\",\"text\":\"do\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"elseif\"},{\"tag\":\"KEYWORD1\",\"text\":\"end\"},{\"tag\":\"KEYWORD1\",\"text\":\"ensure\"},{\"tag\":\"KEYWORD1\",\"text\":\"expanded\"},{\"tag\":\"KEYWORD1\",\"text\":\"export\"},{\"tag\":\"KEYWORD1\",\"text\":\"external\"},{\"tag\":\"KEYWORD1\",\"text\":\"feature\"},{\"tag\":\"KEYWORD1\",\"text\":\"from\"},{\"tag\":\"KEYWORD1\",\"text\":\"frozen\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"implies\"},{\"tag\":\"KEYWORD1\",\"text\":\"indexing\"},{\"tag\":\"KEYWORD1\",\"text\":\"infix\"},{\"tag\":\"KEYWORD1\",\"text\":\"inherit\"},{\"tag\":\"KEYWORD1\",\"text\":\"inspect\"},{\"tag\":\"KEYWORD1\",\"text\":\"invariant\"},{\"tag\":\"KEYWORD1\",\"text\":\"is\"},{\"tag\":\"KEYWORD1\",\"text\":\"like\"},{\"tag\":\"KEYWORD1\",\"text\":\"local\"},{\"tag\":\"KEYWORD1\",\"text\":\"loop\"},{\"tag\":\"KEYWORD1\",\"text\":\"not\"},{\"tag\":\"KEYWORD1\",\"text\":\"obsolete\"},{\"tag\":\"KEYWORD1\",\"text\":\"old\"},{\"tag\":\"KEYWORD1\",\"text\":\"once\"},{\"tag\":\"KEYWORD1\",\"text\":\"or\"},{\"tag\":\"KEYWORD1\",\"text\":\"prefix\"},{\"tag\":\"KEYWORD1\",\"text\":\"redefine\"},{\"tag\":\"KEYWORD1\",\"text\":\"rename\"},{\"tag\":\"KEYWORD1\",\"text\":\"require\"},{\"tag\":\"KEYWORD1\",\"text\":\"rescue\"},{\"tag\":\"KEYWORD1\",\"text\":\"retry\"},{\"tag\":\"KEYWORD1\",\"text\":\"select\"},{\"tag\":\"KEYWORD1\",\"text\":\"separate\"},{\"tag\":\"KEYWORD1\",\"text\":\"then\"},{\"tag\":\"KEYWORD1\",\"text\":\"undefine\"},{\"tag\":\"KEYWORD1\",\"text\":\"until\"},{\"tag\":\"KEYWORD1\",\"text\":\"variant\"},{\"tag\":\"KEYWORD1\",\"text\":\"when\"},{\"tag\":\"KEYWORD1\",\"text\":\"xor\"},{\"tag\":\"LITERAL2\",\"text\":\"current\"},{\"tag\":\"LITERAL2\",\"text\":\"false\"},{\"tag\":\"LITERAL2\",\"text\":\"precursor\"},{\"tag\":\"LITERAL2\",\"text\":\"result\"},{\"tag\":\"LITERAL2\",\"text\":\"strip\"},{\"tag\":\"LITERAL2\",\"text\":\"true\"},{\"tag\":\"LITERAL2\",\"text\":\"unique\"},{\"tag\":\"LITERAL2\",\"text\":\"void\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "--";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "true";
+        PROPERTY2.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "--";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "TRUE";
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.ESCAPE = "\\";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"current", "false", "precursor", "result", "strip", "true", "unique", "void", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"alias", "all", "and", "as", "check", "class", "creation", "debug", "deferred", "do", "else", "elseif", "end", "ensure", "expanded", "export", "external", "feature", "from", "frozen", "if", "implies", "indexing", "infix", "inherit", "inspect", "invariant", "is", "like", "local", "loop", "not", "obsolete", "old", "once", "or", "prefix", "redefine", "rename", "require", "rescue", "retry", "select", "separate", "then", "undefine", "until", "variant", "when", "xor", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

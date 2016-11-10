@@ -19,15 +19,109 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class RoffLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"noTabs\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\\\\\#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",+-=<>/?^&*\",\"NAME\":\"wordBreakChars\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"\\\\#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"\\\\\\\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"\\\\.\\\\s*\\\\w+\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"AT_LINE_START\":\"TRUE\",\"DELEGATE\":\"ROFF_ESCAPE\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\((\\\\p{Graph}\\\\[[^\\\\]]*\\\\])|(\\\\p{Graph}((\\\\'.*\\\\')|(\\\\\\\".*\\\\\\\")))|(\\\\p{Graph}{1,2}))\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"ROFF_ESCAPE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"\\\\\\\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"HASH_CHARS\":\"0123456789\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"DIGIT\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\\\\d|\\\\.)+[icpPszfmnvM]?\"},{\"tag\":\"END\",\"text\":\"\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"HASH_CHARS\":\"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstwxyz\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"KEYWORD2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\\w+\"},{\"tag\":\"END\",\"text\":\"\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "true";
+        PROPERTY1.NAME = "noTabs";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "\\\\#";
+        PROPERTY2.NAME = "lineComment";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = ",+-=<>/?^&*";
+        PROPERTY3.NAME = "wordBreakChars";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "\\#";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "\\\"";
+        EOL_SPAN2.TYPE = "COMMENT1";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP1 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP1.text = "\\.\\s*\\w+";
+        EOL_SPAN_REGEXP1.TYPE = "KEYWORD1";
+        EOL_SPAN_REGEXP1.AT_LINE_START = "TRUE";
+        EOL_SPAN_REGEXP1.DELEGATE = "ROFF_ESCAPE";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "\\\\((\\p{Graph}\\[[^\\]]*\\])|(\\p{Graph}((\\'.*\\')|(\\\".*\\\")))|(\\p{Graph}{1,2}))";
+        SEQ_REGEXP1.TYPE = "KEYWORD3";
+        SEQ_REGEXP1.HASH_CHAR = "\\";
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.EOL_SPAN_REGEXP = new EOL_SPAN_REGEXP[] { EOL_SPAN_REGEXP1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "ROFF_ESCAPE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "\\\"";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.HASH_CHARS = "0123456789";
+        SPAN_REGEXP1.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP1.TYPE = "DIGIT";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "(\\d|\\.)+[icpPszfmnvM]?";
+        END END2 = new END();
+        SPAN_REGEXP1.END = new END[] { END2, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.HASH_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstwxyz";
+        SPAN_REGEXP2.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP2.TYPE = "KEYWORD2";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "\\w+";
+        END END3 = new END();
+        SPAN_REGEXP2.END = new END[] { END3, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN3, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

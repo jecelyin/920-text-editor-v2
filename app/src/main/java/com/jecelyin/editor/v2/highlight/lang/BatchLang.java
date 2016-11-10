@@ -19,15 +19,145 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class BatchLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"rem\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\")\",\"NAME\":\"indentCloseBrackets\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"FALSE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"KEYWORD3\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\":\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LABEL\"}},{\"tag\":\"EOL_SPAN_REGEXP\",\"text\":\"REM\\\\s\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"COMMENT1\",\"HASH_CHAR\":\"REM\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SEQ\",\"text\":\"%0\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%1\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%2\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%3\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%4\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%5\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%6\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%7\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%8\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"%9\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"%%[\\\\p{Alpha}]\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"KEYWORD2\",\"HASH_CHAR\":\"%%\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"KEYWORD2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"%\"},{\"tag\":\"END\",\"text\":\"%\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"cd\"},{\"tag\":\"KEYWORD1\",\"text\":\"chdir\"},{\"tag\":\"KEYWORD1\",\"text\":\"md\"},{\"tag\":\"KEYWORD1\",\"text\":\"mkdir\"},{\"tag\":\"KEYWORD1\",\"text\":\"cls\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"echo\"},{\"tag\":\"KEYWORD1\",\"text\":\"echo.\"},{\"tag\":\"KEYWORD1\",\"text\":\"move\"},{\"tag\":\"KEYWORD1\",\"text\":\"copy\"},{\"tag\":\"KEYWORD1\",\"text\":\"move\"},{\"tag\":\"KEYWORD1\",\"text\":\"ren\"},{\"tag\":\"KEYWORD1\",\"text\":\"del\"},{\"tag\":\"KEYWORD1\",\"text\":\"set\"},{\"tag\":\"KEYWORD1\",\"text\":\"call\"},{\"tag\":\"KEYWORD1\",\"text\":\"exit\"},{\"tag\":\"KEYWORD1\",\"text\":\"setlocal\"},{\"tag\":\"KEYWORD1\",\"text\":\"shift\"},{\"tag\":\"KEYWORD1\",\"text\":\"endlocal\"},{\"tag\":\"KEYWORD1\",\"text\":\"pause\"},{\"tag\":\"KEYWORD2\",\"text\":\"defined\"},{\"tag\":\"KEYWORD2\",\"text\":\"exist\"},{\"tag\":\"KEYWORD2\",\"text\":\"errorlevel\"},{\"tag\":\"KEYWORD2\",\"text\":\"else\"},{\"tag\":\"KEYWORD2\",\"text\":\"in\"},{\"tag\":\"KEYWORD2\",\"text\":\"do\"},{\"tag\":\"KEYWORD2\",\"text\":\"NUL\"},{\"tag\":\"KEYWORD2\",\"text\":\"AUX\"},{\"tag\":\"KEYWORD2\",\"text\":\"PRN\"},{\"tag\":\"KEYWORD1\",\"text\":\"not\"},{\"tag\":\"KEYWORD3\",\"text\":\"goto\"},{\"tag\":\"FUNCTION\",\"text\":\"APPEND\"},{\"tag\":\"FUNCTION\",\"text\":\"ATTRIB\"},{\"tag\":\"FUNCTION\",\"text\":\"CHKDSK\"},{\"tag\":\"FUNCTION\",\"text\":\"CHOICE\"},{\"tag\":\"FUNCTION\",\"text\":\"DEBUG\"},{\"tag\":\"FUNCTION\",\"text\":\"DEFRAG\"},{\"tag\":\"FUNCTION\",\"text\":\"DELTREE\"},{\"tag\":\"FUNCTION\",\"text\":\"DISKCOMP\"},{\"tag\":\"FUNCTION\",\"text\":\"DISKCOPY\"},{\"tag\":\"FUNCTION\",\"text\":\"DOSKEY\"},{\"tag\":\"FUNCTION\",\"text\":\"DRVSPACE\"},{\"tag\":\"FUNCTION\",\"text\":\"EMM386\"},{\"tag\":\"FUNCTION\",\"text\":\"EXPAND\"},{\"tag\":\"FUNCTION\",\"text\":\"FASTOPEN\"},{\"tag\":\"FUNCTION\",\"text\":\"FC\"},{\"tag\":\"FUNCTION\",\"text\":\"FDISK\"},{\"tag\":\"FUNCTION\",\"text\":\"FIND\"},{\"tag\":\"FUNCTION\",\"text\":\"FORMAT\"},{\"tag\":\"FUNCTION\",\"text\":\"GRAPHICS\"},{\"tag\":\"FUNCTION\",\"text\":\"KEYB\"},{\"tag\":\"FUNCTION\",\"text\":\"LABEL\"},{\"tag\":\"FUNCTION\",\"text\":\"LOADFIX\"},{\"tag\":\"FUNCTION\",\"text\":\"MEM\"},{\"tag\":\"FUNCTION\",\"text\":\"MODE\"},{\"tag\":\"FUNCTION\",\"text\":\"MORE\"},{\"tag\":\"FUNCTION\",\"text\":\"MOVE\"},{\"tag\":\"FUNCTION\",\"text\":\"MSCDEX\"},{\"tag\":\"FUNCTION\",\"text\":\"NLSFUNC\"},{\"tag\":\"FUNCTION\",\"text\":\"POWER\"},{\"tag\":\"FUNCTION\",\"text\":\"PRINT\"},{\"tag\":\"FUNCTION\",\"text\":\"RD\"},{\"tag\":\"FUNCTION\",\"text\":\"REPLACE\"},{\"tag\":\"FUNCTION\",\"text\":\"RESTORE\"},{\"tag\":\"FUNCTION\",\"text\":\"SETVER\"},{\"tag\":\"FUNCTION\",\"text\":\"SHARE\"},{\"tag\":\"FUNCTION\",\"text\":\"SORT\"},{\"tag\":\"FUNCTION\",\"text\":\"SUBST\"},{\"tag\":\"FUNCTION\",\"text\":\"SYS\"},{\"tag\":\"FUNCTION\",\"text\":\"TREE\"},{\"tag\":\"FUNCTION\",\"text\":\"UNDELETE\"},{\"tag\":\"FUNCTION\",\"text\":\"UNFORMAT\"},{\"tag\":\"FUNCTION\",\"text\":\"VSAFE\"},{\"tag\":\"FUNCTION\",\"text\":\"XCOPY\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "rem";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "(";
+        PROPERTY2.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = ")";
+        PROPERTY3.NAME = "indentCloseBrackets";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        RULES1.IGNORE_CASE = "TRUE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "@";
+        SEQ1.TYPE = "KEYWORD3";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "+";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "|";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "&";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "!";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = ">";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "<";
+        SEQ7.TYPE = "OPERATOR";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = ":";
+        MARK_FOLLOWING1.AT_WORD_START = "TRUE";
+        MARK_FOLLOWING1.TYPE = "LABEL";
+        EOL_SPAN_REGEXP EOL_SPAN_REGEXP1 = new EOL_SPAN_REGEXP();
+        EOL_SPAN_REGEXP1.text = "REM\\s";
+        EOL_SPAN_REGEXP1.AT_WHITESPACE_END = "TRUE";
+        EOL_SPAN_REGEXP1.TYPE = "COMMENT1";
+        EOL_SPAN_REGEXP1.HASH_CHAR = "REM";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "%0";
+        SEQ8.TYPE = "KEYWORD2";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "%1";
+        SEQ9.TYPE = "KEYWORD2";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "%2";
+        SEQ10.TYPE = "KEYWORD2";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "%3";
+        SEQ11.TYPE = "KEYWORD2";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "%4";
+        SEQ12.TYPE = "KEYWORD2";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "%5";
+        SEQ13.TYPE = "KEYWORD2";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "%6";
+        SEQ14.TYPE = "KEYWORD2";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "%7";
+        SEQ15.TYPE = "KEYWORD2";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "%8";
+        SEQ16.TYPE = "KEYWORD2";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "%9";
+        SEQ17.TYPE = "KEYWORD2";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "%%[\\p{Alpha}]";
+        SEQ_REGEXP1.AT_WORD_START = "TRUE";
+        SEQ_REGEXP1.TYPE = "KEYWORD2";
+        SEQ_REGEXP1.HASH_CHAR = "%%";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "TRUE";
+        SPAN2.TYPE = "KEYWORD2";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "%";
+        END END2 = new END();
+        END2.text = "%";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"cd", "chdir", "md", "mkdir", "cls", "for", "if", "echo", "echo.", "move", "copy", "move", "ren", "del", "set", "call", "exit", "setlocal", "shift", "endlocal", "pause", "not", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"defined", "exist", "errorlevel", "else", "in", "do", "NUL", "AUX", "PRN", });
+        KEYWORDS1.add("FUNCTION", new String[]{"APPEND", "ATTRIB", "CHKDSK", "CHOICE", "DEBUG", "DEFRAG", "DELTREE", "DISKCOMP", "DISKCOPY", "DOSKEY", "DRVSPACE", "EMM386", "EXPAND", "FASTOPEN", "FC", "FDISK", "FIND", "FORMAT", "GRAPHICS", "KEYB", "LABEL", "LOADFIX", "MEM", "MODE", "MORE", "MOVE", "MSCDEX", "NLSFUNC", "POWER", "PRINT", "RD", "REPLACE", "RESTORE", "SETVER", "SHARE", "SORT", "SUBST", "SYS", "TREE", "UNDELETE", "UNFORMAT", "VSAFE", "XCOPY", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"goto", });
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.EOL_SPAN_REGEXP = new EOL_SPAN_REGEXP[] { EOL_SPAN_REGEXP1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,165 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class NetrexxLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*(if|loop|do|else|select|otherwise|catch|finally|class|method|properties)(.*)\",\"NAME\":\"indentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"--\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",+-=<>/?^&*\",\"NAME\":\"wordBreakChars\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT2\",\"DELEGATE\":\"java::JAVADOC\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/**\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"--\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\".*\",\"attrs\":{\"TYPE\":\"NULL\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"abbrev\"},{\"tag\":\"FUNCTION\",\"text\":\"abs\"},{\"tag\":\"FUNCTION\",\"text\":\"b2x\"},{\"tag\":\"FUNCTION\",\"text\":\"center\"},{\"tag\":\"FUNCTION\",\"text\":\"centre\"},{\"tag\":\"FUNCTION\",\"text\":\"changestr\"},{\"tag\":\"FUNCTION\",\"text\":\"charAt\"},{\"tag\":\"FUNCTION\",\"text\":\"compare\"},{\"tag\":\"FUNCTION\",\"text\":\"copies\"},{\"tag\":\"FUNCTION\",\"text\":\"copyIndexed\"},{\"tag\":\"FUNCTION\",\"text\":\"countstr\"},{\"tag\":\"FUNCTION\",\"text\":\"c2d\"},{\"tag\":\"FUNCTION\",\"text\":\"c2x\"},{\"tag\":\"FUNCTION\",\"text\":\"datatype\"},{\"tag\":\"FUNCTION\",\"text\":\"delstr\"},{\"tag\":\"FUNCTION\",\"text\":\"delword\"},{\"tag\":\"FUNCTION\",\"text\":\"d2c\"},{\"tag\":\"FUNCTION\",\"text\":\"d2X\"},{\"tag\":\"FUNCTION\",\"text\":\"equals\"},{\"tag\":\"FUNCTION\",\"text\":\"exists\"},{\"tag\":\"FUNCTION\",\"text\":\"format\"},{\"tag\":\"FUNCTION\",\"text\":\"hashCode\"},{\"tag\":\"FUNCTION\",\"text\":\"insert\"},{\"tag\":\"FUNCTION\",\"text\":\"lastpos\"},{\"tag\":\"FUNCTION\",\"text\":\"left\"},{\"tag\":\"FUNCTION\",\"text\":\"length\"},{\"tag\":\"FUNCTION\",\"text\":\"lower\"},{\"tag\":\"FUNCTION\",\"text\":\"max\"},{\"tag\":\"FUNCTION\",\"text\":\"min\"},{\"tag\":\"FUNCTION\",\"text\":\"nop\"},{\"tag\":\"FUNCTION\",\"text\":\"overlay\"},{\"tag\":\"FUNCTION\",\"text\":\"parse\"},{\"tag\":\"FUNCTION\",\"text\":\"pos\"},{\"tag\":\"FUNCTION\",\"text\":\"reverse\"},{\"tag\":\"FUNCTION\",\"text\":\"right\"},{\"tag\":\"FUNCTION\",\"text\":\"say\"},{\"tag\":\"FUNCTION\",\"text\":\"sequence\"},{\"tag\":\"FUNCTION\",\"text\":\"sign\"},{\"tag\":\"FUNCTION\",\"text\":\"space\"},{\"tag\":\"FUNCTION\",\"text\":\"strip\"},{\"tag\":\"FUNCTION\",\"text\":\"substr\"},{\"tag\":\"FUNCTION\",\"text\":\"subword\"},{\"tag\":\"FUNCTION\",\"text\":\"toCharArray\"},{\"tag\":\"FUNCTION\",\"text\":\"toString\"},{\"tag\":\"FUNCTION\",\"text\":\"toboolean\"},{\"tag\":\"FUNCTION\",\"text\":\"tobyte\"},{\"tag\":\"FUNCTION\",\"text\":\"tochar\"},{\"tag\":\"FUNCTION\",\"text\":\"todouble\"},{\"tag\":\"FUNCTION\",\"text\":\"tofloat\"},{\"tag\":\"FUNCTION\",\"text\":\"toint\"},{\"tag\":\"FUNCTION\",\"text\":\"tolong\"},{\"tag\":\"FUNCTION\",\"text\":\"toshort\"},{\"tag\":\"FUNCTION\",\"text\":\"trunc\"},{\"tag\":\"FUNCTION\",\"text\":\"translate\"},{\"tag\":\"FUNCTION\",\"text\":\"upper\"},{\"tag\":\"FUNCTION\",\"text\":\"verify\"},{\"tag\":\"FUNCTION\",\"text\":\"word\"},{\"tag\":\"FUNCTION\",\"text\":\"wordindex\"},{\"tag\":\"FUNCTION\",\"text\":\"wordlength\"},{\"tag\":\"FUNCTION\",\"text\":\"wordpos\"},{\"tag\":\"FUNCTION\",\"text\":\"words\"},{\"tag\":\"FUNCTION\",\"text\":\"x2b\"},{\"tag\":\"FUNCTION\",\"text\":\"x2c\"},{\"tag\":\"FUNCTION\",\"text\":\"x2d\"},{\"tag\":\"KEYWORD1\",\"text\":\"class\"},{\"tag\":\"KEYWORD1\",\"text\":\"private\"},{\"tag\":\"KEYWORD1\",\"text\":\"public\"},{\"tag\":\"KEYWORD1\",\"text\":\"abstract\"},{\"tag\":\"KEYWORD1\",\"text\":\"final\"},{\"tag\":\"KEYWORD1\",\"text\":\"interface\"},{\"tag\":\"KEYWORD1\",\"text\":\"dependent\"},{\"tag\":\"KEYWORD1\",\"text\":\"adapter\"},{\"tag\":\"KEYWORD1\",\"text\":\"deprecated\"},{\"tag\":\"KEYWORD1\",\"text\":\"extends\"},{\"tag\":\"KEYWORD1\",\"text\":\"uses\"},{\"tag\":\"KEYWORD1\",\"text\":\"implements\"},{\"tag\":\"KEYWORD1\",\"text\":\"method\"},{\"tag\":\"KEYWORD1\",\"text\":\"native\"},{\"tag\":\"KEYWORD1\",\"text\":\"returns\"},{\"tag\":\"KEYWORD1\",\"text\":\"signals\"},{\"tag\":\"KEYWORD1\",\"text\":\"properties\"},{\"tag\":\"KEYWORD1\",\"text\":\"private\"},{\"tag\":\"KEYWORD1\",\"text\":\"public\"},{\"tag\":\"KEYWORD1\",\"text\":\"inheritable\"},{\"tag\":\"KEYWORD1\",\"text\":\"constant\"},{\"tag\":\"KEYWORD1\",\"text\":\"static\"},{\"tag\":\"KEYWORD1\",\"text\":\"volatile\"},{\"tag\":\"KEYWORD1\",\"text\":\"unused\"},{\"tag\":\"KEYWORD1\",\"text\":\"transient\"},{\"tag\":\"KEYWORD1\",\"text\":\"indirect\"},{\"tag\":\"KEYWORD2\",\"text\":\"do\"},{\"tag\":\"KEYWORD2\",\"text\":\"label\"},{\"tag\":\"KEYWORD2\",\"text\":\"protect\"},{\"tag\":\"KEYWORD2\",\"text\":\"catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"finally\"},{\"tag\":\"KEYWORD2\",\"text\":\"end\"},{\"tag\":\"KEYWORD2\",\"text\":\"signal\"},{\"tag\":\"KEYWORD2\",\"text\":\"if\"},{\"tag\":\"KEYWORD2\",\"text\":\"then\"},{\"tag\":\"KEYWORD2\",\"text\":\"else\"},{\"tag\":\"KEYWORD2\",\"text\":\"select\"},{\"tag\":\"KEYWORD2\",\"text\":\"case\"},{\"tag\":\"KEYWORD2\",\"text\":\"when\"},{\"tag\":\"KEYWORD2\",\"text\":\"otherwise\"},{\"tag\":\"KEYWORD2\",\"text\":\"loop\"},{\"tag\":\"KEYWORD2\",\"text\":\"forever\"},{\"tag\":\"KEYWORD2\",\"text\":\"for\"},{\"tag\":\"KEYWORD2\",\"text\":\"to\"},{\"tag\":\"KEYWORD2\",\"text\":\"by\"},{\"tag\":\"KEYWORD2\",\"text\":\"over\"},{\"tag\":\"KEYWORD2\",\"text\":\"until\"},{\"tag\":\"KEYWORD2\",\"text\":\"while\"},{\"tag\":\"KEYWORD2\",\"text\":\"leave\"},{\"tag\":\"KEYWORD2\",\"text\":\"iterate\"},{\"tag\":\"KEYWORD2\",\"text\":\"return\"},{\"tag\":\"KEYWORD2\",\"text\":\"exit\"},{\"tag\":\"KEYWORD3\",\"text\":\"ask\"},{\"tag\":\"KEYWORD3\",\"text\":\"digits\"},{\"tag\":\"KEYWORD3\",\"text\":\"form\"},{\"tag\":\"KEYWORD3\",\"text\":\"null\"},{\"tag\":\"KEYWORD3\",\"text\":\"source\"},{\"tag\":\"KEYWORD3\",\"text\":\"this\"},{\"tag\":\"KEYWORD3\",\"text\":\"super\"},{\"tag\":\"KEYWORD3\",\"text\":\"parent\"},{\"tag\":\"KEYWORD3\",\"text\":\"sourceline\"},{\"tag\":\"KEYWORD3\",\"text\":\"version\"},{\"tag\":\"KEYWORD3\",\"text\":\"trace\"},{\"tag\":\"KEYWORD3\",\"text\":\"var\"},{\"tag\":\"KEYWORD3\",\"text\":\"all\"},{\"tag\":\"KEYWORD3\",\"text\":\"results\"},{\"tag\":\"KEYWORD3\",\"text\":\"off\"},{\"tag\":\"KEYWORD3\",\"text\":\"methods\"},{\"tag\":\"KEYWORD3\",\"text\":\"package\"},{\"tag\":\"KEYWORD3\",\"text\":\"import\"},{\"tag\":\"KEYWORD3\",\"text\":\"numeric\"},{\"tag\":\"KEYWORD3\",\"text\":\"scientific\"},{\"tag\":\"KEYWORD3\",\"text\":\"engineering\"},{\"tag\":\"LITERAL2\",\"text\":\"options\"},{\"tag\":\"LITERAL2\",\"text\":\"comments\"},{\"tag\":\"LITERAL2\",\"text\":\"nocomments\"},{\"tag\":\"LITERAL2\",\"text\":\"keep\"},{\"tag\":\"LITERAL2\",\"text\":\"nokeep\"},{\"tag\":\"LITERAL2\",\"text\":\"compact\"},{\"tag\":\"LITERAL2\",\"text\":\"nocompact\"},{\"tag\":\"LITERAL2\",\"text\":\"console\"},{\"tag\":\"LITERAL2\",\"text\":\"noconsole\"},{\"tag\":\"LITERAL2\",\"text\":\"decimal\"},{\"tag\":\"LITERAL2\",\"text\":\"nodecimal\"},{\"tag\":\"LITERAL2\",\"text\":\"explicit\"},{\"tag\":\"LITERAL2\",\"text\":\"noexplicit\"},{\"tag\":\"LITERAL2\",\"text\":\"java\"},{\"tag\":\"LITERAL2\",\"text\":\"nojava\"},{\"tag\":\"LITERAL2\",\"text\":\"savelog\"},{\"tag\":\"LITERAL2\",\"text\":\"nosavelog\"},{\"tag\":\"LITERAL2\",\"text\":\"sourcedir\"},{\"tag\":\"LITERAL2\",\"text\":\"nosourcedir\"},{\"tag\":\"LITERAL2\",\"text\":\"symbols\"},{\"tag\":\"LITERAL2\",\"text\":\"nosymbols\"},{\"tag\":\"LITERAL2\",\"text\":\"utf8\"},{\"tag\":\"LITERAL2\",\"text\":\"noutf8\"},{\"tag\":\"LITERAL2\",\"text\":\"notrace\"},{\"tag\":\"LITERAL2\",\"text\":\"binary\"},{\"tag\":\"LITERAL2\",\"text\":\"nobinary\"},{\"tag\":\"LITERAL2\",\"text\":\"crossref\"},{\"tag\":\"LITERAL2\",\"text\":\"nocrossref\"},{\"tag\":\"LITERAL2\",\"text\":\"diag\"},{\"tag\":\"LITERAL2\",\"text\":\"nodiag\"},{\"tag\":\"LITERAL2\",\"text\":\"format\"},{\"tag\":\"LITERAL2\",\"text\":\"noformat\"},{\"tag\":\"LITERAL2\",\"text\":\"logo\"},{\"tag\":\"LITERAL2\",\"text\":\"nologo\"},{\"tag\":\"LITERAL2\",\"text\":\"replace\"},{\"tag\":\"LITERAL2\",\"text\":\"noreplace\"},{\"tag\":\"LITERAL2\",\"text\":\"strictassign\"},{\"tag\":\"LITERAL2\",\"text\":\"nostrictassign\"},{\"tag\":\"LITERAL2\",\"text\":\"strictcase\"},{\"tag\":\"LITERAL2\",\"text\":\"nostrictcase\"},{\"tag\":\"LITERAL2\",\"text\":\"strictargs\"},{\"tag\":\"LITERAL2\",\"text\":\"nostrictargs\"},{\"tag\":\"LITERAL2\",\"text\":\"strictimport\"},{\"tag\":\"LITERAL2\",\"text\":\"nostrictimport\"},{\"tag\":\"LITERAL2\",\"text\":\"strictsignal\"},{\"tag\":\"LITERAL2\",\"text\":\"nostrictsignal\"},{\"tag\":\"LITERAL2\",\"text\":\"strictprops\"},{\"tag\":\"LITERAL2\",\"text\":\"nostrictprops\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose\"},{\"tag\":\"LITERAL2\",\"text\":\"noverbose\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose0\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose1\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose2\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose3\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose4\"},{\"tag\":\"LITERAL2\",\"text\":\"verbose5\"},{\"tag\":\"LABEL\",\"text\":\"boolean\"},{\"tag\":\"LABEL\",\"text\":\"char\"},{\"tag\":\"LABEL\",\"text\":\"byte\"},{\"tag\":\"LABEL\",\"text\":\"short\"},{\"tag\":\"LABEL\",\"text\":\"int\"},{\"tag\":\"LABEL\",\"text\":\"long\"},{\"tag\":\"LABEL\",\"text\":\"float\"},{\"tag\":\"LABEL\",\"text\":\"double\"},{\"tag\":\"LABEL\",\"text\":\"Boolean\"},{\"tag\":\"LABEL\",\"text\":\"Character\"},{\"tag\":\"LABEL\",\"text\":\"Byte\"},{\"tag\":\"LABEL\",\"text\":\"Short\"},{\"tag\":\"LABEL\",\"text\":\"Integer\"},{\"tag\":\"LABEL\",\"text\":\"Long\"},{\"tag\":\"LABEL\",\"text\":\"Float\"},{\"tag\":\"LABEL\",\"text\":\"Double\"},{\"tag\":\"LABEL\",\"text\":\"BigDecimal\"},{\"tag\":\"LABEL\",\"text\":\"BigInteger\"},{\"tag\":\"LABEL\",\"text\":\"String\"},{\"tag\":\"LABEL\",\"text\":\"Rexx\"},{\"tag\":\"LABEL\",\"text\":\"StringBuffer\"},{\"tag\":\"LABEL\",\"text\":\"Object\"},{\"tag\":\"LABEL\",\"text\":\"Number\"},{\"tag\":\"LABEL\",\"text\":\"ArrayList\"},{\"tag\":\"LABEL\",\"text\":\"Calendar\"},{\"tag\":\"LABEL\",\"text\":\"Date\"},{\"tag\":\"LABEL\",\"text\":\"HashMap\"},{\"tag\":\"LABEL\",\"text\":\"HashSet\"},{\"tag\":\"LABEL\",\"text\":\"Hashtable\"},{\"tag\":\"LABEL\",\"text\":\"LinkedHashMap\"},{\"tag\":\"LABEL\",\"text\":\"LinkedHashSet\"},{\"tag\":\"LABEL\",\"text\":\"TreeMap\"},{\"tag\":\"LABEL\",\"text\":\"TreeSet\"},{\"tag\":\"LABEL\",\"text\":\"Vector\"},{\"tag\":\"LABEL\",\"text\":\"ConcurrentModificationException\"},{\"tag\":\"LABEL\",\"text\":\"BufferedInputStream\"},{\"tag\":\"LABEL\",\"text\":\"BufferedOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"BufferedReader\"},{\"tag\":\"LABEL\",\"text\":\"BufferedWriter\"},{\"tag\":\"LABEL\",\"text\":\"ByteArrayInputStream\"},{\"tag\":\"LABEL\",\"text\":\"ByteArrayOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"CharArrayReader\"},{\"tag\":\"LABEL\",\"text\":\"CharArrayWriter\"},{\"tag\":\"LABEL\",\"text\":\"DataInputStream\"},{\"tag\":\"LABEL\",\"text\":\"DataOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"File\"},{\"tag\":\"LABEL\",\"text\":\"FileDescriptor\"},{\"tag\":\"LABEL\",\"text\":\"FileInputStream\"},{\"tag\":\"LABEL\",\"text\":\"FileOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"FilePermission\"},{\"tag\":\"LABEL\",\"text\":\"FileReader\"},{\"tag\":\"LABEL\",\"text\":\"FileWriter\"},{\"tag\":\"LABEL\",\"text\":\"FilterInputStream\"},{\"tag\":\"LABEL\",\"text\":\"FilterOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"FilterReader\"},{\"tag\":\"LABEL\",\"text\":\"FilterWriter\"},{\"tag\":\"LABEL\",\"text\":\"InputStream\"},{\"tag\":\"LABEL\",\"text\":\"InputStreamReader\"},{\"tag\":\"LABEL\",\"text\":\"LineNumberInputStream\"},{\"tag\":\"LABEL\",\"text\":\"LineNumberReader\"},{\"tag\":\"LABEL\",\"text\":\"ObjectInputStream\"},{\"tag\":\"LABEL\",\"text\":\"ObjectOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"OutputStream\"},{\"tag\":\"LABEL\",\"text\":\"OutputStreamWriter\"},{\"tag\":\"LABEL\",\"text\":\"PipedInputStream\"},{\"tag\":\"LABEL\",\"text\":\"PipedOutputStream\"},{\"tag\":\"LABEL\",\"text\":\"PipedReader\"},{\"tag\":\"LABEL\",\"text\":\"PipedWriter\"},{\"tag\":\"LABEL\",\"text\":\"PrintStream\"},{\"tag\":\"LABEL\",\"text\":\"PrintWriter\"},{\"tag\":\"LABEL\",\"text\":\"PushbackInputStream\"},{\"tag\":\"LABEL\",\"text\":\"PushbackReader\"},{\"tag\":\"LABEL\",\"text\":\"RandomAccessFile\"},{\"tag\":\"LABEL\",\"text\":\"Reader\"},{\"tag\":\"LABEL\",\"text\":\"SequenceInputStream\"},{\"tag\":\"LABEL\",\"text\":\"StreamTokenizer\"},{\"tag\":\"LABEL\",\"text\":\"StringBufferInputStream\"},{\"tag\":\"LABEL\",\"text\":\"StringReader\"},{\"tag\":\"LABEL\",\"text\":\"StringWriter\"},{\"tag\":\"LABEL\",\"text\":\"Writer\"},{\"tag\":\"MARKUP\",\"text\":\"ArithmeticException\"},{\"tag\":\"MARKUP\",\"text\":\"ArrayIndexOutOfBoundsException\"},{\"tag\":\"MARKUP\",\"text\":\"ArrayStoreException\"},{\"tag\":\"MARKUP\",\"text\":\"ClassCastException\"},{\"tag\":\"MARKUP\",\"text\":\"ClassNotFoundException\"},{\"tag\":\"MARKUP\",\"text\":\"CloneNotSupportedException\"},{\"tag\":\"MARKUP\",\"text\":\"Exception\"},{\"tag\":\"MARKUP\",\"text\":\"IllegalAccessException\"},{\"tag\":\"MARKUP\",\"text\":\"IllegalArgumentException\"},{\"tag\":\"MARKUP\",\"text\":\"IllegalMonitorStateException\"},{\"tag\":\"MARKUP\",\"text\":\"IllegalStateException\"},{\"tag\":\"MARKUP\",\"text\":\"IllegalThreadStateException\"},{\"tag\":\"MARKUP\",\"text\":\"IndexOutOfBoundsException\"},{\"tag\":\"MARKUP\",\"text\":\"InstantiationException\"},{\"tag\":\"MARKUP\",\"text\":\"InterruptedException\"},{\"tag\":\"MARKUP\",\"text\":\"NegativeArraySizeException\"},{\"tag\":\"MARKUP\",\"text\":\"NoSuchFieldException\"},{\"tag\":\"MARKUP\",\"text\":\"NoSuchMethodException\"},{\"tag\":\"MARKUP\",\"text\":\"NullPointerException\"},{\"tag\":\"MARKUP\",\"text\":\"NumberFormatException\"},{\"tag\":\"MARKUP\",\"text\":\"RuntimeException\"},{\"tag\":\"MARKUP\",\"text\":\"SecurityException\"},{\"tag\":\"MARKUP\",\"text\":\"StringIndexOutOfBoundsException\"},{\"tag\":\"MARKUP\",\"text\":\"UnsupportedOperationException\"},{\"tag\":\"MARKUP\",\"text\":\"CharConversionException\"},{\"tag\":\"MARKUP\",\"text\":\"EOFException\"},{\"tag\":\"MARKUP\",\"text\":\"FileNotFoundException\"},{\"tag\":\"MARKUP\",\"text\":\"InterruptedIOException\"},{\"tag\":\"MARKUP\",\"text\":\"InvalidClassException\"},{\"tag\":\"MARKUP\",\"text\":\"InvalidObjectException\"},{\"tag\":\"MARKUP\",\"text\":\"IOException\"},{\"tag\":\"MARKUP\",\"text\":\"NotActiveException\"},{\"tag\":\"MARKUP\",\"text\":\"NotSerializableException\"},{\"tag\":\"MARKUP\",\"text\":\"ObjectStreamException\"},{\"tag\":\"MARKUP\",\"text\":\"OptionalDataException\"},{\"tag\":\"MARKUP\",\"text\":\"StreamCorruptedException\"},{\"tag\":\"MARKUP\",\"text\":\"SyncFailedException\"},{\"tag\":\"MARKUP\",\"text\":\"UnsupportedEncodingException\"},{\"tag\":\"MARKUP\",\"text\":\"UTFDataFormatException\"},{\"tag\":\"MARKUP\",\"text\":\"WriteAbortedException\"},{\"tag\":\"MARKUP\",\"text\":\"RemoteException\"},{\"tag\":\"MARKUP\",\"text\":\"BadArgumentException\"},{\"tag\":\"MARKUP\",\"text\":\"BadColumnException\"},{\"tag\":\"MARKUP\",\"text\":\"BadNumericException\"},{\"tag\":\"MARKUP\",\"text\":\"DivideException\"},{\"tag\":\"MARKUP\",\"text\":\"ExponentOverflowException\"},{\"tag\":\"MARKUP\",\"text\":\"NoOtherwiseException\"},{\"tag\":\"MARKUP\",\"text\":\"NotCharacterException\"},{\"tag\":\"MARKUP\",\"text\":\"NotLogicException\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "\\s*(if|loop|do|else|select|otherwise|catch|finally|class|method|properties)(.*)";
+        PROPERTY1.NAME = "indentNextLines";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "/*";
+        PROPERTY2.NAME = "commentStart";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "*/";
+        PROPERTY3.NAME = "commentEnd";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "--";
+        PROPERTY4.NAME = "lineComment";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = ",+-=<>/?^&*";
+        PROPERTY5.NAME = "wordBreakChars";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT2";
+        SPAN1.DELEGATE = "java::JAVADOC";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/**";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "COMMENT1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "/*";
+        END END2 = new END();
+        END2.text = "*/";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.NO_LINE_BREAK = "TRUE";
+        SPAN3.TYPE = "LITERAL1";
+        SPAN3.ESCAPE = "\\";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "\"";
+        END END3 = new END();
+        END3.text = "\"";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.NO_LINE_BREAK = "TRUE";
+        SPAN4.TYPE = "LITERAL1";
+        SPAN4.ESCAPE = "\\";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "'";
+        END END4 = new END();
+        END4.text = "'";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "--";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "!";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = ">=";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "<=";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "+";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "-";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "/";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = ".*";
+        SEQ8.TYPE = "NULL";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "*";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = ">";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "<";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "%";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "&";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "|";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "^";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "~";
+        SEQ16.TYPE = "OPERATOR";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "}";
+        SEQ17.TYPE = "OPERATOR";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "{";
+        SEQ18.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("MARKUP", new String[]{"ArithmeticException", "ArrayIndexOutOfBoundsException", "ArrayStoreException", "ClassCastException", "ClassNotFoundException", "CloneNotSupportedException", "Exception", "IllegalAccessException", "IllegalArgumentException", "IllegalMonitorStateException", "IllegalStateException", "IllegalThreadStateException", "IndexOutOfBoundsException", "InstantiationException", "InterruptedException", "NegativeArraySizeException", "NoSuchFieldException", "NoSuchMethodException", "NullPointerException", "NumberFormatException", "RuntimeException", "SecurityException", "StringIndexOutOfBoundsException", "UnsupportedOperationException", "CharConversionException", "EOFException", "FileNotFoundException", "InterruptedIOException", "InvalidClassException", "InvalidObjectException", "IOException", "NotActiveException", "NotSerializableException", "ObjectStreamException", "OptionalDataException", "StreamCorruptedException", "SyncFailedException", "UnsupportedEncodingException", "UTFDataFormatException", "WriteAbortedException", "RemoteException", "BadArgumentException", "BadColumnException", "BadNumericException", "DivideException", "ExponentOverflowException", "NoOtherwiseException", "NotCharacterException", "NotLogicException", });
+        KEYWORDS1.add("LABEL", new String[]{"boolean", "char", "byte", "short", "int", "long", "float", "double", "Boolean", "Character", "Byte", "Short", "Integer", "Long", "Float", "Double", "BigDecimal", "BigInteger", "String", "Rexx", "StringBuffer", "Object", "Number", "ArrayList", "Calendar", "Date", "HashMap", "HashSet", "Hashtable", "LinkedHashMap", "LinkedHashSet", "TreeMap", "TreeSet", "Vector", "ConcurrentModificationException", "BufferedInputStream", "BufferedOutputStream", "BufferedReader", "BufferedWriter", "ByteArrayInputStream", "ByteArrayOutputStream", "CharArrayReader", "CharArrayWriter", "DataInputStream", "DataOutputStream", "File", "FileDescriptor", "FileInputStream", "FileOutputStream", "FilePermission", "FileReader", "FileWriter", "FilterInputStream", "FilterOutputStream", "FilterReader", "FilterWriter", "InputStream", "InputStreamReader", "LineNumberInputStream", "LineNumberReader", "ObjectInputStream", "ObjectOutputStream", "OutputStream", "OutputStreamWriter", "PipedInputStream", "PipedOutputStream", "PipedReader", "PipedWriter", "PrintStream", "PrintWriter", "PushbackInputStream", "PushbackReader", "RandomAccessFile", "Reader", "SequenceInputStream", "StreamTokenizer", "StringBufferInputStream", "StringReader", "StringWriter", "Writer", });
+        KEYWORDS1.add("LITERAL2", new String[]{"options", "comments", "nocomments", "keep", "nokeep", "compact", "nocompact", "console", "noconsole", "decimal", "nodecimal", "explicit", "noexplicit", "java", "nojava", "savelog", "nosavelog", "sourcedir", "nosourcedir", "symbols", "nosymbols", "utf8", "noutf8", "notrace", "binary", "nobinary", "crossref", "nocrossref", "diag", "nodiag", "format", "noformat", "logo", "nologo", "replace", "noreplace", "strictassign", "nostrictassign", "strictcase", "nostrictcase", "strictargs", "nostrictargs", "strictimport", "nostrictimport", "strictsignal", "nostrictsignal", "strictprops", "nostrictprops", "verbose", "noverbose", "verbose0", "verbose1", "verbose2", "verbose3", "verbose4", "verbose5", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"class", "private", "public", "abstract", "final", "interface", "dependent", "adapter", "deprecated", "extends", "uses", "implements", "method", "native", "returns", "signals", "properties", "private", "public", "inheritable", "constant", "static", "volatile", "unused", "transient", "indirect", });
+        KEYWORDS1.add("FUNCTION", new String[]{"abbrev", "abs", "b2x", "center", "centre", "changestr", "charAt", "compare", "copies", "copyIndexed", "countstr", "c2d", "c2x", "datatype", "delstr", "delword", "d2c", "d2X", "equals", "exists", "format", "hashCode", "insert", "lastpos", "left", "length", "lower", "max", "min", "nop", "overlay", "parse", "pos", "reverse", "right", "say", "sequence", "sign", "space", "strip", "substr", "subword", "toCharArray", "toString", "toboolean", "tobyte", "tochar", "todouble", "tofloat", "toint", "tolong", "toshort", "trunc", "translate", "upper", "verify", "word", "wordindex", "wordlength", "wordpos", "words", "x2b", "x2c", "x2d", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"do", "label", "protect", "catch", "finally", "end", "signal", "if", "then", "else", "select", "case", "when", "otherwise", "loop", "forever", "for", "to", "by", "over", "until", "while", "leave", "iterate", "return", "exit", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"ask", "digits", "form", "null", "source", "this", "super", "parent", "sourceline", "version", "trace", "var", "all", "results", "off", "methods", "package", "import", "numeric", "scientific", "engineering", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

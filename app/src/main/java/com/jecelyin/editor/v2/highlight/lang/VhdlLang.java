@@ -19,15 +19,296 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class VhdlLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"VHDL\",\"NAME\":\"label\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"--\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"[box]?\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"[box]?%\"},{\"tag\":\"END\",\"text\":\"%\"}]},{\"tag\":\"SEQ_REGEXP\",\"text\":\"(?:'[\\\\x20-\\\\x7e\\\\xa0-\\\\xff]')\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'left\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'right\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'low\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'high\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'ascending\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'image\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'value\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'pos\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'val\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'succ\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'pred\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'leftof\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'rightof\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'base\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'delayed\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'stable\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'quiet\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'transaction\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'event\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'active\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'last_event\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'last_active\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'last_value\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'driving\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'driving_value\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'range\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'reverse_range\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'length\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'simple_name\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'path_name\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'instance_name\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"'foreign\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"'\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"'\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"MATCH_TYPE\":\"KEYWORD3\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"--\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"(\\\\w|\\\\w[\\\\w\\\\d_]*[\\\\w\\\\d])\\\\s*(?=:)(?!:=)(?!:\\\\s*\\\\d)(?=:\\\\s*(if\\\\b|case\\\\b|while\\\\b|for\\\\b|loop\\\\b|next\\\\b|null\\\\b|block\\\\b|process\\\\b|wait\\\\b|postponed\\\\b|assert\\\\b|with\\\\b|entity\\\\b|component\\\\b|configuration\\\\b|exit\\\\b|return\\\\b|(?:(?:\\\\w[\\\\w\\\\d_]*\\\\w|\\\\w)\\\\s*<=)))\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"LABEL\"}},{\"tag\":\"SEQ\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"**\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\d{1,2}#(?:(?:[\\\\da-f][\\\\da-f_]*\\\\.?[\\\\da-f_]*[\\\\da-f])|[\\\\da-f])#(?:e[+-]?(?:\\\\d[\\\\d_]*\\\\d|\\\\d))?\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\d{1,2}:(?:(?:[\\\\da-f][\\\\da-f_]*\\\\.?[\\\\da-f_]*[\\\\da-f])|[\\\\da-f]):(?:e[+-]?(?:\\\\d[\\\\d_]*\\\\d|\\\\d))?\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"(?:(?:\\\\d[\\\\d_]*\\\\.?[\\\\d_]*\\\\d)|\\\\d)(?:e[+-]?(?:\\\\d[\\\\d_]*\\\\d|\\\\d))?\",\"attrs\":{\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"DIGIT\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"access\"},{\"tag\":\"KEYWORD1\",\"text\":\"after\"},{\"tag\":\"KEYWORD1\",\"text\":\"alias\"},{\"tag\":\"KEYWORD1\",\"text\":\"all\"},{\"tag\":\"KEYWORD1\",\"text\":\"architecture\"},{\"tag\":\"KEYWORD1\",\"text\":\"array\"},{\"tag\":\"KEYWORD1\",\"text\":\"assert\"},{\"tag\":\"KEYWORD1\",\"text\":\"attribute\"},{\"tag\":\"KEYWORD1\",\"text\":\"begin\"},{\"tag\":\"KEYWORD1\",\"text\":\"block\"},{\"tag\":\"KEYWORD1\",\"text\":\"body\"},{\"tag\":\"KEYWORD1\",\"text\":\"buffer\"},{\"tag\":\"KEYWORD1\",\"text\":\"bus\"},{\"tag\":\"KEYWORD1\",\"text\":\"case\"},{\"tag\":\"KEYWORD1\",\"text\":\"component\"},{\"tag\":\"KEYWORD1\",\"text\":\"configuration\"},{\"tag\":\"KEYWORD1\",\"text\":\"constant\"},{\"tag\":\"KEYWORD1\",\"text\":\"disconnect\"},{\"tag\":\"KEYWORD1\",\"text\":\"downto\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"elsif\"},{\"tag\":\"KEYWORD1\",\"text\":\"end\"},{\"tag\":\"KEYWORD1\",\"text\":\"entity\"},{\"tag\":\"KEYWORD1\",\"text\":\"exit\"},{\"tag\":\"KEYWORD1\",\"text\":\"file\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"function\"},{\"tag\":\"KEYWORD1\",\"text\":\"generate\"},{\"tag\":\"KEYWORD1\",\"text\":\"generic\"},{\"tag\":\"KEYWORD1\",\"text\":\"guarded\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"in\"},{\"tag\":\"KEYWORD1\",\"text\":\"inout\"},{\"tag\":\"KEYWORD1\",\"text\":\"is\"},{\"tag\":\"KEYWORD1\",\"text\":\"label\"},{\"tag\":\"KEYWORD1\",\"text\":\"library\"},{\"tag\":\"KEYWORD1\",\"text\":\"linkage\"},{\"tag\":\"KEYWORD1\",\"text\":\"loop\"},{\"tag\":\"KEYWORD1\",\"text\":\"map\"},{\"tag\":\"KEYWORD1\",\"text\":\"new\"},{\"tag\":\"KEYWORD1\",\"text\":\"next\"},{\"tag\":\"KEYWORD1\",\"text\":\"null\"},{\"tag\":\"KEYWORD1\",\"text\":\"of\"},{\"tag\":\"KEYWORD1\",\"text\":\"on\"},{\"tag\":\"KEYWORD1\",\"text\":\"open\"},{\"tag\":\"KEYWORD1\",\"text\":\"others\"},{\"tag\":\"KEYWORD1\",\"text\":\"out\"},{\"tag\":\"KEYWORD1\",\"text\":\"package\"},{\"tag\":\"KEYWORD1\",\"text\":\"port\"},{\"tag\":\"KEYWORD1\",\"text\":\"procedure\"},{\"tag\":\"KEYWORD1\",\"text\":\"process\"},{\"tag\":\"KEYWORD1\",\"text\":\"range\"},{\"tag\":\"KEYWORD1\",\"text\":\"record\"},{\"tag\":\"KEYWORD1\",\"text\":\"register\"},{\"tag\":\"KEYWORD1\",\"text\":\"report\"},{\"tag\":\"KEYWORD1\",\"text\":\"return\"},{\"tag\":\"KEYWORD1\",\"text\":\"select\"},{\"tag\":\"KEYWORD1\",\"text\":\"severity\"},{\"tag\":\"KEYWORD1\",\"text\":\"signal\"},{\"tag\":\"KEYWORD1\",\"text\":\"subtype\"},{\"tag\":\"KEYWORD1\",\"text\":\"then\"},{\"tag\":\"KEYWORD1\",\"text\":\"to\"},{\"tag\":\"KEYWORD1\",\"text\":\"transport\"},{\"tag\":\"KEYWORD1\",\"text\":\"type\"},{\"tag\":\"KEYWORD1\",\"text\":\"units\"},{\"tag\":\"KEYWORD1\",\"text\":\"until\"},{\"tag\":\"KEYWORD1\",\"text\":\"use\"},{\"tag\":\"KEYWORD1\",\"text\":\"variable\"},{\"tag\":\"KEYWORD1\",\"text\":\"wait\"},{\"tag\":\"KEYWORD1\",\"text\":\"when\"},{\"tag\":\"KEYWORD1\",\"text\":\"while\"},{\"tag\":\"KEYWORD1\",\"text\":\"with\"},{\"tag\":\"KEYWORD1\",\"text\":\"group\"},{\"tag\":\"KEYWORD1\",\"text\":\"impure\"},{\"tag\":\"KEYWORD1\",\"text\":\"inertial\"},{\"tag\":\"KEYWORD1\",\"text\":\"literal\"},{\"tag\":\"KEYWORD1\",\"text\":\"postponed\"},{\"tag\":\"KEYWORD1\",\"text\":\"pure\"},{\"tag\":\"KEYWORD1\",\"text\":\"reject\"},{\"tag\":\"KEYWORD1\",\"text\":\"shared\"},{\"tag\":\"KEYWORD1\",\"text\":\"unaffected\"},{\"tag\":\"KEYWORD1\",\"text\":\"protected\"},{\"tag\":\"OPERATOR\",\"text\":\"abs\"},{\"tag\":\"OPERATOR\",\"text\":\"and\"},{\"tag\":\"OPERATOR\",\"text\":\"mod\"},{\"tag\":\"OPERATOR\",\"text\":\"nand\"},{\"tag\":\"OPERATOR\",\"text\":\"nor\"},{\"tag\":\"OPERATOR\",\"text\":\"not\"},{\"tag\":\"OPERATOR\",\"text\":\"or\"},{\"tag\":\"OPERATOR\",\"text\":\"rem\"},{\"tag\":\"OPERATOR\",\"text\":\"xor\"},{\"tag\":\"OPERATOR\",\"text\":\"rol\"},{\"tag\":\"OPERATOR\",\"text\":\"ror\"},{\"tag\":\"OPERATOR\",\"text\":\"sll\"},{\"tag\":\"OPERATOR\",\"text\":\"srl\"},{\"tag\":\"OPERATOR\",\"text\":\"sla\"},{\"tag\":\"OPERATOR\",\"text\":\"sra\"},{\"tag\":\"OPERATOR\",\"text\":\"xnor\"},{\"tag\":\"FUNCTION\",\"text\":\"deallocate\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit_vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"boolean\"},{\"tag\":\"KEYWORD2\",\"text\":\"character\"},{\"tag\":\"KEYWORD2\",\"text\":\"delay_length\"},{\"tag\":\"FUNCTION\",\"text\":\"now\"},{\"tag\":\"FUNCTION\",\"text\":\"file_open\"},{\"tag\":\"FUNCTION\",\"text\":\"file_close\"},{\"tag\":\"FUNCTION\",\"text\":\"read\"},{\"tag\":\"FUNCTION\",\"text\":\"write\"},{\"tag\":\"FUNCTION\",\"text\":\"endfile\"},{\"tag\":\"KEYWORD2\",\"text\":\"file_open_kind\"},{\"tag\":\"KEYWORD2\",\"text\":\"file_open_status\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer\"},{\"tag\":\"KEYWORD2\",\"text\":\"natural\"},{\"tag\":\"KEYWORD2\",\"text\":\"positive\"},{\"tag\":\"KEYWORD2\",\"text\":\"real\"},{\"tag\":\"KEYWORD2\",\"text\":\"severity_level\"},{\"tag\":\"KEYWORD2\",\"text\":\"string\"},{\"tag\":\"KEYWORD2\",\"text\":\"time\"},{\"tag\":\"LITERAL1\",\"text\":\"false\"},{\"tag\":\"LITERAL1\",\"text\":\"true\"},{\"tag\":\"LITERAL1\",\"text\":\"nul\"},{\"tag\":\"LITERAL1\",\"text\":\"soh\"},{\"tag\":\"LITERAL1\",\"text\":\"stx\"},{\"tag\":\"LITERAL1\",\"text\":\"etx\"},{\"tag\":\"LITERAL1\",\"text\":\"eot\"},{\"tag\":\"LITERAL1\",\"text\":\"enq\"},{\"tag\":\"LITERAL1\",\"text\":\"ack\"},{\"tag\":\"LITERAL1\",\"text\":\"bel\"},{\"tag\":\"LITERAL1\",\"text\":\"bs\"},{\"tag\":\"LITERAL1\",\"text\":\"ht\"},{\"tag\":\"LITERAL1\",\"text\":\"lf\"},{\"tag\":\"LITERAL1\",\"text\":\"vt\"},{\"tag\":\"LITERAL1\",\"text\":\"ff\"},{\"tag\":\"LITERAL1\",\"text\":\"cr\"},{\"tag\":\"LITERAL1\",\"text\":\"so\"},{\"tag\":\"LITERAL1\",\"text\":\"si\"},{\"tag\":\"LITERAL1\",\"text\":\"dle\"},{\"tag\":\"LITERAL1\",\"text\":\"dc1\"},{\"tag\":\"LITERAL1\",\"text\":\"dc2\"},{\"tag\":\"LITERAL1\",\"text\":\"dc3\"},{\"tag\":\"LITERAL1\",\"text\":\"dc4\"},{\"tag\":\"LITERAL1\",\"text\":\"nak\"},{\"tag\":\"LITERAL1\",\"text\":\"syn\"},{\"tag\":\"LITERAL1\",\"text\":\"etb\"},{\"tag\":\"LITERAL1\",\"text\":\"can\"},{\"tag\":\"LITERAL1\",\"text\":\"em\"},{\"tag\":\"LITERAL1\",\"text\":\"sub\"},{\"tag\":\"LITERAL1\",\"text\":\"esc\"},{\"tag\":\"LITERAL1\",\"text\":\"fsp\"},{\"tag\":\"LITERAL1\",\"text\":\"gsp\"},{\"tag\":\"LITERAL1\",\"text\":\"rsp\"},{\"tag\":\"LITERAL1\",\"text\":\"usp\"},{\"tag\":\"LITERAL1\",\"text\":\"del\"},{\"tag\":\"LITERAL1\",\"text\":\"c128\"},{\"tag\":\"LITERAL1\",\"text\":\"c129\"},{\"tag\":\"LITERAL1\",\"text\":\"c130\"},{\"tag\":\"LITERAL1\",\"text\":\"c131\"},{\"tag\":\"LITERAL1\",\"text\":\"c132\"},{\"tag\":\"LITERAL1\",\"text\":\"c133\"},{\"tag\":\"LITERAL1\",\"text\":\"c134\"},{\"tag\":\"LITERAL1\",\"text\":\"c135\"},{\"tag\":\"LITERAL1\",\"text\":\"c136\"},{\"tag\":\"LITERAL1\",\"text\":\"c137\"},{\"tag\":\"LITERAL1\",\"text\":\"c138\"},{\"tag\":\"LITERAL1\",\"text\":\"c139\"},{\"tag\":\"LITERAL1\",\"text\":\"c140\"},{\"tag\":\"LITERAL1\",\"text\":\"c141\"},{\"tag\":\"LITERAL1\",\"text\":\"c142\"},{\"tag\":\"LITERAL1\",\"text\":\"c143\"},{\"tag\":\"LITERAL1\",\"text\":\"c144\"},{\"tag\":\"LITERAL1\",\"text\":\"c145\"},{\"tag\":\"LITERAL1\",\"text\":\"c146\"},{\"tag\":\"LITERAL1\",\"text\":\"c147\"},{\"tag\":\"LITERAL1\",\"text\":\"c148\"},{\"tag\":\"LITERAL1\",\"text\":\"c149\"},{\"tag\":\"LITERAL1\",\"text\":\"c150\"},{\"tag\":\"LITERAL1\",\"text\":\"c151\"},{\"tag\":\"LITERAL1\",\"text\":\"c152\"},{\"tag\":\"LITERAL1\",\"text\":\"c153\"},{\"tag\":\"LITERAL1\",\"text\":\"c154\"},{\"tag\":\"LITERAL1\",\"text\":\"c155\"},{\"tag\":\"LITERAL1\",\"text\":\"c156\"},{\"tag\":\"LITERAL1\",\"text\":\"c157\"},{\"tag\":\"LITERAL1\",\"text\":\"c158\"},{\"tag\":\"LITERAL1\",\"text\":\"c159\"},{\"tag\":\"LITERAL1\",\"text\":\"note\"},{\"tag\":\"LITERAL1\",\"text\":\"warning\"},{\"tag\":\"LITERAL1\",\"text\":\"error\"},{\"tag\":\"LITERAL1\",\"text\":\"failure\"},{\"tag\":\"LITERAL1\",\"text\":\"read_mode\"},{\"tag\":\"LITERAL1\",\"text\":\"write_mode\"},{\"tag\":\"LITERAL1\",\"text\":\"append_mode\"},{\"tag\":\"LITERAL1\",\"text\":\"open_ok\"},{\"tag\":\"LITERAL1\",\"text\":\"status_error\"},{\"tag\":\"LITERAL1\",\"text\":\"name_error\"},{\"tag\":\"LITERAL1\",\"text\":\"mode_error\"},{\"tag\":\"KEYWORD2\",\"text\":\"std_logic\"},{\"tag\":\"KEYWORD2\",\"text\":\"std_ulogic\"},{\"tag\":\"KEYWORD2\",\"text\":\"std_logic_vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"std_ulogic_vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"x01\"},{\"tag\":\"KEYWORD2\",\"text\":\"x01z\"},{\"tag\":\"KEYWORD2\",\"text\":\"ux01\"},{\"tag\":\"KEYWORD2\",\"text\":\"ux01z\"},{\"tag\":\"FUNCTION\",\"text\":\"to_bit\"},{\"tag\":\"FUNCTION\",\"text\":\"to_bitvector\"},{\"tag\":\"FUNCTION\",\"text\":\"to_stdulogic\"},{\"tag\":\"FUNCTION\",\"text\":\"to_stdlogicvector\"},{\"tag\":\"FUNCTION\",\"text\":\"to_stdulogicvector\"},{\"tag\":\"FUNCTION\",\"text\":\"to_x01\"},{\"tag\":\"FUNCTION\",\"text\":\"to_x01z\"},{\"tag\":\"FUNCTION\",\"text\":\"to_ux01\"},{\"tag\":\"FUNCTION\",\"text\":\"rising_edge\"},{\"tag\":\"FUNCTION\",\"text\":\"falling_edge\"},{\"tag\":\"FUNCTION\",\"text\":\"is_x\"},{\"tag\":\"KEYWORD2\",\"text\":\"signed\"},{\"tag\":\"KEYWORD2\",\"text\":\"unsigned\"},{\"tag\":\"FUNCTION\",\"text\":\"shift_left\"},{\"tag\":\"FUNCTION\",\"text\":\"shift_right\"},{\"tag\":\"FUNCTION\",\"text\":\"rotate_left\"},{\"tag\":\"FUNCTION\",\"text\":\"rotate_right\"},{\"tag\":\"FUNCTION\",\"text\":\"resize\"},{\"tag\":\"FUNCTION\",\"text\":\"std_match\"},{\"tag\":\"FUNCTION\",\"text\":\"to_integer\"},{\"tag\":\"FUNCTION\",\"text\":\"to_unsigned\"},{\"tag\":\"FUNCTION\",\"text\":\"to_signed\"},{\"tag\":\"KEYWORD2\",\"text\":\"line\"},{\"tag\":\"KEYWORD2\",\"text\":\"text\"},{\"tag\":\"KEYWORD2\",\"text\":\"side\"},{\"tag\":\"KEYWORD2\",\"text\":\"width\"},{\"tag\":\"LITERAL2\",\"text\":\"left\"},{\"tag\":\"LITERAL2\",\"text\":\"right\"},{\"tag\":\"LITERAL2\",\"text\":\"std_input\"},{\"tag\":\"LITERAL2\",\"text\":\"std_output\"},{\"tag\":\"LITERAL3\",\"text\":\"input\"},{\"tag\":\"LITERAL3\",\"text\":\"output\"},{\"tag\":\"FUNCTION\",\"text\":\"readline\"},{\"tag\":\"FUNCTION\",\"text\":\"writeline\"},{\"tag\":\"FUNCTION\",\"text\":\"oread\"},{\"tag\":\"FUNCTION\",\"text\":\"owrite\"},{\"tag\":\"FUNCTION\",\"text\":\"hread\"},{\"tag\":\"FUNCTION\",\"text\":\"hwrite\"},{\"tag\":\"KEYWORD2\",\"text\":\"signed\"},{\"tag\":\"KEYWORD2\",\"text\":\"unsigned\"},{\"tag\":\"KEYWORD2\",\"text\":\"small_int\"},{\"tag\":\"FUNCTION\",\"text\":\"conv_integer\"},{\"tag\":\"FUNCTION\",\"text\":\"conv_unsigned\"},{\"tag\":\"FUNCTION\",\"text\":\"conv_signed\"},{\"tag\":\"FUNCTION\",\"text\":\"conv_std_logic_vector\"},{\"tag\":\"FUNCTION\",\"text\":\"shl\"},{\"tag\":\"FUNCTION\",\"text\":\"shr\"},{\"tag\":\"FUNCTION\",\"text\":\"ext\"},{\"tag\":\"FUNCTION\",\"text\":\"sxt\"},{\"tag\":\"LITERAL2\",\"text\":\"math_e\"},{\"tag\":\"LITERAL2\",\"text\":\"math_1_over_e\"},{\"tag\":\"LITERAL2\",\"text\":\"math_pi\"},{\"tag\":\"LITERAL2\",\"text\":\"math_2_pi\"},{\"tag\":\"LITERAL2\",\"text\":\"math_1_over_pi\"},{\"tag\":\"LITERAL2\",\"text\":\"math_pi_over_2\"},{\"tag\":\"LITERAL2\",\"text\":\"math_pi_over_3\"},{\"tag\":\"LITERAL2\",\"text\":\"math_pi_over_4\"},{\"tag\":\"LITERAL2\",\"text\":\"math_3_pi_over_2\"},{\"tag\":\"LITERAL2\",\"text\":\"math_log_of_2\"},{\"tag\":\"LITERAL2\",\"text\":\"math_log_of_10\"},{\"tag\":\"LITERAL2\",\"text\":\"math_log2_of_e\"},{\"tag\":\"LITERAL2\",\"text\":\"math_log10_of_e\"},{\"tag\":\"LITERAL2\",\"text\":\"math_sqrt_2\"},{\"tag\":\"LITERAL2\",\"text\":\"math_1_over_sqrt_2\"},{\"tag\":\"LITERAL2\",\"text\":\"math_sqrt_pi\"},{\"tag\":\"LITERAL2\",\"text\":\"math_deg_to_rad\"},{\"tag\":\"LITERAL2\",\"text\":\"math_rad_to_deg\"},{\"tag\":\"FUNCTION\",\"text\":\"sign\"},{\"tag\":\"FUNCTION\",\"text\":\"ceil\"},{\"tag\":\"FUNCTION\",\"text\":\"floor\"},{\"tag\":\"FUNCTION\",\"text\":\"round\"},{\"tag\":\"FUNCTION\",\"text\":\"trunc\"},{\"tag\":\"FUNCTION\",\"text\":\"realmax\"},{\"tag\":\"FUNCTION\",\"text\":\"realmin\"},{\"tag\":\"FUNCTION\",\"text\":\"uniform\"},{\"tag\":\"FUNCTION\",\"text\":\"sqrt\"},{\"tag\":\"FUNCTION\",\"text\":\"cbrt\"},{\"tag\":\"FUNCTION\",\"text\":\"exp\"},{\"tag\":\"FUNCTION\",\"text\":\"log\"},{\"tag\":\"FUNCTION\",\"text\":\"log2\"},{\"tag\":\"FUNCTION\",\"text\":\"log10\"},{\"tag\":\"FUNCTION\",\"text\":\"sin\"},{\"tag\":\"FUNCTION\",\"text\":\"cos\"},{\"tag\":\"FUNCTION\",\"text\":\"tan\"},{\"tag\":\"FUNCTION\",\"text\":\"arcsin\"},{\"tag\":\"FUNCTION\",\"text\":\"arccos\"},{\"tag\":\"FUNCTION\",\"text\":\"arctan\"},{\"tag\":\"FUNCTION\",\"text\":\"sinh\"},{\"tag\":\"FUNCTION\",\"text\":\"cosh\"},{\"tag\":\"FUNCTION\",\"text\":\"tanh\"},{\"tag\":\"FUNCTION\",\"text\":\"arcsinh\"},{\"tag\":\"FUNCTION\",\"text\":\"arccosh\"},{\"tag\":\"FUNCTION\",\"text\":\"arctanh\"},{\"tag\":\"KEYWORD2\",\"text\":\"complex\"},{\"tag\":\"KEYWORD2\",\"text\":\"positive_real\"},{\"tag\":\"KEYWORD2\",\"text\":\"principal_value\"},{\"tag\":\"KEYWORD2\",\"text\":\"complex_polar\"},{\"tag\":\"KEYWORD2\",\"text\":\"re\"},{\"tag\":\"KEYWORD2\",\"text\":\"im\"},{\"tag\":\"KEYWORD2\",\"text\":\"mag\"},{\"tag\":\"KEYWORD2\",\"text\":\"arg\"},{\"tag\":\"LITERAL2\",\"text\":\"math_cbase_1\"},{\"tag\":\"LITERAL2\",\"text\":\"math_cbase_j\"},{\"tag\":\"LITERAL2\",\"text\":\"math_czero\"},{\"tag\":\"FUNCTION\",\"text\":\"cmplx\"},{\"tag\":\"FUNCTION\",\"text\":\"get_principal_value\"},{\"tag\":\"FUNCTION\",\"text\":\"complex_to_polar\"},{\"tag\":\"FUNCTION\",\"text\":\"polar_to_complex\"},{\"tag\":\"FUNCTION\",\"text\":\"conj\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "VHDL";
+        PROPERTY1.NAME = "label";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "--";
+        PROPERTY2.NAME = "lineComment";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "true";
+        PROPERTY3.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.AT_WORD_START = "TRUE";
+        SPAN_REGEXP1.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP1.TYPE = "LITERAL4";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "[box]?\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.AT_WORD_START = "TRUE";
+        SPAN_REGEXP2.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP2.TYPE = "LITERAL4";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "[box]?%";
+        END END2 = new END();
+        END2.text = "%";
+        SPAN_REGEXP2.END = new END[] { END2, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "(?:'[\\x20-\\x7e\\xa0-\\xff]')";
+        SEQ_REGEXP1.TYPE = "LITERAL1";
+        SEQ_REGEXP1.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP2 = new SEQ_REGEXP();
+        SEQ_REGEXP2.text = "'left\\b";
+        SEQ_REGEXP2.TYPE = "KEYWORD3";
+        SEQ_REGEXP2.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP3 = new SEQ_REGEXP();
+        SEQ_REGEXP3.text = "'right\\b";
+        SEQ_REGEXP3.TYPE = "KEYWORD3";
+        SEQ_REGEXP3.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP4 = new SEQ_REGEXP();
+        SEQ_REGEXP4.text = "'low\\b";
+        SEQ_REGEXP4.TYPE = "KEYWORD3";
+        SEQ_REGEXP4.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP5 = new SEQ_REGEXP();
+        SEQ_REGEXP5.text = "'high\\b";
+        SEQ_REGEXP5.TYPE = "KEYWORD3";
+        SEQ_REGEXP5.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP6 = new SEQ_REGEXP();
+        SEQ_REGEXP6.text = "'ascending\\b";
+        SEQ_REGEXP6.TYPE = "KEYWORD3";
+        SEQ_REGEXP6.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP7 = new SEQ_REGEXP();
+        SEQ_REGEXP7.text = "'image\\b";
+        SEQ_REGEXP7.TYPE = "KEYWORD3";
+        SEQ_REGEXP7.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP8 = new SEQ_REGEXP();
+        SEQ_REGEXP8.text = "'value\\b";
+        SEQ_REGEXP8.TYPE = "KEYWORD3";
+        SEQ_REGEXP8.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP9 = new SEQ_REGEXP();
+        SEQ_REGEXP9.text = "'pos\\b";
+        SEQ_REGEXP9.TYPE = "KEYWORD3";
+        SEQ_REGEXP9.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP10 = new SEQ_REGEXP();
+        SEQ_REGEXP10.text = "'val\\b";
+        SEQ_REGEXP10.TYPE = "KEYWORD3";
+        SEQ_REGEXP10.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP11 = new SEQ_REGEXP();
+        SEQ_REGEXP11.text = "'succ\\b";
+        SEQ_REGEXP11.TYPE = "KEYWORD3";
+        SEQ_REGEXP11.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP12 = new SEQ_REGEXP();
+        SEQ_REGEXP12.text = "'pred\\b";
+        SEQ_REGEXP12.TYPE = "KEYWORD3";
+        SEQ_REGEXP12.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP13 = new SEQ_REGEXP();
+        SEQ_REGEXP13.text = "'leftof\\b";
+        SEQ_REGEXP13.TYPE = "KEYWORD3";
+        SEQ_REGEXP13.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP14 = new SEQ_REGEXP();
+        SEQ_REGEXP14.text = "'rightof\\b";
+        SEQ_REGEXP14.TYPE = "KEYWORD3";
+        SEQ_REGEXP14.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP15 = new SEQ_REGEXP();
+        SEQ_REGEXP15.text = "'base\\b";
+        SEQ_REGEXP15.TYPE = "KEYWORD3";
+        SEQ_REGEXP15.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP16 = new SEQ_REGEXP();
+        SEQ_REGEXP16.text = "'delayed\\b";
+        SEQ_REGEXP16.TYPE = "KEYWORD3";
+        SEQ_REGEXP16.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP17 = new SEQ_REGEXP();
+        SEQ_REGEXP17.text = "'stable\\b";
+        SEQ_REGEXP17.TYPE = "KEYWORD3";
+        SEQ_REGEXP17.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP18 = new SEQ_REGEXP();
+        SEQ_REGEXP18.text = "'quiet\\b";
+        SEQ_REGEXP18.TYPE = "KEYWORD3";
+        SEQ_REGEXP18.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP19 = new SEQ_REGEXP();
+        SEQ_REGEXP19.text = "'transaction\\b";
+        SEQ_REGEXP19.TYPE = "KEYWORD3";
+        SEQ_REGEXP19.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP20 = new SEQ_REGEXP();
+        SEQ_REGEXP20.text = "'event\\b";
+        SEQ_REGEXP20.TYPE = "KEYWORD3";
+        SEQ_REGEXP20.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP21 = new SEQ_REGEXP();
+        SEQ_REGEXP21.text = "'active\\b";
+        SEQ_REGEXP21.TYPE = "KEYWORD3";
+        SEQ_REGEXP21.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP22 = new SEQ_REGEXP();
+        SEQ_REGEXP22.text = "'last_event\\b";
+        SEQ_REGEXP22.TYPE = "KEYWORD3";
+        SEQ_REGEXP22.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP23 = new SEQ_REGEXP();
+        SEQ_REGEXP23.text = "'last_active\\b";
+        SEQ_REGEXP23.TYPE = "KEYWORD3";
+        SEQ_REGEXP23.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP24 = new SEQ_REGEXP();
+        SEQ_REGEXP24.text = "'last_value\\b";
+        SEQ_REGEXP24.TYPE = "KEYWORD3";
+        SEQ_REGEXP24.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP25 = new SEQ_REGEXP();
+        SEQ_REGEXP25.text = "'driving\\b";
+        SEQ_REGEXP25.TYPE = "KEYWORD3";
+        SEQ_REGEXP25.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP26 = new SEQ_REGEXP();
+        SEQ_REGEXP26.text = "'driving_value\\b";
+        SEQ_REGEXP26.TYPE = "KEYWORD3";
+        SEQ_REGEXP26.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP27 = new SEQ_REGEXP();
+        SEQ_REGEXP27.text = "'range\\b";
+        SEQ_REGEXP27.TYPE = "KEYWORD3";
+        SEQ_REGEXP27.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP28 = new SEQ_REGEXP();
+        SEQ_REGEXP28.text = "'reverse_range\\b";
+        SEQ_REGEXP28.TYPE = "KEYWORD3";
+        SEQ_REGEXP28.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP29 = new SEQ_REGEXP();
+        SEQ_REGEXP29.text = "'length\\b";
+        SEQ_REGEXP29.TYPE = "KEYWORD3";
+        SEQ_REGEXP29.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP30 = new SEQ_REGEXP();
+        SEQ_REGEXP30.text = "'simple_name\\b";
+        SEQ_REGEXP30.TYPE = "KEYWORD3";
+        SEQ_REGEXP30.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP31 = new SEQ_REGEXP();
+        SEQ_REGEXP31.text = "'path_name\\b";
+        SEQ_REGEXP31.TYPE = "KEYWORD3";
+        SEQ_REGEXP31.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP32 = new SEQ_REGEXP();
+        SEQ_REGEXP32.text = "'instance_name\\b";
+        SEQ_REGEXP32.TYPE = "KEYWORD3";
+        SEQ_REGEXP32.HASH_CHAR = "'";
+        SEQ_REGEXP SEQ_REGEXP33 = new SEQ_REGEXP();
+        SEQ_REGEXP33.text = "'foreign\\b";
+        SEQ_REGEXP33.TYPE = "KEYWORD3";
+        SEQ_REGEXP33.HASH_CHAR = "'";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "'";
+        MARK_FOLLOWING1.TYPE = "KEYWORD4";
+        MARK_FOLLOWING1.MATCH_TYPE = "KEYWORD3";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "--";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SEQ_REGEXP SEQ_REGEXP34 = new SEQ_REGEXP();
+        SEQ_REGEXP34.text = "(\\w|\\w[\\w\\d_]*[\\w\\d])\\s*(?=:)(?!:=)(?!:\\s*\\d)(?=:\\s*(if\\b|case\\b|while\\b|for\\b|loop\\b|next\\b|null\\b|block\\b|process\\b|wait\\b|postponed\\b|assert\\b|with\\b|entity\\b|component\\b|configuration\\b|exit\\b|return\\b|(?:(?:\\w[\\w\\d_]*\\w|\\w)\\s*<=)))";
+        SEQ_REGEXP34.AT_WHITESPACE_END = "TRUE";
+        SEQ_REGEXP34.TYPE = "LABEL";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "(";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ")";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "=>";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "**";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = ":=";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "/=";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = ">=";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "<=";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "<>";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "=";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = ":";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = ">";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "<";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "+";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "-";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "/";
+        SEQ16.TYPE = "OPERATOR";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "*";
+        SEQ17.TYPE = "OPERATOR";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "&";
+        SEQ18.TYPE = "OPERATOR";
+        SEQ SEQ19 = new SEQ();
+        SEQ19.text = "|";
+        SEQ19.TYPE = "OPERATOR";
+        SEQ_REGEXP SEQ_REGEXP35 = new SEQ_REGEXP();
+        SEQ_REGEXP35.text = "\\d{1,2}#(?:(?:[\\da-f][\\da-f_]*\\.?[\\da-f_]*[\\da-f])|[\\da-f])#(?:e[+-]?(?:\\d[\\d_]*\\d|\\d))?";
+        SEQ_REGEXP35.AT_WORD_START = "TRUE";
+        SEQ_REGEXP35.TYPE = "DIGIT";
+        SEQ_REGEXP SEQ_REGEXP36 = new SEQ_REGEXP();
+        SEQ_REGEXP36.text = "\\d{1,2}:(?:(?:[\\da-f][\\da-f_]*\\.?[\\da-f_]*[\\da-f])|[\\da-f]):(?:e[+-]?(?:\\d[\\d_]*\\d|\\d))?";
+        SEQ_REGEXP36.AT_WORD_START = "TRUE";
+        SEQ_REGEXP36.TYPE = "DIGIT";
+        SEQ_REGEXP SEQ_REGEXP37 = new SEQ_REGEXP();
+        SEQ_REGEXP37.text = "(?:(?:\\d[\\d_]*\\.?[\\d_]*\\d)|\\d)(?:e[+-]?(?:\\d[\\d_]*\\d|\\d))?";
+        SEQ_REGEXP37.AT_WORD_START = "TRUE";
+        SEQ_REGEXP37.TYPE = "DIGIT";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("OPERATOR", new String[]{"abs", "and", "mod", "nand", "nor", "not", "or", "rem", "xor", "rol", "ror", "sll", "srl", "sla", "sra", "xnor", });
+        KEYWORDS1.add("LITERAL2", new String[]{"left", "right", "std_input", "std_output", "math_e", "math_1_over_e", "math_pi", "math_2_pi", "math_1_over_pi", "math_pi_over_2", "math_pi_over_3", "math_pi_over_4", "math_3_pi_over_2", "math_log_of_2", "math_log_of_10", "math_log2_of_e", "math_log10_of_e", "math_sqrt_2", "math_1_over_sqrt_2", "math_sqrt_pi", "math_deg_to_rad", "math_rad_to_deg", "math_cbase_1", "math_cbase_j", "math_czero", });
+        KEYWORDS1.add("LITERAL1", new String[]{"false", "true", "nul", "soh", "stx", "etx", "eot", "enq", "ack", "bel", "bs", "ht", "lf", "vt", "ff", "cr", "so", "si", "dle", "dc1", "dc2", "dc3", "dc4", "nak", "syn", "etb", "can", "em", "sub", "esc", "fsp", "gsp", "rsp", "usp", "del", "c128", "c129", "c130", "c131", "c132", "c133", "c134", "c135", "c136", "c137", "c138", "c139", "c140", "c141", "c142", "c143", "c144", "c145", "c146", "c147", "c148", "c149", "c150", "c151", "c152", "c153", "c154", "c155", "c156", "c157", "c158", "c159", "note", "warning", "error", "failure", "read_mode", "write_mode", "append_mode", "open_ok", "status_error", "name_error", "mode_error", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"access", "after", "alias", "all", "architecture", "array", "assert", "attribute", "begin", "block", "body", "buffer", "bus", "case", "component", "configuration", "constant", "disconnect", "downto", "else", "elsif", "end", "entity", "exit", "file", "for", "function", "generate", "generic", "guarded", "if", "in", "inout", "is", "label", "library", "linkage", "loop", "map", "new", "next", "null", "of", "on", "open", "others", "out", "package", "port", "procedure", "process", "range", "record", "register", "report", "return", "select", "severity", "signal", "subtype", "then", "to", "transport", "type", "units", "until", "use", "variable", "wait", "when", "while", "with", "group", "impure", "inertial", "literal", "postponed", "pure", "reject", "shared", "unaffected", "protected", });
+        KEYWORDS1.add("FUNCTION", new String[]{"deallocate", "now", "file_open", "file_close", "read", "write", "endfile", "to_bit", "to_bitvector", "to_stdulogic", "to_stdlogicvector", "to_stdulogicvector", "to_x01", "to_x01z", "to_ux01", "rising_edge", "falling_edge", "is_x", "shift_left", "shift_right", "rotate_left", "rotate_right", "resize", "std_match", "to_integer", "to_unsigned", "to_signed", "readline", "writeline", "oread", "owrite", "hread", "hwrite", "conv_integer", "conv_unsigned", "conv_signed", "conv_std_logic_vector", "shl", "shr", "ext", "sxt", "sign", "ceil", "floor", "round", "trunc", "realmax", "realmin", "uniform", "sqrt", "cbrt", "exp", "log", "log2", "log10", "sin", "cos", "tan", "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "arcsinh", "arccosh", "arctanh", "cmplx", "get_principal_value", "complex_to_polar", "polar_to_complex", "conj", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"bit", "bit_vector", "boolean", "character", "delay_length", "file_open_kind", "file_open_status", "integer", "natural", "positive", "real", "severity_level", "string", "time", "std_logic", "std_ulogic", "std_logic_vector", "std_ulogic_vector", "x01", "x01z", "ux01", "ux01z", "signed", "unsigned", "line", "text", "side", "width", "signed", "unsigned", "small_int", "complex", "positive_real", "principal_value", "complex_polar", "re", "im", "mag", "arg", });
+        KEYWORDS1.add("LITERAL3", new String[]{"input", "output", });
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, SEQ_REGEXP2, SEQ_REGEXP3, SEQ_REGEXP4, SEQ_REGEXP5, SEQ_REGEXP6, SEQ_REGEXP7, SEQ_REGEXP8, SEQ_REGEXP9, SEQ_REGEXP10, SEQ_REGEXP11, SEQ_REGEXP12, SEQ_REGEXP13, SEQ_REGEXP14, SEQ_REGEXP15, SEQ_REGEXP16, SEQ_REGEXP17, SEQ_REGEXP18, SEQ_REGEXP19, SEQ_REGEXP20, SEQ_REGEXP21, SEQ_REGEXP22, SEQ_REGEXP23, SEQ_REGEXP24, SEQ_REGEXP25, SEQ_REGEXP26, SEQ_REGEXP27, SEQ_REGEXP28, SEQ_REGEXP29, SEQ_REGEXP30, SEQ_REGEXP31, SEQ_REGEXP32, SEQ_REGEXP33, SEQ_REGEXP34, SEQ_REGEXP35, SEQ_REGEXP36, SEQ_REGEXP37, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, SEQ19, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

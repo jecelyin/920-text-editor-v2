@@ -19,15 +19,132 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SqlLoaderLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"--\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"DELEGATE\":\"pl-sql::MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"--\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"LOAD\"},{\"tag\":\"KEYWORD1\",\"text\":\"DATA\"},{\"tag\":\"KEYWORD1\",\"text\":\"INFILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"BADFILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"DISCARDFILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"INTO\"},{\"tag\":\"KEYWORD1\",\"text\":\"TABLE\"},{\"tag\":\"KEYWORD1\",\"text\":\"FIELDS\"},{\"tag\":\"KEYWORD1\",\"text\":\"TERMINATED\"},{\"tag\":\"KEYWORD1\",\"text\":\"BY\"},{\"tag\":\"KEYWORD1\",\"text\":\"OPTIONALLY\"},{\"tag\":\"KEYWORD1\",\"text\":\"ENCLOSED\"},{\"tag\":\"KEYWORD1\",\"text\":\"EXTERNAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"TRAILING\"},{\"tag\":\"KEYWORD1\",\"text\":\"NULLCOLS\"},{\"tag\":\"KEYWORD1\",\"text\":\"NULLIF\"},{\"tag\":\"KEYWORD1\",\"text\":\"DATA\"},{\"tag\":\"KEYWORD1\",\"text\":\"BLANKS\"},{\"tag\":\"KEYWORD1\",\"text\":\"INSERT\"},{\"tag\":\"KEYWORD1\",\"text\":\"INTO\"},{\"tag\":\"KEYWORD1\",\"text\":\"POSITION\"},{\"tag\":\"KEYWORD1\",\"text\":\"WHEN\"},{\"tag\":\"KEYWORD1\",\"text\":\"APPEND\"},{\"tag\":\"KEYWORD1\",\"text\":\"REPLACE\"},{\"tag\":\"KEYWORD1\",\"text\":\"EOF\"},{\"tag\":\"KEYWORD1\",\"text\":\"LOBFILE\"},{\"tag\":\"KEYWORD1\",\"text\":\"TRUNCATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"COLUMN\"},{\"tag\":\"KEYWORD1\",\"text\":\"COUNT\"},{\"tag\":\"KEYWORD1\",\"text\":\"AND\"},{\"tag\":\"KEYWORD1\",\"text\":\"SDF\"},{\"tag\":\"KEYWORD1\",\"text\":\"OR\"},{\"tag\":\"KEYWORD1\",\"text\":\"SYSDATE\"},{\"tag\":\"KEYWORD1\",\"text\":\"binary\"},{\"tag\":\"KEYWORD1\",\"text\":\"bit\"},{\"tag\":\"KEYWORD1\",\"text\":\"blob\"},{\"tag\":\"KEYWORD1\",\"text\":\"boolean\"},{\"tag\":\"KEYWORD1\",\"text\":\"char\"},{\"tag\":\"KEYWORD1\",\"text\":\"character\"},{\"tag\":\"KEYWORD1\",\"text\":\"constant\"},{\"tag\":\"KEYWORD1\",\"text\":\"date\"},{\"tag\":\"KEYWORD1\",\"text\":\"datetime\"},{\"tag\":\"KEYWORD1\",\"text\":\"decimal\"},{\"tag\":\"KEYWORD1\",\"text\":\"double\"},{\"tag\":\"KEYWORD1\",\"text\":\"filler\"},{\"tag\":\"KEYWORD1\",\"text\":\"float\"},{\"tag\":\"KEYWORD1\",\"text\":\"image\"},{\"tag\":\"KEYWORD1\",\"text\":\"int\"},{\"tag\":\"KEYWORD1\",\"text\":\"integer\"},{\"tag\":\"KEYWORD1\",\"text\":\"money\"},{\"tag\":\"KEYWORD1\",\"text\":\"numeric\"},{\"tag\":\"KEYWORD1\",\"text\":\"nchar\"},{\"tag\":\"KEYWORD1\",\"text\":\"nvarchar\"},{\"tag\":\"KEYWORD1\",\"text\":\"ntext\"},{\"tag\":\"KEYWORD1\",\"text\":\"object\"},{\"tag\":\"KEYWORD1\",\"text\":\"pls_integer\"},{\"tag\":\"KEYWORD1\",\"text\":\"raw\"},{\"tag\":\"KEYWORD1\",\"text\":\"real\"},{\"tag\":\"KEYWORD1\",\"text\":\"smalldatetime\"},{\"tag\":\"KEYWORD1\",\"text\":\"smallint\"},{\"tag\":\"KEYWORD1\",\"text\":\"smallmoney\"},{\"tag\":\"KEYWORD1\",\"text\":\"sequence\"},{\"tag\":\"KEYWORD1\",\"text\":\"text\"},{\"tag\":\"KEYWORD1\",\"text\":\"timestamp\"},{\"tag\":\"KEYWORD1\",\"text\":\"tinyint\"},{\"tag\":\"KEYWORD1\",\"text\":\"uniqueidentifier\"},{\"tag\":\"KEYWORD1\",\"text\":\"varbinary\"},{\"tag\":\"KEYWORD1\",\"text\":\"varchar\"},{\"tag\":\"KEYWORD1\",\"text\":\"varchar2\"},{\"tag\":\"KEYWORD1\",\"text\":\"varray\"},{\"tag\":\"KEYWORD1\",\"text\":\"zoned\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "--";
+        PROPERTY3.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.DELEGATE = "pl-sql::MAIN";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "\"";
+        END END3 = new END();
+        END3.text = "\"";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "--";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "+";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "-";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "/";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "*";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "=";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = ">";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "<";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "%";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "&";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "|";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "^";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "~";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "!=";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "!>";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "!<";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = ":=";
+        SEQ16.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"LOAD", "DATA", "INFILE", "BADFILE", "DISCARDFILE", "INTO", "TABLE", "FIELDS", "TERMINATED", "BY", "OPTIONALLY", "ENCLOSED", "EXTERNAL", "TRAILING", "NULLCOLS", "NULLIF", "DATA", "BLANKS", "INSERT", "INTO", "POSITION", "WHEN", "APPEND", "REPLACE", "EOF", "LOBFILE", "TRUNCATE", "COLUMN", "COUNT", "AND", "SDF", "OR", "SYSDATE", "binary", "bit", "blob", "boolean", "char", "character", "constant", "date", "datetime", "decimal", "double", "filler", "float", "image", "int", "integer", "money", "numeric", "nchar", "nvarchar", "ntext", "object", "pls_integer", "raw", "real", "smalldatetime", "smallint", "smallmoney", "sequence", "text", "timestamp", "tinyint", "uniqueidentifier", "varbinary", "varchar", "varchar2", "varray", "zoned", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

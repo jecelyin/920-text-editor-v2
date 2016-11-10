@@ -19,15 +19,123 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class BcelLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"//\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"/**/\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT3\",\"DELEGATE\":\"java::JAVADOC\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/**\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"//\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"FALSE\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"FALSE\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\":\",\"attrs\":{\"TYPE\":\"LABEL\",\"AT_LINE_START\":\"TRUE\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"abstract\"},{\"tag\":\"KEYWORD1\",\"text\":\"extends\"},{\"tag\":\"KEYWORD1\",\"text\":\"final\"},{\"tag\":\"KEYWORD1\",\"text\":\"implements\"},{\"tag\":\"KEYWORD1\",\"text\":\"native\"},{\"tag\":\"KEYWORD1\",\"text\":\"private\"},{\"tag\":\"KEYWORD1\",\"text\":\"protected\"},{\"tag\":\"KEYWORD1\",\"text\":\"public\"},{\"tag\":\"KEYWORD1\",\"text\":\"static\"},{\"tag\":\"KEYWORD1\",\"text\":\"synchronized\"},{\"tag\":\"KEYWORD1\",\"text\":\"throw\"},{\"tag\":\"KEYWORD1\",\"text\":\"throws\"},{\"tag\":\"KEYWORD1\",\"text\":\"transient\"},{\"tag\":\"KEYWORD1\",\"text\":\"volatile\"},{\"tag\":\"KEYWORD3\",\"text\":\"boolean\"},{\"tag\":\"KEYWORD3\",\"text\":\"byte\"},{\"tag\":\"KEYWORD3\",\"text\":\"char\"},{\"tag\":\"KEYWORD3\",\"text\":\"class\"},{\"tag\":\"KEYWORD3\",\"text\":\"double\"},{\"tag\":\"KEYWORD3\",\"text\":\"float\"},{\"tag\":\"KEYWORD3\",\"text\":\"int\"},{\"tag\":\"KEYWORD3\",\"text\":\"interface\"},{\"tag\":\"KEYWORD3\",\"text\":\"long\"},{\"tag\":\"KEYWORD3\",\"text\":\"short\"},{\"tag\":\"KEYWORD3\",\"text\":\"void\"},{\"tag\":\"KEYWORD1\",\"text\":\"clinit\"},{\"tag\":\"KEYWORD1\",\"text\":\"init\"},{\"tag\":\"KEYWORD1\",\"text\":\"nop\"},{\"tag\":\"KEYWORD1\",\"text\":\"aconst_null\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_m1\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_4\"},{\"tag\":\"KEYWORD1\",\"text\":\"iconst_5\"},{\"tag\":\"KEYWORD1\",\"text\":\"lconst_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"lconst_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"fconst_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"fconst_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"fconst_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"dconst_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"dconst_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"bipush\"},{\"tag\":\"KEYWORD1\",\"text\":\"sipush\"},{\"tag\":\"KEYWORD1\",\"text\":\"ldc\"},{\"tag\":\"KEYWORD1\",\"text\":\"ldc_w\"},{\"tag\":\"KEYWORD1\",\"text\":\"ldc2_w\"},{\"tag\":\"KEYWORD1\",\"text\":\"iload\"},{\"tag\":\"KEYWORD1\",\"text\":\"lload\"},{\"tag\":\"KEYWORD1\",\"text\":\"fload\"},{\"tag\":\"KEYWORD1\",\"text\":\"dload\"},{\"tag\":\"KEYWORD1\",\"text\":\"aload\"},{\"tag\":\"KEYWORD1\",\"text\":\"iload_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"iload_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"iload_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"iload_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"lload_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"lload_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"lload_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"lload_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"fload_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"fload_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"fload_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"fload_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"dload_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"dload_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"dload_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"dload_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"aload_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"aload_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"aload_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"aload_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"iaload\"},{\"tag\":\"KEYWORD1\",\"text\":\"laload\"},{\"tag\":\"KEYWORD1\",\"text\":\"faload\"},{\"tag\":\"KEYWORD1\",\"text\":\"daload\"},{\"tag\":\"KEYWORD1\",\"text\":\"aaload\"},{\"tag\":\"KEYWORD1\",\"text\":\"baload\"},{\"tag\":\"KEYWORD1\",\"text\":\"caload\"},{\"tag\":\"KEYWORD1\",\"text\":\"saload\"},{\"tag\":\"KEYWORD1\",\"text\":\"istore\"},{\"tag\":\"KEYWORD1\",\"text\":\"lstore\"},{\"tag\":\"KEYWORD1\",\"text\":\"fstore\"},{\"tag\":\"KEYWORD1\",\"text\":\"dstore\"},{\"tag\":\"KEYWORD1\",\"text\":\"astore\"},{\"tag\":\"KEYWORD1\",\"text\":\"istore_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"istore_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"istore_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"istore_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"lstore_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"lstore_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"lstore_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"lstore_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"fstore_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"fstore_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"fstore_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"fstore_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"dstore_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"dstore_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"dstore_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"dstore_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"astore_0\"},{\"tag\":\"KEYWORD1\",\"text\":\"astore_1\"},{\"tag\":\"KEYWORD1\",\"text\":\"astore_2\"},{\"tag\":\"KEYWORD1\",\"text\":\"astore_3\"},{\"tag\":\"KEYWORD1\",\"text\":\"iastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"lastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"fastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"dastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"aastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"bastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"castore\"},{\"tag\":\"KEYWORD1\",\"text\":\"sastore\"},{\"tag\":\"KEYWORD1\",\"text\":\"pop\"},{\"tag\":\"KEYWORD1\",\"text\":\"pop2\"},{\"tag\":\"KEYWORD1\",\"text\":\"dup\"},{\"tag\":\"KEYWORD1\",\"text\":\"dup_x1\"},{\"tag\":\"KEYWORD1\",\"text\":\"dup_x2\"},{\"tag\":\"KEYWORD1\",\"text\":\"dup2\"},{\"tag\":\"KEYWORD1\",\"text\":\"dup2_x1\"},{\"tag\":\"KEYWORD1\",\"text\":\"dup2_x2\"},{\"tag\":\"KEYWORD1\",\"text\":\"swap\"},{\"tag\":\"KEYWORD1\",\"text\":\"iadd\"},{\"tag\":\"KEYWORD1\",\"text\":\"ladd\"},{\"tag\":\"KEYWORD1\",\"text\":\"fadd\"},{\"tag\":\"KEYWORD1\",\"text\":\"dadd\"},{\"tag\":\"KEYWORD1\",\"text\":\"isub\"},{\"tag\":\"KEYWORD1\",\"text\":\"lsub\"},{\"tag\":\"KEYWORD1\",\"text\":\"fsub\"},{\"tag\":\"KEYWORD1\",\"text\":\"dsub\"},{\"tag\":\"KEYWORD1\",\"text\":\"imul\"},{\"tag\":\"KEYWORD1\",\"text\":\"lmul\"},{\"tag\":\"KEYWORD1\",\"text\":\"fmul\"},{\"tag\":\"KEYWORD1\",\"text\":\"dmul\"},{\"tag\":\"KEYWORD1\",\"text\":\"idiv\"},{\"tag\":\"KEYWORD1\",\"text\":\"ldiv\"},{\"tag\":\"KEYWORD1\",\"text\":\"fdiv\"},{\"tag\":\"KEYWORD1\",\"text\":\"ddiv\"},{\"tag\":\"KEYWORD1\",\"text\":\"irem\"},{\"tag\":\"KEYWORD1\",\"text\":\"lrem\"},{\"tag\":\"KEYWORD1\",\"text\":\"frem\"},{\"tag\":\"KEYWORD1\",\"text\":\"drem\"},{\"tag\":\"KEYWORD1\",\"text\":\"ineg\"},{\"tag\":\"KEYWORD1\",\"text\":\"lneg\"},{\"tag\":\"KEYWORD1\",\"text\":\"fneg\"},{\"tag\":\"KEYWORD1\",\"text\":\"dneg\"},{\"tag\":\"KEYWORD1\",\"text\":\"ishl\"},{\"tag\":\"KEYWORD1\",\"text\":\"lshl\"},{\"tag\":\"KEYWORD1\",\"text\":\"ishr\"},{\"tag\":\"KEYWORD1\",\"text\":\"lshr\"},{\"tag\":\"KEYWORD1\",\"text\":\"iushr\"},{\"tag\":\"KEYWORD1\",\"text\":\"lushr\"},{\"tag\":\"KEYWORD1\",\"text\":\"iand\"},{\"tag\":\"KEYWORD1\",\"text\":\"land\"},{\"tag\":\"KEYWORD1\",\"text\":\"ior\"},{\"tag\":\"KEYWORD1\",\"text\":\"lor\"},{\"tag\":\"KEYWORD1\",\"text\":\"ixor\"},{\"tag\":\"KEYWORD1\",\"text\":\"lxor\"},{\"tag\":\"KEYWORD1\",\"text\":\"iinc\"},{\"tag\":\"KEYWORD1\",\"text\":\"i2l\"},{\"tag\":\"KEYWORD1\",\"text\":\"i2f\"},{\"tag\":\"KEYWORD1\",\"text\":\"i2d\"},{\"tag\":\"KEYWORD1\",\"text\":\"l2i\"},{\"tag\":\"KEYWORD1\",\"text\":\"l2f\"},{\"tag\":\"KEYWORD1\",\"text\":\"l2d\"},{\"tag\":\"KEYWORD1\",\"text\":\"f2i\"},{\"tag\":\"KEYWORD1\",\"text\":\"f2l\"},{\"tag\":\"KEYWORD1\",\"text\":\"f2d\"},{\"tag\":\"KEYWORD1\",\"text\":\"d2i\"},{\"tag\":\"KEYWORD1\",\"text\":\"d2l\"},{\"tag\":\"KEYWORD1\",\"text\":\"d2f\"},{\"tag\":\"KEYWORD1\",\"text\":\"i2b\"},{\"tag\":\"KEYWORD1\",\"text\":\"i2c\"},{\"tag\":\"KEYWORD1\",\"text\":\"i2s\"},{\"tag\":\"KEYWORD1\",\"text\":\"lcmp\"},{\"tag\":\"KEYWORD1\",\"text\":\"fcmpl\"},{\"tag\":\"KEYWORD1\",\"text\":\"fcmpg\"},{\"tag\":\"KEYWORD1\",\"text\":\"dcmpl\"},{\"tag\":\"KEYWORD1\",\"text\":\"dcmpg\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifeq\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifne\"},{\"tag\":\"KEYWORD1\",\"text\":\"iflt\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifge\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifgt\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifle\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_icmpeq\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_icmpne\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_icmplt\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_icmpge\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_icmpgt\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_icmple\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_acmpeq\"},{\"tag\":\"KEYWORD1\",\"text\":\"if_acmpne\"},{\"tag\":\"KEYWORD1\",\"text\":\"goto\"},{\"tag\":\"KEYWORD1\",\"text\":\"jsr\"},{\"tag\":\"KEYWORD1\",\"text\":\"ret\"},{\"tag\":\"KEYWORD1\",\"text\":\"tableswitch\"},{\"tag\":\"KEYWORD1\",\"text\":\"lookupswitch\"},{\"tag\":\"KEYWORD1\",\"text\":\"ireturn\"},{\"tag\":\"KEYWORD1\",\"text\":\"lreturn\"},{\"tag\":\"KEYWORD1\",\"text\":\"freturn\"},{\"tag\":\"KEYWORD1\",\"text\":\"dreturn\"},{\"tag\":\"KEYWORD1\",\"text\":\"areturn\"},{\"tag\":\"KEYWORD1\",\"text\":\"return\"},{\"tag\":\"KEYWORD1\",\"text\":\"getstatic\"},{\"tag\":\"KEYWORD1\",\"text\":\"putstatic\"},{\"tag\":\"KEYWORD1\",\"text\":\"getfield\"},{\"tag\":\"KEYWORD1\",\"text\":\"putfield\"},{\"tag\":\"KEYWORD1\",\"text\":\"invokevirtual\"},{\"tag\":\"KEYWORD1\",\"text\":\"invokespecial\"},{\"tag\":\"KEYWORD1\",\"text\":\"invokestatic\"},{\"tag\":\"KEYWORD1\",\"text\":\"invokeinterface\"},{\"tag\":\"KEYWORD1\",\"text\":\"new\"},{\"tag\":\"KEYWORD1\",\"text\":\"newarray\"},{\"tag\":\"KEYWORD1\",\"text\":\"anewarray\"},{\"tag\":\"KEYWORD1\",\"text\":\"arraylength\"},{\"tag\":\"KEYWORD1\",\"text\":\"athrow\"},{\"tag\":\"KEYWORD1\",\"text\":\"checkcast\"},{\"tag\":\"KEYWORD1\",\"text\":\"instanceof\"},{\"tag\":\"KEYWORD1\",\"text\":\"monitorenter\"},{\"tag\":\"KEYWORD1\",\"text\":\"monitorexit\"},{\"tag\":\"KEYWORD1\",\"text\":\"wide\"},{\"tag\":\"KEYWORD1\",\"text\":\"multianewarray\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifnull\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifnonnull\"},{\"tag\":\"KEYWORD1\",\"text\":\"goto_w\"},{\"tag\":\"KEYWORD1\",\"text\":\"jsr_w\"},{\"tag\":\"KEYWORD1\",\"text\":\"breakpoint\"},{\"tag\":\"KEYWORD1\",\"text\":\"impdep1\"},{\"tag\":\"KEYWORD1\",\"text\":\"impdep2\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "//";
+        PROPERTY3.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "/**/";
+        SEQ1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT3";
+        SPAN1.DELEGATE = "java::JAVADOC";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/**";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "COMMENT1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "/*";
+        END END2 = new END();
+        END2.text = "*/";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "//";
+        EOL_SPAN1.TYPE = "COMMENT2";
+        SPAN SPAN3 = new SPAN();
+        SPAN3.NO_LINE_BREAK = "TRUE";
+        SPAN3.TYPE = "LITERAL1";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "'";
+        END END3 = new END();
+        END3.text = "'";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.NO_LINE_BREAK = "TRUE";
+        SPAN4.TYPE = "LITERAL1";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "\"";
+        END END4 = new END();
+        END4.text = "\"";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "%";
+        MARK_FOLLOWING1.TYPE = "KEYWORD2";
+        MARK_FOLLOWING1.AT_LINE_START = "FALSE";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "#";
+        MARK_FOLLOWING2.TYPE = "KEYWORD2";
+        MARK_FOLLOWING2.AT_LINE_START = "FALSE";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = ":";
+        MARK_PREVIOUS1.TYPE = "LABEL";
+        MARK_PREVIOUS1.AT_LINE_START = "TRUE";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ">";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "<";
+        SEQ3.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"abstract", "extends", "final", "implements", "native", "private", "protected", "public", "static", "synchronized", "throw", "throws", "transient", "volatile", "clinit", "init", "nop", "aconst_null", "iconst_m1", "iconst_0", "iconst_1", "iconst_2", "iconst_3", "iconst_4", "iconst_5", "lconst_0", "lconst_1", "fconst_0", "fconst_1", "fconst_2", "dconst_0", "dconst_1", "bipush", "sipush", "ldc", "ldc_w", "ldc2_w", "iload", "lload", "fload", "dload", "aload", "iload_0", "iload_1", "iload_2", "iload_3", "lload_0", "lload_1", "lload_2", "lload_3", "fload_0", "fload_1", "fload_2", "fload_3", "dload_0", "dload_1", "dload_2", "dload_3", "aload_0", "aload_1", "aload_2", "aload_3", "iaload", "laload", "faload", "daload", "aaload", "baload", "caload", "saload", "istore", "lstore", "fstore", "dstore", "astore", "istore_0", "istore_1", "istore_2", "istore_3", "lstore_0", "lstore_1", "lstore_2", "lstore_3", "fstore_0", "fstore_1", "fstore_2", "fstore_3", "dstore_0", "dstore_1", "dstore_2", "dstore_3", "astore_0", "astore_1", "astore_2", "astore_3", "iastore", "lastore", "fastore", "dastore", "aastore", "bastore", "castore", "sastore", "pop", "pop2", "dup", "dup_x1", "dup_x2", "dup2", "dup2_x1", "dup2_x2", "swap", "iadd", "ladd", "fadd", "dadd", "isub", "lsub", "fsub", "dsub", "imul", "lmul", "fmul", "dmul", "idiv", "ldiv", "fdiv", "ddiv", "irem", "lrem", "frem", "drem", "ineg", "lneg", "fneg", "dneg", "ishl", "lshl", "ishr", "lshr", "iushr", "lushr", "iand", "land", "ior", "lor", "ixor", "lxor", "iinc", "i2l", "i2f", "i2d", "l2i", "l2f", "l2d", "f2i", "f2l", "f2d", "d2i", "d2l", "d2f", "i2b", "i2c", "i2s", "lcmp", "fcmpl", "fcmpg", "dcmpl", "dcmpg", "ifeq", "ifne", "iflt", "ifge", "ifgt", "ifle", "if_icmpeq", "if_icmpne", "if_icmplt", "if_icmpge", "if_icmpgt", "if_icmple", "if_acmpeq", "if_acmpne", "goto", "jsr", "ret", "tableswitch", "lookupswitch", "ireturn", "lreturn", "freturn", "dreturn", "areturn", "return", "getstatic", "putstatic", "getfield", "putfield", "invokevirtual", "invokespecial", "invokestatic", "invokeinterface", "new", "newarray", "anewarray", "arraylength", "athrow", "checkcast", "instanceof", "monitorenter", "monitorexit", "wide", "multianewarray", "ifnull", "ifnonnull", "goto_w", "jsr_w", "breakpoint", "impdep1", "impdep2", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"boolean", "byte", "char", "class", "double", "float", "int", "interface", "long", "short", "void", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

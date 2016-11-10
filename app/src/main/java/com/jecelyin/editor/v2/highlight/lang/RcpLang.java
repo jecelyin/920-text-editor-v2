@@ -19,15 +19,303 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class RcpLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\"},\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"//\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"RCP_LITERAL\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"//\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\";\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"]\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"[\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"ALERT\"},{\"tag\":\"FUNCTION\",\"text\":\"APPLICATION\"},{\"tag\":\"FUNCTION\",\"text\":\"APPLICATIONICONNAME\"},{\"tag\":\"FUNCTION\",\"text\":\"AREA\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAP\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPCOLOR\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPCOLOR16\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPCOLOR16K\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPFAMILY\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPFAMILYEX\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPFAMILYSPECIAL\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPGREY\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPGREY16\"},{\"tag\":\"FUNCTION\",\"text\":\"BITMAPSCREENFAMILY\"},{\"tag\":\"FUNCTION\",\"text\":\"BOOTSCREENFAMILY\"},{\"tag\":\"FUNCTION\",\"text\":\"BUTTON\"},{\"tag\":\"FUNCTION\",\"text\":\"BUTTONS\"},{\"tag\":\"FUNCTION\",\"text\":\"BYTELIST\"},{\"tag\":\"FUNCTION\",\"text\":\"CATEGORIES\"},{\"tag\":\"FUNCTION\",\"text\":\"CHECKBOX\"},{\"tag\":\"FUNCTION\",\"text\":\"COUNTRYLOCALISATION\"},{\"tag\":\"FUNCTION\",\"text\":\"DATA\"},{\"tag\":\"FUNCTION\",\"text\":\"FEATURE\"},{\"tag\":\"FUNCTION\",\"text\":\"FIELD\"},{\"tag\":\"FUNCTION\",\"text\":\"FONTINDEX\"},{\"tag\":\"FUNCTION\",\"text\":\"FORM\"},{\"tag\":\"FUNCTION\",\"text\":\"FORMBITMAP\"},{\"tag\":\"FUNCTION\",\"text\":\"GADGET\"},{\"tag\":\"FUNCTION\",\"text\":\"GENERATEHEADER\"},{\"tag\":\"FUNCTION\",\"text\":\"GRAFFITIINPUTAREA\"},{\"tag\":\"FUNCTION\",\"text\":\"GRAFFITISTATEINDICATOR\"},{\"tag\":\"FUNCTION\",\"text\":\"HEX\"},{\"tag\":\"FUNCTION\",\"text\":\"ICON\"},{\"tag\":\"FUNCTION\",\"text\":\"ICONFAMILY\"},{\"tag\":\"FUNCTION\",\"text\":\"ICONFAMILYEX\"},{\"tag\":\"FUNCTION\",\"text\":\"INTEGER\"},{\"tag\":\"FUNCTION\",\"text\":\"KEYBOARD\"},{\"tag\":\"FUNCTION\",\"text\":\"LABEL\"},{\"tag\":\"FUNCTION\",\"text\":\"LAUNCHERCATEGORY\"},{\"tag\":\"FUNCTION\",\"text\":\"LIST\"},{\"tag\":\"FUNCTION\",\"text\":\"LONGWORDLIST\"},{\"tag\":\"FUNCTION\",\"text\":\"MENU\"},{\"tag\":\"FUNCTION\",\"text\":\"MENUITEM\"},{\"tag\":\"FUNCTION\",\"text\":\"MESSAGE\"},{\"tag\":\"FUNCTION\",\"text\":\"MIDI\"},{\"tag\":\"FUNCTION\",\"text\":\"NOGRAFFITISTATEINDICATOR\"},{\"tag\":\"FUNCTION\",\"text\":\"PALETTETABLE\"},{\"tag\":\"FUNCTION\",\"text\":\"POPUPLIST\"},{\"tag\":\"FUNCTION\",\"text\":\"POPUPTRIGGER\"},{\"tag\":\"FUNCTION\",\"text\":\"PULLDOWN\"},{\"tag\":\"FUNCTION\",\"text\":\"PUSHBUTTON\"},{\"tag\":\"FUNCTION\",\"text\":\"REPEATBUTTON\"},{\"tag\":\"FUNCTION\",\"text\":\"RESETAUTOID\"},{\"tag\":\"FUNCTION\",\"text\":\"SCROLLBAR\"},{\"tag\":\"FUNCTION\",\"text\":\"SELECTORTRIGGER\"},{\"tag\":\"FUNCTION\",\"text\":\"SLIDER\"},{\"tag\":\"FUNCTION\",\"text\":\"SMALLICON\"},{\"tag\":\"FUNCTION\",\"text\":\"SMALLICONFAMILY\"},{\"tag\":\"FUNCTION\",\"text\":\"SMALLICONFAMILYEX\"},{\"tag\":\"FUNCTION\",\"text\":\"STRING\"},{\"tag\":\"FUNCTION\",\"text\":\"STRINGTABLE\"},{\"tag\":\"FUNCTION\",\"text\":\"TABLE\"},{\"tag\":\"FUNCTION\",\"text\":\"TITLE\"},{\"tag\":\"FUNCTION\",\"text\":\"TRANSLATION\"},{\"tag\":\"FUNCTION\",\"text\":\"TRAP\"},{\"tag\":\"FUNCTION\",\"text\":\"VERSION\"},{\"tag\":\"FUNCTION\",\"text\":\"WORDLIST\"},{\"tag\":\"KEYWORD1\",\"text\":\"PREVTOP\"},{\"tag\":\"KEYWORD1\",\"text\":\"PREVBOTTOM\"},{\"tag\":\"KEYWORD1\",\"text\":\"PREVLEFT\"},{\"tag\":\"KEYWORD1\",\"text\":\"PREVRIGHT\"},{\"tag\":\"KEYWORD1\",\"text\":\"AUTO\"},{\"tag\":\"KEYWORD1\",\"text\":\"AUTOID\"},{\"tag\":\"KEYWORD2\",\"text\":\"AT\"},{\"tag\":\"KEYWORD2\",\"text\":\"AUTOSHIFT\"},{\"tag\":\"KEYWORD2\",\"text\":\"BACKGROUNDID\"},{\"tag\":\"KEYWORD2\",\"text\":\"BITMAPID\"},{\"tag\":\"KEYWORD2\",\"text\":\"BOLDFRAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"BPP\"},{\"tag\":\"KEYWORD2\",\"text\":\"CHECKED\"},{\"tag\":\"KEYWORD2\",\"text\":\"COLORTABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"COLUMNS\"},{\"tag\":\"KEYWORD2\",\"text\":\"COLUMNWIDTHS\"},{\"tag\":\"KEYWORD2\",\"text\":\"COMPRESS\"},{\"tag\":\"KEYWORD2\",\"text\":\"COMPRESSBEST\"},{\"tag\":\"KEYWORD2\",\"text\":\"COMPRESSPACKBITS\"},{\"tag\":\"KEYWORD2\",\"text\":\"COMPRESSRLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"COMPRESSSCANLINE\"},{\"tag\":\"KEYWORD2\",\"text\":\"CONFIRMATION\"},{\"tag\":\"KEYWORD2\",\"text\":\"COUNTRY\"},{\"tag\":\"KEYWORD2\",\"text\":\"CREATOR\"},{\"tag\":\"KEYWORD2\",\"text\":\"CURRENCYDECIMALPLACES\"},{\"tag\":\"KEYWORD2\",\"text\":\"CURRENCYNAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"CURRENCYSYMBOL\"},{\"tag\":\"KEYWORD2\",\"text\":\"CURRENCYUNIQUESYMBOL\"},{\"tag\":\"KEYWORD2\",\"text\":\"DATEFORMAT\"},{\"tag\":\"KEYWORD2\",\"text\":\"DAYLIGHTSAVINGS\"},{\"tag\":\"KEYWORD2\",\"text\":\"DEFAULTBTNID\"},{\"tag\":\"KEYWORD2\",\"text\":\"DEFAULTBUTTON\"},{\"tag\":\"KEYWORD2\",\"text\":\"DENSITY\"},{\"tag\":\"KEYWORD2\",\"text\":\"DISABLED\"},{\"tag\":\"KEYWORD2\",\"text\":\"DYNAMICSIZE\"},{\"tag\":\"KEYWORD2\",\"text\":\"EDITABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"ENTRY\"},{\"tag\":\"KEYWORD2\",\"text\":\"ERROR\"},{\"tag\":\"KEYWORD2\",\"text\":\"EXTENDED\"},{\"tag\":\"KEYWORD2\",\"text\":\"FEEDBACK\"},{\"tag\":\"KEYWORD2\",\"text\":\"FILE\"},{\"tag\":\"KEYWORD2\",\"text\":\"FONTID\"},{\"tag\":\"KEYWORD2\",\"text\":\"FORCECOMPRESS\"},{\"tag\":\"KEYWORD2\",\"text\":\"FRAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"GRAFFITI\"},{\"tag\":\"KEYWORD2\",\"text\":\"GRAPHICAL\"},{\"tag\":\"KEYWORD2\",\"text\":\"GROUP\"},{\"tag\":\"KEYWORD2\",\"text\":\"HASSCROLLBAR\"},{\"tag\":\"KEYWORD2\",\"text\":\"HELPID\"},{\"tag\":\"KEYWORD2\",\"text\":\"ID\"},{\"tag\":\"KEYWORD2\",\"text\":\"INDEX\"},{\"tag\":\"KEYWORD2\",\"text\":\"INFORMATION\"},{\"tag\":\"KEYWORD2\",\"text\":\"KEYDOWNCHR\"},{\"tag\":\"KEYWORD2\",\"text\":\"KEYDOWNKEYCODE\"},{\"tag\":\"KEYWORD2\",\"text\":\"KEYDOWNMODIFIERS\"},{\"tag\":\"KEYWORD2\",\"text\":\"LANGUAGE\"},{\"tag\":\"KEYWORD2\",\"text\":\"LEFTALIGN\"},{\"tag\":\"KEYWORD2\",\"text\":\"LEFTANCHOR\"},{\"tag\":\"KEYWORD2\",\"text\":\"LONGDATEFORMAT\"},{\"tag\":\"KEYWORD2\",\"text\":\"MAX\"},{\"tag\":\"KEYWORD2\",\"text\":\"MAXCHARS\"},{\"tag\":\"KEYWORD2\",\"text\":\"MEASUREMENTSYSTEM\"},{\"tag\":\"KEYWORD2\",\"text\":\"MENUID\"},{\"tag\":\"KEYWORD2\",\"text\":\"MIN\"},{\"tag\":\"KEYWORD2\",\"text\":\"LOCALE\"},{\"tag\":\"KEYWORD2\",\"text\":\"MINUTESWESTOFGMT\"},{\"tag\":\"KEYWORD2\",\"text\":\"MODAL\"},{\"tag\":\"KEYWORD2\",\"text\":\"MULTIPLELINES\"},{\"tag\":\"KEYWORD2\",\"text\":\"NAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"NOCOLORTABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"NOCOMPRESS\"},{\"tag\":\"KEYWORD2\",\"text\":\"NOFRAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"NONEDITABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"NONEXTENDED\"},{\"tag\":\"KEYWORD2\",\"text\":\"NONUSABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"NOSAVEBEHIND\"},{\"tag\":\"KEYWORD2\",\"text\":\"NUMBER\"},{\"tag\":\"KEYWORD2\",\"text\":\"NUMBERFORMAT\"},{\"tag\":\"KEYWORD2\",\"text\":\"NUMERIC\"},{\"tag\":\"KEYWORD2\",\"text\":\"PAGESIZE\"},{\"tag\":\"KEYWORD2\",\"text\":\"RECTFRAME\"},{\"tag\":\"KEYWORD2\",\"text\":\"RIGHTALIGN\"},{\"tag\":\"KEYWORD2\",\"text\":\"RIGHTANCHOR\"},{\"tag\":\"KEYWORD2\",\"text\":\"ROWS\"},{\"tag\":\"KEYWORD2\",\"text\":\"SAVEBEHIND\"},{\"tag\":\"KEYWORD2\",\"text\":\"SEARCH\"},{\"tag\":\"KEYWORD2\",\"text\":\"SCREEN\"},{\"tag\":\"KEYWORD2\",\"text\":\"SELECTEDBITMAPID\"},{\"tag\":\"KEYWORD2\",\"text\":\"SINGLELINE\"},{\"tag\":\"KEYWORD2\",\"text\":\"THUMBID\"},{\"tag\":\"KEYWORD2\",\"text\":\"TRANSPARENTINDEX\"},{\"tag\":\"KEYWORD2\",\"text\":\"TIMEFORMAT\"},{\"tag\":\"KEYWORD2\",\"text\":\"UNDERLINED\"},{\"tag\":\"KEYWORD2\",\"text\":\"USABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"VALUE\"},{\"tag\":\"KEYWORD2\",\"text\":\"VERTICAL\"},{\"tag\":\"KEYWORD2\",\"text\":\"VISIBLEITEMS\"},{\"tag\":\"KEYWORD2\",\"text\":\"WARNING\"},{\"tag\":\"KEYWORD2\",\"text\":\"WEEKSTARTDAY\"},{\"tag\":\"KEYWORD2\",\"text\":\"FONT\"},{\"tag\":\"KEYWORD2\",\"text\":\"TRANSPARENT\"},{\"tag\":\"KEYWORD3\",\"text\":\"BEGIN\"},{\"tag\":\"KEYWORD3\",\"text\":\"END\"},{\"tag\":\"KEYWORD4\",\"text\":\"#include\"},{\"tag\":\"KEYWORD4\",\"text\":\"#define\"},{\"tag\":\"KEYWORD4\",\"text\":\"equ\"},{\"tag\":\"KEYWORD4\",\"text\":\"#undef\"},{\"tag\":\"KEYWORD4\",\"text\":\"#ifdef\"},{\"tag\":\"KEYWORD4\",\"text\":\"#ifndef\"},{\"tag\":\"KEYWORD4\",\"text\":\"#else\"},{\"tag\":\"KEYWORD4\",\"text\":\"#endif\"},{\"tag\":\"KEYWORD4\",\"text\":\"package\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"RCP_LITERAL\",\"DEFAULT\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"MARK_FOLLOWING\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"KEYWORD3\"}},{\"tag\":\"SEQ\",\"text\":\"\\\\\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\".\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\";\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"]\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"[\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"SEQ\",\"text\":\"'\",\"attrs\":{\"TYPE\":\"LITERAL1\"}}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "//";
+        PROPERTY2.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
+
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.DELEGATE = "RCP_LITERAL";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "LITERAL1";
+        SPAN3.ESCAPE = "\\";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "'";
+        END END3 = new END();
+        END3.text = "'";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "//";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "!";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "=";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "+";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "-";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "/";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "*";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "%";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "|";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "^";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "~";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "}";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "{";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = ",";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = ";";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "]";
+        SEQ16.TYPE = "OPERATOR";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "[";
+        SEQ17.TYPE = "OPERATOR";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "?";
+        SEQ18.TYPE = "OPERATOR";
+        SEQ SEQ19 = new SEQ();
+        SEQ19.text = "@";
+        SEQ19.TYPE = "OPERATOR";
+        SEQ SEQ20 = new SEQ();
+        SEQ20.text = ":";
+        SEQ20.TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "(";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ21 = new SEQ();
+        SEQ21.text = ")";
+        SEQ21.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"PREVTOP", "PREVBOTTOM", "PREVLEFT", "PREVRIGHT", "AUTO", "AUTOID", });
+        KEYWORDS1.add("FUNCTION", new String[]{"ALERT", "APPLICATION", "APPLICATIONICONNAME", "AREA", "BITMAP", "BITMAPCOLOR", "BITMAPCOLOR16", "BITMAPCOLOR16K", "BITMAPFAMILY", "BITMAPFAMILYEX", "BITMAPFAMILYSPECIAL", "BITMAPGREY", "BITMAPGREY16", "BITMAPSCREENFAMILY", "BOOTSCREENFAMILY", "BUTTON", "BUTTONS", "BYTELIST", "CATEGORIES", "CHECKBOX", "COUNTRYLOCALISATION", "DATA", "FEATURE", "FIELD", "FONTINDEX", "FORM", "FORMBITMAP", "GADGET", "GENERATEHEADER", "GRAFFITIINPUTAREA", "GRAFFITISTATEINDICATOR", "HEX", "ICON", "ICONFAMILY", "ICONFAMILYEX", "INTEGER", "KEYBOARD", "LABEL", "LAUNCHERCATEGORY", "LIST", "LONGWORDLIST", "MENU", "MENUITEM", "MESSAGE", "MIDI", "NOGRAFFITISTATEINDICATOR", "PALETTETABLE", "POPUPLIST", "POPUPTRIGGER", "PULLDOWN", "PUSHBUTTON", "REPEATBUTTON", "RESETAUTOID", "SCROLLBAR", "SELECTORTRIGGER", "SLIDER", "SMALLICON", "SMALLICONFAMILY", "SMALLICONFAMILYEX", "STRING", "STRINGTABLE", "TABLE", "TITLE", "TRANSLATION", "TRAP", "VERSION", "WORDLIST", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"AT", "AUTOSHIFT", "BACKGROUNDID", "BITMAPID", "BOLDFRAME", "BPP", "CHECKED", "COLORTABLE", "COLUMNS", "COLUMNWIDTHS", "COMPRESS", "COMPRESSBEST", "COMPRESSPACKBITS", "COMPRESSRLE", "COMPRESSSCANLINE", "CONFIRMATION", "COUNTRY", "CREATOR", "CURRENCYDECIMALPLACES", "CURRENCYNAME", "CURRENCYSYMBOL", "CURRENCYUNIQUESYMBOL", "DATEFORMAT", "DAYLIGHTSAVINGS", "DEFAULTBTNID", "DEFAULTBUTTON", "DENSITY", "DISABLED", "DYNAMICSIZE", "EDITABLE", "ENTRY", "ERROR", "EXTENDED", "FEEDBACK", "FILE", "FONTID", "FORCECOMPRESS", "FRAME", "GRAFFITI", "GRAPHICAL", "GROUP", "HASSCROLLBAR", "HELPID", "ID", "INDEX", "INFORMATION", "KEYDOWNCHR", "KEYDOWNKEYCODE", "KEYDOWNMODIFIERS", "LANGUAGE", "LEFTALIGN", "LEFTANCHOR", "LONGDATEFORMAT", "MAX", "MAXCHARS", "MEASUREMENTSYSTEM", "MENUID", "MIN", "LOCALE", "MINUTESWESTOFGMT", "MODAL", "MULTIPLELINES", "NAME", "NOCOLORTABLE", "NOCOMPRESS", "NOFRAME", "NONEDITABLE", "NONEXTENDED", "NONUSABLE", "NOSAVEBEHIND", "NUMBER", "NUMBERFORMAT", "NUMERIC", "PAGESIZE", "RECTFRAME", "RIGHTALIGN", "RIGHTANCHOR", "ROWS", "SAVEBEHIND", "SEARCH", "SCREEN", "SELECTEDBITMAPID", "SINGLELINE", "THUMBID", "TRANSPARENTINDEX", "TIMEFORMAT", "UNDERLINED", "USABLE", "VALUE", "VERTICAL", "VISIBLEITEMS", "WARNING", "WEEKSTARTDAY", "FONT", "TRANSPARENT", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"BEGIN", "END", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"#include", "#define", "equ", "#undef", "#ifdef", "#ifndef", "#else", "#endif", "package", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.PROPS = new PROPS[] { PROPS1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, SEQ19, SEQ20, SEQ21, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "RCP_LITERAL";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.ESCAPE = "\\";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "$";
+        MARK_FOLLOWING1.TYPE = "KEYWORD3";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "\\";
+        SEQ1.TYPE = "LITERAL1";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "=";
+        SEQ2.TYPE = "LITERAL1";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "!";
+        SEQ3.TYPE = "LITERAL1";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "=";
+        SEQ4.TYPE = "LITERAL1";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "+";
+        SEQ5.TYPE = "LITERAL1";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "-";
+        SEQ6.TYPE = "LITERAL1";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "/";
+        SEQ7.TYPE = "LITERAL1";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "*";
+        SEQ8.TYPE = "LITERAL1";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "%";
+        SEQ9.TYPE = "LITERAL1";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "|";
+        SEQ10.TYPE = "LITERAL1";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "^";
+        SEQ11.TYPE = "LITERAL1";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "~";
+        SEQ12.TYPE = "LITERAL1";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = ".";
+        SEQ13.TYPE = "LITERAL1";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "}";
+        SEQ14.TYPE = "LITERAL1";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "{";
+        SEQ15.TYPE = "LITERAL1";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = ",";
+        SEQ16.TYPE = "LITERAL1";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = ";";
+        SEQ17.TYPE = "LITERAL1";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "]";
+        SEQ18.TYPE = "LITERAL1";
+        SEQ SEQ19 = new SEQ();
+        SEQ19.text = "[";
+        SEQ19.TYPE = "LITERAL1";
+        SEQ SEQ20 = new SEQ();
+        SEQ20.text = "?";
+        SEQ20.TYPE = "LITERAL1";
+        SEQ SEQ21 = new SEQ();
+        SEQ21.text = "@";
+        SEQ21.TYPE = "LITERAL1";
+        SEQ SEQ22 = new SEQ();
+        SEQ22.text = ":";
+        SEQ22.TYPE = "LITERAL1";
+        SEQ SEQ23 = new SEQ();
+        SEQ23.text = ")";
+        SEQ23.TYPE = "LITERAL1";
+        SEQ SEQ24 = new SEQ();
+        SEQ24.text = "'";
+        SEQ24.TYPE = "LITERAL1";
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, SEQ19, SEQ20, SEQ21, SEQ22, SEQ23, SEQ24, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

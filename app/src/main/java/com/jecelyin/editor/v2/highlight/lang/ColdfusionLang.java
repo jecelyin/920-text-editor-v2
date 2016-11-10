@@ -19,15 +19,346 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class ColdfusionLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"<!--\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"-->\",\"NAME\":\"commentEnd\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<!---\"},{\"tag\":\"END\",\"text\":\"--->\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"//\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT3\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<!--\"},{\"tag\":\"END\",\"text\":\"-->\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"cfscript::MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<CFSCRIPT\"},{\"tag\":\"END\",\"text\":\"<\\/CFSCRIPT>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFQUERY\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<CFQUERY\"},{\"tag\":\"END\",\"text\":\"/CFQUERY>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFTAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<CF\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFTAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\\/CF\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"html::JAVASCRIPT\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<SCRIPT\"},{\"tag\":\"END\",\"text\":\"<\\/SCRIPT>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"html::CSS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<STYLE\"},{\"tag\":\"END\",\"text\":\"<\\/STYLE>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"TAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_WORD_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"&\"},{\"tag\":\"END\",\"text\":\";\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"TAGS\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DEFAULT\":\"MARKUP\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFTAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<CF\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFTAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\\/CF\"},{\"tag\":\"END\",\"text\":\">\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CFQUERY\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DEFAULT\":\"KEYWORD3\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"HASH_CHARS\":\"<CF\",\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFTAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<CF\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"HASH_CHARS\":\"<\\/CF\",\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CFTAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\\/CF\"},{\"tag\":\"END\",\"text\":\">\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"transact-sql::MAIN\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\">\"},{\"tag\":\"END\",\"text\":\"<\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CFTAGS\",\"DEFAULT\":\"KEYWORD3\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"##\",\"attrs\":{\"TYPE\":\"KEYWORD3\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#\"},{\"tag\":\"END\",\"text\":\"#\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"ACos\"},{\"tag\":\"KEYWORD2\",\"text\":\"ASin\"},{\"tag\":\"KEYWORD2\",\"text\":\"Abort\"},{\"tag\":\"KEYWORD2\",\"text\":\"Abs\"},{\"tag\":\"KEYWORD2\",\"text\":\"AddSOAPRequestHeader\"},{\"tag\":\"KEYWORD2\",\"text\":\"AddSOAPResponseHeader\"},{\"tag\":\"KEYWORD2\",\"text\":\"AjaxLink\"},{\"tag\":\"KEYWORD2\",\"text\":\"AjaxOnLoad\"},{\"tag\":\"KEYWORD2\",\"text\":\"ApplicationStop\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayAppend\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayAvg\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayClear\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayContains\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayDelete\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayDeleteAt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayFind\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayFindNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayInsertAt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayIsDefined\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayIsEmpty\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayLen\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayMax\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayMin\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayPrepend\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayResize\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArraySet\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArraySort\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArraySum\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArraySwap\"},{\"tag\":\"KEYWORD2\",\"text\":\"ArrayToList\"},{\"tag\":\"KEYWORD2\",\"text\":\"Asc\"},{\"tag\":\"KEYWORD2\",\"text\":\"Atn\"},{\"tag\":\"KEYWORD2\",\"text\":\"BinaryDecode\"},{\"tag\":\"KEYWORD2\",\"text\":\"BinaryEncode\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitAnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitMaskClear\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitMaskRead\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitMaskSet\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitNot\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitOr\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitSHLN\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitSHRN\"},{\"tag\":\"KEYWORD2\",\"text\":\"BitXor\"},{\"tag\":\"KEYWORD2\",\"text\":\"CJustify\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheGet\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheGetAllIds\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheGetMetadata\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheGetProperties\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheGetSession\"},{\"tag\":\"KEYWORD2\",\"text\":\"CachePut\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheRemove\"},{\"tag\":\"KEYWORD2\",\"text\":\"CacheSetProperties\"},{\"tag\":\"KEYWORD2\",\"text\":\"Ceiling\"},{\"tag\":\"KEYWORD2\",\"text\":\"CharsetDecode\"},{\"tag\":\"KEYWORD2\",\"text\":\"CharsetEncode\"},{\"tag\":\"KEYWORD2\",\"text\":\"Chr\"},{\"tag\":\"KEYWORD2\",\"text\":\"Compare\"},{\"tag\":\"KEYWORD2\",\"text\":\"CompareNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"Cos\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateDate\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateDateTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateODBCDate\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateODBCDateTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateODBCTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateObject\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateTimeSpan\"},{\"tag\":\"KEYWORD2\",\"text\":\"CreateUUID\"},{\"tag\":\"KEYWORD2\",\"text\":\"DE\"},{\"tag\":\"KEYWORD2\",\"text\":\"DateAdd\"},{\"tag\":\"KEYWORD2\",\"text\":\"DateCompare\"},{\"tag\":\"KEYWORD2\",\"text\":\"DateConvert\"},{\"tag\":\"KEYWORD2\",\"text\":\"DateDiff\"},{\"tag\":\"KEYWORD2\",\"text\":\"DateFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"DatePart\"},{\"tag\":\"KEYWORD2\",\"text\":\"Day\"},{\"tag\":\"KEYWORD2\",\"text\":\"DayOfWeek\"},{\"tag\":\"KEYWORD2\",\"text\":\"DayOfWeekAsString\"},{\"tag\":\"KEYWORD2\",\"text\":\"DayOfYear\"},{\"tag\":\"KEYWORD2\",\"text\":\"DaysInMonth\"},{\"tag\":\"KEYWORD2\",\"text\":\"DaysInYear\"},{\"tag\":\"KEYWORD2\",\"text\":\"DecimalFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"DecrementValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"Decrypt\"},{\"tag\":\"KEYWORD2\",\"text\":\"DecryptBinary\"},{\"tag\":\"KEYWORD2\",\"text\":\"DeleteClientVariable\"},{\"tag\":\"KEYWORD2\",\"text\":\"DeserializeJSON\"},{\"tag\":\"KEYWORD2\",\"text\":\"DirectoryCreate\"},{\"tag\":\"KEYWORD2\",\"text\":\"DirectoryDelete\"},{\"tag\":\"KEYWORD2\",\"text\":\"DirectoryExists\"},{\"tag\":\"KEYWORD2\",\"text\":\"DirectoryList\"},{\"tag\":\"KEYWORD2\",\"text\":\"DirectoryRename\"},{\"tag\":\"KEYWORD2\",\"text\":\"DollarFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"DotNetToCFType\"},{\"tag\":\"KEYWORD2\",\"text\":\"Duplicate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Encrypt\"},{\"tag\":\"KEYWORD2\",\"text\":\"EncryptBinary\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityDelete\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityLoad\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityLoadByExample\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityLoadByPK\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityMerge\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntityReload\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntitySave\"},{\"tag\":\"KEYWORD2\",\"text\":\"EntitytoQuery\"},{\"tag\":\"KEYWORD2\",\"text\":\"Evaluate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Exp\"},{\"tag\":\"KEYWORD2\",\"text\":\"ExpandPath\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileClose\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileCopy\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileDelete\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileExists\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileIsEOF\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileMove\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileOpen\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileRead\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileReadBinary\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileReadLine\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileSeek\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileSetAccessMode\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileSetAttribute\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileSetLastModified\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileSkipBytes\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileUpload\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileUploadAll\"},{\"tag\":\"KEYWORD2\",\"text\":\"FileWrite\"},{\"tag\":\"KEYWORD2\",\"text\":\"Find\"},{\"tag\":\"KEYWORD2\",\"text\":\"FindNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"FindOneOf\"},{\"tag\":\"KEYWORD2\",\"text\":\"FirstDayOfMonth\"},{\"tag\":\"KEYWORD2\",\"text\":\"Fix\"},{\"tag\":\"KEYWORD2\",\"text\":\"FormatBaseN\"},{\"tag\":\"KEYWORD2\",\"text\":\"GenerateSecretKey\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetAuthUser\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetBaseTagData\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetBaseTagList\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetBaseTemplatePath\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetClientVariablesList\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetComponentMetaData\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetContextRoot\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetCurrentTemplatePath\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetDirectoryFromPath\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetEncoding\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetException\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetFileFromPath\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetFileInfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetFunctionCalledName\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetFunctionList\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetGatewayHelper\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetHttpRequestData\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetHttpTimeString\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetLocalHostIP\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetLocale\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetLocaleDisplayName\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetMetaData\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetMetricData\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetPageContext\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetPrinterInfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetProfileSections\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetProfileString\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetReadableImageFormats\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetSOAPRequest\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetSOAPRequestHeader\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetSOAPResponse\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetSOAPResponseHeader\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetTempDirectory\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetTempFile\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetTemplatePath\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetTickCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetTimeZoneInfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetToken\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetUserRoles\"},{\"tag\":\"KEYWORD2\",\"text\":\"GetWriteableImageFormats\"},{\"tag\":\"KEYWORD2\",\"text\":\"HTMLCodeFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"HTMLEditFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"Hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"Hour\"},{\"tag\":\"KEYWORD2\",\"text\":\"IIf\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageAddBorder\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageBlur\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageClearRect\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageCopy\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageCrop\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawArc\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawBeveledRect\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawCubicCurve\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawLine\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawLines\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawOval\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawPoint\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawQuadraticCurve\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawRect\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawRoundRect\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageDrawText\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageFlip\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGetBlob\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGetBufferedImage\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGetEXIFTag\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGetHeight\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGetIPTCTag\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGetWidth\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageGrayscale\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageInfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageNegative\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageOverlay\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImagePaste\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageRead\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageReadBase64\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageResize\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageRotate\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageRotateDrawingAxis\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageScaleToFit\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageSetAntialiasing\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageSetBackgroundColor\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageSetDrawingColor\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageSetDrawingStroke\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageSetDrawingTransparency\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageSharpen\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageShear\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageShearDrawingAxis\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageTranslate\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageTranslateDrawingAxis\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageWrite\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageWriteBase64\"},{\"tag\":\"KEYWORD2\",\"text\":\"ImageXORDrawingMode\"},{\"tag\":\"KEYWORD2\",\"text\":\"IncrementValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"InputBaseN\"},{\"tag\":\"KEYWORD2\",\"text\":\"Insert\"},{\"tag\":\"KEYWORD2\",\"text\":\"Int\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsArray\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsBinary\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsBoolean\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsCustomFunction\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsDDX\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsDate\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsDebugMode\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsDefined\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsImage\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsImageFile\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsInstanceOf\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsJSON\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsK2ServerABroker\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsK2ServerDocCountExceeded\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsK2ServerOnline\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsLeapYear\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsLocalHost\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsNull\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsNumeric\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsNumericDate\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsObject\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsPDFFile\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsPDFObject\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsQuery\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsSOAPRequest\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsSimpleValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsStruct\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsUserInAnyRole\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsUserInRole\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsUserLoggedIn\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsValid\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsWDDX\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsXML\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsXmlAttribute\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsXmlDoc\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsXmlElem\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsXmlNode\"},{\"tag\":\"KEYWORD2\",\"text\":\"IsXmlRoot\"},{\"tag\":\"KEYWORD2\",\"text\":\"JSStringFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"JavaCast\"},{\"tag\":\"KEYWORD2\",\"text\":\"LCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"LJustify\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSCurrencyFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSDateFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSEuroCurrencyFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSIsCurrency\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSIsDate\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSIsNumeric\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSNumberFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSParseCurrency\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSParseDateTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSParseEuroCurrency\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSParseNumber\"},{\"tag\":\"KEYWORD2\",\"text\":\"LSTimeFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"LTrim\"},{\"tag\":\"KEYWORD2\",\"text\":\"Left\"},{\"tag\":\"KEYWORD2\",\"text\":\"Len\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListAppend\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListChangeDelims\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListContains\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListContainsNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListDeleteAt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListFind\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListFindNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListFirst\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListGetAt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListInsertAt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListLast\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListLen\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListPrepend\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListQualify\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListRest\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListSetAt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListSort\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListToArray\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListValueCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"ListValueCountNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"Location\"},{\"tag\":\"KEYWORD2\",\"text\":\"Log\"},{\"tag\":\"KEYWORD2\",\"text\":\"Log10\"},{\"tag\":\"KEYWORD2\",\"text\":\"Max\"},{\"tag\":\"KEYWORD2\",\"text\":\"Mid\"},{\"tag\":\"KEYWORD2\",\"text\":\"Min\"},{\"tag\":\"KEYWORD2\",\"text\":\"Minute\"},{\"tag\":\"KEYWORD2\",\"text\":\"Month\"},{\"tag\":\"KEYWORD2\",\"text\":\"MonthAsString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Now\"},{\"tag\":\"KEYWORD2\",\"text\":\"NumberFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMClearSession\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMCloseSession\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMEvictCollection\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMEvictEntity\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMEvictQueries\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMExecuteQuery\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMFlush\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMGetSession\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMGetSessionFactory\"},{\"tag\":\"KEYWORD2\",\"text\":\"ORMReload\"},{\"tag\":\"KEYWORD2\",\"text\":\"ObjectEquals\"},{\"tag\":\"KEYWORD2\",\"text\":\"ObjectLoad\"},{\"tag\":\"KEYWORD2\",\"text\":\"ObjectSave\"},{\"tag\":\"KEYWORD2\",\"text\":\"ParagraphFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"ParseDateTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"Pi\"},{\"tag\":\"KEYWORD2\",\"text\":\"PrecisionEvaluate\"},{\"tag\":\"KEYWORD2\",\"text\":\"PreserveSingleQuotes\"},{\"tag\":\"KEYWORD2\",\"text\":\"Quarter\"},{\"tag\":\"KEYWORD2\",\"text\":\"QueryAddColumn\"},{\"tag\":\"KEYWORD2\",\"text\":\"QueryAddRow\"},{\"tag\":\"KEYWORD2\",\"text\":\"QueryConvertForGrid\"},{\"tag\":\"KEYWORD2\",\"text\":\"QueryNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"QuerySetCell\"},{\"tag\":\"KEYWORD2\",\"text\":\"QuotedValueList\"},{\"tag\":\"KEYWORD2\",\"text\":\"REFind\"},{\"tag\":\"KEYWORD2\",\"text\":\"REFindNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"REMatch\"},{\"tag\":\"KEYWORD2\",\"text\":\"REMatchNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"REReplace\"},{\"tag\":\"KEYWORD2\",\"text\":\"REReplaceNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"RJustify\"},{\"tag\":\"KEYWORD2\",\"text\":\"RTrim\"},{\"tag\":\"KEYWORD2\",\"text\":\"Rand\"},{\"tag\":\"KEYWORD2\",\"text\":\"RandRange\"},{\"tag\":\"KEYWORD2\",\"text\":\"Randomize\"},{\"tag\":\"KEYWORD2\",\"text\":\"ReleaseComObject\"},{\"tag\":\"KEYWORD2\",\"text\":\"RemoveChars\"},{\"tag\":\"KEYWORD2\",\"text\":\"RepeatString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Replace\"},{\"tag\":\"KEYWORD2\",\"text\":\"ReplaceList\"},{\"tag\":\"KEYWORD2\",\"text\":\"ReplaceNoCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"Reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"Right\"},{\"tag\":\"KEYWORD2\",\"text\":\"Round\"},{\"tag\":\"KEYWORD2\",\"text\":\"Second\"},{\"tag\":\"KEYWORD2\",\"text\":\"SendGatewayMessage\"},{\"tag\":\"KEYWORD2\",\"text\":\"SerializeJSON\"},{\"tag\":\"KEYWORD2\",\"text\":\"SetLocale\"},{\"tag\":\"KEYWORD2\",\"text\":\"SetProfileString\"},{\"tag\":\"KEYWORD2\",\"text\":\"SetVariable\"},{\"tag\":\"KEYWORD2\",\"text\":\"Sgn\"},{\"tag\":\"KEYWORD2\",\"text\":\"Sin\"},{\"tag\":\"KEYWORD2\",\"text\":\"Sleep\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpanExcluding\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpanIncluding\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddColumn\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddFreezePane\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddImage\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddInfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddRow\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddRows\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetAddSplitPane\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetCreateSheet\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetDeleteColumn\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetDeleteColumns\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetDeleteRow\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetDeleteRows\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetFormatCell\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetFormatCellRange\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetFormatColumn\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetFormatColumns\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetFormatRow\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetFormatRows\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetGetCellComment\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetGetCellFormula\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetGetCellValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetInfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetMergeCells\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetRead\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetReadBinary\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetRemoveSheet\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetActiveSheet\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetActiveSheetNumber\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetCellComment\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetCellFormula\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetCellValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetColumnWidth\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetFooter\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetHeader\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetSetRowHeight\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetShiftColumns\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetShiftRows\"},{\"tag\":\"KEYWORD2\",\"text\":\"SpreadsheetWrite\"},{\"tag\":\"KEYWORD2\",\"text\":\"Sqr\"},{\"tag\":\"KEYWORD2\",\"text\":\"StripCR\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructAppend\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructClear\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructCopy\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructCount\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructDelete\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructFind\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructFindKey\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructFindValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructGet\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructInsert\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructIsEmpty\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructKeyArray\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructKeyExists\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructKeyList\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructSort\"},{\"tag\":\"KEYWORD2\",\"text\":\"StructUpdate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tan\"},{\"tag\":\"KEYWORD2\",\"text\":\"Throw\"},{\"tag\":\"KEYWORD2\",\"text\":\"TimeFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"ToBase64\"},{\"tag\":\"KEYWORD2\",\"text\":\"ToBinary\"},{\"tag\":\"KEYWORD2\",\"text\":\"ToScript\"},{\"tag\":\"KEYWORD2\",\"text\":\"ToString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Trace\"},{\"tag\":\"KEYWORD2\",\"text\":\"TransactionCommit\"},{\"tag\":\"KEYWORD2\",\"text\":\"TransactionRollback\"},{\"tag\":\"KEYWORD2\",\"text\":\"TransactionSetSavePoint\"},{\"tag\":\"KEYWORD2\",\"text\":\"Trim\"},{\"tag\":\"KEYWORD2\",\"text\":\"UCase\"},{\"tag\":\"KEYWORD2\",\"text\":\"URLDecode\"},{\"tag\":\"KEYWORD2\",\"text\":\"URLEncodedFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"URLSessionFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"Val\"},{\"tag\":\"KEYWORD2\",\"text\":\"ValueList\"},{\"tag\":\"KEYWORD2\",\"text\":\"VerifyClient\"},{\"tag\":\"KEYWORD2\",\"text\":\"Week\"},{\"tag\":\"KEYWORD2\",\"text\":\"Wrap\"},{\"tag\":\"KEYWORD2\",\"text\":\"WriteDump\"},{\"tag\":\"KEYWORD2\",\"text\":\"WriteLog\"},{\"tag\":\"KEYWORD2\",\"text\":\"WriteOutput\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlChildPos\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlElemNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlFormat\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlGetNodeType\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlNew\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlParse\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlSearch\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlTransform\"},{\"tag\":\"KEYWORD2\",\"text\":\"XmlValidate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Year\"},{\"tag\":\"KEYWORD2\",\"text\":\"YesNoFormat\"},{\"tag\":\"OPERATOR\",\"text\":\"IS\"},{\"tag\":\"OPERATOR\",\"text\":\"EQ\"},{\"tag\":\"OPERATOR\",\"text\":\"NEQ\"},{\"tag\":\"OPERATOR\",\"text\":\"GT\"},{\"tag\":\"OPERATOR\",\"text\":\"GTE\"},{\"tag\":\"OPERATOR\",\"text\":\"LT\"},{\"tag\":\"OPERATOR\",\"text\":\"LTE\"},{\"tag\":\"OPERATOR\",\"text\":\"LESS\"},{\"tag\":\"OPERATOR\",\"text\":\"GREATER\"},{\"tag\":\"OPERATOR\",\"text\":\"THAN\"},{\"tag\":\"OPERATOR\",\"text\":\"AND\"},{\"tag\":\"OPERATOR\",\"text\":\"OR\"},{\"tag\":\"OPERATOR\",\"text\":\"NOT\"},{\"tag\":\"OPERATOR\",\"text\":\"XOR\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "<!--";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "-->";
+        PROPERTY2.NAME = "commentEnd";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT4";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "<!---";
+        END END1 = new END();
+        END1.text = "--->";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "COMMENT1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "/*";
+        END END2 = new END();
+        END2.text = "*/";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "//";
+        EOL_SPAN1.TYPE = "COMMENT2";
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "COMMENT3";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "<!--";
+        END END3 = new END();
+        END3.text = "-->";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.TYPE = "KEYWORD3";
+        SPAN4.DELEGATE = "cfscript::MAIN";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "<CFSCRIPT";
+        END END4 = new END();
+        END4.text = "</CFSCRIPT>";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        SPAN SPAN5 = new SPAN();
+        SPAN5.TYPE = "KEYWORD3";
+        SPAN5.DELEGATE = "CFQUERY";
+        BEGIN BEGIN5 = new BEGIN();
+        BEGIN5.text = "<CFQUERY";
+        END END5 = new END();
+        END5.text = "/CFQUERY>";
+        SPAN5.END = new END[] { END5, };
+
+        SPAN5.BEGIN = new BEGIN[] { BEGIN5, };
+
+        SPAN SPAN6 = new SPAN();
+        SPAN6.TYPE = "KEYWORD3";
+        SPAN6.DELEGATE = "CFTAGS";
+        BEGIN BEGIN6 = new BEGIN();
+        BEGIN6.text = "<CF";
+        END END6 = new END();
+        END6.text = ">";
+        SPAN6.END = new END[] { END6, };
+
+        SPAN6.BEGIN = new BEGIN[] { BEGIN6, };
+
+        SPAN SPAN7 = new SPAN();
+        SPAN7.TYPE = "KEYWORD3";
+        SPAN7.DELEGATE = "CFTAGS";
+        BEGIN BEGIN7 = new BEGIN();
+        BEGIN7.text = "</CF";
+        END END7 = new END();
+        END7.text = ">";
+        SPAN7.END = new END[] { END7, };
+
+        SPAN7.BEGIN = new BEGIN[] { BEGIN7, };
+
+        SPAN SPAN8 = new SPAN();
+        SPAN8.TYPE = "MARKUP";
+        SPAN8.DELEGATE = "html::JAVASCRIPT";
+        BEGIN BEGIN8 = new BEGIN();
+        BEGIN8.text = "<SCRIPT";
+        END END8 = new END();
+        END8.text = "</SCRIPT>";
+        SPAN8.END = new END[] { END8, };
+
+        SPAN8.BEGIN = new BEGIN[] { BEGIN8, };
+
+        SPAN SPAN9 = new SPAN();
+        SPAN9.TYPE = "MARKUP";
+        SPAN9.DELEGATE = "html::CSS";
+        BEGIN BEGIN9 = new BEGIN();
+        BEGIN9.text = "<STYLE";
+        END END9 = new END();
+        END9.text = "</STYLE>";
+        SPAN9.END = new END[] { END9, };
+
+        SPAN9.BEGIN = new BEGIN[] { BEGIN9, };
+
+        SPAN SPAN10 = new SPAN();
+        SPAN10.TYPE = "MARKUP";
+        SPAN10.DELEGATE = "TAGS";
+        BEGIN BEGIN10 = new BEGIN();
+        BEGIN10.text = "<";
+        END END10 = new END();
+        END10.text = ">";
+        SPAN10.END = new END[] { END10, };
+
+        SPAN10.BEGIN = new BEGIN[] { BEGIN10, };
+
+        SPAN SPAN11 = new SPAN();
+        SPAN11.NO_WORD_BREAK = "TRUE";
+        SPAN11.TYPE = "LITERAL2";
+        BEGIN BEGIN11 = new BEGIN();
+        BEGIN11.text = "&";
+        END END11 = new END();
+        END11.text = ";";
+        SPAN11.END = new END[] { END11, };
+
+        SPAN11.BEGIN = new BEGIN[] { BEGIN11, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, SPAN5, SPAN6, SPAN7, SPAN8, SPAN9, SPAN10, SPAN11, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "TAGS";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DEFAULT = "MARKUP";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "KEYWORD3";
+        SPAN3.DELEGATE = "CFTAGS";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "<CF";
+        END END3 = new END();
+        END3.text = ">";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.TYPE = "KEYWORD3";
+        SPAN4.DELEGATE = "CFTAGS";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "</CF";
+        END END4 = new END();
+        END4.text = ">";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CFQUERY";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DEFAULT = "KEYWORD3";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.HASH_CHARS = "<CF";
+        SPAN_REGEXP1.TYPE = "KEYWORD3";
+        SPAN_REGEXP1.DELEGATE = "CFTAGS";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "<CF";
+        END END3 = new END();
+        END3.text = ">";
+        SPAN_REGEXP1.END = new END[] { END3, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.HASH_CHARS = "</CF";
+        SPAN_REGEXP2.TYPE = "KEYWORD3";
+        SPAN_REGEXP2.DELEGATE = "CFTAGS";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "</CF";
+        END END4 = new END();
+        END4.text = ">";
+        SPAN_REGEXP2.END = new END[] { END4, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN4, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "MARKUP";
+        SPAN3.DELEGATE = "transact-sql::MAIN";
+        BEGIN BEGIN5 = new BEGIN();
+        BEGIN5.text = ">";
+        END END5 = new END();
+        END5.text = "<";
+        SPAN3.END = new END[] { END5, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN5, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CFTAGS";
+        RULES1.DEFAULT = "KEYWORD3";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "=";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "##";
+        SEQ2.TYPE = "KEYWORD3";
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "LITERAL2";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "#";
+        END END3 = new END();
+        END3.text = "#";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("OPERATOR", new String[]{"IS", "EQ", "NEQ", "GT", "GTE", "LT", "LTE", "LESS", "GREATER", "THAN", "AND", "OR", "NOT", "XOR", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"ACos", "ASin", "Abort", "Abs", "AddSOAPRequestHeader", "AddSOAPResponseHeader", "AjaxLink", "AjaxOnLoad", "ApplicationStop", "ArrayAppend", "ArrayAvg", "ArrayClear", "ArrayContains", "ArrayDelete", "ArrayDeleteAt", "ArrayFind", "ArrayFindNoCase", "ArrayInsertAt", "ArrayIsDefined", "ArrayIsEmpty", "ArrayLen", "ArrayMax", "ArrayMin", "ArrayNew", "ArrayPrepend", "ArrayResize", "ArraySet", "ArraySort", "ArraySum", "ArraySwap", "ArrayToList", "Asc", "Atn", "BinaryDecode", "BinaryEncode", "BitAnd", "BitMaskClear", "BitMaskRead", "BitMaskSet", "BitNot", "BitOr", "BitSHLN", "BitSHRN", "BitXor", "CJustify", "CacheGet", "CacheGetAllIds", "CacheGetMetadata", "CacheGetProperties", "CacheGetSession", "CachePut", "CacheRemove", "CacheSetProperties", "Ceiling", "CharsetDecode", "CharsetEncode", "Chr", "Compare", "CompareNoCase", "Cos", "CreateDate", "CreateDateTime", "CreateODBCDate", "CreateODBCDateTime", "CreateODBCTime", "CreateObject", "CreateTime", "CreateTimeSpan", "CreateUUID", "DE", "DateAdd", "DateCompare", "DateConvert", "DateDiff", "DateFormat", "DatePart", "Day", "DayOfWeek", "DayOfWeekAsString", "DayOfYear", "DaysInMonth", "DaysInYear", "DecimalFormat", "DecrementValue", "Decrypt", "DecryptBinary", "DeleteClientVariable", "DeserializeJSON", "DirectoryCreate", "DirectoryDelete", "DirectoryExists", "DirectoryList", "DirectoryRename", "DollarFormat", "DotNetToCFType", "Duplicate", "Encrypt", "EncryptBinary", "EntityDelete", "EntityLoad", "EntityLoadByExample", "EntityLoadByPK", "EntityMerge", "EntityNew", "EntityReload", "EntitySave", "EntitytoQuery", "Evaluate", "Exp", "ExpandPath", "FileClose", "FileCopy", "FileDelete", "FileExists", "FileIsEOF", "FileMove", "FileOpen", "FileRead", "FileReadBinary", "FileReadLine", "FileSeek", "FileSetAccessMode", "FileSetAttribute", "FileSetLastModified", "FileSkipBytes", "FileUpload", "FileUploadAll", "FileWrite", "Find", "FindNoCase", "FindOneOf", "FirstDayOfMonth", "Fix", "FormatBaseN", "GenerateSecretKey", "GetAuthUser", "GetBaseTagData", "GetBaseTagList", "GetBaseTemplatePath", "GetClientVariablesList", "GetComponentMetaData", "GetContextRoot", "GetCurrentTemplatePath", "GetDirectoryFromPath", "GetEncoding", "GetException", "GetFileFromPath", "GetFileInfo", "GetFunctionCalledName", "GetFunctionList", "GetGatewayHelper", "GetHttpRequestData", "GetHttpTimeString", "GetLocalHostIP", "GetLocale", "GetLocaleDisplayName", "GetMetaData", "GetMetricData", "GetPageContext", "GetPrinterInfo", "GetProfileSections", "GetProfileString", "GetReadableImageFormats", "GetSOAPRequest", "GetSOAPRequestHeader", "GetSOAPResponse", "GetSOAPResponseHeader", "GetTempDirectory", "GetTempFile", "GetTemplatePath", "GetTickCount", "GetTimeZoneInfo", "GetToken", "GetUserRoles", "GetWriteableImageFormats", "HTMLCodeFormat", "HTMLEditFormat", "Hash", "Hour", "IIf", "ImageAddBorder", "ImageBlur", "ImageClearRect", "ImageCopy", "ImageCrop", "ImageDrawArc", "ImageDrawBeveledRect", "ImageDrawCubicCurve", "ImageDrawLine", "ImageDrawLines", "ImageDrawOval", "ImageDrawPoint", "ImageDrawQuadraticCurve", "ImageDrawRect", "ImageDrawRoundRect", "ImageDrawText", "ImageFlip", "ImageGetBlob", "ImageGetBufferedImage", "ImageGetEXIFTag", "ImageGetHeight", "ImageGetIPTCTag", "ImageGetWidth", "ImageGrayscale", "ImageInfo", "ImageNegative", "ImageNew", "ImageOverlay", "ImagePaste", "ImageRead", "ImageReadBase64", "ImageResize", "ImageRotate", "ImageRotateDrawingAxis", "ImageScaleToFit", "ImageSetAntialiasing", "ImageSetBackgroundColor", "ImageSetDrawingColor", "ImageSetDrawingStroke", "ImageSetDrawingTransparency", "ImageSharpen", "ImageShear", "ImageShearDrawingAxis", "ImageTranslate", "ImageTranslateDrawingAxis", "ImageWrite", "ImageWriteBase64", "ImageXORDrawingMode", "IncrementValue", "InputBaseN", "Insert", "Int", "IsArray", "IsBinary", "IsBoolean", "IsCustomFunction", "IsDDX", "IsDate", "IsDebugMode", "IsDefined", "IsImage", "IsImageFile", "IsInstanceOf", "IsJSON", "IsK2ServerABroker", "IsK2ServerDocCountExceeded", "IsK2ServerOnline", "IsLeapYear", "IsLocalHost", "IsNull", "IsNumeric", "IsNumericDate", "IsObject", "IsPDFFile", "IsPDFObject", "IsQuery", "IsSOAPRequest", "IsSimpleValue", "IsStruct", "IsUserInAnyRole", "IsUserInRole", "IsUserLoggedIn", "IsValid", "IsWDDX", "IsXML", "IsXmlAttribute", "IsXmlDoc", "IsXmlElem", "IsXmlNode", "IsXmlRoot", "JSStringFormat", "JavaCast", "LCase", "LJustify", "LSCurrencyFormat", "LSDateFormat", "LSEuroCurrencyFormat", "LSIsCurrency", "LSIsDate", "LSIsNumeric", "LSNumberFormat", "LSParseCurrency", "LSParseDateTime", "LSParseEuroCurrency", "LSParseNumber", "LSTimeFormat", "LTrim", "Left", "Len", "ListAppend", "ListChangeDelims", "ListContains", "ListContainsNoCase", "ListDeleteAt", "ListFind", "ListFindNoCase", "ListFirst", "ListGetAt", "ListInsertAt", "ListLast", "ListLen", "ListPrepend", "ListQualify", "ListRest", "ListSetAt", "ListSort", "ListToArray", "ListValueCount", "ListValueCountNoCase", "Location", "Log", "Log10", "Max", "Mid", "Min", "Minute", "Month", "MonthAsString", "Now", "NumberFormat", "ORMClearSession", "ORMCloseSession", "ORMEvictCollection", "ORMEvictEntity", "ORMEvictQueries", "ORMExecuteQuery", "ORMFlush", "ORMGetSession", "ORMGetSessionFactory", "ORMReload", "ObjectEquals", "ObjectLoad", "ObjectSave", "ParagraphFormat", "ParseDateTime", "Pi", "PrecisionEvaluate", "PreserveSingleQuotes", "Quarter", "QueryAddColumn", "QueryAddRow", "QueryConvertForGrid", "QueryNew", "QuerySetCell", "QuotedValueList", "REFind", "REFindNoCase", "REMatch", "REMatchNoCase", "REReplace", "REReplaceNoCase", "RJustify", "RTrim", "Rand", "RandRange", "Randomize", "ReleaseComObject", "RemoveChars", "RepeatString", "Replace", "ReplaceList", "ReplaceNoCase", "Reverse", "Right", "Round", "Second", "SendGatewayMessage", "SerializeJSON", "SetLocale", "SetProfileString", "SetVariable", "Sgn", "Sin", "Sleep", "SpanExcluding", "SpanIncluding", "SpreadsheetAddColumn", "SpreadsheetAddFreezePane", "SpreadsheetAddImage", "SpreadsheetAddInfo", "SpreadsheetAddRow", "SpreadsheetAddRows", "SpreadsheetAddSplitPane", "SpreadsheetCreateSheet", "SpreadsheetDeleteColumn", "SpreadsheetDeleteColumns", "SpreadsheetDeleteRow", "SpreadsheetDeleteRows", "SpreadsheetFormatCell", "SpreadsheetFormatCellRange", "SpreadsheetFormatColumn", "SpreadsheetFormatColumns", "SpreadsheetFormatRow", "SpreadsheetFormatRows", "SpreadsheetGetCellComment", "SpreadsheetGetCellFormula", "SpreadsheetGetCellValue", "SpreadsheetInfo", "SpreadsheetMergeCells", "SpreadsheetNew", "SpreadsheetRead", "SpreadsheetReadBinary", "SpreadsheetRemoveSheet", "SpreadsheetSetActiveSheet", "SpreadsheetSetActiveSheetNumber", "SpreadsheetSetCellComment", "SpreadsheetSetCellFormula", "SpreadsheetSetCellValue", "SpreadsheetSetColumnWidth", "SpreadsheetSetFooter", "SpreadsheetSetHeader", "SpreadsheetSetRowHeight", "SpreadsheetShiftColumns", "SpreadsheetShiftRows", "SpreadsheetWrite", "Sqr", "StripCR", "StructAppend", "StructClear", "StructCopy", "StructCount", "StructDelete", "StructFind", "StructFindKey", "StructFindValue", "StructGet", "StructInsert", "StructIsEmpty", "StructKeyArray", "StructKeyExists", "StructKeyList", "StructNew", "StructSort", "StructUpdate", "Tan", "Throw", "TimeFormat", "ToBase64", "ToBinary", "ToScript", "ToString", "Trace", "TransactionCommit", "TransactionRollback", "TransactionSetSavePoint", "Trim", "UCase", "URLDecode", "URLEncodedFormat", "URLSessionFormat", "Val", "ValueList", "VerifyClient", "Week", "Wrap", "WriteDump", "WriteLog", "WriteOutput", "XmlChildPos", "XmlElemNew", "XmlFormat", "XmlGetNodeType", "XmlNew", "XmlParse", "XmlSearch", "XmlTransform", "XmlValidate", "Year", "YesNoFormat", });
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

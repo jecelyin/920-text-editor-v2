@@ -19,15 +19,57 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class PtlLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*[^#]{3,}:\\\\s*(#.*)?\",\"NAME\":\"indentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"python::MAIN\"}},{\"tag\":\"SEQ\",\"text\":\"[html]\",\"attrs\":{\"TYPE\":\"KEYWORD4\"}},{\"tag\":\"SEQ\",\"text\":\"[plain]\",\"attrs\":{\"TYPE\":\"KEYWORD4\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"LITERAL4\",\"text\":\"_q_access\"},{\"tag\":\"LITERAL4\",\"text\":\"_q_exports\"},{\"tag\":\"LITERAL4\",\"text\":\"_q_index\"},{\"tag\":\"LITERAL4\",\"text\":\"_q_lookup\"},{\"tag\":\"LITERAL4\",\"text\":\"_q_resolve\"},{\"tag\":\"LITERAL4\",\"text\":\"_q_exception_handler\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "\\s*[^#]{3,}:\\s*(#.*)?";
+        PROPERTY1.NAME = "indentNextLines";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "#";
+        PROPERTY2.NAME = "lineComment";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "true";
+        PROPERTY3.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "python::MAIN";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "[html]";
+        SEQ1.TYPE = "KEYWORD4";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "[plain]";
+        SEQ2.TYPE = "KEYWORD4";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL4", new String[]{"_q_access", "_q_exports", "_q_index", "_q_lookup", "_q_resolve", "_q_exception_handler", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

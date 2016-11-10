@@ -19,15 +19,154 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class OmnimarkLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*((PROCESS|MARKUP|EXTERNAL|DOCUMENT|DTD|ELEMENT|FIND|TRANSLATE)((-|\\\\s).*|\\\\s*)|(DO|ELSE|REPEAT|MATCH|CASE|USING|GROUP|DEFINE|MACRO)(\\\\s+.*|\\\\s*))\",\"NAME\":\"indentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\";\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".-_\",\"NAME\":\"noWordSep\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#!\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"INVALID\",\"HASH_CHAR\":\"\\\"\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"((?!$)[^\\\"])*$\"},{\"tag\":\"END\",\"text\":\"$\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"%\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"INVALID\",\"HASH_CHAR\":\"'\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'((?!$)[^'])*$\"},{\"tag\":\"END\",\"text\":\"$\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"#additional-info\"},{\"tag\":\"KEYWORD2\",\"text\":\"#appinfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"#args\"},{\"tag\":\"KEYWORD2\",\"text\":\"#capacity\"},{\"tag\":\"KEYWORD2\",\"text\":\"#charset\"},{\"tag\":\"KEYWORD2\",\"text\":\"#class\"},{\"tag\":\"KEYWORD2\",\"text\":\"#command-line-names\"},{\"tag\":\"KEYWORD2\",\"text\":\"#console\"},{\"tag\":\"KEYWORD2\",\"text\":\"#current-input\"},{\"tag\":\"KEYWORD2\",\"text\":\"#current-output\"},{\"tag\":\"KEYWORD2\",\"text\":\"#data\"},{\"tag\":\"KEYWORD2\",\"text\":\"#doctype\"},{\"tag\":\"KEYWORD2\",\"text\":\"#document\"},{\"tag\":\"KEYWORD2\",\"text\":\"#dtd\"},{\"tag\":\"KEYWORD2\",\"text\":\"#empty\"},{\"tag\":\"KEYWORD2\",\"text\":\"#error\"},{\"tag\":\"KEYWORD2\",\"text\":\"#error-code\"},{\"tag\":\"KEYWORD2\",\"text\":\"#external-exception\"},{\"tag\":\"KEYWORD2\",\"text\":\"#file-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"#first\"},{\"tag\":\"KEYWORD2\",\"text\":\"#group\"},{\"tag\":\"KEYWORD2\",\"text\":\"#implied\"},{\"tag\":\"KEYWORD2\",\"text\":\"#item\"},{\"tag\":\"KEYWORD2\",\"text\":\"#language-version\"},{\"tag\":\"KEYWORD2\",\"text\":\"#last\"},{\"tag\":\"KEYWORD2\",\"text\":\"#libpath\"},{\"tag\":\"KEYWORD2\",\"text\":\"#library\"},{\"tag\":\"KEYWORD2\",\"text\":\"#libvalue\"},{\"tag\":\"KEYWORD2\",\"text\":\"#line-number\"},{\"tag\":\"KEYWORD2\",\"text\":\"#main-input\"},{\"tag\":\"KEYWORD2\",\"text\":\"#main-output\"},{\"tag\":\"KEYWORD2\",\"text\":\"#markup-error-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"#markup-error-total\"},{\"tag\":\"KEYWORD2\",\"text\":\"#markup-parser\"},{\"tag\":\"KEYWORD2\",\"text\":\"#markup-warning-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"#markup-warning-total\"},{\"tag\":\"KEYWORD2\",\"text\":\"#message\"},{\"tag\":\"KEYWORD2\",\"text\":\"#none\"},{\"tag\":\"KEYWORD2\",\"text\":\"#output\"},{\"tag\":\"KEYWORD2\",\"text\":\"#platform-info\"},{\"tag\":\"KEYWORD2\",\"text\":\"#process-input\"},{\"tag\":\"KEYWORD2\",\"text\":\"#process-output\"},{\"tag\":\"KEYWORD2\",\"text\":\"#program-error\"},{\"tag\":\"KEYWORD2\",\"text\":\"#recovery-info\"},{\"tag\":\"KEYWORD2\",\"text\":\"#sgml\"},{\"tag\":\"KEYWORD2\",\"text\":\"#sgml-error-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"#sgml-error-total\"},{\"tag\":\"KEYWORD2\",\"text\":\"#sgml-warning-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"#sgml-warning-total\"},{\"tag\":\"KEYWORD2\",\"text\":\"#suppress\"},{\"tag\":\"KEYWORD2\",\"text\":\"#syntax\"},{\"tag\":\"KEYWORD2\",\"text\":\"#!\"},{\"tag\":\"OPERATOR\",\"text\":\"abs\"},{\"tag\":\"KEYWORD1\",\"text\":\"activate\"},{\"tag\":\"OPERATOR\",\"text\":\"active\"},{\"tag\":\"KEYWORD2\",\"text\":\"after\"},{\"tag\":\"KEYWORD1\",\"text\":\"again\"},{\"tag\":\"KEYWORD2\",\"text\":\"ancestor\"},{\"tag\":\"KEYWORD2\",\"text\":\"and\"},{\"tag\":\"KEYWORD2\",\"text\":\"another\"},{\"tag\":\"KEYWORD1\",\"text\":\"always\"},{\"tag\":\"OPERATOR\",\"text\":\"and\"},{\"tag\":\"KEYWORD3\",\"text\":\"any\"},{\"tag\":\"KEYWORD3\",\"text\":\"any-text\"},{\"tag\":\"KEYWORD2\",\"text\":\"arg\"},{\"tag\":\"OPERATOR\",\"text\":\"as\"},{\"tag\":\"KEYWORD1\",\"text\":\"assert\"},{\"tag\":\"KEYWORD2\",\"text\":\"attached\"},{\"tag\":\"KEYWORD2\",\"text\":\"attribute\"},{\"tag\":\"KEYWORD2\",\"text\":\"attributes\"},{\"tag\":\"OPERATOR\",\"text\":\"base\"},{\"tag\":\"KEYWORD2\",\"text\":\"bcd\"},{\"tag\":\"KEYWORD2\",\"text\":\"before\"},{\"tag\":\"OPERATOR\",\"text\":\"binary\"},{\"tag\":\"KEYWORD2\",\"text\":\"binary-input\"},{\"tag\":\"KEYWORD2\",\"text\":\"binary-mode\"},{\"tag\":\"KEYWORD2\",\"text\":\"binary-output\"},{\"tag\":\"KEYWORD3\",\"text\":\"blank\"},{\"tag\":\"KEYWORD2\",\"text\":\"break-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"buffer\"},{\"tag\":\"KEYWORD2\",\"text\":\"buffered\"},{\"tag\":\"KEYWORD2\",\"text\":\"by\"},{\"tag\":\"KEYWORD1\",\"text\":\"case\"},{\"tag\":\"KEYWORD1\",\"text\":\"catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"catchable\"},{\"tag\":\"KEYWORD3\",\"text\":\"cdata\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdata-entity\"},{\"tag\":\"OPERATOR\",\"text\":\"ceiling\"},{\"tag\":\"KEYWORD2\",\"text\":\"children\"},{\"tag\":\"KEYWORD1\",\"text\":\"clear\"},{\"tag\":\"KEYWORD1\",\"text\":\"close\"},{\"tag\":\"KEYWORD2\",\"text\":\"closed\"},{\"tag\":\"OPERATOR\",\"text\":\"compiled-date\"},{\"tag\":\"OPERATOR\",\"text\":\"complement\"},{\"tag\":\"KEYWORD2\",\"text\":\"conref\"},{\"tag\":\"KEYWORD2\",\"text\":\"content\"},{\"tag\":\"KEYWORD3\",\"text\":\"content-end\"},{\"tag\":\"KEYWORD3\",\"text\":\"content-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"context-translate\"},{\"tag\":\"KEYWORD1\",\"text\":\"copy\"},{\"tag\":\"KEYWORD1\",\"text\":\"copy-clear\"},{\"tag\":\"KEYWORD2\",\"text\":\"counter\"},{\"tag\":\"KEYWORD2\",\"text\":\"created\"},{\"tag\":\"OPERATOR\",\"text\":\"creating\"},{\"tag\":\"OPERATOR\",\"text\":\"creator\"},{\"tag\":\"KEYWORD2\",\"text\":\"cross-translate\"},{\"tag\":\"KEYWORD2\",\"text\":\"current\"},{\"tag\":\"KEYWORD2\",\"text\":\"data-attribute\"},{\"tag\":\"KEYWORD2\",\"text\":\"data-attributes\"},{\"tag\":\"KEYWORD2\",\"text\":\"data-content\"},{\"tag\":\"KEYWORD2\",\"text\":\"data-letters\"},{\"tag\":\"OPERATOR\",\"text\":\"date\"},{\"tag\":\"KEYWORD1\",\"text\":\"deactivate\"},{\"tag\":\"KEYWORD2\",\"text\":\"declare\"},{\"tag\":\"KEYWORD2\",\"text\":\"declared-conref\"},{\"tag\":\"KEYWORD2\",\"text\":\"declared-current\"},{\"tag\":\"KEYWORD2\",\"text\":\"declared-defaulted\"},{\"tag\":\"KEYWORD2\",\"text\":\"declared-fixed\"},{\"tag\":\"KEYWORD2\",\"text\":\"declared-implied\"},{\"tag\":\"KEYWORD2\",\"text\":\"declared-required\"},{\"tag\":\"KEYWORD1\",\"text\":\"decrement\"},{\"tag\":\"KEYWORD2\",\"text\":\"default-entity\"},{\"tag\":\"KEYWORD2\",\"text\":\"defaulted\"},{\"tag\":\"KEYWORD2\",\"text\":\"defaulting\"},{\"tag\":\"KEYWORD2\",\"text\":\"define\"},{\"tag\":\"KEYWORD2\",\"text\":\"delimiter\"},{\"tag\":\"OPERATOR\",\"text\":\"difference\"},{\"tag\":\"KEYWORD3\",\"text\":\"digit\"},{\"tag\":\"KEYWORD2\",\"text\":\"directory\"},{\"tag\":\"KEYWORD1\",\"text\":\"discard\"},{\"tag\":\"OPERATOR\",\"text\":\"divide\"},{\"tag\":\"KEYWORD1\",\"text\":\"do\"},{\"tag\":\"KEYWORD2\",\"text\":\"doctype\"},{\"tag\":\"KEYWORD2\",\"text\":\"document\"},{\"tag\":\"KEYWORD2\",\"text\":\"document-element\"},{\"tag\":\"KEYWORD2\",\"text\":\"document-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"document-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"domain-free\"},{\"tag\":\"KEYWORD1\",\"text\":\"done\"},{\"tag\":\"KEYWORD2\",\"text\":\"down-translate\"},{\"tag\":\"OPERATOR\",\"text\":\"drop\"},{\"tag\":\"KEYWORD2\",\"text\":\"dtd\"},{\"tag\":\"KEYWORD2\",\"text\":\"dtd-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"dtd-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"dtds\"},{\"tag\":\"KEYWORD2\",\"text\":\"element\"},{\"tag\":\"KEYWORD2\",\"text\":\"elements\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD2\",\"text\":\"elsewhere\"},{\"tag\":\"KEYWORD2\",\"text\":\"empty\"},{\"tag\":\"KEYWORD2\",\"text\":\"entities\"},{\"tag\":\"KEYWORD2\",\"text\":\"entity\"},{\"tag\":\"KEYWORD2\",\"text\":\"epilog-start\"},{\"tag\":\"OPERATOR\",\"text\":\"equal\"},{\"tag\":\"OPERATOR\",\"text\":\"equals\"},{\"tag\":\"KEYWORD2\",\"text\":\"escape\"},{\"tag\":\"KEYWORD1\",\"text\":\"except\"},{\"tag\":\"OPERATOR\",\"text\":\"exists\"},{\"tag\":\"KEYWORD1\",\"text\":\"exit\"},{\"tag\":\"KEYWORD2\",\"text\":\"external\"},{\"tag\":\"KEYWORD2\",\"text\":\"external-data-entity\"},{\"tag\":\"KEYWORD2\",\"text\":\"external-entity\"},{\"tag\":\"KEYWORD2\",\"text\":\"external-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"external-output-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"external-text-entity\"},{\"tag\":\"KEYWORD2\",\"text\":\"false\"},{\"tag\":\"OPERATOR\",\"text\":\"file\"},{\"tag\":\"KEYWORD2\",\"text\":\"find\"},{\"tag\":\"KEYWORD2\",\"text\":\"find-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"find-start\"},{\"tag\":\"OPERATOR\",\"text\":\"floor\"},{\"tag\":\"KEYWORD1\",\"text\":\"flush\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"format\"},{\"tag\":\"KEYWORD2\",\"text\":\"function\"},{\"tag\":\"KEYWORD2\",\"text\":\"function-library\"},{\"tag\":\"KEYWORD2\",\"text\":\"general\"},{\"tag\":\"KEYWORD2\",\"text\":\"global\"},{\"tag\":\"OPERATOR\",\"text\":\"greater-equal\"},{\"tag\":\"OPERATOR\",\"text\":\"greater-than\"},{\"tag\":\"KEYWORD2\",\"text\":\"group\"},{\"tag\":\"KEYWORD2\",\"text\":\"groups\"},{\"tag\":\"KEYWORD1\",\"text\":\"halt\"},{\"tag\":\"KEYWORD1\",\"text\":\"halt-everything\"},{\"tag\":\"OPERATOR\",\"text\":\"has\"},{\"tag\":\"OPERATOR\",\"text\":\"hasnt\"},{\"tag\":\"KEYWORD2\",\"text\":\"heralded-names\"},{\"tag\":\"KEYWORD2\",\"text\":\"id\"},{\"tag\":\"KEYWORD2\",\"text\":\"id-checking\"},{\"tag\":\"KEYWORD2\",\"text\":\"idref\"},{\"tag\":\"KEYWORD2\",\"text\":\"idrefs\"},{\"tag\":\"KEYWORD2\",\"text\":\"ignore\"},{\"tag\":\"KEYWORD2\",\"text\":\"implied\"},{\"tag\":\"KEYWORD2\",\"text\":\"in\"},{\"tag\":\"KEYWORD2\",\"text\":\"in-library\"},{\"tag\":\"KEYWORD2\",\"text\":\"include\"},{\"tag\":\"KEYWORD2\",\"text\":\"include-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"include-guard\"},{\"tag\":\"KEYWORD2\",\"text\":\"include-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"inclusion\"},{\"tag\":\"KEYWORD1\",\"text\":\"increment\"},{\"tag\":\"KEYWORD2\",\"text\":\"initial\"},{\"tag\":\"KEYWORD2\",\"text\":\"initial-size\"},{\"tag\":\"KEYWORD1\",\"text\":\"input\"},{\"tag\":\"KEYWORD2\",\"text\":\"insertion-break\"},{\"tag\":\"KEYWORD2\",\"text\":\"instance\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer\"},{\"tag\":\"KEYWORD2\",\"text\":\"internal\"},{\"tag\":\"KEYWORD2\",\"text\":\"invalid-data\"},{\"tag\":\"OPERATOR\",\"text\":\"is\"},{\"tag\":\"OPERATOR\",\"text\":\"isnt\"},{\"tag\":\"OPERATOR\",\"text\":\"item\"},{\"tag\":\"KEYWORD1\",\"text\":\"join\"},{\"tag\":\"OPERATOR\",\"text\":\"key\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyed\"},{\"tag\":\"OPERATOR\",\"text\":\"last\"},{\"tag\":\"OPERATOR\",\"text\":\"lastmost\"},{\"tag\":\"KEYWORD3\",\"text\":\"lc\"},{\"tag\":\"OPERATOR\",\"text\":\"length\"},{\"tag\":\"OPERATOR\",\"text\":\"less-equal\"},{\"tag\":\"OPERATOR\",\"text\":\"less-than\"},{\"tag\":\"KEYWORD3\",\"text\":\"letter\"},{\"tag\":\"KEYWORD2\",\"text\":\"letters\"},{\"tag\":\"KEYWORD2\",\"text\":\"library\"},{\"tag\":\"KEYWORD3\",\"text\":\"line-end\"},{\"tag\":\"KEYWORD3\",\"text\":\"line-start\"},{\"tag\":\"OPERATOR\",\"text\":\"literal\"},{\"tag\":\"KEYWORD2\",\"text\":\"local\"},{\"tag\":\"OPERATOR\",\"text\":\"ln\"},{\"tag\":\"KEYWORD1\",\"text\":\"log\"},{\"tag\":\"OPERATOR\",\"text\":\"log10\"},{\"tag\":\"OPERATOR\",\"text\":\"lookahead\"},{\"tag\":\"KEYWORD2\",\"text\":\"macro\"},{\"tag\":\"KEYWORD2\",\"text\":\"macro-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"marked-section\"},{\"tag\":\"KEYWORD2\",\"text\":\"markup-comment\"},{\"tag\":\"KEYWORD2\",\"text\":\"markup-error\"},{\"tag\":\"KEYWORD2\",\"text\":\"markup-parser\"},{\"tag\":\"KEYWORD2\",\"text\":\"markup-wrapper\"},{\"tag\":\"OPERATOR\",\"text\":\"mask\"},{\"tag\":\"KEYWORD1\",\"text\":\"match\"},{\"tag\":\"OPERATOR\",\"text\":\"matches\"},{\"tag\":\"OPERATOR\",\"text\":\"minus\"},{\"tag\":\"KEYWORD2\",\"text\":\"mixed\"},{\"tag\":\"KEYWORD2\",\"text\":\"modifiable\"},{\"tag\":\"OPERATOR\",\"text\":\"modulo\"},{\"tag\":\"OPERATOR\",\"text\":\"name\"},{\"tag\":\"KEYWORD2\",\"text\":\"name-letters\"},{\"tag\":\"KEYWORD2\",\"text\":\"namecase\"},{\"tag\":\"KEYWORD2\",\"text\":\"named\"},{\"tag\":\"KEYWORD2\",\"text\":\"names\"},{\"tag\":\"KEYWORD2\",\"text\":\"ndata-entity\"},{\"tag\":\"OPERATOR\",\"text\":\"negate\"},{\"tag\":\"KEYWORD2\",\"text\":\"nested-referents\"},{\"tag\":\"KEYWORD1\",\"text\":\"new\"},{\"tag\":\"KEYWORD2\",\"text\":\"newline\"},{\"tag\":\"KEYWORD1\",\"text\":\"next\"},{\"tag\":\"KEYWORD2\",\"text\":\"nmtoken\"},{\"tag\":\"KEYWORD2\",\"text\":\"nmtokens\"},{\"tag\":\"KEYWORD2\",\"text\":\"no\"},{\"tag\":\"KEYWORD2\",\"text\":\"no-default-io\"},{\"tag\":\"KEYWORD3\",\"text\":\"non-cdata\"},{\"tag\":\"KEYWORD2\",\"text\":\"non-implied\"},{\"tag\":\"KEYWORD3\",\"text\":\"non-sdata\"},{\"tag\":\"OPERATOR\",\"text\":\"not\"},{\"tag\":\"KEYWORD1\",\"text\":\"not-reached\"},{\"tag\":\"KEYWORD2\",\"text\":\"notation\"},{\"tag\":\"KEYWORD2\",\"text\":\"number\"},{\"tag\":\"OPERATOR\",\"text\":\"number-of\"},{\"tag\":\"KEYWORD2\",\"text\":\"numbers\"},{\"tag\":\"KEYWORD3\",\"text\":\"null\"},{\"tag\":\"KEYWORD2\",\"text\":\"nutoken\"},{\"tag\":\"KEYWORD2\",\"text\":\"nutokens\"},{\"tag\":\"OPERATOR\",\"text\":\"occurrence\"},{\"tag\":\"OPERATOR\",\"text\":\"of\"},{\"tag\":\"KEYWORD2\",\"text\":\"opaque\"},{\"tag\":\"KEYWORD1\",\"text\":\"open\"},{\"tag\":\"KEYWORD2\",\"text\":\"optional\"},{\"tag\":\"OPERATOR\",\"text\":\"or\"},{\"tag\":\"KEYWORD1\",\"text\":\"output\"},{\"tag\":\"KEYWORD1\",\"text\":\"output-to\"},{\"tag\":\"KEYWORD1\",\"text\":\"over\"},{\"tag\":\"KEYWORD2\",\"text\":\"parameter\"},{\"tag\":\"KEYWORD2\",\"text\":\"parent\"},{\"tag\":\"KEYWORD2\",\"text\":\"past\"},{\"tag\":\"KEYWORD2\",\"text\":\"pattern\"},{\"tag\":\"KEYWORD3\",\"text\":\"pcdata\"},{\"tag\":\"KEYWORD2\",\"text\":\"plus\"},{\"tag\":\"KEYWORD2\",\"text\":\"preparent\"},{\"tag\":\"KEYWORD2\",\"text\":\"previous\"},{\"tag\":\"KEYWORD2\",\"text\":\"process\"},{\"tag\":\"KEYWORD2\",\"text\":\"process-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"process-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"processing-instruction\"},{\"tag\":\"KEYWORD2\",\"text\":\"prolog-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"prolog-in-error\"},{\"tag\":\"KEYWORD2\",\"text\":\"proper\"},{\"tag\":\"KEYWORD2\",\"text\":\"public\"},{\"tag\":\"KEYWORD1\",\"text\":\"put\"},{\"tag\":\"KEYWORD3\",\"text\":\"rcdata\"},{\"tag\":\"KEYWORD1\",\"text\":\"remove\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-only\"},{\"tag\":\"KEYWORD2\",\"text\":\"readable\"},{\"tag\":\"KEYWORD2\",\"text\":\"referent\"},{\"tag\":\"KEYWORD2\",\"text\":\"referents\"},{\"tag\":\"KEYWORD2\",\"text\":\"referents-allowed\"},{\"tag\":\"KEYWORD2\",\"text\":\"referents-displayed\"},{\"tag\":\"KEYWORD2\",\"text\":\"referents-not-allowed\"},{\"tag\":\"KEYWORD2\",\"text\":\"remainder\"},{\"tag\":\"KEYWORD1\",\"text\":\"reopen\"},{\"tag\":\"KEYWORD1\",\"text\":\"repeat\"},{\"tag\":\"KEYWORD2\",\"text\":\"repeated\"},{\"tag\":\"KEYWORD2\",\"text\":\"replacement-break\"},{\"tag\":\"KEYWORD1\",\"text\":\"reset\"},{\"tag\":\"KEYWORD1\",\"text\":\"rethrow\"},{\"tag\":\"KEYWORD1\",\"text\":\"return\"},{\"tag\":\"KEYWORD2\",\"text\":\"reversed\"},{\"tag\":\"OPERATOR\",\"text\":\"round\"},{\"tag\":\"KEYWORD1\",\"text\":\"save\"},{\"tag\":\"KEYWORD1\",\"text\":\"save-clear\"},{\"tag\":\"KEYWORD1\",\"text\":\"scan\"},{\"tag\":\"KEYWORD3\",\"text\":\"sdata\"},{\"tag\":\"KEYWORD2\",\"text\":\"sdata-entity\"},{\"tag\":\"KEYWORD1\",\"text\":\"select\"},{\"tag\":\"KEYWORD1\",\"text\":\"set\"},{\"tag\":\"KEYWORD1\",\"text\":\"sgml\"},{\"tag\":\"KEYWORD2\",\"text\":\"sgml-comment\"},{\"tag\":\"KEYWORD2\",\"text\":\"sgml-declaration-end\"},{\"tag\":\"KEYWORD2\",\"text\":\"sgml-dtd\"},{\"tag\":\"KEYWORD2\",\"text\":\"sgml-dtds\"},{\"tag\":\"KEYWORD2\",\"text\":\"sgml-error\"},{\"tag\":\"KEYWORD1\",\"text\":\"sgml-in\"},{\"tag\":\"KEYWORD1\",\"text\":\"sgml-out\"},{\"tag\":\"KEYWORD1\",\"text\":\"sgml-parse\"},{\"tag\":\"KEYWORD1\",\"text\":\"sgml-parser\"},{\"tag\":\"OPERATOR\",\"text\":\"shift\"},{\"tag\":\"KEYWORD2\",\"text\":\"silent-referent\"},{\"tag\":\"KEYWORD2\",\"text\":\"size\"},{\"tag\":\"KEYWORD1\",\"text\":\"skip\"},{\"tag\":\"KEYWORD2\",\"text\":\"source\"},{\"tag\":\"KEYWORD3\",\"text\":\"space\"},{\"tag\":\"KEYWORD2\",\"text\":\"specified\"},{\"tag\":\"OPERATOR\",\"text\":\"sqrt\"},{\"tag\":\"OPERATOR\",\"text\":\"status\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream\"},{\"tag\":\"KEYWORD2\",\"text\":\"subdoc-entity\"},{\"tag\":\"KEYWORD2\",\"text\":\"subdocument\"},{\"tag\":\"KEYWORD2\",\"text\":\"subdocuments\"},{\"tag\":\"KEYWORD2\",\"text\":\"subelement\"},{\"tag\":\"KEYWORD1\",\"text\":\"submit\"},{\"tag\":\"KEYWORD1\",\"text\":\"succeed\"},{\"tag\":\"KEYWORD1\",\"text\":\"suppress\"},{\"tag\":\"KEYWORD2\",\"text\":\"switch\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"system\"},{\"tag\":\"KEYWORD1\",\"text\":\"system-call\"},{\"tag\":\"OPERATOR\",\"text\":\"take\"},{\"tag\":\"KEYWORD1\",\"text\":\"test-system\"},{\"tag\":\"KEYWORD3\",\"text\":\"text\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-mode\"},{\"tag\":\"OPERATOR\",\"text\":\"this\"},{\"tag\":\"KEYWORD1\",\"text\":\"throw\"},{\"tag\":\"KEYWORD2\",\"text\":\"thrown\"},{\"tag\":\"KEYWORD2\",\"text\":\"times\"},{\"tag\":\"KEYWORD1\",\"text\":\"to\"},{\"tag\":\"KEYWORD2\",\"text\":\"token\"},{\"tag\":\"KEYWORD2\",\"text\":\"translate\"},{\"tag\":\"KEYWORD2\",\"text\":\"true\"},{\"tag\":\"OPERATOR\",\"text\":\"truncate\"},{\"tag\":\"KEYWORD3\",\"text\":\"uc\"},{\"tag\":\"OPERATOR\",\"text\":\"ul\"},{\"tag\":\"OPERATOR\",\"text\":\"unanchored\"},{\"tag\":\"KEYWORD2\",\"text\":\"unattached\"},{\"tag\":\"KEYWORD2\",\"text\":\"unbuffered\"},{\"tag\":\"OPERATOR\",\"text\":\"union\"},{\"tag\":\"KEYWORD1\",\"text\":\"unless\"},{\"tag\":\"KEYWORD2\",\"text\":\"up-translate\"},{\"tag\":\"OPERATOR\",\"text\":\"usemap\"},{\"tag\":\"KEYWORD1\",\"text\":\"using\"},{\"tag\":\"KEYWORD2\",\"text\":\"value\"},{\"tag\":\"KEYWORD3\",\"text\":\"value-end\"},{\"tag\":\"KEYWORD3\",\"text\":\"value-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"valued\"},{\"tag\":\"KEYWORD2\",\"text\":\"variable\"},{\"tag\":\"KEYWORD1\",\"text\":\"when\"},{\"tag\":\"KEYWORD3\",\"text\":\"white-space\"},{\"tag\":\"OPERATOR\",\"text\":\"with\"},{\"tag\":\"KEYWORD3\",\"text\":\"word-end\"},{\"tag\":\"KEYWORD3\",\"text\":\"word-start\"},{\"tag\":\"KEYWORD2\",\"text\":\"writable\"},{\"tag\":\"KEYWORD2\",\"text\":\"xml\"},{\"tag\":\"KEYWORD2\",\"text\":\"xml-dtd\"},{\"tag\":\"KEYWORD2\",\"text\":\"xml-dtds\"},{\"tag\":\"KEYWORD1\",\"text\":\"xml-parse\"},{\"tag\":\"KEYWORD2\",\"text\":\"yes\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "\\s*((PROCESS|MARKUP|EXTERNAL|DOCUMENT|DTD|ELEMENT|FIND|TRANSLATE)((-|\\s).*|\\s*)|(DO|ELSE|REPEAT|MATCH|CASE|USING|GROUP|DEFINE|MACRO)(\\s+.*|\\s*))";
+        PROPERTY1.NAME = "indentNextLines";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = ";";
+        PROPERTY2.NAME = "lineComment";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = ".-_";
+        PROPERTY3.NAME = "noWordSep";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#!";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = ";";
+        EOL_SPAN2.TYPE = "COMMENT1";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP1.TYPE = "INVALID";
+        SPAN_REGEXP1.HASH_CHAR = "\"";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"((?!$)[^\"])*$";
+        END END1 = new END();
+        END1.text = "$";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "%";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN1.END = new END[] { END2, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.NO_LINE_BREAK = "TRUE";
+        SPAN_REGEXP2.TYPE = "INVALID";
+        SPAN_REGEXP2.HASH_CHAR = "'";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "'((?!$)[^'])*$";
+        END END3 = new END();
+        END3.text = "$";
+        SPAN_REGEXP2.END = new END[] { END3, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "TRUE";
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "'";
+        END END4 = new END();
+        END4.text = "'";
+        SPAN2.END = new END[] { END4, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN4, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "&";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "|";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "+";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "=";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "/";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "<";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = ">";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "~";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "@";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "$";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "%";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "^";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "*";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "?";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "!";
+        SEQ15.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("OPERATOR", new String[]{"abs", "active", "and", "as", "base", "binary", "ceiling", "compiled-date", "complement", "creating", "creator", "date", "difference", "divide", "drop", "equal", "equals", "exists", "file", "floor", "greater-equal", "greater-than", "has", "hasnt", "is", "isnt", "item", "key", "last", "lastmost", "length", "less-equal", "less-than", "literal", "ln", "log10", "lookahead", "mask", "matches", "minus", "modulo", "name", "negate", "not", "number-of", "occurrence", "of", "or", "round", "shift", "sqrt", "status", "take", "this", "truncate", "ul", "unanchored", "union", "usemap", "with", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"activate", "again", "always", "assert", "case", "catch", "clear", "close", "copy", "copy-clear", "deactivate", "decrement", "discard", "do", "done", "else", "except", "exit", "flush", "for", "format", "halt", "halt-everything", "increment", "input", "join", "log", "match", "new", "next", "not-reached", "open", "output", "output-to", "over", "put", "remove", "reopen", "repeat", "reset", "rethrow", "return", "save", "save-clear", "scan", "select", "set", "sgml", "sgml-in", "sgml-out", "sgml-parse", "sgml-parser", "skip", "submit", "succeed", "suppress", "system-call", "test-system", "throw", "to", "unless", "using", "when", "xml-parse", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"#additional-info", "#appinfo", "#args", "#capacity", "#charset", "#class", "#command-line-names", "#console", "#current-input", "#current-output", "#data", "#doctype", "#document", "#dtd", "#empty", "#error", "#error-code", "#external-exception", "#file-name", "#first", "#group", "#implied", "#item", "#language-version", "#last", "#libpath", "#library", "#libvalue", "#line-number", "#main-input", "#main-output", "#markup-error-count", "#markup-error-total", "#markup-parser", "#markup-warning-count", "#markup-warning-total", "#message", "#none", "#output", "#platform-info", "#process-input", "#process-output", "#program-error", "#recovery-info", "#sgml", "#sgml-error-count", "#sgml-error-total", "#sgml-warning-count", "#sgml-warning-total", "#suppress", "#syntax", "#!", "after", "ancestor", "and", "another", "arg", "attached", "attribute", "attributes", "bcd", "before", "binary-input", "binary-mode", "binary-output", "break-width", "buffer", "buffered", "by", "catchable", "cdata-entity", "children", "closed", "conref", "content", "context-translate", "counter", "created", "cross-translate", "current", "data-attribute", "data-attributes", "data-content", "data-letters", "declare", "declared-conref", "declared-current", "declared-defaulted", "declared-fixed", "declared-implied", "declared-required", "default-entity", "defaulted", "defaulting", "define", "delimiter", "directory", "doctype", "document", "document-element", "document-end", "document-start", "domain-free", "down-translate", "dtd", "dtd-end", "dtd-start", "dtds", "element", "elements", "elsewhere", "empty", "entities", "entity", "epilog-start", "escape", "external", "external-data-entity", "external-entity", "external-function", "external-output-function", "external-text-entity", "false", "find", "find-end", "find-start", "function", "function-library", "general", "global", "group", "groups", "heralded-names", "id", "id-checking", "idref", "idrefs", "ignore", "implied", "in", "in-library", "include", "include-end", "include-guard", "include-start", "inclusion", "initial", "initial-size", "insertion-break", "instance", "integer", "internal", "invalid-data", "keyed", "letters", "library", "local", "macro", "macro-end", "marked-section", "markup-comment", "markup-error", "markup-parser", "markup-wrapper", "mixed", "modifiable", "name-letters", "namecase", "named", "names", "ndata-entity", "nested-referents", "newline", "nmtoken", "nmtokens", "no", "no-default-io", "non-implied", "notation", "number", "numbers", "nutoken", "nutokens", "opaque", "optional", "parameter", "parent", "past", "pattern", "plus", "preparent", "previous", "process", "process-end", "process-start", "processing-instruction", "prolog-end", "prolog-in-error", "proper", "public", "read-only", "readable", "referent", "referents", "referents-allowed", "referents-displayed", "referents-not-allowed", "remainder", "repeated", "replacement-break", "reversed", "sdata-entity", "sgml-comment", "sgml-declaration-end", "sgml-dtd", "sgml-dtds", "sgml-error", "silent-referent", "size", "source", "specified", "stream", "subdoc-entity", "subdocument", "subdocuments", "subelement", "switch", "symbol", "system", "text-mode", "thrown", "times", "token", "translate", "true", "unattached", "unbuffered", "up-translate", "value", "valued", "variable", "writable", "xml", "xml-dtd", "xml-dtds", "yes", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"any", "any-text", "blank", "cdata", "content-end", "content-start", "digit", "lc", "letter", "line-end", "line-start", "non-cdata", "non-sdata", "null", "pcdata", "rcdata", "sdata", "space", "text", "uc", "value-end", "value-start", "white-space", "word-end", "word-start", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

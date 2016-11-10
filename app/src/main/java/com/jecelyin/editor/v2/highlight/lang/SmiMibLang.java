@@ -19,15 +19,95 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SmiMibLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"--\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"-_\",\"NAME\":\"noWordSep\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".*::=\\\\s*\\\\{.*\\\\}\\\\s*$\",\"NAME\":\"unindentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".*(::=|AGENT-CAPABILITIES|DESCRIPTION|IMPORTS|MODULE-COMPLIANCE|MODULE-IDENTITY|NOTIFICATION-GROUP|NOTIFICATION-TYPE|OBJECT-GROUP|OBJECT-IDENTITY|OBJECT-TYPE|TEXTUAL-CONVENTION)\\\\s*$\",\"NAME\":\"indentNextLines\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"--\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"FALSE\",\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SEQ\",\"text\":\"::=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"OBJECT IDENTIFIER\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"SEQUENCE OF\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"OCTET STRING\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"AGENT-CAPABILITIES\"},{\"tag\":\"FUNCTION\",\"text\":\"BEGIN\"},{\"tag\":\"FUNCTION\",\"text\":\"END\"},{\"tag\":\"FUNCTION\",\"text\":\"FROM\"},{\"tag\":\"FUNCTION\",\"text\":\"IMPORTS\"},{\"tag\":\"FUNCTION\",\"text\":\"MODULE-COMPLIANCE\"},{\"tag\":\"FUNCTION\",\"text\":\"MODULE-IDENTITY\"},{\"tag\":\"FUNCTION\",\"text\":\"NOTIFICATION-GROUP\"},{\"tag\":\"FUNCTION\",\"text\":\"NOTIFICATION-TYPE\"},{\"tag\":\"FUNCTION\",\"text\":\"OBJECT-GROUP\"},{\"tag\":\"FUNCTION\",\"text\":\"OBJECT-IDENTITY\"},{\"tag\":\"FUNCTION\",\"text\":\"OBJECT-TYPE\"},{\"tag\":\"FUNCTION\",\"text\":\"TEXTUAL-CONVENTION\"},{\"tag\":\"KEYWORD1\",\"text\":\"ACCESS\"},{\"tag\":\"KEYWORD1\",\"text\":\"AUGMENTS\"},{\"tag\":\"KEYWORD1\",\"text\":\"CONTACT-INFO\"},{\"tag\":\"KEYWORD1\",\"text\":\"CREATION-REQUIRES\"},{\"tag\":\"KEYWORD1\",\"text\":\"DEFINITIONS\"},{\"tag\":\"KEYWORD1\",\"text\":\"DEFVAL\"},{\"tag\":\"KEYWORD1\",\"text\":\"DESCRIPTION\"},{\"tag\":\"KEYWORD1\",\"text\":\"DISPLAY-HINT\"},{\"tag\":\"KEYWORD1\",\"text\":\"GROUP\"},{\"tag\":\"KEYWORD1\",\"text\":\"INCLUDES\"},{\"tag\":\"KEYWORD1\",\"text\":\"INDEX\"},{\"tag\":\"KEYWORD1\",\"text\":\"LAST-UPDATED\"},{\"tag\":\"KEYWORD1\",\"text\":\"MANDATORY-GROUPS\"},{\"tag\":\"KEYWORD1\",\"text\":\"MAX-ACCESS\"},{\"tag\":\"KEYWORD1\",\"text\":\"MIN-ACCESS\"},{\"tag\":\"KEYWORD1\",\"text\":\"MODULE\"},{\"tag\":\"KEYWORD1\",\"text\":\"NOTIFICATIONS\"},{\"tag\":\"KEYWORD1\",\"text\":\"OBJECT\"},{\"tag\":\"KEYWORD1\",\"text\":\"OBJECTS\"},{\"tag\":\"KEYWORD1\",\"text\":\"ORGANIZATION\"},{\"tag\":\"KEYWORD1\",\"text\":\"PRODUCT-RELEASE\"},{\"tag\":\"KEYWORD1\",\"text\":\"REFERENCE\"},{\"tag\":\"KEYWORD1\",\"text\":\"REVISION\"},{\"tag\":\"KEYWORD1\",\"text\":\"STATUS\"},{\"tag\":\"KEYWORD1\",\"text\":\"SYNTAX\"},{\"tag\":\"KEYWORD1\",\"text\":\"SUPPORTS\"},{\"tag\":\"KEYWORD1\",\"text\":\"UNITS\"},{\"tag\":\"KEYWORD1\",\"text\":\"VARIATION\"},{\"tag\":\"KEYWORD1\",\"text\":\"WRITE-SYNTAX\"},{\"tag\":\"KEYWORD2\",\"text\":\"AutonomousType\"},{\"tag\":\"KEYWORD2\",\"text\":\"BITS\"},{\"tag\":\"KEYWORD2\",\"text\":\"Counter32\"},{\"tag\":\"KEYWORD2\",\"text\":\"Counter64\"},{\"tag\":\"KEYWORD2\",\"text\":\"DateAndTime\"},{\"tag\":\"KEYWORD2\",\"text\":\"DisplayString\"},{\"tag\":\"KEYWORD2\",\"text\":\"Gauge32\"},{\"tag\":\"KEYWORD2\",\"text\":\"InstancePointer\"},{\"tag\":\"KEYWORD2\",\"text\":\"INTEGER\"},{\"tag\":\"KEYWORD2\",\"text\":\"Integer32\"},{\"tag\":\"KEYWORD2\",\"text\":\"IpAddress\"},{\"tag\":\"KEYWORD2\",\"text\":\"MacAddress\"},{\"tag\":\"KEYWORD2\",\"text\":\"Opaque\"},{\"tag\":\"KEYWORD2\",\"text\":\"PhysAddress\"},{\"tag\":\"KEYWORD2\",\"text\":\"RowPointer\"},{\"tag\":\"KEYWORD2\",\"text\":\"RowStatus\"},{\"tag\":\"KEYWORD2\",\"text\":\"SEQUENCE\"},{\"tag\":\"KEYWORD2\",\"text\":\"TAddress\"},{\"tag\":\"KEYWORD2\",\"text\":\"TDomain\"},{\"tag\":\"KEYWORD2\",\"text\":\"TestAndIncr\"},{\"tag\":\"KEYWORD2\",\"text\":\"TimeInterval\"},{\"tag\":\"KEYWORD2\",\"text\":\"TimeStamp\"},{\"tag\":\"KEYWORD2\",\"text\":\"TimeTicks\"},{\"tag\":\"KEYWORD2\",\"text\":\"TruthValue\"},{\"tag\":\"KEYWORD2\",\"text\":\"StorageType\"},{\"tag\":\"KEYWORD2\",\"text\":\"Unsigned32\"},{\"tag\":\"KEYWORD2\",\"text\":\"VariablePointer\"},{\"tag\":\"KEYWORD3\",\"text\":\"accessible-for-notify\"},{\"tag\":\"KEYWORD3\",\"text\":\"current\"},{\"tag\":\"KEYWORD3\",\"text\":\"deprecated\"},{\"tag\":\"KEYWORD3\",\"text\":\"not-accessible\"},{\"tag\":\"KEYWORD3\",\"text\":\"obsolete\"},{\"tag\":\"KEYWORD3\",\"text\":\"read-create\"},{\"tag\":\"KEYWORD3\",\"text\":\"read-only\"},{\"tag\":\"KEYWORD3\",\"text\":\"read-write\"},{\"tag\":\"KEYWORD3\",\"text\":\"SIZE\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "--";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "-_";
+        PROPERTY2.NAME = "noWordSep";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "{";
+        PROPERTY3.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "}";
+        PROPERTY4.NAME = "indentCloseBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = ".*::=\\s*\\{.*\\}\\s*$";
+        PROPERTY5.NAME = "unindentNextLines";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = ".*(::=|AGENT-CAPABILITIES|DESCRIPTION|IMPORTS|MODULE-COMPLIANCE|MODULE-IDENTITY|NOTIFICATION-GROUP|NOTIFICATION-TYPE|OBJECT-GROUP|OBJECT-IDENTITY|OBJECT-TYPE|TEXTUAL-CONVENTION)\\s*$";
+        PROPERTY6.NAME = "indentNextLines";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "--";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "FALSE";
+        SPAN1.TYPE = "LITERAL1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "::=";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "}";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "{";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "OBJECT IDENTIFIER";
+        SEQ4.TYPE = "KEYWORD2";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "SEQUENCE OF";
+        SEQ5.TYPE = "KEYWORD2";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "OCTET STRING";
+        SEQ6.TYPE = "KEYWORD2";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"ACCESS", "AUGMENTS", "CONTACT-INFO", "CREATION-REQUIRES", "DEFINITIONS", "DEFVAL", "DESCRIPTION", "DISPLAY-HINT", "GROUP", "INCLUDES", "INDEX", "LAST-UPDATED", "MANDATORY-GROUPS", "MAX-ACCESS", "MIN-ACCESS", "MODULE", "NOTIFICATIONS", "OBJECT", "OBJECTS", "ORGANIZATION", "PRODUCT-RELEASE", "REFERENCE", "REVISION", "STATUS", "SYNTAX", "SUPPORTS", "UNITS", "VARIATION", "WRITE-SYNTAX", });
+        KEYWORDS1.add("FUNCTION", new String[]{"AGENT-CAPABILITIES", "BEGIN", "END", "FROM", "IMPORTS", "MODULE-COMPLIANCE", "MODULE-IDENTITY", "NOTIFICATION-GROUP", "NOTIFICATION-TYPE", "OBJECT-GROUP", "OBJECT-IDENTITY", "OBJECT-TYPE", "TEXTUAL-CONVENTION", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"AutonomousType", "BITS", "Counter32", "Counter64", "DateAndTime", "DisplayString", "Gauge32", "InstancePointer", "INTEGER", "Integer32", "IpAddress", "MacAddress", "Opaque", "PhysAddress", "RowPointer", "RowStatus", "SEQUENCE", "TAddress", "TDomain", "TestAndIncr", "TimeInterval", "TimeStamp", "TimeTicks", "TruthValue", "StorageType", "Unsigned32", "VariablePointer", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"accessible-for-notify", "current", "deprecated", "not-accessible", "obsolete", "read-create", "read-only", "read-write", "SIZE", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,66 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class AssemblyAgsLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"##\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LABEL\",\"AT_LINE_START\":\"TRUE\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"ORG\"},{\"tag\":\"FUNCTION\",\"text\":\"BSS\"},{\"tag\":\"FUNCTION\",\"text\":\"BES\"},{\"tag\":\"FUNCTION\",\"text\":\"SYN\"},{\"tag\":\"FUNCTION\",\"text\":\"EQU\"},{\"tag\":\"FUNCTION\",\"text\":\"DEFINE\"},{\"tag\":\"FUNCTION\",\"text\":\"DEC\"},{\"tag\":\"FUNCTION\",\"text\":\"OCT\"},{\"tag\":\"FUNCTION\",\"text\":\"END\"},{\"tag\":\"KEYWORD3\",\"text\":\"A\"},{\"tag\":\"KEYWORD3\",\"text\":\"Q\"},{\"tag\":\"KEYWORD3\",\"text\":\"INDEX\"},{\"tag\":\"KEYWORD1\",\"text\":\"ABS\"},{\"tag\":\"KEYWORD1\",\"text\":\"ADD\"},{\"tag\":\"KEYWORD1\",\"text\":\"ADZ\"},{\"tag\":\"KEYWORD1\",\"text\":\"ALS\"},{\"tag\":\"KEYWORD1\",\"text\":\"AXT\"},{\"tag\":\"KEYWORD1\",\"text\":\"CLA\"},{\"tag\":\"KEYWORD1\",\"text\":\"CLZ\"},{\"tag\":\"KEYWORD1\",\"text\":\"COM\"},{\"tag\":\"KEYWORD1\",\"text\":\"DLY\"},{\"tag\":\"KEYWORD1\",\"text\":\"DVP\"},{\"tag\":\"KEYWORD1\",\"text\":\"INP\"},{\"tag\":\"KEYWORD1\",\"text\":\"LDQ\"},{\"tag\":\"KEYWORD1\",\"text\":\"LLS\"},{\"tag\":\"KEYWORD1\",\"text\":\"LRS\"},{\"tag\":\"KEYWORD1\",\"text\":\"MPR\"},{\"tag\":\"KEYWORD1\",\"text\":\"MPY\"},{\"tag\":\"KEYWORD1\",\"text\":\"MPZ\"},{\"tag\":\"KEYWORD1\",\"text\":\"OUT\"},{\"tag\":\"KEYWORD1\",\"text\":\"STO\"},{\"tag\":\"KEYWORD1\",\"text\":\"STQ\"},{\"tag\":\"KEYWORD1\",\"text\":\"SUB\"},{\"tag\":\"KEYWORD1\",\"text\":\"SUZ\"},{\"tag\":\"KEYWORD1\",\"text\":\"TIX\"},{\"tag\":\"KEYWORD1\",\"text\":\"TMI\"},{\"tag\":\"KEYWORD1\",\"text\":\"TOV\"},{\"tag\":\"KEYWORD1\",\"text\":\"TRA\"},{\"tag\":\"KEYWORD1\",\"text\":\"TSQ\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "#";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "true";
+        PROPERTY2.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "##";
+        EOL_SPAN1.TYPE = "COMMENT2";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "#";
+        EOL_SPAN2.TYPE = "COMMENT1";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.TYPE = "LABEL";
+        MARK_PREVIOUS1.AT_LINE_START = "TRUE";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "+";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "-";
+        SEQ2.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"ABS", "ADD", "ADZ", "ALS", "AXT", "CLA", "CLZ", "COM", "DLY", "DVP", "INP", "LDQ", "LLS", "LRS", "MPR", "MPY", "MPZ", "OUT", "STO", "STQ", "SUB", "SUZ", "TIX", "TMI", "TOV", "TRA", "TSQ", });
+        KEYWORDS1.add("FUNCTION", new String[]{"ORG", "BSS", "BES", "SYN", "EQU", "DEFINE", "DEC", "OCT", "END", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"A", "Q", "INDEX", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

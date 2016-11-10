@@ -19,15 +19,103 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class RibLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"Begin|WorldBegin|FrameBegin|TransformBegin|AttributeBegin|SolidBegin|ObjectBegin|MotionBegin\",\"NAME\":\"indentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"false\",\"NAME\":\"doubleBracketIndent\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"([\\\\p{Digit}]+(e[\\\\p{Digit}]*)?)\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"COMMENT1\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"[\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"]\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"LITERALS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"float\"},{\"tag\":\"KEYWORD1\",\"text\":\"string\"},{\"tag\":\"KEYWORD1\",\"text\":\"color\"},{\"tag\":\"KEYWORD1\",\"text\":\"point\"},{\"tag\":\"KEYWORD1\",\"text\":\"vector\"},{\"tag\":\"KEYWORD1\",\"text\":\"normal\"},{\"tag\":\"KEYWORD1\",\"text\":\"matrix\"},{\"tag\":\"KEYWORD1\",\"text\":\"void\"},{\"tag\":\"KEYWORD1\",\"text\":\"varying\"},{\"tag\":\"KEYWORD1\",\"text\":\"uniform\"},{\"tag\":\"KEYWORD1\",\"text\":\"output\"},{\"tag\":\"KEYWORD1\",\"text\":\"extern\"},{\"tag\":\"KEYWORD2\",\"text\":\"Begin\"},{\"tag\":\"KEYWORD2\",\"text\":\"End\"},{\"tag\":\"KEYWORD2\",\"text\":\"Declare\"},{\"tag\":\"KEYWORD2\",\"text\":\"RtContextHandle\"},{\"tag\":\"KEYWORD2\",\"text\":\"ContextHandle\"},{\"tag\":\"KEYWORD2\",\"text\":\"Context\"},{\"tag\":\"KEYWORD2\",\"text\":\"FrameBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"FrameEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"WorldBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"WorldEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"SolidBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"SolidEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"MotionBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"MotionEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"ObjectBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"ObjectEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"Format\"},{\"tag\":\"KEYWORD2\",\"text\":\"FrameAspectRatio\"},{\"tag\":\"KEYWORD2\",\"text\":\"ScreenWindow\"},{\"tag\":\"KEYWORD2\",\"text\":\"CropWindow\"},{\"tag\":\"KEYWORD2\",\"text\":\"Projection\"},{\"tag\":\"KEYWORD2\",\"text\":\"Clipping\"},{\"tag\":\"KEYWORD2\",\"text\":\"ClippingPlane\"},{\"tag\":\"KEYWORD2\",\"text\":\"DepthOfField\"},{\"tag\":\"KEYWORD2\",\"text\":\"Shutter\"},{\"tag\":\"KEYWORD2\",\"text\":\"PixelVariance\"},{\"tag\":\"KEYWORD2\",\"text\":\"PixelSamples\"},{\"tag\":\"KEYWORD2\",\"text\":\"PixelFilter\"},{\"tag\":\"KEYWORD2\",\"text\":\"Exposure\"},{\"tag\":\"KEYWORD2\",\"text\":\"Imager\"},{\"tag\":\"KEYWORD2\",\"text\":\"Quantize\"},{\"tag\":\"KEYWORD2\",\"text\":\"Display\"},{\"tag\":\"KEYWORD2\",\"text\":\"Hider\"},{\"tag\":\"KEYWORD2\",\"text\":\"ColorSamples\"},{\"tag\":\"KEYWORD2\",\"text\":\"RelativeDetail\"},{\"tag\":\"KEYWORD2\",\"text\":\"Option\"},{\"tag\":\"KEYWORD2\",\"text\":\"AttributeBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"AttributeEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"Color\"},{\"tag\":\"KEYWORD2\",\"text\":\"Opacity\"},{\"tag\":\"KEYWORD2\",\"text\":\"TextureCoordinates\"},{\"tag\":\"KEYWORD2\",\"text\":\"RtLightHandle\"},{\"tag\":\"KEYWORD2\",\"text\":\"LightSource\"},{\"tag\":\"KEYWORD2\",\"text\":\"AreaLightSource\"},{\"tag\":\"KEYWORD2\",\"text\":\"Illuminate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Surface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Displacement\"},{\"tag\":\"KEYWORD2\",\"text\":\"Atmosphere\"},{\"tag\":\"KEYWORD2\",\"text\":\"Interior\"},{\"tag\":\"KEYWORD2\",\"text\":\"Exterior\"},{\"tag\":\"KEYWORD2\",\"text\":\"ShadingRate\"},{\"tag\":\"KEYWORD2\",\"text\":\"ShadingInterpolation\"},{\"tag\":\"KEYWORD2\",\"text\":\"Matte\"},{\"tag\":\"KEYWORD2\",\"text\":\"Bound\"},{\"tag\":\"KEYWORD2\",\"text\":\"Detail\"},{\"tag\":\"KEYWORD2\",\"text\":\"DetailRange\"},{\"tag\":\"KEYWORD2\",\"text\":\"GeometricApproximation\"},{\"tag\":\"KEYWORD2\",\"text\":\"Orientation\"},{\"tag\":\"KEYWORD2\",\"text\":\"ReverseOrientation\"},{\"tag\":\"KEYWORD2\",\"text\":\"Sides\"},{\"tag\":\"KEYWORD2\",\"text\":\"Identity\"},{\"tag\":\"KEYWORD2\",\"text\":\"Transform\"},{\"tag\":\"KEYWORD2\",\"text\":\"ConcatTransform\"},{\"tag\":\"KEYWORD2\",\"text\":\"Perspective\"},{\"tag\":\"KEYWORD2\",\"text\":\"Translate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Rotate\"},{\"tag\":\"KEYWORD2\",\"text\":\"Scale\"},{\"tag\":\"KEYWORD2\",\"text\":\"Skew\"},{\"tag\":\"KEYWORD2\",\"text\":\"CoordinateSystem\"},{\"tag\":\"KEYWORD2\",\"text\":\"CoordSysTransform\"},{\"tag\":\"KEYWORD2\",\"text\":\"TransformPoints\"},{\"tag\":\"KEYWORD2\",\"text\":\"TransformBegin\"},{\"tag\":\"KEYWORD2\",\"text\":\"TransformEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"Attribute\"},{\"tag\":\"KEYWORD3\",\"text\":\"Polygon\"},{\"tag\":\"KEYWORD3\",\"text\":\"GeneralPolygon\"},{\"tag\":\"KEYWORD3\",\"text\":\"PointsPolygons\"},{\"tag\":\"KEYWORD3\",\"text\":\"PointsGeneralPolygons\"},{\"tag\":\"KEYWORD3\",\"text\":\"Basis\"},{\"tag\":\"KEYWORD3\",\"text\":\"Patch\"},{\"tag\":\"KEYWORD3\",\"text\":\"PatchMesh\"},{\"tag\":\"KEYWORD3\",\"text\":\"NuPatch\"},{\"tag\":\"KEYWORD3\",\"text\":\"TrimCurve\"},{\"tag\":\"KEYWORD3\",\"text\":\"SubdivisionMesh\"},{\"tag\":\"KEYWORD3\",\"text\":\"Sphere\"},{\"tag\":\"KEYWORD3\",\"text\":\"Cone\"},{\"tag\":\"KEYWORD3\",\"text\":\"Cylinder\"},{\"tag\":\"KEYWORD3\",\"text\":\"Hyperboloid\"},{\"tag\":\"KEYWORD3\",\"text\":\"Paraboloid\"},{\"tag\":\"KEYWORD3\",\"text\":\"Disk\"},{\"tag\":\"KEYWORD3\",\"text\":\"Torus\"},{\"tag\":\"KEYWORD3\",\"text\":\"Points\"},{\"tag\":\"KEYWORD3\",\"text\":\"Curves\"},{\"tag\":\"KEYWORD3\",\"text\":\"Blobby\"},{\"tag\":\"KEYWORD3\",\"text\":\"Procedural\"},{\"tag\":\"KEYWORD3\",\"text\":\"DelayedReadArchive\"},{\"tag\":\"KEYWORD3\",\"text\":\"RunProgram\"},{\"tag\":\"KEYWORD3\",\"text\":\"DynamicLoad\"},{\"tag\":\"KEYWORD3\",\"text\":\"Geometry\"},{\"tag\":\"KEYWORD3\",\"text\":\"SolidBegin\"},{\"tag\":\"KEYWORD3\",\"text\":\"SolidEnd\"},{\"tag\":\"KEYWORD3\",\"text\":\"RtObjectHandle\"},{\"tag\":\"KEYWORD3\",\"text\":\"ObjectBegin\"},{\"tag\":\"KEYWORD3\",\"text\":\"ObjectEnd\"},{\"tag\":\"KEYWORD3\",\"text\":\"ObjectInstance\"},{\"tag\":\"KEYWORD4\",\"text\":\"MakeTexture\"},{\"tag\":\"KEYWORD4\",\"text\":\"MakeLatLongEnvironment\"},{\"tag\":\"KEYWORD4\",\"text\":\"MakeCubeFaceEnvironment\"},{\"tag\":\"KEYWORD4\",\"text\":\"MakeShadow\"},{\"tag\":\"KEYWORD4\",\"text\":\"ErrorHandler\"},{\"tag\":\"KEYWORD4\",\"text\":\"ArchiveRecord\"},{\"tag\":\"KEYWORD4\",\"text\":\"ReadArchive\"},{\"tag\":\"KEYWORD4\",\"text\":\"Deformation\"},{\"tag\":\"KEYWORD4\",\"text\":\"MakeBump\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"LITERALS\",\"DEFAULT\":\"LITERAL1\",\"ESCAPE\":\"\\\\\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"float\"},{\"tag\":\"KEYWORD1\",\"text\":\"string\"},{\"tag\":\"KEYWORD1\",\"text\":\"color\"},{\"tag\":\"KEYWORD1\",\"text\":\"point\"},{\"tag\":\"KEYWORD1\",\"text\":\"vector\"},{\"tag\":\"KEYWORD1\",\"text\":\"normal\"},{\"tag\":\"KEYWORD1\",\"text\":\"matrix\"},{\"tag\":\"KEYWORD1\",\"text\":\"void\"},{\"tag\":\"KEYWORD1\",\"text\":\"varying\"},{\"tag\":\"KEYWORD1\",\"text\":\"uniform\"},{\"tag\":\"KEYWORD1\",\"text\":\"output\"},{\"tag\":\"KEYWORD1\",\"text\":\"extern\"},{\"tag\":\"LITERAL2\",\"text\":\"P\"},{\"tag\":\"LITERAL2\",\"text\":\"Pw\"},{\"tag\":\"LITERAL2\",\"text\":\"Pz\"},{\"tag\":\"LITERAL2\",\"text\":\"N\"},{\"tag\":\"LITERAL2\",\"text\":\"Cs\"},{\"tag\":\"LITERAL2\",\"text\":\"Os\"},{\"tag\":\"LITERAL2\",\"text\":\"RI_NULL\"},{\"tag\":\"LITERAL2\",\"text\":\"RI_INFINITY\"},{\"tag\":\"LITERAL2\",\"text\":\"orthographic\"},{\"tag\":\"LITERAL2\",\"text\":\"perspective\"},{\"tag\":\"LITERAL2\",\"text\":\"bezier\"},{\"tag\":\"LITERAL2\",\"text\":\"catmull-rom\"},{\"tag\":\"LITERAL2\",\"text\":\"b-spline\"},{\"tag\":\"LITERAL2\",\"text\":\"hermite\"},{\"tag\":\"LITERAL2\",\"text\":\"power\"},{\"tag\":\"LITERAL2\",\"text\":\"catmull-clark\"},{\"tag\":\"LITERAL2\",\"text\":\"hole\"},{\"tag\":\"LITERAL2\",\"text\":\"crease\"},{\"tag\":\"LITERAL2\",\"text\":\"corner\"},{\"tag\":\"LITERAL2\",\"text\":\"interpolateboundary\"},{\"tag\":\"LITERAL2\",\"text\":\"object\"},{\"tag\":\"LITERAL2\",\"text\":\"world\"},{\"tag\":\"LITERAL2\",\"text\":\"camera\"},{\"tag\":\"LITERAL2\",\"text\":\"screen\"},{\"tag\":\"LITERAL2\",\"text\":\"raster\"},{\"tag\":\"LITERAL2\",\"text\":\"NDC\"},{\"tag\":\"LITERAL2\",\"text\":\"box\"},{\"tag\":\"LITERAL2\",\"text\":\"triangle\"},{\"tag\":\"LITERAL2\",\"text\":\"sinc\"},{\"tag\":\"LITERAL2\",\"text\":\"gaussian\"},{\"tag\":\"LITERAL2\",\"text\":\"constant\"},{\"tag\":\"LITERAL2\",\"text\":\"smooth\"},{\"tag\":\"LITERAL2\",\"text\":\"outside\"},{\"tag\":\"LITERAL2\",\"text\":\"inside\"},{\"tag\":\"LITERAL2\",\"text\":\"lh\"},{\"tag\":\"LITERAL2\",\"text\":\"rh\"},{\"tag\":\"LITERAL2\",\"text\":\"bicubic\"},{\"tag\":\"LITERAL2\",\"text\":\"bilinear\"},{\"tag\":\"LITERAL2\",\"text\":\"periodic\"},{\"tag\":\"LITERAL2\",\"text\":\"nonperiodic\"},{\"tag\":\"LITERAL2\",\"text\":\"hidden\"},{\"tag\":\"LITERAL2\",\"text\":\"null\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "#";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "Begin|WorldBegin|FrameBegin|TransformBegin|AttributeBegin|SolidBegin|ObjectBegin|MotionBegin";
+        PROPERTY2.NAME = "indentNextLines";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "false";
+        PROPERTY3.NAME = "doubleBracketIndent";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "true";
+        PROPERTY4.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "([\\p{Digit}]+(e[\\p{Digit}]*)?)";
+        RULES1.IGNORE_CASE = "FALSE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.AT_WHITESPACE_END = "TRUE";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "#";
+        EOL_SPAN2.TYPE = "COMMENT2";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "-";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "+";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "[";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "]";
+        SEQ4.TYPE = "OPERATOR";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.DELEGATE = "LITERALS";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"float", "string", "color", "point", "vector", "normal", "matrix", "void", "varying", "uniform", "output", "extern", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"Begin", "End", "Declare", "RtContextHandle", "ContextHandle", "Context", "FrameBegin", "FrameEnd", "WorldBegin", "WorldEnd", "SolidBegin", "SolidEnd", "MotionBegin", "MotionEnd", "ObjectBegin", "ObjectEnd", "Format", "FrameAspectRatio", "ScreenWindow", "CropWindow", "Projection", "Clipping", "ClippingPlane", "DepthOfField", "Shutter", "PixelVariance", "PixelSamples", "PixelFilter", "Exposure", "Imager", "Quantize", "Display", "Hider", "ColorSamples", "RelativeDetail", "Option", "AttributeBegin", "AttributeEnd", "Color", "Opacity", "TextureCoordinates", "RtLightHandle", "LightSource", "AreaLightSource", "Illuminate", "Surface", "Displacement", "Atmosphere", "Interior", "Exterior", "ShadingRate", "ShadingInterpolation", "Matte", "Bound", "Detail", "DetailRange", "GeometricApproximation", "Orientation", "ReverseOrientation", "Sides", "Identity", "Transform", "ConcatTransform", "Perspective", "Translate", "Rotate", "Scale", "Skew", "CoordinateSystem", "CoordSysTransform", "TransformPoints", "TransformBegin", "TransformEnd", "Attribute", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"Polygon", "GeneralPolygon", "PointsPolygons", "PointsGeneralPolygons", "Basis", "Patch", "PatchMesh", "NuPatch", "TrimCurve", "SubdivisionMesh", "Sphere", "Cone", "Cylinder", "Hyperboloid", "Paraboloid", "Disk", "Torus", "Points", "Curves", "Blobby", "Procedural", "DelayedReadArchive", "RunProgram", "DynamicLoad", "Geometry", "SolidBegin", "SolidEnd", "RtObjectHandle", "ObjectBegin", "ObjectEnd", "ObjectInstance", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"MakeTexture", "MakeLatLongEnvironment", "MakeCubeFaceEnvironment", "MakeShadow", "ErrorHandler", "ArchiveRecord", "ReadArchive", "Deformation", "MakeBump", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "LITERALS";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.ESCAPE = "\\";
+        RULES1.IGNORE_CASE = "FALSE";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"P", "Pw", "Pz", "N", "Cs", "Os", "RI_NULL", "RI_INFINITY", "orthographic", "perspective", "bezier", "catmull-rom", "b-spline", "hermite", "power", "catmull-clark", "hole", "crease", "corner", "interpolateboundary", "object", "world", "camera", "screen", "raster", "NDC", "box", "triangle", "sinc", "gaussian", "constant", "smooth", "outside", "inside", "lh", "rh", "bicubic", "bilinear", "periodic", "nonperiodic", "hidden", "null", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"float", "string", "color", "point", "vector", "normal", "matrix", "void", "varying", "uniform", "output", "extern", });
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

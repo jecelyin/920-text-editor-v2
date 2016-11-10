@@ -19,15 +19,113 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SchemeLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#|\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"|#\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\";\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"_-+?:*/!\",\"NAME\":\"noWordSep\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(\",\"NAME\":\"unalignedOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\")\",\"NAME\":\"unalignedCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"multipleBracketIndent\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\",\"NO_WORD_SEP\":\"_-+?:*/!\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"#|\"},{\"tag\":\"END\",\"text\":\"|#\"}]},{\"tag\":\"SEQ\",\"text\":\"'(\",\"attrs\":{\"TYPE\":\"NULL\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"'\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#\\\\\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#b\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#d\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#o\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#x\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"and\"},{\"tag\":\"KEYWORD1\",\"text\":\"begin\"},{\"tag\":\"KEYWORD1\",\"text\":\"case\"},{\"tag\":\"KEYWORD1\",\"text\":\"cond\"},{\"tag\":\"KEYWORD1\",\"text\":\"cond-expand\"},{\"tag\":\"KEYWORD1\",\"text\":\"define\"},{\"tag\":\"KEYWORD1\",\"text\":\"define-macro\"},{\"tag\":\"KEYWORD1\",\"text\":\"delay\"},{\"tag\":\"KEYWORD1\",\"text\":\"do\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"fluid-let\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"lambda\"},{\"tag\":\"KEYWORD1\",\"text\":\"let\"},{\"tag\":\"KEYWORD1\",\"text\":\"let*\"},{\"tag\":\"KEYWORD1\",\"text\":\"letrec\"},{\"tag\":\"KEYWORD1\",\"text\":\"or\"},{\"tag\":\"KEYWORD1\",\"text\":\"quasiquote\"},{\"tag\":\"KEYWORD1\",\"text\":\"quote\"},{\"tag\":\"KEYWORD1\",\"text\":\"set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"abs\"},{\"tag\":\"KEYWORD2\",\"text\":\"acos\"},{\"tag\":\"KEYWORD2\",\"text\":\"angle\"},{\"tag\":\"KEYWORD2\",\"text\":\"append\"},{\"tag\":\"KEYWORD2\",\"text\":\"apply\"},{\"tag\":\"KEYWORD2\",\"text\":\"asin\"},{\"tag\":\"KEYWORD2\",\"text\":\"assoc\"},{\"tag\":\"KEYWORD2\",\"text\":\"assq\"},{\"tag\":\"KEYWORD2\",\"text\":\"assv\"},{\"tag\":\"KEYWORD2\",\"text\":\"atan\"},{\"tag\":\"KEYWORD2\",\"text\":\"car\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdr\"},{\"tag\":\"KEYWORD2\",\"text\":\"caar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"caaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"caadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadar\"},{\"tag\":\"KEYWORD2\",\"text\":\"caddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-current-continuation\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-input-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-output-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-values\"},{\"tag\":\"KEYWORD2\",\"text\":\"call/cc\"},{\"tag\":\"KEYWORD2\",\"text\":\"catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"ceiling\"},{\"tag\":\"KEYWORD2\",\"text\":\"char->integer\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-downcase\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-upcase\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-output-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"cons\"},{\"tag\":\"KEYWORD2\",\"text\":\"cos\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-output-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"display\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-wind\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval\"},{\"tag\":\"KEYWORD2\",\"text\":\"exit\"},{\"tag\":\"KEYWORD2\",\"text\":\"exact->inexact\"},{\"tag\":\"KEYWORD2\",\"text\":\"exp\"},{\"tag\":\"KEYWORD2\",\"text\":\"expt\"},{\"tag\":\"KEYWORD2\",\"text\":\"file-or-directory-modify-seconds\"},{\"tag\":\"KEYWORD2\",\"text\":\"floor\"},{\"tag\":\"KEYWORD2\",\"text\":\"force\"},{\"tag\":\"KEYWORD2\",\"text\":\"for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"gcd\"},{\"tag\":\"KEYWORD2\",\"text\":\"gensym\"},{\"tag\":\"KEYWORD2\",\"text\":\"get-output-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"getenv\"},{\"tag\":\"KEYWORD2\",\"text\":\"imag-part\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer->char\"},{\"tag\":\"KEYWORD2\",\"text\":\"lcm\"},{\"tag\":\"KEYWORD2\",\"text\":\"length\"},{\"tag\":\"KEYWORD2\",\"text\":\"list\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-tail\"},{\"tag\":\"KEYWORD2\",\"text\":\"load\"},{\"tag\":\"KEYWORD2\",\"text\":\"log\"},{\"tag\":\"KEYWORD2\",\"text\":\"magnitude\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-polar\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-rectangular\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"map\"},{\"tag\":\"KEYWORD2\",\"text\":\"max\"},{\"tag\":\"KEYWORD2\",\"text\":\"member\"},{\"tag\":\"KEYWORD2\",\"text\":\"memq\"},{\"tag\":\"KEYWORD2\",\"text\":\"memv\"},{\"tag\":\"KEYWORD2\",\"text\":\"min\"},{\"tag\":\"KEYWORD2\",\"text\":\"modulo\"},{\"tag\":\"KEYWORD2\",\"text\":\"newline\"},{\"tag\":\"KEYWORD2\",\"text\":\"nil\"},{\"tag\":\"KEYWORD2\",\"text\":\"not\"},{\"tag\":\"KEYWORD2\",\"text\":\"number->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-input-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-input-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-output-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-output-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"peek-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"quotient\"},{\"tag\":\"KEYWORD2\",\"text\":\"read\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"real-part\"},{\"tag\":\"KEYWORD2\",\"text\":\"remainder\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse!\"},{\"tag\":\"KEYWORD2\",\"text\":\"round\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-car!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-cdr!\"},{\"tag\":\"KEYWORD2\",\"text\":\"sin\"},{\"tag\":\"KEYWORD2\",\"text\":\"sqrt\"},{\"tag\":\"KEYWORD2\",\"text\":\"string\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->number\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-append\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"system\"},{\"tag\":\"KEYWORD2\",\"text\":\"tan\"},{\"tag\":\"KEYWORD2\",\"text\":\"truncate\"},{\"tag\":\"KEYWORD2\",\"text\":\"values\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-input-from-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-output-to-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"write\"},{\"tag\":\"KEYWORD2\",\"text\":\"write-char\"},{\"tag\":\"KEYWORD3\",\"text\":\"boolean?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-alphabetic?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-ci<=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-ci<?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-ci=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-ci>=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-ci>?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-lower-case?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-numeric?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-ready?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-upper-case?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char-whitespace?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char<=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char<?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char>=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char>?\"},{\"tag\":\"KEYWORD3\",\"text\":\"char?\"},{\"tag\":\"KEYWORD3\",\"text\":\"complex?\"},{\"tag\":\"KEYWORD3\",\"text\":\"eof-object?\"},{\"tag\":\"KEYWORD3\",\"text\":\"eq?\"},{\"tag\":\"KEYWORD3\",\"text\":\"equal?\"},{\"tag\":\"KEYWORD3\",\"text\":\"eqv?\"},{\"tag\":\"KEYWORD3\",\"text\":\"even?\"},{\"tag\":\"KEYWORD3\",\"text\":\"exact?\"},{\"tag\":\"KEYWORD3\",\"text\":\"file-exists?\"},{\"tag\":\"KEYWORD3\",\"text\":\"inexact?\"},{\"tag\":\"KEYWORD3\",\"text\":\"input-port?\"},{\"tag\":\"KEYWORD3\",\"text\":\"integer?\"},{\"tag\":\"KEYWORD3\",\"text\":\"list?\"},{\"tag\":\"KEYWORD3\",\"text\":\"negative?\"},{\"tag\":\"KEYWORD3\",\"text\":\"null?\"},{\"tag\":\"KEYWORD3\",\"text\":\"number?\"},{\"tag\":\"KEYWORD3\",\"text\":\"odd?\"},{\"tag\":\"KEYWORD3\",\"text\":\"output-port?\"},{\"tag\":\"KEYWORD3\",\"text\":\"pair?\"},{\"tag\":\"KEYWORD3\",\"text\":\"port?\"},{\"tag\":\"KEYWORD3\",\"text\":\"positive?\"},{\"tag\":\"KEYWORD3\",\"text\":\"procedure?\"},{\"tag\":\"KEYWORD3\",\"text\":\"rational?\"},{\"tag\":\"KEYWORD3\",\"text\":\"real?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string-ci<=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string-ci<?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string-ci=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string-ci>=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string-ci>?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string<=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string<?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string>=?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string>?\"},{\"tag\":\"KEYWORD3\",\"text\":\"string?\"},{\"tag\":\"KEYWORD3\",\"text\":\"symbol?\"},{\"tag\":\"KEYWORD3\",\"text\":\"vector?\"},{\"tag\":\"KEYWORD3\",\"text\":\"zero?\"},{\"tag\":\"LITERAL2\",\"text\":\"#t\"},{\"tag\":\"LITERAL2\",\"text\":\"#f\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "#|";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "|#";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = ";";
+        PROPERTY3.NAME = "lineComment";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "_-+?:*/!";
+        PROPERTY4.NAME = "noWordSep";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "(";
+        PROPERTY5.NAME = "unalignedOpenBrackets";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = ")";
+        PROPERTY6.NAME = "unalignedCloseBrackets";
+        PROPERTY PROPERTY7 = new PROPERTY();
+        PROPERTY7.VALUE = "true";
+        PROPERTY7.NAME = "multipleBracketIndent";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        RULES1.NO_WORD_SEP = "_-+?:*/!";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "#|";
+        END END1 = new END();
+        END1.text = "|#";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "'(";
+        SEQ1.TYPE = "NULL";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "'";
+        MARK_FOLLOWING1.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "#\\";
+        MARK_FOLLOWING2.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING3 = new MARK_FOLLOWING();
+        MARK_FOLLOWING3.text = "#b";
+        MARK_FOLLOWING3.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING4 = new MARK_FOLLOWING();
+        MARK_FOLLOWING4.text = "#d";
+        MARK_FOLLOWING4.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING5 = new MARK_FOLLOWING();
+        MARK_FOLLOWING5.text = "#o";
+        MARK_FOLLOWING5.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING6 = new MARK_FOLLOWING();
+        MARK_FOLLOWING6.text = "#x";
+        MARK_FOLLOWING6.TYPE = "LITERAL1";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = ";";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"#t", "#f", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"and", "begin", "case", "cond", "cond-expand", "define", "define-macro", "delay", "do", "else", "fluid-let", "if", "lambda", "let", "let*", "letrec", "or", "quasiquote", "quote", "set!", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"abs", "acos", "angle", "append", "apply", "asin", "assoc", "assq", "assv", "atan", "car", "cdr", "caar", "cadr", "cdar", "cddr", "caaar", "caadr", "cadar", "caddr", "cdaar", "cdadr", "cddar", "cdddr", "call-with-current-continuation", "call-with-input-file", "call-with-output-file", "call-with-values", "call/cc", "catch", "ceiling", "char->integer", "char-downcase", "char-upcase", "close-input-port", "close-output-port", "cons", "cos", "current-input-port", "current-output-port", "delete-file", "display", "dynamic-wind", "eval", "exit", "exact->inexact", "exp", "expt", "file-or-directory-modify-seconds", "floor", "force", "for-each", "gcd", "gensym", "get-output-string", "getenv", "imag-part", "integer->char", "lcm", "length", "list", "list->string", "list->vector", "list-ref", "list-tail", "load", "log", "magnitude", "make-polar", "make-rectangular", "make-string", "make-vector", "map", "max", "member", "memq", "memv", "min", "modulo", "newline", "nil", "not", "number->string", "open-input-file", "open-input-string", "open-output-file", "open-output-string", "peek-char", "quotient", "read", "read-char", "read-line", "real-part", "remainder", "reverse", "reverse!", "round", "set-car!", "set-cdr!", "sin", "sqrt", "string", "string->list", "string->number", "string->symbol", "string-append", "string-copy", "string-fill!", "string-length", "string-ref", "string-set!", "substring", "symbol->string", "system", "tan", "truncate", "values", "vector", "vector->list", "vector-fill!", "vector-length", "vector-ref", "vector-set!", "with-input-from-file", "with-output-to-file", "write", "write-char", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"boolean?", "char-alphabetic?", "char-ci<=?", "char-ci<?", "char-ci=?", "char-ci>=?", "char-ci>?", "char-lower-case?", "char-numeric?", "char-ready?", "char-upper-case?", "char-whitespace?", "char<=?", "char<?", "char=?", "char>=?", "char>?", "char?", "complex?", "eof-object?", "eq?", "equal?", "eqv?", "even?", "exact?", "file-exists?", "inexact?", "input-port?", "integer?", "list?", "negative?", "null?", "number?", "odd?", "output-port?", "pair?", "port?", "positive?", "procedure?", "rational?", "real?", "string-ci<=?", "string-ci<?", "string-ci=?", "string-ci>=?", "string-ci>?", "string<=?", "string<?", "string=?", "string>=?", "string>?", "string?", "symbol?", "vector?", "zero?", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, MARK_FOLLOWING3, MARK_FOLLOWING4, MARK_FOLLOWING5, MARK_FOLLOWING6, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,212 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SlaxLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\",/+=*\",\"NAME\":\"wordBreakChars\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"-_:.\",\"NAME\":\"noWordSep\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DEFAULT\":\"LITERAL3\",\"DIGIT_RE\":\"([0-9])*\\\\.?([0-9])+\",\"IGNORE_CASE\":\"TRUE\",\"NO_WORD_SEP\":\"-_:.\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"leading-comments\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"strings\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"variables\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"templates\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"statements\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"xml-tags\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"trailing-comments\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"leading-comments\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"LITERAL3\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"trailing-comments\"},\"child\":[{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"((;)|(\\\\})|(\\\\{)|(\\\\)))(\\\\s)*/\\\\*\"},{\"tag\":\"END\",\"text\":\"*/\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"strings\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL2\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"xml-tags\",\"DEFAULT\":\"KEYWORD3\"},\"child\":[{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"inside-the-tag\"},\"child\":[{\"tag\":\"BEGIN\"},{\"tag\":\"END\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"inside-the-tag\",\"DEFAULT\":\"KEYWORD3\"},\"child\":[{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL3\",\"DELEGATE\":\"attribute\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\\\\s)+(?!>)\"},{\"tag\":\"END\",\"text\":\"=\"}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"strings\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"attribute\",\"DEFAULT\":\"KEYWORD4\"}},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"variables\"},\"child\":[{\"tag\":\"MARK_FOLLOWING\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"templates\"},\"child\":[{\"tag\":\"MARK_PREVIOUS\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"LITERAL3\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"statements\"},\"child\":[{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"version\"},{\"tag\":\"KEYWORD1\",\"text\":\"ns\"},{\"tag\":\"KEYWORD1\",\"text\":\"param\"},{\"tag\":\"KEYWORD1\",\"text\":\"var\"},{\"tag\":\"KEYWORD1\",\"text\":\"template\"},{\"tag\":\"KEYWORD1\",\"text\":\"match\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"copy-of\"},{\"tag\":\"KEYWORD1\",\"text\":\"copy\"},{\"tag\":\"KEYWORD1\",\"text\":\"call\"},{\"tag\":\"KEYWORD1\",\"text\":\"apply-templates\"},{\"tag\":\"KEYWORD1\",\"text\":\"expr\"},{\"tag\":\"KEYWORD1\",\"text\":\"import\"},{\"tag\":\"KEYWORD1\",\"text\":\"input\"},{\"tag\":\"KEYWORD1\",\"text\":\"for-each\"},{\"tag\":\"KEYWORD1\",\"text\":\"mode\"},{\"tag\":\"KEYWORD1\",\"text\":\"priority\"},{\"tag\":\"KEYWORD1\",\"text\":\"extension\"},{\"tag\":\"KEYWORD1\",\"text\":\"preserve-space\"},{\"tag\":\"KEYWORD1\",\"text\":\"strip-space\"},{\"tag\":\"KEYWORD1\",\"text\":\"with\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = ",/+=*";
+        PROPERTY3.NAME = "wordBreakChars";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "-_:.";
+        PROPERTY4.NAME = "noWordSep";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DEFAULT = "LITERAL3";
+        RULES1.DIGIT_RE = "([0-9])*\\.?([0-9])+";
+        RULES1.IGNORE_CASE = "TRUE";
+        RULES1.NO_WORD_SEP = "-_:.";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "leading-comments";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "strings";
+        IMPORT IMPORT3 = new IMPORT();
+        IMPORT3.DELEGATE = "variables";
+        IMPORT IMPORT4 = new IMPORT();
+        IMPORT4.DELEGATE = "templates";
+        IMPORT IMPORT5 = new IMPORT();
+        IMPORT5.DELEGATE = "statements";
+        IMPORT IMPORT6 = new IMPORT();
+        IMPORT6.DELEGATE = "xml-tags";
+        IMPORT IMPORT7 = new IMPORT();
+        IMPORT7.DELEGATE = "trailing-comments";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, IMPORT3, IMPORT4, IMPORT5, IMPORT6, IMPORT7, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "leading-comments";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.AT_WHITESPACE_END = "TRUE";
+        SPAN1.TYPE = "LITERAL3";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "trailing-comments";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.TYPE = "LITERAL3";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "((;)|(\\})|(\\{)|(\\)))(\\s)*/\\*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "strings";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL2";
+        SPAN2.ESCAPE = "\\";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES5() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "xml-tags";
+        RULES1.DEFAULT = "KEYWORD3";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.TYPE = "KEYWORD3";
+        SPAN_REGEXP1.DELEGATE = "inside-the-tag";
+        BEGIN BEGIN1 = new BEGIN();
+        END END1 = new END();
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES6() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "inside-the-tag";
+        RULES1.DEFAULT = "KEYWORD3";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.TYPE = "LITERAL3";
+        SPAN_REGEXP1.DELEGATE = "attribute";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "(\\s)+(?!>)";
+        END END1 = new END();
+        END1.text = "=";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "strings";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES7() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "attribute";
+        RULES1.DEFAULT = "KEYWORD4";
+        return RULES1;
+    }
+
+    private RULES RULES8() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "variables";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "$";
+        MARK_FOLLOWING1.TYPE = "KEYWORD2";
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES9() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "templates";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "(";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS1.MATCH_TYPE = "LITERAL3";
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES10() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "statements";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"if", "version", "ns", "param", "var", "template", "match", "else", "copy-of", "copy", "call", "apply-templates", "expr", "import", "input", "for-each", "mode", "priority", "extension", "preserve-space", "strip-space", "with", });
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), RULES5(), RULES6(), RULES7(), RULES8(), RULES9(), RULES10(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

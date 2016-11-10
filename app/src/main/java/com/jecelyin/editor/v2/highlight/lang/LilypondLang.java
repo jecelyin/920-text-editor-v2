@@ -19,15 +19,2255 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LilypondLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"%{\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"%}\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"%\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"false\",\"NAME\":\"doubleBracketIndent\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".*<<.*\",\"NAME\":\"indentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".*>>.*\",\"NAME\":\"unindentThisLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\".*>>.*\",\"NAME\":\"unindentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(?!(.*<<)).*>>.*\",\"NAME\":\"unindentThisLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\">\",\"NAME\":\"electricKeys\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"=\",\"NAME\":\"wordBreakChars\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"FALSE\",\"TYPE\":\"COMMENT2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"%{\"},{\"tag\":\"END\",\"text\":\"%}\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\"\\\\breve\",\"attrs\":{\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ\",\"text\":\"\\\\longa\",\"attrs\":{\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ\",\"text\":\"\\\\maxima\",\"attrs\":{\"TYPE\":\"DIGIT\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"=\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"FUNCTION\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"=\",\"attrs\":{\"AT_WHITESPACE_END\":\"TRUE\",\"TYPE\":\"FUNCTION\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"[\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"]\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"<<\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\">>\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\"-<\",\"attrs\":{\"TYPE\":\"NULL\"}},{\"tag\":\"SEQ\",\"text\":\"->\",\"attrs\":{\"TYPE\":\"NULL\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\"(\\\\\\\\\\\"|[^\\\\\\\\\\\"]|\\\\\\\\)+\\\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"HASH_CHAR\":\"\\\"\"}},{\"tag\":\"SPAN\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SEQ\",\"text\":\"'\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"[rRs]\\\\d*\\\\b\",\"attrs\":{\"HASH_CHARS\":\"rRs\",\"AT_WORD_START\":\"TRUE\",\"TYPE\":\"LITERAL4\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"ly:\",\"attrs\":{\"TYPE\":\"FUNCTION\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\override\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\override\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\version\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\version\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\include\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\include\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\invalid\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\invalid\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\addquote\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\addquote\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\alternative\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\alternative\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\book\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\book\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\~\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\~\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mark\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\mark\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\default\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\default\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\key\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\key\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\skip\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\skip\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\octave\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\octave\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\partial\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\partial\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\time\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\time\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\change\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\change\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\consists\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\consists\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\remove\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\remove\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\accepts\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\accepts\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\defaultchild\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\defaultchild\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\denies\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\denies\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\alias\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\alias\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\type\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\type\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\description\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\description\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\name\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\name\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\context\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\context\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\grobdescriptions\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\grobdescriptions\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\markup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\markup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\header\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\header\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\notemode\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\notemode\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\drummode\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\drummode\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\figuremode\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\figuremode\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\chordmode\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\chordmode\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lyricmode\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\lyricmode\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\drums\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\drums\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\figures\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\figures\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\chords\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\chords\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lyrics\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\lyrics\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\once\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\once\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\revert\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\revert\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\set\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\set\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\unset\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\unset\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\addlyrics\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\addlyrics\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\objectid\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\objectid\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\with\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\with\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rest\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\rest\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\paper\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\paper\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\midi\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\midi\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\layout\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\layout\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\new\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\new\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\times\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\times\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\transpose\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\transpose\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tag\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\tag\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\relative\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\relative\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\renameinput\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\renameinput\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\repeat\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\repeat\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lyricsto\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\lyricsto\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\score\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\score\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sequential\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\sequential\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\simultaneous\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\simultaneous\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\longa\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\longa\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\breve\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\breve\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\maxima\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\maxima\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tempo\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"\\\\tempo\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\AncientRemoveEmptyStaffContext\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\AncientRemoveEmptyStaffContext\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\RemoveEmptyRhythmicStaffContext\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\RemoveEmptyRhythmicStaffContext\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\RemoveEmptyStaffContext\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\RemoveEmptyStaffContext\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\accent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\accent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\aeolian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\aeolian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\afterGraceFraction\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\afterGraceFraction\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\aikenHeads\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\aikenHeads\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arpeggio\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\arpeggio\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arpeggioArrowDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\arpeggioArrowDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arpeggioArrowUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\arpeggioArrowUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arpeggioBracket\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\arpeggioBracket\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arpeggioNormal\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\arpeggioNormal\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arpeggioParenthesis\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\arpeggioParenthesis\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\autoBeamOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\autoBeamOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\autoBeamOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\autoBeamOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\balloonLengthOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\balloonLengthOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\balloonLengthOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\balloonLengthOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bassFigureExtendersOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bassFigureExtendersOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bassFigureExtendersOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bassFigureExtendersOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bassFigureStaffAlignmentDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bassFigureStaffAlignmentDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bassFigureStaffAlignmentNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bassFigureStaffAlignmentNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bassFigureStaffAlignmentUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bassFigureStaffAlignmentUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\between-system-padding\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\between-system-padding\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\between-system-space\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\between-system-space\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bigger\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bigger\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\blackTriangleMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\blackTriangleMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bookTitleMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bookTitleMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bracketCloseSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bracketCloseSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bracketOpenSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bracketOpenSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\break\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\break\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\breve\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\breve\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\cadenzaOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\cadenzaOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\cadenzaOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\cadenzaOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\center\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\center\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\chordmodifiers\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\chordmodifiers\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\cm\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\cm\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\coda\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\coda\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\compressFullBarRests\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\compressFullBarRests\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\cr\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\cr\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\cresc\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\cresc\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\crescHairpin\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\crescHairpin\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\crescTextCresc\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\crescTextCresc\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\decr\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\decr\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\defaultTimeSignature\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\defaultTimeSignature\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dim\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dim\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dimHairpin\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dimHairpin\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dimTextDecr\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dimTextDecr\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dimTextDecresc\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dimTextDecresc\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dimTextDim\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dimTextDim\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dorian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dorian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dotsDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dotsDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dotsNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dotsNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dotsUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dotsUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\down\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\down\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\downbow\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\downbow\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\downmordent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\downmordent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\downprall\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\downprall\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\drumPitchNames\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\drumPitchNames\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dutchPitchnames\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dutchPitchnames\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dynamicDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dynamicDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dynamicNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dynamicNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dynamicUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\dynamicUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\easyHeadsOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\easyHeadsOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\easyHeadsOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\easyHeadsOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\endcr\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\endcr\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\endcresc\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\endcresc\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\enddecr\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\enddecr\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\enddim\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\enddim\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\endincipit\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\endincipit\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\escapedBiggerSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\escapedBiggerSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\escapedExclamationSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\escapedExclamationSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\escapedParenthesisCloseSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\escapedParenthesisCloseSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\escapedParenthesisOpenSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\escapedParenthesisOpenSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\escapedSmallerSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\escapedSmallerSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\espressivo\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\espressivo\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\evenHeaderMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\evenHeaderMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\expandFullBarRests\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\expandFullBarRests\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\f\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\f\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fermata\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\fermata\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fermataMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\fermataMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\fff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ffff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ffff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\first-page-number\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\first-page-number\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\flageolet\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\flageolet\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\fp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\frenchChords\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\frenchChords\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fullJazzExceptions\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\fullJazzExceptions\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fz\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\fz\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\germanChords\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\germanChords\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\glissando\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\glissando\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\harmonic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\harmonic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\hideNotes\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\hideNotes\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\hideStaffSwitch\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\hideStaffSwitch\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\huge\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\huge\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ignatzekExceptionMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ignatzekExceptionMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ignatzekExceptions\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ignatzekExceptions\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\improvisationOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\improvisationOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\improvisationOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\improvisationOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\in\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\in\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\instrument-definitions\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\instrument-definitions\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ionian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ionian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\italianChords\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\italianChords\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\laissezVibrer\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\laissezVibrer\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\large\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\large\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\left\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\left\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lheel\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\lheel\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lineprall\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\lineprall\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\locrian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\locrian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\longa\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\longa\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\longfermata\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\longfermata\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ltoe\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ltoe\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lydian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\lydian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\major\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\major\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\marcato\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\marcato\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\maxima\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\maxima\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\melisma\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\melisma\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\melismaEnd\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\melismaEnd\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mergeDifferentlyDottedOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mergeDifferentlyDottedOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mergeDifferentlyDottedOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mergeDifferentlyDottedOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mergeDifferentlyHeadedOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mergeDifferentlyHeadedOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mergeDifferentlyHeadedOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mergeDifferentlyHeadedOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mf\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mf\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\midiDrumPitches\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\midiDrumPitches\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\minor\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\minor\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mixolydian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mixolydian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mm\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mm\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mordent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mordent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\mp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\mp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\newSpacingSection\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\newSpacingSection\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\noBeam\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\noBeam\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\noBreak\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\noBreak\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\normalsize\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\normalsize\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\numericTimeSignature\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\numericTimeSignature\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\oddFooterMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\oddFooterMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\oddHeaderMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\oddHeaderMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\oneVoice\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\oneVoice\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\open\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\open\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\output-scale\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\output-scale\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\p\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\p\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\page-limit-inter-system-space\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\page-limit-inter-system-space\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\page-top-space\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\page-top-space\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\parenthesisCloseSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\parenthesisCloseSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\parenthesisOpenSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\parenthesisOpenSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\partialJazzExceptions\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\partialJazzExceptions\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\partialJazzMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\partialJazzMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrasingSlurDashed\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrasingSlurDashed\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrasingSlurDotted\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrasingSlurDotted\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrasingSlurDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrasingSlurDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrasingSlurNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrasingSlurNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrasingSlurSolid\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrasingSlurSolid\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrasingSlurUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrasingSlurUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\phrygian\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\phrygian\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pipeSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pipeSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pitchnames\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pitchnames\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\portato\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\portato\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ppp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ppp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pppp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pppp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ppppp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ppppp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\prall\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\prall\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pralldown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pralldown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\prallmordent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\prallmordent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\prallprall\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\prallprall\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\prallup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\prallup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\predefinedFretboardsOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\predefinedFretboardsOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\predefinedFretboardsOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\predefinedFretboardsOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\print-first-page-number\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\print-first-page-number\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\print-page-number\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\print-page-number\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pt\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pt\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ragged-bottom\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ragged-bottom\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ragged-last-bottom\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ragged-last-bottom\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\repeatTie\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\repeatTie\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\reverseturn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\reverseturn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rfz\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\rfz\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rheel\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\rheel\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\right\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\right\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rtoe\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\rtoe\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sacredHarpHeads\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sacredHarpHeads\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\scoreTitleMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\scoreTitleMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\segno\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\segno\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\semiGermanChords\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\semiGermanChords\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\setDefaultDurationToQuarter\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\setDefaultDurationToQuarter\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sf\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sf\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sfp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sfp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sfz\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sfz\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\shiftOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\shiftOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\shiftOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\shiftOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\shiftOnn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\shiftOnn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\shiftOnnn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\shiftOnnn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\shortfermata\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\shortfermata\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\showStaffSwitch\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\showStaffSwitch\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\signumcongruentiae\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\signumcongruentiae\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slashSeparator\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slashSeparator\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slurDashed\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slurDashed\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slurDotted\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slurDotted\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slurDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slurDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slurNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slurNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slurSolid\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slurSolid\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slurUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\slurUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\small\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\small\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\smaller\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\smaller\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sostenutoOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sostenutoOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sostenutoOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sostenutoOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\spp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\spp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\staccatissimo\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\staccatissimo\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\staccato\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\staccato\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\start\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\start\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startAcciaccaturaMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startAcciaccaturaMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startAppoggiaturaMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startAppoggiaturaMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startGraceMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startGraceMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startGroup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startGroup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startStaff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startStaff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startTextSpan\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startTextSpan\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\startTrillSpan\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\startTrillSpan\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stemDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stemDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stemNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stemNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stemUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stemUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stop\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stop\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopAcciaccaturaMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopAcciaccaturaMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopAppoggiaturaMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopAppoggiaturaMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopGraceMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopGraceMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopGroup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopGroup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopStaff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopStaff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopTextSpan\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopTextSpan\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopTrillSpan\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopTrillSpan\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stopped\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\stopped\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sustainOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sustainOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sustainOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\sustainOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tagline\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tagline\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\teeny\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\teeny\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tenuto\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tenuto\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\textLengthOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\textLengthOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\textLengthOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\textLengthOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\textSpannerDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\textSpannerDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\textSpannerNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\textSpannerNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\textSpannerUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\textSpannerUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\thumb\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\thumb\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tieDashed\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tieDashed\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tieDotted\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tieDotted\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tieDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tieDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tieNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tieNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tieSolid\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tieSolid\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tieUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tieUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tildeSymbol\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tildeSymbol\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tiny\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tiny\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tocItemMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tocItemMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tocTitleMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tocTitleMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\treCorde\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\treCorde\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\trill\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\trill\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tupletDown\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tupletDown\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tupletNeutral\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tupletNeutral\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tupletUp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tupletUp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\turn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\turn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\unHideNotes\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\unHideNotes\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\unaCorda\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\unaCorda\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\unit\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\unit\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\up\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\up\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\upbow\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\upbow\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\upmordent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\upmordent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\upprall\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\upprall\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\varcoda\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\varcoda\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\verylongfermata\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\verylongfermata\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceFour\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceFour\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceFourStyle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceFourStyle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceNeutralStyle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceNeutralStyle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceOne\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceOne\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceOneStyle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceOneStyle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceThree\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceThree\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceThreeStyle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceThreeStyle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceTwo\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceTwo\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\voiceTwoStyle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\voiceTwoStyle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\whiteTriangleMarkup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\whiteTriangleMarkup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\acciaccatura\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\acciaccatura\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\addChordShape\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\addChordShape\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\addInstrumentDefinition\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\addInstrumentDefinition\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\addQuote\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\addQuote\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\afterGrace\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\afterGrace\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\allowPageTurn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\allowPageTurn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\applyContext\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\applyContext\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\applyMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\applyMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\applyOutput\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\applyOutput\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\appoggiatura\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\appoggiatura\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\assertBeamQuant\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\assertBeamQuant\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\assertBeamSlope\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\assertBeamSlope\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\autochange\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\autochange\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\balloonGrobText\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\balloonGrobText\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\balloonText\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\balloonText\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bar\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bar\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\barNumberCheck\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\barNumberCheck\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bendAfter\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\bendAfter\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\breathe\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\breathe\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\clef\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\clef\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\cueDuring\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\cueDuring\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\displayLilyMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\displayLilyMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\displayMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\displayMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\endSpanners\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\endSpanners\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\featherDurations\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\featherDurations\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\grace\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\grace\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\includePageLayoutFile\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\includePageLayoutFile\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\instrumentSwitch\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\instrumentSwitch\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\keepWithTag\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\keepWithTag\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\killCues\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\killCues\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\label\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\label\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\makeClusters\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\makeClusters\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\musicMap\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\musicMap\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\noPageBreak\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\noPageBreak\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\noPageTurn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\noPageTurn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\octaveCheck\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\octaveCheck\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\oldaddlyrics\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\oldaddlyrics\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\ottava\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\ottava\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\overrideProperty\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\overrideProperty\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pageBreak\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pageBreak\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pageTurn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pageTurn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\parallelMusic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\parallelMusic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\parenthesize\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\parenthesize\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\partcombine\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\partcombine\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pitchedTrill\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pitchedTrill\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pointAndClickOff\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pointAndClickOff\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pointAndClickOn\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\pointAndClickOn\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\quoteDuring\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\quoteDuring\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\removeWithTag\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\removeWithTag\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\resetRelativeOctave\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\resetRelativeOctave\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rightHandFinger\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\rightHandFinger\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\scaleDurations\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\scaleDurations\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\scoreTweak\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\scoreTweak\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\shiftDurations\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\shiftDurations\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\spacingTweaks\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\spacingTweaks\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\storePredefinedDiagram\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\storePredefinedDiagram\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tag\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tag\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tocItem\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tocItem\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\transposedCueDuring\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\transposedCueDuring\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\transposition\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\transposition\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tweak\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\tweak\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\unfoldRepeats\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\unfoldRepeats\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\withMusicProperty\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"HASH_CHAR\":\"\\\\withMusicProperty\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\abs-fontsize\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\abs-fontsize\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\arrow-head\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\arrow-head\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\backslashed-digit\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\backslashed-digit\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\beam\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\beam\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bold\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\bold\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\box\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\box\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\bracket\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\bracket\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\caps\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\caps\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\center-align\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\center-align\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\center-column\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\center-column\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\char\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\char\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\circle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\circle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\column\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\column\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\combine\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\combine\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\concat\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\concat\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dir-column\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\dir-column\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\doubleflat\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\doubleflat\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\doublesharp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\doublesharp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\draw-circle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\draw-circle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\draw-line\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\draw-line\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\dynamic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\dynamic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\epsfile\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\epsfile\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fill-line\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fill-line\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\filled-box\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\filled-box\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\finger\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\finger\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\flat\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\flat\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fontCaps\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fontCaps\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fontsize\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fontsize\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fraction\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fraction\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fret-diagram\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fret-diagram\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fret-diagram-terse\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fret-diagram-terse\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fret-diagram-verbose\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fret-diagram-verbose\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\fromproperty\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\fromproperty\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\general-align\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\general-align\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\halign\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\halign\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\harp-pedal\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\harp-pedal\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\hbracket\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\hbracket\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\hcenter-in\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\hcenter-in\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\hspace\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\hspace\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\huge\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\huge\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\italic\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\italic\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\justify\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\justify\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\justify-field\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\justify-field\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\justify-string\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\justify-string\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\large\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\large\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\larger\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\larger\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\left-align\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\left-align\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\left-column\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\left-column\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\line\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\line\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lookup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\lookup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\lower\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\lower\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\magnify\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\magnify\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\markalphabet\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\markalphabet\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\markletter\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\markletter\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\medium\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\medium\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\musicglyph\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\musicglyph\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\natural\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\natural\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\normal-size-sub\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\normal-size-sub\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\normal-size-super\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\normal-size-super\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\normal-text\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\normal-text\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\normalsize\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\normalsize\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\note\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\note\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\note-by-number\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\note-by-number\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\null\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\null\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\number\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\number\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\on-the-fly\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\on-the-fly\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\override\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\override\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pad-around\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\pad-around\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pad-markup\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\pad-markup\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pad-to-box\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\pad-to-box\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\pad-x\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\pad-x\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\page-ref\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\page-ref\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\postscript\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\postscript\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\put-adjacent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\put-adjacent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\raise\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\raise\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\right-align\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\right-align\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\right-column\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\right-column\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\roman\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\roman\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rotate\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\rotate\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\rounded-box\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\rounded-box\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sans\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\sans\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\score\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\score\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\semiflat\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\semiflat\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\semisharp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\semisharp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sesquiflat\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\sesquiflat\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sesquisharp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\sesquisharp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sharp\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\sharp\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\simple\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\simple\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\slashed-digit\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\slashed-digit\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\small\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\small\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\smallCaps\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\smallCaps\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\smaller\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\smaller\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\stencil\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\stencil\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\strut\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\strut\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\sub\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\sub\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\super\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\super\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\teeny\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\teeny\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\text\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\text\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tied-lyric\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\tied-lyric\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\tiny\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\tiny\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\translate\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\translate\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\translate-scaled\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\translate-scaled\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\transparent\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\transparent\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\triangle\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\triangle\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\typewriter\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\typewriter\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\underline\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\underline\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\upright\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\upright\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\vcenter\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\vcenter\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\verbatim-file\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\verbatim-file\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\whiteout\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\whiteout\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\with-color\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\with-color\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\with-dimensions\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\with-dimensions\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\with-url\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\with-url\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\wordwrap\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\wordwrap\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\wordwrap-field\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\wordwrap-field\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"\\\\\\\\wordwrap-string\\\\b\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"\\\\wordwrap-string\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"\\\\\",\"attrs\":{\"TYPE\":\"FUNCTION\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"Forbid_line_break_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"staff-symbol-referencer-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"clef-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"note-name-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"lyric-extender-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"mensural-ligature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Multi_measure_rest_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"bass-figure-alignment-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Slur_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Completion_heads_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"rhythmic-grob-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"span-bar-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Drum_note_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"InnerChoirStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"Score\"},{\"tag\":\"KEYWORD2\",\"text\":\"Bar_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Breathing_sign_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Staff\"},{\"tag\":\"KEYWORD2\",\"text\":\"spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Ligature_bracket_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Chord_name_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"accidental-placement-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Span_arpeggio_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"MensuralVoice\"},{\"tag\":\"KEYWORD2\",\"text\":\"Stanza_number_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Grace_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Grace_beam_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"script-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Time_signature_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Stanza_number_align_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"GregorianTranscriptionStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"Key_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"cluster-beacon-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"TabVoice\"},{\"tag\":\"KEYWORD2\",\"text\":\"Dynamic_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"rhythmic-head-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Repeat_acknowledge_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"volta-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"bar-line-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"piano-pedal-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"VaticanaVoice\"},{\"tag\":\"KEYWORD2\",\"text\":\"staff-spacing-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"tie-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Devnull\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-text-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Script_row_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Stem_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"grid-line-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"grob-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"custos-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Font_size_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"trill-pitch-accidental-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Clef_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Text_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-line-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Repeat_tie_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"tablature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"staff-symbol-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"rest-collision-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Horizontal_bracket_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"accidental-suggestion-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Beam_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Lyric_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Piano_pedal_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"vaticana-ligature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tab_note_heads_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"break-alignable-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"lyric-hyphen-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"grace-spacing-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"note-column-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Vertical_align_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"break-aligned-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Staff_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Ledger_line_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"rest-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Fingering_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"figured-bass-continuation-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"metronome-mark-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Key_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Separating_line_group_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"bend-after-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"DrumStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"unbreakable-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"trill-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Grace_spacing_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Ambitus_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"system-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Swallow_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Cluster_spanner_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"fret-diagram-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"gregorian-ligature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"dots-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"percent-repeat-item-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Time_signature_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"semi-tie-column-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"spacing-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Staff_symbol_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"mark-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"accidental-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Text_spanner_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Swallow_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"system-start-text-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Mensural_ligature_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"chord-name-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Lyric_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Translator\"},{\"tag\":\"KEYWORD2\",\"text\":\"script-column-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Instrument_switch_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Grob_pq_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Volta_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"breathing-sign-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Span_bar_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tab_harmonic_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Note_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"beam-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"note-collision-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"only-prebreak-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"stroke-finger-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"InnerStaffGroup\"},{\"tag\":\"KEYWORD2\",\"text\":\"tie-column-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"FretBoards\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tie_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Laissez_vibrer_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"slur-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Custos_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Note_swallow_translator\"},{\"tag\":\"KEYWORD2\",\"text\":\"Rhythmic_column_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Default_bar_line_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"note-spacing-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"FiguredBass\"},{\"tag\":\"KEYWORD2\",\"text\":\"vertically-spaceable-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"GregorianTranscriptionVoice\"},{\"tag\":\"KEYWORD2\",\"text\":\"stem-tremolo-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"measure-grouping-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Spacing_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"side-position-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"semi-tie-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"lyric-syllable-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Pitched_trill_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"ledger-line-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"stem-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Extender_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Pitch_squash_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"align-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"ambitus-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Rest_swallow_translator\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-number-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"self-alignment-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Rest_collision_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"hairpin-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"NoteNames\"},{\"tag\":\"KEYWORD2\",\"text\":\"Drum_notes_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"arpeggio-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tweak_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"ledgered-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Global\"},{\"tag\":\"KEYWORD2\",\"text\":\"StaffGroup\"},{\"tag\":\"KEYWORD2\",\"text\":\"DrumVoice\"},{\"tag\":\"KEYWORD2\",\"text\":\"Voice\"},{\"tag\":\"KEYWORD2\",\"text\":\"GrandStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"Staff_collecting_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"melody-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Hara_kiri_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Figured_bass_position_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tempo_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"New_dynamic_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Measure_grouping_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Hyphen_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Skip_event_swallow_translator\"},{\"tag\":\"KEYWORD2\",\"text\":\"Vaticana_ligature_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-script-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tuplet_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Slur_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"spaceable-grob-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tie_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Vertically_spaced_contexts_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Trill_spanner_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Spanner_break_forbid_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"CueVoice\"},{\"tag\":\"KEYWORD2\",\"text\":\"ChoirStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"Glissando_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Balloon_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"separation-item-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Accidental_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Output_property_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"hara-kiri-group-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"piano-pedal-script-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"system-start-delimiter-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"multi-measure-rest-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Note_name_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Note_spacing_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Timing_translator\"},{\"tag\":\"KEYWORD2\",\"text\":\"Mark_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Control_track_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Part_combine_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"axis-group-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"note-head-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"horizontal-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"PianoStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"Slash_repeat_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Page_turn_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"parentheses-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"key-signature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"lyric-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"grid-point-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"item-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Ottava_spanner_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Melody_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Percent_repeat_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"tuplet-number-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Rest_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"stanza-number-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"enclosing-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Break_align_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Piano_pedal_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"Paper_column_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"pitched-trill-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Grid_line_span_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Lyrics\"},{\"tag\":\"KEYWORD2\",\"text\":\"Instrument_name_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"line-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Bend_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Arpeggio_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"key-cancellation-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Grid_point_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Script_column_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Note_head_line_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"spacing-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Dot_column_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Chord_tremolo_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"bass-figure-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"ottava-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Bar_number_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Axis_group_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"tuplet-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Phrasing_slur_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Dynamic_align_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Piano_pedal_align_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Collision_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Dots_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"New_fingering_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Figured_bass_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"dot-column-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"multi-measure-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Fretboard_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"ligature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"instrument-specific-markup-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-signature-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Metronome_mark_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"break-alignment-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Auto_beam_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"balloon-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"VaticanaStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"Script_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"System_start_delimiter_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"spacing-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"ligature-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"percent-repeat-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"ChordNames\"},{\"tag\":\"KEYWORD2\",\"text\":\"finger-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"TabStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"cluster-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Beam_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"RhythmicStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"String_number_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Dynamic_performer\"},{\"tag\":\"KEYWORD2\",\"text\":\"piano-pedal-bracket-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Parenthesis_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"Tab_staff_symbol_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"paper-column-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"Note_heads_engraver\"},{\"tag\":\"KEYWORD2\",\"text\":\"MensuralStaff\"},{\"tag\":\"KEYWORD2\",\"text\":\"line-spanner-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:behaviour\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:column\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:condition\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:depth\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:exit-depth\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:expression\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:file-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:file-regexp\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:line\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:procedure\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:repeat-identical-behaviour\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:single-shot\"},{\"tag\":\"KEYWORD2\",\"text\":\"#:skip-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"$abs\"},{\"tag\":\"KEYWORD2\",\"text\":\"$acos\"},{\"tag\":\"KEYWORD2\",\"text\":\"$acosh\"},{\"tag\":\"KEYWORD2\",\"text\":\"$asin\"},{\"tag\":\"KEYWORD2\",\"text\":\"$asinh\"},{\"tag\":\"KEYWORD2\",\"text\":\"$atan\"},{\"tag\":\"KEYWORD2\",\"text\":\"$atan2\"},{\"tag\":\"KEYWORD2\",\"text\":\"$atanh\"},{\"tag\":\"KEYWORD2\",\"text\":\"$cos\"},{\"tag\":\"KEYWORD2\",\"text\":\"$cosh\"},{\"tag\":\"KEYWORD2\",\"text\":\"$exp\"},{\"tag\":\"KEYWORD2\",\"text\":\"$expt\"},{\"tag\":\"KEYWORD2\",\"text\":\"$log\"},{\"tag\":\"KEYWORD2\",\"text\":\"$sin\"},{\"tag\":\"KEYWORD2\",\"text\":\"$sinh\"},{\"tag\":\"KEYWORD2\",\"text\":\"$sqrt\"},{\"tag\":\"KEYWORD2\",\"text\":\"$tan\"},{\"tag\":\"KEYWORD2\",\"text\":\"$tanh\"},{\"tag\":\"KEYWORD2\",\"text\":\"%library-dir\"},{\"tag\":\"KEYWORD2\",\"text\":\"%make-void-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"%package-data-dir\"},{\"tag\":\"KEYWORD2\",\"text\":\"%read-delimited!\"},{\"tag\":\"KEYWORD2\",\"text\":\"%read-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"%search-load-path\"},{\"tag\":\"KEYWORD2\",\"text\":\"%site-dir\"},{\"tag\":\"KEYWORD2\",\"text\":\",@\"},{\"tag\":\"KEYWORD2\",\"text\":\"->char-set\"},{\"tag\":\"KEYWORD2\",\"text\":\"1+\"},{\"tag\":\"KEYWORD2\",\"text\":\"1-\"},{\"tag\":\"KEYWORD2\",\"text\":\"<apply-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<entry-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<exit-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<group>-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"<group>-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"<group>-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"<group>-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"<location-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<procedure-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<source-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<step-trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"<trap>\"},{\"tag\":\"KEYWORD2\",\"text\":\"abs\"},{\"tag\":\"KEYWORD2\",\"text\":\"accept\"},{\"tag\":\"KEYWORD2\",\"text\":\"access?\"},{\"tag\":\"KEYWORD2\",\"text\":\"acons\"},{\"tag\":\"KEYWORD2\",\"text\":\"acos\"},{\"tag\":\"KEYWORD2\",\"text\":\"acosh\"},{\"tag\":\"KEYWORD2\",\"text\":\"activate-readline\"},{\"tag\":\"KEYWORD2\",\"text\":\"add-duration\"},{\"tag\":\"KEYWORD2\",\"text\":\"add-duration!\"},{\"tag\":\"KEYWORD2\",\"text\":\"add-hook!\"},{\"tag\":\"KEYWORD2\",\"text\":\"alarm\"},{\"tag\":\"KEYWORD2\",\"text\":\"alist->hash-table\"},{\"tag\":\"KEYWORD2\",\"text\":\"alist-cons\"},{\"tag\":\"KEYWORD2\",\"text\":\"alist-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"alist-delete\"},{\"tag\":\"KEYWORD2\",\"text\":\"alist-delete!\"},{\"tag\":\"KEYWORD2\",\"text\":\"all-threads\"},{\"tag\":\"KEYWORD2\",\"text\":\"all-traps\"},{\"tag\":\"KEYWORD2\",\"text\":\"and\"},{\"tag\":\"KEYWORD2\",\"text\":\"and-let*\"},{\"tag\":\"KEYWORD2\",\"text\":\"angle\"},{\"tag\":\"KEYWORD2\",\"text\":\"any\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->c32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->c64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->f32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->f64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->s16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->s32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->s64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->s8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->u16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->u32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->u64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any->u8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"any-bits-set?\"},{\"tag\":\"KEYWORD2\",\"text\":\"append\"},{\"tag\":\"KEYWORD2\",\"text\":\"append!\"},{\"tag\":\"KEYWORD2\",\"text\":\"append-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"append-map!\"},{\"tag\":\"KEYWORD2\",\"text\":\"append-reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"append-reverse!\"},{\"tag\":\"KEYWORD2\",\"text\":\"apply\"},{\"tag\":\"KEYWORD2\",\"text\":\"apply:nconc2last\"},{\"tag\":\"KEYWORD2\",\"text\":\"apropos-completion-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"args-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"arithmetic-shift\"},{\"tag\":\"KEYWORD2\",\"text\":\"array->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-contents\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-copy!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-copy-in-order!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-dimensions\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-equal?\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-in-bounds?\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-index-map!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-map!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-map-in-order!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-rank\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-shape\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"array?\"},{\"tag\":\"KEYWORD2\",\"text\":\"ash\"},{\"tag\":\"KEYWORD2\",\"text\":\"asin\"},{\"tag\":\"KEYWORD2\",\"text\":\"asinh\"},{\"tag\":\"KEYWORD2\",\"text\":\"assoc\"},{\"tag\":\"KEYWORD2\",\"text\":\"assoc\"},{\"tag\":\"KEYWORD2\",\"text\":\"assoc-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"assoc-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"assoc-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"assq\"},{\"tag\":\"KEYWORD2\",\"text\":\"assq-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"assq-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"assq-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"assv\"},{\"tag\":\"KEYWORD2\",\"text\":\"assv-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"assv-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"assv-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"async\"},{\"tag\":\"KEYWORD2\",\"text\":\"async-mark\"},{\"tag\":\"KEYWORD2\",\"text\":\"atan\"},{\"tag\":\"KEYWORD2\",\"text\":\"atanh\"},{\"tag\":\"KEYWORD2\",\"text\":\"backtrace\"},{\"tag\":\"KEYWORD2\",\"text\":\"backtrace\"},{\"tag\":\"KEYWORD2\",\"text\":\"basename\"},{\"tag\":\"KEYWORD2\",\"text\":\"begin\"},{\"tag\":\"KEYWORD2\",\"text\":\"begin-thread\"},{\"tag\":\"KEYWORD2\",\"text\":\"bind\"},{\"tag\":\"KEYWORD2\",\"text\":\"bind-textdomain-codeset\"},{\"tag\":\"KEYWORD2\",\"text\":\"bindtextdomain\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-count*\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-extract\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-field\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-invert!\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-position\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-set*!\"},{\"tag\":\"KEYWORD2\",\"text\":\"bit-set?\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitvector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitwise-and\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitwise-if\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitwise-ior\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitwise-merge\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitwise-not\"},{\"tag\":\"KEYWORD2\",\"text\":\"bitwise-xor\"},{\"tag\":\"KEYWORD2\",\"text\":\"boolean?\"},{\"tag\":\"KEYWORD2\",\"text\":\"booleans->integer\"},{\"tag\":\"KEYWORD2\",\"text\":\"break\"},{\"tag\":\"KEYWORD2\",\"text\":\"break\"},{\"tag\":\"KEYWORD2\",\"text\":\"break!\"},{\"tag\":\"KEYWORD2\",\"text\":\"broadcast-condition-variable\"},{\"tag\":\"KEYWORD2\",\"text\":\"bt\"},{\"tag\":\"KEYWORD2\",\"text\":\"c32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"c32vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"c32vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"c32vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"c32vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"c32vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"c64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"c64vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"c64vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"c64vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"c64vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"c64vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"caaaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"caaadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"caaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"caadar\"},{\"tag\":\"KEYWORD2\",\"text\":\"caaddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"caadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"caar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadar\"},{\"tag\":\"KEYWORD2\",\"text\":\"caddar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"caddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-blocked-asyncs\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-current-continuation\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-input-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-input-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-new-thread\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-output-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-output-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-unblocked-asyncs\"},{\"tag\":\"KEYWORD2\",\"text\":\"call-with-values\"},{\"tag\":\"KEYWORD2\",\"text\":\"call/cc\"},{\"tag\":\"KEYWORD2\",\"text\":\"car\"},{\"tag\":\"KEYWORD2\",\"text\":\"car+cdr\"},{\"tag\":\"KEYWORD2\",\"text\":\"case\"},{\"tag\":\"KEYWORD2\",\"text\":\"case-lambda\"},{\"tag\":\"KEYWORD2\",\"text\":\"catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"cd\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdaaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdaadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdadar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdaddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddaar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddadr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdddar\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"cdr\"},{\"tag\":\"KEYWORD2\",\"text\":\"ceiling\"},{\"tag\":\"KEYWORD2\",\"text\":\"char->integer\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-alphabetic?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-ci<=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-ci<?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-ci=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-ci>=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-ci>?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-downcase\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-is-both?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-lower-case?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-numeric?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-ready?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-adjoin\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-adjoin!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-any\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-complement\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-complement!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-contains?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-cursor\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-cursor-next\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-delete\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-delete!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-diff+intersection\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-diff+intersection!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-difference\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-difference!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-every\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-filter\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-filter!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-intersection\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-intersection!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-size\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-unfold\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-unfold!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-union\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-union!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-xor\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set-xor!\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set<=\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set=\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-set?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-upcase\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-upper-case?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char-whitespace?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char<=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char<?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char>=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char>?\"},{\"tag\":\"KEYWORD2\",\"text\":\"char?\"},{\"tag\":\"KEYWORD2\",\"text\":\"chdir\"},{\"tag\":\"KEYWORD2\",\"text\":\"chmod\"},{\"tag\":\"KEYWORD2\",\"text\":\"chown\"},{\"tag\":\"KEYWORD2\",\"text\":\"chroot\"},{\"tag\":\"KEYWORD2\",\"text\":\"circular-list\"},{\"tag\":\"KEYWORD2\",\"text\":\"circular-list?\"},{\"tag\":\"KEYWORD2\",\"text\":\"close\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-fdes\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-output-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-pipe\"},{\"tag\":\"KEYWORD2\",\"text\":\"close-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"closedir\"},{\"tag\":\"KEYWORD2\",\"text\":\"closure?\"},{\"tag\":\"KEYWORD2\",\"text\":\"command-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"complex?\"},{\"tag\":\"KEYWORD2\",\"text\":\"concatenate\"},{\"tag\":\"KEYWORD2\",\"text\":\"concatenate!\"},{\"tag\":\"KEYWORD2\",\"text\":\"cond\"},{\"tag\":\"KEYWORD2\",\"text\":\"cond-expand\"},{\"tag\":\"KEYWORD2\",\"text\":\"condition\"},{\"tag\":\"KEYWORD2\",\"text\":\"condition-has-type?\"},{\"tag\":\"KEYWORD2\",\"text\":\"condition-message\"},{\"tag\":\"KEYWORD2\",\"text\":\"condition-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"condition-type?\"},{\"tag\":\"KEYWORD2\",\"text\":\"connect\"},{\"tag\":\"KEYWORD2\",\"text\":\"cons\"},{\"tag\":\"KEYWORD2\",\"text\":\"cons*\"},{\"tag\":\"KEYWORD2\",\"text\":\"cons-source\"},{\"tag\":\"KEYWORD2\",\"text\":\"continue\"},{\"tag\":\"KEYWORD2\",\"text\":\"continue\"},{\"tag\":\"KEYWORD2\",\"text\":\"copy-bit\"},{\"tag\":\"KEYWORD2\",\"text\":\"copy-bit-field\"},{\"tag\":\"KEYWORD2\",\"text\":\"copy-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"copy-random-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"copy-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"copy-tree\"},{\"tag\":\"KEYWORD2\",\"text\":\"cos\"},{\"tag\":\"KEYWORD2\",\"text\":\"cosh\"},{\"tag\":\"KEYWORD2\",\"text\":\"count\"},{\"tag\":\"KEYWORD2\",\"text\":\"crypt\"},{\"tag\":\"KEYWORD2\",\"text\":\"ctermid\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-date\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-dynamic-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-error-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-error-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-load-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-modified-julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-module\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-output-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-output-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-thread\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"current-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"cuserid\"},{\"tag\":\"KEYWORD2\",\"text\":\"cut\"},{\"tag\":\"KEYWORD2\",\"text\":\"cute\"},{\"tag\":\"KEYWORD2\",\"text\":\"date->julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"date->modified-julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"date->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"date->time-monotonic\"},{\"tag\":\"KEYWORD2\",\"text\":\"date->time-tai\"},{\"tag\":\"KEYWORD2\",\"text\":\"date->time-utc\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-hour\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-minute\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-month\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-nanosecond\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-second\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-week-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-week-number\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-year\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-year-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-zone-offset\"},{\"tag\":\"KEYWORD2\",\"text\":\"date?\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-object?\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"debug-trap\"},{\"tag\":\"KEYWORD2\",\"text\":\"default-duplicate-binding-handler\"},{\"tag\":\"KEYWORD2\",\"text\":\"define\"},{\"tag\":\"KEYWORD2\",\"text\":\"define*\"},{\"tag\":\"KEYWORD2\",\"text\":\"define*-public\"},{\"tag\":\"KEYWORD2\",\"text\":\"define-condition-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"define-macro\"},{\"tag\":\"KEYWORD2\",\"text\":\"define-module\"},{\"tag\":\"KEYWORD2\",\"text\":\"define-public\"},{\"tag\":\"KEYWORD2\",\"text\":\"define-reader-ctor\"},{\"tag\":\"KEYWORD2\",\"text\":\"define-record-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"defined?\"},{\"tag\":\"KEYWORD2\",\"text\":\"defmacro\"},{\"tag\":\"KEYWORD2\",\"text\":\"defmacro*\"},{\"tag\":\"KEYWORD2\",\"text\":\"defmacro*-public\"},{\"tag\":\"KEYWORD2\",\"text\":\"delay\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete-duplicates\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete-duplicates!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"delete1!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delq\"},{\"tag\":\"KEYWORD2\",\"text\":\"delq!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delq1!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delv\"},{\"tag\":\"KEYWORD2\",\"text\":\"delv!\"},{\"tag\":\"KEYWORD2\",\"text\":\"delv1!\"},{\"tag\":\"KEYWORD2\",\"text\":\"denominator\"},{\"tag\":\"KEYWORD2\",\"text\":\"deq!\"},{\"tag\":\"KEYWORD2\",\"text\":\"directory-stream?\"},{\"tag\":\"KEYWORD2\",\"text\":\"dirname\"},{\"tag\":\"KEYWORD2\",\"text\":\"display\"},{\"tag\":\"KEYWORD2\",\"text\":\"display-application\"},{\"tag\":\"KEYWORD2\",\"text\":\"display-backtrace\"},{\"tag\":\"KEYWORD2\",\"text\":\"display-error\"},{\"tag\":\"KEYWORD2\",\"text\":\"dotted-list?\"},{\"tag\":\"KEYWORD2\",\"text\":\"doubly-weak-hash-table?\"},{\"tag\":\"KEYWORD2\",\"text\":\"down\"},{\"tag\":\"KEYWORD2\",\"text\":\"drain-input\"},{\"tag\":\"KEYWORD2\",\"text\":\"drop\"},{\"tag\":\"KEYWORD2\",\"text\":\"drop-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"drop-right!\"},{\"tag\":\"KEYWORD2\",\"text\":\"drop-while\"},{\"tag\":\"KEYWORD2\",\"text\":\"dup\"},{\"tag\":\"KEYWORD2\",\"text\":\"dup->fdes\"},{\"tag\":\"KEYWORD2\",\"text\":\"dup->inport\"},{\"tag\":\"KEYWORD2\",\"text\":\"dup->outport\"},{\"tag\":\"KEYWORD2\",\"text\":\"dup->port\"},{\"tag\":\"KEYWORD2\",\"text\":\"dup2\"},{\"tag\":\"KEYWORD2\",\"text\":\"duplicate-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-args-call\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-call\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-func\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-link\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-object?\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-state?\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-unlink\"},{\"tag\":\"KEYWORD2\",\"text\":\"dynamic-wind\"},{\"tag\":\"KEYWORD2\",\"text\":\"effective-version\"},{\"tag\":\"KEYWORD2\",\"text\":\"eighth\"},{\"tag\":\"KEYWORD2\",\"text\":\"enclose-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"end-of-char-set?\"},{\"tag\":\"KEYWORD2\",\"text\":\"endgrent\"},{\"tag\":\"KEYWORD2\",\"text\":\"endhostent\"},{\"tag\":\"KEYWORD2\",\"text\":\"endnetent\"},{\"tag\":\"KEYWORD2\",\"text\":\"endprotoent\"},{\"tag\":\"KEYWORD2\",\"text\":\"endpwent\"},{\"tag\":\"KEYWORD2\",\"text\":\"endservent\"},{\"tag\":\"KEYWORD2\",\"text\":\"enq!\"},{\"tag\":\"KEYWORD2\",\"text\":\"entity?\"},{\"tag\":\"KEYWORD2\",\"text\":\"environ\"},{\"tag\":\"KEYWORD2\",\"text\":\"eof-object?\"},{\"tag\":\"KEYWORD2\",\"text\":\"eq?\"},{\"tag\":\"KEYWORD2\",\"text\":\"equal?\"},{\"tag\":\"KEYWORD2\",\"text\":\"eqv?\"},{\"tag\":\"KEYWORD2\",\"text\":\"error\"},{\"tag\":\"KEYWORD2\",\"text\":\"error?\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"eval-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"evaluate\"},{\"tag\":\"KEYWORD2\",\"text\":\"evaluator-traps-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"evaluator-traps-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"even?\"},{\"tag\":\"KEYWORD2\",\"text\":\"every\"},{\"tag\":\"KEYWORD2\",\"text\":\"exact->inexact\"},{\"tag\":\"KEYWORD2\",\"text\":\"exact?\"},{\"tag\":\"KEYWORD2\",\"text\":\"execl\"},{\"tag\":\"KEYWORD2\",\"text\":\"execle\"},{\"tag\":\"KEYWORD2\",\"text\":\"execlp\"},{\"tag\":\"KEYWORD2\",\"text\":\"exp\"},{\"tag\":\"KEYWORD2\",\"text\":\"expect\"},{\"tag\":\"KEYWORD2\",\"text\":\"expect-strings\"},{\"tag\":\"KEYWORD2\",\"text\":\"export\"},{\"tag\":\"KEYWORD2\",\"text\":\"expt\"},{\"tag\":\"KEYWORD2\",\"text\":\"extract-condition\"},{\"tag\":\"KEYWORD2\",\"text\":\"f32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"f32vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"f32vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"f32vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"f32vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"f32vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"f64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"f64vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"f64vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"f64vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"f64vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"f64vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"false-if-exception\"},{\"tag\":\"KEYWORD2\",\"text\":\"fchmod\"},{\"tag\":\"KEYWORD2\",\"text\":\"fchown\"},{\"tag\":\"KEYWORD2\",\"text\":\"fcntl\"},{\"tag\":\"KEYWORD2\",\"text\":\"fdes->inport\"},{\"tag\":\"KEYWORD2\",\"text\":\"fdes->outport\"},{\"tag\":\"KEYWORD2\",\"text\":\"fdes->ports\"},{\"tag\":\"KEYWORD2\",\"text\":\"fdopen\"},{\"tag\":\"KEYWORD2\",\"text\":\"feature?\"},{\"tag\":\"KEYWORD2\",\"text\":\"fflush\"},{\"tag\":\"KEYWORD2\",\"text\":\"fifth\"},{\"tag\":\"KEYWORD2\",\"text\":\"file-exists?\"},{\"tag\":\"KEYWORD2\",\"text\":\"file-port?\"},{\"tag\":\"KEYWORD2\",\"text\":\"filename-completion-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"fileno\"},{\"tag\":\"KEYWORD2\",\"text\":\"filter\"},{\"tag\":\"KEYWORD2\",\"text\":\"filter!\"},{\"tag\":\"KEYWORD2\",\"text\":\"filter-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"find\"},{\"tag\":\"KEYWORD2\",\"text\":\"find-tail\"},{\"tag\":\"KEYWORD2\",\"text\":\"finish\"},{\"tag\":\"KEYWORD2\",\"text\":\"first\"},{\"tag\":\"KEYWORD2\",\"text\":\"first-set-bit\"},{\"tag\":\"KEYWORD2\",\"text\":\"flock\"},{\"tag\":\"KEYWORD2\",\"text\":\"floor\"},{\"tag\":\"KEYWORD2\",\"text\":\"fluid-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"fluid-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"fluid?\"},{\"tag\":\"KEYWORD2\",\"text\":\"flush-all-ports\"},{\"tag\":\"KEYWORD2\",\"text\":\"fn\"},{\"tag\":\"KEYWORD2\",\"text\":\"fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"fold-matches\"},{\"tag\":\"KEYWORD2\",\"text\":\"fold-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"force\"},{\"tag\":\"KEYWORD2\",\"text\":\"force-output\"},{\"tag\":\"KEYWORD2\",\"text\":\"format\"},{\"tag\":\"KEYWORD2\",\"text\":\"fourth\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-arguments\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-evaluating-args?\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-next\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-number\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-overflow?\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-previous\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-procedure\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-procedure?\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-real?\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame-source\"},{\"tag\":\"KEYWORD2\",\"text\":\"frame?\"},{\"tag\":\"KEYWORD2\",\"text\":\"fstat\"},{\"tag\":\"KEYWORD2\",\"text\":\"fsync\"},{\"tag\":\"KEYWORD2\",\"text\":\"ftell\"},{\"tag\":\"KEYWORD2\",\"text\":\"ftruncate\"},{\"tag\":\"KEYWORD2\",\"text\":\"ftw\"},{\"tag\":\"KEYWORD2\",\"text\":\"gc\"},{\"tag\":\"KEYWORD2\",\"text\":\"gc-live-object-stats\"},{\"tag\":\"KEYWORD2\",\"text\":\"gc-stats\"},{\"tag\":\"KEYWORD2\",\"text\":\"gcd\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-apropos\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-complete-symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-debug-trap\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-down\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-eval-defun\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-eval-expression\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-eval-last-sexp\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-eval-region\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-evaluate\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-frame-args\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-frame-info\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-go\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-help-symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-proc-source\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-select-stack-frame\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-step-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-step-into\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-step-over\"},{\"tag\":\"KEYWORD2\",\"text\":\"gds-up\"},{\"tag\":\"KEYWORD2\",\"text\":\"generalized-vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"generalized-vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"generalized-vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"generalized-vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"generalized-vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"gensym\"},{\"tag\":\"KEYWORD2\",\"text\":\"get-internal-real-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"get-internal-run-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"get-output-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"get-print-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"get-trap\"},{\"tag\":\"KEYWORD2\",\"text\":\"getcwd\"},{\"tag\":\"KEYWORD2\",\"text\":\"getegid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getenv\"},{\"tag\":\"KEYWORD2\",\"text\":\"geteuid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getgid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getgr\"},{\"tag\":\"KEYWORD2\",\"text\":\"getgrent\"},{\"tag\":\"KEYWORD2\",\"text\":\"getgrgid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getgrnam\"},{\"tag\":\"KEYWORD2\",\"text\":\"getgroups\"},{\"tag\":\"KEYWORD2\",\"text\":\"gethost\"},{\"tag\":\"KEYWORD2\",\"text\":\"gethostbyaddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"gethostbyname\"},{\"tag\":\"KEYWORD2\",\"text\":\"gethostent\"},{\"tag\":\"KEYWORD2\",\"text\":\"gethostname\"},{\"tag\":\"KEYWORD2\",\"text\":\"getitimer\"},{\"tag\":\"KEYWORD2\",\"text\":\"getlogin\"},{\"tag\":\"KEYWORD2\",\"text\":\"getnet\"},{\"tag\":\"KEYWORD2\",\"text\":\"getnetbyaddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"getnetbyname\"},{\"tag\":\"KEYWORD2\",\"text\":\"getnetent\"},{\"tag\":\"KEYWORD2\",\"text\":\"getopt-long\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpass\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpeername\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpgrp\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getppid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpriority\"},{\"tag\":\"KEYWORD2\",\"text\":\"getproto\"},{\"tag\":\"KEYWORD2\",\"text\":\"getprotobyname\"},{\"tag\":\"KEYWORD2\",\"text\":\"getprotobynumber\"},{\"tag\":\"KEYWORD2\",\"text\":\"getprotoent\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpw\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpwent\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpwnam\"},{\"tag\":\"KEYWORD2\",\"text\":\"getpwuid\"},{\"tag\":\"KEYWORD2\",\"text\":\"getserv\"},{\"tag\":\"KEYWORD2\",\"text\":\"getservbyname\"},{\"tag\":\"KEYWORD2\",\"text\":\"getservbyport\"},{\"tag\":\"KEYWORD2\",\"text\":\"getservent\"},{\"tag\":\"KEYWORD2\",\"text\":\"getsockname\"},{\"tag\":\"KEYWORD2\",\"text\":\"getsockopt\"},{\"tag\":\"KEYWORD2\",\"text\":\"getter-with-setter\"},{\"tag\":\"KEYWORD2\",\"text\":\"gettext\"},{\"tag\":\"KEYWORD2\",\"text\":\"gettimeofday\"},{\"tag\":\"KEYWORD2\",\"text\":\"getuid\"},{\"tag\":\"KEYWORD2\",\"text\":\"GH_ALLOW_INTS\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_append\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_append2\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_append3\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_append4\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_apply\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_assoc\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_assq\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_assv\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_bool2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_boolean_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_c\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_call0\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_call1\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_call2\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_call3\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_car\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_cdr\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_char2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_char_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_chars2byvect\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_cons\"},{\"tag\":\"KEYWORD2\",\"text\":\"GH_DEFER_INTS\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_define\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_double2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_doubles2dvect\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_doubles2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_enter\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_eq_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_equal_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_eqv_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_eval_file\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_eval_str\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_exact_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_floats2fvect\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_get_substr\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_inexact_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_ints2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_is_eq\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_is_equal\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_is_eqv\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_length\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_list\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_list_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_list_ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_list_tail\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_list_to_vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_load\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_long2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_longs2ivect\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_make_vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_member\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_memq\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_memv\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_new_procedure\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_null_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_obj_length\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_pair_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_procedure_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_repl\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2bool\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2char\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2chars\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2double\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2doubles\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2floats\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2long\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2longs\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2newstr\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2shorts\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_scm2ulong\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_set_car_x\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_set_cdr_x\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_set_substr\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_shorts2svect\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_str02scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_str2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_string_equal_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_symbol2newstr\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_symbol2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_symbol_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_throw\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_ulong2scm\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_ulongs2uvect\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_vector_length\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_vector_p\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_vector_ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"gh_vector_set\"},{\"tag\":\"KEYWORD2\",\"text\":\"gmtime\"},{\"tag\":\"KEYWORD2\",\"text\":\"group:gid\"},{\"tag\":\"KEYWORD2\",\"text\":\"group:mem\"},{\"tag\":\"KEYWORD2\",\"text\":\"group:name\"},{\"tag\":\"KEYWORD2\",\"text\":\"group:passwd\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_CHECK_RETVAL\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_FLAGS\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_MODULE_AVAILABLE\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_MODULE_CHECK\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_MODULE_EXPORTS\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_MODULE_REQUIRED\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_MODULE_REQUIRED_EXPORT\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_PROGS\"},{\"tag\":\"KEYWORD2\",\"text\":\"GUILE_SITE_DIR\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-by-identity\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-clear!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-create-handle!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-for-each-handle\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-get-handle\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-map->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table->alist\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-delete!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-equivalence-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-exists?\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-hash-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-keys\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-ref/default\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-size\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-update!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-update!/default\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-values\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table-walk\"},{\"tag\":\"KEYWORD2\",\"text\":\"hash-table?\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashq\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashq-create-handle!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashq-get-handle\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashq-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashq-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashq-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashv\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashv-create-handle!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashv-get-handle\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashv-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashv-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashv-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashx-create-handle!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashx-get-handle\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashx-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashx-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hashx-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"hook->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"hook-empty?\"},{\"tag\":\"KEYWORD2\",\"text\":\"hook?\"},{\"tag\":\"KEYWORD2\",\"text\":\"hostent:addr-list\"},{\"tag\":\"KEYWORD2\",\"text\":\"hostent:addrtype\"},{\"tag\":\"KEYWORD2\",\"text\":\"hostent:aliases\"},{\"tag\":\"KEYWORD2\",\"text\":\"hostent:length\"},{\"tag\":\"KEYWORD2\",\"text\":\"hostent:name\"},{\"tag\":\"KEYWORD2\",\"text\":\"htonl\"},{\"tag\":\"KEYWORD2\",\"text\":\"htons\"},{\"tag\":\"KEYWORD2\",\"text\":\"if\"},{\"tag\":\"KEYWORD2\",\"text\":\"imag-part\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-aton\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-lnaof\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-makeaddr\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-netof\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-ntoa\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-ntop\"},{\"tag\":\"KEYWORD2\",\"text\":\"inet-pton\"},{\"tag\":\"KEYWORD2\",\"text\":\"inexact->exact\"},{\"tag\":\"KEYWORD2\",\"text\":\"inexact?\"},{\"tag\":\"KEYWORD2\",\"text\":\"inf\"},{\"tag\":\"KEYWORD2\",\"text\":\"inf?\"},{\"tag\":\"KEYWORD2\",\"text\":\"info args\"},{\"tag\":\"KEYWORD2\",\"text\":\"info frame\"},{\"tag\":\"KEYWORD2\",\"text\":\"input-port?\"},{\"tag\":\"KEYWORD2\",\"text\":\"install-trap\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer->char\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer-expt\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"integer?\"},{\"tag\":\"KEYWORD2\",\"text\":\"interaction-environment\"},{\"tag\":\"KEYWORD2\",\"text\":\"iota\"},{\"tag\":\"KEYWORD2\",\"text\":\"isatty?\"},{\"tag\":\"KEYWORD2\",\"text\":\"join-thread\"},{\"tag\":\"KEYWORD2\",\"text\":\"julian-day->date\"},{\"tag\":\"KEYWORD2\",\"text\":\"julian-day->time-monotonic\"},{\"tag\":\"KEYWORD2\",\"text\":\"julian-day->time-tai\"},{\"tag\":\"KEYWORD2\",\"text\":\"julian-day->time-utc\"},{\"tag\":\"KEYWORD2\",\"text\":\"key\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyword->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyword->symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyword?\"},{\"tag\":\"KEYWORD2\",\"text\":\"keyword?\"},{\"tag\":\"KEYWORD2\",\"text\":\"kill\"},{\"tag\":\"KEYWORD2\",\"text\":\"lambda\"},{\"tag\":\"KEYWORD2\",\"text\":\"lambda*\"},{\"tag\":\"KEYWORD2\",\"text\":\"last\"},{\"tag\":\"KEYWORD2\",\"text\":\"last-pair\"},{\"tag\":\"KEYWORD2\",\"text\":\"last-stack-frame\"},{\"tag\":\"KEYWORD2\",\"text\":\"lazy-catch\"},{\"tag\":\"KEYWORD2\",\"text\":\"lchown\"},{\"tag\":\"KEYWORD2\",\"text\":\"lcm\"},{\"tag\":\"KEYWORD2\",\"text\":\"length\"},{\"tag\":\"KEYWORD2\",\"text\":\"length+\"},{\"tag\":\"KEYWORD2\",\"text\":\"let\"},{\"tag\":\"KEYWORD2\",\"text\":\"let*\"},{\"tag\":\"KEYWORD2\",\"text\":\"let*-values\"},{\"tag\":\"KEYWORD2\",\"text\":\"let-keywords\"},{\"tag\":\"KEYWORD2\",\"text\":\"let-keywords*\"},{\"tag\":\"KEYWORD2\",\"text\":\"let-optional\"},{\"tag\":\"KEYWORD2\",\"text\":\"let-optional*\"},{\"tag\":\"KEYWORD2\",\"text\":\"let-values\"},{\"tag\":\"KEYWORD2\",\"text\":\"letpar\"},{\"tag\":\"KEYWORD2\",\"text\":\"letrec\"},{\"tag\":\"KEYWORD2\",\"text\":\"link\"},{\"tag\":\"KEYWORD2\",\"text\":\"list\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->array\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->bitvector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->c32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->c64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->char-set\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->char-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->f32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->f64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->integer\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->s16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->s32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->s64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->s8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->stream\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->typed-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->u16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->u32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->u64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->u8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list->weak-vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-cdr-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-cdr-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-head\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-index\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-matches\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-tabulate\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-tail\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-traps\"},{\"tag\":\"KEYWORD2\",\"text\":\"list=\"},{\"tag\":\"KEYWORD2\",\"text\":\"list?\"},{\"tag\":\"KEYWORD2\",\"text\":\"listen\"},{\"tag\":\"KEYWORD2\",\"text\":\"load\"},{\"tag\":\"KEYWORD2\",\"text\":\"load-extension\"},{\"tag\":\"KEYWORD2\",\"text\":\"load-from-path\"},{\"tag\":\"KEYWORD2\",\"text\":\"local-eval\"},{\"tag\":\"KEYWORD2\",\"text\":\"localtime\"},{\"tag\":\"KEYWORD2\",\"text\":\"lock-mutex\"},{\"tag\":\"KEYWORD2\",\"text\":\"log\"},{\"tag\":\"KEYWORD2\",\"text\":\"log10\"},{\"tag\":\"KEYWORD2\",\"text\":\"log2-binary-factors\"},{\"tag\":\"KEYWORD2\",\"text\":\"logand\"},{\"tag\":\"KEYWORD2\",\"text\":\"logbit?\"},{\"tag\":\"KEYWORD2\",\"text\":\"logcount\"},{\"tag\":\"KEYWORD2\",\"text\":\"logior\"},{\"tag\":\"KEYWORD2\",\"text\":\"lognot\"},{\"tag\":\"KEYWORD2\",\"text\":\"logtest\"},{\"tag\":\"KEYWORD2\",\"text\":\"logxor\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-adjoin\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-diff+intersection\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-diff+intersection!\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-difference\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-difference!\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-intersection\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-intersection!\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-union\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-union!\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-xor\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset-xor!\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset<=\"},{\"tag\":\"KEYWORD2\",\"text\":\"lset=\"},{\"tag\":\"KEYWORD2\",\"text\":\"lstat\"},{\"tag\":\"KEYWORD2\",\"text\":\"macro-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"macro-transformer\"},{\"tag\":\"KEYWORD2\",\"text\":\"macro-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"macro?\"},{\"tag\":\"KEYWORD2\",\"text\":\"magnitude\"},{\"tag\":\"KEYWORD2\",\"text\":\"main_prog\"},{\"tag\":\"KEYWORD2\",\"text\":\"major-version\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-arbiter\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-bitvector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-buffered-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-c32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-c64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-class-object\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-completion-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-compound-condition\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-condition\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-condition-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-condition-variable\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-date\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-doubly-weak-hash-table\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-dynamic-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-f32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-f64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-fluid\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-guardian\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-hash-table\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-hash-table\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-hook\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-line-buffered-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-list\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-mutex\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-object-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-parameter\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-polar\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-procedure-with-setter\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-q\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-record-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-rectangular\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-recursive-mutex\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-regexp\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-s16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-s32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-s64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-s8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-shared-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-socket-address\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-soft-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-stack\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-stream\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-struct\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-struct-layout\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-subclass-object\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-thread\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-typed-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-u16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-u32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-u64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-u8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-undefined-variable\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-variable\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-vtable\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-vtable-vtable\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-weak-key-hash-table\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-weak-value-hash-table\"},{\"tag\":\"KEYWORD2\",\"text\":\"make-weak-vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"malloc-stats\"},{\"tag\":\"KEYWORD2\",\"text\":\"map\"},{\"tag\":\"KEYWORD2\",\"text\":\"map\"},{\"tag\":\"KEYWORD2\",\"text\":\"map!\"},{\"tag\":\"KEYWORD2\",\"text\":\"map-in-order\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:count\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:end\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:prefix\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:start\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:string\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:substring\"},{\"tag\":\"KEYWORD2\",\"text\":\"match:suffix\"},{\"tag\":\"KEYWORD2\",\"text\":\"max\"},{\"tag\":\"KEYWORD2\",\"text\":\"member\"},{\"tag\":\"KEYWORD2\",\"text\":\"member\"},{\"tag\":\"KEYWORD2\",\"text\":\"memoized-environment\"},{\"tag\":\"KEYWORD2\",\"text\":\"memoized?\"},{\"tag\":\"KEYWORD2\",\"text\":\"memq\"},{\"tag\":\"KEYWORD2\",\"text\":\"memv\"},{\"tag\":\"KEYWORD2\",\"text\":\"merge\"},{\"tag\":\"KEYWORD2\",\"text\":\"merge!\"},{\"tag\":\"KEYWORD2\",\"text\":\"message-condition?\"},{\"tag\":\"KEYWORD2\",\"text\":\"micro-version\"},{\"tag\":\"KEYWORD2\",\"text\":\"min\"},{\"tag\":\"KEYWORD2\",\"text\":\"minor-version\"},{\"tag\":\"KEYWORD2\",\"text\":\"mkdir\"},{\"tag\":\"KEYWORD2\",\"text\":\"mknod\"},{\"tag\":\"KEYWORD2\",\"text\":\"mkstemp!\"},{\"tag\":\"KEYWORD2\",\"text\":\"mktime\"},{\"tag\":\"KEYWORD2\",\"text\":\"modified-julian-day->date\"},{\"tag\":\"KEYWORD2\",\"text\":\"modified-julian-day->time-monotonic\"},{\"tag\":\"KEYWORD2\",\"text\":\"modified-julian-day->time-tai\"},{\"tag\":\"KEYWORD2\",\"text\":\"modified-julian-day->time-utc\"},{\"tag\":\"KEYWORD2\",\"text\":\"module-use!\"},{\"tag\":\"KEYWORD2\",\"text\":\"modulo\"},{\"tag\":\"KEYWORD2\",\"text\":\"modulo-expt\"},{\"tag\":\"KEYWORD2\",\"text\":\"monitor\"},{\"tag\":\"KEYWORD2\",\"text\":\"move->fdes\"},{\"tag\":\"KEYWORD2\",\"text\":\"n-for-each-par-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"n-par-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"n-par-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"nan\"},{\"tag\":\"KEYWORD2\",\"text\":\"nan?\"},{\"tag\":\"KEYWORD2\",\"text\":\"negative?\"},{\"tag\":\"KEYWORD2\",\"text\":\"netent:addrtype\"},{\"tag\":\"KEYWORD2\",\"text\":\"netent:aliases\"},{\"tag\":\"KEYWORD2\",\"text\":\"netent:name\"},{\"tag\":\"KEYWORD2\",\"text\":\"netent:net\"},{\"tag\":\"KEYWORD2\",\"text\":\"newline\"},{\"tag\":\"KEYWORD2\",\"text\":\"next\"},{\"tag\":\"KEYWORD2\",\"text\":\"nftw\"},{\"tag\":\"KEYWORD2\",\"text\":\"ngettext\"},{\"tag\":\"KEYWORD2\",\"text\":\"nice\"},{\"tag\":\"KEYWORD2\",\"text\":\"nil-car\"},{\"tag\":\"KEYWORD2\",\"text\":\"nil-cdr\"},{\"tag\":\"KEYWORD2\",\"text\":\"nil-cons\"},{\"tag\":\"KEYWORD2\",\"text\":\"nil-eq\"},{\"tag\":\"KEYWORD2\",\"text\":\"ninth\"},{\"tag\":\"KEYWORD2\",\"text\":\"not\"},{\"tag\":\"KEYWORD2\",\"text\":\"not-pair?\"},{\"tag\":\"KEYWORD2\",\"text\":\"ntohl\"},{\"tag\":\"KEYWORD2\",\"text\":\"ntohs\"},{\"tag\":\"KEYWORD2\",\"text\":\"null\"},{\"tag\":\"KEYWORD2\",\"text\":\"null-environment\"},{\"tag\":\"KEYWORD2\",\"text\":\"null-list?\"},{\"tag\":\"KEYWORD2\",\"text\":\"null?\"},{\"tag\":\"KEYWORD2\",\"text\":\"number->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"number?\"},{\"tag\":\"KEYWORD2\",\"text\":\"numerator\"},{\"tag\":\"KEYWORD2\",\"text\":\"object->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"object-properties\"},{\"tag\":\"KEYWORD2\",\"text\":\"object-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"odd?\"},{\"tag\":\"KEYWORD2\",\"text\":\"open\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-fdes\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-input-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-input-output-pipe\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-input-pipe\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-input-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-output-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-output-pipe\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-output-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-pipe\"},{\"tag\":\"KEYWORD2\",\"text\":\"open-pipe*\"},{\"tag\":\"KEYWORD2\",\"text\":\"opendir\"},{\"tag\":\"KEYWORD2\",\"text\":\"operator?\"},{\"tag\":\"KEYWORD2\",\"text\":\"option\"},{\"tag\":\"KEYWORD2\",\"text\":\"option-names\"},{\"tag\":\"KEYWORD2\",\"text\":\"option-optional-arg?\"},{\"tag\":\"KEYWORD2\",\"text\":\"option-processor\"},{\"tag\":\"KEYWORD2\",\"text\":\"option-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"option-required-arg?\"},{\"tag\":\"KEYWORD2\",\"text\":\"or\"},{\"tag\":\"KEYWORD2\",\"text\":\"output-port?\"},{\"tag\":\"KEYWORD2\",\"text\":\"pair-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"pair-fold-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"pair-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"pair?\"},{\"tag\":\"KEYWORD2\",\"text\":\"par-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"par-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"parallel\"},{\"tag\":\"KEYWORD2\",\"text\":\"parameterize\"},{\"tag\":\"KEYWORD2\",\"text\":\"parse-path\"},{\"tag\":\"KEYWORD2\",\"text\":\"partition\"},{\"tag\":\"KEYWORD2\",\"text\":\"partition!\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:dir\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:gecos\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:gid\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:name\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:passwd\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:shell\"},{\"tag\":\"KEYWORD2\",\"text\":\"passwd:uid\"},{\"tag\":\"KEYWORD2\",\"text\":\"pause\"},{\"tag\":\"KEYWORD2\",\"text\":\"pclose\"},{\"tag\":\"KEYWORD2\",\"text\":\"peek-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"pipe\"},{\"tag\":\"KEYWORD2\",\"text\":\"PKG_CHECK_MODULES\"},{\"tag\":\"KEYWORD2\",\"text\":\"popen\"},{\"tag\":\"KEYWORD2\",\"text\":\"port->fdes\"},{\"tag\":\"KEYWORD2\",\"text\":\"port->stream\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-closed?\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-column\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-filename\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-mode\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-mode\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-revealed\"},{\"tag\":\"KEYWORD2\",\"text\":\"port-with-print-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"port?\"},{\"tag\":\"KEYWORD2\",\"text\":\"position\"},{\"tag\":\"KEYWORD2\",\"text\":\"positive?\"},{\"tag\":\"KEYWORD2\",\"text\":\"pretty-print\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-_exit\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-eval\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-exit\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-fork\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-load\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-load-path\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-make-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-move->fdes\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-property-del!\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-property-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"primitive-property-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure->macro\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure->memoizing-macro\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure->syntax\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-documentation\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-environment\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-properties\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-source\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure-with-setter?\"},{\"tag\":\"KEYWORD2\",\"text\":\"procedure?\"},{\"tag\":\"KEYWORD2\",\"text\":\"program-arguments\"},{\"tag\":\"KEYWORD2\",\"text\":\"promise?\"},{\"tag\":\"KEYWORD2\",\"text\":\"proper-list?\"},{\"tag\":\"KEYWORD2\",\"text\":\"protoent:aliases\"},{\"tag\":\"KEYWORD2\",\"text\":\"protoent:name\"},{\"tag\":\"KEYWORD2\",\"text\":\"protoent:proto\"},{\"tag\":\"KEYWORD2\",\"text\":\"provide\"},{\"tag\":\"KEYWORD2\",\"text\":\"provided?\"},{\"tag\":\"KEYWORD2\",\"text\":\"PTR2SCM\"},{\"tag\":\"KEYWORD2\",\"text\":\"putenv\"},{\"tag\":\"KEYWORD2\",\"text\":\"pwd\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-empty-check\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-empty?\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-front\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-pop!\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-push!\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-rear\"},{\"tag\":\"KEYWORD2\",\"text\":\"q-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"q?\"},{\"tag\":\"KEYWORD2\",\"text\":\"quasiquote\"},{\"tag\":\"KEYWORD2\",\"text\":\"quit\"},{\"tag\":\"KEYWORD2\",\"text\":\"quote\"},{\"tag\":\"KEYWORD2\",\"text\":\"quotient\"},{\"tag\":\"KEYWORD2\",\"text\":\"raise\"},{\"tag\":\"KEYWORD2\",\"text\":\"random\"},{\"tag\":\"KEYWORD2\",\"text\":\"random:exp\"},{\"tag\":\"KEYWORD2\",\"text\":\"random:hollow-sphere!\"},{\"tag\":\"KEYWORD2\",\"text\":\"random:normal\"},{\"tag\":\"KEYWORD2\",\"text\":\"random:normal-vector!\"},{\"tag\":\"KEYWORD2\",\"text\":\"random:solid-sphere!\"},{\"tag\":\"KEYWORD2\",\"text\":\"random:uniform\"},{\"tag\":\"KEYWORD2\",\"text\":\"rational?\"},{\"tag\":\"KEYWORD2\",\"text\":\"rationalize\"},{\"tag\":\"KEYWORD2\",\"text\":\"re-export\"},{\"tag\":\"KEYWORD2\",\"text\":\"read\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-delimited\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-delimited!\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-hash-extend\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-line!\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-options-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"read-string!/partial\"},{\"tag\":\"KEYWORD2\",\"text\":\"readdir\"},{\"tag\":\"KEYWORD2\",\"text\":\"readline\"},{\"tag\":\"KEYWORD2\",\"text\":\"readline-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"readline-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"readline-options\"},{\"tag\":\"KEYWORD2\",\"text\":\"readline-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"readline-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"readlink\"},{\"tag\":\"KEYWORD2\",\"text\":\"real-part\"},{\"tag\":\"KEYWORD2\",\"text\":\"real?\"},{\"tag\":\"KEYWORD2\",\"text\":\"rec\"},{\"tag\":\"KEYWORD2\",\"text\":\"receive\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-accessor\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-constructor\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-modifier\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-predicate\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-type-descriptor\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-type-fields\"},{\"tag\":\"KEYWORD2\",\"text\":\"record-type-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"record?\"},{\"tag\":\"KEYWORD2\",\"text\":\"recv!\"},{\"tag\":\"KEYWORD2\",\"text\":\"recvfrom!\"},{\"tag\":\"KEYWORD2\",\"text\":\"redirect-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"reduce\"},{\"tag\":\"KEYWORD2\",\"text\":\"reduce-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"regexp-exec\"},{\"tag\":\"KEYWORD2\",\"text\":\"regexp-match?\"},{\"tag\":\"KEYWORD2\",\"text\":\"regexp-quote\"},{\"tag\":\"KEYWORD2\",\"text\":\"regexp-substitute\"},{\"tag\":\"KEYWORD2\",\"text\":\"regexp-substitute/global\"},{\"tag\":\"KEYWORD2\",\"text\":\"regexp?\"},{\"tag\":\"KEYWORD2\",\"text\":\"release-arbiter\"},{\"tag\":\"KEYWORD2\",\"text\":\"release-port-handle\"},{\"tag\":\"KEYWORD2\",\"text\":\"remainder\"},{\"tag\":\"KEYWORD2\",\"text\":\"remove\"},{\"tag\":\"KEYWORD2\",\"text\":\"remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"remove-hook!\"},{\"tag\":\"KEYWORD2\",\"text\":\"rename\"},{\"tag\":\"KEYWORD2\",\"text\":\"rename-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"require\"},{\"tag\":\"KEYWORD2\",\"text\":\"require-extension\"},{\"tag\":\"KEYWORD2\",\"text\":\"reset-hook!\"},{\"tag\":\"KEYWORD2\",\"text\":\"resolve-interface\"},{\"tag\":\"KEYWORD2\",\"text\":\"resolve-module\"},{\"tag\":\"KEYWORD2\",\"text\":\"restore-signals\"},{\"tag\":\"KEYWORD2\",\"text\":\"restricted-vector-sort!\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse!\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse-bit-field\"},{\"tag\":\"KEYWORD2\",\"text\":\"reverse-list->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"rewinddir\"},{\"tag\":\"KEYWORD2\",\"text\":\"rmdir\"},{\"tag\":\"KEYWORD2\",\"text\":\"rotate-bit-field\"},{\"tag\":\"KEYWORD2\",\"text\":\"round\"},{\"tag\":\"KEYWORD2\",\"text\":\"run-asyncs\"},{\"tag\":\"KEYWORD2\",\"text\":\"run-hook\"},{\"tag\":\"KEYWORD2\",\"text\":\"s16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"s16vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"s16vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"s16vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"s16vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"s16vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"s32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"s32vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"s32vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"s32vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"s32vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"s32vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"s64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"s64vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"s64vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"s64vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"s64vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"s64vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"s8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"s8vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"s8vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"s8vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"s8vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"s8vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"save-module-excursion\"},{\"tag\":\"KEYWORD2\",\"text\":\"scheme-report-environment\"},{\"tag\":\"KEYWORD2\",\"text\":\"search-path\"},{\"tag\":\"KEYWORD2\",\"text\":\"second\"},{\"tag\":\"KEYWORD2\",\"text\":\"seed->random-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"seek\"},{\"tag\":\"KEYWORD2\",\"text\":\"select\"},{\"tag\":\"KEYWORD2\",\"text\":\"send\"},{\"tag\":\"KEYWORD2\",\"text\":\"sendto\"},{\"tag\":\"KEYWORD2\",\"text\":\"serious-condition?\"},{\"tag\":\"KEYWORD2\",\"text\":\"servent:aliases\"},{\"tag\":\"KEYWORD2\",\"text\":\"servent:name\"},{\"tag\":\"KEYWORD2\",\"text\":\"servent:port\"},{\"tag\":\"KEYWORD2\",\"text\":\"servent:proto\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-buffered-input-continuation?!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-car!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-cdr!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-current-dynamic-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-current-error-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-current-input-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-current-module\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-current-output-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-object-procedure!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-object-properties!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-object-property!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-port-column!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-port-filename!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-port-line!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-port-revealed!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-procedure-properties!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-procedure-property!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-program-arguments\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-readline-input-port!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-readline-output-port!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-readline-prompt!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-source-properties!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-source-property!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-struct-vtable-name!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-symbol-property!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-time-nanosecond!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-time-second!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-time-type!\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:gmtoff\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:hour\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:isdst\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:mday\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:min\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:mon\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:sec\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:wday\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:yday\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:year\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-tm:zone\"},{\"tag\":\"KEYWORD2\",\"text\":\"set-trace-layout\"},{\"tag\":\"KEYWORD2\",\"text\":\"set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"setegid\"},{\"tag\":\"KEYWORD2\",\"text\":\"setenv\"},{\"tag\":\"KEYWORD2\",\"text\":\"seteuid\"},{\"tag\":\"KEYWORD2\",\"text\":\"setgid\"},{\"tag\":\"KEYWORD2\",\"text\":\"setgr\"},{\"tag\":\"KEYWORD2\",\"text\":\"setgrent\"},{\"tag\":\"KEYWORD2\",\"text\":\"setgroups\"},{\"tag\":\"KEYWORD2\",\"text\":\"sethost\"},{\"tag\":\"KEYWORD2\",\"text\":\"sethostent\"},{\"tag\":\"KEYWORD2\",\"text\":\"sethostname\"},{\"tag\":\"KEYWORD2\",\"text\":\"setitimer\"},{\"tag\":\"KEYWORD2\",\"text\":\"setlocale\"},{\"tag\":\"KEYWORD2\",\"text\":\"setnet\"},{\"tag\":\"KEYWORD2\",\"text\":\"setnetent\"},{\"tag\":\"KEYWORD2\",\"text\":\"setpgid\"},{\"tag\":\"KEYWORD2\",\"text\":\"setpriority\"},{\"tag\":\"KEYWORD2\",\"text\":\"setproto\"},{\"tag\":\"KEYWORD2\",\"text\":\"setprotoent\"},{\"tag\":\"KEYWORD2\",\"text\":\"setpw\"},{\"tag\":\"KEYWORD2\",\"text\":\"setpwent\"},{\"tag\":\"KEYWORD2\",\"text\":\"setserv\"},{\"tag\":\"KEYWORD2\",\"text\":\"setservent\"},{\"tag\":\"KEYWORD2\",\"text\":\"setsid\"},{\"tag\":\"KEYWORD2\",\"text\":\"setsockopt\"},{\"tag\":\"KEYWORD2\",\"text\":\"setter\"},{\"tag\":\"KEYWORD2\",\"text\":\"setuid\"},{\"tag\":\"KEYWORD2\",\"text\":\"setvbuf\"},{\"tag\":\"KEYWORD2\",\"text\":\"seventh\"},{\"tag\":\"KEYWORD2\",\"text\":\"shared-array-increments\"},{\"tag\":\"KEYWORD2\",\"text\":\"shared-array-offset\"},{\"tag\":\"KEYWORD2\",\"text\":\"shared-array-root\"},{\"tag\":\"KEYWORD2\",\"text\":\"shutdown\"},{\"tag\":\"KEYWORD2\",\"text\":\"sigaction\"},{\"tag\":\"KEYWORD2\",\"text\":\"signal-condition-variable\"},{\"tag\":\"KEYWORD2\",\"text\":\"simple-format\"},{\"tag\":\"KEYWORD2\",\"text\":\"sin\"},{\"tag\":\"KEYWORD2\",\"text\":\"sinh\"},{\"tag\":\"KEYWORD2\",\"text\":\"sixth\"},{\"tag\":\"KEYWORD2\",\"text\":\"sleep\"},{\"tag\":\"KEYWORD2\",\"text\":\"sloppy-assoc\"},{\"tag\":\"KEYWORD2\",\"text\":\"sloppy-assq\"},{\"tag\":\"KEYWORD2\",\"text\":\"sloppy-assv\"},{\"tag\":\"KEYWORD2\",\"text\":\"sockaddr:addr\"},{\"tag\":\"KEYWORD2\",\"text\":\"sockaddr:fam\"},{\"tag\":\"KEYWORD2\",\"text\":\"sockaddr:flowinfo\"},{\"tag\":\"KEYWORD2\",\"text\":\"sockaddr:path\"},{\"tag\":\"KEYWORD2\",\"text\":\"sockaddr:port\"},{\"tag\":\"KEYWORD2\",\"text\":\"sockaddr:scopeid\"},{\"tag\":\"KEYWORD2\",\"text\":\"socket\"},{\"tag\":\"KEYWORD2\",\"text\":\"socketpair\"},{\"tag\":\"KEYWORD2\",\"text\":\"sort\"},{\"tag\":\"KEYWORD2\",\"text\":\"sort!\"},{\"tag\":\"KEYWORD2\",\"text\":\"sort-list\"},{\"tag\":\"KEYWORD2\",\"text\":\"sort-list!\"},{\"tag\":\"KEYWORD2\",\"text\":\"sorted?\"},{\"tag\":\"KEYWORD2\",\"text\":\"source-properties\"},{\"tag\":\"KEYWORD2\",\"text\":\"source-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"span\"},{\"tag\":\"KEYWORD2\",\"text\":\"span!\"},{\"tag\":\"KEYWORD2\",\"text\":\"split-at\"},{\"tag\":\"KEYWORD2\",\"text\":\"split-at!\"},{\"tag\":\"KEYWORD2\",\"text\":\"sqrt\"},{\"tag\":\"KEYWORD2\",\"text\":\"stable-sort\"},{\"tag\":\"KEYWORD2\",\"text\":\"stable-sort!\"},{\"tag\":\"KEYWORD2\",\"text\":\"stack-id\"},{\"tag\":\"KEYWORD2\",\"text\":\"stack-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"stack-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"stack?\"},{\"tag\":\"KEYWORD2\",\"text\":\"start-stack\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:atime\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:blksize\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:blocks\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:ctime\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:dev\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:gid\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:ino\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:mode\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:mtime\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:nlink\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:perms\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:rdev\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:size\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:type\"},{\"tag\":\"KEYWORD2\",\"text\":\"stat:uid\"},{\"tag\":\"KEYWORD2\",\"text\":\"status:exit-val\"},{\"tag\":\"KEYWORD2\",\"text\":\"status:stop-sig\"},{\"tag\":\"KEYWORD2\",\"text\":\"status:term-sig\"},{\"tag\":\"KEYWORD2\",\"text\":\"step\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream->list&length\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream->reversed-list\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream->reversed-list&length\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream->vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream-car\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream-cdr\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"stream-null?\"},{\"tag\":\"KEYWORD2\",\"text\":\"strerror\"},{\"tag\":\"KEYWORD2\",\"text\":\"strftime\"},{\"tag\":\"KEYWORD2\",\"text\":\"string\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->char-set\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->char-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->date\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->keyword\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->number\"},{\"tag\":\"KEYWORD2\",\"text\":\"string->symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-any\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-append\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-append/shared\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-capitalize\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-capitalize!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci->symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci-hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci<\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci<=\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci<=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci<>\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci<?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci=\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci>\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci>=\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci>=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ci>?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-compare\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-compare-ci\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-concatenate\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-concatenate-reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-concatenate-reverse/shared\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-concatenate/shared\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-contains\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-contains-ci\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-copy!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-delete\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-downcase\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-downcase!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-drop\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-drop-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-every\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-filter\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-fold\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-fold-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-for-each\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-for-each-index\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-hash-ci\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-index\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-index-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-join\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-map\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-map!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-match\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-null?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-pad\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-pad-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-prefix-ci?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-prefix-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-prefix-length-ci\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-prefix?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-replace\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-reverse\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-reverse!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-rindex\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-skip\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-skip-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-split\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-suffix-ci?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-suffix-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-suffix-length-ci\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-suffix?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-tabulate\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-take\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-take-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-titlecase\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-titlecase!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-tokenize\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-trim\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-trim-both\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-trim-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-unfold\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-unfold-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-upcase\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-upcase!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string-xcopy!\"},{\"tag\":\"KEYWORD2\",\"text\":\"string<\"},{\"tag\":\"KEYWORD2\",\"text\":\"string<=\"},{\"tag\":\"KEYWORD2\",\"text\":\"string<=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string<>>\"},{\"tag\":\"KEYWORD2\",\"text\":\"string<?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string=\"},{\"tag\":\"KEYWORD2\",\"text\":\"string=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string>\"},{\"tag\":\"KEYWORD2\",\"text\":\"string>=\"},{\"tag\":\"KEYWORD2\",\"text\":\"string>=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string>?\"},{\"tag\":\"KEYWORD2\",\"text\":\"string?\"},{\"tag\":\"KEYWORD2\",\"text\":\"strptime\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct-vtable\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct-vtable-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct-vtable-tag\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct-vtable?\"},{\"tag\":\"KEYWORD2\",\"text\":\"struct?\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring-move!\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring/copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring/read-only\"},{\"tag\":\"KEYWORD2\",\"text\":\"substring/shared\"},{\"tag\":\"KEYWORD2\",\"text\":\"subtract-duration\"},{\"tag\":\"KEYWORD2\",\"text\":\"subtract-duration!\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol->keyword\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol->string\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-fref\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-fset!\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-hash\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-interned?\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-pref\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-prefix-proc\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-property-remove!\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol-pset!\"},{\"tag\":\"KEYWORD2\",\"text\":\"symbol?\"},{\"tag\":\"KEYWORD2\",\"text\":\"symlink\"},{\"tag\":\"KEYWORD2\",\"text\":\"sync\"},{\"tag\":\"KEYWORD2\",\"text\":\"sync-q!\"},{\"tag\":\"KEYWORD2\",\"text\":\"system\"},{\"tag\":\"KEYWORD2\",\"text\":\"system*\"},{\"tag\":\"KEYWORD2\",\"text\":\"system-async-mark\"},{\"tag\":\"KEYWORD2\",\"text\":\"system-error-errno\"},{\"tag\":\"KEYWORD2\",\"text\":\"take\"},{\"tag\":\"KEYWORD2\",\"text\":\"take!\"},{\"tag\":\"KEYWORD2\",\"text\":\"take-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"take-while\"},{\"tag\":\"KEYWORD2\",\"text\":\"take-while!\"},{\"tag\":\"KEYWORD2\",\"text\":\"tan\"},{\"tag\":\"KEYWORD2\",\"text\":\"tanh\"},{\"tag\":\"KEYWORD2\",\"text\":\"tc:depth\"},{\"tag\":\"KEYWORD2\",\"text\":\"tc:frame\"},{\"tag\":\"KEYWORD2\",\"text\":\"tc:real-depth\"},{\"tag\":\"KEYWORD2\",\"text\":\"tc:return-value\"},{\"tag\":\"KEYWORD2\",\"text\":\"tc:stack\"},{\"tag\":\"KEYWORD2\",\"text\":\"tc:type\"},{\"tag\":\"KEYWORD2\",\"text\":\"tcgetpgrp\"},{\"tag\":\"KEYWORD2\",\"text\":\"tcsetpgrp\"},{\"tag\":\"KEYWORD2\",\"text\":\"tenth\"},{\"tag\":\"KEYWORD2\",\"text\":\"textdomain\"},{\"tag\":\"KEYWORD2\",\"text\":\"third\"},{\"tag\":\"KEYWORD2\",\"text\":\"thread-exited?\"},{\"tag\":\"KEYWORD2\",\"text\":\"throw\"},{\"tag\":\"KEYWORD2\",\"text\":\"thunk?\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-difference\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-difference!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-monotonic->date\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-monotonic->time-tai\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-monotonic->time-tai!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-monotonic->time-utc\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-monotonic->time-utc!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-nanosecond\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-resolution\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-second\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->date\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->modified-julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->time-monotonic\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->time-monotonic!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->time-utc\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-tai->time-utc!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->date\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->modified-julian-day\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->time-monotonic\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->time-monotonic!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->time-tai\"},{\"tag\":\"KEYWORD2\",\"text\":\"time-utc->time-tai!\"},{\"tag\":\"KEYWORD2\",\"text\":\"time<=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"time<?\"},{\"tag\":\"KEYWORD2\",\"text\":\"time=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"time>=?\"},{\"tag\":\"KEYWORD2\",\"text\":\"time>?\"},{\"tag\":\"KEYWORD2\",\"text\":\"time?\"},{\"tag\":\"KEYWORD2\",\"text\":\"times\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:gmtoff\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:hour\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:isdst\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:mday\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:min\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:mon\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:sec\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:wday\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:yday\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:year\"},{\"tag\":\"KEYWORD2\",\"text\":\"tm:zone\"},{\"tag\":\"KEYWORD2\",\"text\":\"tmpnam\"},{\"tag\":\"KEYWORD2\",\"text\":\"tms:clock\"},{\"tag\":\"KEYWORD2\",\"text\":\"tms:cstime\"},{\"tag\":\"KEYWORD2\",\"text\":\"tms:cutime\"},{\"tag\":\"KEYWORD2\",\"text\":\"tms:stime\"},{\"tag\":\"KEYWORD2\",\"text\":\"tms:utime\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace-at-exit\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace-port\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace-trap\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace-until-exit\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/info\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/pid\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/real?\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/source\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/source-column\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/source-file-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/source-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/stack\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/stack-depth\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/stack-id\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/stack-real-depth\"},{\"tag\":\"KEYWORD2\",\"text\":\"trace/type\"},{\"tag\":\"KEYWORD2\",\"text\":\"transpose-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-disable\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-enable\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-here\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"trap-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"traps\"},{\"tag\":\"KEYWORD2\",\"text\":\"traps\"},{\"tag\":\"KEYWORD2\",\"text\":\"truncate\"},{\"tag\":\"KEYWORD2\",\"text\":\"truncate\"},{\"tag\":\"KEYWORD2\",\"text\":\"truncate-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"try-arbiter\"},{\"tag\":\"KEYWORD2\",\"text\":\"try-mutex\"},{\"tag\":\"KEYWORD2\",\"text\":\"ttyname\"},{\"tag\":\"KEYWORD2\",\"text\":\"typed-array?\"},{\"tag\":\"KEYWORD2\",\"text\":\"tzset\"},{\"tag\":\"KEYWORD2\",\"text\":\"u16vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"u16vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"u16vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"u16vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"u16vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"u16vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"u32vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"u32vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"u32vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"u32vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"u32vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"u32vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"u64vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"u64vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"u64vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"u64vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"u64vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"u64vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"u8vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"u8vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"u8vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"u8vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"u8vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"u8vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"ucs-range->char-set\"},{\"tag\":\"KEYWORD2\",\"text\":\"ucs-range->char-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"umask\"},{\"tag\":\"KEYWORD2\",\"text\":\"uname\"},{\"tag\":\"KEYWORD2\",\"text\":\"unfold\"},{\"tag\":\"KEYWORD2\",\"text\":\"unfold-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-array-read!\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-array-write\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector-read!\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector-write\"},{\"tag\":\"KEYWORD2\",\"text\":\"uniform-vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"uninstall-trap\"},{\"tag\":\"KEYWORD2\",\"text\":\"unlink\"},{\"tag\":\"KEYWORD2\",\"text\":\"unlock-mutex\"},{\"tag\":\"KEYWORD2\",\"text\":\"unmemoize\"},{\"tag\":\"KEYWORD2\",\"text\":\"unquote\"},{\"tag\":\"KEYWORD2\",\"text\":\"unquote-splicing\"},{\"tag\":\"KEYWORD2\",\"text\":\"unread-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"unread-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"unread-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"unread-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"unsetenv\"},{\"tag\":\"KEYWORD2\",\"text\":\"untrace\"},{\"tag\":\"KEYWORD2\",\"text\":\"unzip1\"},{\"tag\":\"KEYWORD2\",\"text\":\"unzip2\"},{\"tag\":\"KEYWORD2\",\"text\":\"unzip3\"},{\"tag\":\"KEYWORD2\",\"text\":\"unzip4\"},{\"tag\":\"KEYWORD2\",\"text\":\"unzip5\"},{\"tag\":\"KEYWORD2\",\"text\":\"up\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-modules\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-syntax\"},{\"tag\":\"KEYWORD2\",\"text\":\"usleep\"},{\"tag\":\"KEYWORD2\",\"text\":\"utime\"},{\"tag\":\"KEYWORD2\",\"text\":\"utsname:machine\"},{\"tag\":\"KEYWORD2\",\"text\":\"utsname:nodename\"},{\"tag\":\"KEYWORD2\",\"text\":\"utsname:release\"},{\"tag\":\"KEYWORD2\",\"text\":\"utsname:sysname\"},{\"tag\":\"KEYWORD2\",\"text\":\"utsname:version\"},{\"tag\":\"KEYWORD2\",\"text\":\"values\"},{\"tag\":\"KEYWORD2\",\"text\":\"variable-bound?\"},{\"tag\":\"KEYWORD2\",\"text\":\"variable-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"variable-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"variable?\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector->list\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector->stream\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-copy\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-fill!\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-length\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-move-left!\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-move-right!\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-ref\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector-set!\"},{\"tag\":\"KEYWORD2\",\"text\":\"vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"version\"},{\"tag\":\"KEYWORD2\",\"text\":\"wait-condition-variable\"},{\"tag\":\"KEYWORD2\",\"text\":\"waitpid\"},{\"tag\":\"KEYWORD2\",\"text\":\"weak-key-hash-table?\"},{\"tag\":\"KEYWORD2\",\"text\":\"weak-value-hash-table?\"},{\"tag\":\"KEYWORD2\",\"text\":\"weak-vector\"},{\"tag\":\"KEYWORD2\",\"text\":\"weak-vector?\"},{\"tag\":\"KEYWORD2\",\"text\":\"where\"},{\"tag\":\"KEYWORD2\",\"text\":\"while\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-continuation-barrier\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-dynamic-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-error-to-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-fluid*\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-fluids\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-fluids*\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-input-from-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-input-from-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-mutex\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-output-to-file\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-output-to-string\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-parameters*\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-readline-completion-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-throw-handler\"},{\"tag\":\"KEYWORD2\",\"text\":\"with-traps\"},{\"tag\":\"KEYWORD2\",\"text\":\"write\"},{\"tag\":\"KEYWORD2\",\"text\":\"write-char\"},{\"tag\":\"KEYWORD2\",\"text\":\"write-line\"},{\"tag\":\"KEYWORD2\",\"text\":\"write-string/partial\"},{\"tag\":\"KEYWORD2\",\"text\":\"xcons\"},{\"tag\":\"KEYWORD2\",\"text\":\"xsubstring\"},{\"tag\":\"KEYWORD2\",\"text\":\"yield\"},{\"tag\":\"KEYWORD2\",\"text\":\"zero?\"},{\"tag\":\"KEYWORD2\",\"text\":\"zip\"},{\"tag\":\"LITERAL2\",\"text\":\"#t\"},{\"tag\":\"LITERAL2\",\"text\":\"#f\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "%{";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "%}";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "%";
+        PROPERTY3.NAME = "lineComment";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "{";
+        PROPERTY4.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "}";
+        PROPERTY5.NAME = "indentCloseBrackets";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = "false";
+        PROPERTY6.NAME = "doubleBracketIndent";
+        PROPERTY PROPERTY7 = new PROPERTY();
+        PROPERTY7.VALUE = ".*<<.*";
+        PROPERTY7.NAME = "indentNextLines";
+        PROPERTY PROPERTY8 = new PROPERTY();
+        PROPERTY8.VALUE = ".*>>.*";
+        PROPERTY8.NAME = "unindentThisLine";
+        PROPERTY PROPERTY9 = new PROPERTY();
+        PROPERTY9.VALUE = ".*>>.*";
+        PROPERTY9.NAME = "unindentNextLines";
+        PROPERTY PROPERTY10 = new PROPERTY();
+        PROPERTY10.VALUE = "(?!(.*<<)).*>>.*";
+        PROPERTY10.NAME = "unindentThisLine";
+        PROPERTY PROPERTY11 = new PROPERTY();
+        PROPERTY11.VALUE = ">";
+        PROPERTY11.NAME = "electricKeys";
+        PROPERTY PROPERTY12 = new PROPERTY();
+        PROPERTY12.VALUE = "=";
+        PROPERTY12.NAME = "wordBreakChars";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, PROPERTY11, PROPERTY12, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "FALSE";
+        SPAN1.TYPE = "COMMENT2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "%{";
+        END END1 = new END();
+        END1.text = "%}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "%";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = ";";
+        EOL_SPAN2.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "\\breve";
+        SEQ1.TYPE = "DIGIT";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "\\longa";
+        SEQ2.TYPE = "DIGIT";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "\\maxima";
+        SEQ3.TYPE = "DIGIT";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "=";
+        MARK_PREVIOUS1.AT_WHITESPACE_END = "TRUE";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS MARK_PREVIOUS2 = new MARK_PREVIOUS();
+        MARK_PREVIOUS2.text = "=";
+        MARK_PREVIOUS2.AT_WHITESPACE_END = "TRUE";
+        MARK_PREVIOUS2.TYPE = "FUNCTION";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "{";
+        SEQ4.TYPE = "MARKUP";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "}";
+        SEQ5.TYPE = "MARKUP";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "[";
+        SEQ6.TYPE = "MARKUP";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "]";
+        SEQ7.TYPE = "MARKUP";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "<<";
+        SEQ8.TYPE = "MARKUP";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = ">>";
+        SEQ9.TYPE = "MARKUP";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "-<";
+        SEQ10.TYPE = "NULL";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "->";
+        SEQ11.TYPE = "NULL";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = ">";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "<";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "|";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "\"(\\\\\"|[^\\\\\"]|\\\\)+\"";
+        SEQ_REGEXP1.TYPE = "LITERAL1";
+        SEQ_REGEXP1.HASH_CHAR = "\"";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "'";
+        SEQ15.TYPE = "MARKUP";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = ",";
+        SEQ16.TYPE = "MARKUP";
+        SEQ_REGEXP SEQ_REGEXP2 = new SEQ_REGEXP();
+        SEQ_REGEXP2.text = "[rRs]\\d*\\b";
+        SEQ_REGEXP2.HASH_CHARS = "rRs";
+        SEQ_REGEXP2.AT_WORD_START = "TRUE";
+        SEQ_REGEXP2.TYPE = "LITERAL4";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "ly:";
+        MARK_FOLLOWING1.TYPE = "FUNCTION";
+        SEQ_REGEXP SEQ_REGEXP3 = new SEQ_REGEXP();
+        SEQ_REGEXP3.text = "\\\\override\\b";
+        SEQ_REGEXP3.TYPE = "KEYWORD1";
+        SEQ_REGEXP3.HASH_CHAR = "\\override";
+        SEQ_REGEXP SEQ_REGEXP4 = new SEQ_REGEXP();
+        SEQ_REGEXP4.text = "\\\\version\\b";
+        SEQ_REGEXP4.TYPE = "KEYWORD1";
+        SEQ_REGEXP4.HASH_CHAR = "\\version";
+        SEQ_REGEXP SEQ_REGEXP5 = new SEQ_REGEXP();
+        SEQ_REGEXP5.text = "\\\\include\\b";
+        SEQ_REGEXP5.TYPE = "KEYWORD1";
+        SEQ_REGEXP5.HASH_CHAR = "\\include";
+        SEQ_REGEXP SEQ_REGEXP6 = new SEQ_REGEXP();
+        SEQ_REGEXP6.text = "\\\\invalid\\b";
+        SEQ_REGEXP6.TYPE = "KEYWORD1";
+        SEQ_REGEXP6.HASH_CHAR = "\\invalid";
+        SEQ_REGEXP SEQ_REGEXP7 = new SEQ_REGEXP();
+        SEQ_REGEXP7.text = "\\\\addquote\\b";
+        SEQ_REGEXP7.TYPE = "KEYWORD1";
+        SEQ_REGEXP7.HASH_CHAR = "\\addquote";
+        SEQ_REGEXP SEQ_REGEXP8 = new SEQ_REGEXP();
+        SEQ_REGEXP8.text = "\\\\alternative\\b";
+        SEQ_REGEXP8.TYPE = "KEYWORD1";
+        SEQ_REGEXP8.HASH_CHAR = "\\alternative";
+        SEQ_REGEXP SEQ_REGEXP9 = new SEQ_REGEXP();
+        SEQ_REGEXP9.text = "\\\\book\\b";
+        SEQ_REGEXP9.TYPE = "KEYWORD1";
+        SEQ_REGEXP9.HASH_CHAR = "\\book";
+        SEQ_REGEXP SEQ_REGEXP10 = new SEQ_REGEXP();
+        SEQ_REGEXP10.text = "\\\\~\\b";
+        SEQ_REGEXP10.TYPE = "KEYWORD1";
+        SEQ_REGEXP10.HASH_CHAR = "\\~";
+        SEQ_REGEXP SEQ_REGEXP11 = new SEQ_REGEXP();
+        SEQ_REGEXP11.text = "\\\\mark\\b";
+        SEQ_REGEXP11.TYPE = "KEYWORD1";
+        SEQ_REGEXP11.HASH_CHAR = "\\mark";
+        SEQ_REGEXP SEQ_REGEXP12 = new SEQ_REGEXP();
+        SEQ_REGEXP12.text = "\\\\default\\b";
+        SEQ_REGEXP12.TYPE = "KEYWORD1";
+        SEQ_REGEXP12.HASH_CHAR = "\\default";
+        SEQ_REGEXP SEQ_REGEXP13 = new SEQ_REGEXP();
+        SEQ_REGEXP13.text = "\\\\key\\b";
+        SEQ_REGEXP13.TYPE = "KEYWORD1";
+        SEQ_REGEXP13.HASH_CHAR = "\\key";
+        SEQ_REGEXP SEQ_REGEXP14 = new SEQ_REGEXP();
+        SEQ_REGEXP14.text = "\\\\skip\\b";
+        SEQ_REGEXP14.TYPE = "KEYWORD1";
+        SEQ_REGEXP14.HASH_CHAR = "\\skip";
+        SEQ_REGEXP SEQ_REGEXP15 = new SEQ_REGEXP();
+        SEQ_REGEXP15.text = "\\\\octave\\b";
+        SEQ_REGEXP15.TYPE = "KEYWORD1";
+        SEQ_REGEXP15.HASH_CHAR = "\\octave";
+        SEQ_REGEXP SEQ_REGEXP16 = new SEQ_REGEXP();
+        SEQ_REGEXP16.text = "\\\\partial\\b";
+        SEQ_REGEXP16.TYPE = "KEYWORD1";
+        SEQ_REGEXP16.HASH_CHAR = "\\partial";
+        SEQ_REGEXP SEQ_REGEXP17 = new SEQ_REGEXP();
+        SEQ_REGEXP17.text = "\\\\time\\b";
+        SEQ_REGEXP17.TYPE = "KEYWORD1";
+        SEQ_REGEXP17.HASH_CHAR = "\\time";
+        SEQ_REGEXP SEQ_REGEXP18 = new SEQ_REGEXP();
+        SEQ_REGEXP18.text = "\\\\change\\b";
+        SEQ_REGEXP18.TYPE = "KEYWORD1";
+        SEQ_REGEXP18.HASH_CHAR = "\\change";
+        SEQ_REGEXP SEQ_REGEXP19 = new SEQ_REGEXP();
+        SEQ_REGEXP19.text = "\\\\consists\\b";
+        SEQ_REGEXP19.TYPE = "KEYWORD1";
+        SEQ_REGEXP19.HASH_CHAR = "\\consists";
+        SEQ_REGEXP SEQ_REGEXP20 = new SEQ_REGEXP();
+        SEQ_REGEXP20.text = "\\\\remove\\b";
+        SEQ_REGEXP20.TYPE = "KEYWORD1";
+        SEQ_REGEXP20.HASH_CHAR = "\\remove";
+        SEQ_REGEXP SEQ_REGEXP21 = new SEQ_REGEXP();
+        SEQ_REGEXP21.text = "\\\\accepts\\b";
+        SEQ_REGEXP21.TYPE = "KEYWORD1";
+        SEQ_REGEXP21.HASH_CHAR = "\\accepts";
+        SEQ_REGEXP SEQ_REGEXP22 = new SEQ_REGEXP();
+        SEQ_REGEXP22.text = "\\\\defaultchild\\b";
+        SEQ_REGEXP22.TYPE = "KEYWORD1";
+        SEQ_REGEXP22.HASH_CHAR = "\\defaultchild";
+        SEQ_REGEXP SEQ_REGEXP23 = new SEQ_REGEXP();
+        SEQ_REGEXP23.text = "\\\\denies\\b";
+        SEQ_REGEXP23.TYPE = "KEYWORD1";
+        SEQ_REGEXP23.HASH_CHAR = "\\denies";
+        SEQ_REGEXP SEQ_REGEXP24 = new SEQ_REGEXP();
+        SEQ_REGEXP24.text = "\\\\alias\\b";
+        SEQ_REGEXP24.TYPE = "KEYWORD1";
+        SEQ_REGEXP24.HASH_CHAR = "\\alias";
+        SEQ_REGEXP SEQ_REGEXP25 = new SEQ_REGEXP();
+        SEQ_REGEXP25.text = "\\\\type\\b";
+        SEQ_REGEXP25.TYPE = "KEYWORD1";
+        SEQ_REGEXP25.HASH_CHAR = "\\type";
+        SEQ_REGEXP SEQ_REGEXP26 = new SEQ_REGEXP();
+        SEQ_REGEXP26.text = "\\\\description\\b";
+        SEQ_REGEXP26.TYPE = "KEYWORD1";
+        SEQ_REGEXP26.HASH_CHAR = "\\description";
+        SEQ_REGEXP SEQ_REGEXP27 = new SEQ_REGEXP();
+        SEQ_REGEXP27.text = "\\\\name\\b";
+        SEQ_REGEXP27.TYPE = "KEYWORD1";
+        SEQ_REGEXP27.HASH_CHAR = "\\name";
+        SEQ_REGEXP SEQ_REGEXP28 = new SEQ_REGEXP();
+        SEQ_REGEXP28.text = "\\\\context\\b";
+        SEQ_REGEXP28.TYPE = "KEYWORD1";
+        SEQ_REGEXP28.HASH_CHAR = "\\context";
+        SEQ_REGEXP SEQ_REGEXP29 = new SEQ_REGEXP();
+        SEQ_REGEXP29.text = "\\\\grobdescriptions\\b";
+        SEQ_REGEXP29.TYPE = "KEYWORD1";
+        SEQ_REGEXP29.HASH_CHAR = "\\grobdescriptions";
+        SEQ_REGEXP SEQ_REGEXP30 = new SEQ_REGEXP();
+        SEQ_REGEXP30.text = "\\\\markup\\b";
+        SEQ_REGEXP30.TYPE = "KEYWORD1";
+        SEQ_REGEXP30.HASH_CHAR = "\\markup";
+        SEQ_REGEXP SEQ_REGEXP31 = new SEQ_REGEXP();
+        SEQ_REGEXP31.text = "\\\\header\\b";
+        SEQ_REGEXP31.TYPE = "KEYWORD1";
+        SEQ_REGEXP31.HASH_CHAR = "\\header";
+        SEQ_REGEXP SEQ_REGEXP32 = new SEQ_REGEXP();
+        SEQ_REGEXP32.text = "\\\\notemode\\b";
+        SEQ_REGEXP32.TYPE = "KEYWORD1";
+        SEQ_REGEXP32.HASH_CHAR = "\\notemode";
+        SEQ_REGEXP SEQ_REGEXP33 = new SEQ_REGEXP();
+        SEQ_REGEXP33.text = "\\\\drummode\\b";
+        SEQ_REGEXP33.TYPE = "KEYWORD1";
+        SEQ_REGEXP33.HASH_CHAR = "\\drummode";
+        SEQ_REGEXP SEQ_REGEXP34 = new SEQ_REGEXP();
+        SEQ_REGEXP34.text = "\\\\figuremode\\b";
+        SEQ_REGEXP34.TYPE = "KEYWORD1";
+        SEQ_REGEXP34.HASH_CHAR = "\\figuremode";
+        SEQ_REGEXP SEQ_REGEXP35 = new SEQ_REGEXP();
+        SEQ_REGEXP35.text = "\\\\chordmode\\b";
+        SEQ_REGEXP35.TYPE = "KEYWORD1";
+        SEQ_REGEXP35.HASH_CHAR = "\\chordmode";
+        SEQ_REGEXP SEQ_REGEXP36 = new SEQ_REGEXP();
+        SEQ_REGEXP36.text = "\\\\lyricmode\\b";
+        SEQ_REGEXP36.TYPE = "KEYWORD1";
+        SEQ_REGEXP36.HASH_CHAR = "\\lyricmode";
+        SEQ_REGEXP SEQ_REGEXP37 = new SEQ_REGEXP();
+        SEQ_REGEXP37.text = "\\\\drums\\b";
+        SEQ_REGEXP37.TYPE = "KEYWORD1";
+        SEQ_REGEXP37.HASH_CHAR = "\\drums";
+        SEQ_REGEXP SEQ_REGEXP38 = new SEQ_REGEXP();
+        SEQ_REGEXP38.text = "\\\\figures\\b";
+        SEQ_REGEXP38.TYPE = "KEYWORD1";
+        SEQ_REGEXP38.HASH_CHAR = "\\figures";
+        SEQ_REGEXP SEQ_REGEXP39 = new SEQ_REGEXP();
+        SEQ_REGEXP39.text = "\\\\chords\\b";
+        SEQ_REGEXP39.TYPE = "KEYWORD1";
+        SEQ_REGEXP39.HASH_CHAR = "\\chords";
+        SEQ_REGEXP SEQ_REGEXP40 = new SEQ_REGEXP();
+        SEQ_REGEXP40.text = "\\\\lyrics\\b";
+        SEQ_REGEXP40.TYPE = "KEYWORD1";
+        SEQ_REGEXP40.HASH_CHAR = "\\lyrics";
+        SEQ_REGEXP SEQ_REGEXP41 = new SEQ_REGEXP();
+        SEQ_REGEXP41.text = "\\\\once\\b";
+        SEQ_REGEXP41.TYPE = "KEYWORD1";
+        SEQ_REGEXP41.HASH_CHAR = "\\once";
+        SEQ_REGEXP SEQ_REGEXP42 = new SEQ_REGEXP();
+        SEQ_REGEXP42.text = "\\\\revert\\b";
+        SEQ_REGEXP42.TYPE = "KEYWORD1";
+        SEQ_REGEXP42.HASH_CHAR = "\\revert";
+        SEQ_REGEXP SEQ_REGEXP43 = new SEQ_REGEXP();
+        SEQ_REGEXP43.text = "\\\\set\\b";
+        SEQ_REGEXP43.TYPE = "KEYWORD1";
+        SEQ_REGEXP43.HASH_CHAR = "\\set";
+        SEQ_REGEXP SEQ_REGEXP44 = new SEQ_REGEXP();
+        SEQ_REGEXP44.text = "\\\\unset\\b";
+        SEQ_REGEXP44.TYPE = "KEYWORD1";
+        SEQ_REGEXP44.HASH_CHAR = "\\unset";
+        SEQ_REGEXP SEQ_REGEXP45 = new SEQ_REGEXP();
+        SEQ_REGEXP45.text = "\\\\addlyrics\\b";
+        SEQ_REGEXP45.TYPE = "KEYWORD1";
+        SEQ_REGEXP45.HASH_CHAR = "\\addlyrics";
+        SEQ_REGEXP SEQ_REGEXP46 = new SEQ_REGEXP();
+        SEQ_REGEXP46.text = "\\\\objectid\\b";
+        SEQ_REGEXP46.TYPE = "KEYWORD1";
+        SEQ_REGEXP46.HASH_CHAR = "\\objectid";
+        SEQ_REGEXP SEQ_REGEXP47 = new SEQ_REGEXP();
+        SEQ_REGEXP47.text = "\\\\with\\b";
+        SEQ_REGEXP47.TYPE = "KEYWORD1";
+        SEQ_REGEXP47.HASH_CHAR = "\\with";
+        SEQ_REGEXP SEQ_REGEXP48 = new SEQ_REGEXP();
+        SEQ_REGEXP48.text = "\\\\rest\\b";
+        SEQ_REGEXP48.TYPE = "KEYWORD1";
+        SEQ_REGEXP48.HASH_CHAR = "\\rest";
+        SEQ_REGEXP SEQ_REGEXP49 = new SEQ_REGEXP();
+        SEQ_REGEXP49.text = "\\\\paper\\b";
+        SEQ_REGEXP49.TYPE = "KEYWORD1";
+        SEQ_REGEXP49.HASH_CHAR = "\\paper";
+        SEQ_REGEXP SEQ_REGEXP50 = new SEQ_REGEXP();
+        SEQ_REGEXP50.text = "\\\\midi\\b";
+        SEQ_REGEXP50.TYPE = "KEYWORD1";
+        SEQ_REGEXP50.HASH_CHAR = "\\midi";
+        SEQ_REGEXP SEQ_REGEXP51 = new SEQ_REGEXP();
+        SEQ_REGEXP51.text = "\\\\layout\\b";
+        SEQ_REGEXP51.TYPE = "KEYWORD1";
+        SEQ_REGEXP51.HASH_CHAR = "\\layout";
+        SEQ_REGEXP SEQ_REGEXP52 = new SEQ_REGEXP();
+        SEQ_REGEXP52.text = "\\\\new\\b";
+        SEQ_REGEXP52.TYPE = "KEYWORD1";
+        SEQ_REGEXP52.HASH_CHAR = "\\new";
+        SEQ_REGEXP SEQ_REGEXP53 = new SEQ_REGEXP();
+        SEQ_REGEXP53.text = "\\\\times\\b";
+        SEQ_REGEXP53.TYPE = "KEYWORD1";
+        SEQ_REGEXP53.HASH_CHAR = "\\times";
+        SEQ_REGEXP SEQ_REGEXP54 = new SEQ_REGEXP();
+        SEQ_REGEXP54.text = "\\\\transpose\\b";
+        SEQ_REGEXP54.TYPE = "KEYWORD1";
+        SEQ_REGEXP54.HASH_CHAR = "\\transpose";
+        SEQ_REGEXP SEQ_REGEXP55 = new SEQ_REGEXP();
+        SEQ_REGEXP55.text = "\\\\tag\\b";
+        SEQ_REGEXP55.TYPE = "KEYWORD1";
+        SEQ_REGEXP55.HASH_CHAR = "\\tag";
+        SEQ_REGEXP SEQ_REGEXP56 = new SEQ_REGEXP();
+        SEQ_REGEXP56.text = "\\\\relative\\b";
+        SEQ_REGEXP56.TYPE = "KEYWORD1";
+        SEQ_REGEXP56.HASH_CHAR = "\\relative";
+        SEQ_REGEXP SEQ_REGEXP57 = new SEQ_REGEXP();
+        SEQ_REGEXP57.text = "\\\\renameinput\\b";
+        SEQ_REGEXP57.TYPE = "KEYWORD1";
+        SEQ_REGEXP57.HASH_CHAR = "\\renameinput";
+        SEQ_REGEXP SEQ_REGEXP58 = new SEQ_REGEXP();
+        SEQ_REGEXP58.text = "\\\\repeat\\b";
+        SEQ_REGEXP58.TYPE = "KEYWORD1";
+        SEQ_REGEXP58.HASH_CHAR = "\\repeat";
+        SEQ_REGEXP SEQ_REGEXP59 = new SEQ_REGEXP();
+        SEQ_REGEXP59.text = "\\\\lyricsto\\b";
+        SEQ_REGEXP59.TYPE = "KEYWORD1";
+        SEQ_REGEXP59.HASH_CHAR = "\\lyricsto";
+        SEQ_REGEXP SEQ_REGEXP60 = new SEQ_REGEXP();
+        SEQ_REGEXP60.text = "\\\\score\\b";
+        SEQ_REGEXP60.TYPE = "KEYWORD1";
+        SEQ_REGEXP60.HASH_CHAR = "\\score";
+        SEQ_REGEXP SEQ_REGEXP61 = new SEQ_REGEXP();
+        SEQ_REGEXP61.text = "\\\\sequential\\b";
+        SEQ_REGEXP61.TYPE = "KEYWORD1";
+        SEQ_REGEXP61.HASH_CHAR = "\\sequential";
+        SEQ_REGEXP SEQ_REGEXP62 = new SEQ_REGEXP();
+        SEQ_REGEXP62.text = "\\\\simultaneous\\b";
+        SEQ_REGEXP62.TYPE = "KEYWORD1";
+        SEQ_REGEXP62.HASH_CHAR = "\\simultaneous";
+        SEQ_REGEXP SEQ_REGEXP63 = new SEQ_REGEXP();
+        SEQ_REGEXP63.text = "\\\\longa\\b";
+        SEQ_REGEXP63.TYPE = "KEYWORD1";
+        SEQ_REGEXP63.HASH_CHAR = "\\longa";
+        SEQ_REGEXP SEQ_REGEXP64 = new SEQ_REGEXP();
+        SEQ_REGEXP64.text = "\\\\breve\\b";
+        SEQ_REGEXP64.TYPE = "KEYWORD1";
+        SEQ_REGEXP64.HASH_CHAR = "\\breve";
+        SEQ_REGEXP SEQ_REGEXP65 = new SEQ_REGEXP();
+        SEQ_REGEXP65.text = "\\\\maxima\\b";
+        SEQ_REGEXP65.TYPE = "KEYWORD1";
+        SEQ_REGEXP65.HASH_CHAR = "\\maxima";
+        SEQ_REGEXP SEQ_REGEXP66 = new SEQ_REGEXP();
+        SEQ_REGEXP66.text = "\\\\tempo\\b";
+        SEQ_REGEXP66.TYPE = "KEYWORD1";
+        SEQ_REGEXP66.HASH_CHAR = "\\tempo";
+        SEQ_REGEXP SEQ_REGEXP67 = new SEQ_REGEXP();
+        SEQ_REGEXP67.text = "\\\\AncientRemoveEmptyStaffContext\\b";
+        SEQ_REGEXP67.TYPE = "KEYWORD3";
+        SEQ_REGEXP67.HASH_CHAR = "\\AncientRemoveEmptyStaffContext";
+        SEQ_REGEXP SEQ_REGEXP68 = new SEQ_REGEXP();
+        SEQ_REGEXP68.text = "\\\\RemoveEmptyRhythmicStaffContext\\b";
+        SEQ_REGEXP68.TYPE = "KEYWORD3";
+        SEQ_REGEXP68.HASH_CHAR = "\\RemoveEmptyRhythmicStaffContext";
+        SEQ_REGEXP SEQ_REGEXP69 = new SEQ_REGEXP();
+        SEQ_REGEXP69.text = "\\\\RemoveEmptyStaffContext\\b";
+        SEQ_REGEXP69.TYPE = "KEYWORD3";
+        SEQ_REGEXP69.HASH_CHAR = "\\RemoveEmptyStaffContext";
+        SEQ_REGEXP SEQ_REGEXP70 = new SEQ_REGEXP();
+        SEQ_REGEXP70.text = "\\\\accent\\b";
+        SEQ_REGEXP70.TYPE = "KEYWORD3";
+        SEQ_REGEXP70.HASH_CHAR = "\\accent";
+        SEQ_REGEXP SEQ_REGEXP71 = new SEQ_REGEXP();
+        SEQ_REGEXP71.text = "\\\\aeolian\\b";
+        SEQ_REGEXP71.TYPE = "KEYWORD3";
+        SEQ_REGEXP71.HASH_CHAR = "\\aeolian";
+        SEQ_REGEXP SEQ_REGEXP72 = new SEQ_REGEXP();
+        SEQ_REGEXP72.text = "\\\\afterGraceFraction\\b";
+        SEQ_REGEXP72.TYPE = "KEYWORD3";
+        SEQ_REGEXP72.HASH_CHAR = "\\afterGraceFraction";
+        SEQ_REGEXP SEQ_REGEXP73 = new SEQ_REGEXP();
+        SEQ_REGEXP73.text = "\\\\aikenHeads\\b";
+        SEQ_REGEXP73.TYPE = "KEYWORD3";
+        SEQ_REGEXP73.HASH_CHAR = "\\aikenHeads";
+        SEQ_REGEXP SEQ_REGEXP74 = new SEQ_REGEXP();
+        SEQ_REGEXP74.text = "\\\\arpeggio\\b";
+        SEQ_REGEXP74.TYPE = "KEYWORD3";
+        SEQ_REGEXP74.HASH_CHAR = "\\arpeggio";
+        SEQ_REGEXP SEQ_REGEXP75 = new SEQ_REGEXP();
+        SEQ_REGEXP75.text = "\\\\arpeggioArrowDown\\b";
+        SEQ_REGEXP75.TYPE = "KEYWORD3";
+        SEQ_REGEXP75.HASH_CHAR = "\\arpeggioArrowDown";
+        SEQ_REGEXP SEQ_REGEXP76 = new SEQ_REGEXP();
+        SEQ_REGEXP76.text = "\\\\arpeggioArrowUp\\b";
+        SEQ_REGEXP76.TYPE = "KEYWORD3";
+        SEQ_REGEXP76.HASH_CHAR = "\\arpeggioArrowUp";
+        SEQ_REGEXP SEQ_REGEXP77 = new SEQ_REGEXP();
+        SEQ_REGEXP77.text = "\\\\arpeggioBracket\\b";
+        SEQ_REGEXP77.TYPE = "KEYWORD3";
+        SEQ_REGEXP77.HASH_CHAR = "\\arpeggioBracket";
+        SEQ_REGEXP SEQ_REGEXP78 = new SEQ_REGEXP();
+        SEQ_REGEXP78.text = "\\\\arpeggioNormal\\b";
+        SEQ_REGEXP78.TYPE = "KEYWORD3";
+        SEQ_REGEXP78.HASH_CHAR = "\\arpeggioNormal";
+        SEQ_REGEXP SEQ_REGEXP79 = new SEQ_REGEXP();
+        SEQ_REGEXP79.text = "\\\\arpeggioParenthesis\\b";
+        SEQ_REGEXP79.TYPE = "KEYWORD3";
+        SEQ_REGEXP79.HASH_CHAR = "\\arpeggioParenthesis";
+        SEQ_REGEXP SEQ_REGEXP80 = new SEQ_REGEXP();
+        SEQ_REGEXP80.text = "\\\\autoBeamOff\\b";
+        SEQ_REGEXP80.TYPE = "KEYWORD3";
+        SEQ_REGEXP80.HASH_CHAR = "\\autoBeamOff";
+        SEQ_REGEXP SEQ_REGEXP81 = new SEQ_REGEXP();
+        SEQ_REGEXP81.text = "\\\\autoBeamOn\\b";
+        SEQ_REGEXP81.TYPE = "KEYWORD3";
+        SEQ_REGEXP81.HASH_CHAR = "\\autoBeamOn";
+        SEQ_REGEXP SEQ_REGEXP82 = new SEQ_REGEXP();
+        SEQ_REGEXP82.text = "\\\\balloonLengthOff\\b";
+        SEQ_REGEXP82.TYPE = "KEYWORD3";
+        SEQ_REGEXP82.HASH_CHAR = "\\balloonLengthOff";
+        SEQ_REGEXP SEQ_REGEXP83 = new SEQ_REGEXP();
+        SEQ_REGEXP83.text = "\\\\balloonLengthOn\\b";
+        SEQ_REGEXP83.TYPE = "KEYWORD3";
+        SEQ_REGEXP83.HASH_CHAR = "\\balloonLengthOn";
+        SEQ_REGEXP SEQ_REGEXP84 = new SEQ_REGEXP();
+        SEQ_REGEXP84.text = "\\\\bassFigureExtendersOff\\b";
+        SEQ_REGEXP84.TYPE = "KEYWORD3";
+        SEQ_REGEXP84.HASH_CHAR = "\\bassFigureExtendersOff";
+        SEQ_REGEXP SEQ_REGEXP85 = new SEQ_REGEXP();
+        SEQ_REGEXP85.text = "\\\\bassFigureExtendersOn\\b";
+        SEQ_REGEXP85.TYPE = "KEYWORD3";
+        SEQ_REGEXP85.HASH_CHAR = "\\bassFigureExtendersOn";
+        SEQ_REGEXP SEQ_REGEXP86 = new SEQ_REGEXP();
+        SEQ_REGEXP86.text = "\\\\bassFigureStaffAlignmentDown\\b";
+        SEQ_REGEXP86.TYPE = "KEYWORD3";
+        SEQ_REGEXP86.HASH_CHAR = "\\bassFigureStaffAlignmentDown";
+        SEQ_REGEXP SEQ_REGEXP87 = new SEQ_REGEXP();
+        SEQ_REGEXP87.text = "\\\\bassFigureStaffAlignmentNeutral\\b";
+        SEQ_REGEXP87.TYPE = "KEYWORD3";
+        SEQ_REGEXP87.HASH_CHAR = "\\bassFigureStaffAlignmentNeutral";
+        SEQ_REGEXP SEQ_REGEXP88 = new SEQ_REGEXP();
+        SEQ_REGEXP88.text = "\\\\bassFigureStaffAlignmentUp\\b";
+        SEQ_REGEXP88.TYPE = "KEYWORD3";
+        SEQ_REGEXP88.HASH_CHAR = "\\bassFigureStaffAlignmentUp";
+        SEQ_REGEXP SEQ_REGEXP89 = new SEQ_REGEXP();
+        SEQ_REGEXP89.text = "\\\\between-system-padding\\b";
+        SEQ_REGEXP89.TYPE = "KEYWORD3";
+        SEQ_REGEXP89.HASH_CHAR = "\\between-system-padding";
+        SEQ_REGEXP SEQ_REGEXP90 = new SEQ_REGEXP();
+        SEQ_REGEXP90.text = "\\\\between-system-space\\b";
+        SEQ_REGEXP90.TYPE = "KEYWORD3";
+        SEQ_REGEXP90.HASH_CHAR = "\\between-system-space";
+        SEQ_REGEXP SEQ_REGEXP91 = new SEQ_REGEXP();
+        SEQ_REGEXP91.text = "\\\\bigger\\b";
+        SEQ_REGEXP91.TYPE = "KEYWORD3";
+        SEQ_REGEXP91.HASH_CHAR = "\\bigger";
+        SEQ_REGEXP SEQ_REGEXP92 = new SEQ_REGEXP();
+        SEQ_REGEXP92.text = "\\\\blackTriangleMarkup\\b";
+        SEQ_REGEXP92.TYPE = "KEYWORD3";
+        SEQ_REGEXP92.HASH_CHAR = "\\blackTriangleMarkup";
+        SEQ_REGEXP SEQ_REGEXP93 = new SEQ_REGEXP();
+        SEQ_REGEXP93.text = "\\\\bookTitleMarkup\\b";
+        SEQ_REGEXP93.TYPE = "KEYWORD3";
+        SEQ_REGEXP93.HASH_CHAR = "\\bookTitleMarkup";
+        SEQ_REGEXP SEQ_REGEXP94 = new SEQ_REGEXP();
+        SEQ_REGEXP94.text = "\\\\bracketCloseSymbol\\b";
+        SEQ_REGEXP94.TYPE = "KEYWORD3";
+        SEQ_REGEXP94.HASH_CHAR = "\\bracketCloseSymbol";
+        SEQ_REGEXP SEQ_REGEXP95 = new SEQ_REGEXP();
+        SEQ_REGEXP95.text = "\\\\bracketOpenSymbol\\b";
+        SEQ_REGEXP95.TYPE = "KEYWORD3";
+        SEQ_REGEXP95.HASH_CHAR = "\\bracketOpenSymbol";
+        SEQ_REGEXP SEQ_REGEXP96 = new SEQ_REGEXP();
+        SEQ_REGEXP96.text = "\\\\break\\b";
+        SEQ_REGEXP96.TYPE = "KEYWORD3";
+        SEQ_REGEXP96.HASH_CHAR = "\\break";
+        SEQ_REGEXP SEQ_REGEXP97 = new SEQ_REGEXP();
+        SEQ_REGEXP97.text = "\\\\breve\\b";
+        SEQ_REGEXP97.TYPE = "KEYWORD3";
+        SEQ_REGEXP97.HASH_CHAR = "\\breve";
+        SEQ_REGEXP SEQ_REGEXP98 = new SEQ_REGEXP();
+        SEQ_REGEXP98.text = "\\\\cadenzaOff\\b";
+        SEQ_REGEXP98.TYPE = "KEYWORD3";
+        SEQ_REGEXP98.HASH_CHAR = "\\cadenzaOff";
+        SEQ_REGEXP SEQ_REGEXP99 = new SEQ_REGEXP();
+        SEQ_REGEXP99.text = "\\\\cadenzaOn\\b";
+        SEQ_REGEXP99.TYPE = "KEYWORD3";
+        SEQ_REGEXP99.HASH_CHAR = "\\cadenzaOn";
+        SEQ_REGEXP SEQ_REGEXP100 = new SEQ_REGEXP();
+        SEQ_REGEXP100.text = "\\\\center\\b";
+        SEQ_REGEXP100.TYPE = "KEYWORD3";
+        SEQ_REGEXP100.HASH_CHAR = "\\center";
+        SEQ_REGEXP SEQ_REGEXP101 = new SEQ_REGEXP();
+        SEQ_REGEXP101.text = "\\\\chordmodifiers\\b";
+        SEQ_REGEXP101.TYPE = "KEYWORD3";
+        SEQ_REGEXP101.HASH_CHAR = "\\chordmodifiers";
+        SEQ_REGEXP SEQ_REGEXP102 = new SEQ_REGEXP();
+        SEQ_REGEXP102.text = "\\\\cm\\b";
+        SEQ_REGEXP102.TYPE = "KEYWORD3";
+        SEQ_REGEXP102.HASH_CHAR = "\\cm";
+        SEQ_REGEXP SEQ_REGEXP103 = new SEQ_REGEXP();
+        SEQ_REGEXP103.text = "\\\\coda\\b";
+        SEQ_REGEXP103.TYPE = "KEYWORD3";
+        SEQ_REGEXP103.HASH_CHAR = "\\coda";
+        SEQ_REGEXP SEQ_REGEXP104 = new SEQ_REGEXP();
+        SEQ_REGEXP104.text = "\\\\compressFullBarRests\\b";
+        SEQ_REGEXP104.TYPE = "KEYWORD3";
+        SEQ_REGEXP104.HASH_CHAR = "\\compressFullBarRests";
+        SEQ_REGEXP SEQ_REGEXP105 = new SEQ_REGEXP();
+        SEQ_REGEXP105.text = "\\\\cr\\b";
+        SEQ_REGEXP105.TYPE = "KEYWORD3";
+        SEQ_REGEXP105.HASH_CHAR = "\\cr";
+        SEQ_REGEXP SEQ_REGEXP106 = new SEQ_REGEXP();
+        SEQ_REGEXP106.text = "\\\\cresc\\b";
+        SEQ_REGEXP106.TYPE = "KEYWORD3";
+        SEQ_REGEXP106.HASH_CHAR = "\\cresc";
+        SEQ_REGEXP SEQ_REGEXP107 = new SEQ_REGEXP();
+        SEQ_REGEXP107.text = "\\\\crescHairpin\\b";
+        SEQ_REGEXP107.TYPE = "KEYWORD3";
+        SEQ_REGEXP107.HASH_CHAR = "\\crescHairpin";
+        SEQ_REGEXP SEQ_REGEXP108 = new SEQ_REGEXP();
+        SEQ_REGEXP108.text = "\\\\crescTextCresc\\b";
+        SEQ_REGEXP108.TYPE = "KEYWORD3";
+        SEQ_REGEXP108.HASH_CHAR = "\\crescTextCresc";
+        SEQ_REGEXP SEQ_REGEXP109 = new SEQ_REGEXP();
+        SEQ_REGEXP109.text = "\\\\decr\\b";
+        SEQ_REGEXP109.TYPE = "KEYWORD3";
+        SEQ_REGEXP109.HASH_CHAR = "\\decr";
+        SEQ_REGEXP SEQ_REGEXP110 = new SEQ_REGEXP();
+        SEQ_REGEXP110.text = "\\\\defaultTimeSignature\\b";
+        SEQ_REGEXP110.TYPE = "KEYWORD3";
+        SEQ_REGEXP110.HASH_CHAR = "\\defaultTimeSignature";
+        SEQ_REGEXP SEQ_REGEXP111 = new SEQ_REGEXP();
+        SEQ_REGEXP111.text = "\\\\dim\\b";
+        SEQ_REGEXP111.TYPE = "KEYWORD3";
+        SEQ_REGEXP111.HASH_CHAR = "\\dim";
+        SEQ_REGEXP SEQ_REGEXP112 = new SEQ_REGEXP();
+        SEQ_REGEXP112.text = "\\\\dimHairpin\\b";
+        SEQ_REGEXP112.TYPE = "KEYWORD3";
+        SEQ_REGEXP112.HASH_CHAR = "\\dimHairpin";
+        SEQ_REGEXP SEQ_REGEXP113 = new SEQ_REGEXP();
+        SEQ_REGEXP113.text = "\\\\dimTextDecr\\b";
+        SEQ_REGEXP113.TYPE = "KEYWORD3";
+        SEQ_REGEXP113.HASH_CHAR = "\\dimTextDecr";
+        SEQ_REGEXP SEQ_REGEXP114 = new SEQ_REGEXP();
+        SEQ_REGEXP114.text = "\\\\dimTextDecresc\\b";
+        SEQ_REGEXP114.TYPE = "KEYWORD3";
+        SEQ_REGEXP114.HASH_CHAR = "\\dimTextDecresc";
+        SEQ_REGEXP SEQ_REGEXP115 = new SEQ_REGEXP();
+        SEQ_REGEXP115.text = "\\\\dimTextDim\\b";
+        SEQ_REGEXP115.TYPE = "KEYWORD3";
+        SEQ_REGEXP115.HASH_CHAR = "\\dimTextDim";
+        SEQ_REGEXP SEQ_REGEXP116 = new SEQ_REGEXP();
+        SEQ_REGEXP116.text = "\\\\dorian\\b";
+        SEQ_REGEXP116.TYPE = "KEYWORD3";
+        SEQ_REGEXP116.HASH_CHAR = "\\dorian";
+        SEQ_REGEXP SEQ_REGEXP117 = new SEQ_REGEXP();
+        SEQ_REGEXP117.text = "\\\\dotsDown\\b";
+        SEQ_REGEXP117.TYPE = "KEYWORD3";
+        SEQ_REGEXP117.HASH_CHAR = "\\dotsDown";
+        SEQ_REGEXP SEQ_REGEXP118 = new SEQ_REGEXP();
+        SEQ_REGEXP118.text = "\\\\dotsNeutral\\b";
+        SEQ_REGEXP118.TYPE = "KEYWORD3";
+        SEQ_REGEXP118.HASH_CHAR = "\\dotsNeutral";
+        SEQ_REGEXP SEQ_REGEXP119 = new SEQ_REGEXP();
+        SEQ_REGEXP119.text = "\\\\dotsUp\\b";
+        SEQ_REGEXP119.TYPE = "KEYWORD3";
+        SEQ_REGEXP119.HASH_CHAR = "\\dotsUp";
+        SEQ_REGEXP SEQ_REGEXP120 = new SEQ_REGEXP();
+        SEQ_REGEXP120.text = "\\\\down\\b";
+        SEQ_REGEXP120.TYPE = "KEYWORD3";
+        SEQ_REGEXP120.HASH_CHAR = "\\down";
+        SEQ_REGEXP SEQ_REGEXP121 = new SEQ_REGEXP();
+        SEQ_REGEXP121.text = "\\\\downbow\\b";
+        SEQ_REGEXP121.TYPE = "KEYWORD3";
+        SEQ_REGEXP121.HASH_CHAR = "\\downbow";
+        SEQ_REGEXP SEQ_REGEXP122 = new SEQ_REGEXP();
+        SEQ_REGEXP122.text = "\\\\downmordent\\b";
+        SEQ_REGEXP122.TYPE = "KEYWORD3";
+        SEQ_REGEXP122.HASH_CHAR = "\\downmordent";
+        SEQ_REGEXP SEQ_REGEXP123 = new SEQ_REGEXP();
+        SEQ_REGEXP123.text = "\\\\downprall\\b";
+        SEQ_REGEXP123.TYPE = "KEYWORD3";
+        SEQ_REGEXP123.HASH_CHAR = "\\downprall";
+        SEQ_REGEXP SEQ_REGEXP124 = new SEQ_REGEXP();
+        SEQ_REGEXP124.text = "\\\\drumPitchNames\\b";
+        SEQ_REGEXP124.TYPE = "KEYWORD3";
+        SEQ_REGEXP124.HASH_CHAR = "\\drumPitchNames";
+        SEQ_REGEXP SEQ_REGEXP125 = new SEQ_REGEXP();
+        SEQ_REGEXP125.text = "\\\\dutchPitchnames\\b";
+        SEQ_REGEXP125.TYPE = "KEYWORD3";
+        SEQ_REGEXP125.HASH_CHAR = "\\dutchPitchnames";
+        SEQ_REGEXP SEQ_REGEXP126 = new SEQ_REGEXP();
+        SEQ_REGEXP126.text = "\\\\dynamicDown\\b";
+        SEQ_REGEXP126.TYPE = "KEYWORD3";
+        SEQ_REGEXP126.HASH_CHAR = "\\dynamicDown";
+        SEQ_REGEXP SEQ_REGEXP127 = new SEQ_REGEXP();
+        SEQ_REGEXP127.text = "\\\\dynamicNeutral\\b";
+        SEQ_REGEXP127.TYPE = "KEYWORD3";
+        SEQ_REGEXP127.HASH_CHAR = "\\dynamicNeutral";
+        SEQ_REGEXP SEQ_REGEXP128 = new SEQ_REGEXP();
+        SEQ_REGEXP128.text = "\\\\dynamicUp\\b";
+        SEQ_REGEXP128.TYPE = "KEYWORD3";
+        SEQ_REGEXP128.HASH_CHAR = "\\dynamicUp";
+        SEQ_REGEXP SEQ_REGEXP129 = new SEQ_REGEXP();
+        SEQ_REGEXP129.text = "\\\\easyHeadsOff\\b";
+        SEQ_REGEXP129.TYPE = "KEYWORD3";
+        SEQ_REGEXP129.HASH_CHAR = "\\easyHeadsOff";
+        SEQ_REGEXP SEQ_REGEXP130 = new SEQ_REGEXP();
+        SEQ_REGEXP130.text = "\\\\easyHeadsOn\\b";
+        SEQ_REGEXP130.TYPE = "KEYWORD3";
+        SEQ_REGEXP130.HASH_CHAR = "\\easyHeadsOn";
+        SEQ_REGEXP SEQ_REGEXP131 = new SEQ_REGEXP();
+        SEQ_REGEXP131.text = "\\\\endcr\\b";
+        SEQ_REGEXP131.TYPE = "KEYWORD3";
+        SEQ_REGEXP131.HASH_CHAR = "\\endcr";
+        SEQ_REGEXP SEQ_REGEXP132 = new SEQ_REGEXP();
+        SEQ_REGEXP132.text = "\\\\endcresc\\b";
+        SEQ_REGEXP132.TYPE = "KEYWORD3";
+        SEQ_REGEXP132.HASH_CHAR = "\\endcresc";
+        SEQ_REGEXP SEQ_REGEXP133 = new SEQ_REGEXP();
+        SEQ_REGEXP133.text = "\\\\enddecr\\b";
+        SEQ_REGEXP133.TYPE = "KEYWORD3";
+        SEQ_REGEXP133.HASH_CHAR = "\\enddecr";
+        SEQ_REGEXP SEQ_REGEXP134 = new SEQ_REGEXP();
+        SEQ_REGEXP134.text = "\\\\enddim\\b";
+        SEQ_REGEXP134.TYPE = "KEYWORD3";
+        SEQ_REGEXP134.HASH_CHAR = "\\enddim";
+        SEQ_REGEXP SEQ_REGEXP135 = new SEQ_REGEXP();
+        SEQ_REGEXP135.text = "\\\\endincipit\\b";
+        SEQ_REGEXP135.TYPE = "KEYWORD3";
+        SEQ_REGEXP135.HASH_CHAR = "\\endincipit";
+        SEQ_REGEXP SEQ_REGEXP136 = new SEQ_REGEXP();
+        SEQ_REGEXP136.text = "\\\\escapedBiggerSymbol\\b";
+        SEQ_REGEXP136.TYPE = "KEYWORD3";
+        SEQ_REGEXP136.HASH_CHAR = "\\escapedBiggerSymbol";
+        SEQ_REGEXP SEQ_REGEXP137 = new SEQ_REGEXP();
+        SEQ_REGEXP137.text = "\\\\escapedExclamationSymbol\\b";
+        SEQ_REGEXP137.TYPE = "KEYWORD3";
+        SEQ_REGEXP137.HASH_CHAR = "\\escapedExclamationSymbol";
+        SEQ_REGEXP SEQ_REGEXP138 = new SEQ_REGEXP();
+        SEQ_REGEXP138.text = "\\\\escapedParenthesisCloseSymbol\\b";
+        SEQ_REGEXP138.TYPE = "KEYWORD3";
+        SEQ_REGEXP138.HASH_CHAR = "\\escapedParenthesisCloseSymbol";
+        SEQ_REGEXP SEQ_REGEXP139 = new SEQ_REGEXP();
+        SEQ_REGEXP139.text = "\\\\escapedParenthesisOpenSymbol\\b";
+        SEQ_REGEXP139.TYPE = "KEYWORD3";
+        SEQ_REGEXP139.HASH_CHAR = "\\escapedParenthesisOpenSymbol";
+        SEQ_REGEXP SEQ_REGEXP140 = new SEQ_REGEXP();
+        SEQ_REGEXP140.text = "\\\\escapedSmallerSymbol\\b";
+        SEQ_REGEXP140.TYPE = "KEYWORD3";
+        SEQ_REGEXP140.HASH_CHAR = "\\escapedSmallerSymbol";
+        SEQ_REGEXP SEQ_REGEXP141 = new SEQ_REGEXP();
+        SEQ_REGEXP141.text = "\\\\espressivo\\b";
+        SEQ_REGEXP141.TYPE = "KEYWORD3";
+        SEQ_REGEXP141.HASH_CHAR = "\\espressivo";
+        SEQ_REGEXP SEQ_REGEXP142 = new SEQ_REGEXP();
+        SEQ_REGEXP142.text = "\\\\evenHeaderMarkup\\b";
+        SEQ_REGEXP142.TYPE = "KEYWORD3";
+        SEQ_REGEXP142.HASH_CHAR = "\\evenHeaderMarkup";
+        SEQ_REGEXP SEQ_REGEXP143 = new SEQ_REGEXP();
+        SEQ_REGEXP143.text = "\\\\expandFullBarRests\\b";
+        SEQ_REGEXP143.TYPE = "KEYWORD3";
+        SEQ_REGEXP143.HASH_CHAR = "\\expandFullBarRests";
+        SEQ_REGEXP SEQ_REGEXP144 = new SEQ_REGEXP();
+        SEQ_REGEXP144.text = "\\\\f\\b";
+        SEQ_REGEXP144.TYPE = "KEYWORD3";
+        SEQ_REGEXP144.HASH_CHAR = "\\f";
+        SEQ_REGEXP SEQ_REGEXP145 = new SEQ_REGEXP();
+        SEQ_REGEXP145.text = "\\\\fermata\\b";
+        SEQ_REGEXP145.TYPE = "KEYWORD3";
+        SEQ_REGEXP145.HASH_CHAR = "\\fermata";
+        SEQ_REGEXP SEQ_REGEXP146 = new SEQ_REGEXP();
+        SEQ_REGEXP146.text = "\\\\fermataMarkup\\b";
+        SEQ_REGEXP146.TYPE = "KEYWORD3";
+        SEQ_REGEXP146.HASH_CHAR = "\\fermataMarkup";
+        SEQ_REGEXP SEQ_REGEXP147 = new SEQ_REGEXP();
+        SEQ_REGEXP147.text = "\\\\ff\\b";
+        SEQ_REGEXP147.TYPE = "KEYWORD3";
+        SEQ_REGEXP147.HASH_CHAR = "\\ff";
+        SEQ_REGEXP SEQ_REGEXP148 = new SEQ_REGEXP();
+        SEQ_REGEXP148.text = "\\\\fff\\b";
+        SEQ_REGEXP148.TYPE = "KEYWORD3";
+        SEQ_REGEXP148.HASH_CHAR = "\\fff";
+        SEQ_REGEXP SEQ_REGEXP149 = new SEQ_REGEXP();
+        SEQ_REGEXP149.text = "\\\\ffff\\b";
+        SEQ_REGEXP149.TYPE = "KEYWORD3";
+        SEQ_REGEXP149.HASH_CHAR = "\\ffff";
+        SEQ_REGEXP SEQ_REGEXP150 = new SEQ_REGEXP();
+        SEQ_REGEXP150.text = "\\\\first-page-number\\b";
+        SEQ_REGEXP150.TYPE = "KEYWORD3";
+        SEQ_REGEXP150.HASH_CHAR = "\\first-page-number";
+        SEQ_REGEXP SEQ_REGEXP151 = new SEQ_REGEXP();
+        SEQ_REGEXP151.text = "\\\\flageolet\\b";
+        SEQ_REGEXP151.TYPE = "KEYWORD3";
+        SEQ_REGEXP151.HASH_CHAR = "\\flageolet";
+        SEQ_REGEXP SEQ_REGEXP152 = new SEQ_REGEXP();
+        SEQ_REGEXP152.text = "\\\\fp\\b";
+        SEQ_REGEXP152.TYPE = "KEYWORD3";
+        SEQ_REGEXP152.HASH_CHAR = "\\fp";
+        SEQ_REGEXP SEQ_REGEXP153 = new SEQ_REGEXP();
+        SEQ_REGEXP153.text = "\\\\frenchChords\\b";
+        SEQ_REGEXP153.TYPE = "KEYWORD3";
+        SEQ_REGEXP153.HASH_CHAR = "\\frenchChords";
+        SEQ_REGEXP SEQ_REGEXP154 = new SEQ_REGEXP();
+        SEQ_REGEXP154.text = "\\\\fullJazzExceptions\\b";
+        SEQ_REGEXP154.TYPE = "KEYWORD3";
+        SEQ_REGEXP154.HASH_CHAR = "\\fullJazzExceptions";
+        SEQ_REGEXP SEQ_REGEXP155 = new SEQ_REGEXP();
+        SEQ_REGEXP155.text = "\\\\fz\\b";
+        SEQ_REGEXP155.TYPE = "KEYWORD3";
+        SEQ_REGEXP155.HASH_CHAR = "\\fz";
+        SEQ_REGEXP SEQ_REGEXP156 = new SEQ_REGEXP();
+        SEQ_REGEXP156.text = "\\\\germanChords\\b";
+        SEQ_REGEXP156.TYPE = "KEYWORD3";
+        SEQ_REGEXP156.HASH_CHAR = "\\germanChords";
+        SEQ_REGEXP SEQ_REGEXP157 = new SEQ_REGEXP();
+        SEQ_REGEXP157.text = "\\\\glissando\\b";
+        SEQ_REGEXP157.TYPE = "KEYWORD3";
+        SEQ_REGEXP157.HASH_CHAR = "\\glissando";
+        SEQ_REGEXP SEQ_REGEXP158 = new SEQ_REGEXP();
+        SEQ_REGEXP158.text = "\\\\harmonic\\b";
+        SEQ_REGEXP158.TYPE = "KEYWORD3";
+        SEQ_REGEXP158.HASH_CHAR = "\\harmonic";
+        SEQ_REGEXP SEQ_REGEXP159 = new SEQ_REGEXP();
+        SEQ_REGEXP159.text = "\\\\hideNotes\\b";
+        SEQ_REGEXP159.TYPE = "KEYWORD3";
+        SEQ_REGEXP159.HASH_CHAR = "\\hideNotes";
+        SEQ_REGEXP SEQ_REGEXP160 = new SEQ_REGEXP();
+        SEQ_REGEXP160.text = "\\\\hideStaffSwitch\\b";
+        SEQ_REGEXP160.TYPE = "KEYWORD3";
+        SEQ_REGEXP160.HASH_CHAR = "\\hideStaffSwitch";
+        SEQ_REGEXP SEQ_REGEXP161 = new SEQ_REGEXP();
+        SEQ_REGEXP161.text = "\\\\huge\\b";
+        SEQ_REGEXP161.TYPE = "KEYWORD3";
+        SEQ_REGEXP161.HASH_CHAR = "\\huge";
+        SEQ_REGEXP SEQ_REGEXP162 = new SEQ_REGEXP();
+        SEQ_REGEXP162.text = "\\\\ignatzekExceptionMusic\\b";
+        SEQ_REGEXP162.TYPE = "KEYWORD3";
+        SEQ_REGEXP162.HASH_CHAR = "\\ignatzekExceptionMusic";
+        SEQ_REGEXP SEQ_REGEXP163 = new SEQ_REGEXP();
+        SEQ_REGEXP163.text = "\\\\ignatzekExceptions\\b";
+        SEQ_REGEXP163.TYPE = "KEYWORD3";
+        SEQ_REGEXP163.HASH_CHAR = "\\ignatzekExceptions";
+        SEQ_REGEXP SEQ_REGEXP164 = new SEQ_REGEXP();
+        SEQ_REGEXP164.text = "\\\\improvisationOff\\b";
+        SEQ_REGEXP164.TYPE = "KEYWORD3";
+        SEQ_REGEXP164.HASH_CHAR = "\\improvisationOff";
+        SEQ_REGEXP SEQ_REGEXP165 = new SEQ_REGEXP();
+        SEQ_REGEXP165.text = "\\\\improvisationOn\\b";
+        SEQ_REGEXP165.TYPE = "KEYWORD3";
+        SEQ_REGEXP165.HASH_CHAR = "\\improvisationOn";
+        SEQ_REGEXP SEQ_REGEXP166 = new SEQ_REGEXP();
+        SEQ_REGEXP166.text = "\\\\in\\b";
+        SEQ_REGEXP166.TYPE = "KEYWORD3";
+        SEQ_REGEXP166.HASH_CHAR = "\\in";
+        SEQ_REGEXP SEQ_REGEXP167 = new SEQ_REGEXP();
+        SEQ_REGEXP167.text = "\\\\instrument-definitions\\b";
+        SEQ_REGEXP167.TYPE = "KEYWORD3";
+        SEQ_REGEXP167.HASH_CHAR = "\\instrument-definitions";
+        SEQ_REGEXP SEQ_REGEXP168 = new SEQ_REGEXP();
+        SEQ_REGEXP168.text = "\\\\ionian\\b";
+        SEQ_REGEXP168.TYPE = "KEYWORD3";
+        SEQ_REGEXP168.HASH_CHAR = "\\ionian";
+        SEQ_REGEXP SEQ_REGEXP169 = new SEQ_REGEXP();
+        SEQ_REGEXP169.text = "\\\\italianChords\\b";
+        SEQ_REGEXP169.TYPE = "KEYWORD3";
+        SEQ_REGEXP169.HASH_CHAR = "\\italianChords";
+        SEQ_REGEXP SEQ_REGEXP170 = new SEQ_REGEXP();
+        SEQ_REGEXP170.text = "\\\\laissezVibrer\\b";
+        SEQ_REGEXP170.TYPE = "KEYWORD3";
+        SEQ_REGEXP170.HASH_CHAR = "\\laissezVibrer";
+        SEQ_REGEXP SEQ_REGEXP171 = new SEQ_REGEXP();
+        SEQ_REGEXP171.text = "\\\\large\\b";
+        SEQ_REGEXP171.TYPE = "KEYWORD3";
+        SEQ_REGEXP171.HASH_CHAR = "\\large";
+        SEQ_REGEXP SEQ_REGEXP172 = new SEQ_REGEXP();
+        SEQ_REGEXP172.text = "\\\\left\\b";
+        SEQ_REGEXP172.TYPE = "KEYWORD3";
+        SEQ_REGEXP172.HASH_CHAR = "\\left";
+        SEQ_REGEXP SEQ_REGEXP173 = new SEQ_REGEXP();
+        SEQ_REGEXP173.text = "\\\\lheel\\b";
+        SEQ_REGEXP173.TYPE = "KEYWORD3";
+        SEQ_REGEXP173.HASH_CHAR = "\\lheel";
+        SEQ_REGEXP SEQ_REGEXP174 = new SEQ_REGEXP();
+        SEQ_REGEXP174.text = "\\\\lineprall\\b";
+        SEQ_REGEXP174.TYPE = "KEYWORD3";
+        SEQ_REGEXP174.HASH_CHAR = "\\lineprall";
+        SEQ_REGEXP SEQ_REGEXP175 = new SEQ_REGEXP();
+        SEQ_REGEXP175.text = "\\\\locrian\\b";
+        SEQ_REGEXP175.TYPE = "KEYWORD3";
+        SEQ_REGEXP175.HASH_CHAR = "\\locrian";
+        SEQ_REGEXP SEQ_REGEXP176 = new SEQ_REGEXP();
+        SEQ_REGEXP176.text = "\\\\longa\\b";
+        SEQ_REGEXP176.TYPE = "KEYWORD3";
+        SEQ_REGEXP176.HASH_CHAR = "\\longa";
+        SEQ_REGEXP SEQ_REGEXP177 = new SEQ_REGEXP();
+        SEQ_REGEXP177.text = "\\\\longfermata\\b";
+        SEQ_REGEXP177.TYPE = "KEYWORD3";
+        SEQ_REGEXP177.HASH_CHAR = "\\longfermata";
+        SEQ_REGEXP SEQ_REGEXP178 = new SEQ_REGEXP();
+        SEQ_REGEXP178.text = "\\\\ltoe\\b";
+        SEQ_REGEXP178.TYPE = "KEYWORD3";
+        SEQ_REGEXP178.HASH_CHAR = "\\ltoe";
+        SEQ_REGEXP SEQ_REGEXP179 = new SEQ_REGEXP();
+        SEQ_REGEXP179.text = "\\\\lydian\\b";
+        SEQ_REGEXP179.TYPE = "KEYWORD3";
+        SEQ_REGEXP179.HASH_CHAR = "\\lydian";
+        SEQ_REGEXP SEQ_REGEXP180 = new SEQ_REGEXP();
+        SEQ_REGEXP180.text = "\\\\major\\b";
+        SEQ_REGEXP180.TYPE = "KEYWORD3";
+        SEQ_REGEXP180.HASH_CHAR = "\\major";
+        SEQ_REGEXP SEQ_REGEXP181 = new SEQ_REGEXP();
+        SEQ_REGEXP181.text = "\\\\marcato\\b";
+        SEQ_REGEXP181.TYPE = "KEYWORD3";
+        SEQ_REGEXP181.HASH_CHAR = "\\marcato";
+        SEQ_REGEXP SEQ_REGEXP182 = new SEQ_REGEXP();
+        SEQ_REGEXP182.text = "\\\\maxima\\b";
+        SEQ_REGEXP182.TYPE = "KEYWORD3";
+        SEQ_REGEXP182.HASH_CHAR = "\\maxima";
+        SEQ_REGEXP SEQ_REGEXP183 = new SEQ_REGEXP();
+        SEQ_REGEXP183.text = "\\\\melisma\\b";
+        SEQ_REGEXP183.TYPE = "KEYWORD3";
+        SEQ_REGEXP183.HASH_CHAR = "\\melisma";
+        SEQ_REGEXP SEQ_REGEXP184 = new SEQ_REGEXP();
+        SEQ_REGEXP184.text = "\\\\melismaEnd\\b";
+        SEQ_REGEXP184.TYPE = "KEYWORD3";
+        SEQ_REGEXP184.HASH_CHAR = "\\melismaEnd";
+        SEQ_REGEXP SEQ_REGEXP185 = new SEQ_REGEXP();
+        SEQ_REGEXP185.text = "\\\\mergeDifferentlyDottedOff\\b";
+        SEQ_REGEXP185.TYPE = "KEYWORD3";
+        SEQ_REGEXP185.HASH_CHAR = "\\mergeDifferentlyDottedOff";
+        SEQ_REGEXP SEQ_REGEXP186 = new SEQ_REGEXP();
+        SEQ_REGEXP186.text = "\\\\mergeDifferentlyDottedOn\\b";
+        SEQ_REGEXP186.TYPE = "KEYWORD3";
+        SEQ_REGEXP186.HASH_CHAR = "\\mergeDifferentlyDottedOn";
+        SEQ_REGEXP SEQ_REGEXP187 = new SEQ_REGEXP();
+        SEQ_REGEXP187.text = "\\\\mergeDifferentlyHeadedOff\\b";
+        SEQ_REGEXP187.TYPE = "KEYWORD3";
+        SEQ_REGEXP187.HASH_CHAR = "\\mergeDifferentlyHeadedOff";
+        SEQ_REGEXP SEQ_REGEXP188 = new SEQ_REGEXP();
+        SEQ_REGEXP188.text = "\\\\mergeDifferentlyHeadedOn\\b";
+        SEQ_REGEXP188.TYPE = "KEYWORD3";
+        SEQ_REGEXP188.HASH_CHAR = "\\mergeDifferentlyHeadedOn";
+        SEQ_REGEXP SEQ_REGEXP189 = new SEQ_REGEXP();
+        SEQ_REGEXP189.text = "\\\\mf\\b";
+        SEQ_REGEXP189.TYPE = "KEYWORD3";
+        SEQ_REGEXP189.HASH_CHAR = "\\mf";
+        SEQ_REGEXP SEQ_REGEXP190 = new SEQ_REGEXP();
+        SEQ_REGEXP190.text = "\\\\midiDrumPitches\\b";
+        SEQ_REGEXP190.TYPE = "KEYWORD3";
+        SEQ_REGEXP190.HASH_CHAR = "\\midiDrumPitches";
+        SEQ_REGEXP SEQ_REGEXP191 = new SEQ_REGEXP();
+        SEQ_REGEXP191.text = "\\\\minor\\b";
+        SEQ_REGEXP191.TYPE = "KEYWORD3";
+        SEQ_REGEXP191.HASH_CHAR = "\\minor";
+        SEQ_REGEXP SEQ_REGEXP192 = new SEQ_REGEXP();
+        SEQ_REGEXP192.text = "\\\\mixolydian\\b";
+        SEQ_REGEXP192.TYPE = "KEYWORD3";
+        SEQ_REGEXP192.HASH_CHAR = "\\mixolydian";
+        SEQ_REGEXP SEQ_REGEXP193 = new SEQ_REGEXP();
+        SEQ_REGEXP193.text = "\\\\mm\\b";
+        SEQ_REGEXP193.TYPE = "KEYWORD3";
+        SEQ_REGEXP193.HASH_CHAR = "\\mm";
+        SEQ_REGEXP SEQ_REGEXP194 = new SEQ_REGEXP();
+        SEQ_REGEXP194.text = "\\\\mordent\\b";
+        SEQ_REGEXP194.TYPE = "KEYWORD3";
+        SEQ_REGEXP194.HASH_CHAR = "\\mordent";
+        SEQ_REGEXP SEQ_REGEXP195 = new SEQ_REGEXP();
+        SEQ_REGEXP195.text = "\\\\mp\\b";
+        SEQ_REGEXP195.TYPE = "KEYWORD3";
+        SEQ_REGEXP195.HASH_CHAR = "\\mp";
+        SEQ_REGEXP SEQ_REGEXP196 = new SEQ_REGEXP();
+        SEQ_REGEXP196.text = "\\\\newSpacingSection\\b";
+        SEQ_REGEXP196.TYPE = "KEYWORD3";
+        SEQ_REGEXP196.HASH_CHAR = "\\newSpacingSection";
+        SEQ_REGEXP SEQ_REGEXP197 = new SEQ_REGEXP();
+        SEQ_REGEXP197.text = "\\\\noBeam\\b";
+        SEQ_REGEXP197.TYPE = "KEYWORD3";
+        SEQ_REGEXP197.HASH_CHAR = "\\noBeam";
+        SEQ_REGEXP SEQ_REGEXP198 = new SEQ_REGEXP();
+        SEQ_REGEXP198.text = "\\\\noBreak\\b";
+        SEQ_REGEXP198.TYPE = "KEYWORD3";
+        SEQ_REGEXP198.HASH_CHAR = "\\noBreak";
+        SEQ_REGEXP SEQ_REGEXP199 = new SEQ_REGEXP();
+        SEQ_REGEXP199.text = "\\\\normalsize\\b";
+        SEQ_REGEXP199.TYPE = "KEYWORD3";
+        SEQ_REGEXP199.HASH_CHAR = "\\normalsize";
+        SEQ_REGEXP SEQ_REGEXP200 = new SEQ_REGEXP();
+        SEQ_REGEXP200.text = "\\\\numericTimeSignature\\b";
+        SEQ_REGEXP200.TYPE = "KEYWORD3";
+        SEQ_REGEXP200.HASH_CHAR = "\\numericTimeSignature";
+        SEQ_REGEXP SEQ_REGEXP201 = new SEQ_REGEXP();
+        SEQ_REGEXP201.text = "\\\\oddFooterMarkup\\b";
+        SEQ_REGEXP201.TYPE = "KEYWORD3";
+        SEQ_REGEXP201.HASH_CHAR = "\\oddFooterMarkup";
+        SEQ_REGEXP SEQ_REGEXP202 = new SEQ_REGEXP();
+        SEQ_REGEXP202.text = "\\\\oddHeaderMarkup\\b";
+        SEQ_REGEXP202.TYPE = "KEYWORD3";
+        SEQ_REGEXP202.HASH_CHAR = "\\oddHeaderMarkup";
+        SEQ_REGEXP SEQ_REGEXP203 = new SEQ_REGEXP();
+        SEQ_REGEXP203.text = "\\\\oneVoice\\b";
+        SEQ_REGEXP203.TYPE = "KEYWORD3";
+        SEQ_REGEXP203.HASH_CHAR = "\\oneVoice";
+        SEQ_REGEXP SEQ_REGEXP204 = new SEQ_REGEXP();
+        SEQ_REGEXP204.text = "\\\\open\\b";
+        SEQ_REGEXP204.TYPE = "KEYWORD3";
+        SEQ_REGEXP204.HASH_CHAR = "\\open";
+        SEQ_REGEXP SEQ_REGEXP205 = new SEQ_REGEXP();
+        SEQ_REGEXP205.text = "\\\\output-scale\\b";
+        SEQ_REGEXP205.TYPE = "KEYWORD3";
+        SEQ_REGEXP205.HASH_CHAR = "\\output-scale";
+        SEQ_REGEXP SEQ_REGEXP206 = new SEQ_REGEXP();
+        SEQ_REGEXP206.text = "\\\\p\\b";
+        SEQ_REGEXP206.TYPE = "KEYWORD3";
+        SEQ_REGEXP206.HASH_CHAR = "\\p";
+        SEQ_REGEXP SEQ_REGEXP207 = new SEQ_REGEXP();
+        SEQ_REGEXP207.text = "\\\\page-limit-inter-system-space\\b";
+        SEQ_REGEXP207.TYPE = "KEYWORD3";
+        SEQ_REGEXP207.HASH_CHAR = "\\page-limit-inter-system-space";
+        SEQ_REGEXP SEQ_REGEXP208 = new SEQ_REGEXP();
+        SEQ_REGEXP208.text = "\\\\page-top-space\\b";
+        SEQ_REGEXP208.TYPE = "KEYWORD3";
+        SEQ_REGEXP208.HASH_CHAR = "\\page-top-space";
+        SEQ_REGEXP SEQ_REGEXP209 = new SEQ_REGEXP();
+        SEQ_REGEXP209.text = "\\\\parenthesisCloseSymbol\\b";
+        SEQ_REGEXP209.TYPE = "KEYWORD3";
+        SEQ_REGEXP209.HASH_CHAR = "\\parenthesisCloseSymbol";
+        SEQ_REGEXP SEQ_REGEXP210 = new SEQ_REGEXP();
+        SEQ_REGEXP210.text = "\\\\parenthesisOpenSymbol\\b";
+        SEQ_REGEXP210.TYPE = "KEYWORD3";
+        SEQ_REGEXP210.HASH_CHAR = "\\parenthesisOpenSymbol";
+        SEQ_REGEXP SEQ_REGEXP211 = new SEQ_REGEXP();
+        SEQ_REGEXP211.text = "\\\\partialJazzExceptions\\b";
+        SEQ_REGEXP211.TYPE = "KEYWORD3";
+        SEQ_REGEXP211.HASH_CHAR = "\\partialJazzExceptions";
+        SEQ_REGEXP SEQ_REGEXP212 = new SEQ_REGEXP();
+        SEQ_REGEXP212.text = "\\\\partialJazzMusic\\b";
+        SEQ_REGEXP212.TYPE = "KEYWORD3";
+        SEQ_REGEXP212.HASH_CHAR = "\\partialJazzMusic";
+        SEQ_REGEXP SEQ_REGEXP213 = new SEQ_REGEXP();
+        SEQ_REGEXP213.text = "\\\\phrasingSlurDashed\\b";
+        SEQ_REGEXP213.TYPE = "KEYWORD3";
+        SEQ_REGEXP213.HASH_CHAR = "\\phrasingSlurDashed";
+        SEQ_REGEXP SEQ_REGEXP214 = new SEQ_REGEXP();
+        SEQ_REGEXP214.text = "\\\\phrasingSlurDotted\\b";
+        SEQ_REGEXP214.TYPE = "KEYWORD3";
+        SEQ_REGEXP214.HASH_CHAR = "\\phrasingSlurDotted";
+        SEQ_REGEXP SEQ_REGEXP215 = new SEQ_REGEXP();
+        SEQ_REGEXP215.text = "\\\\phrasingSlurDown\\b";
+        SEQ_REGEXP215.TYPE = "KEYWORD3";
+        SEQ_REGEXP215.HASH_CHAR = "\\phrasingSlurDown";
+        SEQ_REGEXP SEQ_REGEXP216 = new SEQ_REGEXP();
+        SEQ_REGEXP216.text = "\\\\phrasingSlurNeutral\\b";
+        SEQ_REGEXP216.TYPE = "KEYWORD3";
+        SEQ_REGEXP216.HASH_CHAR = "\\phrasingSlurNeutral";
+        SEQ_REGEXP SEQ_REGEXP217 = new SEQ_REGEXP();
+        SEQ_REGEXP217.text = "\\\\phrasingSlurSolid\\b";
+        SEQ_REGEXP217.TYPE = "KEYWORD3";
+        SEQ_REGEXP217.HASH_CHAR = "\\phrasingSlurSolid";
+        SEQ_REGEXP SEQ_REGEXP218 = new SEQ_REGEXP();
+        SEQ_REGEXP218.text = "\\\\phrasingSlurUp\\b";
+        SEQ_REGEXP218.TYPE = "KEYWORD3";
+        SEQ_REGEXP218.HASH_CHAR = "\\phrasingSlurUp";
+        SEQ_REGEXP SEQ_REGEXP219 = new SEQ_REGEXP();
+        SEQ_REGEXP219.text = "\\\\phrygian\\b";
+        SEQ_REGEXP219.TYPE = "KEYWORD3";
+        SEQ_REGEXP219.HASH_CHAR = "\\phrygian";
+        SEQ_REGEXP SEQ_REGEXP220 = new SEQ_REGEXP();
+        SEQ_REGEXP220.text = "\\\\pipeSymbol\\b";
+        SEQ_REGEXP220.TYPE = "KEYWORD3";
+        SEQ_REGEXP220.HASH_CHAR = "\\pipeSymbol";
+        SEQ_REGEXP SEQ_REGEXP221 = new SEQ_REGEXP();
+        SEQ_REGEXP221.text = "\\\\pitchnames\\b";
+        SEQ_REGEXP221.TYPE = "KEYWORD3";
+        SEQ_REGEXP221.HASH_CHAR = "\\pitchnames";
+        SEQ_REGEXP SEQ_REGEXP222 = new SEQ_REGEXP();
+        SEQ_REGEXP222.text = "\\\\portato\\b";
+        SEQ_REGEXP222.TYPE = "KEYWORD3";
+        SEQ_REGEXP222.HASH_CHAR = "\\portato";
+        SEQ_REGEXP SEQ_REGEXP223 = new SEQ_REGEXP();
+        SEQ_REGEXP223.text = "\\\\pp\\b";
+        SEQ_REGEXP223.TYPE = "KEYWORD3";
+        SEQ_REGEXP223.HASH_CHAR = "\\pp";
+        SEQ_REGEXP SEQ_REGEXP224 = new SEQ_REGEXP();
+        SEQ_REGEXP224.text = "\\\\ppp\\b";
+        SEQ_REGEXP224.TYPE = "KEYWORD3";
+        SEQ_REGEXP224.HASH_CHAR = "\\ppp";
+        SEQ_REGEXP SEQ_REGEXP225 = new SEQ_REGEXP();
+        SEQ_REGEXP225.text = "\\\\pppp\\b";
+        SEQ_REGEXP225.TYPE = "KEYWORD3";
+        SEQ_REGEXP225.HASH_CHAR = "\\pppp";
+        SEQ_REGEXP SEQ_REGEXP226 = new SEQ_REGEXP();
+        SEQ_REGEXP226.text = "\\\\ppppp\\b";
+        SEQ_REGEXP226.TYPE = "KEYWORD3";
+        SEQ_REGEXP226.HASH_CHAR = "\\ppppp";
+        SEQ_REGEXP SEQ_REGEXP227 = new SEQ_REGEXP();
+        SEQ_REGEXP227.text = "\\\\prall\\b";
+        SEQ_REGEXP227.TYPE = "KEYWORD3";
+        SEQ_REGEXP227.HASH_CHAR = "\\prall";
+        SEQ_REGEXP SEQ_REGEXP228 = new SEQ_REGEXP();
+        SEQ_REGEXP228.text = "\\\\pralldown\\b";
+        SEQ_REGEXP228.TYPE = "KEYWORD3";
+        SEQ_REGEXP228.HASH_CHAR = "\\pralldown";
+        SEQ_REGEXP SEQ_REGEXP229 = new SEQ_REGEXP();
+        SEQ_REGEXP229.text = "\\\\prallmordent\\b";
+        SEQ_REGEXP229.TYPE = "KEYWORD3";
+        SEQ_REGEXP229.HASH_CHAR = "\\prallmordent";
+        SEQ_REGEXP SEQ_REGEXP230 = new SEQ_REGEXP();
+        SEQ_REGEXP230.text = "\\\\prallprall\\b";
+        SEQ_REGEXP230.TYPE = "KEYWORD3";
+        SEQ_REGEXP230.HASH_CHAR = "\\prallprall";
+        SEQ_REGEXP SEQ_REGEXP231 = new SEQ_REGEXP();
+        SEQ_REGEXP231.text = "\\\\prallup\\b";
+        SEQ_REGEXP231.TYPE = "KEYWORD3";
+        SEQ_REGEXP231.HASH_CHAR = "\\prallup";
+        SEQ_REGEXP SEQ_REGEXP232 = new SEQ_REGEXP();
+        SEQ_REGEXP232.text = "\\\\predefinedFretboardsOff\\b";
+        SEQ_REGEXP232.TYPE = "KEYWORD3";
+        SEQ_REGEXP232.HASH_CHAR = "\\predefinedFretboardsOff";
+        SEQ_REGEXP SEQ_REGEXP233 = new SEQ_REGEXP();
+        SEQ_REGEXP233.text = "\\\\predefinedFretboardsOn\\b";
+        SEQ_REGEXP233.TYPE = "KEYWORD3";
+        SEQ_REGEXP233.HASH_CHAR = "\\predefinedFretboardsOn";
+        SEQ_REGEXP SEQ_REGEXP234 = new SEQ_REGEXP();
+        SEQ_REGEXP234.text = "\\\\print-first-page-number\\b";
+        SEQ_REGEXP234.TYPE = "KEYWORD3";
+        SEQ_REGEXP234.HASH_CHAR = "\\print-first-page-number";
+        SEQ_REGEXP SEQ_REGEXP235 = new SEQ_REGEXP();
+        SEQ_REGEXP235.text = "\\\\print-page-number\\b";
+        SEQ_REGEXP235.TYPE = "KEYWORD3";
+        SEQ_REGEXP235.HASH_CHAR = "\\print-page-number";
+        SEQ_REGEXP SEQ_REGEXP236 = new SEQ_REGEXP();
+        SEQ_REGEXP236.text = "\\\\pt\\b";
+        SEQ_REGEXP236.TYPE = "KEYWORD3";
+        SEQ_REGEXP236.HASH_CHAR = "\\pt";
+        SEQ_REGEXP SEQ_REGEXP237 = new SEQ_REGEXP();
+        SEQ_REGEXP237.text = "\\\\ragged-bottom\\b";
+        SEQ_REGEXP237.TYPE = "KEYWORD3";
+        SEQ_REGEXP237.HASH_CHAR = "\\ragged-bottom";
+        SEQ_REGEXP SEQ_REGEXP238 = new SEQ_REGEXP();
+        SEQ_REGEXP238.text = "\\\\ragged-last-bottom\\b";
+        SEQ_REGEXP238.TYPE = "KEYWORD3";
+        SEQ_REGEXP238.HASH_CHAR = "\\ragged-last-bottom";
+        SEQ_REGEXP SEQ_REGEXP239 = new SEQ_REGEXP();
+        SEQ_REGEXP239.text = "\\\\repeatTie\\b";
+        SEQ_REGEXP239.TYPE = "KEYWORD3";
+        SEQ_REGEXP239.HASH_CHAR = "\\repeatTie";
+        SEQ_REGEXP SEQ_REGEXP240 = new SEQ_REGEXP();
+        SEQ_REGEXP240.text = "\\\\reverseturn\\b";
+        SEQ_REGEXP240.TYPE = "KEYWORD3";
+        SEQ_REGEXP240.HASH_CHAR = "\\reverseturn";
+        SEQ_REGEXP SEQ_REGEXP241 = new SEQ_REGEXP();
+        SEQ_REGEXP241.text = "\\\\rfz\\b";
+        SEQ_REGEXP241.TYPE = "KEYWORD3";
+        SEQ_REGEXP241.HASH_CHAR = "\\rfz";
+        SEQ_REGEXP SEQ_REGEXP242 = new SEQ_REGEXP();
+        SEQ_REGEXP242.text = "\\\\rheel\\b";
+        SEQ_REGEXP242.TYPE = "KEYWORD3";
+        SEQ_REGEXP242.HASH_CHAR = "\\rheel";
+        SEQ_REGEXP SEQ_REGEXP243 = new SEQ_REGEXP();
+        SEQ_REGEXP243.text = "\\\\right\\b";
+        SEQ_REGEXP243.TYPE = "KEYWORD3";
+        SEQ_REGEXP243.HASH_CHAR = "\\right";
+        SEQ_REGEXP SEQ_REGEXP244 = new SEQ_REGEXP();
+        SEQ_REGEXP244.text = "\\\\rtoe\\b";
+        SEQ_REGEXP244.TYPE = "KEYWORD3";
+        SEQ_REGEXP244.HASH_CHAR = "\\rtoe";
+        SEQ_REGEXP SEQ_REGEXP245 = new SEQ_REGEXP();
+        SEQ_REGEXP245.text = "\\\\sacredHarpHeads\\b";
+        SEQ_REGEXP245.TYPE = "KEYWORD3";
+        SEQ_REGEXP245.HASH_CHAR = "\\sacredHarpHeads";
+        SEQ_REGEXP SEQ_REGEXP246 = new SEQ_REGEXP();
+        SEQ_REGEXP246.text = "\\\\scoreTitleMarkup\\b";
+        SEQ_REGEXP246.TYPE = "KEYWORD3";
+        SEQ_REGEXP246.HASH_CHAR = "\\scoreTitleMarkup";
+        SEQ_REGEXP SEQ_REGEXP247 = new SEQ_REGEXP();
+        SEQ_REGEXP247.text = "\\\\segno\\b";
+        SEQ_REGEXP247.TYPE = "KEYWORD3";
+        SEQ_REGEXP247.HASH_CHAR = "\\segno";
+        SEQ_REGEXP SEQ_REGEXP248 = new SEQ_REGEXP();
+        SEQ_REGEXP248.text = "\\\\semiGermanChords\\b";
+        SEQ_REGEXP248.TYPE = "KEYWORD3";
+        SEQ_REGEXP248.HASH_CHAR = "\\semiGermanChords";
+        SEQ_REGEXP SEQ_REGEXP249 = new SEQ_REGEXP();
+        SEQ_REGEXP249.text = "\\\\setDefaultDurationToQuarter\\b";
+        SEQ_REGEXP249.TYPE = "KEYWORD3";
+        SEQ_REGEXP249.HASH_CHAR = "\\setDefaultDurationToQuarter";
+        SEQ_REGEXP SEQ_REGEXP250 = new SEQ_REGEXP();
+        SEQ_REGEXP250.text = "\\\\sf\\b";
+        SEQ_REGEXP250.TYPE = "KEYWORD3";
+        SEQ_REGEXP250.HASH_CHAR = "\\sf";
+        SEQ_REGEXP SEQ_REGEXP251 = new SEQ_REGEXP();
+        SEQ_REGEXP251.text = "\\\\sff\\b";
+        SEQ_REGEXP251.TYPE = "KEYWORD3";
+        SEQ_REGEXP251.HASH_CHAR = "\\sff";
+        SEQ_REGEXP SEQ_REGEXP252 = new SEQ_REGEXP();
+        SEQ_REGEXP252.text = "\\\\sfp\\b";
+        SEQ_REGEXP252.TYPE = "KEYWORD3";
+        SEQ_REGEXP252.HASH_CHAR = "\\sfp";
+        SEQ_REGEXP SEQ_REGEXP253 = new SEQ_REGEXP();
+        SEQ_REGEXP253.text = "\\\\sfz\\b";
+        SEQ_REGEXP253.TYPE = "KEYWORD3";
+        SEQ_REGEXP253.HASH_CHAR = "\\sfz";
+        SEQ_REGEXP SEQ_REGEXP254 = new SEQ_REGEXP();
+        SEQ_REGEXP254.text = "\\\\shiftOff\\b";
+        SEQ_REGEXP254.TYPE = "KEYWORD3";
+        SEQ_REGEXP254.HASH_CHAR = "\\shiftOff";
+        SEQ_REGEXP SEQ_REGEXP255 = new SEQ_REGEXP();
+        SEQ_REGEXP255.text = "\\\\shiftOn\\b";
+        SEQ_REGEXP255.TYPE = "KEYWORD3";
+        SEQ_REGEXP255.HASH_CHAR = "\\shiftOn";
+        SEQ_REGEXP SEQ_REGEXP256 = new SEQ_REGEXP();
+        SEQ_REGEXP256.text = "\\\\shiftOnn\\b";
+        SEQ_REGEXP256.TYPE = "KEYWORD3";
+        SEQ_REGEXP256.HASH_CHAR = "\\shiftOnn";
+        SEQ_REGEXP SEQ_REGEXP257 = new SEQ_REGEXP();
+        SEQ_REGEXP257.text = "\\\\shiftOnnn\\b";
+        SEQ_REGEXP257.TYPE = "KEYWORD3";
+        SEQ_REGEXP257.HASH_CHAR = "\\shiftOnnn";
+        SEQ_REGEXP SEQ_REGEXP258 = new SEQ_REGEXP();
+        SEQ_REGEXP258.text = "\\\\shortfermata\\b";
+        SEQ_REGEXP258.TYPE = "KEYWORD3";
+        SEQ_REGEXP258.HASH_CHAR = "\\shortfermata";
+        SEQ_REGEXP SEQ_REGEXP259 = new SEQ_REGEXP();
+        SEQ_REGEXP259.text = "\\\\showStaffSwitch\\b";
+        SEQ_REGEXP259.TYPE = "KEYWORD3";
+        SEQ_REGEXP259.HASH_CHAR = "\\showStaffSwitch";
+        SEQ_REGEXP SEQ_REGEXP260 = new SEQ_REGEXP();
+        SEQ_REGEXP260.text = "\\\\signumcongruentiae\\b";
+        SEQ_REGEXP260.TYPE = "KEYWORD3";
+        SEQ_REGEXP260.HASH_CHAR = "\\signumcongruentiae";
+        SEQ_REGEXP SEQ_REGEXP261 = new SEQ_REGEXP();
+        SEQ_REGEXP261.text = "\\\\slashSeparator\\b";
+        SEQ_REGEXP261.TYPE = "KEYWORD3";
+        SEQ_REGEXP261.HASH_CHAR = "\\slashSeparator";
+        SEQ_REGEXP SEQ_REGEXP262 = new SEQ_REGEXP();
+        SEQ_REGEXP262.text = "\\\\slurDashed\\b";
+        SEQ_REGEXP262.TYPE = "KEYWORD3";
+        SEQ_REGEXP262.HASH_CHAR = "\\slurDashed";
+        SEQ_REGEXP SEQ_REGEXP263 = new SEQ_REGEXP();
+        SEQ_REGEXP263.text = "\\\\slurDotted\\b";
+        SEQ_REGEXP263.TYPE = "KEYWORD3";
+        SEQ_REGEXP263.HASH_CHAR = "\\slurDotted";
+        SEQ_REGEXP SEQ_REGEXP264 = new SEQ_REGEXP();
+        SEQ_REGEXP264.text = "\\\\slurDown\\b";
+        SEQ_REGEXP264.TYPE = "KEYWORD3";
+        SEQ_REGEXP264.HASH_CHAR = "\\slurDown";
+        SEQ_REGEXP SEQ_REGEXP265 = new SEQ_REGEXP();
+        SEQ_REGEXP265.text = "\\\\slurNeutral\\b";
+        SEQ_REGEXP265.TYPE = "KEYWORD3";
+        SEQ_REGEXP265.HASH_CHAR = "\\slurNeutral";
+        SEQ_REGEXP SEQ_REGEXP266 = new SEQ_REGEXP();
+        SEQ_REGEXP266.text = "\\\\slurSolid\\b";
+        SEQ_REGEXP266.TYPE = "KEYWORD3";
+        SEQ_REGEXP266.HASH_CHAR = "\\slurSolid";
+        SEQ_REGEXP SEQ_REGEXP267 = new SEQ_REGEXP();
+        SEQ_REGEXP267.text = "\\\\slurUp\\b";
+        SEQ_REGEXP267.TYPE = "KEYWORD3";
+        SEQ_REGEXP267.HASH_CHAR = "\\slurUp";
+        SEQ_REGEXP SEQ_REGEXP268 = new SEQ_REGEXP();
+        SEQ_REGEXP268.text = "\\\\small\\b";
+        SEQ_REGEXP268.TYPE = "KEYWORD3";
+        SEQ_REGEXP268.HASH_CHAR = "\\small";
+        SEQ_REGEXP SEQ_REGEXP269 = new SEQ_REGEXP();
+        SEQ_REGEXP269.text = "\\\\smaller\\b";
+        SEQ_REGEXP269.TYPE = "KEYWORD3";
+        SEQ_REGEXP269.HASH_CHAR = "\\smaller";
+        SEQ_REGEXP SEQ_REGEXP270 = new SEQ_REGEXP();
+        SEQ_REGEXP270.text = "\\\\sostenutoOff\\b";
+        SEQ_REGEXP270.TYPE = "KEYWORD3";
+        SEQ_REGEXP270.HASH_CHAR = "\\sostenutoOff";
+        SEQ_REGEXP SEQ_REGEXP271 = new SEQ_REGEXP();
+        SEQ_REGEXP271.text = "\\\\sostenutoOn\\b";
+        SEQ_REGEXP271.TYPE = "KEYWORD3";
+        SEQ_REGEXP271.HASH_CHAR = "\\sostenutoOn";
+        SEQ_REGEXP SEQ_REGEXP272 = new SEQ_REGEXP();
+        SEQ_REGEXP272.text = "\\\\sp\\b";
+        SEQ_REGEXP272.TYPE = "KEYWORD3";
+        SEQ_REGEXP272.HASH_CHAR = "\\sp";
+        SEQ_REGEXP SEQ_REGEXP273 = new SEQ_REGEXP();
+        SEQ_REGEXP273.text = "\\\\spp\\b";
+        SEQ_REGEXP273.TYPE = "KEYWORD3";
+        SEQ_REGEXP273.HASH_CHAR = "\\spp";
+        SEQ_REGEXP SEQ_REGEXP274 = new SEQ_REGEXP();
+        SEQ_REGEXP274.text = "\\\\staccatissimo\\b";
+        SEQ_REGEXP274.TYPE = "KEYWORD3";
+        SEQ_REGEXP274.HASH_CHAR = "\\staccatissimo";
+        SEQ_REGEXP SEQ_REGEXP275 = new SEQ_REGEXP();
+        SEQ_REGEXP275.text = "\\\\staccato\\b";
+        SEQ_REGEXP275.TYPE = "KEYWORD3";
+        SEQ_REGEXP275.HASH_CHAR = "\\staccato";
+        SEQ_REGEXP SEQ_REGEXP276 = new SEQ_REGEXP();
+        SEQ_REGEXP276.text = "\\\\start\\b";
+        SEQ_REGEXP276.TYPE = "KEYWORD3";
+        SEQ_REGEXP276.HASH_CHAR = "\\start";
+        SEQ_REGEXP SEQ_REGEXP277 = new SEQ_REGEXP();
+        SEQ_REGEXP277.text = "\\\\startAcciaccaturaMusic\\b";
+        SEQ_REGEXP277.TYPE = "KEYWORD3";
+        SEQ_REGEXP277.HASH_CHAR = "\\startAcciaccaturaMusic";
+        SEQ_REGEXP SEQ_REGEXP278 = new SEQ_REGEXP();
+        SEQ_REGEXP278.text = "\\\\startAppoggiaturaMusic\\b";
+        SEQ_REGEXP278.TYPE = "KEYWORD3";
+        SEQ_REGEXP278.HASH_CHAR = "\\startAppoggiaturaMusic";
+        SEQ_REGEXP SEQ_REGEXP279 = new SEQ_REGEXP();
+        SEQ_REGEXP279.text = "\\\\startGraceMusic\\b";
+        SEQ_REGEXP279.TYPE = "KEYWORD3";
+        SEQ_REGEXP279.HASH_CHAR = "\\startGraceMusic";
+        SEQ_REGEXP SEQ_REGEXP280 = new SEQ_REGEXP();
+        SEQ_REGEXP280.text = "\\\\startGroup\\b";
+        SEQ_REGEXP280.TYPE = "KEYWORD3";
+        SEQ_REGEXP280.HASH_CHAR = "\\startGroup";
+        SEQ_REGEXP SEQ_REGEXP281 = new SEQ_REGEXP();
+        SEQ_REGEXP281.text = "\\\\startStaff\\b";
+        SEQ_REGEXP281.TYPE = "KEYWORD3";
+        SEQ_REGEXP281.HASH_CHAR = "\\startStaff";
+        SEQ_REGEXP SEQ_REGEXP282 = new SEQ_REGEXP();
+        SEQ_REGEXP282.text = "\\\\startTextSpan\\b";
+        SEQ_REGEXP282.TYPE = "KEYWORD3";
+        SEQ_REGEXP282.HASH_CHAR = "\\startTextSpan";
+        SEQ_REGEXP SEQ_REGEXP283 = new SEQ_REGEXP();
+        SEQ_REGEXP283.text = "\\\\startTrillSpan\\b";
+        SEQ_REGEXP283.TYPE = "KEYWORD3";
+        SEQ_REGEXP283.HASH_CHAR = "\\startTrillSpan";
+        SEQ_REGEXP SEQ_REGEXP284 = new SEQ_REGEXP();
+        SEQ_REGEXP284.text = "\\\\stemDown\\b";
+        SEQ_REGEXP284.TYPE = "KEYWORD3";
+        SEQ_REGEXP284.HASH_CHAR = "\\stemDown";
+        SEQ_REGEXP SEQ_REGEXP285 = new SEQ_REGEXP();
+        SEQ_REGEXP285.text = "\\\\stemNeutral\\b";
+        SEQ_REGEXP285.TYPE = "KEYWORD3";
+        SEQ_REGEXP285.HASH_CHAR = "\\stemNeutral";
+        SEQ_REGEXP SEQ_REGEXP286 = new SEQ_REGEXP();
+        SEQ_REGEXP286.text = "\\\\stemUp\\b";
+        SEQ_REGEXP286.TYPE = "KEYWORD3";
+        SEQ_REGEXP286.HASH_CHAR = "\\stemUp";
+        SEQ_REGEXP SEQ_REGEXP287 = new SEQ_REGEXP();
+        SEQ_REGEXP287.text = "\\\\stop\\b";
+        SEQ_REGEXP287.TYPE = "KEYWORD3";
+        SEQ_REGEXP287.HASH_CHAR = "\\stop";
+        SEQ_REGEXP SEQ_REGEXP288 = new SEQ_REGEXP();
+        SEQ_REGEXP288.text = "\\\\stopAcciaccaturaMusic\\b";
+        SEQ_REGEXP288.TYPE = "KEYWORD3";
+        SEQ_REGEXP288.HASH_CHAR = "\\stopAcciaccaturaMusic";
+        SEQ_REGEXP SEQ_REGEXP289 = new SEQ_REGEXP();
+        SEQ_REGEXP289.text = "\\\\stopAppoggiaturaMusic\\b";
+        SEQ_REGEXP289.TYPE = "KEYWORD3";
+        SEQ_REGEXP289.HASH_CHAR = "\\stopAppoggiaturaMusic";
+        SEQ_REGEXP SEQ_REGEXP290 = new SEQ_REGEXP();
+        SEQ_REGEXP290.text = "\\\\stopGraceMusic\\b";
+        SEQ_REGEXP290.TYPE = "KEYWORD3";
+        SEQ_REGEXP290.HASH_CHAR = "\\stopGraceMusic";
+        SEQ_REGEXP SEQ_REGEXP291 = new SEQ_REGEXP();
+        SEQ_REGEXP291.text = "\\\\stopGroup\\b";
+        SEQ_REGEXP291.TYPE = "KEYWORD3";
+        SEQ_REGEXP291.HASH_CHAR = "\\stopGroup";
+        SEQ_REGEXP SEQ_REGEXP292 = new SEQ_REGEXP();
+        SEQ_REGEXP292.text = "\\\\stopStaff\\b";
+        SEQ_REGEXP292.TYPE = "KEYWORD3";
+        SEQ_REGEXP292.HASH_CHAR = "\\stopStaff";
+        SEQ_REGEXP SEQ_REGEXP293 = new SEQ_REGEXP();
+        SEQ_REGEXP293.text = "\\\\stopTextSpan\\b";
+        SEQ_REGEXP293.TYPE = "KEYWORD3";
+        SEQ_REGEXP293.HASH_CHAR = "\\stopTextSpan";
+        SEQ_REGEXP SEQ_REGEXP294 = new SEQ_REGEXP();
+        SEQ_REGEXP294.text = "\\\\stopTrillSpan\\b";
+        SEQ_REGEXP294.TYPE = "KEYWORD3";
+        SEQ_REGEXP294.HASH_CHAR = "\\stopTrillSpan";
+        SEQ_REGEXP SEQ_REGEXP295 = new SEQ_REGEXP();
+        SEQ_REGEXP295.text = "\\\\stopped\\b";
+        SEQ_REGEXP295.TYPE = "KEYWORD3";
+        SEQ_REGEXP295.HASH_CHAR = "\\stopped";
+        SEQ_REGEXP SEQ_REGEXP296 = new SEQ_REGEXP();
+        SEQ_REGEXP296.text = "\\\\sustainOff\\b";
+        SEQ_REGEXP296.TYPE = "KEYWORD3";
+        SEQ_REGEXP296.HASH_CHAR = "\\sustainOff";
+        SEQ_REGEXP SEQ_REGEXP297 = new SEQ_REGEXP();
+        SEQ_REGEXP297.text = "\\\\sustainOn\\b";
+        SEQ_REGEXP297.TYPE = "KEYWORD3";
+        SEQ_REGEXP297.HASH_CHAR = "\\sustainOn";
+        SEQ_REGEXP SEQ_REGEXP298 = new SEQ_REGEXP();
+        SEQ_REGEXP298.text = "\\\\tagline\\b";
+        SEQ_REGEXP298.TYPE = "KEYWORD3";
+        SEQ_REGEXP298.HASH_CHAR = "\\tagline";
+        SEQ_REGEXP SEQ_REGEXP299 = new SEQ_REGEXP();
+        SEQ_REGEXP299.text = "\\\\teeny\\b";
+        SEQ_REGEXP299.TYPE = "KEYWORD3";
+        SEQ_REGEXP299.HASH_CHAR = "\\teeny";
+        SEQ_REGEXP SEQ_REGEXP300 = new SEQ_REGEXP();
+        SEQ_REGEXP300.text = "\\\\tenuto\\b";
+        SEQ_REGEXP300.TYPE = "KEYWORD3";
+        SEQ_REGEXP300.HASH_CHAR = "\\tenuto";
+        SEQ_REGEXP SEQ_REGEXP301 = new SEQ_REGEXP();
+        SEQ_REGEXP301.text = "\\\\textLengthOff\\b";
+        SEQ_REGEXP301.TYPE = "KEYWORD3";
+        SEQ_REGEXP301.HASH_CHAR = "\\textLengthOff";
+        SEQ_REGEXP SEQ_REGEXP302 = new SEQ_REGEXP();
+        SEQ_REGEXP302.text = "\\\\textLengthOn\\b";
+        SEQ_REGEXP302.TYPE = "KEYWORD3";
+        SEQ_REGEXP302.HASH_CHAR = "\\textLengthOn";
+        SEQ_REGEXP SEQ_REGEXP303 = new SEQ_REGEXP();
+        SEQ_REGEXP303.text = "\\\\textSpannerDown\\b";
+        SEQ_REGEXP303.TYPE = "KEYWORD3";
+        SEQ_REGEXP303.HASH_CHAR = "\\textSpannerDown";
+        SEQ_REGEXP SEQ_REGEXP304 = new SEQ_REGEXP();
+        SEQ_REGEXP304.text = "\\\\textSpannerNeutral\\b";
+        SEQ_REGEXP304.TYPE = "KEYWORD3";
+        SEQ_REGEXP304.HASH_CHAR = "\\textSpannerNeutral";
+        SEQ_REGEXP SEQ_REGEXP305 = new SEQ_REGEXP();
+        SEQ_REGEXP305.text = "\\\\textSpannerUp\\b";
+        SEQ_REGEXP305.TYPE = "KEYWORD3";
+        SEQ_REGEXP305.HASH_CHAR = "\\textSpannerUp";
+        SEQ_REGEXP SEQ_REGEXP306 = new SEQ_REGEXP();
+        SEQ_REGEXP306.text = "\\\\thumb\\b";
+        SEQ_REGEXP306.TYPE = "KEYWORD3";
+        SEQ_REGEXP306.HASH_CHAR = "\\thumb";
+        SEQ_REGEXP SEQ_REGEXP307 = new SEQ_REGEXP();
+        SEQ_REGEXP307.text = "\\\\tieDashed\\b";
+        SEQ_REGEXP307.TYPE = "KEYWORD3";
+        SEQ_REGEXP307.HASH_CHAR = "\\tieDashed";
+        SEQ_REGEXP SEQ_REGEXP308 = new SEQ_REGEXP();
+        SEQ_REGEXP308.text = "\\\\tieDotted\\b";
+        SEQ_REGEXP308.TYPE = "KEYWORD3";
+        SEQ_REGEXP308.HASH_CHAR = "\\tieDotted";
+        SEQ_REGEXP SEQ_REGEXP309 = new SEQ_REGEXP();
+        SEQ_REGEXP309.text = "\\\\tieDown\\b";
+        SEQ_REGEXP309.TYPE = "KEYWORD3";
+        SEQ_REGEXP309.HASH_CHAR = "\\tieDown";
+        SEQ_REGEXP SEQ_REGEXP310 = new SEQ_REGEXP();
+        SEQ_REGEXP310.text = "\\\\tieNeutral\\b";
+        SEQ_REGEXP310.TYPE = "KEYWORD3";
+        SEQ_REGEXP310.HASH_CHAR = "\\tieNeutral";
+        SEQ_REGEXP SEQ_REGEXP311 = new SEQ_REGEXP();
+        SEQ_REGEXP311.text = "\\\\tieSolid\\b";
+        SEQ_REGEXP311.TYPE = "KEYWORD3";
+        SEQ_REGEXP311.HASH_CHAR = "\\tieSolid";
+        SEQ_REGEXP SEQ_REGEXP312 = new SEQ_REGEXP();
+        SEQ_REGEXP312.text = "\\\\tieUp\\b";
+        SEQ_REGEXP312.TYPE = "KEYWORD3";
+        SEQ_REGEXP312.HASH_CHAR = "\\tieUp";
+        SEQ_REGEXP SEQ_REGEXP313 = new SEQ_REGEXP();
+        SEQ_REGEXP313.text = "\\\\tildeSymbol\\b";
+        SEQ_REGEXP313.TYPE = "KEYWORD3";
+        SEQ_REGEXP313.HASH_CHAR = "\\tildeSymbol";
+        SEQ_REGEXP SEQ_REGEXP314 = new SEQ_REGEXP();
+        SEQ_REGEXP314.text = "\\\\tiny\\b";
+        SEQ_REGEXP314.TYPE = "KEYWORD3";
+        SEQ_REGEXP314.HASH_CHAR = "\\tiny";
+        SEQ_REGEXP SEQ_REGEXP315 = new SEQ_REGEXP();
+        SEQ_REGEXP315.text = "\\\\tocItemMarkup\\b";
+        SEQ_REGEXP315.TYPE = "KEYWORD3";
+        SEQ_REGEXP315.HASH_CHAR = "\\tocItemMarkup";
+        SEQ_REGEXP SEQ_REGEXP316 = new SEQ_REGEXP();
+        SEQ_REGEXP316.text = "\\\\tocTitleMarkup\\b";
+        SEQ_REGEXP316.TYPE = "KEYWORD3";
+        SEQ_REGEXP316.HASH_CHAR = "\\tocTitleMarkup";
+        SEQ_REGEXP SEQ_REGEXP317 = new SEQ_REGEXP();
+        SEQ_REGEXP317.text = "\\\\treCorde\\b";
+        SEQ_REGEXP317.TYPE = "KEYWORD3";
+        SEQ_REGEXP317.HASH_CHAR = "\\treCorde";
+        SEQ_REGEXP SEQ_REGEXP318 = new SEQ_REGEXP();
+        SEQ_REGEXP318.text = "\\\\trill\\b";
+        SEQ_REGEXP318.TYPE = "KEYWORD3";
+        SEQ_REGEXP318.HASH_CHAR = "\\trill";
+        SEQ_REGEXP SEQ_REGEXP319 = new SEQ_REGEXP();
+        SEQ_REGEXP319.text = "\\\\tupletDown\\b";
+        SEQ_REGEXP319.TYPE = "KEYWORD3";
+        SEQ_REGEXP319.HASH_CHAR = "\\tupletDown";
+        SEQ_REGEXP SEQ_REGEXP320 = new SEQ_REGEXP();
+        SEQ_REGEXP320.text = "\\\\tupletNeutral\\b";
+        SEQ_REGEXP320.TYPE = "KEYWORD3";
+        SEQ_REGEXP320.HASH_CHAR = "\\tupletNeutral";
+        SEQ_REGEXP SEQ_REGEXP321 = new SEQ_REGEXP();
+        SEQ_REGEXP321.text = "\\\\tupletUp\\b";
+        SEQ_REGEXP321.TYPE = "KEYWORD3";
+        SEQ_REGEXP321.HASH_CHAR = "\\tupletUp";
+        SEQ_REGEXP SEQ_REGEXP322 = new SEQ_REGEXP();
+        SEQ_REGEXP322.text = "\\\\turn\\b";
+        SEQ_REGEXP322.TYPE = "KEYWORD3";
+        SEQ_REGEXP322.HASH_CHAR = "\\turn";
+        SEQ_REGEXP SEQ_REGEXP323 = new SEQ_REGEXP();
+        SEQ_REGEXP323.text = "\\\\unHideNotes\\b";
+        SEQ_REGEXP323.TYPE = "KEYWORD3";
+        SEQ_REGEXP323.HASH_CHAR = "\\unHideNotes";
+        SEQ_REGEXP SEQ_REGEXP324 = new SEQ_REGEXP();
+        SEQ_REGEXP324.text = "\\\\unaCorda\\b";
+        SEQ_REGEXP324.TYPE = "KEYWORD3";
+        SEQ_REGEXP324.HASH_CHAR = "\\unaCorda";
+        SEQ_REGEXP SEQ_REGEXP325 = new SEQ_REGEXP();
+        SEQ_REGEXP325.text = "\\\\unit\\b";
+        SEQ_REGEXP325.TYPE = "KEYWORD3";
+        SEQ_REGEXP325.HASH_CHAR = "\\unit";
+        SEQ_REGEXP SEQ_REGEXP326 = new SEQ_REGEXP();
+        SEQ_REGEXP326.text = "\\\\up\\b";
+        SEQ_REGEXP326.TYPE = "KEYWORD3";
+        SEQ_REGEXP326.HASH_CHAR = "\\up";
+        SEQ_REGEXP SEQ_REGEXP327 = new SEQ_REGEXP();
+        SEQ_REGEXP327.text = "\\\\upbow\\b";
+        SEQ_REGEXP327.TYPE = "KEYWORD3";
+        SEQ_REGEXP327.HASH_CHAR = "\\upbow";
+        SEQ_REGEXP SEQ_REGEXP328 = new SEQ_REGEXP();
+        SEQ_REGEXP328.text = "\\\\upmordent\\b";
+        SEQ_REGEXP328.TYPE = "KEYWORD3";
+        SEQ_REGEXP328.HASH_CHAR = "\\upmordent";
+        SEQ_REGEXP SEQ_REGEXP329 = new SEQ_REGEXP();
+        SEQ_REGEXP329.text = "\\\\upprall\\b";
+        SEQ_REGEXP329.TYPE = "KEYWORD3";
+        SEQ_REGEXP329.HASH_CHAR = "\\upprall";
+        SEQ_REGEXP SEQ_REGEXP330 = new SEQ_REGEXP();
+        SEQ_REGEXP330.text = "\\\\varcoda\\b";
+        SEQ_REGEXP330.TYPE = "KEYWORD3";
+        SEQ_REGEXP330.HASH_CHAR = "\\varcoda";
+        SEQ_REGEXP SEQ_REGEXP331 = new SEQ_REGEXP();
+        SEQ_REGEXP331.text = "\\\\verylongfermata\\b";
+        SEQ_REGEXP331.TYPE = "KEYWORD3";
+        SEQ_REGEXP331.HASH_CHAR = "\\verylongfermata";
+        SEQ_REGEXP SEQ_REGEXP332 = new SEQ_REGEXP();
+        SEQ_REGEXP332.text = "\\\\voiceFour\\b";
+        SEQ_REGEXP332.TYPE = "KEYWORD3";
+        SEQ_REGEXP332.HASH_CHAR = "\\voiceFour";
+        SEQ_REGEXP SEQ_REGEXP333 = new SEQ_REGEXP();
+        SEQ_REGEXP333.text = "\\\\voiceFourStyle\\b";
+        SEQ_REGEXP333.TYPE = "KEYWORD3";
+        SEQ_REGEXP333.HASH_CHAR = "\\voiceFourStyle";
+        SEQ_REGEXP SEQ_REGEXP334 = new SEQ_REGEXP();
+        SEQ_REGEXP334.text = "\\\\voiceNeutralStyle\\b";
+        SEQ_REGEXP334.TYPE = "KEYWORD3";
+        SEQ_REGEXP334.HASH_CHAR = "\\voiceNeutralStyle";
+        SEQ_REGEXP SEQ_REGEXP335 = new SEQ_REGEXP();
+        SEQ_REGEXP335.text = "\\\\voiceOne\\b";
+        SEQ_REGEXP335.TYPE = "KEYWORD3";
+        SEQ_REGEXP335.HASH_CHAR = "\\voiceOne";
+        SEQ_REGEXP SEQ_REGEXP336 = new SEQ_REGEXP();
+        SEQ_REGEXP336.text = "\\\\voiceOneStyle\\b";
+        SEQ_REGEXP336.TYPE = "KEYWORD3";
+        SEQ_REGEXP336.HASH_CHAR = "\\voiceOneStyle";
+        SEQ_REGEXP SEQ_REGEXP337 = new SEQ_REGEXP();
+        SEQ_REGEXP337.text = "\\\\voiceThree\\b";
+        SEQ_REGEXP337.TYPE = "KEYWORD3";
+        SEQ_REGEXP337.HASH_CHAR = "\\voiceThree";
+        SEQ_REGEXP SEQ_REGEXP338 = new SEQ_REGEXP();
+        SEQ_REGEXP338.text = "\\\\voiceThreeStyle\\b";
+        SEQ_REGEXP338.TYPE = "KEYWORD3";
+        SEQ_REGEXP338.HASH_CHAR = "\\voiceThreeStyle";
+        SEQ_REGEXP SEQ_REGEXP339 = new SEQ_REGEXP();
+        SEQ_REGEXP339.text = "\\\\voiceTwo\\b";
+        SEQ_REGEXP339.TYPE = "KEYWORD3";
+        SEQ_REGEXP339.HASH_CHAR = "\\voiceTwo";
+        SEQ_REGEXP SEQ_REGEXP340 = new SEQ_REGEXP();
+        SEQ_REGEXP340.text = "\\\\voiceTwoStyle\\b";
+        SEQ_REGEXP340.TYPE = "KEYWORD3";
+        SEQ_REGEXP340.HASH_CHAR = "\\voiceTwoStyle";
+        SEQ_REGEXP SEQ_REGEXP341 = new SEQ_REGEXP();
+        SEQ_REGEXP341.text = "\\\\whiteTriangleMarkup\\b";
+        SEQ_REGEXP341.TYPE = "KEYWORD3";
+        SEQ_REGEXP341.HASH_CHAR = "\\whiteTriangleMarkup";
+        SEQ_REGEXP SEQ_REGEXP342 = new SEQ_REGEXP();
+        SEQ_REGEXP342.text = "\\\\acciaccatura\\b";
+        SEQ_REGEXP342.TYPE = "KEYWORD3";
+        SEQ_REGEXP342.HASH_CHAR = "\\acciaccatura";
+        SEQ_REGEXP SEQ_REGEXP343 = new SEQ_REGEXP();
+        SEQ_REGEXP343.text = "\\\\addChordShape\\b";
+        SEQ_REGEXP343.TYPE = "KEYWORD3";
+        SEQ_REGEXP343.HASH_CHAR = "\\addChordShape";
+        SEQ_REGEXP SEQ_REGEXP344 = new SEQ_REGEXP();
+        SEQ_REGEXP344.text = "\\\\addInstrumentDefinition\\b";
+        SEQ_REGEXP344.TYPE = "KEYWORD3";
+        SEQ_REGEXP344.HASH_CHAR = "\\addInstrumentDefinition";
+        SEQ_REGEXP SEQ_REGEXP345 = new SEQ_REGEXP();
+        SEQ_REGEXP345.text = "\\\\addQuote\\b";
+        SEQ_REGEXP345.TYPE = "KEYWORD3";
+        SEQ_REGEXP345.HASH_CHAR = "\\addQuote";
+        SEQ_REGEXP SEQ_REGEXP346 = new SEQ_REGEXP();
+        SEQ_REGEXP346.text = "\\\\afterGrace\\b";
+        SEQ_REGEXP346.TYPE = "KEYWORD3";
+        SEQ_REGEXP346.HASH_CHAR = "\\afterGrace";
+        SEQ_REGEXP SEQ_REGEXP347 = new SEQ_REGEXP();
+        SEQ_REGEXP347.text = "\\\\allowPageTurn\\b";
+        SEQ_REGEXP347.TYPE = "KEYWORD3";
+        SEQ_REGEXP347.HASH_CHAR = "\\allowPageTurn";
+        SEQ_REGEXP SEQ_REGEXP348 = new SEQ_REGEXP();
+        SEQ_REGEXP348.text = "\\\\applyContext\\b";
+        SEQ_REGEXP348.TYPE = "KEYWORD3";
+        SEQ_REGEXP348.HASH_CHAR = "\\applyContext";
+        SEQ_REGEXP SEQ_REGEXP349 = new SEQ_REGEXP();
+        SEQ_REGEXP349.text = "\\\\applyMusic\\b";
+        SEQ_REGEXP349.TYPE = "KEYWORD3";
+        SEQ_REGEXP349.HASH_CHAR = "\\applyMusic";
+        SEQ_REGEXP SEQ_REGEXP350 = new SEQ_REGEXP();
+        SEQ_REGEXP350.text = "\\\\applyOutput\\b";
+        SEQ_REGEXP350.TYPE = "KEYWORD3";
+        SEQ_REGEXP350.HASH_CHAR = "\\applyOutput";
+        SEQ_REGEXP SEQ_REGEXP351 = new SEQ_REGEXP();
+        SEQ_REGEXP351.text = "\\\\appoggiatura\\b";
+        SEQ_REGEXP351.TYPE = "KEYWORD3";
+        SEQ_REGEXP351.HASH_CHAR = "\\appoggiatura";
+        SEQ_REGEXP SEQ_REGEXP352 = new SEQ_REGEXP();
+        SEQ_REGEXP352.text = "\\\\assertBeamQuant\\b";
+        SEQ_REGEXP352.TYPE = "KEYWORD3";
+        SEQ_REGEXP352.HASH_CHAR = "\\assertBeamQuant";
+        SEQ_REGEXP SEQ_REGEXP353 = new SEQ_REGEXP();
+        SEQ_REGEXP353.text = "\\\\assertBeamSlope\\b";
+        SEQ_REGEXP353.TYPE = "KEYWORD3";
+        SEQ_REGEXP353.HASH_CHAR = "\\assertBeamSlope";
+        SEQ_REGEXP SEQ_REGEXP354 = new SEQ_REGEXP();
+        SEQ_REGEXP354.text = "\\\\autochange\\b";
+        SEQ_REGEXP354.TYPE = "KEYWORD3";
+        SEQ_REGEXP354.HASH_CHAR = "\\autochange";
+        SEQ_REGEXP SEQ_REGEXP355 = new SEQ_REGEXP();
+        SEQ_REGEXP355.text = "\\\\balloonGrobText\\b";
+        SEQ_REGEXP355.TYPE = "KEYWORD3";
+        SEQ_REGEXP355.HASH_CHAR = "\\balloonGrobText";
+        SEQ_REGEXP SEQ_REGEXP356 = new SEQ_REGEXP();
+        SEQ_REGEXP356.text = "\\\\balloonText\\b";
+        SEQ_REGEXP356.TYPE = "KEYWORD3";
+        SEQ_REGEXP356.HASH_CHAR = "\\balloonText";
+        SEQ_REGEXP SEQ_REGEXP357 = new SEQ_REGEXP();
+        SEQ_REGEXP357.text = "\\\\bar\\b";
+        SEQ_REGEXP357.TYPE = "KEYWORD3";
+        SEQ_REGEXP357.HASH_CHAR = "\\bar";
+        SEQ_REGEXP SEQ_REGEXP358 = new SEQ_REGEXP();
+        SEQ_REGEXP358.text = "\\\\barNumberCheck\\b";
+        SEQ_REGEXP358.TYPE = "KEYWORD3";
+        SEQ_REGEXP358.HASH_CHAR = "\\barNumberCheck";
+        SEQ_REGEXP SEQ_REGEXP359 = new SEQ_REGEXP();
+        SEQ_REGEXP359.text = "\\\\bendAfter\\b";
+        SEQ_REGEXP359.TYPE = "KEYWORD3";
+        SEQ_REGEXP359.HASH_CHAR = "\\bendAfter";
+        SEQ_REGEXP SEQ_REGEXP360 = new SEQ_REGEXP();
+        SEQ_REGEXP360.text = "\\\\breathe\\b";
+        SEQ_REGEXP360.TYPE = "KEYWORD3";
+        SEQ_REGEXP360.HASH_CHAR = "\\breathe";
+        SEQ_REGEXP SEQ_REGEXP361 = new SEQ_REGEXP();
+        SEQ_REGEXP361.text = "\\\\clef\\b";
+        SEQ_REGEXP361.TYPE = "KEYWORD3";
+        SEQ_REGEXP361.HASH_CHAR = "\\clef";
+        SEQ_REGEXP SEQ_REGEXP362 = new SEQ_REGEXP();
+        SEQ_REGEXP362.text = "\\\\cueDuring\\b";
+        SEQ_REGEXP362.TYPE = "KEYWORD3";
+        SEQ_REGEXP362.HASH_CHAR = "\\cueDuring";
+        SEQ_REGEXP SEQ_REGEXP363 = new SEQ_REGEXP();
+        SEQ_REGEXP363.text = "\\\\displayLilyMusic\\b";
+        SEQ_REGEXP363.TYPE = "KEYWORD3";
+        SEQ_REGEXP363.HASH_CHAR = "\\displayLilyMusic";
+        SEQ_REGEXP SEQ_REGEXP364 = new SEQ_REGEXP();
+        SEQ_REGEXP364.text = "\\\\displayMusic\\b";
+        SEQ_REGEXP364.TYPE = "KEYWORD3";
+        SEQ_REGEXP364.HASH_CHAR = "\\displayMusic";
+        SEQ_REGEXP SEQ_REGEXP365 = new SEQ_REGEXP();
+        SEQ_REGEXP365.text = "\\\\endSpanners\\b";
+        SEQ_REGEXP365.TYPE = "KEYWORD3";
+        SEQ_REGEXP365.HASH_CHAR = "\\endSpanners";
+        SEQ_REGEXP SEQ_REGEXP366 = new SEQ_REGEXP();
+        SEQ_REGEXP366.text = "\\\\featherDurations\\b";
+        SEQ_REGEXP366.TYPE = "KEYWORD3";
+        SEQ_REGEXP366.HASH_CHAR = "\\featherDurations";
+        SEQ_REGEXP SEQ_REGEXP367 = new SEQ_REGEXP();
+        SEQ_REGEXP367.text = "\\\\grace\\b";
+        SEQ_REGEXP367.TYPE = "KEYWORD3";
+        SEQ_REGEXP367.HASH_CHAR = "\\grace";
+        SEQ_REGEXP SEQ_REGEXP368 = new SEQ_REGEXP();
+        SEQ_REGEXP368.text = "\\\\includePageLayoutFile\\b";
+        SEQ_REGEXP368.TYPE = "KEYWORD3";
+        SEQ_REGEXP368.HASH_CHAR = "\\includePageLayoutFile";
+        SEQ_REGEXP SEQ_REGEXP369 = new SEQ_REGEXP();
+        SEQ_REGEXP369.text = "\\\\instrumentSwitch\\b";
+        SEQ_REGEXP369.TYPE = "KEYWORD3";
+        SEQ_REGEXP369.HASH_CHAR = "\\instrumentSwitch";
+        SEQ_REGEXP SEQ_REGEXP370 = new SEQ_REGEXP();
+        SEQ_REGEXP370.text = "\\\\keepWithTag\\b";
+        SEQ_REGEXP370.TYPE = "KEYWORD3";
+        SEQ_REGEXP370.HASH_CHAR = "\\keepWithTag";
+        SEQ_REGEXP SEQ_REGEXP371 = new SEQ_REGEXP();
+        SEQ_REGEXP371.text = "\\\\killCues\\b";
+        SEQ_REGEXP371.TYPE = "KEYWORD3";
+        SEQ_REGEXP371.HASH_CHAR = "\\killCues";
+        SEQ_REGEXP SEQ_REGEXP372 = new SEQ_REGEXP();
+        SEQ_REGEXP372.text = "\\\\label\\b";
+        SEQ_REGEXP372.TYPE = "KEYWORD3";
+        SEQ_REGEXP372.HASH_CHAR = "\\label";
+        SEQ_REGEXP SEQ_REGEXP373 = new SEQ_REGEXP();
+        SEQ_REGEXP373.text = "\\\\makeClusters\\b";
+        SEQ_REGEXP373.TYPE = "KEYWORD3";
+        SEQ_REGEXP373.HASH_CHAR = "\\makeClusters";
+        SEQ_REGEXP SEQ_REGEXP374 = new SEQ_REGEXP();
+        SEQ_REGEXP374.text = "\\\\musicMap\\b";
+        SEQ_REGEXP374.TYPE = "KEYWORD3";
+        SEQ_REGEXP374.HASH_CHAR = "\\musicMap";
+        SEQ_REGEXP SEQ_REGEXP375 = new SEQ_REGEXP();
+        SEQ_REGEXP375.text = "\\\\noPageBreak\\b";
+        SEQ_REGEXP375.TYPE = "KEYWORD3";
+        SEQ_REGEXP375.HASH_CHAR = "\\noPageBreak";
+        SEQ_REGEXP SEQ_REGEXP376 = new SEQ_REGEXP();
+        SEQ_REGEXP376.text = "\\\\noPageTurn\\b";
+        SEQ_REGEXP376.TYPE = "KEYWORD3";
+        SEQ_REGEXP376.HASH_CHAR = "\\noPageTurn";
+        SEQ_REGEXP SEQ_REGEXP377 = new SEQ_REGEXP();
+        SEQ_REGEXP377.text = "\\\\octaveCheck\\b";
+        SEQ_REGEXP377.TYPE = "KEYWORD3";
+        SEQ_REGEXP377.HASH_CHAR = "\\octaveCheck";
+        SEQ_REGEXP SEQ_REGEXP378 = new SEQ_REGEXP();
+        SEQ_REGEXP378.text = "\\\\oldaddlyrics\\b";
+        SEQ_REGEXP378.TYPE = "KEYWORD3";
+        SEQ_REGEXP378.HASH_CHAR = "\\oldaddlyrics";
+        SEQ_REGEXP SEQ_REGEXP379 = new SEQ_REGEXP();
+        SEQ_REGEXP379.text = "\\\\ottava\\b";
+        SEQ_REGEXP379.TYPE = "KEYWORD3";
+        SEQ_REGEXP379.HASH_CHAR = "\\ottava";
+        SEQ_REGEXP SEQ_REGEXP380 = new SEQ_REGEXP();
+        SEQ_REGEXP380.text = "\\\\overrideProperty\\b";
+        SEQ_REGEXP380.TYPE = "KEYWORD3";
+        SEQ_REGEXP380.HASH_CHAR = "\\overrideProperty";
+        SEQ_REGEXP SEQ_REGEXP381 = new SEQ_REGEXP();
+        SEQ_REGEXP381.text = "\\\\pageBreak\\b";
+        SEQ_REGEXP381.TYPE = "KEYWORD3";
+        SEQ_REGEXP381.HASH_CHAR = "\\pageBreak";
+        SEQ_REGEXP SEQ_REGEXP382 = new SEQ_REGEXP();
+        SEQ_REGEXP382.text = "\\\\pageTurn\\b";
+        SEQ_REGEXP382.TYPE = "KEYWORD3";
+        SEQ_REGEXP382.HASH_CHAR = "\\pageTurn";
+        SEQ_REGEXP SEQ_REGEXP383 = new SEQ_REGEXP();
+        SEQ_REGEXP383.text = "\\\\parallelMusic\\b";
+        SEQ_REGEXP383.TYPE = "KEYWORD3";
+        SEQ_REGEXP383.HASH_CHAR = "\\parallelMusic";
+        SEQ_REGEXP SEQ_REGEXP384 = new SEQ_REGEXP();
+        SEQ_REGEXP384.text = "\\\\parenthesize\\b";
+        SEQ_REGEXP384.TYPE = "KEYWORD3";
+        SEQ_REGEXP384.HASH_CHAR = "\\parenthesize";
+        SEQ_REGEXP SEQ_REGEXP385 = new SEQ_REGEXP();
+        SEQ_REGEXP385.text = "\\\\partcombine\\b";
+        SEQ_REGEXP385.TYPE = "KEYWORD3";
+        SEQ_REGEXP385.HASH_CHAR = "\\partcombine";
+        SEQ_REGEXP SEQ_REGEXP386 = new SEQ_REGEXP();
+        SEQ_REGEXP386.text = "\\\\pitchedTrill\\b";
+        SEQ_REGEXP386.TYPE = "KEYWORD3";
+        SEQ_REGEXP386.HASH_CHAR = "\\pitchedTrill";
+        SEQ_REGEXP SEQ_REGEXP387 = new SEQ_REGEXP();
+        SEQ_REGEXP387.text = "\\\\pointAndClickOff\\b";
+        SEQ_REGEXP387.TYPE = "KEYWORD3";
+        SEQ_REGEXP387.HASH_CHAR = "\\pointAndClickOff";
+        SEQ_REGEXP SEQ_REGEXP388 = new SEQ_REGEXP();
+        SEQ_REGEXP388.text = "\\\\pointAndClickOn\\b";
+        SEQ_REGEXP388.TYPE = "KEYWORD3";
+        SEQ_REGEXP388.HASH_CHAR = "\\pointAndClickOn";
+        SEQ_REGEXP SEQ_REGEXP389 = new SEQ_REGEXP();
+        SEQ_REGEXP389.text = "\\\\quoteDuring\\b";
+        SEQ_REGEXP389.TYPE = "KEYWORD3";
+        SEQ_REGEXP389.HASH_CHAR = "\\quoteDuring";
+        SEQ_REGEXP SEQ_REGEXP390 = new SEQ_REGEXP();
+        SEQ_REGEXP390.text = "\\\\removeWithTag\\b";
+        SEQ_REGEXP390.TYPE = "KEYWORD3";
+        SEQ_REGEXP390.HASH_CHAR = "\\removeWithTag";
+        SEQ_REGEXP SEQ_REGEXP391 = new SEQ_REGEXP();
+        SEQ_REGEXP391.text = "\\\\resetRelativeOctave\\b";
+        SEQ_REGEXP391.TYPE = "KEYWORD3";
+        SEQ_REGEXP391.HASH_CHAR = "\\resetRelativeOctave";
+        SEQ_REGEXP SEQ_REGEXP392 = new SEQ_REGEXP();
+        SEQ_REGEXP392.text = "\\\\rightHandFinger\\b";
+        SEQ_REGEXP392.TYPE = "KEYWORD3";
+        SEQ_REGEXP392.HASH_CHAR = "\\rightHandFinger";
+        SEQ_REGEXP SEQ_REGEXP393 = new SEQ_REGEXP();
+        SEQ_REGEXP393.text = "\\\\scaleDurations\\b";
+        SEQ_REGEXP393.TYPE = "KEYWORD3";
+        SEQ_REGEXP393.HASH_CHAR = "\\scaleDurations";
+        SEQ_REGEXP SEQ_REGEXP394 = new SEQ_REGEXP();
+        SEQ_REGEXP394.text = "\\\\scoreTweak\\b";
+        SEQ_REGEXP394.TYPE = "KEYWORD3";
+        SEQ_REGEXP394.HASH_CHAR = "\\scoreTweak";
+        SEQ_REGEXP SEQ_REGEXP395 = new SEQ_REGEXP();
+        SEQ_REGEXP395.text = "\\\\shiftDurations\\b";
+        SEQ_REGEXP395.TYPE = "KEYWORD3";
+        SEQ_REGEXP395.HASH_CHAR = "\\shiftDurations";
+        SEQ_REGEXP SEQ_REGEXP396 = new SEQ_REGEXP();
+        SEQ_REGEXP396.text = "\\\\spacingTweaks\\b";
+        SEQ_REGEXP396.TYPE = "KEYWORD3";
+        SEQ_REGEXP396.HASH_CHAR = "\\spacingTweaks";
+        SEQ_REGEXP SEQ_REGEXP397 = new SEQ_REGEXP();
+        SEQ_REGEXP397.text = "\\\\storePredefinedDiagram\\b";
+        SEQ_REGEXP397.TYPE = "KEYWORD3";
+        SEQ_REGEXP397.HASH_CHAR = "\\storePredefinedDiagram";
+        SEQ_REGEXP SEQ_REGEXP398 = new SEQ_REGEXP();
+        SEQ_REGEXP398.text = "\\\\tag\\b";
+        SEQ_REGEXP398.TYPE = "KEYWORD3";
+        SEQ_REGEXP398.HASH_CHAR = "\\tag";
+        SEQ_REGEXP SEQ_REGEXP399 = new SEQ_REGEXP();
+        SEQ_REGEXP399.text = "\\\\tocItem\\b";
+        SEQ_REGEXP399.TYPE = "KEYWORD3";
+        SEQ_REGEXP399.HASH_CHAR = "\\tocItem";
+        SEQ_REGEXP SEQ_REGEXP400 = new SEQ_REGEXP();
+        SEQ_REGEXP400.text = "\\\\transposedCueDuring\\b";
+        SEQ_REGEXP400.TYPE = "KEYWORD3";
+        SEQ_REGEXP400.HASH_CHAR = "\\transposedCueDuring";
+        SEQ_REGEXP SEQ_REGEXP401 = new SEQ_REGEXP();
+        SEQ_REGEXP401.text = "\\\\transposition\\b";
+        SEQ_REGEXP401.TYPE = "KEYWORD3";
+        SEQ_REGEXP401.HASH_CHAR = "\\transposition";
+        SEQ_REGEXP SEQ_REGEXP402 = new SEQ_REGEXP();
+        SEQ_REGEXP402.text = "\\\\tweak\\b";
+        SEQ_REGEXP402.TYPE = "KEYWORD3";
+        SEQ_REGEXP402.HASH_CHAR = "\\tweak";
+        SEQ_REGEXP SEQ_REGEXP403 = new SEQ_REGEXP();
+        SEQ_REGEXP403.text = "\\\\unfoldRepeats\\b";
+        SEQ_REGEXP403.TYPE = "KEYWORD3";
+        SEQ_REGEXP403.HASH_CHAR = "\\unfoldRepeats";
+        SEQ_REGEXP SEQ_REGEXP404 = new SEQ_REGEXP();
+        SEQ_REGEXP404.text = "\\\\withMusicProperty\\b";
+        SEQ_REGEXP404.TYPE = "KEYWORD3";
+        SEQ_REGEXP404.HASH_CHAR = "\\withMusicProperty";
+        SEQ_REGEXP SEQ_REGEXP405 = new SEQ_REGEXP();
+        SEQ_REGEXP405.text = "\\\\abs-fontsize\\b";
+        SEQ_REGEXP405.TYPE = "KEYWORD4";
+        SEQ_REGEXP405.HASH_CHAR = "\\abs-fontsize";
+        SEQ_REGEXP SEQ_REGEXP406 = new SEQ_REGEXP();
+        SEQ_REGEXP406.text = "\\\\arrow-head\\b";
+        SEQ_REGEXP406.TYPE = "KEYWORD4";
+        SEQ_REGEXP406.HASH_CHAR = "\\arrow-head";
+        SEQ_REGEXP SEQ_REGEXP407 = new SEQ_REGEXP();
+        SEQ_REGEXP407.text = "\\\\backslashed-digit\\b";
+        SEQ_REGEXP407.TYPE = "KEYWORD4";
+        SEQ_REGEXP407.HASH_CHAR = "\\backslashed-digit";
+        SEQ_REGEXP SEQ_REGEXP408 = new SEQ_REGEXP();
+        SEQ_REGEXP408.text = "\\\\beam\\b";
+        SEQ_REGEXP408.TYPE = "KEYWORD4";
+        SEQ_REGEXP408.HASH_CHAR = "\\beam";
+        SEQ_REGEXP SEQ_REGEXP409 = new SEQ_REGEXP();
+        SEQ_REGEXP409.text = "\\\\bold\\b";
+        SEQ_REGEXP409.TYPE = "KEYWORD4";
+        SEQ_REGEXP409.HASH_CHAR = "\\bold";
+        SEQ_REGEXP SEQ_REGEXP410 = new SEQ_REGEXP();
+        SEQ_REGEXP410.text = "\\\\box\\b";
+        SEQ_REGEXP410.TYPE = "KEYWORD4";
+        SEQ_REGEXP410.HASH_CHAR = "\\box";
+        SEQ_REGEXP SEQ_REGEXP411 = new SEQ_REGEXP();
+        SEQ_REGEXP411.text = "\\\\bracket\\b";
+        SEQ_REGEXP411.TYPE = "KEYWORD4";
+        SEQ_REGEXP411.HASH_CHAR = "\\bracket";
+        SEQ_REGEXP SEQ_REGEXP412 = new SEQ_REGEXP();
+        SEQ_REGEXP412.text = "\\\\caps\\b";
+        SEQ_REGEXP412.TYPE = "KEYWORD4";
+        SEQ_REGEXP412.HASH_CHAR = "\\caps";
+        SEQ_REGEXP SEQ_REGEXP413 = new SEQ_REGEXP();
+        SEQ_REGEXP413.text = "\\\\center-align\\b";
+        SEQ_REGEXP413.TYPE = "KEYWORD4";
+        SEQ_REGEXP413.HASH_CHAR = "\\center-align";
+        SEQ_REGEXP SEQ_REGEXP414 = new SEQ_REGEXP();
+        SEQ_REGEXP414.text = "\\\\center-column\\b";
+        SEQ_REGEXP414.TYPE = "KEYWORD4";
+        SEQ_REGEXP414.HASH_CHAR = "\\center-column";
+        SEQ_REGEXP SEQ_REGEXP415 = new SEQ_REGEXP();
+        SEQ_REGEXP415.text = "\\\\char\\b";
+        SEQ_REGEXP415.TYPE = "KEYWORD4";
+        SEQ_REGEXP415.HASH_CHAR = "\\char";
+        SEQ_REGEXP SEQ_REGEXP416 = new SEQ_REGEXP();
+        SEQ_REGEXP416.text = "\\\\circle\\b";
+        SEQ_REGEXP416.TYPE = "KEYWORD4";
+        SEQ_REGEXP416.HASH_CHAR = "\\circle";
+        SEQ_REGEXP SEQ_REGEXP417 = new SEQ_REGEXP();
+        SEQ_REGEXP417.text = "\\\\column\\b";
+        SEQ_REGEXP417.TYPE = "KEYWORD4";
+        SEQ_REGEXP417.HASH_CHAR = "\\column";
+        SEQ_REGEXP SEQ_REGEXP418 = new SEQ_REGEXP();
+        SEQ_REGEXP418.text = "\\\\combine\\b";
+        SEQ_REGEXP418.TYPE = "KEYWORD4";
+        SEQ_REGEXP418.HASH_CHAR = "\\combine";
+        SEQ_REGEXP SEQ_REGEXP419 = new SEQ_REGEXP();
+        SEQ_REGEXP419.text = "\\\\concat\\b";
+        SEQ_REGEXP419.TYPE = "KEYWORD4";
+        SEQ_REGEXP419.HASH_CHAR = "\\concat";
+        SEQ_REGEXP SEQ_REGEXP420 = new SEQ_REGEXP();
+        SEQ_REGEXP420.text = "\\\\dir-column\\b";
+        SEQ_REGEXP420.TYPE = "KEYWORD4";
+        SEQ_REGEXP420.HASH_CHAR = "\\dir-column";
+        SEQ_REGEXP SEQ_REGEXP421 = new SEQ_REGEXP();
+        SEQ_REGEXP421.text = "\\\\doubleflat\\b";
+        SEQ_REGEXP421.TYPE = "KEYWORD4";
+        SEQ_REGEXP421.HASH_CHAR = "\\doubleflat";
+        SEQ_REGEXP SEQ_REGEXP422 = new SEQ_REGEXP();
+        SEQ_REGEXP422.text = "\\\\doublesharp\\b";
+        SEQ_REGEXP422.TYPE = "KEYWORD4";
+        SEQ_REGEXP422.HASH_CHAR = "\\doublesharp";
+        SEQ_REGEXP SEQ_REGEXP423 = new SEQ_REGEXP();
+        SEQ_REGEXP423.text = "\\\\draw-circle\\b";
+        SEQ_REGEXP423.TYPE = "KEYWORD4";
+        SEQ_REGEXP423.HASH_CHAR = "\\draw-circle";
+        SEQ_REGEXP SEQ_REGEXP424 = new SEQ_REGEXP();
+        SEQ_REGEXP424.text = "\\\\draw-line\\b";
+        SEQ_REGEXP424.TYPE = "KEYWORD4";
+        SEQ_REGEXP424.HASH_CHAR = "\\draw-line";
+        SEQ_REGEXP SEQ_REGEXP425 = new SEQ_REGEXP();
+        SEQ_REGEXP425.text = "\\\\dynamic\\b";
+        SEQ_REGEXP425.TYPE = "KEYWORD4";
+        SEQ_REGEXP425.HASH_CHAR = "\\dynamic";
+        SEQ_REGEXP SEQ_REGEXP426 = new SEQ_REGEXP();
+        SEQ_REGEXP426.text = "\\\\epsfile\\b";
+        SEQ_REGEXP426.TYPE = "KEYWORD4";
+        SEQ_REGEXP426.HASH_CHAR = "\\epsfile";
+        SEQ_REGEXP SEQ_REGEXP427 = new SEQ_REGEXP();
+        SEQ_REGEXP427.text = "\\\\fill-line\\b";
+        SEQ_REGEXP427.TYPE = "KEYWORD4";
+        SEQ_REGEXP427.HASH_CHAR = "\\fill-line";
+        SEQ_REGEXP SEQ_REGEXP428 = new SEQ_REGEXP();
+        SEQ_REGEXP428.text = "\\\\filled-box\\b";
+        SEQ_REGEXP428.TYPE = "KEYWORD4";
+        SEQ_REGEXP428.HASH_CHAR = "\\filled-box";
+        SEQ_REGEXP SEQ_REGEXP429 = new SEQ_REGEXP();
+        SEQ_REGEXP429.text = "\\\\finger\\b";
+        SEQ_REGEXP429.TYPE = "KEYWORD4";
+        SEQ_REGEXP429.HASH_CHAR = "\\finger";
+        SEQ_REGEXP SEQ_REGEXP430 = new SEQ_REGEXP();
+        SEQ_REGEXP430.text = "\\\\flat\\b";
+        SEQ_REGEXP430.TYPE = "KEYWORD4";
+        SEQ_REGEXP430.HASH_CHAR = "\\flat";
+        SEQ_REGEXP SEQ_REGEXP431 = new SEQ_REGEXP();
+        SEQ_REGEXP431.text = "\\\\fontCaps\\b";
+        SEQ_REGEXP431.TYPE = "KEYWORD4";
+        SEQ_REGEXP431.HASH_CHAR = "\\fontCaps";
+        SEQ_REGEXP SEQ_REGEXP432 = new SEQ_REGEXP();
+        SEQ_REGEXP432.text = "\\\\fontsize\\b";
+        SEQ_REGEXP432.TYPE = "KEYWORD4";
+        SEQ_REGEXP432.HASH_CHAR = "\\fontsize";
+        SEQ_REGEXP SEQ_REGEXP433 = new SEQ_REGEXP();
+        SEQ_REGEXP433.text = "\\\\fraction\\b";
+        SEQ_REGEXP433.TYPE = "KEYWORD4";
+        SEQ_REGEXP433.HASH_CHAR = "\\fraction";
+        SEQ_REGEXP SEQ_REGEXP434 = new SEQ_REGEXP();
+        SEQ_REGEXP434.text = "\\\\fret-diagram\\b";
+        SEQ_REGEXP434.TYPE = "KEYWORD4";
+        SEQ_REGEXP434.HASH_CHAR = "\\fret-diagram";
+        SEQ_REGEXP SEQ_REGEXP435 = new SEQ_REGEXP();
+        SEQ_REGEXP435.text = "\\\\fret-diagram-terse\\b";
+        SEQ_REGEXP435.TYPE = "KEYWORD4";
+        SEQ_REGEXP435.HASH_CHAR = "\\fret-diagram-terse";
+        SEQ_REGEXP SEQ_REGEXP436 = new SEQ_REGEXP();
+        SEQ_REGEXP436.text = "\\\\fret-diagram-verbose\\b";
+        SEQ_REGEXP436.TYPE = "KEYWORD4";
+        SEQ_REGEXP436.HASH_CHAR = "\\fret-diagram-verbose";
+        SEQ_REGEXP SEQ_REGEXP437 = new SEQ_REGEXP();
+        SEQ_REGEXP437.text = "\\\\fromproperty\\b";
+        SEQ_REGEXP437.TYPE = "KEYWORD4";
+        SEQ_REGEXP437.HASH_CHAR = "\\fromproperty";
+        SEQ_REGEXP SEQ_REGEXP438 = new SEQ_REGEXP();
+        SEQ_REGEXP438.text = "\\\\general-align\\b";
+        SEQ_REGEXP438.TYPE = "KEYWORD4";
+        SEQ_REGEXP438.HASH_CHAR = "\\general-align";
+        SEQ_REGEXP SEQ_REGEXP439 = new SEQ_REGEXP();
+        SEQ_REGEXP439.text = "\\\\halign\\b";
+        SEQ_REGEXP439.TYPE = "KEYWORD4";
+        SEQ_REGEXP439.HASH_CHAR = "\\halign";
+        SEQ_REGEXP SEQ_REGEXP440 = new SEQ_REGEXP();
+        SEQ_REGEXP440.text = "\\\\harp-pedal\\b";
+        SEQ_REGEXP440.TYPE = "KEYWORD4";
+        SEQ_REGEXP440.HASH_CHAR = "\\harp-pedal";
+        SEQ_REGEXP SEQ_REGEXP441 = new SEQ_REGEXP();
+        SEQ_REGEXP441.text = "\\\\hbracket\\b";
+        SEQ_REGEXP441.TYPE = "KEYWORD4";
+        SEQ_REGEXP441.HASH_CHAR = "\\hbracket";
+        SEQ_REGEXP SEQ_REGEXP442 = new SEQ_REGEXP();
+        SEQ_REGEXP442.text = "\\\\hcenter-in\\b";
+        SEQ_REGEXP442.TYPE = "KEYWORD4";
+        SEQ_REGEXP442.HASH_CHAR = "\\hcenter-in";
+        SEQ_REGEXP SEQ_REGEXP443 = new SEQ_REGEXP();
+        SEQ_REGEXP443.text = "\\\\hspace\\b";
+        SEQ_REGEXP443.TYPE = "KEYWORD4";
+        SEQ_REGEXP443.HASH_CHAR = "\\hspace";
+        SEQ_REGEXP SEQ_REGEXP444 = new SEQ_REGEXP();
+        SEQ_REGEXP444.text = "\\\\huge\\b";
+        SEQ_REGEXP444.TYPE = "KEYWORD4";
+        SEQ_REGEXP444.HASH_CHAR = "\\huge";
+        SEQ_REGEXP SEQ_REGEXP445 = new SEQ_REGEXP();
+        SEQ_REGEXP445.text = "\\\\italic\\b";
+        SEQ_REGEXP445.TYPE = "KEYWORD4";
+        SEQ_REGEXP445.HASH_CHAR = "\\italic";
+        SEQ_REGEXP SEQ_REGEXP446 = new SEQ_REGEXP();
+        SEQ_REGEXP446.text = "\\\\justify\\b";
+        SEQ_REGEXP446.TYPE = "KEYWORD4";
+        SEQ_REGEXP446.HASH_CHAR = "\\justify";
+        SEQ_REGEXP SEQ_REGEXP447 = new SEQ_REGEXP();
+        SEQ_REGEXP447.text = "\\\\justify-field\\b";
+        SEQ_REGEXP447.TYPE = "KEYWORD4";
+        SEQ_REGEXP447.HASH_CHAR = "\\justify-field";
+        SEQ_REGEXP SEQ_REGEXP448 = new SEQ_REGEXP();
+        SEQ_REGEXP448.text = "\\\\justify-string\\b";
+        SEQ_REGEXP448.TYPE = "KEYWORD4";
+        SEQ_REGEXP448.HASH_CHAR = "\\justify-string";
+        SEQ_REGEXP SEQ_REGEXP449 = new SEQ_REGEXP();
+        SEQ_REGEXP449.text = "\\\\large\\b";
+        SEQ_REGEXP449.TYPE = "KEYWORD4";
+        SEQ_REGEXP449.HASH_CHAR = "\\large";
+        SEQ_REGEXP SEQ_REGEXP450 = new SEQ_REGEXP();
+        SEQ_REGEXP450.text = "\\\\larger\\b";
+        SEQ_REGEXP450.TYPE = "KEYWORD4";
+        SEQ_REGEXP450.HASH_CHAR = "\\larger";
+        SEQ_REGEXP SEQ_REGEXP451 = new SEQ_REGEXP();
+        SEQ_REGEXP451.text = "\\\\left-align\\b";
+        SEQ_REGEXP451.TYPE = "KEYWORD4";
+        SEQ_REGEXP451.HASH_CHAR = "\\left-align";
+        SEQ_REGEXP SEQ_REGEXP452 = new SEQ_REGEXP();
+        SEQ_REGEXP452.text = "\\\\left-column\\b";
+        SEQ_REGEXP452.TYPE = "KEYWORD4";
+        SEQ_REGEXP452.HASH_CHAR = "\\left-column";
+        SEQ_REGEXP SEQ_REGEXP453 = new SEQ_REGEXP();
+        SEQ_REGEXP453.text = "\\\\line\\b";
+        SEQ_REGEXP453.TYPE = "KEYWORD4";
+        SEQ_REGEXP453.HASH_CHAR = "\\line";
+        SEQ_REGEXP SEQ_REGEXP454 = new SEQ_REGEXP();
+        SEQ_REGEXP454.text = "\\\\lookup\\b";
+        SEQ_REGEXP454.TYPE = "KEYWORD4";
+        SEQ_REGEXP454.HASH_CHAR = "\\lookup";
+        SEQ_REGEXP SEQ_REGEXP455 = new SEQ_REGEXP();
+        SEQ_REGEXP455.text = "\\\\lower\\b";
+        SEQ_REGEXP455.TYPE = "KEYWORD4";
+        SEQ_REGEXP455.HASH_CHAR = "\\lower";
+        SEQ_REGEXP SEQ_REGEXP456 = new SEQ_REGEXP();
+        SEQ_REGEXP456.text = "\\\\magnify\\b";
+        SEQ_REGEXP456.TYPE = "KEYWORD4";
+        SEQ_REGEXP456.HASH_CHAR = "\\magnify";
+        SEQ_REGEXP SEQ_REGEXP457 = new SEQ_REGEXP();
+        SEQ_REGEXP457.text = "\\\\markalphabet\\b";
+        SEQ_REGEXP457.TYPE = "KEYWORD4";
+        SEQ_REGEXP457.HASH_CHAR = "\\markalphabet";
+        SEQ_REGEXP SEQ_REGEXP458 = new SEQ_REGEXP();
+        SEQ_REGEXP458.text = "\\\\markletter\\b";
+        SEQ_REGEXP458.TYPE = "KEYWORD4";
+        SEQ_REGEXP458.HASH_CHAR = "\\markletter";
+        SEQ_REGEXP SEQ_REGEXP459 = new SEQ_REGEXP();
+        SEQ_REGEXP459.text = "\\\\medium\\b";
+        SEQ_REGEXP459.TYPE = "KEYWORD4";
+        SEQ_REGEXP459.HASH_CHAR = "\\medium";
+        SEQ_REGEXP SEQ_REGEXP460 = new SEQ_REGEXP();
+        SEQ_REGEXP460.text = "\\\\musicglyph\\b";
+        SEQ_REGEXP460.TYPE = "KEYWORD4";
+        SEQ_REGEXP460.HASH_CHAR = "\\musicglyph";
+        SEQ_REGEXP SEQ_REGEXP461 = new SEQ_REGEXP();
+        SEQ_REGEXP461.text = "\\\\natural\\b";
+        SEQ_REGEXP461.TYPE = "KEYWORD4";
+        SEQ_REGEXP461.HASH_CHAR = "\\natural";
+        SEQ_REGEXP SEQ_REGEXP462 = new SEQ_REGEXP();
+        SEQ_REGEXP462.text = "\\\\normal-size-sub\\b";
+        SEQ_REGEXP462.TYPE = "KEYWORD4";
+        SEQ_REGEXP462.HASH_CHAR = "\\normal-size-sub";
+        SEQ_REGEXP SEQ_REGEXP463 = new SEQ_REGEXP();
+        SEQ_REGEXP463.text = "\\\\normal-size-super\\b";
+        SEQ_REGEXP463.TYPE = "KEYWORD4";
+        SEQ_REGEXP463.HASH_CHAR = "\\normal-size-super";
+        SEQ_REGEXP SEQ_REGEXP464 = new SEQ_REGEXP();
+        SEQ_REGEXP464.text = "\\\\normal-text\\b";
+        SEQ_REGEXP464.TYPE = "KEYWORD4";
+        SEQ_REGEXP464.HASH_CHAR = "\\normal-text";
+        SEQ_REGEXP SEQ_REGEXP465 = new SEQ_REGEXP();
+        SEQ_REGEXP465.text = "\\\\normalsize\\b";
+        SEQ_REGEXP465.TYPE = "KEYWORD4";
+        SEQ_REGEXP465.HASH_CHAR = "\\normalsize";
+        SEQ_REGEXP SEQ_REGEXP466 = new SEQ_REGEXP();
+        SEQ_REGEXP466.text = "\\\\note\\b";
+        SEQ_REGEXP466.TYPE = "KEYWORD4";
+        SEQ_REGEXP466.HASH_CHAR = "\\note";
+        SEQ_REGEXP SEQ_REGEXP467 = new SEQ_REGEXP();
+        SEQ_REGEXP467.text = "\\\\note-by-number\\b";
+        SEQ_REGEXP467.TYPE = "KEYWORD4";
+        SEQ_REGEXP467.HASH_CHAR = "\\note-by-number";
+        SEQ_REGEXP SEQ_REGEXP468 = new SEQ_REGEXP();
+        SEQ_REGEXP468.text = "\\\\null\\b";
+        SEQ_REGEXP468.TYPE = "KEYWORD4";
+        SEQ_REGEXP468.HASH_CHAR = "\\null";
+        SEQ_REGEXP SEQ_REGEXP469 = new SEQ_REGEXP();
+        SEQ_REGEXP469.text = "\\\\number\\b";
+        SEQ_REGEXP469.TYPE = "KEYWORD4";
+        SEQ_REGEXP469.HASH_CHAR = "\\number";
+        SEQ_REGEXP SEQ_REGEXP470 = new SEQ_REGEXP();
+        SEQ_REGEXP470.text = "\\\\on-the-fly\\b";
+        SEQ_REGEXP470.TYPE = "KEYWORD4";
+        SEQ_REGEXP470.HASH_CHAR = "\\on-the-fly";
+        SEQ_REGEXP SEQ_REGEXP471 = new SEQ_REGEXP();
+        SEQ_REGEXP471.text = "\\\\override\\b";
+        SEQ_REGEXP471.TYPE = "KEYWORD4";
+        SEQ_REGEXP471.HASH_CHAR = "\\override";
+        SEQ_REGEXP SEQ_REGEXP472 = new SEQ_REGEXP();
+        SEQ_REGEXP472.text = "\\\\pad-around\\b";
+        SEQ_REGEXP472.TYPE = "KEYWORD4";
+        SEQ_REGEXP472.HASH_CHAR = "\\pad-around";
+        SEQ_REGEXP SEQ_REGEXP473 = new SEQ_REGEXP();
+        SEQ_REGEXP473.text = "\\\\pad-markup\\b";
+        SEQ_REGEXP473.TYPE = "KEYWORD4";
+        SEQ_REGEXP473.HASH_CHAR = "\\pad-markup";
+        SEQ_REGEXP SEQ_REGEXP474 = new SEQ_REGEXP();
+        SEQ_REGEXP474.text = "\\\\pad-to-box\\b";
+        SEQ_REGEXP474.TYPE = "KEYWORD4";
+        SEQ_REGEXP474.HASH_CHAR = "\\pad-to-box";
+        SEQ_REGEXP SEQ_REGEXP475 = new SEQ_REGEXP();
+        SEQ_REGEXP475.text = "\\\\pad-x\\b";
+        SEQ_REGEXP475.TYPE = "KEYWORD4";
+        SEQ_REGEXP475.HASH_CHAR = "\\pad-x";
+        SEQ_REGEXP SEQ_REGEXP476 = new SEQ_REGEXP();
+        SEQ_REGEXP476.text = "\\\\page-ref\\b";
+        SEQ_REGEXP476.TYPE = "KEYWORD4";
+        SEQ_REGEXP476.HASH_CHAR = "\\page-ref";
+        SEQ_REGEXP SEQ_REGEXP477 = new SEQ_REGEXP();
+        SEQ_REGEXP477.text = "\\\\postscript\\b";
+        SEQ_REGEXP477.TYPE = "KEYWORD4";
+        SEQ_REGEXP477.HASH_CHAR = "\\postscript";
+        SEQ_REGEXP SEQ_REGEXP478 = new SEQ_REGEXP();
+        SEQ_REGEXP478.text = "\\\\put-adjacent\\b";
+        SEQ_REGEXP478.TYPE = "KEYWORD4";
+        SEQ_REGEXP478.HASH_CHAR = "\\put-adjacent";
+        SEQ_REGEXP SEQ_REGEXP479 = new SEQ_REGEXP();
+        SEQ_REGEXP479.text = "\\\\raise\\b";
+        SEQ_REGEXP479.TYPE = "KEYWORD4";
+        SEQ_REGEXP479.HASH_CHAR = "\\raise";
+        SEQ_REGEXP SEQ_REGEXP480 = new SEQ_REGEXP();
+        SEQ_REGEXP480.text = "\\\\right-align\\b";
+        SEQ_REGEXP480.TYPE = "KEYWORD4";
+        SEQ_REGEXP480.HASH_CHAR = "\\right-align";
+        SEQ_REGEXP SEQ_REGEXP481 = new SEQ_REGEXP();
+        SEQ_REGEXP481.text = "\\\\right-column\\b";
+        SEQ_REGEXP481.TYPE = "KEYWORD4";
+        SEQ_REGEXP481.HASH_CHAR = "\\right-column";
+        SEQ_REGEXP SEQ_REGEXP482 = new SEQ_REGEXP();
+        SEQ_REGEXP482.text = "\\\\roman\\b";
+        SEQ_REGEXP482.TYPE = "KEYWORD4";
+        SEQ_REGEXP482.HASH_CHAR = "\\roman";
+        SEQ_REGEXP SEQ_REGEXP483 = new SEQ_REGEXP();
+        SEQ_REGEXP483.text = "\\\\rotate\\b";
+        SEQ_REGEXP483.TYPE = "KEYWORD4";
+        SEQ_REGEXP483.HASH_CHAR = "\\rotate";
+        SEQ_REGEXP SEQ_REGEXP484 = new SEQ_REGEXP();
+        SEQ_REGEXP484.text = "\\\\rounded-box\\b";
+        SEQ_REGEXP484.TYPE = "KEYWORD4";
+        SEQ_REGEXP484.HASH_CHAR = "\\rounded-box";
+        SEQ_REGEXP SEQ_REGEXP485 = new SEQ_REGEXP();
+        SEQ_REGEXP485.text = "\\\\sans\\b";
+        SEQ_REGEXP485.TYPE = "KEYWORD4";
+        SEQ_REGEXP485.HASH_CHAR = "\\sans";
+        SEQ_REGEXP SEQ_REGEXP486 = new SEQ_REGEXP();
+        SEQ_REGEXP486.text = "\\\\score\\b";
+        SEQ_REGEXP486.TYPE = "KEYWORD4";
+        SEQ_REGEXP486.HASH_CHAR = "\\score";
+        SEQ_REGEXP SEQ_REGEXP487 = new SEQ_REGEXP();
+        SEQ_REGEXP487.text = "\\\\semiflat\\b";
+        SEQ_REGEXP487.TYPE = "KEYWORD4";
+        SEQ_REGEXP487.HASH_CHAR = "\\semiflat";
+        SEQ_REGEXP SEQ_REGEXP488 = new SEQ_REGEXP();
+        SEQ_REGEXP488.text = "\\\\semisharp\\b";
+        SEQ_REGEXP488.TYPE = "KEYWORD4";
+        SEQ_REGEXP488.HASH_CHAR = "\\semisharp";
+        SEQ_REGEXP SEQ_REGEXP489 = new SEQ_REGEXP();
+        SEQ_REGEXP489.text = "\\\\sesquiflat\\b";
+        SEQ_REGEXP489.TYPE = "KEYWORD4";
+        SEQ_REGEXP489.HASH_CHAR = "\\sesquiflat";
+        SEQ_REGEXP SEQ_REGEXP490 = new SEQ_REGEXP();
+        SEQ_REGEXP490.text = "\\\\sesquisharp\\b";
+        SEQ_REGEXP490.TYPE = "KEYWORD4";
+        SEQ_REGEXP490.HASH_CHAR = "\\sesquisharp";
+        SEQ_REGEXP SEQ_REGEXP491 = new SEQ_REGEXP();
+        SEQ_REGEXP491.text = "\\\\sharp\\b";
+        SEQ_REGEXP491.TYPE = "KEYWORD4";
+        SEQ_REGEXP491.HASH_CHAR = "\\sharp";
+        SEQ_REGEXP SEQ_REGEXP492 = new SEQ_REGEXP();
+        SEQ_REGEXP492.text = "\\\\simple\\b";
+        SEQ_REGEXP492.TYPE = "KEYWORD4";
+        SEQ_REGEXP492.HASH_CHAR = "\\simple";
+        SEQ_REGEXP SEQ_REGEXP493 = new SEQ_REGEXP();
+        SEQ_REGEXP493.text = "\\\\slashed-digit\\b";
+        SEQ_REGEXP493.TYPE = "KEYWORD4";
+        SEQ_REGEXP493.HASH_CHAR = "\\slashed-digit";
+        SEQ_REGEXP SEQ_REGEXP494 = new SEQ_REGEXP();
+        SEQ_REGEXP494.text = "\\\\small\\b";
+        SEQ_REGEXP494.TYPE = "KEYWORD4";
+        SEQ_REGEXP494.HASH_CHAR = "\\small";
+        SEQ_REGEXP SEQ_REGEXP495 = new SEQ_REGEXP();
+        SEQ_REGEXP495.text = "\\\\smallCaps\\b";
+        SEQ_REGEXP495.TYPE = "KEYWORD4";
+        SEQ_REGEXP495.HASH_CHAR = "\\smallCaps";
+        SEQ_REGEXP SEQ_REGEXP496 = new SEQ_REGEXP();
+        SEQ_REGEXP496.text = "\\\\smaller\\b";
+        SEQ_REGEXP496.TYPE = "KEYWORD4";
+        SEQ_REGEXP496.HASH_CHAR = "\\smaller";
+        SEQ_REGEXP SEQ_REGEXP497 = new SEQ_REGEXP();
+        SEQ_REGEXP497.text = "\\\\stencil\\b";
+        SEQ_REGEXP497.TYPE = "KEYWORD4";
+        SEQ_REGEXP497.HASH_CHAR = "\\stencil";
+        SEQ_REGEXP SEQ_REGEXP498 = new SEQ_REGEXP();
+        SEQ_REGEXP498.text = "\\\\strut\\b";
+        SEQ_REGEXP498.TYPE = "KEYWORD4";
+        SEQ_REGEXP498.HASH_CHAR = "\\strut";
+        SEQ_REGEXP SEQ_REGEXP499 = new SEQ_REGEXP();
+        SEQ_REGEXP499.text = "\\\\sub\\b";
+        SEQ_REGEXP499.TYPE = "KEYWORD4";
+        SEQ_REGEXP499.HASH_CHAR = "\\sub";
+        SEQ_REGEXP SEQ_REGEXP500 = new SEQ_REGEXP();
+        SEQ_REGEXP500.text = "\\\\super\\b";
+        SEQ_REGEXP500.TYPE = "KEYWORD4";
+        SEQ_REGEXP500.HASH_CHAR = "\\super";
+        SEQ_REGEXP SEQ_REGEXP501 = new SEQ_REGEXP();
+        SEQ_REGEXP501.text = "\\\\teeny\\b";
+        SEQ_REGEXP501.TYPE = "KEYWORD4";
+        SEQ_REGEXP501.HASH_CHAR = "\\teeny";
+        SEQ_REGEXP SEQ_REGEXP502 = new SEQ_REGEXP();
+        SEQ_REGEXP502.text = "\\\\text\\b";
+        SEQ_REGEXP502.TYPE = "KEYWORD4";
+        SEQ_REGEXP502.HASH_CHAR = "\\text";
+        SEQ_REGEXP SEQ_REGEXP503 = new SEQ_REGEXP();
+        SEQ_REGEXP503.text = "\\\\tied-lyric\\b";
+        SEQ_REGEXP503.TYPE = "KEYWORD4";
+        SEQ_REGEXP503.HASH_CHAR = "\\tied-lyric";
+        SEQ_REGEXP SEQ_REGEXP504 = new SEQ_REGEXP();
+        SEQ_REGEXP504.text = "\\\\tiny\\b";
+        SEQ_REGEXP504.TYPE = "KEYWORD4";
+        SEQ_REGEXP504.HASH_CHAR = "\\tiny";
+        SEQ_REGEXP SEQ_REGEXP505 = new SEQ_REGEXP();
+        SEQ_REGEXP505.text = "\\\\translate\\b";
+        SEQ_REGEXP505.TYPE = "KEYWORD4";
+        SEQ_REGEXP505.HASH_CHAR = "\\translate";
+        SEQ_REGEXP SEQ_REGEXP506 = new SEQ_REGEXP();
+        SEQ_REGEXP506.text = "\\\\translate-scaled\\b";
+        SEQ_REGEXP506.TYPE = "KEYWORD4";
+        SEQ_REGEXP506.HASH_CHAR = "\\translate-scaled";
+        SEQ_REGEXP SEQ_REGEXP507 = new SEQ_REGEXP();
+        SEQ_REGEXP507.text = "\\\\transparent\\b";
+        SEQ_REGEXP507.TYPE = "KEYWORD4";
+        SEQ_REGEXP507.HASH_CHAR = "\\transparent";
+        SEQ_REGEXP SEQ_REGEXP508 = new SEQ_REGEXP();
+        SEQ_REGEXP508.text = "\\\\triangle\\b";
+        SEQ_REGEXP508.TYPE = "KEYWORD4";
+        SEQ_REGEXP508.HASH_CHAR = "\\triangle";
+        SEQ_REGEXP SEQ_REGEXP509 = new SEQ_REGEXP();
+        SEQ_REGEXP509.text = "\\\\typewriter\\b";
+        SEQ_REGEXP509.TYPE = "KEYWORD4";
+        SEQ_REGEXP509.HASH_CHAR = "\\typewriter";
+        SEQ_REGEXP SEQ_REGEXP510 = new SEQ_REGEXP();
+        SEQ_REGEXP510.text = "\\\\underline\\b";
+        SEQ_REGEXP510.TYPE = "KEYWORD4";
+        SEQ_REGEXP510.HASH_CHAR = "\\underline";
+        SEQ_REGEXP SEQ_REGEXP511 = new SEQ_REGEXP();
+        SEQ_REGEXP511.text = "\\\\upright\\b";
+        SEQ_REGEXP511.TYPE = "KEYWORD4";
+        SEQ_REGEXP511.HASH_CHAR = "\\upright";
+        SEQ_REGEXP SEQ_REGEXP512 = new SEQ_REGEXP();
+        SEQ_REGEXP512.text = "\\\\vcenter\\b";
+        SEQ_REGEXP512.TYPE = "KEYWORD4";
+        SEQ_REGEXP512.HASH_CHAR = "\\vcenter";
+        SEQ_REGEXP SEQ_REGEXP513 = new SEQ_REGEXP();
+        SEQ_REGEXP513.text = "\\\\verbatim-file\\b";
+        SEQ_REGEXP513.TYPE = "KEYWORD4";
+        SEQ_REGEXP513.HASH_CHAR = "\\verbatim-file";
+        SEQ_REGEXP SEQ_REGEXP514 = new SEQ_REGEXP();
+        SEQ_REGEXP514.text = "\\\\whiteout\\b";
+        SEQ_REGEXP514.TYPE = "KEYWORD4";
+        SEQ_REGEXP514.HASH_CHAR = "\\whiteout";
+        SEQ_REGEXP SEQ_REGEXP515 = new SEQ_REGEXP();
+        SEQ_REGEXP515.text = "\\\\with-color\\b";
+        SEQ_REGEXP515.TYPE = "KEYWORD4";
+        SEQ_REGEXP515.HASH_CHAR = "\\with-color";
+        SEQ_REGEXP SEQ_REGEXP516 = new SEQ_REGEXP();
+        SEQ_REGEXP516.text = "\\\\with-dimensions\\b";
+        SEQ_REGEXP516.TYPE = "KEYWORD4";
+        SEQ_REGEXP516.HASH_CHAR = "\\with-dimensions";
+        SEQ_REGEXP SEQ_REGEXP517 = new SEQ_REGEXP();
+        SEQ_REGEXP517.text = "\\\\with-url\\b";
+        SEQ_REGEXP517.TYPE = "KEYWORD4";
+        SEQ_REGEXP517.HASH_CHAR = "\\with-url";
+        SEQ_REGEXP SEQ_REGEXP518 = new SEQ_REGEXP();
+        SEQ_REGEXP518.text = "\\\\wordwrap\\b";
+        SEQ_REGEXP518.TYPE = "KEYWORD4";
+        SEQ_REGEXP518.HASH_CHAR = "\\wordwrap";
+        SEQ_REGEXP SEQ_REGEXP519 = new SEQ_REGEXP();
+        SEQ_REGEXP519.text = "\\\\wordwrap-field\\b";
+        SEQ_REGEXP519.TYPE = "KEYWORD4";
+        SEQ_REGEXP519.HASH_CHAR = "\\wordwrap-field";
+        SEQ_REGEXP SEQ_REGEXP520 = new SEQ_REGEXP();
+        SEQ_REGEXP520.text = "\\\\wordwrap-string\\b";
+        SEQ_REGEXP520.TYPE = "KEYWORD4";
+        SEQ_REGEXP520.HASH_CHAR = "\\wordwrap-string";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "\\";
+        MARK_FOLLOWING2.TYPE = "FUNCTION";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"#t", "#f", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"Forbid_line_break_engraver", "staff-symbol-referencer-interface", "clef-interface", "note-name-interface", "lyric-extender-interface", "mensural-ligature-interface", "Multi_measure_rest_engraver", "bass-figure-alignment-interface", "Slur_engraver", "Completion_heads_engraver", "rhythmic-grob-interface", "span-bar-interface", "Drum_note_performer", "InnerChoirStaff", "Score", "Bar_engraver", "Breathing_sign_engraver", "Staff", "spanner-interface", "Ligature_bracket_engraver", "Chord_name_engraver", "accidental-placement-interface", "Span_arpeggio_engraver", "MensuralVoice", "Stanza_number_engraver", "Grace_engraver", "Grace_beam_engraver", "script-interface", "Time_signature_engraver", "Stanza_number_align_engraver", "GregorianTranscriptionStaff", "Key_engraver", "cluster-beacon-interface", "TabVoice", "Dynamic_engraver", "rhythmic-head-interface", "Repeat_acknowledge_engraver", "dynamic-interface", "volta-bracket-interface", "bar-line-interface", "piano-pedal-interface", "font-interface", "VaticanaVoice", "staff-spacing-interface", "tie-interface", "Devnull", "dynamic-text-spanner-interface", "Script_row_engraver", "Stem_engraver", "grid-line-interface", "grob-interface", "custos-interface", "Font_size_engraver", "trill-pitch-accidental-interface", "Clef_engraver", "Text_engraver", "dynamic-line-spanner-interface", "Repeat_tie_engraver", "tablature-interface", "staff-symbol-interface", "rest-collision-interface", "Horizontal_bracket_engraver", "accidental-suggestion-interface", "Beam_performer", "Lyric_performer", "Piano_pedal_engraver", "vaticana-ligature-interface", "Tab_note_heads_engraver", "text-interface", "break-alignable-interface", "lyric-hyphen-interface", "grace-spacing-interface", "note-column-interface", "Vertical_align_engraver", "break-aligned-interface", "Staff_performer", "Ledger_line_engraver", "rest-interface", "Fingering_engraver", "figured-bass-continuation-interface", "metronome-mark-interface", "Key_performer", "Separating_line_group_engraver", "bend-after-interface", "DrumStaff", "unbreakable-spanner-interface", "trill-spanner-interface", "Grace_spacing_engraver", "Ambitus_engraver", "system-interface", "Swallow_engraver", "Cluster_spanner_engraver", "fret-diagram-interface", "gregorian-ligature-interface", "dots-interface", "percent-repeat-item-interface", "Time_signature_performer", "semi-tie-column-interface", "spacing-spanner-interface", "Staff_symbol_engraver", "mark-interface", "accidental-interface", "Text_spanner_engraver", "Swallow_performer", "system-start-text-interface", "Mensural_ligature_engraver", "chord-name-interface", "Lyric_engraver", "Translator", "script-column-interface", "Instrument_switch_engraver", "Grob_pq_engraver", "Volta_engraver", "breathing-sign-interface", "Span_bar_engraver", "Tab_harmonic_engraver", "Note_performer", "beam-interface", "note-collision-interface", "only-prebreak-interface", "stroke-finger-interface", "InnerStaffGroup", "tie-column-interface", "FretBoards", "Tie_engraver", "Laissez_vibrer_engraver", "slur-interface", "Custos_engraver", "Note_swallow_translator", "Rhythmic_column_engraver", "Default_bar_line_engraver", "note-spacing-interface", "FiguredBass", "vertically-spaceable-interface", "GregorianTranscriptionVoice", "stem-tremolo-interface", "measure-grouping-interface", "Spacing_engraver", "side-position-interface", "semi-tie-interface", "lyric-syllable-interface", "Engraver", "Pitched_trill_engraver", "ledger-line-spanner-interface", "stem-interface", "Extender_engraver", "Pitch_squash_engraver", "align-interface", "ambitus-interface", "Rest_swallow_translator", "string-number-interface", "self-alignment-interface", "Rest_collision_engraver", "hairpin-interface", "NoteNames", "Drum_notes_engraver", "arpeggio-interface", "Tweak_engraver", "ledgered-interface", "Global", "StaffGroup", "DrumVoice", "Voice", "GrandStaff", "Staff_collecting_engraver", "melody-spanner-interface", "Hara_kiri_engraver", "Figured_bass_position_engraver", "Tempo_performer", "New_dynamic_engraver", "Measure_grouping_engraver", "Hyphen_engraver", "Skip_event_swallow_translator", "Vaticana_ligature_engraver", "text-script-interface", "Tuplet_engraver", "Slur_performer", "spaceable-grob-interface", "Tie_performer", "Vertically_spaced_contexts_engraver", "Trill_spanner_engraver", "Spanner_break_forbid_engraver", "CueVoice", "ChoirStaff", "Glissando_engraver", "Balloon_engraver", "separation-item-interface", "Accidental_engraver", "Output_property_engraver", "hara-kiri-group-spanner-interface", "piano-pedal-script-interface", "system-start-delimiter-interface", "multi-measure-rest-interface", "Note_name_engraver", "Note_spacing_engraver", "Timing_translator", "Mark_engraver", "Control_track_performer", "Part_combine_engraver", "axis-group-interface", "note-head-interface", "horizontal-bracket-interface", "PianoStaff", "Slash_repeat_engraver", "Page_turn_engraver", "parentheses-interface", "key-signature-interface", "lyric-interface", "grid-point-interface", "item-interface", "Ottava_spanner_engraver", "Melody_engraver", "Percent_repeat_engraver", "tuplet-number-interface", "Rest_engraver", "stanza-number-interface", "enclosing-bracket-interface", "Break_align_engraver", "Piano_pedal_performer", "Paper_column_engraver", "pitched-trill-interface", "Grid_line_span_engraver", "Lyrics", "Instrument_name_engraver", "line-interface", "Bend_engraver", "Arpeggio_engraver", "key-cancellation-interface", "Grid_point_engraver", "Script_column_engraver", "Note_head_line_engraver", "spacing-options-interface", "Dot_column_engraver", "Chord_tremolo_engraver", "bass-figure-interface", "ottava-bracket-interface", "Bar_number_engraver", "Axis_group_engraver", "tuplet-bracket-interface", "Phrasing_slur_engraver", "Dynamic_align_engraver", "Piano_pedal_align_engraver", "Collision_engraver", "Dots_engraver", "New_fingering_engraver", "Figured_bass_engraver", "dot-column-interface", "multi-measure-interface", "Fretboard_engraver", "ligature-interface", "instrument-specific-markup-interface", "time-signature-interface", "Metronome_mark_engraver", "break-alignment-interface", "Auto_beam_engraver", "balloon-interface", "VaticanaStaff", "Script_engraver", "System_start_delimiter_engraver", "spacing-interface", "ligature-bracket-interface", "percent-repeat-interface", "ChordNames", "finger-interface", "TabStaff", "cluster-interface", "Beam_engraver", "RhythmicStaff", "String_number_engraver", "Dynamic_performer", "piano-pedal-bracket-interface", "Parenthesis_engraver", "Tab_staff_symbol_engraver", "paper-column-interface", "Note_heads_engraver", "MensuralStaff", "line-spanner-interface", "#:behaviour", "#:column", "#:condition", "#:depth", "#:exit-depth", "#:expression", "#:file-name", "#:file-regexp", "#:line", "#:procedure", "#:repeat-identical-behaviour", "#:single-shot", "#:skip-count", "$abs", "$acos", "$acosh", "$asin", "$asinh", "$atan", "$atan2", "$atanh", "$cos", "$cosh", "$exp", "$expt", "$log", "$sin", "$sinh", "$sqrt", "$tan", "$tanh", "%library-dir", "%make-void-port", "%package-data-dir", "%read-delimited!", "%read-line", "%search-load-path", "%site-dir", ",@", "->char-set", "1+", "1-", "<apply-trap>", "<entry-trap>", "<exit-trap>", "<group>-disable", "<group>-enable", "<group>-options", "<group>-set!", "<location-trap>", "<procedure-trap>", "<source-trap>", "<step-trap>", "<trap>", "abs", "accept", "access?", "acons", "acos", "acosh", "activate-readline", "add-duration", "add-duration!", "add-hook!", "alarm", "alist->hash-table", "alist-cons", "alist-copy", "alist-delete", "alist-delete!", "all-threads", "all-traps", "and", "and-let*", "angle", "any", "any->c32vector", "any->c64vector", "any->f32vector", "any->f64vector", "any->s16vector", "any->s32vector", "any->s64vector", "any->s8vector", "any->u16vector", "any->u32vector", "any->u64vector", "any->u8vector", "any-bits-set?", "append", "append!", "append-map", "append-map!", "append-reverse", "append-reverse!", "apply", "apply:nconc2last", "apropos-completion-function", "args-fold", "arithmetic-shift", "array->list", "array-contents", "array-copy!", "array-copy-in-order!", "array-dimensions", "array-equal?", "array-fill!", "array-for-each", "array-in-bounds?", "array-index-map!", "array-map!", "array-map-in-order!", "array-rank", "array-ref", "array-set!", "array-shape", "array-type", "array?", "ash", "asin", "asinh", "assoc", "assoc", "assoc-ref", "assoc-remove!", "assoc-set!", "assq", "assq-ref", "assq-remove!", "assq-set!", "assv", "assv-ref", "assv-remove!", "assv-set!", "async", "async-mark", "atan", "atanh", "backtrace", "backtrace", "basename", "begin", "begin-thread", "bind", "bind-textdomain-codeset", "bindtextdomain", "bit-count", "bit-count", "bit-count*", "bit-extract", "bit-field", "bit-invert!", "bit-position", "bit-set*!", "bit-set?", "bitvector", "bitvector->list", "bitvector-fill!", "bitvector-length", "bitvector-ref", "bitvector-set!", "bitvector?", "bitwise-and", "bitwise-if", "bitwise-ior", "bitwise-merge", "bitwise-not", "bitwise-xor", "boolean?", "booleans->integer", "break", "break", "break!", "broadcast-condition-variable", "bt", "c32vector", "c32vector->list", "c32vector-length", "c32vector-ref", "c32vector-set!", "c32vector?", "c64vector", "c64vector->list", "c64vector-length", "c64vector-ref", "c64vector-set!", "c64vector?", "caaaar", "caaadr", "caaar", "caadar", "caaddr", "caadr", "caar", "cadaar", "cadadr", "cadar", "caddar", "cadddr", "caddr", "cadr", "call-with-blocked-asyncs", "call-with-current-continuation", "call-with-input-file", "call-with-input-string", "call-with-new-thread", "call-with-output-file", "call-with-output-string", "call-with-unblocked-asyncs", "call-with-values", "call/cc", "car", "car+cdr", "case", "case-lambda", "catch", "cd", "cdaaar", "cdaadr", "cdaar", "cdadar", "cdaddr", "cdadr", "cdar", "cddaar", "cddadr", "cddar", "cdddar", "cddddr", "cdddr", "cddr", "cdr", "ceiling", "char->integer", "char-alphabetic?", "char-ci<=?", "char-ci<?", "char-ci=?", "char-ci>=?", "char-ci>?", "char-downcase", "char-is-both?", "char-lower-case?", "char-numeric?", "char-ready?", "char-set", "char-set->list", "char-set->string", "char-set-adjoin", "char-set-adjoin!", "char-set-any", "char-set-complement", "char-set-complement!", "char-set-contains?", "char-set-copy", "char-set-count", "char-set-cursor", "char-set-cursor-next", "char-set-delete", "char-set-delete!", "char-set-diff+intersection", "char-set-diff+intersection!", "char-set-difference", "char-set-difference!", "char-set-every", "char-set-filter", "char-set-filter!", "char-set-fold", "char-set-for-each", "char-set-hash", "char-set-intersection", "char-set-intersection!", "char-set-map", "char-set-ref", "char-set-size", "char-set-unfold", "char-set-unfold!", "char-set-union", "char-set-union!", "char-set-xor", "char-set-xor!", "char-set<=", "char-set=", "char-set?", "char-upcase", "char-upper-case?", "char-whitespace?", "char<=?", "char<?", "char=?", "char>=?", "char>?", "char?", "chdir", "chmod", "chown", "chroot", "circular-list", "circular-list?", "close", "close-fdes", "close-input-port", "close-output-port", "close-pipe", "close-port", "closedir", "closure?", "command-line", "complex?", "concatenate", "concatenate!", "cond", "cond-expand", "condition", "condition-has-type?", "condition-message", "condition-ref", "condition-type?", "connect", "cons", "cons*", "cons-source", "continue", "continue", "copy-bit", "copy-bit-field", "copy-file", "copy-random-state", "copy-time", "copy-tree", "cos", "cosh", "count", "crypt", "ctermid", "current-date", "current-dynamic-state", "current-error-port", "current-error-port", "current-input-port", "current-input-port", "current-julian-day", "current-load-port", "current-modified-julian-day", "current-module", "current-output-port", "current-output-port", "current-thread", "current-time", "current-time", "cuserid", "cut", "cute", "date->julian-day", "date->modified-julian-day", "date->string", "date->time-monotonic", "date->time-tai", "date->time-utc", "date-day", "date-hour", "date-minute", "date-month", "date-nanosecond", "date-second", "date-week-day", "date-week-number", "date-year", "date-year-day", "date-zone-offset", "date?", "debug", "debug-disable", "debug-enable", "debug-object?", "debug-options", "debug-options-interface", "debug-set!", "debug-trap", "default-duplicate-binding-handler", "define", "define*", "define*-public", "define-condition-type", "define-macro", "define-module", "define-public", "define-reader-ctor", "define-record-type", "defined?", "defmacro", "defmacro*", "defmacro*-public", "delay", "delete", "delete", "delete!", "delete!", "delete-duplicates", "delete-duplicates!", "delete-file", "delete1!", "delq", "delq!", "delq1!", "delv", "delv!", "delv1!", "denominator", "deq!", "directory-stream?", "dirname", "display", "display-application", "display-backtrace", "display-error", "dotted-list?", "doubly-weak-hash-table?", "down", "drain-input", "drop", "drop-right", "drop-right!", "drop-while", "dup", "dup->fdes", "dup->inport", "dup->outport", "dup->port", "dup2", "duplicate-port", "dynamic-args-call", "dynamic-call", "dynamic-func", "dynamic-link", "dynamic-object?", "dynamic-state?", "dynamic-unlink", "dynamic-wind", "effective-version", "eighth", "enclose-array", "end-of-char-set?", "endgrent", "endhostent", "endnetent", "endprotoent", "endpwent", "endservent", "enq!", "entity?", "environ", "eof-object?", "eq?", "equal?", "eqv?", "error", "error?", "eval", "eval-disable", "eval-enable", "eval-options", "eval-options-interface", "eval-options-interface", "eval-set!", "eval-string", "evaluate", "evaluator-traps-interface", "evaluator-traps-interface", "even?", "every", "exact->inexact", "exact?", "execl", "execle", "execlp", "exp", "expect", "expect-strings", "export", "expt", "extract-condition", "f32vector", "f32vector->list", "f32vector-length", "f32vector-ref", "f32vector-set!", "f32vector?", "f64vector", "f64vector->list", "f64vector-length", "f64vector-ref", "f64vector-set!", "f64vector?", "false-if-exception", "fchmod", "fchown", "fcntl", "fdes->inport", "fdes->outport", "fdes->ports", "fdopen", "feature?", "fflush", "fifth", "file-exists?", "file-port?", "filename-completion-function", "fileno", "filter", "filter!", "filter-map", "find", "find-tail", "finish", "first", "first-set-bit", "flock", "floor", "fluid-ref", "fluid-set!", "fluid?", "flush-all-ports", "fn", "fold", "fold-matches", "fold-right", "for-each", "for-each", "force", "force-output", "format", "fourth", "frame", "frame-arguments", "frame-evaluating-args?", "frame-next", "frame-number", "frame-overflow?", "frame-previous", "frame-procedure", "frame-procedure?", "frame-real?", "frame-source", "frame?", "fstat", "fsync", "ftell", "ftruncate", "ftw", "gc", "gc-live-object-stats", "gc-stats", "gcd", "gds-apropos", "gds-complete-symbol", "gds-debug-trap", "gds-down", "gds-eval-defun", "gds-eval-expression", "gds-eval-last-sexp", "gds-eval-region", "gds-evaluate", "gds-frame-args", "gds-frame-info", "gds-go", "gds-help-symbol", "gds-proc-source", "gds-select-stack-frame", "gds-step-file", "gds-step-into", "gds-step-over", "gds-up", "generalized-vector->list", "generalized-vector-length", "generalized-vector-ref", "generalized-vector-set!", "generalized-vector?", "gensym", "get-internal-real-time", "get-internal-run-time", "get-output-string", "get-print-state", "get-trap", "getcwd", "getegid", "getenv", "geteuid", "getgid", "getgr", "getgrent", "getgrgid", "getgrnam", "getgroups", "gethost", "gethostbyaddr", "gethostbyname", "gethostent", "gethostname", "getitimer", "getlogin", "getnet", "getnetbyaddr", "getnetbyname", "getnetent", "getopt-long", "getpass", "getpeername", "getpgrp", "getpid", "getppid", "getpriority", "getproto", "getprotobyname", "getprotobynumber", "getprotoent", "getpw", "getpwent", "getpwnam", "getpwuid", "getserv", "getservbyname", "getservbyport", "getservent", "getsockname", "getsockopt", "getter-with-setter", "gettext", "gettimeofday", "getuid", "GH_ALLOW_INTS", "gh_append", "gh_append2", "gh_append3", "gh_append4", "gh_apply", "gh_assoc", "gh_assq", "gh_assv", "gh_bool2scm", "gh_boolean_p", "gh_c", "gh_call0", "gh_call1", "gh_call2", "gh_call3", "gh_car", "gh_catch", "gh_cdr", "gh_char2scm", "gh_char_p", "gh_chars2byvect", "gh_cons", "GH_DEFER_INTS", "gh_define", "gh_double2scm", "gh_doubles2dvect", "gh_doubles2scm", "gh_enter", "gh_eq_p", "gh_equal_p", "gh_eqv_p", "gh_eval_file", "gh_eval_str", "gh_exact_p", "gh_floats2fvect", "gh_get_substr", "gh_inexact_p", "gh_ints2scm", "gh_is_eq", "gh_is_equal", "gh_is_eqv", "gh_length", "gh_list", "gh_list_p", "gh_list_ref", "gh_list_tail", "gh_list_to_vector", "gh_load", "gh_long2scm", "gh_longs2ivect", "gh_make_vector", "gh_member", "gh_memq", "gh_memv", "gh_new_procedure", "gh_null_p", "gh_obj_length", "gh_pair_p", "gh_procedure_p", "gh_repl", "gh_reverse", "gh_scm2bool", "gh_scm2char", "gh_scm2chars", "gh_scm2double", "gh_scm2doubles", "gh_scm2floats", "gh_scm2long", "gh_scm2longs", "gh_scm2newstr", "gh_scm2shorts", "gh_scm2ulong", "gh_set_car_x", "gh_set_cdr_x", "gh_set_substr", "gh_shorts2svect", "gh_str02scm", "gh_str2scm", "gh_string_equal_p", "gh_symbol2newstr", "gh_symbol2scm", "gh_symbol_p", "gh_throw", "gh_ulong2scm", "gh_ulongs2uvect", "gh_vector", "gh_vector_length", "gh_vector_p", "gh_vector_ref", "gh_vector_set", "gmtime", "group:gid", "group:mem", "group:name", "group:passwd", "GUILE_CHECK_RETVAL", "GUILE_FLAGS", "GUILE_MODULE_AVAILABLE", "GUILE_MODULE_CHECK", "GUILE_MODULE_EXPORTS", "GUILE_MODULE_REQUIRED", "GUILE_MODULE_REQUIRED_EXPORT", "GUILE_PROGS", "GUILE_SITE_DIR", "hash", "hash", "hash-by-identity", "hash-clear!", "hash-create-handle!", "hash-fold", "hash-for-each", "hash-for-each-handle", "hash-get-handle", "hash-map->list", "hash-ref", "hash-remove!", "hash-set!", "hash-table->alist", "hash-table-delete!", "hash-table-equivalence-function", "hash-table-exists?", "hash-table-fold", "hash-table-hash-function", "hash-table-keys", "hash-table-ref", "hash-table-ref/default", "hash-table-set!", "hash-table-size", "hash-table-update!", "hash-table-update!/default", "hash-table-values", "hash-table-walk", "hash-table?", "hashq", "hashq-create-handle!", "hashq-get-handle", "hashq-ref", "hashq-remove!", "hashq-set!", "hashv", "hashv-create-handle!", "hashv-get-handle", "hashv-ref", "hashv-remove!", "hashv-set!", "hashx-create-handle!", "hashx-get-handle", "hashx-ref", "hashx-remove!", "hashx-set!", "hook->list", "hook-empty?", "hook?", "hostent:addr-list", "hostent:addrtype", "hostent:aliases", "hostent:length", "hostent:name", "htonl", "htons", "if", "imag-part", "inet-aton", "inet-lnaof", "inet-makeaddr", "inet-netof", "inet-ntoa", "inet-ntop", "inet-pton", "inexact->exact", "inexact?", "inf", "inf?", "info args", "info frame", "input-port?", "install-trap", "integer->char", "integer->list", "integer-expt", "integer-length", "integer?", "interaction-environment", "iota", "isatty?", "join-thread", "julian-day->date", "julian-day->time-monotonic", "julian-day->time-tai", "julian-day->time-utc", "key", "keyword->string", "keyword->symbol", "keyword?", "keyword?", "kill", "lambda", "lambda*", "last", "last-pair", "last-stack-frame", "lazy-catch", "lchown", "lcm", "length", "length+", "let", "let*", "let*-values", "let-keywords", "let-keywords*", "let-optional", "let-optional*", "let-values", "letpar", "letrec", "link", "list", "list->array", "list->bitvector", "list->c32vector", "list->c64vector", "list->char-set", "list->char-set!", "list->f32vector", "list->f64vector", "list->integer", "list->s16vector", "list->s32vector", "list->s64vector", "list->s8vector", "list->stream", "list->string", "list->typed-array", "list->u16vector", "list->u32vector", "list->u64vector", "list->u8vector", "list->vector", "list->weak-vector", "list-cdr-ref", "list-cdr-set!", "list-copy", "list-copy", "list-head", "list-index", "list-matches", "list-ref", "list-set!", "list-tabulate", "list-tail", "list-traps", "list=", "list?", "listen", "load", "load-extension", "load-from-path", "local-eval", "localtime", "lock-mutex", "log", "log10", "log2-binary-factors", "logand", "logbit?", "logcount", "logior", "lognot", "logtest", "logxor", "lset-adjoin", "lset-diff+intersection", "lset-diff+intersection!", "lset-difference", "lset-difference!", "lset-intersection", "lset-intersection!", "lset-union", "lset-union!", "lset-xor", "lset-xor!", "lset<=", "lset=", "lstat", "macro-name", "macro-transformer", "macro-type", "macro?", "magnitude", "main_prog", "major-version", "make-arbiter", "make-array", "make-bitvector", "make-buffered-input-port", "make-c32vector", "make-c64vector", "make-class-object", "make-completion-function", "make-compound-condition", "make-condition", "make-condition-type", "make-condition-variable", "make-date", "make-doubly-weak-hash-table", "make-dynamic-state", "make-f32vector", "make-f64vector", "make-fluid", "make-guardian", "make-hash-table", "make-hash-table", "make-hook", "make-line-buffered-input-port", "make-list", "make-mutex", "make-object-property", "make-parameter", "make-polar", "make-procedure-with-setter", "make-q", "make-record-type", "make-rectangular", "make-recursive-mutex", "make-regexp", "make-s16vector", "make-s32vector", "make-s64vector", "make-s8vector", "make-shared-array", "make-socket-address", "make-soft-port", "make-stack", "make-stream", "make-string", "make-struct", "make-struct-layout", "make-subclass-object", "make-symbol", "make-thread", "make-time", "make-typed-array", "make-u16vector", "make-u32vector", "make-u64vector", "make-u8vector", "make-undefined-variable", "make-variable", "make-vector", "make-vtable", "make-vtable-vtable", "make-weak-key-hash-table", "make-weak-value-hash-table", "make-weak-vector", "malloc-stats", "map", "map", "map!", "map-in-order", "match:count", "match:end", "match:prefix", "match:start", "match:string", "match:substring", "match:suffix", "max", "member", "member", "memoized-environment", "memoized?", "memq", "memv", "merge", "merge!", "message-condition?", "micro-version", "min", "minor-version", "mkdir", "mknod", "mkstemp!", "mktime", "modified-julian-day->date", "modified-julian-day->time-monotonic", "modified-julian-day->time-tai", "modified-julian-day->time-utc", "module-use!", "modulo", "modulo-expt", "monitor", "move->fdes", "n-for-each-par-map", "n-par-for-each", "n-par-map", "nan", "nan?", "negative?", "netent:addrtype", "netent:aliases", "netent:name", "netent:net", "newline", "next", "nftw", "ngettext", "nice", "nil-car", "nil-cdr", "nil-cons", "nil-eq", "ninth", "not", "not-pair?", "ntohl", "ntohs", "null", "null-environment", "null-list?", "null?", "number->string", "number?", "numerator", "object->string", "object-properties", "object-property", "odd?", "open", "open-fdes", "open-file", "open-input-file", "open-input-output-pipe", "open-input-pipe", "open-input-string", "open-output-file", "open-output-pipe", "open-output-string", "open-pipe", "open-pipe*", "opendir", "operator?", "option", "option-names", "option-optional-arg?", "option-processor", "option-ref", "option-required-arg?", "or", "output-port?", "pair-fold", "pair-fold-right", "pair-for-each", "pair?", "par-for-each", "par-map", "parallel", "parameterize", "parse-path", "partition", "partition!", "passwd:dir", "passwd:gecos", "passwd:gid", "passwd:name", "passwd:passwd", "passwd:shell", "passwd:uid", "pause", "pclose", "peek-char", "pipe", "PKG_CHECK_MODULES", "popen", "port->fdes", "port->stream", "port-closed?", "port-column", "port-filename", "port-for-each", "port-line", "port-mode", "port-mode", "port-revealed", "port-with-print-state", "port?", "position", "positive?", "pretty-print", "primitive-_exit", "primitive-eval", "primitive-exit", "primitive-fork", "primitive-load", "primitive-load-path", "primitive-make-property", "primitive-move->fdes", "primitive-property-del!", "primitive-property-ref", "primitive-property-set!", "print-disable", "print-enable", "print-options", "print-options-interface", "print-options-interface", "print-set!", "procedure", "procedure->macro", "procedure->memoizing-macro", "procedure->syntax", "procedure-documentation", "procedure-environment", "procedure-name", "procedure-properties", "procedure-property", "procedure-source", "procedure-with-setter?", "procedure?", "program-arguments", "promise?", "proper-list?", "protoent:aliases", "protoent:name", "protoent:proto", "provide", "provided?", "PTR2SCM", "putenv", "pwd", "q-empty-check", "q-empty?", "q-front", "q-length", "q-pop!", "q-push!", "q-rear", "q-remove!", "q?", "quasiquote", "quit", "quote", "quotient", "raise", "random", "random:exp", "random:hollow-sphere!", "random:normal", "random:normal-vector!", "random:solid-sphere!", "random:uniform", "rational?", "rationalize", "re-export", "read", "read-char", "read-delimited", "read-delimited!", "read-disable", "read-disable", "read-enable", "read-enable", "read-hash-extend", "read-line", "read-line!", "read-options", "read-options", "read-options-interface", "read-options-interface", "read-set!", "read-set!", "read-string!/partial", "readdir", "readline", "readline-disable", "readline-enable", "readline-options", "readline-port", "readline-set!", "readlink", "real-part", "real?", "rec", "receive", "record-accessor", "record-constructor", "record-modifier", "record-predicate", "record-type-descriptor", "record-type-fields", "record-type-name", "record?", "recv!", "recvfrom!", "redirect-port", "reduce", "reduce-right", "regexp-exec", "regexp-match?", "regexp-quote", "regexp-substitute", "regexp-substitute/global", "regexp?", "release-arbiter", "release-port-handle", "remainder", "remove", "remove!", "remove-hook!", "rename", "rename-file", "require", "require-extension", "reset-hook!", "resolve-interface", "resolve-module", "restore-signals", "restricted-vector-sort!", "reverse", "reverse!", "reverse-bit-field", "reverse-list->string", "rewinddir", "rmdir", "rotate-bit-field", "round", "run-asyncs", "run-hook", "s16vector", "s16vector->list", "s16vector-length", "s16vector-ref", "s16vector-set!", "s16vector?", "s32vector", "s32vector->list", "s32vector-length", "s32vector-ref", "s32vector-set!", "s32vector?", "s64vector", "s64vector->list", "s64vector-length", "s64vector-ref", "s64vector-set!", "s64vector?", "s8vector", "s8vector->list", "s8vector-length", "s8vector-ref", "s8vector-set!", "s8vector?", "save-module-excursion", "scheme-report-environment", "search-path", "second", "seed->random-state", "seek", "select", "send", "sendto", "serious-condition?", "servent:aliases", "servent:name", "servent:port", "servent:proto", "set-buffered-input-continuation?!", "set-car!", "set-cdr!", "set-current-dynamic-state", "set-current-error-port", "set-current-input-port", "set-current-module", "set-current-output-port", "set-object-procedure!", "set-object-properties!", "set-object-property!", "set-port-column!", "set-port-filename!", "set-port-line!", "set-port-revealed!", "set-procedure-properties!", "set-procedure-property!", "set-program-arguments", "set-readline-input-port!", "set-readline-output-port!", "set-readline-prompt!", "set-source-properties!", "set-source-property!", "set-struct-vtable-name!", "set-symbol-property!", "set-time-nanosecond!", "set-time-second!", "set-time-type!", "set-tm:gmtoff", "set-tm:hour", "set-tm:isdst", "set-tm:mday", "set-tm:min", "set-tm:mon", "set-tm:sec", "set-tm:wday", "set-tm:yday", "set-tm:year", "set-tm:zone", "set-trace-layout", "set!", "setegid", "setenv", "seteuid", "setgid", "setgr", "setgrent", "setgroups", "sethost", "sethostent", "sethostname", "setitimer", "setlocale", "setnet", "setnetent", "setpgid", "setpriority", "setproto", "setprotoent", "setpw", "setpwent", "setserv", "setservent", "setsid", "setsockopt", "setter", "setuid", "setvbuf", "seventh", "shared-array-increments", "shared-array-offset", "shared-array-root", "shutdown", "sigaction", "signal-condition-variable", "simple-format", "sin", "sinh", "sixth", "sleep", "sloppy-assoc", "sloppy-assq", "sloppy-assv", "sockaddr:addr", "sockaddr:fam", "sockaddr:flowinfo", "sockaddr:path", "sockaddr:port", "sockaddr:scopeid", "socket", "socketpair", "sort", "sort!", "sort-list", "sort-list!", "sorted?", "source-properties", "source-property", "span", "span!", "split-at", "split-at!", "sqrt", "stable-sort", "stable-sort!", "stack-id", "stack-length", "stack-ref", "stack?", "start-stack", "stat", "stat:atime", "stat:blksize", "stat:blocks", "stat:ctime", "stat:dev", "stat:gid", "stat:ino", "stat:mode", "stat:mtime", "stat:nlink", "stat:perms", "stat:rdev", "stat:size", "stat:type", "stat:uid", "status:exit-val", "status:stop-sig", "status:term-sig", "step", "stream->list", "stream->list&length", "stream->reversed-list", "stream->reversed-list&length", "stream->vector", "stream-car", "stream-cdr", "stream-fold", "stream-for-each", "stream-map", "stream-null?", "strerror", "strftime", "string", "string->char-set", "string->char-set!", "string->date", "string->keyword", "string->list", "string->number", "string->symbol", "string-any", "string-append", "string-append/shared", "string-capitalize", "string-capitalize!", "string-ci->symbol", "string-ci-hash", "string-ci<", "string-ci<=", "string-ci<=?", "string-ci<>", "string-ci<?", "string-ci=", "string-ci=?", "string-ci>", "string-ci>=", "string-ci>=?", "string-ci>?", "string-compare", "string-compare-ci", "string-concatenate", "string-concatenate-reverse", "string-concatenate-reverse/shared", "string-concatenate/shared", "string-contains", "string-contains-ci", "string-copy", "string-copy!", "string-count", "string-delete", "string-downcase", "string-downcase!", "string-drop", "string-drop-right", "string-every", "string-fill!", "string-filter", "string-fold", "string-fold-right", "string-for-each", "string-for-each-index", "string-hash", "string-hash", "string-hash-ci", "string-index", "string-index-right", "string-join", "string-length", "string-map", "string-map!", "string-match", "string-null?", "string-pad", "string-pad-right", "string-prefix-ci?", "string-prefix-length", "string-prefix-length-ci", "string-prefix?", "string-ref", "string-replace", "string-reverse", "string-reverse!", "string-rindex", "string-set!", "string-skip", "string-skip-right", "string-split", "string-suffix-ci?", "string-suffix-length", "string-suffix-length-ci", "string-suffix?", "string-tabulate", "string-take", "string-take-right", "string-titlecase", "string-titlecase!", "string-tokenize", "string-trim", "string-trim-both", "string-trim-right", "string-unfold", "string-unfold-right", "string-upcase", "string-upcase!", "string-xcopy!", "string<", "string<=", "string<=?", "string<>>", "string<?", "string=", "string=?", "string>", "string>=", "string>=?", "string>?", "string?", "strptime", "struct-ref", "struct-set!", "struct-vtable", "struct-vtable-name", "struct-vtable-tag", "struct-vtable?", "struct?", "substring", "substring-fill!", "substring-move!", "substring/copy", "substring/read-only", "substring/shared", "subtract-duration", "subtract-duration!", "symbol->keyword", "symbol->string", "symbol-fref", "symbol-fset!", "symbol-hash", "symbol-interned?", "symbol-pref", "symbol-prefix-proc", "symbol-property", "symbol-property-remove!", "symbol-pset!", "symbol?", "symlink", "sync", "sync-q!", "system", "system*", "system-async-mark", "system-error-errno", "take", "take!", "take-right", "take-while", "take-while!", "tan", "tanh", "tc:depth", "tc:frame", "tc:real-depth", "tc:return-value", "tc:stack", "tc:type", "tcgetpgrp", "tcsetpgrp", "tenth", "textdomain", "third", "thread-exited?", "throw", "thunk?", "time-difference", "time-difference!", "time-monotonic->date", "time-monotonic->time-tai", "time-monotonic->time-tai!", "time-monotonic->time-utc", "time-monotonic->time-utc!", "time-nanosecond", "time-resolution", "time-second", "time-tai->date", "time-tai->julian-day", "time-tai->modified-julian-day", "time-tai->time-monotonic", "time-tai->time-monotonic!", "time-tai->time-utc", "time-tai->time-utc!", "time-type", "time-utc->date", "time-utc->julian-day", "time-utc->modified-julian-day", "time-utc->time-monotonic", "time-utc->time-monotonic!", "time-utc->time-tai", "time-utc->time-tai!", "time<=?", "time<?", "time=?", "time>=?", "time>?", "time?", "times", "tm:gmtoff", "tm:hour", "tm:isdst", "tm:mday", "tm:min", "tm:mon", "tm:sec", "tm:wday", "tm:yday", "tm:year", "tm:zone", "tmpnam", "tms:clock", "tms:cstime", "tms:cutime", "tms:stime", "tms:utime", "trace", "trace-at-exit", "trace-port", "trace-trap", "trace-until-exit", "trace/info", "trace/pid", "trace/real?", "trace/source", "trace/source-column", "trace/source-file-name", "trace/source-line", "trace/stack", "trace/stack-depth", "trace/stack-id", "trace/stack-real-depth", "trace/type", "transpose-array", "trap-disable", "trap-disable", "trap-enable", "trap-enable", "trap-here", "trap-set!", "trap-set!", "traps", "traps", "truncate", "truncate", "truncate-file", "try-arbiter", "try-mutex", "ttyname", "typed-array?", "tzset", "u16vector", "u16vector->list", "u16vector-length", "u16vector-ref", "u16vector-set!", "u16vector?", "u32vector", "u32vector->list", "u32vector-length", "u32vector-ref", "u32vector-set!", "u32vector?", "u64vector", "u64vector->list", "u64vector-length", "u64vector-ref", "u64vector-set!", "u64vector?", "u8vector", "u8vector->list", "u8vector-length", "u8vector-ref", "u8vector-set!", "u8vector?", "ucs-range->char-set", "ucs-range->char-set!", "umask", "uname", "unfold", "unfold-right", "uniform-array-read!", "uniform-array-write", "uniform-vector->list", "uniform-vector-length", "uniform-vector-read!", "uniform-vector-ref", "uniform-vector-set!", "uniform-vector-write", "uniform-vector?", "uninstall-trap", "unlink", "unlock-mutex", "unmemoize", "unquote", "unquote-splicing", "unread-char", "unread-char", "unread-string", "unread-string", "unsetenv", "untrace", "unzip1", "unzip2", "unzip3", "unzip4", "unzip5", "up", "use-modules", "use-syntax", "usleep", "utime", "utsname:machine", "utsname:nodename", "utsname:release", "utsname:sysname", "utsname:version", "values", "variable-bound?", "variable-ref", "variable-set!", "variable?", "vector", "vector->list", "vector->stream", "vector-copy", "vector-fill!", "vector-length", "vector-move-left!", "vector-move-right!", "vector-ref", "vector-set!", "vector?", "version", "wait-condition-variable", "waitpid", "weak-key-hash-table?", "weak-value-hash-table?", "weak-vector", "weak-vector?", "where", "while", "with-continuation-barrier", "with-dynamic-state", "with-error-to-file", "with-fluid*", "with-fluids", "with-fluids*", "with-input-from-file", "with-input-from-string", "with-mutex", "with-output-to-file", "with-output-to-string", "with-parameters*", "with-readline-completion-function", "with-throw-handler", "with-traps", "write", "write-char", "write-line", "write-string/partial", "xcons", "xsubstring", "yield", "zero?", "zip", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, MARK_PREVIOUS2, };
+
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, SEQ_REGEXP2, SEQ_REGEXP3, SEQ_REGEXP4, SEQ_REGEXP5, SEQ_REGEXP6, SEQ_REGEXP7, SEQ_REGEXP8, SEQ_REGEXP9, SEQ_REGEXP10, SEQ_REGEXP11, SEQ_REGEXP12, SEQ_REGEXP13, SEQ_REGEXP14, SEQ_REGEXP15, SEQ_REGEXP16, SEQ_REGEXP17, SEQ_REGEXP18, SEQ_REGEXP19, SEQ_REGEXP20, SEQ_REGEXP21, SEQ_REGEXP22, SEQ_REGEXP23, SEQ_REGEXP24, SEQ_REGEXP25, SEQ_REGEXP26, SEQ_REGEXP27, SEQ_REGEXP28, SEQ_REGEXP29, SEQ_REGEXP30, SEQ_REGEXP31, SEQ_REGEXP32, SEQ_REGEXP33, SEQ_REGEXP34, SEQ_REGEXP35, SEQ_REGEXP36, SEQ_REGEXP37, SEQ_REGEXP38, SEQ_REGEXP39, SEQ_REGEXP40, SEQ_REGEXP41, SEQ_REGEXP42, SEQ_REGEXP43, SEQ_REGEXP44, SEQ_REGEXP45, SEQ_REGEXP46, SEQ_REGEXP47, SEQ_REGEXP48, SEQ_REGEXP49, SEQ_REGEXP50, SEQ_REGEXP51, SEQ_REGEXP52, SEQ_REGEXP53, SEQ_REGEXP54, SEQ_REGEXP55, SEQ_REGEXP56, SEQ_REGEXP57, SEQ_REGEXP58, SEQ_REGEXP59, SEQ_REGEXP60, SEQ_REGEXP61, SEQ_REGEXP62, SEQ_REGEXP63, SEQ_REGEXP64, SEQ_REGEXP65, SEQ_REGEXP66, SEQ_REGEXP67, SEQ_REGEXP68, SEQ_REGEXP69, SEQ_REGEXP70, SEQ_REGEXP71, SEQ_REGEXP72, SEQ_REGEXP73, SEQ_REGEXP74, SEQ_REGEXP75, SEQ_REGEXP76, SEQ_REGEXP77, SEQ_REGEXP78, SEQ_REGEXP79, SEQ_REGEXP80, SEQ_REGEXP81, SEQ_REGEXP82, SEQ_REGEXP83, SEQ_REGEXP84, SEQ_REGEXP85, SEQ_REGEXP86, SEQ_REGEXP87, SEQ_REGEXP88, SEQ_REGEXP89, SEQ_REGEXP90, SEQ_REGEXP91, SEQ_REGEXP92, SEQ_REGEXP93, SEQ_REGEXP94, SEQ_REGEXP95, SEQ_REGEXP96, SEQ_REGEXP97, SEQ_REGEXP98, SEQ_REGEXP99, SEQ_REGEXP100, SEQ_REGEXP101, SEQ_REGEXP102, SEQ_REGEXP103, SEQ_REGEXP104, SEQ_REGEXP105, SEQ_REGEXP106, SEQ_REGEXP107, SEQ_REGEXP108, SEQ_REGEXP109, SEQ_REGEXP110, SEQ_REGEXP111, SEQ_REGEXP112, SEQ_REGEXP113, SEQ_REGEXP114, SEQ_REGEXP115, SEQ_REGEXP116, SEQ_REGEXP117, SEQ_REGEXP118, SEQ_REGEXP119, SEQ_REGEXP120, SEQ_REGEXP121, SEQ_REGEXP122, SEQ_REGEXP123, SEQ_REGEXP124, SEQ_REGEXP125, SEQ_REGEXP126, SEQ_REGEXP127, SEQ_REGEXP128, SEQ_REGEXP129, SEQ_REGEXP130, SEQ_REGEXP131, SEQ_REGEXP132, SEQ_REGEXP133, SEQ_REGEXP134, SEQ_REGEXP135, SEQ_REGEXP136, SEQ_REGEXP137, SEQ_REGEXP138, SEQ_REGEXP139, SEQ_REGEXP140, SEQ_REGEXP141, SEQ_REGEXP142, SEQ_REGEXP143, SEQ_REGEXP144, SEQ_REGEXP145, SEQ_REGEXP146, SEQ_REGEXP147, SEQ_REGEXP148, SEQ_REGEXP149, SEQ_REGEXP150, SEQ_REGEXP151, SEQ_REGEXP152, SEQ_REGEXP153, SEQ_REGEXP154, SEQ_REGEXP155, SEQ_REGEXP156, SEQ_REGEXP157, SEQ_REGEXP158, SEQ_REGEXP159, SEQ_REGEXP160, SEQ_REGEXP161, SEQ_REGEXP162, SEQ_REGEXP163, SEQ_REGEXP164, SEQ_REGEXP165, SEQ_REGEXP166, SEQ_REGEXP167, SEQ_REGEXP168, SEQ_REGEXP169, SEQ_REGEXP170, SEQ_REGEXP171, SEQ_REGEXP172, SEQ_REGEXP173, SEQ_REGEXP174, SEQ_REGEXP175, SEQ_REGEXP176, SEQ_REGEXP177, SEQ_REGEXP178, SEQ_REGEXP179, SEQ_REGEXP180, SEQ_REGEXP181, SEQ_REGEXP182, SEQ_REGEXP183, SEQ_REGEXP184, SEQ_REGEXP185, SEQ_REGEXP186, SEQ_REGEXP187, SEQ_REGEXP188, SEQ_REGEXP189, SEQ_REGEXP190, SEQ_REGEXP191, SEQ_REGEXP192, SEQ_REGEXP193, SEQ_REGEXP194, SEQ_REGEXP195, SEQ_REGEXP196, SEQ_REGEXP197, SEQ_REGEXP198, SEQ_REGEXP199, SEQ_REGEXP200, SEQ_REGEXP201, SEQ_REGEXP202, SEQ_REGEXP203, SEQ_REGEXP204, SEQ_REGEXP205, SEQ_REGEXP206, SEQ_REGEXP207, SEQ_REGEXP208, SEQ_REGEXP209, SEQ_REGEXP210, SEQ_REGEXP211, SEQ_REGEXP212, SEQ_REGEXP213, SEQ_REGEXP214, SEQ_REGEXP215, SEQ_REGEXP216, SEQ_REGEXP217, SEQ_REGEXP218, SEQ_REGEXP219, SEQ_REGEXP220, SEQ_REGEXP221, SEQ_REGEXP222, SEQ_REGEXP223, SEQ_REGEXP224, SEQ_REGEXP225, SEQ_REGEXP226, SEQ_REGEXP227, SEQ_REGEXP228, SEQ_REGEXP229, SEQ_REGEXP230, SEQ_REGEXP231, SEQ_REGEXP232, SEQ_REGEXP233, SEQ_REGEXP234, SEQ_REGEXP235, SEQ_REGEXP236, SEQ_REGEXP237, SEQ_REGEXP238, SEQ_REGEXP239, SEQ_REGEXP240, SEQ_REGEXP241, SEQ_REGEXP242, SEQ_REGEXP243, SEQ_REGEXP244, SEQ_REGEXP245, SEQ_REGEXP246, SEQ_REGEXP247, SEQ_REGEXP248, SEQ_REGEXP249, SEQ_REGEXP250, SEQ_REGEXP251, SEQ_REGEXP252, SEQ_REGEXP253, SEQ_REGEXP254, SEQ_REGEXP255, SEQ_REGEXP256, SEQ_REGEXP257, SEQ_REGEXP258, SEQ_REGEXP259, SEQ_REGEXP260, SEQ_REGEXP261, SEQ_REGEXP262, SEQ_REGEXP263, SEQ_REGEXP264, SEQ_REGEXP265, SEQ_REGEXP266, SEQ_REGEXP267, SEQ_REGEXP268, SEQ_REGEXP269, SEQ_REGEXP270, SEQ_REGEXP271, SEQ_REGEXP272, SEQ_REGEXP273, SEQ_REGEXP274, SEQ_REGEXP275, SEQ_REGEXP276, SEQ_REGEXP277, SEQ_REGEXP278, SEQ_REGEXP279, SEQ_REGEXP280, SEQ_REGEXP281, SEQ_REGEXP282, SEQ_REGEXP283, SEQ_REGEXP284, SEQ_REGEXP285, SEQ_REGEXP286, SEQ_REGEXP287, SEQ_REGEXP288, SEQ_REGEXP289, SEQ_REGEXP290, SEQ_REGEXP291, SEQ_REGEXP292, SEQ_REGEXP293, SEQ_REGEXP294, SEQ_REGEXP295, SEQ_REGEXP296, SEQ_REGEXP297, SEQ_REGEXP298, SEQ_REGEXP299, SEQ_REGEXP300, SEQ_REGEXP301, SEQ_REGEXP302, SEQ_REGEXP303, SEQ_REGEXP304, SEQ_REGEXP305, SEQ_REGEXP306, SEQ_REGEXP307, SEQ_REGEXP308, SEQ_REGEXP309, SEQ_REGEXP310, SEQ_REGEXP311, SEQ_REGEXP312, SEQ_REGEXP313, SEQ_REGEXP314, SEQ_REGEXP315, SEQ_REGEXP316, SEQ_REGEXP317, SEQ_REGEXP318, SEQ_REGEXP319, SEQ_REGEXP320, SEQ_REGEXP321, SEQ_REGEXP322, SEQ_REGEXP323, SEQ_REGEXP324, SEQ_REGEXP325, SEQ_REGEXP326, SEQ_REGEXP327, SEQ_REGEXP328, SEQ_REGEXP329, SEQ_REGEXP330, SEQ_REGEXP331, SEQ_REGEXP332, SEQ_REGEXP333, SEQ_REGEXP334, SEQ_REGEXP335, SEQ_REGEXP336, SEQ_REGEXP337, SEQ_REGEXP338, SEQ_REGEXP339, SEQ_REGEXP340, SEQ_REGEXP341, SEQ_REGEXP342, SEQ_REGEXP343, SEQ_REGEXP344, SEQ_REGEXP345, SEQ_REGEXP346, SEQ_REGEXP347, SEQ_REGEXP348, SEQ_REGEXP349, SEQ_REGEXP350, SEQ_REGEXP351, SEQ_REGEXP352, SEQ_REGEXP353, SEQ_REGEXP354, SEQ_REGEXP355, SEQ_REGEXP356, SEQ_REGEXP357, SEQ_REGEXP358, SEQ_REGEXP359, SEQ_REGEXP360, SEQ_REGEXP361, SEQ_REGEXP362, SEQ_REGEXP363, SEQ_REGEXP364, SEQ_REGEXP365, SEQ_REGEXP366, SEQ_REGEXP367, SEQ_REGEXP368, SEQ_REGEXP369, SEQ_REGEXP370, SEQ_REGEXP371, SEQ_REGEXP372, SEQ_REGEXP373, SEQ_REGEXP374, SEQ_REGEXP375, SEQ_REGEXP376, SEQ_REGEXP377, SEQ_REGEXP378, SEQ_REGEXP379, SEQ_REGEXP380, SEQ_REGEXP381, SEQ_REGEXP382, SEQ_REGEXP383, SEQ_REGEXP384, SEQ_REGEXP385, SEQ_REGEXP386, SEQ_REGEXP387, SEQ_REGEXP388, SEQ_REGEXP389, SEQ_REGEXP390, SEQ_REGEXP391, SEQ_REGEXP392, SEQ_REGEXP393, SEQ_REGEXP394, SEQ_REGEXP395, SEQ_REGEXP396, SEQ_REGEXP397, SEQ_REGEXP398, SEQ_REGEXP399, SEQ_REGEXP400, SEQ_REGEXP401, SEQ_REGEXP402, SEQ_REGEXP403, SEQ_REGEXP404, SEQ_REGEXP405, SEQ_REGEXP406, SEQ_REGEXP407, SEQ_REGEXP408, SEQ_REGEXP409, SEQ_REGEXP410, SEQ_REGEXP411, SEQ_REGEXP412, SEQ_REGEXP413, SEQ_REGEXP414, SEQ_REGEXP415, SEQ_REGEXP416, SEQ_REGEXP417, SEQ_REGEXP418, SEQ_REGEXP419, SEQ_REGEXP420, SEQ_REGEXP421, SEQ_REGEXP422, SEQ_REGEXP423, SEQ_REGEXP424, SEQ_REGEXP425, SEQ_REGEXP426, SEQ_REGEXP427, SEQ_REGEXP428, SEQ_REGEXP429, SEQ_REGEXP430, SEQ_REGEXP431, SEQ_REGEXP432, SEQ_REGEXP433, SEQ_REGEXP434, SEQ_REGEXP435, SEQ_REGEXP436, SEQ_REGEXP437, SEQ_REGEXP438, SEQ_REGEXP439, SEQ_REGEXP440, SEQ_REGEXP441, SEQ_REGEXP442, SEQ_REGEXP443, SEQ_REGEXP444, SEQ_REGEXP445, SEQ_REGEXP446, SEQ_REGEXP447, SEQ_REGEXP448, SEQ_REGEXP449, SEQ_REGEXP450, SEQ_REGEXP451, SEQ_REGEXP452, SEQ_REGEXP453, SEQ_REGEXP454, SEQ_REGEXP455, SEQ_REGEXP456, SEQ_REGEXP457, SEQ_REGEXP458, SEQ_REGEXP459, SEQ_REGEXP460, SEQ_REGEXP461, SEQ_REGEXP462, SEQ_REGEXP463, SEQ_REGEXP464, SEQ_REGEXP465, SEQ_REGEXP466, SEQ_REGEXP467, SEQ_REGEXP468, SEQ_REGEXP469, SEQ_REGEXP470, SEQ_REGEXP471, SEQ_REGEXP472, SEQ_REGEXP473, SEQ_REGEXP474, SEQ_REGEXP475, SEQ_REGEXP476, SEQ_REGEXP477, SEQ_REGEXP478, SEQ_REGEXP479, SEQ_REGEXP480, SEQ_REGEXP481, SEQ_REGEXP482, SEQ_REGEXP483, SEQ_REGEXP484, SEQ_REGEXP485, SEQ_REGEXP486, SEQ_REGEXP487, SEQ_REGEXP488, SEQ_REGEXP489, SEQ_REGEXP490, SEQ_REGEXP491, SEQ_REGEXP492, SEQ_REGEXP493, SEQ_REGEXP494, SEQ_REGEXP495, SEQ_REGEXP496, SEQ_REGEXP497, SEQ_REGEXP498, SEQ_REGEXP499, SEQ_REGEXP500, SEQ_REGEXP501, SEQ_REGEXP502, SEQ_REGEXP503, SEQ_REGEXP504, SEQ_REGEXP505, SEQ_REGEXP506, SEQ_REGEXP507, SEQ_REGEXP508, SEQ_REGEXP509, SEQ_REGEXP510, SEQ_REGEXP511, SEQ_REGEXP512, SEQ_REGEXP513, SEQ_REGEXP514, SEQ_REGEXP515, SEQ_REGEXP516, SEQ_REGEXP517, SEQ_REGEXP518, SEQ_REGEXP519, SEQ_REGEXP520, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

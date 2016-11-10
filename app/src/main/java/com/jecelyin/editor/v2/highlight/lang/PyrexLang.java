@@ -19,15 +19,47 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class PyrexLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*[^#]{3,}:\\\\s*(#.*)?\",\"NAME\":\"indentNextLines\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"#\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"python::MAIN\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD4\",\"text\":\"cdef\"},{\"tag\":\"KEYWORD4\",\"text\":\"char\"},{\"tag\":\"KEYWORD4\",\"text\":\"cinclude\"},{\"tag\":\"KEYWORD4\",\"text\":\"ctypedef\"},{\"tag\":\"KEYWORD4\",\"text\":\"double\"},{\"tag\":\"KEYWORD4\",\"text\":\"enum\"},{\"tag\":\"KEYWORD4\",\"text\":\"extern\"},{\"tag\":\"KEYWORD4\",\"text\":\"float\"},{\"tag\":\"KEYWORD4\",\"text\":\"include\"},{\"tag\":\"KEYWORD4\",\"text\":\"private\"},{\"tag\":\"KEYWORD4\",\"text\":\"public\"},{\"tag\":\"KEYWORD4\",\"text\":\"short\"},{\"tag\":\"KEYWORD4\",\"text\":\"signed\"},{\"tag\":\"KEYWORD4\",\"text\":\"sizeof\"},{\"tag\":\"KEYWORD4\",\"text\":\"struct\"},{\"tag\":\"KEYWORD4\",\"text\":\"union\"},{\"tag\":\"KEYWORD4\",\"text\":\"unsigned\"},{\"tag\":\"KEYWORD4\",\"text\":\"void\"},{\"tag\":\"LITERAL3\",\"text\":\"NULL\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "\\s*[^#]{3,}:\\s*(#.*)?";
+        PROPERTY1.NAME = "indentNextLines";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "#";
+        PROPERTY2.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "python::MAIN";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL3", new String[]{"NULL", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"cdef", "char", "cinclude", "ctypedef", "double", "enum", "extern", "float", "include", "private", "public", "short", "signed", "sizeof", "struct", "union", "unsigned", "void", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

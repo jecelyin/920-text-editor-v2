@@ -19,15 +19,71 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class RdLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"\\\\name\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\alias\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\title\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\description\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\synopsis\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\usage\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\arguments\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\details\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\value\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\references\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\note\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\author\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\seealso\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\examples\"},{\"tag\":\"KEYWORD1\",\"text\":\"\\\\keyword\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\itemize\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\method\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\docType\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\format\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\source\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\itemize\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\section\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\enumerate\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\describe\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\tabular\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\link\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\item\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\eqn\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\deqn\"},{\"tag\":\"KEYWORD2\",\"text\":\"\\\\concept\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\emph\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\strong\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\bold\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\sQuote\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\dQuote\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\code\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\preformatted\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\kbd\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\samp\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\pkg\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\file\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\email\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\url\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\var\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\env\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\option\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\command\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\dfn\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\cite\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\acronym\"},{\"tag\":\"KEYWORD3\",\"text\":\"\\\\tab\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "{";
+        PROPERTY1.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "}";
+        PROPERTY2.NAME = "indentCloseBrackets";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "FALSE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "{";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "}";
+        SEQ2.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"\\name", "\\alias", "\\title", "\\description", "\\synopsis", "\\usage", "\\arguments", "\\details", "\\value", "\\references", "\\note", "\\author", "\\seealso", "\\examples", "\\keyword", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"\\itemize", "\\method", "\\docType", "\\format", "\\source", "\\itemize", "\\section", "\\enumerate", "\\describe", "\\tabular", "\\link", "\\item", "\\eqn", "\\deqn", "\\concept", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"\\emph", "\\strong", "\\bold", "\\sQuote", "\\dQuote", "\\code", "\\preformatted", "\\kbd", "\\samp", "\\pkg", "\\file", "\\email", "\\url", "\\var", "\\env", "\\option", "\\command", "\\dfn", "\\cite", "\\acronym", "\\tab", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

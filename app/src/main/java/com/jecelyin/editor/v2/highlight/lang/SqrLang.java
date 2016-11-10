@@ -19,15 +19,123 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SqrLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"!\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"true\",\"NAME\":\"contextInsensitive\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LABEL\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LABEL\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"[\"},{\"tag\":\"END\",\"text\":\"]\"}]},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"@\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<>\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"$\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"LITERAL2\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"MARKUP\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"begin-procedure\"},{\"tag\":\"FUNCTION\",\"text\":\"end-procedure\"},{\"tag\":\"FUNCTION\",\"text\":\"begin-report\"},{\"tag\":\"FUNCTION\",\"text\":\"end-report\"},{\"tag\":\"FUNCTION\",\"text\":\"begin-heading\"},{\"tag\":\"FUNCTION\",\"text\":\"end-heading\"},{\"tag\":\"FUNCTION\",\"text\":\"begin-setup\"},{\"tag\":\"FUNCTION\",\"text\":\"end-setup\"},{\"tag\":\"FUNCTION\",\"text\":\"begin-footing\"},{\"tag\":\"FUNCTION\",\"text\":\"end-footing\"},{\"tag\":\"FUNCTION\",\"text\":\"begin-program\"},{\"tag\":\"FUNCTION\",\"text\":\"end-program\"},{\"tag\":\"KEYWORD1\",\"text\":\"begin-select\"},{\"tag\":\"KEYWORD1\",\"text\":\"end-select\"},{\"tag\":\"KEYWORD1\",\"text\":\"begin-sql\"},{\"tag\":\"KEYWORD1\",\"text\":\"end-sql\"},{\"tag\":\"KEYWORD2\",\"text\":\"add\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-add\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-divide\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-multiply\"},{\"tag\":\"KEYWORD2\",\"text\":\"array-subtract\"},{\"tag\":\"KEYWORD2\",\"text\":\"ask\"},{\"tag\":\"KEYWORD2\",\"text\":\"break\"},{\"tag\":\"KEYWORD2\",\"text\":\"call\"},{\"tag\":\"KEYWORD2\",\"text\":\"clear-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"close\"},{\"tag\":\"KEYWORD2\",\"text\":\"columns\"},{\"tag\":\"KEYWORD2\",\"text\":\"commit\"},{\"tag\":\"KEYWORD2\",\"text\":\"concat\"},{\"tag\":\"KEYWORD2\",\"text\":\"connect\"},{\"tag\":\"KEYWORD2\",\"text\":\"create-array\"},{\"tag\":\"KEYWORD2\",\"text\":\"date-time\"},{\"tag\":\"KEYWORD2\",\"text\":\"display\"},{\"tag\":\"KEYWORD2\",\"text\":\"divide\"},{\"tag\":\"KEYWORD2\",\"text\":\"do\"},{\"tag\":\"KEYWORD2\",\"text\":\"dollar-symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"else\"},{\"tag\":\"KEYWORD2\",\"text\":\"encode\"},{\"tag\":\"KEYWORD2\",\"text\":\"end-evaluate\"},{\"tag\":\"KEYWORD2\",\"text\":\"end-if\"},{\"tag\":\"KEYWORD2\",\"text\":\"end-while\"},{\"tag\":\"KEYWORD2\",\"text\":\"evaluate\"},{\"tag\":\"KEYWORD2\",\"text\":\"execute\"},{\"tag\":\"KEYWORD2\",\"text\":\"extract\"},{\"tag\":\"KEYWORD2\",\"text\":\"find\"},{\"tag\":\"KEYWORD2\",\"text\":\"font\"},{\"tag\":\"KEYWORD2\",\"text\":\"get\"},{\"tag\":\"KEYWORD2\",\"text\":\"goto\"},{\"tag\":\"KEYWORD2\",\"text\":\"graphic\"},{\"tag\":\"KEYWORD2\",\"text\":\"if\"},{\"tag\":\"KEYWORD2\",\"text\":\"last-page\"},{\"tag\":\"KEYWORD2\",\"text\":\"let\"},{\"tag\":\"KEYWORD2\",\"text\":\"lookup\"},{\"tag\":\"KEYWORD2\",\"text\":\"lowercase\"},{\"tag\":\"KEYWORD2\",\"text\":\"money-symbol\"},{\"tag\":\"KEYWORD2\",\"text\":\"move\"},{\"tag\":\"KEYWORD2\",\"text\":\"multiply\"},{\"tag\":\"KEYWORD2\",\"text\":\"new-page\"},{\"tag\":\"KEYWORD2\",\"text\":\"new-report\"},{\"tag\":\"KEYWORD2\",\"text\":\"next-column\"},{\"tag\":\"KEYWORD2\",\"text\":\"next-listing\"},{\"tag\":\"KEYWORD2\",\"text\":\"no-formfeed\"},{\"tag\":\"KEYWORD2\",\"text\":\"open\"},{\"tag\":\"KEYWORD2\",\"text\":\"page-number\"},{\"tag\":\"KEYWORD2\",\"text\":\"page-size\"},{\"tag\":\"KEYWORD2\",\"text\":\"position\"},{\"tag\":\"KEYWORD2\",\"text\":\"print\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-bar-code\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-chart\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-direct\"},{\"tag\":\"KEYWORD2\",\"text\":\"print-image\"},{\"tag\":\"KEYWORD2\",\"text\":\"printer-deinit\"},{\"tag\":\"KEYWORD2\",\"text\":\"printer-init\"},{\"tag\":\"KEYWORD2\",\"text\":\"put\"},{\"tag\":\"KEYWORD2\",\"text\":\"read\"},{\"tag\":\"KEYWORD2\",\"text\":\"rollback\"},{\"tag\":\"KEYWORD2\",\"text\":\"show\"},{\"tag\":\"KEYWORD2\",\"text\":\"stop\"},{\"tag\":\"KEYWORD2\",\"text\":\"string\"},{\"tag\":\"KEYWORD2\",\"text\":\"subtract\"},{\"tag\":\"KEYWORD2\",\"text\":\"unstring\"},{\"tag\":\"KEYWORD2\",\"text\":\"uppercase\"},{\"tag\":\"KEYWORD2\",\"text\":\"use\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-column\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-printer-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-procedure\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-report\"},{\"tag\":\"KEYWORD2\",\"text\":\"use-report\"},{\"tag\":\"KEYWORD2\",\"text\":\"while\"},{\"tag\":\"KEYWORD2\",\"text\":\"write\"},{\"tag\":\"KEYWORD2\",\"text\":\"to\"},{\"tag\":\"KEYWORD3\",\"text\":\"from\"},{\"tag\":\"KEYWORD3\",\"text\":\"where\"},{\"tag\":\"KEYWORD3\",\"text\":\"and\"},{\"tag\":\"KEYWORD3\",\"text\":\"between\"},{\"tag\":\"KEYWORD3\",\"text\":\"or\"},{\"tag\":\"KEYWORD3\",\"text\":\"in\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "!";
+        PROPERTY1.NAME = "lineComment";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "true";
+        PROPERTY2.NAME = "contextInsensitive";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "!";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.NO_LINE_BREAK = "TRUE";
+        SPAN1.TYPE = "LABEL";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "'";
+        END END1 = new END();
+        END1.text = "'";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "TRUE";
+        SPAN2.TYPE = "LABEL";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "[";
+        END END2 = new END();
+        END2.text = "]";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "^";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "@";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = ":=";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "=";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "<>";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = ">=";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "<=";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = ">";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "<";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "+";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "/";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "*";
+        SEQ12.TYPE = "OPERATOR";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "$";
+        MARK_FOLLOWING1.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "#";
+        MARK_FOLLOWING2.TYPE = "LITERAL2";
+        MARK_FOLLOWING MARK_FOLLOWING3 = new MARK_FOLLOWING();
+        MARK_FOLLOWING3.text = "&";
+        MARK_FOLLOWING3.TYPE = "MARKUP";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"begin-select", "end-select", "begin-sql", "end-sql", });
+        KEYWORDS1.add("FUNCTION", new String[]{"begin-procedure", "end-procedure", "begin-report", "end-report", "begin-heading", "end-heading", "begin-setup", "end-setup", "begin-footing", "end-footing", "begin-program", "end-program", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"add", "array-add", "array-divide", "array-multiply", "array-subtract", "ask", "break", "call", "clear-array", "close", "columns", "commit", "concat", "connect", "create-array", "date-time", "display", "divide", "do", "dollar-symbol", "else", "encode", "end-evaluate", "end-if", "end-while", "evaluate", "execute", "extract", "find", "font", "get", "goto", "graphic", "if", "last-page", "let", "lookup", "lowercase", "money-symbol", "move", "multiply", "new-page", "new-report", "next-column", "next-listing", "no-formfeed", "open", "page-number", "page-size", "position", "print", "print-bar-code", "print-chart", "print-direct", "print-image", "printer-deinit", "printer-init", "put", "read", "rollback", "show", "stop", "string", "subtract", "unstring", "uppercase", "use", "use-column", "use-printer-type", "use-procedure", "use-report", "use-report", "while", "write", "to", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"from", "where", "and", "between", "or", "in", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, MARK_FOLLOWING3, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

@@ -19,15 +19,342 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class InnoSetupLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\";\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"FALSE\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"[code]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\",\"DELEGATE\":\"pascal::MAIN\"}},{\"tag\":\"SEQ\",\"text\":\"[Setup]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Types]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Components]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Tasks]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Dirs]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Files]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Icons]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[INI]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[InstallDelete]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Languages]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Messages]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[CustomMessages]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[LangOptions]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Registry]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[Run]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[UninstallRun]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"SEQ\",\"text\":\"[UninstallDelete]\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#define\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#dim\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#undef\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#include\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#emit\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#expr\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#insert\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#append\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#if\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#elif\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#else\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#endif\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#ifexist\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#ifnexist\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#ifdef\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#for\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#sub\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#endsub\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#pragma\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#error\",\"attrs\":{\"TYPE\":\"LITERAL4\",\"DELEGATE\":\"DIRECTIVE\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{#\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"LITERAL2\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"STRING\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"STRING\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"COMMENT1\",\"AT_LINE_START\":\"TRUE\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"Compression\"},{\"tag\":\"KEYWORD1\",\"text\":\"DiskClusterSize\"},{\"tag\":\"KEYWORD1\",\"text\":\"DiskSliceSize\"},{\"tag\":\"KEYWORD1\",\"text\":\"DiskSpanning\"},{\"tag\":\"KEYWORD1\",\"text\":\"Encryption\"},{\"tag\":\"KEYWORD1\",\"text\":\"InternalCompressLevel\"},{\"tag\":\"KEYWORD1\",\"text\":\"MergeDuplicateFiles\"},{\"tag\":\"KEYWORD1\",\"text\":\"OutputBaseFilename\"},{\"tag\":\"KEYWORD1\",\"text\":\"OutputDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"ReserveBytes\"},{\"tag\":\"KEYWORD1\",\"text\":\"SlicesPerDisk\"},{\"tag\":\"KEYWORD1\",\"text\":\"SolidCompression\"},{\"tag\":\"KEYWORD1\",\"text\":\"SourceDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"UseSetupLdr\"},{\"tag\":\"KEYWORD1\",\"text\":\"VersionInfoCompany\"},{\"tag\":\"KEYWORD1\",\"text\":\"VersionInfoDescription\"},{\"tag\":\"KEYWORD1\",\"text\":\"VersionInfoTextVersion\"},{\"tag\":\"KEYWORD1\",\"text\":\"VersionInfoVersion\"},{\"tag\":\"KEYWORD1\",\"text\":\"AllowCancelDuringInstall\"},{\"tag\":\"KEYWORD1\",\"text\":\"AllowNoIcons\"},{\"tag\":\"KEYWORD1\",\"text\":\"AllowRootDirectory\"},{\"tag\":\"KEYWORD1\",\"text\":\"AllowUNCPath\"},{\"tag\":\"KEYWORD1\",\"text\":\"AlwaysRestart\"},{\"tag\":\"KEYWORD1\",\"text\":\"AlwaysShowComponentsList\"},{\"tag\":\"KEYWORD1\",\"text\":\"AlwaysShowDirOnReadyPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"AlwaysShowGroupOnReadyPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"AlwaysUsePersonalGroup\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppendDefaultDirName\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppendDefaultGroupName\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppComments\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppContact\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppId\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppModifyPath\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppMutex\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppName\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppPublisher\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppPublisherURL\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppReadmeFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppSupportURL\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppUpdatesURL\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppVersion\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppVerName\"},{\"tag\":\"KEYWORD1\",\"text\":\"ChangesAssociations\"},{\"tag\":\"KEYWORD1\",\"text\":\"CreateAppDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"CreateUninstallRegKey\"},{\"tag\":\"KEYWORD1\",\"text\":\"DefaultDirName\"},{\"tag\":\"KEYWORD1\",\"text\":\"DefaultGroupName\"},{\"tag\":\"KEYWORD1\",\"text\":\"DefaultUserInfoName\"},{\"tag\":\"KEYWORD1\",\"text\":\"DefaultUserInfoOrg\"},{\"tag\":\"KEYWORD1\",\"text\":\"DefaultUserInfoSerial\"},{\"tag\":\"KEYWORD1\",\"text\":\"DirExistsWarning\"},{\"tag\":\"KEYWORD1\",\"text\":\"DisableDirPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"DisableFinishedPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"DisableProgramGroupPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"DisableReadyMemo\"},{\"tag\":\"KEYWORD1\",\"text\":\"DisableReadyPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"DisableStartupPrompt\"},{\"tag\":\"KEYWORD1\",\"text\":\"EnableDirDoesntExistWarning\"},{\"tag\":\"KEYWORD1\",\"text\":\"ExtraDiskSpaceRequired\"},{\"tag\":\"KEYWORD1\",\"text\":\"InfoAfterFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"InfoBeforeFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"LanguageDetectionMethod\"},{\"tag\":\"KEYWORD1\",\"text\":\"LicenseFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"MinVersion\"},{\"tag\":\"KEYWORD1\",\"text\":\"OnlyBelowVersion\"},{\"tag\":\"KEYWORD1\",\"text\":\"Password\"},{\"tag\":\"KEYWORD1\",\"text\":\"PrivilegesRequired\"},{\"tag\":\"KEYWORD1\",\"text\":\"RestartIfNeededByRun\"},{\"tag\":\"KEYWORD1\",\"text\":\"ShowLanguageDialog\"},{\"tag\":\"KEYWORD1\",\"text\":\"TimeStampRounding\"},{\"tag\":\"KEYWORD1\",\"text\":\"TimeStampsInUTC\"},{\"tag\":\"KEYWORD1\",\"text\":\"TouchDate\"},{\"tag\":\"KEYWORD1\",\"text\":\"TouchTime\"},{\"tag\":\"KEYWORD1\",\"text\":\"Uninstallable\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallDisplayIcon\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallDisplayName\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallFilesDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallLogMode\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallRestartComputer\"},{\"tag\":\"KEYWORD1\",\"text\":\"UpdateUninstallLogAppName\"},{\"tag\":\"KEYWORD1\",\"text\":\"UsePreviousAppDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"UsePreviousGroup\"},{\"tag\":\"KEYWORD1\",\"text\":\"UsePreviousSetupType\"},{\"tag\":\"KEYWORD1\",\"text\":\"UsePreviousTasks\"},{\"tag\":\"KEYWORD1\",\"text\":\"UsePreviousUserInfo\"},{\"tag\":\"KEYWORD1\",\"text\":\"UserInfoPage\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppCopyright\"},{\"tag\":\"KEYWORD1\",\"text\":\"BackColor\"},{\"tag\":\"KEYWORD1\",\"text\":\"BackColor2\"},{\"tag\":\"KEYWORD1\",\"text\":\"BackColorDirection\"},{\"tag\":\"KEYWORD1\",\"text\":\"BackSolid\"},{\"tag\":\"KEYWORD1\",\"text\":\"FlatComponentsList\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetupIconFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"ShowComponentSizes\"},{\"tag\":\"KEYWORD1\",\"text\":\"ShowTasksTreeLines\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallStyle\"},{\"tag\":\"KEYWORD1\",\"text\":\"WindowShowCaption\"},{\"tag\":\"KEYWORD1\",\"text\":\"WindowStartMaximized\"},{\"tag\":\"KEYWORD1\",\"text\":\"WindowResizable\"},{\"tag\":\"KEYWORD1\",\"text\":\"WindowVisible\"},{\"tag\":\"KEYWORD1\",\"text\":\"WizardImageBackColor\"},{\"tag\":\"KEYWORD1\",\"text\":\"WizardImageFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"WizardImageStretch\"},{\"tag\":\"KEYWORD1\",\"text\":\"WizardSmallImageBackColor\"},{\"tag\":\"KEYWORD1\",\"text\":\"WizardSmallImageFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"UninstallIconFile\"},{\"tag\":\"KEYWORD4\",\"text\":\"AfterInstall\"},{\"tag\":\"KEYWORD4\",\"text\":\"Attribs\"},{\"tag\":\"KEYWORD4\",\"text\":\"BeforeInstall\"},{\"tag\":\"KEYWORD4\",\"text\":\"Check\"},{\"tag\":\"KEYWORD4\",\"text\":\"Comment\"},{\"tag\":\"KEYWORD4\",\"text\":\"Components\"},{\"tag\":\"KEYWORD4\",\"text\":\"CopyMode\"},{\"tag\":\"KEYWORD4\",\"text\":\"Description\"},{\"tag\":\"KEYWORD4\",\"text\":\"DestDir\"},{\"tag\":\"KEYWORD4\",\"text\":\"DestName\"},{\"tag\":\"KEYWORD4\",\"text\":\"Excludes\"},{\"tag\":\"KEYWORD4\",\"text\":\"ExtraDiskSpaceRequired\"},{\"tag\":\"KEYWORD4\",\"text\":\"Filename\"},{\"tag\":\"KEYWORD4\",\"text\":\"Flags\"},{\"tag\":\"KEYWORD4\",\"text\":\"FontInstall\"},{\"tag\":\"KEYWORD4\",\"text\":\"GroupDescription\"},{\"tag\":\"KEYWORD4\",\"text\":\"HotKey\"},{\"tag\":\"KEYWORD4\",\"text\":\"IconFilename\"},{\"tag\":\"KEYWORD4\",\"text\":\"IconIndex\"},{\"tag\":\"KEYWORD4\",\"text\":\"InfoBeforeFile\"},{\"tag\":\"KEYWORD4\",\"text\":\"InfoAfterFile\"},{\"tag\":\"KEYWORD4\",\"text\":\"Key\"},{\"tag\":\"KEYWORD4\",\"text\":\"MessagesFile\"},{\"tag\":\"KEYWORD4\",\"text\":\"Name\"},{\"tag\":\"KEYWORD4\",\"text\":\"Parameters\"},{\"tag\":\"KEYWORD4\",\"text\":\"Permissions\"},{\"tag\":\"KEYWORD4\",\"text\":\"Root\"},{\"tag\":\"KEYWORD4\",\"text\":\"RunOnceId\"},{\"tag\":\"KEYWORD4\",\"text\":\"Section\"},{\"tag\":\"KEYWORD4\",\"text\":\"Source\"},{\"tag\":\"KEYWORD4\",\"text\":\"StatusMsg\"},{\"tag\":\"KEYWORD4\",\"text\":\"String\"},{\"tag\":\"KEYWORD4\",\"text\":\"Subkey\"},{\"tag\":\"KEYWORD4\",\"text\":\"Tasks\"},{\"tag\":\"KEYWORD4\",\"text\":\"Type\"},{\"tag\":\"KEYWORD4\",\"text\":\"Types\"},{\"tag\":\"KEYWORD4\",\"text\":\"ValueType\"},{\"tag\":\"KEYWORD4\",\"text\":\"ValueName\"},{\"tag\":\"KEYWORD4\",\"text\":\"ValueData\"},{\"tag\":\"KEYWORD4\",\"text\":\"WorkingDir\"},{\"tag\":\"LITERAL3\",\"text\":\"allowunsafefiles\"},{\"tag\":\"LITERAL3\",\"text\":\"checkedonce\"},{\"tag\":\"LITERAL3\",\"text\":\"closeonexit\"},{\"tag\":\"LITERAL3\",\"text\":\"compact\"},{\"tag\":\"LITERAL3\",\"text\":\"comparetimestamp\"},{\"tag\":\"LITERAL3\",\"text\":\"confirmoverwrite\"},{\"tag\":\"LITERAL3\",\"text\":\"createkeyifdoesntexist\"},{\"tag\":\"LITERAL3\",\"text\":\"createonlyiffileexists\"},{\"tag\":\"LITERAL3\",\"text\":\"createvalueifdoesntexist\"},{\"tag\":\"LITERAL3\",\"text\":\"deleteafterinstall\"},{\"tag\":\"LITERAL3\",\"text\":\"deletekey\"},{\"tag\":\"LITERAL3\",\"text\":\"deletevalue\"},{\"tag\":\"LITERAL3\",\"text\":\"desktopicon\"},{\"tag\":\"LITERAL3\",\"text\":\"dirifempty\"},{\"tag\":\"LITERAL3\",\"text\":\"disablenouninstallwarning\"},{\"tag\":\"LITERAL3\",\"text\":\"dontcloseonexit\"},{\"tag\":\"LITERAL3\",\"text\":\"dontcopy\"},{\"tag\":\"LITERAL3\",\"text\":\"dontcreatekey\"},{\"tag\":\"LITERAL3\",\"text\":\"dontinheritcheck\"},{\"tag\":\"LITERAL3\",\"text\":\"dontverifychecksum\"},{\"tag\":\"LITERAL3\",\"text\":\"exclusive\"},{\"tag\":\"LITERAL3\",\"text\":\"external\"},{\"tag\":\"LITERAL3\",\"text\":\"files\"},{\"tag\":\"LITERAL3\",\"text\":\"filesandordirs\"},{\"tag\":\"LITERAL3\",\"text\":\"fixed\"},{\"tag\":\"LITERAL3\",\"text\":\"fontisnttruetype\"},{\"tag\":\"LITERAL3\",\"text\":\"full\"},{\"tag\":\"LITERAL3\",\"text\":\"ignoreversion\"},{\"tag\":\"LITERAL3\",\"text\":\"iscustom\"},{\"tag\":\"LITERAL3\",\"text\":\"isreadme\"},{\"tag\":\"LITERAL3\",\"text\":\"hidden\"},{\"tag\":\"LITERAL3\",\"text\":\"hidewizard\"},{\"tag\":\"LITERAL3\",\"text\":\"modify\"},{\"tag\":\"LITERAL3\",\"text\":\"nocompression\"},{\"tag\":\"LITERAL3\",\"text\":\"noencryption\"},{\"tag\":\"LITERAL3\",\"text\":\"noerror\"},{\"tag\":\"LITERAL3\",\"text\":\"noregerror\"},{\"tag\":\"LITERAL3\",\"text\":\"nowait\"},{\"tag\":\"LITERAL3\",\"text\":\"onlyifdestfileexists\"},{\"tag\":\"LITERAL3\",\"text\":\"onlyifdoesntexist\"},{\"tag\":\"LITERAL3\",\"text\":\"overwritereadonly\"},{\"tag\":\"LITERAL3\",\"text\":\"postinstall\"},{\"tag\":\"LITERAL3\",\"text\":\"preservestringtype\"},{\"tag\":\"LITERAL3\",\"text\":\"promptifolder\"},{\"tag\":\"LITERAL3\",\"text\":\"quicklaunchicon\"},{\"tag\":\"LITERAL3\",\"text\":\"read\"},{\"tag\":\"LITERAL3\",\"text\":\"readonly\"},{\"tag\":\"LITERAL3\",\"text\":\"readexec\"},{\"tag\":\"LITERAL3\",\"text\":\"recursesubdirs\"},{\"tag\":\"LITERAL3\",\"text\":\"regserver\"},{\"tag\":\"LITERAL3\",\"text\":\"regtypelib\"},{\"tag\":\"LITERAL3\",\"text\":\"replacesameversion\"},{\"tag\":\"LITERAL3\",\"text\":\"restart\"},{\"tag\":\"LITERAL3\",\"text\":\"restartreplace\"},{\"tag\":\"LITERAL3\",\"text\":\"runhidden\"},{\"tag\":\"LITERAL3\",\"text\":\"runmaximized\"},{\"tag\":\"LITERAL3\",\"text\":\"runminimized\"},{\"tag\":\"LITERAL3\",\"text\":\"sharedfile\"},{\"tag\":\"LITERAL3\",\"text\":\"shellexec\"},{\"tag\":\"LITERAL3\",\"text\":\"skipifnotsilent\"},{\"tag\":\"LITERAL3\",\"text\":\"skipifsilent\"},{\"tag\":\"LITERAL3\",\"text\":\"skipifdoesntexist\"},{\"tag\":\"LITERAL3\",\"text\":\"skipifsourcedoesntexist\"},{\"tag\":\"LITERAL3\",\"text\":\"sortfilesbyextension\"},{\"tag\":\"LITERAL3\",\"text\":\"system\"},{\"tag\":\"LITERAL3\",\"text\":\"touch\"},{\"tag\":\"LITERAL3\",\"text\":\"unchecked\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsalwaysuninstall\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsclearvalue\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsdeleteentry\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsdeletekey\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsdeletekeyifempty\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsdeletesection\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsdeletesectionifempty\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsdeletevalue\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsneveruninstall\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsremovereadonly\"},{\"tag\":\"LITERAL3\",\"text\":\"uninsrestartdelete\"},{\"tag\":\"LITERAL3\",\"text\":\"useapppaths\"},{\"tag\":\"LITERAL3\",\"text\":\"waituntilidle\"},{\"tag\":\"LITERAL3\",\"text\":\"HKCR\"},{\"tag\":\"LITERAL3\",\"text\":\"HKCU\"},{\"tag\":\"LITERAL3\",\"text\":\"HKLM\"},{\"tag\":\"LITERAL3\",\"text\":\"HKU\"},{\"tag\":\"LITERAL3\",\"text\":\"HKCC\"},{\"tag\":\"LITERAL3\",\"text\":\"none\"},{\"tag\":\"LITERAL3\",\"text\":\"string\"},{\"tag\":\"LITERAL3\",\"text\":\"expandsz\"},{\"tag\":\"LITERAL3\",\"text\":\"multisz\"},{\"tag\":\"LITERAL3\",\"text\":\"dword\"},{\"tag\":\"LITERAL3\",\"text\":\"binary\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"STRING\",\"DEFAULT\":\"LITERAL1\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL4\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{#\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"CONSTANT\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{\"},{\"tag\":\"END\",\"text\":\"}\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CONSTANT\",\"DEFAULT\":\"KEYWORD3\"},\"child\":[{\"tag\":\"MARK_FOLLOWING\",\"text\":\"code:\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"CONTEXT\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DIRECTIVE\",\"DEFAULT\":\"LITERAL4\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"EOL_SPAN\",\"text\":\";\",\"attrs\":{\"TYPE\":\"COMMENT1\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"FUNCTION\",\"text\":\"Defined\"},{\"tag\":\"FUNCTION\",\"text\":\"TypeOf\"},{\"tag\":\"FUNCTION\",\"text\":\"GetFileVersion\"},{\"tag\":\"FUNCTION\",\"text\":\"GetStringFileInfo\"},{\"tag\":\"FUNCTION\",\"text\":\"Int\"},{\"tag\":\"FUNCTION\",\"text\":\"Str\"},{\"tag\":\"FUNCTION\",\"text\":\"FileExists\"},{\"tag\":\"FUNCTION\",\"text\":\"FileSize\"},{\"tag\":\"FUNCTION\",\"text\":\"ReadIni\"},{\"tag\":\"FUNCTION\",\"text\":\"WriteIni\"},{\"tag\":\"FUNCTION\",\"text\":\"ReadReg\"},{\"tag\":\"FUNCTION\",\"text\":\"Exec\"},{\"tag\":\"FUNCTION\",\"text\":\"Copy\"},{\"tag\":\"FUNCTION\",\"text\":\"Pos\"},{\"tag\":\"FUNCTION\",\"text\":\"RPos\"},{\"tag\":\"FUNCTION\",\"text\":\"Len\"},{\"tag\":\"FUNCTION\",\"text\":\"SaveToFile\"},{\"tag\":\"FUNCTION\",\"text\":\"Find\"},{\"tag\":\"FUNCTION\",\"text\":\"SetupSetting\"},{\"tag\":\"FUNCTION\",\"text\":\"SetSetupSetting\"},{\"tag\":\"FUNCTION\",\"text\":\"LowerCase\"},{\"tag\":\"FUNCTION\",\"text\":\"EntryCount\"},{\"tag\":\"FUNCTION\",\"text\":\"GetEnv\"},{\"tag\":\"FUNCTION\",\"text\":\"DeleteFile\"},{\"tag\":\"FUNCTION\",\"text\":\"CopyFile\"},{\"tag\":\"FUNCTION\",\"text\":\"FindFirst\"},{\"tag\":\"FUNCTION\",\"text\":\"FindNext\"},{\"tag\":\"FUNCTION\",\"text\":\"FindClose\"},{\"tag\":\"FUNCTION\",\"text\":\"FindGetFileName\"},{\"tag\":\"FUNCTION\",\"text\":\"FileOpen\"},{\"tag\":\"FUNCTION\",\"text\":\"FileRead\"},{\"tag\":\"FUNCTION\",\"text\":\"FileReset\"},{\"tag\":\"FUNCTION\",\"text\":\"FileEof\"},{\"tag\":\"FUNCTION\",\"text\":\"FileClose\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = ";";
+        PROPERTY1.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "FALSE";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "[code]";
+        SEQ1.TYPE = "KEYWORD2";
+        SEQ1.AT_LINE_START = "TRUE";
+        SEQ1.DELEGATE = "pascal::MAIN";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "[Setup]";
+        SEQ2.TYPE = "KEYWORD2";
+        SEQ2.AT_LINE_START = "TRUE";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "[Types]";
+        SEQ3.TYPE = "KEYWORD2";
+        SEQ3.AT_LINE_START = "TRUE";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "[Components]";
+        SEQ4.TYPE = "KEYWORD2";
+        SEQ4.AT_LINE_START = "TRUE";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "[Tasks]";
+        SEQ5.TYPE = "KEYWORD2";
+        SEQ5.AT_LINE_START = "TRUE";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "[Dirs]";
+        SEQ6.TYPE = "KEYWORD2";
+        SEQ6.AT_LINE_START = "TRUE";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "[Files]";
+        SEQ7.TYPE = "KEYWORD2";
+        SEQ7.AT_LINE_START = "TRUE";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = "[Icons]";
+        SEQ8.TYPE = "KEYWORD2";
+        SEQ8.AT_LINE_START = "TRUE";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "[INI]";
+        SEQ9.TYPE = "KEYWORD2";
+        SEQ9.AT_LINE_START = "TRUE";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "[InstallDelete]";
+        SEQ10.TYPE = "KEYWORD2";
+        SEQ10.AT_LINE_START = "TRUE";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "[Languages]";
+        SEQ11.TYPE = "KEYWORD2";
+        SEQ11.AT_LINE_START = "TRUE";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "[Messages]";
+        SEQ12.TYPE = "KEYWORD2";
+        SEQ12.AT_LINE_START = "TRUE";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "[CustomMessages]";
+        SEQ13.TYPE = "KEYWORD2";
+        SEQ13.AT_LINE_START = "TRUE";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = "[LangOptions]";
+        SEQ14.TYPE = "KEYWORD2";
+        SEQ14.AT_LINE_START = "TRUE";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "[Registry]";
+        SEQ15.TYPE = "KEYWORD2";
+        SEQ15.AT_LINE_START = "TRUE";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "[Run]";
+        SEQ16.TYPE = "KEYWORD2";
+        SEQ16.AT_LINE_START = "TRUE";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "[UninstallRun]";
+        SEQ17.TYPE = "KEYWORD2";
+        SEQ17.AT_LINE_START = "TRUE";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "[UninstallDelete]";
+        SEQ18.TYPE = "KEYWORD2";
+        SEQ18.AT_LINE_START = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "#define";
+        EOL_SPAN1.TYPE = "LITERAL4";
+        EOL_SPAN1.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "#dim";
+        EOL_SPAN2.TYPE = "LITERAL4";
+        EOL_SPAN2.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN3 = new EOL_SPAN();
+        EOL_SPAN3.text = "#undef";
+        EOL_SPAN3.TYPE = "LITERAL4";
+        EOL_SPAN3.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN4 = new EOL_SPAN();
+        EOL_SPAN4.text = "#include";
+        EOL_SPAN4.TYPE = "LITERAL4";
+        EOL_SPAN4.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN5 = new EOL_SPAN();
+        EOL_SPAN5.text = "#emit";
+        EOL_SPAN5.TYPE = "LITERAL4";
+        EOL_SPAN5.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN6 = new EOL_SPAN();
+        EOL_SPAN6.text = "#expr";
+        EOL_SPAN6.TYPE = "LITERAL4";
+        EOL_SPAN6.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN7 = new EOL_SPAN();
+        EOL_SPAN7.text = "#insert";
+        EOL_SPAN7.TYPE = "LITERAL4";
+        EOL_SPAN7.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN8 = new EOL_SPAN();
+        EOL_SPAN8.text = "#append";
+        EOL_SPAN8.TYPE = "LITERAL4";
+        EOL_SPAN8.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN9 = new EOL_SPAN();
+        EOL_SPAN9.text = "#if";
+        EOL_SPAN9.TYPE = "LITERAL4";
+        EOL_SPAN9.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN10 = new EOL_SPAN();
+        EOL_SPAN10.text = "#elif";
+        EOL_SPAN10.TYPE = "LITERAL4";
+        EOL_SPAN10.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN11 = new EOL_SPAN();
+        EOL_SPAN11.text = "#else";
+        EOL_SPAN11.TYPE = "LITERAL4";
+        EOL_SPAN11.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN12 = new EOL_SPAN();
+        EOL_SPAN12.text = "#endif";
+        EOL_SPAN12.TYPE = "LITERAL4";
+        EOL_SPAN12.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN13 = new EOL_SPAN();
+        EOL_SPAN13.text = "#ifexist";
+        EOL_SPAN13.TYPE = "LITERAL4";
+        EOL_SPAN13.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN14 = new EOL_SPAN();
+        EOL_SPAN14.text = "#ifnexist";
+        EOL_SPAN14.TYPE = "LITERAL4";
+        EOL_SPAN14.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN15 = new EOL_SPAN();
+        EOL_SPAN15.text = "#ifdef";
+        EOL_SPAN15.TYPE = "LITERAL4";
+        EOL_SPAN15.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN16 = new EOL_SPAN();
+        EOL_SPAN16.text = "#for";
+        EOL_SPAN16.TYPE = "LITERAL4";
+        EOL_SPAN16.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN17 = new EOL_SPAN();
+        EOL_SPAN17.text = "#sub";
+        EOL_SPAN17.TYPE = "LITERAL4";
+        EOL_SPAN17.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN18 = new EOL_SPAN();
+        EOL_SPAN18.text = "#endsub";
+        EOL_SPAN18.TYPE = "LITERAL4";
+        EOL_SPAN18.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN19 = new EOL_SPAN();
+        EOL_SPAN19.text = "#pragma";
+        EOL_SPAN19.TYPE = "LITERAL4";
+        EOL_SPAN19.DELEGATE = "DIRECTIVE";
+        EOL_SPAN EOL_SPAN20 = new EOL_SPAN();
+        EOL_SPAN20.text = "#error";
+        EOL_SPAN20.TYPE = "LITERAL4";
+        EOL_SPAN20.DELEGATE = "DIRECTIVE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL4";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "{#";
+        END END1 = new END();
+        END1.text = "}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "%";
+        MARK_FOLLOWING1.TYPE = "LITERAL2";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.DELEGATE = "STRING";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "LITERAL1";
+        SPAN3.DELEGATE = "STRING";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "'";
+        END END3 = new END();
+        END3.text = "'";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.TYPE = "KEYWORD3";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "{";
+        END END4 = new END();
+        END4.text = "}";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        EOL_SPAN EOL_SPAN21 = new EOL_SPAN();
+        EOL_SPAN21.text = ";";
+        EOL_SPAN21.TYPE = "COMMENT1";
+        EOL_SPAN21.AT_LINE_START = "TRUE";
+        EOL_SPAN EOL_SPAN22 = new EOL_SPAN();
+        EOL_SPAN22.text = "#";
+        EOL_SPAN22.TYPE = "COMMENT1";
+        EOL_SPAN22.AT_LINE_START = "TRUE";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"Compression", "DiskClusterSize", "DiskSliceSize", "DiskSpanning", "Encryption", "InternalCompressLevel", "MergeDuplicateFiles", "OutputBaseFilename", "OutputDir", "ReserveBytes", "SlicesPerDisk", "SolidCompression", "SourceDir", "UseSetupLdr", "VersionInfoCompany", "VersionInfoDescription", "VersionInfoTextVersion", "VersionInfoVersion", "AllowCancelDuringInstall", "AllowNoIcons", "AllowRootDirectory", "AllowUNCPath", "AlwaysRestart", "AlwaysShowComponentsList", "AlwaysShowDirOnReadyPage", "AlwaysShowGroupOnReadyPage", "AlwaysUsePersonalGroup", "AppendDefaultDirName", "AppendDefaultGroupName", "AppComments", "AppContact", "AppId", "AppModifyPath", "AppMutex", "AppName", "AppPublisher", "AppPublisherURL", "AppReadmeFile", "AppSupportURL", "AppUpdatesURL", "AppVersion", "AppVerName", "ChangesAssociations", "CreateAppDir", "CreateUninstallRegKey", "DefaultDirName", "DefaultGroupName", "DefaultUserInfoName", "DefaultUserInfoOrg", "DefaultUserInfoSerial", "DirExistsWarning", "DisableDirPage", "DisableFinishedPage", "DisableProgramGroupPage", "DisableReadyMemo", "DisableReadyPage", "DisableStartupPrompt", "EnableDirDoesntExistWarning", "ExtraDiskSpaceRequired", "InfoAfterFile", "InfoBeforeFile", "LanguageDetectionMethod", "LicenseFile", "MinVersion", "OnlyBelowVersion", "Password", "PrivilegesRequired", "RestartIfNeededByRun", "ShowLanguageDialog", "TimeStampRounding", "TimeStampsInUTC", "TouchDate", "TouchTime", "Uninstallable", "UninstallDisplayIcon", "UninstallDisplayName", "UninstallFilesDir", "UninstallLogMode", "UninstallRestartComputer", "UpdateUninstallLogAppName", "UsePreviousAppDir", "UsePreviousGroup", "UsePreviousSetupType", "UsePreviousTasks", "UsePreviousUserInfo", "UserInfoPage", "AppCopyright", "BackColor", "BackColor2", "BackColorDirection", "BackSolid", "FlatComponentsList", "SetupIconFile", "ShowComponentSizes", "ShowTasksTreeLines", "UninstallStyle", "WindowShowCaption", "WindowStartMaximized", "WindowResizable", "WindowVisible", "WizardImageBackColor", "WizardImageFile", "WizardImageStretch", "WizardSmallImageBackColor", "WizardSmallImageFile", "UninstallIconFile", });
+        KEYWORDS1.add("LITERAL3", new String[]{"allowunsafefiles", "checkedonce", "closeonexit", "compact", "comparetimestamp", "confirmoverwrite", "createkeyifdoesntexist", "createonlyiffileexists", "createvalueifdoesntexist", "deleteafterinstall", "deletekey", "deletevalue", "desktopicon", "dirifempty", "disablenouninstallwarning", "dontcloseonexit", "dontcopy", "dontcreatekey", "dontinheritcheck", "dontverifychecksum", "exclusive", "external", "files", "filesandordirs", "fixed", "fontisnttruetype", "full", "ignoreversion", "iscustom", "isreadme", "hidden", "hidewizard", "modify", "nocompression", "noencryption", "noerror", "noregerror", "nowait", "onlyifdestfileexists", "onlyifdoesntexist", "overwritereadonly", "postinstall", "preservestringtype", "promptifolder", "quicklaunchicon", "read", "readonly", "readexec", "recursesubdirs", "regserver", "regtypelib", "replacesameversion", "restart", "restartreplace", "runhidden", "runmaximized", "runminimized", "sharedfile", "shellexec", "skipifnotsilent", "skipifsilent", "skipifdoesntexist", "skipifsourcedoesntexist", "sortfilesbyextension", "system", "touch", "unchecked", "uninsalwaysuninstall", "uninsclearvalue", "uninsdeleteentry", "uninsdeletekey", "uninsdeletekeyifempty", "uninsdeletesection", "uninsdeletesectionifempty", "uninsdeletevalue", "uninsneveruninstall", "uninsremovereadonly", "uninsrestartdelete", "useapppaths", "waituntilidle", "HKCR", "HKCU", "HKLM", "HKU", "HKCC", "none", "string", "expandsz", "multisz", "dword", "binary", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"AfterInstall", "Attribs", "BeforeInstall", "Check", "Comment", "Components", "CopyMode", "Description", "DestDir", "DestName", "Excludes", "ExtraDiskSpaceRequired", "Filename", "Flags", "FontInstall", "GroupDescription", "HotKey", "IconFilename", "IconIndex", "InfoBeforeFile", "InfoAfterFile", "Key", "MessagesFile", "Name", "Parameters", "Permissions", "Root", "RunOnceId", "Section", "Source", "StatusMsg", "String", "Subkey", "Tasks", "Type", "Types", "ValueType", "ValueName", "ValueData", "WorkingDir", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, EOL_SPAN3, EOL_SPAN4, EOL_SPAN5, EOL_SPAN6, EOL_SPAN7, EOL_SPAN8, EOL_SPAN9, EOL_SPAN10, EOL_SPAN11, EOL_SPAN12, EOL_SPAN13, EOL_SPAN14, EOL_SPAN15, EOL_SPAN16, EOL_SPAN17, EOL_SPAN18, EOL_SPAN19, EOL_SPAN20, EOL_SPAN21, EOL_SPAN22, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "STRING";
+        RULES1.DEFAULT = "LITERAL1";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL4";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "{#";
+        END END1 = new END();
+        END1.text = "}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "KEYWORD3";
+        SPAN2.DELEGATE = "CONSTANT";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "{";
+        END END2 = new END();
+        END2.text = "}";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CONSTANT";
+        RULES1.DEFAULT = "KEYWORD3";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "code:";
+        MARK_FOLLOWING1.TYPE = "FUNCTION";
+        MARK_FOLLOWING1.MATCH_TYPE = "CONTEXT";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "|";
+        SEQ1.TYPE = "OPERATOR";
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DIRECTIVE";
+        RULES1.DEFAULT = "LITERAL4";
+        RULES1.IGNORE_CASE = "TRUE";
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = ";";
+        EOL_SPAN1.TYPE = "COMMENT1";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("FUNCTION", new String[]{"Defined", "TypeOf", "GetFileVersion", "GetStringFileInfo", "Int", "Str", "FileExists", "FileSize", "ReadIni", "WriteIni", "ReadReg", "Exec", "Copy", "Pos", "RPos", "Len", "SaveToFile", "Find", "SetupSetting", "SetSetupSetting", "LowerCase", "EntryCount", "GetEnv", "DeleteFile", "CopyFile", "FindFirst", "FindNext", "FindClose", "FindGetFileName", "FileOpen", "FileRead", "FileReset", "FileEof", "FileClose", });
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

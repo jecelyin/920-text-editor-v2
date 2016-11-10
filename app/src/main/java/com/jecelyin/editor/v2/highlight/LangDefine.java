@@ -18,9 +18,13 @@
 
 package com.jecelyin.editor.v2.highlight;
 
+import com.jecelyin.editor.v2.highlight.syntax.PROPS;
+import com.jecelyin.editor.v2.highlight.syntax.RULES;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public interface LangDefine {
-    String langDefine();
+    PROPS[] PROPS();
+    RULES[] RULES();
 }

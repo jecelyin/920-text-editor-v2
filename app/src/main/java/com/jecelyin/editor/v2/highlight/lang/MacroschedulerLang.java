@@ -19,15 +19,252 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class MacroschedulerLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"//\",\"NAME\":\"lineComment\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"(\",\"NAME\":\"unalignedOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\")\",\"NAME\":\"unalignedCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\\\\s*(((if|while)\\\\s*\\\\(|else\\\\s*|else\\\\s+if\\\\s*\\\\(|for\\\\s*\\\\(.*\\\\))[^{;]*)\",\"NAME\":\"indentNextLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"^.*(default:\\\\s*|case.*:.*)$\",\"NAME\":\"unindentThisLine\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\":\",\"NAME\":\"electricKeys\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"(0x[\\\\p{XDigit}]+[lL]?|[\\\\p{Digit}]+(e[\\\\p{Digit}]*)?[lLdDfF]?)\",\"IGNORE_CASE\":\"FALSE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"///\",\"attrs\":{\"TYPE\":\"COMMENT3\",\"DELEGATE\":\"DOC_COMMENT\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"//\",\"attrs\":{\"TYPE\":\"COMMENT2\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"///\",\"attrs\":{\"TYPE\":\"COMMENT4\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"FALSE\",\"TYPE\":\"LITERAL3\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"@\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"NO_LINE_BREAK\":\"TRUE\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"EOL_SPAN\",\"text\":\"#if\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#else\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"EOL_SPAN\",\"text\":\"#endif\",\"attrs\":{\"TYPE\":\"KEYWORD2\"}},{\"tag\":\"SEQ\",\"text\":\"~\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\";\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\".\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"[\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"]\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"+\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"-\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"<\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"=\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"*\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"/\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"\\\\\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"^\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"&\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"%\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"?\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"MARK_PREVIOUS\",\"text\":\"(\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"MATCH_TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\")\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD1\",\"text\":\"AddDialogHandler\"},{\"tag\":\"KEYWORD1\",\"text\":\"AddTrayHandler\"},{\"tag\":\"KEYWORD1\",\"text\":\"AddTrayIcon\"},{\"tag\":\"KEYWORD1\",\"text\":\"AppendFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"ArrayCount\"},{\"tag\":\"KEYWORD1\",\"text\":\"ArraySort\"},{\"tag\":\"KEYWORD1\",\"text\":\"Ascii\"},{\"tag\":\"KEYWORD1\",\"text\":\"Ask\"},{\"tag\":\"KEYWORD1\",\"text\":\"Assigned\"},{\"tag\":\"KEYWORD1\",\"text\":\"BlockInput\"},{\"tag\":\"KEYWORD1\",\"text\":\"CSVFileToArray\"},{\"tag\":\"KEYWORD1\",\"text\":\"CapsOff\"},{\"tag\":\"KEYWORD1\",\"text\":\"CapsOn\"},{\"tag\":\"KEYWORD1\",\"text\":\"ChangeDirectory\"},{\"tag\":\"KEYWORD1\",\"text\":\"CloseDialog\"},{\"tag\":\"KEYWORD1\",\"text\":\"CloseWindow\"},{\"tag\":\"KEYWORD1\",\"text\":\"CompareBitmaps\"},{\"tag\":\"KEYWORD1\",\"text\":\"ConCat\"},{\"tag\":\"KEYWORD1\",\"text\":\"CopyFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"CopyFolder\"},{\"tag\":\"KEYWORD1\",\"text\":\"CountFiles\"},{\"tag\":\"KEYWORD1\",\"text\":\"CreateDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"Crypt\"},{\"tag\":\"KEYWORD1\",\"text\":\"DBClose\"},{\"tag\":\"KEYWORD1\",\"text\":\"DBConnect\"},{\"tag\":\"KEYWORD1\",\"text\":\"DBExec\"},{\"tag\":\"KEYWORD1\",\"text\":\"DBQuery\"},{\"tag\":\"KEYWORD1\",\"text\":\"DDEPoke\"},{\"tag\":\"KEYWORD1\",\"text\":\"DDERequest\"},{\"tag\":\"KEYWORD1\",\"text\":\"DateStamp\"},{\"tag\":\"KEYWORD1\",\"text\":\"Day\"},{\"tag\":\"KEYWORD1\",\"text\":\"DayOfWeek\"},{\"tag\":\"KEYWORD1\",\"text\":\"DelTrayIcon\"},{\"tag\":\"KEYWORD1\",\"text\":\"DeleteFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"DeleteFolder\"},{\"tag\":\"KEYWORD1\",\"text\":\"Dialog\"},{\"tag\":\"KEYWORD1\",\"text\":\"EditIniFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"Else\"},{\"tag\":\"KEYWORD1\",\"text\":\"End\"},{\"tag\":\"KEYWORD1\",\"text\":\"EndDialog\"},{\"tag\":\"KEYWORD1\",\"text\":\"EndIf\"},{\"tag\":\"KEYWORD1\",\"text\":\"EndWhile\"},{\"tag\":\"KEYWORD1\",\"text\":\"ExecuteFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"Exit\"},{\"tag\":\"KEYWORD1\",\"text\":\"ExportData\"},{\"tag\":\"KEYWORD1\",\"text\":\"ExtractFileExt\"},{\"tag\":\"KEYWORD1\",\"text\":\"ExtractFileName\"},{\"tag\":\"KEYWORD1\",\"text\":\"ExtractFilePath\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPDelFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPGetDirList\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPGetFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPMakeDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPPutFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPRemoveDir\"},{\"tag\":\"KEYWORD1\",\"text\":\"FTPRenameFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"FileDate\"},{\"tag\":\"KEYWORD1\",\"text\":\"FileSize\"},{\"tag\":\"KEYWORD1\",\"text\":\"FileTime\"},{\"tag\":\"KEYWORD1\",\"text\":\"FindImagePos\"},{\"tag\":\"KEYWORD1\",\"text\":\"FindWindowWithText\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetActiveWindow\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetCaretPos\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetCheckBox\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetClipBoard\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetControlText\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetCursorPos\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetDate\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetDialogAction\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetDialogProperty\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetEnvVar\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetFileList\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetFocusedObject\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetListItem\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetPixelColor\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetRectCheckSum\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetScreenRes\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetTextAtPoint\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetTextInRect\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetTextReset\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetTime\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetTreeNode\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowHandle\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowList\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowNames\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowPos\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowProcess\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowSize\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowText\"},{\"tag\":\"KEYWORD1\",\"text\":\"GetWindowTextEx\"},{\"tag\":\"KEYWORD1\",\"text\":\"GoSub\"},{\"tag\":\"KEYWORD1\",\"text\":\"Goto\"},{\"tag\":\"KEYWORD1\",\"text\":\"HTTPRequest\"},{\"tag\":\"KEYWORD1\",\"text\":\"Hour\"},{\"tag\":\"KEYWORD1\",\"text\":\"If\"},{\"tag\":\"KEYWORD1\",\"text\":\"IfDirExists\"},{\"tag\":\"KEYWORD1\",\"text\":\"IfFileChanged\"},{\"tag\":\"KEYWORD1\",\"text\":\"IfFileExists\"},{\"tag\":\"KEYWORD1\",\"text\":\"IfWindowOpen\"},{\"tag\":\"KEYWORD1\",\"text\":\"Input\"},{\"tag\":\"KEYWORD1\",\"text\":\"IsConnectedToInternet\"},{\"tag\":\"KEYWORD1\",\"text\":\"KillProcess\"},{\"tag\":\"KEYWORD1\",\"text\":\"LClick\"},{\"tag\":\"KEYWORD1\",\"text\":\"LDblClick\"},{\"tag\":\"KEYWORD1\",\"text\":\"LDown\"},{\"tag\":\"KEYWORD1\",\"text\":\"LTrim\"},{\"tag\":\"KEYWORD1\",\"text\":\"LUp\"},{\"tag\":\"KEYWORD1\",\"text\":\"LabelToVar\"},{\"tag\":\"KEYWORD1\",\"text\":\"Len\"},{\"tag\":\"KEYWORD1\",\"text\":\"Length\"},{\"tag\":\"KEYWORD1\",\"text\":\"LibFree\"},{\"tag\":\"KEYWORD1\",\"text\":\"LibFunc\"},{\"tag\":\"KEYWORD1\",\"text\":\"LibFuncW\"},{\"tag\":\"KEYWORD1\",\"text\":\"LibLoad\"},{\"tag\":\"KEYWORD1\",\"text\":\"LowerCase\"},{\"tag\":\"KEYWORD1\",\"text\":\"MClick\"},{\"tag\":\"KEYWORD1\",\"text\":\"MDblClick\"},{\"tag\":\"KEYWORD1\",\"text\":\"MDown\"},{\"tag\":\"KEYWORD1\",\"text\":\"MUp\"},{\"tag\":\"KEYWORD1\",\"text\":\"Macro\"},{\"tag\":\"KEYWORD1\",\"text\":\"Message\"},{\"tag\":\"KEYWORD1\",\"text\":\"MessageModal\"},{\"tag\":\"KEYWORD1\",\"text\":\"MidStr\"},{\"tag\":\"KEYWORD1\",\"text\":\"Min\"},{\"tag\":\"KEYWORD1\",\"text\":\"Month\"},{\"tag\":\"KEYWORD1\",\"text\":\"MouseMove\"},{\"tag\":\"KEYWORD1\",\"text\":\"MouseMoveRel\"},{\"tag\":\"KEYWORD1\",\"text\":\"MouseOver\"},{\"tag\":\"KEYWORD1\",\"text\":\"MoveFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"MoveWindow\"},{\"tag\":\"KEYWORD1\",\"text\":\"NumOff\"},{\"tag\":\"KEYWORD1\",\"text\":\"NumOn\"},{\"tag\":\"KEYWORD1\",\"text\":\"OnEvent\"},{\"tag\":\"KEYWORD1\",\"text\":\"PlayWav\"},{\"tag\":\"KEYWORD1\",\"text\":\"Position\"},{\"tag\":\"KEYWORD1\",\"text\":\"Press\"},{\"tag\":\"KEYWORD1\",\"text\":\"ProcessExists\"},{\"tag\":\"KEYWORD1\",\"text\":\"PushButton\"},{\"tag\":\"KEYWORD1\",\"text\":\"PutClipBoard\"},{\"tag\":\"KEYWORD1\",\"text\":\"RClick\"},{\"tag\":\"KEYWORD1\",\"text\":\"RDblClick\"},{\"tag\":\"KEYWORD1\",\"text\":\"RDown\"},{\"tag\":\"KEYWORD1\",\"text\":\"RGB\"},{\"tag\":\"KEYWORD1\",\"text\":\"RTrim\"},{\"tag\":\"KEYWORD1\",\"text\":\"RUp\"},{\"tag\":\"KEYWORD1\",\"text\":\"ReadFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"ReadIniFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"ReadLn\"},{\"tag\":\"KEYWORD1\",\"text\":\"RegEx\"},{\"tag\":\"KEYWORD1\",\"text\":\"RegistryDelKey\"},{\"tag\":\"KEYWORD1\",\"text\":\"RegistryDelVal\"},{\"tag\":\"KEYWORD1\",\"text\":\"RegistryReadKey\"},{\"tag\":\"KEYWORD1\",\"text\":\"RegistryWriteKey\"},{\"tag\":\"KEYWORD1\",\"text\":\"Release\"},{\"tag\":\"KEYWORD1\",\"text\":\"Remark\"},{\"tag\":\"KEYWORD1\",\"text\":\"RenameFile\"},{\"tag\":\"KEYWORD1\",\"text\":\"Repeat\"},{\"tag\":\"KEYWORD1\",\"text\":\"ResetDialogAction\"},{\"tag\":\"KEYWORD1\",\"text\":\"ResizeWindow\"},{\"tag\":\"KEYWORD1\",\"text\":\"RetrievePOP3\"},{\"tag\":\"KEYWORD1\",\"text\":\"RunProgram\"},{\"tag\":\"KEYWORD1\",\"text\":\"SMTPSendMail\"},{\"tag\":\"KEYWORD1\",\"text\":\"ScreenCapture\"},{\"tag\":\"KEYWORD1\",\"text\":\"ScrollOff\"},{\"tag\":\"KEYWORD1\",\"text\":\"ScrollOn\"},{\"tag\":\"KEYWORD1\",\"text\":\"Sec\"},{\"tag\":\"KEYWORD1\",\"text\":\"SelectMenu\"},{\"tag\":\"KEYWORD1\",\"text\":\"Send\"},{\"tag\":\"KEYWORD1\",\"text\":\"SendText\"},{\"tag\":\"KEYWORD1\",\"text\":\"Separate\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetCheckBox\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetControlText\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetDialogObjectColor\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetDialogObjectFocus\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetDialogObjectFont\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetDialogObjectVisible\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetDialogProperty\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetEnvVar\"},{\"tag\":\"KEYWORD1\",\"text\":\"SetFocus\"},{\"tag\":\"KEYWORD1\",\"text\":\"Show\"},{\"tag\":\"KEYWORD1\",\"text\":\"ShutDownWindows\"},{\"tag\":\"KEYWORD1\",\"text\":\"SkipLabel\"},{\"tag\":\"KEYWORD1\",\"text\":\"SoWrite\"},{\"tag\":\"KEYWORD1\",\"text\":\"SoWriteLn\"},{\"tag\":\"KEYWORD1\",\"text\":\"StringReplace\"},{\"tag\":\"KEYWORD1\",\"text\":\"TelnetClose\"},{\"tag\":\"KEYWORD1\",\"text\":\"TelnetConnect\"},{\"tag\":\"KEYWORD1\",\"text\":\"TelnetSend\"},{\"tag\":\"KEYWORD1\",\"text\":\"TelnetWaitFor\"},{\"tag\":\"KEYWORD1\",\"text\":\"TimeStamp\"},{\"tag\":\"KEYWORD1\",\"text\":\"Toolbar\"},{\"tag\":\"KEYWORD1\",\"text\":\"Trim\"},{\"tag\":\"KEYWORD1\",\"text\":\"Until\"},{\"tag\":\"KEYWORD1\",\"text\":\"UpperCase\"},{\"tag\":\"KEYWORD1\",\"text\":\"Wait\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitClipBoard\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitCursorChanged\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitKeyDown\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitPixelColor\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitProcessExists\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitProcessTerminated\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitReady\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitRectChanged\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitScreenImage\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitScreenText\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitWindowChanged\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitWindowClosed\"},{\"tag\":\"KEYWORD1\",\"text\":\"WaitWindowOpen\"},{\"tag\":\"KEYWORD1\",\"text\":\"While\"},{\"tag\":\"KEYWORD1\",\"text\":\"WindowAction\"},{\"tag\":\"KEYWORD1\",\"text\":\"WriteLn\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLAddSheet\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLCreate\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLDelCol\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLDelRow\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLDelSheet\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLGetCell\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLGetSheetDims\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLOpen\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLQuit\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLRun\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLSave\"},{\"tag\":\"KEYWORD1\",\"text\":\"XLSetCell\"},{\"tag\":\"KEYWORD1\",\"text\":\"Year\"},{\"tag\":\"KEYWORD2\",\"text\":\"Include\"},{\"tag\":\"KEYWORD2\",\"text\":\"Label\"},{\"tag\":\"KEYWORD2\",\"text\":\"VBEnd\"},{\"tag\":\"KEYWORD2\",\"text\":\"VBEval\"},{\"tag\":\"KEYWORD2\",\"text\":\"VBRun\"},{\"tag\":\"KEYWORD2\",\"text\":\"VBStart\"},{\"tag\":\"KEYWORD3\",\"text\":\"Abs\"},{\"tag\":\"KEYWORD3\",\"text\":\"Add\"},{\"tag\":\"KEYWORD3\",\"text\":\"ArcTan\"},{\"tag\":\"KEYWORD3\",\"text\":\"Cos\"},{\"tag\":\"KEYWORD3\",\"text\":\"Exp\"},{\"tag\":\"KEYWORD3\",\"text\":\"Frac\"},{\"tag\":\"KEYWORD3\",\"text\":\"Int\"},{\"tag\":\"KEYWORD3\",\"text\":\"Let\"},{\"tag\":\"KEYWORD3\",\"text\":\"Ln\"},{\"tag\":\"KEYWORD3\",\"text\":\"Pi\"},{\"tag\":\"KEYWORD3\",\"text\":\"Power\"},{\"tag\":\"KEYWORD3\",\"text\":\"Random\"},{\"tag\":\"KEYWORD3\",\"text\":\"Round\"},{\"tag\":\"KEYWORD3\",\"text\":\"Sin\"},{\"tag\":\"KEYWORD3\",\"text\":\"Sqr\"},{\"tag\":\"KEYWORD3\",\"text\":\"Sqrt\"},{\"tag\":\"KEYWORD3\",\"text\":\"Sub\"},{\"tag\":\"KEYWORD3\",\"text\":\"Trunc\"},{\"tag\":\"KEYWORD3\",\"text\":\"Base64\"},{\"tag\":\"LITERAL2\",\"text\":\"false\"},{\"tag\":\"LITERAL2\",\"text\":\"null\"},{\"tag\":\"LITERAL2\",\"text\":\"this\"},{\"tag\":\"LITERAL2\",\"text\":\"true\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DOC_COMMENT\",\"DEFAULT\":\"COMMENT3\",\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<--\"},{\"tag\":\"END\",\"text\":\"-->\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"xml::TAGS\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<\"},{\"tag\":\"END\",\"text\":\">\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "//";
+        PROPERTY3.NAME = "lineComment";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "{";
+        PROPERTY4.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "}";
+        PROPERTY5.NAME = "indentCloseBrackets";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = "(";
+        PROPERTY6.NAME = "unalignedOpenBrackets";
+        PROPERTY PROPERTY7 = new PROPERTY();
+        PROPERTY7.VALUE = ")";
+        PROPERTY7.NAME = "unalignedCloseBrackets";
+        PROPERTY PROPERTY8 = new PROPERTY();
+        PROPERTY8.VALUE = "\\s*(((if|while)\\s*\\(|else\\s*|else\\s+if\\s*\\(|for\\s*\\(.*\\))[^{;]*)";
+        PROPERTY8.NAME = "indentNextLine";
+        PROPERTY PROPERTY9 = new PROPERTY();
+        PROPERTY9.VALUE = "^.*(default:\\s*|case.*:.*)$";
+        PROPERTY9.NAME = "unindentThisLine";
+        PROPERTY PROPERTY10 = new PROPERTY();
+        PROPERTY10.VALUE = ":";
+        PROPERTY10.NAME = "electricKeys";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, PROPERTY7, PROPERTY8, PROPERTY9, PROPERTY10, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "(0x[\\p{XDigit}]+[lL]?|[\\p{Digit}]+(e[\\p{Digit}]*)?[lLdDfF]?)";
+        RULES1.IGNORE_CASE = "FALSE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "/*";
+        END END1 = new END();
+        END1.text = "*/";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        EOL_SPAN EOL_SPAN1 = new EOL_SPAN();
+        EOL_SPAN1.text = "///";
+        EOL_SPAN1.TYPE = "COMMENT3";
+        EOL_SPAN1.DELEGATE = "DOC_COMMENT";
+        EOL_SPAN EOL_SPAN2 = new EOL_SPAN();
+        EOL_SPAN2.text = "//";
+        EOL_SPAN2.TYPE = "COMMENT2";
+        EOL_SPAN EOL_SPAN3 = new EOL_SPAN();
+        EOL_SPAN3.text = "///";
+        EOL_SPAN3.TYPE = "COMMENT4";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.NO_LINE_BREAK = "FALSE";
+        SPAN2.TYPE = "LITERAL3";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "@\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.NO_LINE_BREAK = "TRUE";
+        SPAN3.TYPE = "LITERAL1";
+        SPAN3.ESCAPE = "\\";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "\"";
+        END END3 = new END();
+        END3.text = "\"";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN SPAN4 = new SPAN();
+        SPAN4.NO_LINE_BREAK = "TRUE";
+        SPAN4.TYPE = "LITERAL1";
+        SPAN4.ESCAPE = "\\";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "'";
+        END END4 = new END();
+        END4.text = "'";
+        SPAN4.END = new END[] { END4, };
+
+        SPAN4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        EOL_SPAN EOL_SPAN4 = new EOL_SPAN();
+        EOL_SPAN4.text = "#if";
+        EOL_SPAN4.TYPE = "KEYWORD2";
+        EOL_SPAN EOL_SPAN5 = new EOL_SPAN();
+        EOL_SPAN5.text = "#else";
+        EOL_SPAN5.TYPE = "KEYWORD2";
+        EOL_SPAN EOL_SPAN6 = new EOL_SPAN();
+        EOL_SPAN6.text = "#endif";
+        EOL_SPAN6.TYPE = "KEYWORD2";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "~";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "!";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = ":";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = ";";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = "{";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = "}";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = ",";
+        SEQ7.TYPE = "OPERATOR";
+        SEQ SEQ8 = new SEQ();
+        SEQ8.text = ".";
+        SEQ8.TYPE = "OPERATOR";
+        SEQ SEQ9 = new SEQ();
+        SEQ9.text = "!";
+        SEQ9.TYPE = "OPERATOR";
+        SEQ SEQ10 = new SEQ();
+        SEQ10.text = "[";
+        SEQ10.TYPE = "OPERATOR";
+        SEQ SEQ11 = new SEQ();
+        SEQ11.text = "]";
+        SEQ11.TYPE = "OPERATOR";
+        SEQ SEQ12 = new SEQ();
+        SEQ12.text = "+";
+        SEQ12.TYPE = "OPERATOR";
+        SEQ SEQ13 = new SEQ();
+        SEQ13.text = "-";
+        SEQ13.TYPE = "OPERATOR";
+        SEQ SEQ14 = new SEQ();
+        SEQ14.text = ">";
+        SEQ14.TYPE = "OPERATOR";
+        SEQ SEQ15 = new SEQ();
+        SEQ15.text = "<";
+        SEQ15.TYPE = "OPERATOR";
+        SEQ SEQ16 = new SEQ();
+        SEQ16.text = "=";
+        SEQ16.TYPE = "OPERATOR";
+        SEQ SEQ17 = new SEQ();
+        SEQ17.text = "*";
+        SEQ17.TYPE = "OPERATOR";
+        SEQ SEQ18 = new SEQ();
+        SEQ18.text = "/";
+        SEQ18.TYPE = "OPERATOR";
+        SEQ SEQ19 = new SEQ();
+        SEQ19.text = "\\";
+        SEQ19.TYPE = "OPERATOR";
+        SEQ SEQ20 = new SEQ();
+        SEQ20.text = "^";
+        SEQ20.TYPE = "OPERATOR";
+        SEQ SEQ21 = new SEQ();
+        SEQ21.text = "|";
+        SEQ21.TYPE = "OPERATOR";
+        SEQ SEQ22 = new SEQ();
+        SEQ22.text = "&";
+        SEQ22.TYPE = "OPERATOR";
+        SEQ SEQ23 = new SEQ();
+        SEQ23.text = "%";
+        SEQ23.TYPE = "OPERATOR";
+        SEQ SEQ24 = new SEQ();
+        SEQ24.text = "?";
+        SEQ24.TYPE = "OPERATOR";
+        MARK_PREVIOUS MARK_PREVIOUS1 = new MARK_PREVIOUS();
+        MARK_PREVIOUS1.text = "(";
+        MARK_PREVIOUS1.TYPE = "FUNCTION";
+        MARK_PREVIOUS1.MATCH_TYPE = "OPERATOR";
+        SEQ SEQ25 = new SEQ();
+        SEQ25.text = ")";
+        SEQ25.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL2", new String[]{"false", "null", "this", "true", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"AddDialogHandler", "AddTrayHandler", "AddTrayIcon", "AppendFile", "ArrayCount", "ArraySort", "Ascii", "Ask", "Assigned", "BlockInput", "CSVFileToArray", "CapsOff", "CapsOn", "ChangeDirectory", "CloseDialog", "CloseWindow", "CompareBitmaps", "ConCat", "CopyFile", "CopyFolder", "CountFiles", "CreateDir", "Crypt", "DBClose", "DBConnect", "DBExec", "DBQuery", "DDEPoke", "DDERequest", "DateStamp", "Day", "DayOfWeek", "DelTrayIcon", "DeleteFile", "DeleteFolder", "Dialog", "EditIniFile", "Else", "End", "EndDialog", "EndIf", "EndWhile", "ExecuteFile", "Exit", "ExportData", "ExtractFileExt", "ExtractFileName", "ExtractFilePath", "FTPDelFile", "FTPGetDirList", "FTPGetFile", "FTPMakeDir", "FTPPutFile", "FTPRemoveDir", "FTPRenameFile", "FileDate", "FileSize", "FileTime", "FindImagePos", "FindWindowWithText", "GetActiveWindow", "GetCaretPos", "GetCheckBox", "GetClipBoard", "GetControlText", "GetCursorPos", "GetDate", "GetDialogAction", "GetDialogProperty", "GetEnvVar", "GetFileList", "GetFocusedObject", "GetListItem", "GetPixelColor", "GetRectCheckSum", "GetScreenRes", "GetTextAtPoint", "GetTextInRect", "GetTextReset", "GetTime", "GetTreeNode", "GetWindowHandle", "GetWindowList", "GetWindowNames", "GetWindowPos", "GetWindowProcess", "GetWindowSize", "GetWindowText", "GetWindowTextEx", "GoSub", "Goto", "HTTPRequest", "Hour", "If", "IfDirExists", "IfFileChanged", "IfFileExists", "IfWindowOpen", "Input", "IsConnectedToInternet", "KillProcess", "LClick", "LDblClick", "LDown", "LTrim", "LUp", "LabelToVar", "Len", "Length", "LibFree", "LibFunc", "LibFuncW", "LibLoad", "LowerCase", "MClick", "MDblClick", "MDown", "MUp", "Macro", "Message", "MessageModal", "MidStr", "Min", "Month", "MouseMove", "MouseMoveRel", "MouseOver", "MoveFile", "MoveWindow", "NumOff", "NumOn", "OnEvent", "PlayWav", "Position", "Press", "ProcessExists", "PushButton", "PutClipBoard", "RClick", "RDblClick", "RDown", "RGB", "RTrim", "RUp", "ReadFile", "ReadIniFile", "ReadLn", "RegEx", "RegistryDelKey", "RegistryDelVal", "RegistryReadKey", "RegistryWriteKey", "Release", "Remark", "RenameFile", "Repeat", "ResetDialogAction", "ResizeWindow", "RetrievePOP3", "RunProgram", "SMTPSendMail", "ScreenCapture", "ScrollOff", "ScrollOn", "Sec", "SelectMenu", "Send", "SendText", "Separate", "SetCheckBox", "SetControlText", "SetDialogObjectColor", "SetDialogObjectFocus", "SetDialogObjectFont", "SetDialogObjectVisible", "SetDialogProperty", "SetEnvVar", "SetFocus", "Show", "ShutDownWindows", "SkipLabel", "SoWrite", "SoWriteLn", "StringReplace", "TelnetClose", "TelnetConnect", "TelnetSend", "TelnetWaitFor", "TimeStamp", "Toolbar", "Trim", "Until", "UpperCase", "Wait", "WaitClipBoard", "WaitCursorChanged", "WaitKeyDown", "WaitPixelColor", "WaitProcessExists", "WaitProcessTerminated", "WaitReady", "WaitRectChanged", "WaitScreenImage", "WaitScreenText", "WaitWindowChanged", "WaitWindowClosed", "WaitWindowOpen", "While", "WindowAction", "WriteLn", "XLAddSheet", "XLCreate", "XLDelCol", "XLDelRow", "XLDelSheet", "XLGetCell", "XLGetSheetDims", "XLOpen", "XLQuit", "XLRun", "XLSave", "XLSetCell", "Year", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"Include", "Label", "VBEnd", "VBEval", "VBRun", "VBStart", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"Abs", "Add", "ArcTan", "Cos", "Exp", "Frac", "Int", "Let", "Ln", "Pi", "Power", "Random", "Round", "Sin", "Sqr", "Sqrt", "Sub", "Trunc", "Base64", });
+        RULES1.MARK_PREVIOUS = new MARK_PREVIOUS[] { MARK_PREVIOUS1, };
+
+        RULES1.EOL_SPAN = new EOL_SPAN[] { EOL_SPAN1, EOL_SPAN2, EOL_SPAN3, EOL_SPAN4, EOL_SPAN5, EOL_SPAN6, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, SPAN4, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, SEQ8, SEQ9, SEQ10, SEQ11, SEQ12, SEQ13, SEQ14, SEQ15, SEQ16, SEQ17, SEQ18, SEQ19, SEQ20, SEQ21, SEQ22, SEQ23, SEQ24, SEQ25, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DOC_COMMENT";
+        RULES1.DEFAULT = "COMMENT3";
+        RULES1.IGNORE_CASE = "TRUE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT1";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "<--";
+        END END1 = new END();
+        END1.text = "-->";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "MARKUP";
+        SPAN2.DELEGATE = "xml::TAGS";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "<";
+        END END2 = new END();
+        END2.text = ">";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

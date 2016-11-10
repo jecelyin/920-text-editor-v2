@@ -19,15 +19,324 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class DjangoLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{% comment %}\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{% endcomment %}\",\"NAME\":\"commentEnd\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"IGNORE_CASE\":\"TRUE\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"html::MAIN\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"JAVASCRIPT_OPENTAG\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<SCRIPT\"},{\"tag\":\"END\",\"text\":\"<\\/SCRIPT>\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"CSS_OPENTAG\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"<STYLE\"},{\"tag\":\"END\",\"text\":\"<\\/STYLE>\"}]},{\"tag\":\"SEQ_REGEXP\",\"text\":\"<\\/?\\\\w+\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"TAGS\",\"HASH_CHAR\":\"<\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DJANGO\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT3\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{% comment %}\"},{\"tag\":\"END\",\"text\":\"{% endcomment %}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"DJANGO_BLOCK\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{%\"},{\"tag\":\"END\",\"text\":\"%}\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD3\",\"DELEGATE\":\"DJANGO_VARIABLE\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{{\"},{\"tag\":\"END\",\"text\":\"}}\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"JAVASCRIPT_OPENTAG\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"JAVASCRIPT\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"TAGS\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"html::TAGS\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"JAVASCRIPT\",\"DEFAULT\":\"MARKUP\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"TO_LITERAL+DJANGO\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"javascript::MAIN\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CSS_OPENTAG\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"CSS\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"TO_LITERAL+DJANGO\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"CSS\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"\",\"NAME\":\"lineComment\"}}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"TO_LITERAL+DJANGO\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"css::MAIN\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"TAGS\",\"DEFAULT\":\"MARKUP\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"TO_LITERAL+DJANGO\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"html::TAGS\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"MARKUP\",\"DELEGATE\":\"MAIN\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"TO_LITERAL+DJANGO\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"LITERAL1+DJANGO\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"DELEGATE\":\"LITERAL1+DJANGO\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"LITERAL1+DJANGO\",\"DEFAULT\":\"LITERAL1\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DJANGO_VARIABLE\",\"DEFAULT\":\"LITERAL4\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO_CORE\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DJANGO_BLOCK\",\"DEFAULT\":\"LITERAL4\"},\"child\":[{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"DJANGO_CORE\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"OPERATOR\",\"text\":\"==\"},{\"tag\":\"OPERATOR\",\"text\":\"!=\"},{\"tag\":\"OPERATOR\",\"text\":\"<\"},{\"tag\":\"OPERATOR\",\"text\":\">\"},{\"tag\":\"OPERATOR\",\"text\":\"<=\"},{\"tag\":\"OPERATOR\",\"text\":\">=\"},{\"tag\":\"KEYWORD1\",\"text\":\"in\"},{\"tag\":\"KEYWORD1\",\"text\":\"not\"},{\"tag\":\"KEYWORD1\",\"text\":\"and\"},{\"tag\":\"KEYWORD1\",\"text\":\"or\"},{\"tag\":\"KEYWORD1\",\"text\":\"as\"},{\"tag\":\"KEYWORD1\",\"text\":\"cache\"},{\"tag\":\"KEYWORD1\",\"text\":\"endcache\"},{\"tag\":\"KEYWORD1\",\"text\":\"autoescape\"},{\"tag\":\"KEYWORD1\",\"text\":\"block\"},{\"tag\":\"KEYWORD1\",\"text\":\"endblock\"},{\"tag\":\"KEYWORD1\",\"text\":\"csrf_token\"},{\"tag\":\"KEYWORD1\",\"text\":\"cycle\"},{\"tag\":\"KEYWORD1\",\"text\":\"debug\"},{\"tag\":\"KEYWORD1\",\"text\":\"extends\"},{\"tag\":\"KEYWORD1\",\"text\":\"filter\"},{\"tag\":\"KEYWORD1\",\"text\":\"endfilter\"},{\"tag\":\"KEYWORD1\",\"text\":\"firstof\"},{\"tag\":\"KEYWORD1\",\"text\":\"if\"},{\"tag\":\"KEYWORD1\",\"text\":\"else\"},{\"tag\":\"KEYWORD1\",\"text\":\"endif\"},{\"tag\":\"KEYWORD1\",\"text\":\"for\"},{\"tag\":\"KEYWORD1\",\"text\":\"endfor\"},{\"tag\":\"KEYWORD1\",\"text\":\"empty\"},{\"tag\":\"KEYWORD1\",\"text\":\"endifchanged\"},{\"tag\":\"KEYWORD1\",\"text\":\"endifequal\"},{\"tag\":\"KEYWORD1\",\"text\":\"ifnotequal\"},{\"tag\":\"KEYWORD1\",\"text\":\"endifnotequal\"},{\"tag\":\"KEYWORD1\",\"text\":\"include\"},{\"tag\":\"KEYWORD1\",\"text\":\"load\"},{\"tag\":\"KEYWORD1\",\"text\":\"now\"},{\"tag\":\"KEYWORD1\",\"text\":\"regroup\"},{\"tag\":\"KEYWORD1\",\"text\":\"spaceless\"},{\"tag\":\"KEYWORD1\",\"text\":\"endspaceless\"},{\"tag\":\"KEYWORD1\",\"text\":\"ssi\"},{\"tag\":\"KEYWORD1\",\"text\":\"templatetag\"},{\"tag\":\"KEYWORD1\",\"text\":\"url\"},{\"tag\":\"KEYWORD1\",\"text\":\"widthratio\"},{\"tag\":\"KEYWORD1\",\"text\":\"with\"},{\"tag\":\"KEYWORD1\",\"text\":\"endwith\"},{\"tag\":\"KEYWORD1\",\"text\":\"trans\"},{\"tag\":\"KEYWORD1\",\"text\":\"blocktrans\"},{\"tag\":\"KEYWORD1\",\"text\":\"endblocktrans\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"DJANGO_CORE\"},\"child\":[{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"\\\"\"},{\"tag\":\"END\",\"text\":\"\\\"\"}]},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL2\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"'\"},{\"tag\":\"END\",\"text\":\"'\"}]},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"|\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"LITERAL3\",\"text\":\"Argument\"},{\"tag\":\"LITERAL3\",\"text\":\"openblock\"},{\"tag\":\"LITERAL3\",\"text\":\"closeblock\"},{\"tag\":\"LITERAL3\",\"text\":\"openvariable\"},{\"tag\":\"LITERAL3\",\"text\":\"closevariable\"},{\"tag\":\"LITERAL3\",\"text\":\"openbrace\"},{\"tag\":\"LITERAL3\",\"text\":\"closebrace\"},{\"tag\":\"LITERAL3\",\"text\":\"opencomment\"},{\"tag\":\"LITERAL3\",\"text\":\"closecomment\"},{\"tag\":\"FUNCTION\",\"text\":\"add\"},{\"tag\":\"FUNCTION\",\"text\":\"addslashes\"},{\"tag\":\"FUNCTION\",\"text\":\"capfirst\"},{\"tag\":\"FUNCTION\",\"text\":\"center\"},{\"tag\":\"FUNCTION\",\"text\":\"cut\"},{\"tag\":\"FUNCTION\",\"text\":\"date\"},{\"tag\":\"FUNCTION\",\"text\":\"default\"},{\"tag\":\"FUNCTION\",\"text\":\"default_if_none\"},{\"tag\":\"FUNCTION\",\"text\":\"dictsort\"},{\"tag\":\"FUNCTION\",\"text\":\"dictsortreversed\"},{\"tag\":\"FUNCTION\",\"text\":\"divisibleby\"},{\"tag\":\"FUNCTION\",\"text\":\"escape\"},{\"tag\":\"FUNCTION\",\"text\":\"escapejs\"},{\"tag\":\"FUNCTION\",\"text\":\"filesizeformat\"},{\"tag\":\"FUNCTION\",\"text\":\"first\"},{\"tag\":\"FUNCTION\",\"text\":\"fix_ampersands\"},{\"tag\":\"FUNCTION\",\"text\":\"floatformat\"},{\"tag\":\"FUNCTION\",\"text\":\"force_escape\"},{\"tag\":\"FUNCTION\",\"text\":\"get_digit\"},{\"tag\":\"FUNCTION\",\"text\":\"iriencode\"},{\"tag\":\"FUNCTION\",\"text\":\"join\"},{\"tag\":\"FUNCTION\",\"text\":\"last\"},{\"tag\":\"FUNCTION\",\"text\":\"length\"},{\"tag\":\"FUNCTION\",\"text\":\"length_is\"},{\"tag\":\"FUNCTION\",\"text\":\"linebreaks\"},{\"tag\":\"FUNCTION\",\"text\":\"linebreaksbr\"},{\"tag\":\"FUNCTION\",\"text\":\"linenumbers\"},{\"tag\":\"FUNCTION\",\"text\":\"ljust\"},{\"tag\":\"FUNCTION\",\"text\":\"lower\"},{\"tag\":\"FUNCTION\",\"text\":\"make_list\"},{\"tag\":\"FUNCTION\",\"text\":\"phone2numeric\"},{\"tag\":\"FUNCTION\",\"text\":\"pluralize\"},{\"tag\":\"FUNCTION\",\"text\":\"pprint\"},{\"tag\":\"FUNCTION\",\"text\":\"random\"},{\"tag\":\"FUNCTION\",\"text\":\"removetags\"},{\"tag\":\"FUNCTION\",\"text\":\"rjust\"},{\"tag\":\"FUNCTION\",\"text\":\"safe\"},{\"tag\":\"FUNCTION\",\"text\":\"safeseq\"},{\"tag\":\"FUNCTION\",\"text\":\"slice\"},{\"tag\":\"FUNCTION\",\"text\":\"slugify\"},{\"tag\":\"FUNCTION\",\"text\":\"stringformat\"},{\"tag\":\"FUNCTION\",\"text\":\"striptags\"},{\"tag\":\"FUNCTION\",\"text\":\"time\"},{\"tag\":\"FUNCTION\",\"text\":\"timesince\"},{\"tag\":\"FUNCTION\",\"text\":\"timeuntil\"},{\"tag\":\"FUNCTION\",\"text\":\"title\"},{\"tag\":\"FUNCTION\",\"text\":\"truncatewords\"},{\"tag\":\"FUNCTION\",\"text\":\"truncatewords_html\"},{\"tag\":\"FUNCTION\",\"text\":\"unordered_list\"},{\"tag\":\"FUNCTION\",\"text\":\"upper\"},{\"tag\":\"FUNCTION\",\"text\":\"urlencode\"},{\"tag\":\"FUNCTION\",\"text\":\"urlize\"},{\"tag\":\"FUNCTION\",\"text\":\"urlizetrunc\"},{\"tag\":\"FUNCTION\",\"text\":\"wordcount\"},{\"tag\":\"FUNCTION\",\"text\":\"wordwrap\"},{\"tag\":\"FUNCTION\",\"text\":\"yesno\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "{% comment %}";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "{% endcomment %}";
+        PROPERTY2.NAME = "commentEnd";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.IGNORE_CASE = "TRUE";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "html::MAIN";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "DJANGO";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "MARKUP";
+        SPAN1.DELEGATE = "JAVASCRIPT_OPENTAG";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "<SCRIPT";
+        END END1 = new END();
+        END1.text = "</SCRIPT>";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "MARKUP";
+        SPAN2.DELEGATE = "CSS_OPENTAG";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "<STYLE";
+        END END2 = new END();
+        END2.text = "</STYLE>";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "</?\\w+";
+        SEQ_REGEXP1.TYPE = "MARKUP";
+        SEQ_REGEXP1.DELEGATE = "TAGS";
+        SEQ_REGEXP1.HASH_CHAR = "<";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DJANGO";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "COMMENT3";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "{% comment %}";
+        END END1 = new END();
+        END1.text = "{% endcomment %}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "KEYWORD3";
+        SPAN2.DELEGATE = "DJANGO_BLOCK";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "{%";
+        END END2 = new END();
+        END2.text = "%}";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN SPAN3 = new SPAN();
+        SPAN3.TYPE = "KEYWORD3";
+        SPAN3.DELEGATE = "DJANGO_VARIABLE";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "{{";
+        END END3 = new END();
+        END3.text = "}}";
+        SPAN3.END = new END[] { END3, };
+
+        SPAN3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, SPAN3, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "JAVASCRIPT_OPENTAG";
+        RULES1.DEFAULT = "MARKUP";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ">";
+        SEQ1.TYPE = "MARKUP";
+        SEQ1.DELEGATE = "JAVASCRIPT";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "TAGS";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "html::TAGS";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "JAVASCRIPT";
+        RULES1.DEFAULT = "MARKUP";
+        RULES1.ESCAPE = "\\";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "TO_LITERAL+DJANGO";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "DJANGO";
+        IMPORT IMPORT3 = new IMPORT();
+        IMPORT3.DELEGATE = "javascript::MAIN";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, IMPORT3, };
+
+        return RULES1;
+    }
+
+    private RULES RULES5() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CSS_OPENTAG";
+        RULES1.DEFAULT = "MARKUP";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ">";
+        SEQ1.TYPE = "MARKUP";
+        SEQ1.DELEGATE = "CSS";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "TO_LITERAL+DJANGO";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES6() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "CSS";
+        RULES1.DEFAULT = "MARKUP";
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "";
+        PROPERTY1.NAME = "lineComment";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, };
+
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "TO_LITERAL+DJANGO";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "DJANGO";
+        IMPORT IMPORT3 = new IMPORT();
+        IMPORT3.DELEGATE = "css::MAIN";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, IMPORT3, };
+
+        RULES1.PROPS = new PROPS[] { PROPS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES7() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "TAGS";
+        RULES1.DEFAULT = "MARKUP";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "TO_LITERAL+DJANGO";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "html::TAGS";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ">";
+        SEQ1.TYPE = "MARKUP";
+        SEQ1.DELEGATE = "MAIN";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES8() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "TO_LITERAL+DJANGO";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL1";
+        SPAN1.DELEGATE = "LITERAL1+DJANGO";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "'";
+        END END1 = new END();
+        END1.text = "'";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL1";
+        SPAN2.DELEGATE = "LITERAL1+DJANGO";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "\"";
+        END END2 = new END();
+        END2.text = "\"";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "DJANGO";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        return RULES1;
+    }
+
+    private RULES RULES9() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "LITERAL1+DJANGO";
+        RULES1.DEFAULT = "LITERAL1";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "DJANGO";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES10() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DJANGO_VARIABLE";
+        RULES1.DEFAULT = "LITERAL4";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "DJANGO_CORE";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES11() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DJANGO_BLOCK";
+        RULES1.DEFAULT = "LITERAL4";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "DJANGO_CORE";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("OPERATOR", new String[]{"==", "!=", "<", ">", "<=", ">=", });
+        KEYWORDS1.add("KEYWORD1", new String[]{"in", "not", "and", "or", "as", "cache", "endcache", "autoescape", "block", "endblock", "csrf_token", "cycle", "debug", "extends", "filter", "endfilter", "firstof", "if", "else", "endif", "for", "endfor", "empty", "endifchanged", "endifequal", "ifnotequal", "endifnotequal", "include", "load", "now", "regroup", "spaceless", "endspaceless", "ssi", "templatetag", "url", "widthratio", "with", "endwith", "trans", "blocktrans", "endblocktrans", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES12() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "DJANGO_CORE";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "LITERAL2";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "\"";
+        END END1 = new END();
+        END1.text = "\"";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "LITERAL2";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "'";
+        END END2 = new END();
+        END2.text = "'";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ":";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ",";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "|";
+        SEQ3.TYPE = "OPERATOR";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("LITERAL3", new String[]{"Argument", "openblock", "closeblock", "openvariable", "closevariable", "openbrace", "closebrace", "opencomment", "closecomment", });
+        KEYWORDS1.add("FUNCTION", new String[]{"add", "addslashes", "capfirst", "center", "cut", "date", "default", "default_if_none", "dictsort", "dictsortreversed", "divisibleby", "escape", "escapejs", "filesizeformat", "first", "fix_ampersands", "floatformat", "force_escape", "get_digit", "iriencode", "join", "last", "length", "length_is", "linebreaks", "linebreaksbr", "linenumbers", "ljust", "lower", "make_list", "phone2numeric", "pluralize", "pprint", "random", "removetags", "rjust", "safe", "safeseq", "slice", "slugify", "stringformat", "striptags", "time", "timesince", "timeuntil", "title", "truncatewords", "truncatewords_html", "unordered_list", "upper", "urlencode", "urlize", "urlizetrunc", "wordcount", "wordwrap", "yesno", });
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), RULES5(), RULES6(), RULES7(), RULES8(), RULES9(), RULES10(), RULES11(), RULES12(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }

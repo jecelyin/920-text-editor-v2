@@ -19,15 +19,314 @@
 package com.jecelyin.editor.v2.highlight.lang;
 
 import com.jecelyin.editor.v2.highlight.LangDefine;
-
+import com.jecelyin.editor.v2.highlight.syntax.*;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class CssLang implements LangDefine {
-    private final static String JSON = "{\"tag\":\"MODE\",\"text\":\"\",\"child\":[{\"tag\":\"PROPS\",\"text\":\"\",\"child\":[{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"/*\",\"NAME\":\"commentStart\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"*/\",\"NAME\":\"commentEnd\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"{\",\"NAME\":\"indentOpenBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"}\",\"NAME\":\"indentCloseBrackets\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"-\",\"NAME\":\"noWordSep\"}},{\"tag\":\"PROPERTY\",\"attrs\":{\"VALUE\":\"_\",\"NAME\":\"noWordSep\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"-?\\\\d+(\\\\.\\\\d+)?(pt|pc|in|mm|cm|em|ex|px|ms|s|%|)\",\"IGNORE_CASE\":\"TRUE\",\"NO_WORD_SEP\":\"-_%\"},\"child\":[{\"tag\":\"MARK_FOLLOWING\",\"text\":\".\",\"attrs\":{\"TYPE\":\"LITERAL1\"}},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"LITERAL2\"}},{\"tag\":\"SEQ\",\"text\":\">\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"PSEUDO\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"PROPERTIES\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"{\"},{\"tag\":\"END\",\"text\":\"}\"}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"GLOBAL\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"html::TAGS\"}}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"PSEUDO\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"\",\"attrs\":{\"TYPE\":\"NULL\",\"DELEGATE\":\"MAIN\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"MAIN\"}},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"PROPERTIES\"}},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"lang\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"lang\\\\s*\\\\(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD4\",\"HASH_CHAR\":\"lang\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"lang\\\\s*\\\\(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"GLOBAL\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD4\",\"text\":\"after\"},{\"tag\":\"KEYWORD4\",\"text\":\"before\"},{\"tag\":\"KEYWORD4\",\"text\":\"first-child\"},{\"tag\":\"KEYWORD4\",\"text\":\"last-child\"},{\"tag\":\"KEYWORD4\",\"text\":\"link\"},{\"tag\":\"KEYWORD4\",\"text\":\"visited\"},{\"tag\":\"KEYWORD4\",\"text\":\"active\"},{\"tag\":\"KEYWORD4\",\"text\":\"hover\"},{\"tag\":\"KEYWORD4\",\"text\":\"focus\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"PROPERTIES\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"MAIN\"}},{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"PROP_VALUE\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"GLOBAL\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"background\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-attachment\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-image\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-position\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-repeat\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-origin\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-clip\"},{\"tag\":\"KEYWORD2\",\"text\":\"background-size\"},{\"tag\":\"KEYWORD2\",\"text\":\"color\"},{\"tag\":\"KEYWORD2\",\"text\":\"opacity\"},{\"tag\":\"KEYWORD2\",\"text\":\"rendering-intent\"},{\"tag\":\"KEYWORD2\",\"text\":\"font\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-family\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-size\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-variant\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-weight\"},{\"tag\":\"KEYWORD2\",\"text\":\"font-stretch\"},{\"tag\":\"KEYWORD2\",\"text\":\"src\"},{\"tag\":\"KEYWORD2\",\"text\":\"definition-src\"},{\"tag\":\"KEYWORD2\",\"text\":\"unicode-range\"},{\"tag\":\"KEYWORD2\",\"text\":\"panose-1\"},{\"tag\":\"KEYWORD2\",\"text\":\"stemv\"},{\"tag\":\"KEYWORD2\",\"text\":\"stemh\"},{\"tag\":\"KEYWORD2\",\"text\":\"units-per-em\"},{\"tag\":\"KEYWORD2\",\"text\":\"slope\"},{\"tag\":\"KEYWORD2\",\"text\":\"cap-height\"},{\"tag\":\"KEYWORD2\",\"text\":\"x-height\"},{\"tag\":\"KEYWORD2\",\"text\":\"ascent\"},{\"tag\":\"KEYWORD2\",\"text\":\"descent\"},{\"tag\":\"KEYWORD2\",\"text\":\"baseline\"},{\"tag\":\"KEYWORD2\",\"text\":\"centerline\"},{\"tag\":\"KEYWORD2\",\"text\":\"mathline\"},{\"tag\":\"KEYWORD2\",\"text\":\"topline\"},{\"tag\":\"KEYWORD2\",\"text\":\"letter-spacing\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-align\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-shadow\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-decoration\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-indent\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-justify\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-overflow\"},{\"tag\":\"KEYWORD2\",\"text\":\"text-transform\"},{\"tag\":\"KEYWORD2\",\"text\":\"word-break\"},{\"tag\":\"KEYWORD2\",\"text\":\"word-spacing\"},{\"tag\":\"KEYWORD2\",\"text\":\"word-wrap\"},{\"tag\":\"KEYWORD2\",\"text\":\"letter-spacing\"},{\"tag\":\"KEYWORD2\",\"text\":\"white-space\"},{\"tag\":\"KEYWORD2\",\"text\":\"border\"},{\"tag\":\"KEYWORD2\",\"text\":\"bottom\"},{\"tag\":\"KEYWORD2\",\"text\":\"border\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-bottom\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-bottom-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-bottom-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-bottom-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-collapse\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-left\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-left-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-left-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-left-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-right-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-right-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-right-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-spacing\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-top\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-top-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-top-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-top-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-bottom-left-radius\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-bottom-right-radius\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-radius\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-top-left-radius\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-top-right-radius\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-align\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-direction\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-flex\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-ordinal-group\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-orient\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-pack\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-sizing\"},{\"tag\":\"KEYWORD2\",\"text\":\"box-shadow\"},{\"tag\":\"KEYWORD2\",\"text\":\"clear\"},{\"tag\":\"KEYWORD2\",\"text\":\"float\"},{\"tag\":\"KEYWORD2\",\"text\":\"height\"},{\"tag\":\"KEYWORD2\",\"text\":\"margin\"},{\"tag\":\"KEYWORD2\",\"text\":\"margin-bottom\"},{\"tag\":\"KEYWORD2\",\"text\":\"margin-left\"},{\"tag\":\"KEYWORD2\",\"text\":\"margin-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"margin-top\"},{\"tag\":\"KEYWORD2\",\"text\":\"padding\"},{\"tag\":\"KEYWORD2\",\"text\":\"padding-bottom\"},{\"tag\":\"KEYWORD2\",\"text\":\"padding-left\"},{\"tag\":\"KEYWORD2\",\"text\":\"padding-right\"},{\"tag\":\"KEYWORD2\",\"text\":\"padding-top\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-fill\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-gap\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-rule\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-rule-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-rule-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-rule-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-span\"},{\"tag\":\"KEYWORD2\",\"text\":\"column-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"columns\"},{\"tag\":\"KEYWORD2\",\"text\":\"handing-punctuation\"},{\"tag\":\"KEYWORD2\",\"text\":\"display\"},{\"tag\":\"KEYWORD2\",\"text\":\"position\"},{\"tag\":\"KEYWORD2\",\"text\":\"top\"},{\"tag\":\"KEYWORD2\",\"text\":\"right\"},{\"tag\":\"KEYWORD2\",\"text\":\"bottom\"},{\"tag\":\"KEYWORD2\",\"text\":\"left\"},{\"tag\":\"KEYWORD2\",\"text\":\"float\"},{\"tag\":\"KEYWORD2\",\"text\":\"z-index\"},{\"tag\":\"KEYWORD2\",\"text\":\"direction\"},{\"tag\":\"KEYWORD2\",\"text\":\"unicode-bidi\"},{\"tag\":\"KEYWORD2\",\"text\":\"width\"},{\"tag\":\"KEYWORD2\",\"text\":\"min-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"max-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"height\"},{\"tag\":\"KEYWORD2\",\"text\":\"min-height\"},{\"tag\":\"KEYWORD2\",\"text\":\"max-height\"},{\"tag\":\"KEYWORD2\",\"text\":\"line-height\"},{\"tag\":\"KEYWORD2\",\"text\":\"vertical-align\"},{\"tag\":\"KEYWORD2\",\"text\":\"overflow\"},{\"tag\":\"KEYWORD2\",\"text\":\"overflow-x\"},{\"tag\":\"KEYWORD2\",\"text\":\"overflow-y\"},{\"tag\":\"KEYWORD2\",\"text\":\"clip\"},{\"tag\":\"KEYWORD2\",\"text\":\"visibility\"},{\"tag\":\"KEYWORD2\",\"text\":\"perspective\"},{\"tag\":\"KEYWORD2\",\"text\":\"perspective-origin\"},{\"tag\":\"KEYWORD2\",\"text\":\"transform\"},{\"tag\":\"KEYWORD2\",\"text\":\"transform-origin\"},{\"tag\":\"KEYWORD2\",\"text\":\"transform-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"transition\"},{\"tag\":\"KEYWORD2\",\"text\":\"transition-property\"},{\"tag\":\"KEYWORD2\",\"text\":\"transition-duration\"},{\"tag\":\"KEYWORD2\",\"text\":\"transition-timing-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"transition-delay\"},{\"tag\":\"KEYWORD2\",\"text\":\"page-break-before\"},{\"tag\":\"KEYWORD2\",\"text\":\"page-break-after\"},{\"tag\":\"KEYWORD2\",\"text\":\"page-break-inside\"},{\"tag\":\"KEYWORD2\",\"text\":\"orphans\"},{\"tag\":\"KEYWORD2\",\"text\":\"widows\"},{\"tag\":\"KEYWORD2\",\"text\":\"caption-side\"},{\"tag\":\"KEYWORD2\",\"text\":\"table-layout\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-collapse\"},{\"tag\":\"KEYWORD2\",\"text\":\"border-spacing\"},{\"tag\":\"KEYWORD2\",\"text\":\"empty-cells\"},{\"tag\":\"KEYWORD2\",\"text\":\"speak-headers\"},{\"tag\":\"KEYWORD2\",\"text\":\"cursor\"},{\"tag\":\"KEYWORD2\",\"text\":\"outline\"},{\"tag\":\"KEYWORD2\",\"text\":\"outline-width\"},{\"tag\":\"KEYWORD2\",\"text\":\"outline-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"outline-color\"},{\"tag\":\"KEYWORD2\",\"text\":\"outline-offset\"},{\"tag\":\"KEYWORD2\",\"text\":\"azimuth\"},{\"tag\":\"KEYWORD2\",\"text\":\"volume\"},{\"tag\":\"KEYWORD2\",\"text\":\"speak\"},{\"tag\":\"KEYWORD2\",\"text\":\"pause\"},{\"tag\":\"KEYWORD2\",\"text\":\"pause-before\"},{\"tag\":\"KEYWORD2\",\"text\":\"pause-after\"},{\"tag\":\"KEYWORD2\",\"text\":\"cue\"},{\"tag\":\"KEYWORD2\",\"text\":\"cue-before\"},{\"tag\":\"KEYWORD2\",\"text\":\"cue-after\"},{\"tag\":\"KEYWORD2\",\"text\":\"play-during\"},{\"tag\":\"KEYWORD2\",\"text\":\"elevation\"},{\"tag\":\"KEYWORD2\",\"text\":\"speech-rate\"},{\"tag\":\"KEYWORD2\",\"text\":\"voice-family\"},{\"tag\":\"KEYWORD2\",\"text\":\"pitch\"},{\"tag\":\"KEYWORD2\",\"text\":\"pitch-range\"},{\"tag\":\"KEYWORD2\",\"text\":\"stress\"},{\"tag\":\"KEYWORD2\",\"text\":\"richness\"},{\"tag\":\"KEYWORD2\",\"text\":\"speak-punctuation\"},{\"tag\":\"KEYWORD2\",\"text\":\"speak-numeral\"},{\"tag\":\"KEYWORD2\",\"text\":\"speak-header-cell\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-name\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-duration\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-timing-function\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-delay\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-iteration-count\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-direction\"},{\"tag\":\"KEYWORD2\",\"text\":\"animation-play-state\"},{\"tag\":\"KEYWORD2\",\"text\":\"appearance\"},{\"tag\":\"INVALID\",\"text\":\"alignment-adjust\"},{\"tag\":\"INVALID\",\"text\":\"alignment-baseline\"},{\"tag\":\"INVALID\",\"text\":\"backface-visibility\"},{\"tag\":\"INVALID\",\"text\":\"baseline-shift\"},{\"tag\":\"INVALID\",\"text\":\"bookmark-label\"},{\"tag\":\"INVALID\",\"text\":\"bookmark-level\"},{\"tag\":\"INVALID\",\"text\":\"bookmark-target\"},{\"tag\":\"INVALID\",\"text\":\"border-image\"},{\"tag\":\"INVALID\",\"text\":\"border-image-outset\"},{\"tag\":\"INVALID\",\"text\":\"border-image-repeat\"},{\"tag\":\"INVALID\",\"text\":\"border-image-slice\"},{\"tag\":\"INVALID\",\"text\":\"border-image-source\"},{\"tag\":\"INVALID\",\"text\":\"border-image-width\"},{\"tag\":\"INVALID\",\"text\":\"box-decoration-break\"},{\"tag\":\"INVALID\",\"text\":\"box-flex-group\"},{\"tag\":\"INVALID\",\"text\":\"box-lines\"},{\"tag\":\"INVALID\",\"text\":\"color-profile\"},{\"tag\":\"INVALID\",\"text\":\"column-fill\"},{\"tag\":\"INVALID\",\"text\":\"crop\"},{\"tag\":\"INVALID\",\"text\":\"dominant-baseline\"},{\"tag\":\"INVALID\",\"text\":\"drop-initial-after-adjust\"},{\"tag\":\"INVALID\",\"text\":\"drop-initial-after-align\"},{\"tag\":\"INVALID\",\"text\":\"drop-initial-before-adjust\"},{\"tag\":\"INVALID\",\"text\":\"drop-initial-before-align\"},{\"tag\":\"INVALID\",\"text\":\"drop-initial-size\"},{\"tag\":\"INVALID\",\"text\":\"drop-initial-value\"},{\"tag\":\"INVALID\",\"text\":\"fit\"},{\"tag\":\"INVALID\",\"text\":\"fit-position\"},{\"tag\":\"INVALID\",\"text\":\"float-offset\"},{\"tag\":\"INVALID\",\"text\":\"font-stretch\"},{\"tag\":\"INVALID\",\"text\":\"font-size-adjust\"},{\"tag\":\"INVALID\",\"text\":\"grid-columns\"},{\"tag\":\"INVALID\",\"text\":\"grid-rows\"},{\"tag\":\"INVALID\",\"text\":\"hanging-punctuation\"},{\"tag\":\"INVALID\",\"text\":\"hyphenate-after\"},{\"tag\":\"INVALID\",\"text\":\"hyphenate-before\"},{\"tag\":\"INVALID\",\"text\":\"hyphenate-characters\"},{\"tag\":\"INVALID\",\"text\":\"hyphenate-lines\"},{\"tag\":\"INVALID\",\"text\":\"hyphenate-resource\"},{\"tag\":\"INVALID\",\"text\":\"hyphens\"},{\"tag\":\"INVALID\",\"text\":\"icon\"},{\"tag\":\"INVALID\",\"text\":\"image-orientation\"},{\"tag\":\"INVALID\",\"text\":\"image-resolution\"},{\"tag\":\"INVALID\",\"text\":\"inline-box-align\"},{\"tag\":\"INVALID\",\"text\":\"line-stacking\"},{\"tag\":\"INVALID\",\"text\":\"line-stacking-ruby\"},{\"tag\":\"INVALID\",\"text\":\"line-stacking-shift\"},{\"tag\":\"INVALID\",\"text\":\"line-stacking-strategy\"},{\"tag\":\"INVALID\",\"text\":\"mark\"},{\"tag\":\"INVALID\",\"text\":\"mark-after\"},{\"tag\":\"INVALID\",\"text\":\"mark-before\"},{\"tag\":\"INVALID\",\"text\":\"marks\"},{\"tag\":\"INVALID\",\"text\":\"marquee-direction\"},{\"tag\":\"INVALID\",\"text\":\"marquee-play-count\"},{\"tag\":\"INVALID\",\"text\":\"marquee-speed\"},{\"tag\":\"INVALID\",\"text\":\"marquee-style\"},{\"tag\":\"INVALID\",\"text\":\"move-to\"},{\"tag\":\"INVALID\",\"text\":\"nav-down\"},{\"tag\":\"INVALID\",\"text\":\"nav-index\"},{\"tag\":\"INVALID\",\"text\":\"nav-left\"},{\"tag\":\"INVALID\",\"text\":\"nav-right\"},{\"tag\":\"INVALID\",\"text\":\"nav-up\"},{\"tag\":\"INVALID\",\"text\":\"overflow-style\"},{\"tag\":\"INVALID\",\"text\":\"page\"},{\"tag\":\"INVALID\",\"text\":\"page-policy\"},{\"tag\":\"INVALID\",\"text\":\"phonemes\"},{\"tag\":\"INVALID\",\"text\":\"punctuation-trim\"},{\"tag\":\"INVALID\",\"text\":\"rest\"},{\"tag\":\"INVALID\",\"text\":\"rest-after\"},{\"tag\":\"INVALID\",\"text\":\"rest-before\"},{\"tag\":\"INVALID\",\"text\":\"rotation\"},{\"tag\":\"INVALID\",\"text\":\"rotation-point\"},{\"tag\":\"INVALID\",\"text\":\"ruby-align\"},{\"tag\":\"INVALID\",\"text\":\"ruby-overhang\"},{\"tag\":\"INVALID\",\"text\":\"ruby-position\"},{\"tag\":\"INVALID\",\"text\":\"ruby-span\"},{\"tag\":\"INVALID\",\"text\":\"size\"},{\"tag\":\"INVALID\",\"text\":\"string-set\"},{\"tag\":\"INVALID\",\"text\":\"target\"},{\"tag\":\"INVALID\",\"text\":\"target-name\"},{\"tag\":\"INVALID\",\"text\":\"target-new\"},{\"tag\":\"INVALID\",\"text\":\"target-position\"},{\"tag\":\"INVALID\",\"text\":\"text-align-last\"},{\"tag\":\"INVALID\",\"text\":\"text-emphasis\"},{\"tag\":\"INVALID\",\"text\":\"text-height\"},{\"tag\":\"INVALID\",\"text\":\"text-outline\"},{\"tag\":\"INVALID\",\"text\":\"text-wrap\"},{\"tag\":\"INVALID\",\"text\":\"voice-balance\"},{\"tag\":\"INVALID\",\"text\":\"voice-duration\"},{\"tag\":\"INVALID\",\"text\":\"voice-pitch\"},{\"tag\":\"INVALID\",\"text\":\"voice-pitch-range\"},{\"tag\":\"INVALID\",\"text\":\"voice-rate\"},{\"tag\":\"INVALID\",\"text\":\"voice-stress\"},{\"tag\":\"INVALID\",\"text\":\"voice-volume\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"PROP_VALUE\",\"HIGHLIGHT_DIGITS\":\"TRUE\",\"DIGIT_RE\":\"-?\\\\d+(\\\\.\\\\d+)?(pt|pc|in|mm|cm|em|ex|px|ms|s|%|)\",\"NO_WORD_SEP\":\"-_%\"},\"child\":[{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"HASH_CHARS\":\"\\\"'\",\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"([\\\"'])\"},{\"tag\":\"END\",\"text\":\"$1\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"LITERAL1\",\"ESCAPE\":\"\\\\\",\"MATCH_TYPE\":\"KEYWORD1\",\"HASH_CHAR\":\"url(\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"url\\\\((?=\\\\s*[^\\\"'])\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"FUNCTION\",\"DELEGATE\":\"javascript::MAIN\",\"HASH_CHAR\":\"expression\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"expression\\\\s*\\\\(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SPAN_REGEXP\",\"text\":\"\",\"attrs\":{\"TYPE\":\"KEYWORD1\",\"DELEGATE\":\"PROP_VALUE\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"[\\\\w-]+\\\\(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"MARK_FOLLOWING\",\"text\":\"#\",\"attrs\":{\"TYPE\":\"DIGIT\"}},{\"tag\":\"SEQ_REGEXP\",\"text\":\"!\\\\s*important\",\"attrs\":{\"TYPE\":\"KEYWORD2\",\"HASH_CHAR\":\"!\"}},{\"tag\":\"SEQ\",\"text\":\";\",\"attrs\":{\"TYPE\":\"OPERATOR\",\"DELEGATE\":\"PROPERTIES\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"INVALID\",\"DELEGATE\":\"MAIN\"}},{\"tag\":\"IMPORT\",\"attrs\":{\"DELEGATE\":\"GLOBAL\"}},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD3\",\"text\":\"above\"},{\"tag\":\"KEYWORD3\",\"text\":\"absolute\"},{\"tag\":\"KEYWORD3\",\"text\":\"absolute-colorimetric\"},{\"tag\":\"KEYWORD3\",\"text\":\"adjacent\"},{\"tag\":\"KEYWORD3\",\"text\":\"after\"},{\"tag\":\"KEYWORD3\",\"text\":\"after-edge\"},{\"tag\":\"KEYWORD3\",\"text\":\"all\"},{\"tag\":\"KEYWORD3\",\"text\":\"allow-end\"},{\"tag\":\"KEYWORD3\",\"text\":\"alphabetic\"},{\"tag\":\"KEYWORD3\",\"text\":\"alphabetical\"},{\"tag\":\"KEYWORD3\",\"text\":\"alternate\"},{\"tag\":\"KEYWORD3\",\"text\":\"always\"},{\"tag\":\"KEYWORD3\",\"text\":\"armenian\"},{\"tag\":\"KEYWORD3\",\"text\":\"attr\"},{\"tag\":\"KEYWORD3\",\"text\":\"auto\"},{\"tag\":\"KEYWORD3\",\"text\":\"avoid\"},{\"tag\":\"KEYWORD3\",\"text\":\"back\"},{\"tag\":\"KEYWORD3\",\"text\":\"balance\"},{\"tag\":\"KEYWORD3\",\"text\":\"baseline\"},{\"tag\":\"KEYWORD3\",\"text\":\"before\"},{\"tag\":\"KEYWORD3\",\"text\":\"before-edge\"},{\"tag\":\"KEYWORD3\",\"text\":\"behind\"},{\"tag\":\"KEYWORD3\",\"text\":\"bidi-override\"},{\"tag\":\"KEYWORD3\",\"text\":\"blink\"},{\"tag\":\"KEYWORD3\",\"text\":\"block\"},{\"tag\":\"KEYWORD3\",\"text\":\"block-axis\"},{\"tag\":\"KEYWORD3\",\"text\":\"block-line-height\"},{\"tag\":\"KEYWORD3\",\"text\":\"blur\"},{\"tag\":\"KEYWORD3\",\"text\":\"bold\"},{\"tag\":\"KEYWORD3\",\"text\":\"bolder\"},{\"tag\":\"KEYWORD3\",\"text\":\"border-box\"},{\"tag\":\"KEYWORD3\",\"text\":\"border-box\"},{\"tag\":\"KEYWORD3\",\"text\":\"both\"},{\"tag\":\"KEYWORD3\",\"text\":\"bottom\"},{\"tag\":\"KEYWORD3\",\"text\":\"break-all\"},{\"tag\":\"KEYWORD3\",\"text\":\"break-word\"},{\"tag\":\"KEYWORD3\",\"text\":\"button\"},{\"tag\":\"KEYWORD3\",\"text\":\"capitalize\"},{\"tag\":\"KEYWORD3\",\"text\":\"caps-height\"},{\"tag\":\"KEYWORD3\",\"text\":\"caption\"},{\"tag\":\"KEYWORD3\",\"text\":\"center\"},{\"tag\":\"KEYWORD3\",\"text\":\"center bottom\"},{\"tag\":\"KEYWORD3\",\"text\":\"center center\"},{\"tag\":\"KEYWORD3\",\"text\":\"center top\"},{\"tag\":\"KEYWORD3\",\"text\":\"central\"},{\"tag\":\"KEYWORD3\",\"text\":\"circle\"},{\"tag\":\"KEYWORD3\",\"text\":\"clip\"},{\"tag\":\"KEYWORD3\",\"text\":\"close-quote\"},{\"tag\":\"KEYWORD3\",\"text\":\"collapse\"},{\"tag\":\"KEYWORD3\",\"text\":\"color\"},{\"tag\":\"KEYWORD3\",\"text\":\"condensed\"},{\"tag\":\"KEYWORD3\",\"text\":\"consider-shifts\"},{\"tag\":\"KEYWORD3\",\"text\":\"contain\"},{\"tag\":\"KEYWORD3\",\"text\":\"content\"},{\"tag\":\"KEYWORD3\",\"text\":\"content-box\"},{\"tag\":\"KEYWORD3\",\"text\":\"counter\"},{\"tag\":\"KEYWORD3\",\"text\":\"cover\"},{\"tag\":\"KEYWORD3\",\"text\":\"crop\"},{\"tag\":\"KEYWORD3\",\"text\":\"cross\"},{\"tag\":\"KEYWORD3\",\"text\":\"crosshair\"},{\"tag\":\"KEYWORD3\",\"text\":\"cubic-bezier\"},{\"tag\":\"KEYWORD3\",\"text\":\"current\"},{\"tag\":\"KEYWORD3\",\"text\":\"cursive\"},{\"tag\":\"KEYWORD3\",\"text\":\"dashed\"},{\"tag\":\"KEYWORD3\",\"text\":\"decimal\"},{\"tag\":\"KEYWORD3\",\"text\":\"decimal-leading-zero\"},{\"tag\":\"KEYWORD3\",\"text\":\"default\"},{\"tag\":\"KEYWORD3\",\"text\":\"disc\"},{\"tag\":\"KEYWORD3\",\"text\":\"disregard-shifts\"},{\"tag\":\"KEYWORD3\",\"text\":\"distribute\"},{\"tag\":\"KEYWORD3\",\"text\":\"distribute-letter\"},{\"tag\":\"KEYWORD3\",\"text\":\"distribute-space\"},{\"tag\":\"KEYWORD3\",\"text\":\"dotted\"},{\"tag\":\"KEYWORD3\",\"text\":\"double\"},{\"tag\":\"KEYWORD3\",\"text\":\"resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"e-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"ease\"},{\"tag\":\"KEYWORD3\",\"text\":\"ease-in\"},{\"tag\":\"KEYWORD3\",\"text\":\"ease-in-out\"},{\"tag\":\"KEYWORD3\",\"text\":\"ease-out\"},{\"tag\":\"KEYWORD3\",\"text\":\"ellipsis\"},{\"tag\":\"KEYWORD3\",\"text\":\"embed\"},{\"tag\":\"KEYWORD3\",\"text\":\"end\"},{\"tag\":\"KEYWORD3\",\"text\":\"end-edge\"},{\"tag\":\"KEYWORD3\",\"text\":\"exclude-ruby\"},{\"tag\":\"KEYWORD3\",\"text\":\"extra-condensed\"},{\"tag\":\"KEYWORD3\",\"text\":\"extra-expanded\"},{\"tag\":\"KEYWORD3\",\"text\":\"family-name\"},{\"tag\":\"KEYWORD3\",\"text\":\"fantasy\"},{\"tag\":\"KEYWORD3\",\"text\":\"fast\"},{\"tag\":\"KEYWORD3\",\"text\":\"field\"},{\"tag\":\"KEYWORD3\",\"text\":\"fill\"},{\"tag\":\"KEYWORD3\",\"text\":\"first\"},{\"tag\":\"KEYWORD3\",\"text\":\"fixed\"},{\"tag\":\"KEYWORD3\",\"text\":\"flat\"},{\"tag\":\"KEYWORD3\",\"text\":\"font-family\"},{\"tag\":\"KEYWORD3\",\"text\":\"font-size\"},{\"tag\":\"KEYWORD3\",\"text\":\"forward\"},{\"tag\":\"KEYWORD3\",\"text\":\"front\"},{\"tag\":\"KEYWORD3\",\"text\":\"georgian\"},{\"tag\":\"KEYWORD3\",\"text\":\"grid-height\"},{\"tag\":\"KEYWORD3\",\"text\":\"groove\"},{\"tag\":\"KEYWORD3\",\"text\":\"h-shadow\"},{\"tag\":\"KEYWORD3\",\"text\":\"hanging\"},{\"tag\":\"KEYWORD3\",\"text\":\"help\"},{\"tag\":\"KEYWORD3\",\"text\":\"here\"},{\"tag\":\"KEYWORD3\",\"text\":\"hidden\"},{\"tag\":\"KEYWORD3\",\"text\":\"hide\"},{\"tag\":\"KEYWORD3\",\"text\":\"high\"},{\"tag\":\"KEYWORD3\",\"text\":\"horizontal\"},{\"tag\":\"KEYWORD3\",\"text\":\"hyphenate\"},{\"tag\":\"KEYWORD3\",\"text\":\"icon\"},{\"tag\":\"KEYWORD3\",\"text\":\"ideographic\"},{\"tag\":\"KEYWORD3\",\"text\":\"include-ruby\"},{\"tag\":\"KEYWORD3\",\"text\":\"infinite\"},{\"tag\":\"KEYWORD3\",\"text\":\"inherit\"},{\"tag\":\"KEYWORD3\",\"text\":\"initial\"},{\"tag\":\"KEYWORD3\",\"text\":\"inline\"},{\"tag\":\"KEYWORD3\",\"text\":\"inline-axis\"},{\"tag\":\"KEYWORD3\",\"text\":\"inline-block\"},{\"tag\":\"KEYWORD3\",\"text\":\"inline-line-height\"},{\"tag\":\"KEYWORD3\",\"text\":\"inline-table\"},{\"tag\":\"KEYWORD3\",\"text\":\"inset\"},{\"tag\":\"KEYWORD3\",\"text\":\"inside\"},{\"tag\":\"KEYWORD3\",\"text\":\"integer\"},{\"tag\":\"KEYWORD3\",\"text\":\"inter-cluster\"},{\"tag\":\"KEYWORD3\",\"text\":\"inter-ideograph\"},{\"tag\":\"KEYWORD3\",\"text\":\"inter-word\"},{\"tag\":\"KEYWORD3\",\"text\":\"italic\"},{\"tag\":\"KEYWORD3\",\"text\":\"justify\"},{\"tag\":\"KEYWORD3\",\"text\":\"kashida\"},{\"tag\":\"KEYWORD3\",\"text\":\"landscape\"},{\"tag\":\"KEYWORD3\",\"text\":\"large\"},{\"tag\":\"KEYWORD3\",\"text\":\"larger\"},{\"tag\":\"KEYWORD3\",\"text\":\"last\"},{\"tag\":\"KEYWORD3\",\"text\":\"left\"},{\"tag\":\"KEYWORD3\",\"text\":\"left bottom\"},{\"tag\":\"KEYWORD3\",\"text\":\"left center\"},{\"tag\":\"KEYWORD3\",\"text\":\"left top\"},{\"tag\":\"KEYWORD3\",\"text\":\"leftwards\"},{\"tag\":\"KEYWORD3\",\"text\":\"length\"},{\"tag\":\"KEYWORD3\",\"text\":\"lighter\"},{\"tag\":\"KEYWORD3\",\"text\":\"line-edge\"},{\"tag\":\"KEYWORD3\",\"text\":\"line-through\"},{\"tag\":\"KEYWORD3\",\"text\":\"linear\"},{\"tag\":\"KEYWORD3\",\"text\":\"list-item\"},{\"tag\":\"KEYWORD3\",\"text\":\"loud\"},{\"tag\":\"KEYWORD3\",\"text\":\"low\"},{\"tag\":\"KEYWORD3\",\"text\":\"lower-alpha\"},{\"tag\":\"KEYWORD3\",\"text\":\"lower-greek\"},{\"tag\":\"KEYWORD3\",\"text\":\"lower-latin\"},{\"tag\":\"KEYWORD3\",\"text\":\"lower-roman\"},{\"tag\":\"KEYWORD3\",\"text\":\"lowercase\"},{\"tag\":\"KEYWORD3\",\"text\":\"ltr\"},{\"tag\":\"KEYWORD3\",\"text\":\"manual\"},{\"tag\":\"KEYWORD3\",\"text\":\"mathematical\"},{\"tag\":\"KEYWORD3\",\"text\":\"max-height\"},{\"tag\":\"KEYWORD3\",\"text\":\"max-size\"},{\"tag\":\"KEYWORD3\",\"text\":\"medium\"},{\"tag\":\"KEYWORD3\",\"text\":\"meet\"},{\"tag\":\"KEYWORD3\",\"text\":\"menu\"},{\"tag\":\"KEYWORD3\",\"text\":\"message-box\"},{\"tag\":\"KEYWORD3\",\"text\":\"middle\"},{\"tag\":\"KEYWORD3\",\"text\":\"modal\"},{\"tag\":\"KEYWORD3\",\"text\":\"moderate\"},{\"tag\":\"KEYWORD3\",\"text\":\"monospace\"},{\"tag\":\"KEYWORD3\",\"text\":\"move\"},{\"tag\":\"KEYWORD3\",\"text\":\"multiple\"},{\"tag\":\"KEYWORD3\",\"text\":\"n-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"name\"},{\"tag\":\"KEYWORD3\",\"text\":\"narrower\"},{\"tag\":\"KEYWORD3\",\"text\":\"ne-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"new\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-change\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-close-quote\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-content\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-display\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-limit\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-open-quote\"},{\"tag\":\"KEYWORD3\",\"text\":\"no-repeat\"},{\"tag\":\"KEYWORD3\",\"text\":\"none\"},{\"tag\":\"KEYWORD3\",\"text\":\"normal\"},{\"tag\":\"KEYWORD3\",\"text\":\"nowrap\"},{\"tag\":\"KEYWORD3\",\"text\":\"nw-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"oblique\"},{\"tag\":\"KEYWORD3\",\"text\":\"open-quote\"},{\"tag\":\"KEYWORD3\",\"text\":\"outset\"},{\"tag\":\"KEYWORD3\",\"text\":\"outside\"},{\"tag\":\"KEYWORD3\",\"text\":\"overline\"},{\"tag\":\"KEYWORD3\",\"text\":\"padding-box\"},{\"tag\":\"KEYWORD3\",\"text\":\"page-size\"},{\"tag\":\"KEYWORD3\",\"text\":\"parent\"},{\"tag\":\"KEYWORD3\",\"text\":\"paused\"},{\"tag\":\"KEYWORD3\",\"text\":\"percentage\"},{\"tag\":\"KEYWORD3\",\"text\":\"perceptual\"},{\"tag\":\"KEYWORD3\",\"text\":\"pointer\"},{\"tag\":\"KEYWORD3\",\"text\":\"portrait\"},{\"tag\":\"KEYWORD3\",\"text\":\"pre\"},{\"tag\":\"KEYWORD3\",\"text\":\"pre-line\"},{\"tag\":\"KEYWORD3\",\"text\":\"pre-wrap\"},{\"tag\":\"KEYWORD3\",\"text\":\"preserve-3d\"},{\"tag\":\"KEYWORD3\",\"text\":\"progress\"},{\"tag\":\"KEYWORD3\",\"text\":\"reduced\"},{\"tag\":\"KEYWORD3\",\"text\":\"relative\"},{\"tag\":\"KEYWORD3\",\"text\":\"relative-colorimetric\"},{\"tag\":\"KEYWORD3\",\"text\":\"repeat\"},{\"tag\":\"KEYWORD3\",\"text\":\"repeat-x\"},{\"tag\":\"KEYWORD3\",\"text\":\"repeat-y\"},{\"tag\":\"KEYWORD3\",\"text\":\"reset-size\"},{\"tag\":\"KEYWORD3\",\"text\":\"reverse\"},{\"tag\":\"KEYWORD3\",\"text\":\"ridge\"},{\"tag\":\"KEYWORD3\",\"text\":\"right\"},{\"tag\":\"KEYWORD3\",\"text\":\"right bottom\"},{\"tag\":\"KEYWORD3\",\"text\":\"right center\"},{\"tag\":\"KEYWORD3\",\"text\":\"right top\"},{\"tag\":\"KEYWORD3\",\"text\":\"rightwards\"},{\"tag\":\"KEYWORD3\",\"text\":\"root\"},{\"tag\":\"KEYWORD3\",\"text\":\"round\"},{\"tag\":\"KEYWORD3\",\"text\":\"rtl\"},{\"tag\":\"KEYWORD3\",\"text\":\"run-in\"},{\"tag\":\"KEYWORD3\",\"text\":\"running\"},{\"tag\":\"KEYWORD3\",\"text\":\"s-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"sans-serif\"},{\"tag\":\"KEYWORD3\",\"text\":\"saturation\"},{\"tag\":\"KEYWORD3\",\"text\":\"scroll\"},{\"tag\":\"KEYWORD3\",\"text\":\"se-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"self\"},{\"tag\":\"KEYWORD3\",\"text\":\"semi-condensed\"},{\"tag\":\"KEYWORD3\",\"text\":\"semi-expanded\"},{\"tag\":\"KEYWORD3\",\"text\":\"separate\"},{\"tag\":\"KEYWORD3\",\"text\":\"serif\"},{\"tag\":\"KEYWORD3\",\"text\":\"shape\"},{\"tag\":\"KEYWORD3\",\"text\":\"show\"},{\"tag\":\"KEYWORD3\",\"text\":\"silent\"},{\"tag\":\"KEYWORD3\",\"text\":\"single\"},{\"tag\":\"KEYWORD3\",\"text\":\"slice\"},{\"tag\":\"KEYWORD3\",\"text\":\"slide\"},{\"tag\":\"KEYWORD3\",\"text\":\"slow\"},{\"tag\":\"KEYWORD3\",\"text\":\"small\"},{\"tag\":\"KEYWORD3\",\"text\":\"small-caps\"},{\"tag\":\"KEYWORD3\",\"text\":\"small-caption\"},{\"tag\":\"KEYWORD3\",\"text\":\"smaller\"},{\"tag\":\"KEYWORD3\",\"text\":\"soft\"},{\"tag\":\"KEYWORD3\",\"text\":\"solid\"},{\"tag\":\"KEYWORD3\",\"text\":\"spread\"},{\"tag\":\"KEYWORD3\",\"text\":\"square\"},{\"tag\":\"KEYWORD3\",\"text\":\"start\"},{\"tag\":\"KEYWORD3\",\"text\":\"static\"},{\"tag\":\"KEYWORD3\",\"text\":\"status-bar\"},{\"tag\":\"KEYWORD3\",\"text\":\"stretch\"},{\"tag\":\"KEYWORD3\",\"text\":\"strong\"},{\"tag\":\"KEYWORD3\",\"text\":\"sub\"},{\"tag\":\"KEYWORD3\",\"text\":\"super\"},{\"tag\":\"KEYWORD3\",\"text\":\"suppress\"},{\"tag\":\"KEYWORD3\",\"text\":\"sw-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"tab\"},{\"tag\":\"KEYWORD3\",\"text\":\"table\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-caption\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-cell\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-column\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-column-group\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-footer-group\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-header-group\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-row\"},{\"tag\":\"KEYWORD3\",\"text\":\"table-row-group\"},{\"tag\":\"KEYWORD3\",\"text\":\"text\"},{\"tag\":\"KEYWORD3\",\"text\":\"text-after-edge\"},{\"tag\":\"KEYWORD3\",\"text\":\"text-before-edge\"},{\"tag\":\"KEYWORD3\",\"text\":\"text-bottom\"},{\"tag\":\"KEYWORD3\",\"text\":\"text-size\"},{\"tag\":\"KEYWORD3\",\"text\":\"text-top\"},{\"tag\":\"KEYWORD3\",\"text\":\"thick\"},{\"tag\":\"KEYWORD3\",\"text\":\"thin\"},{\"tag\":\"KEYWORD3\",\"text\":\"top\"},{\"tag\":\"KEYWORD3\",\"text\":\"transparent\"},{\"tag\":\"KEYWORD3\",\"text\":\"ultra-condensed\"},{\"tag\":\"KEYWORD3\",\"text\":\"ultra-expanded\"},{\"tag\":\"KEYWORD3\",\"text\":\"underline\"},{\"tag\":\"KEYWORD3\",\"text\":\"unrestricted\"},{\"tag\":\"KEYWORD3\",\"text\":\"upper-alpha\"},{\"tag\":\"KEYWORD3\",\"text\":\"upper-latin\"},{\"tag\":\"KEYWORD3\",\"text\":\"upper-roman\"},{\"tag\":\"KEYWORD3\",\"text\":\"uppercase\"},{\"tag\":\"KEYWORD3\",\"text\":\"url\"},{\"tag\":\"KEYWORD3\",\"text\":\"use-script\"},{\"tag\":\"KEYWORD3\",\"text\":\"v-shadow\"},{\"tag\":\"KEYWORD3\",\"text\":\"vertical\"},{\"tag\":\"KEYWORD3\",\"text\":\"visible\"},{\"tag\":\"KEYWORD3\",\"text\":\"w-resize\"},{\"tag\":\"KEYWORD3\",\"text\":\"wait\"},{\"tag\":\"KEYWORD3\",\"text\":\"weak\"},{\"tag\":\"KEYWORD3\",\"text\":\"wider\"},{\"tag\":\"KEYWORD3\",\"text\":\"window\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-fast\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-high\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-large\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-loud\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-low\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-slow\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-small\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-soft\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-strong\"},{\"tag\":\"KEYWORD3\",\"text\":\"x-weak\"},{\"tag\":\"KEYWORD3\",\"text\":\"xx-large\"},{\"tag\":\"KEYWORD3\",\"text\":\"xx-small\"},{\"tag\":\"KEYWORD4\",\"text\":\"aliceblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"antiquewhite\"},{\"tag\":\"KEYWORD4\",\"text\":\"aqua\"},{\"tag\":\"KEYWORD4\",\"text\":\"aquamarine\"},{\"tag\":\"KEYWORD4\",\"text\":\"azure\"},{\"tag\":\"KEYWORD4\",\"text\":\"beige\"},{\"tag\":\"KEYWORD4\",\"text\":\"bisque\"},{\"tag\":\"KEYWORD4\",\"text\":\"black\"},{\"tag\":\"KEYWORD4\",\"text\":\"blanchedalmond\"},{\"tag\":\"KEYWORD4\",\"text\":\"blue\"},{\"tag\":\"KEYWORD4\",\"text\":\"blueviolet\"},{\"tag\":\"KEYWORD4\",\"text\":\"brown\"},{\"tag\":\"KEYWORD4\",\"text\":\"burlywood\"},{\"tag\":\"KEYWORD4\",\"text\":\"cadetblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"chartreuse\"},{\"tag\":\"KEYWORD4\",\"text\":\"chocolate\"},{\"tag\":\"KEYWORD4\",\"text\":\"coral\"},{\"tag\":\"KEYWORD4\",\"text\":\"cornflowerblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"cornsilk\"},{\"tag\":\"KEYWORD4\",\"text\":\"crimson\"},{\"tag\":\"KEYWORD4\",\"text\":\"cyan\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkcyan\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkgoldenrod\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkgray\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkgreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkgrey\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkkhaki\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkmagenta\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkolivegreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkorange\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkorchid\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkred\"},{\"tag\":\"KEYWORD4\",\"text\":\"darksalmon\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkseagreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkslateblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkslategray\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkslategrey\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkturquoise\"},{\"tag\":\"KEYWORD4\",\"text\":\"darkviolet\"},{\"tag\":\"KEYWORD4\",\"text\":\"deeppink\"},{\"tag\":\"KEYWORD4\",\"text\":\"deepskyblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"dimgray\"},{\"tag\":\"KEYWORD4\",\"text\":\"dimgrey\"},{\"tag\":\"KEYWORD4\",\"text\":\"dodgerblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"firebrick\"},{\"tag\":\"KEYWORD4\",\"text\":\"floralwhite\"},{\"tag\":\"KEYWORD4\",\"text\":\"forestgreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"fuchsia\"},{\"tag\":\"KEYWORD4\",\"text\":\"gainsboro\"},{\"tag\":\"KEYWORD4\",\"text\":\"ghostwhite\"},{\"tag\":\"KEYWORD4\",\"text\":\"gold\"},{\"tag\":\"KEYWORD4\",\"text\":\"goldenrod\"},{\"tag\":\"KEYWORD4\",\"text\":\"gray\"},{\"tag\":\"KEYWORD4\",\"text\":\"green\"},{\"tag\":\"KEYWORD4\",\"text\":\"greenyellow\"},{\"tag\":\"KEYWORD4\",\"text\":\"grey\"},{\"tag\":\"KEYWORD4\",\"text\":\"honeydew\"},{\"tag\":\"KEYWORD4\",\"text\":\"hotpink\"},{\"tag\":\"KEYWORD4\",\"text\":\"indianred\"},{\"tag\":\"KEYWORD4\",\"text\":\"indigo\"},{\"tag\":\"KEYWORD4\",\"text\":\"ivory\"},{\"tag\":\"KEYWORD4\",\"text\":\"khaki\"},{\"tag\":\"KEYWORD4\",\"text\":\"lavender\"},{\"tag\":\"KEYWORD4\",\"text\":\"lavenderblush\"},{\"tag\":\"KEYWORD4\",\"text\":\"lawngreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"lemonchiffon\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightcoral\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightcyan\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightgoldenrodyellow\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightgray\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightgreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightgrey\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightpink\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightsalmon\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightseagreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightskyblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightslategray\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightslategrey\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightsteelblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"lightyellow\"},{\"tag\":\"KEYWORD4\",\"text\":\"lime\"},{\"tag\":\"KEYWORD4\",\"text\":\"limegreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"linen\"},{\"tag\":\"KEYWORD4\",\"text\":\"magenta\"},{\"tag\":\"KEYWORD4\",\"text\":\"maroon\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumaquamarine\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumorchid\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumpurple\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumseagreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumslateblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumspringgreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumturquoise\"},{\"tag\":\"KEYWORD4\",\"text\":\"mediumvioletred\"},{\"tag\":\"KEYWORD4\",\"text\":\"midnightblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"mintcream\"},{\"tag\":\"KEYWORD4\",\"text\":\"mistyrose\"},{\"tag\":\"KEYWORD4\",\"text\":\"moccasin\"},{\"tag\":\"KEYWORD4\",\"text\":\"navajowhite\"},{\"tag\":\"KEYWORD4\",\"text\":\"navy\"},{\"tag\":\"KEYWORD4\",\"text\":\"oldlace\"},{\"tag\":\"KEYWORD4\",\"text\":\"olive\"},{\"tag\":\"KEYWORD4\",\"text\":\"olivedrab\"},{\"tag\":\"KEYWORD4\",\"text\":\"orange\"},{\"tag\":\"KEYWORD4\",\"text\":\"orangered\"},{\"tag\":\"KEYWORD4\",\"text\":\"orchid\"},{\"tag\":\"KEYWORD4\",\"text\":\"palegoldenrod\"},{\"tag\":\"KEYWORD4\",\"text\":\"palegreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"paleturquoise\"},{\"tag\":\"KEYWORD4\",\"text\":\"palevioletred\"},{\"tag\":\"KEYWORD4\",\"text\":\"papayawhip\"},{\"tag\":\"KEYWORD4\",\"text\":\"peachpuff\"},{\"tag\":\"KEYWORD4\",\"text\":\"peru\"},{\"tag\":\"KEYWORD4\",\"text\":\"pink\"},{\"tag\":\"KEYWORD4\",\"text\":\"plum\"},{\"tag\":\"KEYWORD4\",\"text\":\"powderblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"purple\"},{\"tag\":\"KEYWORD4\",\"text\":\"red\"},{\"tag\":\"KEYWORD4\",\"text\":\"rosybrown\"},{\"tag\":\"KEYWORD4\",\"text\":\"royalblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"saddlebrown\"},{\"tag\":\"KEYWORD4\",\"text\":\"salmon\"},{\"tag\":\"KEYWORD4\",\"text\":\"sandybrown\"},{\"tag\":\"KEYWORD4\",\"text\":\"seagreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"seashell\"},{\"tag\":\"KEYWORD4\",\"text\":\"sienna\"},{\"tag\":\"KEYWORD4\",\"text\":\"silver\"},{\"tag\":\"KEYWORD4\",\"text\":\"skyblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"slateblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"slategray\"},{\"tag\":\"KEYWORD4\",\"text\":\"slategrey\"},{\"tag\":\"KEYWORD4\",\"text\":\"snow\"},{\"tag\":\"KEYWORD4\",\"text\":\"springgreen\"},{\"tag\":\"KEYWORD4\",\"text\":\"steelblue\"},{\"tag\":\"KEYWORD4\",\"text\":\"tan\"},{\"tag\":\"KEYWORD4\",\"text\":\"teal\"},{\"tag\":\"KEYWORD4\",\"text\":\"thistle\"},{\"tag\":\"KEYWORD4\",\"text\":\"tomato\"},{\"tag\":\"KEYWORD4\",\"text\":\"turquoise\"},{\"tag\":\"KEYWORD4\",\"text\":\"violet\"},{\"tag\":\"KEYWORD4\",\"text\":\"wheat\"},{\"tag\":\"KEYWORD4\",\"text\":\"white\"},{\"tag\":\"KEYWORD4\",\"text\":\"whitesmoke\"},{\"tag\":\"KEYWORD4\",\"text\":\"yellow\"},{\"tag\":\"KEYWORD4\",\"text\":\"yellowgreen\"},{\"tag\":\"KEYWORD1\",\"text\":\"rgb\"},{\"tag\":\"KEYWORD1\",\"text\":\"rgba\"},{\"tag\":\"KEYWORD1\",\"text\":\"hsl\"},{\"tag\":\"KEYWORD1\",\"text\":\"hsla\"},{\"tag\":\"KEYWORD1\",\"text\":\"url\"}]}]},{\"tag\":\"RULES\",\"text\":\"\",\"attrs\":{\"SET\":\"GLOBAL\"},\"child\":[{\"tag\":\"SEQ\",\"text\":\":\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\";\",\"attrs\":{\"TYPE\":\"NULL\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"NULL\",\"ESCAPE\":\"\\\\\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"(\"},{\"tag\":\"END\",\"text\":\")\"}]},{\"tag\":\"SEQ\",\"text\":\"{\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"}\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\",\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\".\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SEQ\",\"text\":\"!\",\"attrs\":{\"TYPE\":\"OPERATOR\"}},{\"tag\":\"SPAN\",\"text\":\"\",\"attrs\":{\"TYPE\":\"COMMENT1\"},\"child\":[{\"tag\":\"BEGIN\",\"text\":\"/*\"},{\"tag\":\"END\",\"text\":\"*/\"}]},{\"tag\":\"KEYWORDS\",\"text\":\"\",\"child\":[{\"tag\":\"KEYWORD2\",\"text\":\"content\"},{\"tag\":\"KEYWORD2\",\"text\":\"quotes\"},{\"tag\":\"KEYWORD2\",\"text\":\"counter-reset\"},{\"tag\":\"KEYWORD2\",\"text\":\"counter-increment\"},{\"tag\":\"KEYWORD2\",\"text\":\"marker-offset\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-style\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-style-image\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-style-position\"},{\"tag\":\"KEYWORD2\",\"text\":\"list-style-type\"},{\"tag\":\"KEYWORD2\",\"text\":\"@import\"},{\"tag\":\"KEYWORD2\",\"text\":\"@media\"},{\"tag\":\"KEYWORD2\",\"text\":\"@page\"},{\"tag\":\"KEYWORD2\",\"text\":\"@font-face\"}]}]}]}";
+        private PROPS PROPS1() {
+        PROPS PROPS1 = new PROPS();
+        PROPERTY PROPERTY1 = new PROPERTY();
+        PROPERTY1.VALUE = "/*";
+        PROPERTY1.NAME = "commentStart";
+        PROPERTY PROPERTY2 = new PROPERTY();
+        PROPERTY2.VALUE = "*/";
+        PROPERTY2.NAME = "commentEnd";
+        PROPERTY PROPERTY3 = new PROPERTY();
+        PROPERTY3.VALUE = "{";
+        PROPERTY3.NAME = "indentOpenBrackets";
+        PROPERTY PROPERTY4 = new PROPERTY();
+        PROPERTY4.VALUE = "}";
+        PROPERTY4.NAME = "indentCloseBrackets";
+        PROPERTY PROPERTY5 = new PROPERTY();
+        PROPERTY5.VALUE = "-";
+        PROPERTY5.NAME = "noWordSep";
+        PROPERTY PROPERTY6 = new PROPERTY();
+        PROPERTY6.VALUE = "_";
+        PROPERTY6.NAME = "noWordSep";
+        PROPS1.PROPERTY = new PROPERTY[] { PROPERTY1, PROPERTY2, PROPERTY3, PROPERTY4, PROPERTY5, PROPERTY6, };
 
-    @Override
-    public String langDefine() {
-        return JSON;
+        return PROPS1;
     }
+
+    private RULES RULES1() {
+        RULES RULES1 = new RULES();
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "-?\\d+(\\.\\d+)?(pt|pc|in|mm|cm|em|ex|px|ms|s|%|)";
+        RULES1.IGNORE_CASE = "TRUE";
+        RULES1.NO_WORD_SEP = "-_%";
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = ".";
+        MARK_FOLLOWING1.TYPE = "LITERAL1";
+        MARK_FOLLOWING MARK_FOLLOWING2 = new MARK_FOLLOWING();
+        MARK_FOLLOWING2.text = "#";
+        MARK_FOLLOWING2.TYPE = "LITERAL2";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ">";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ":";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ2.DELEGATE = "PSEUDO";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = ",";
+        SEQ3.TYPE = "OPERATOR";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "OPERATOR";
+        SPAN1.DELEGATE = "PROPERTIES";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "{";
+        END END1 = new END();
+        END1.text = "}";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "GLOBAL";
+        IMPORT IMPORT2 = new IMPORT();
+        IMPORT2.DELEGATE = "html::TAGS";
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, IMPORT2, };
+
+        RULES1.SPAN = new SPAN[] { SPAN1, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, MARK_FOLLOWING2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, };
+
+        return RULES1;
+    }
+
+    private RULES RULES2() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "PSEUDO";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.TYPE = "NULL";
+        SEQ1.DELEGATE = "MAIN";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ",";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ2.DELEGATE = "MAIN";
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "{";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ3.DELEGATE = "PROPERTIES";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.TYPE = "KEYWORD4";
+        SPAN_REGEXP1.HASH_CHAR = "lang";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "lang\\s*\\(";
+        END END1 = new END();
+        END1.text = ")";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.TYPE = "KEYWORD4";
+        SPAN_REGEXP2.HASH_CHAR = "lang";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "lang\\s*\\(";
+        END END2 = new END();
+        END2.text = ")";
+        SPAN_REGEXP2.END = new END[] { END2, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "GLOBAL";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD4", new String[]{"after", "before", "first-child", "last-child", "link", "visited", "active", "hover", "focus", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES3() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "PROPERTIES";
+        RULES1.ESCAPE = "\\";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = "}";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ1.DELEGATE = "MAIN";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ":";
+        SEQ2.TYPE = "OPERATOR";
+        SEQ2.DELEGATE = "PROP_VALUE";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "GLOBAL";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("INVALID", new String[]{"alignment-adjust", "alignment-baseline", "backface-visibility", "baseline-shift", "bookmark-label", "bookmark-level", "bookmark-target", "border-image", "border-image-outset", "border-image-repeat", "border-image-slice", "border-image-source", "border-image-width", "box-decoration-break", "box-flex-group", "box-lines", "color-profile", "column-fill", "crop", "dominant-baseline", "drop-initial-after-adjust", "drop-initial-after-align", "drop-initial-before-adjust", "drop-initial-before-align", "drop-initial-size", "drop-initial-value", "fit", "fit-position", "float-offset", "font-stretch", "font-size-adjust", "grid-columns", "grid-rows", "hanging-punctuation", "hyphenate-after", "hyphenate-before", "hyphenate-characters", "hyphenate-lines", "hyphenate-resource", "hyphens", "icon", "image-orientation", "image-resolution", "inline-box-align", "line-stacking", "line-stacking-ruby", "line-stacking-shift", "line-stacking-strategy", "mark", "mark-after", "mark-before", "marks", "marquee-direction", "marquee-play-count", "marquee-speed", "marquee-style", "move-to", "nav-down", "nav-index", "nav-left", "nav-right", "nav-up", "overflow-style", "page", "page-policy", "phonemes", "punctuation-trim", "rest", "rest-after", "rest-before", "rotation", "rotation-point", "ruby-align", "ruby-overhang", "ruby-position", "ruby-span", "size", "string-set", "target", "target-name", "target-new", "target-position", "text-align-last", "text-emphasis", "text-height", "text-outline", "text-wrap", "voice-balance", "voice-duration", "voice-pitch", "voice-pitch-range", "voice-rate", "voice-stress", "voice-volume", });
+        KEYWORDS1.add("KEYWORD2", new String[]{"background", "background-attachment", "background-color", "background-image", "background-position", "background-repeat", "background-origin", "background-clip", "background-size", "color", "opacity", "rendering-intent", "font", "font-family", "font-size", "font-style", "font-variant", "font-weight", "font-stretch", "src", "definition-src", "unicode-range", "panose-1", "stemv", "stemh", "units-per-em", "slope", "cap-height", "x-height", "ascent", "descent", "baseline", "centerline", "mathline", "topline", "letter-spacing", "text-align", "text-shadow", "text-decoration", "text-indent", "text-justify", "text-overflow", "text-transform", "word-break", "word-spacing", "word-wrap", "letter-spacing", "white-space", "border", "bottom", "border", "border-bottom", "border-bottom-color", "border-bottom-style", "border-bottom-width", "border-collapse", "border-color", "border-left", "border-left-color", "border-left-style", "border-left-width", "border-right", "border-right-color", "border-right-style", "border-right-width", "border-spacing", "border-style", "border-top", "border-top-color", "border-top-style", "border-top-width", "border-width", "border-bottom-left-radius", "border-bottom-right-radius", "border-radius", "border-top-left-radius", "border-top-right-radius", "box-align", "box-direction", "box-flex", "box-ordinal-group", "box-orient", "box-pack", "box-sizing", "box-shadow", "clear", "float", "height", "margin", "margin-bottom", "margin-left", "margin-right", "margin-top", "padding", "padding-bottom", "padding-left", "padding-right", "padding-top", "column-count", "column-fill", "column-gap", "column-rule", "column-rule-color", "column-rule-style", "column-rule-width", "column-span", "column-width", "columns", "handing-punctuation", "display", "position", "top", "right", "bottom", "left", "float", "z-index", "direction", "unicode-bidi", "width", "min-width", "max-width", "height", "min-height", "max-height", "line-height", "vertical-align", "overflow", "overflow-x", "overflow-y", "clip", "visibility", "perspective", "perspective-origin", "transform", "transform-origin", "transform-style", "transition", "transition-property", "transition-duration", "transition-timing-function", "transition-delay", "page-break-before", "page-break-after", "page-break-inside", "orphans", "widows", "caption-side", "table-layout", "border-collapse", "border-spacing", "empty-cells", "speak-headers", "cursor", "outline", "outline-width", "outline-style", "outline-color", "outline-offset", "azimuth", "volume", "speak", "pause", "pause-before", "pause-after", "cue", "cue-before", "cue-after", "play-during", "elevation", "speech-rate", "voice-family", "pitch", "pitch-range", "stress", "richness", "speak-punctuation", "speak-numeral", "speak-header-cell", "animation", "animation-name", "animation-duration", "animation-timing-function", "animation-delay", "animation-iteration-count", "animation-direction", "animation-play-state", "appearance", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES4() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "PROP_VALUE";
+        RULES1.HIGHLIGHT_DIGITS = "TRUE";
+        RULES1.DIGIT_RE = "-?\\d+(\\.\\d+)?(pt|pc|in|mm|cm|em|ex|px|ms|s|%|)";
+        RULES1.NO_WORD_SEP = "-_%";
+        SPAN_REGEXP SPAN_REGEXP1 = new SPAN_REGEXP();
+        SPAN_REGEXP1.HASH_CHARS = "\"'";
+        SPAN_REGEXP1.TYPE = "LITERAL1";
+        SPAN_REGEXP1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "([\"'])";
+        END END1 = new END();
+        END1.text = "$1";
+        SPAN_REGEXP1.END = new END[] { END1, };
+
+        SPAN_REGEXP1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SPAN_REGEXP SPAN_REGEXP2 = new SPAN_REGEXP();
+        SPAN_REGEXP2.TYPE = "LITERAL1";
+        SPAN_REGEXP2.ESCAPE = "\\";
+        SPAN_REGEXP2.MATCH_TYPE = "KEYWORD1";
+        SPAN_REGEXP2.HASH_CHAR = "url(";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "url\\((?=\\s*[^\"'])";
+        END END2 = new END();
+        END2.text = ")";
+        SPAN_REGEXP2.END = new END[] { END2, };
+
+        SPAN_REGEXP2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        SPAN_REGEXP SPAN_REGEXP3 = new SPAN_REGEXP();
+        SPAN_REGEXP3.TYPE = "FUNCTION";
+        SPAN_REGEXP3.DELEGATE = "javascript::MAIN";
+        SPAN_REGEXP3.HASH_CHAR = "expression";
+        BEGIN BEGIN3 = new BEGIN();
+        BEGIN3.text = "expression\\s*\\(";
+        END END3 = new END();
+        END3.text = ")";
+        SPAN_REGEXP3.END = new END[] { END3, };
+
+        SPAN_REGEXP3.BEGIN = new BEGIN[] { BEGIN3, };
+
+        SPAN_REGEXP SPAN_REGEXP4 = new SPAN_REGEXP();
+        SPAN_REGEXP4.TYPE = "KEYWORD1";
+        SPAN_REGEXP4.DELEGATE = "PROP_VALUE";
+        BEGIN BEGIN4 = new BEGIN();
+        BEGIN4.text = "[\\w-]+\\(";
+        END END4 = new END();
+        END4.text = ")";
+        SPAN_REGEXP4.END = new END[] { END4, };
+
+        SPAN_REGEXP4.BEGIN = new BEGIN[] { BEGIN4, };
+
+        MARK_FOLLOWING MARK_FOLLOWING1 = new MARK_FOLLOWING();
+        MARK_FOLLOWING1.text = "#";
+        MARK_FOLLOWING1.TYPE = "DIGIT";
+        SEQ_REGEXP SEQ_REGEXP1 = new SEQ_REGEXP();
+        SEQ_REGEXP1.text = "!\\s*important";
+        SEQ_REGEXP1.TYPE = "KEYWORD2";
+        SEQ_REGEXP1.HASH_CHAR = "!";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ";";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ1.DELEGATE = "PROPERTIES";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = "}";
+        SEQ2.TYPE = "INVALID";
+        SEQ2.DELEGATE = "MAIN";
+        IMPORT IMPORT1 = new IMPORT();
+        IMPORT1.DELEGATE = "GLOBAL";
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD1", new String[]{"rgb", "rgba", "hsl", "hsla", "url", });
+        KEYWORDS1.add("KEYWORD3", new String[]{"above", "absolute", "absolute-colorimetric", "adjacent", "after", "after-edge", "all", "allow-end", "alphabetic", "alphabetical", "alternate", "always", "armenian", "attr", "auto", "avoid", "back", "balance", "baseline", "before", "before-edge", "behind", "bidi-override", "blink", "block", "block-axis", "block-line-height", "blur", "bold", "bolder", "border-box", "border-box", "both", "bottom", "break-all", "break-word", "button", "capitalize", "caps-height", "caption", "center", "center bottom", "center center", "center top", "central", "circle", "clip", "close-quote", "collapse", "color", "condensed", "consider-shifts", "contain", "content", "content-box", "counter", "cover", "crop", "cross", "crosshair", "cubic-bezier", "current", "cursive", "dashed", "decimal", "decimal-leading-zero", "default", "disc", "disregard-shifts", "distribute", "distribute-letter", "distribute-space", "dotted", "double", "resize", "e-resize", "ease", "ease-in", "ease-in-out", "ease-out", "ellipsis", "embed", "end", "end-edge", "exclude-ruby", "extra-condensed", "extra-expanded", "family-name", "fantasy", "fast", "field", "fill", "first", "fixed", "flat", "font-family", "font-size", "forward", "front", "georgian", "grid-height", "groove", "h-shadow", "hanging", "help", "here", "hidden", "hide", "high", "horizontal", "hyphenate", "icon", "ideographic", "include-ruby", "infinite", "inherit", "initial", "inline", "inline-axis", "inline-block", "inline-line-height", "inline-table", "inset", "inside", "integer", "inter-cluster", "inter-ideograph", "inter-word", "italic", "justify", "kashida", "landscape", "large", "larger", "last", "left", "left bottom", "left center", "left top", "leftwards", "length", "lighter", "line-edge", "line-through", "linear", "list-item", "loud", "low", "lower-alpha", "lower-greek", "lower-latin", "lower-roman", "lowercase", "ltr", "manual", "mathematical", "max-height", "max-size", "medium", "meet", "menu", "message-box", "middle", "modal", "moderate", "monospace", "move", "multiple", "n-resize", "name", "narrower", "ne-resize", "new", "no-change", "no-close-quote", "no-content", "no-display", "no-limit", "no-open-quote", "no-repeat", "none", "normal", "nowrap", "nw-resize", "oblique", "open-quote", "outset", "outside", "overline", "padding-box", "page-size", "parent", "paused", "percentage", "perceptual", "pointer", "portrait", "pre", "pre-line", "pre-wrap", "preserve-3d", "progress", "reduced", "relative", "relative-colorimetric", "repeat", "repeat-x", "repeat-y", "reset-size", "reverse", "ridge", "right", "right bottom", "right center", "right top", "rightwards", "root", "round", "rtl", "run-in", "running", "s-resize", "sans-serif", "saturation", "scroll", "se-resize", "self", "semi-condensed", "semi-expanded", "separate", "serif", "shape", "show", "silent", "single", "slice", "slide", "slow", "small", "small-caps", "small-caption", "smaller", "soft", "solid", "spread", "square", "start", "static", "status-bar", "stretch", "strong", "sub", "super", "suppress", "sw-resize", "tab", "table", "table-caption", "table-cell", "table-column", "table-column-group", "table-footer-group", "table-header-group", "table-row", "table-row-group", "text", "text-after-edge", "text-before-edge", "text-bottom", "text-size", "text-top", "thick", "thin", "top", "transparent", "ultra-condensed", "ultra-expanded", "underline", "unrestricted", "upper-alpha", "upper-latin", "upper-roman", "uppercase", "url", "use-script", "v-shadow", "vertical", "visible", "w-resize", "wait", "weak", "wider", "window", "x-fast", "x-high", "x-large", "x-loud", "x-low", "x-slow", "x-small", "x-soft", "x-strong", "x-weak", "xx-large", "xx-small", });
+        KEYWORDS1.add("KEYWORD4", new String[]{"aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkgreen", "darkgrey", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dimgrey", "dodgerblue", "firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray", "green", "greenyellow", "grey", "honeydew", "hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgray", "lightgreen", "lightgrey", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightslategrey", "lightsteelblue", "lightyellow", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "white", "whitesmoke", "yellow", "yellowgreen", });
+        RULES1.IMPORT = new IMPORT[] { IMPORT1, };
+
+        RULES1.SEQ_REGEXP = new SEQ_REGEXP[] { SEQ_REGEXP1, };
+
+        RULES1.SPAN_REGEXP = new SPAN_REGEXP[] { SPAN_REGEXP1, SPAN_REGEXP2, SPAN_REGEXP3, SPAN_REGEXP4, };
+
+        RULES1.MARK_FOLLOWING = new MARK_FOLLOWING[] { MARK_FOLLOWING1, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    private RULES RULES5() {
+        RULES RULES1 = new RULES();
+        RULES1.SET = "GLOBAL";
+        SEQ SEQ1 = new SEQ();
+        SEQ1.text = ":";
+        SEQ1.TYPE = "OPERATOR";
+        SEQ SEQ2 = new SEQ();
+        SEQ2.text = ";";
+        SEQ2.TYPE = "NULL";
+        SPAN SPAN1 = new SPAN();
+        SPAN1.TYPE = "NULL";
+        SPAN1.ESCAPE = "\\";
+        BEGIN BEGIN1 = new BEGIN();
+        BEGIN1.text = "(";
+        END END1 = new END();
+        END1.text = ")";
+        SPAN1.END = new END[] { END1, };
+
+        SPAN1.BEGIN = new BEGIN[] { BEGIN1, };
+
+        SEQ SEQ3 = new SEQ();
+        SEQ3.text = "{";
+        SEQ3.TYPE = "OPERATOR";
+        SEQ SEQ4 = new SEQ();
+        SEQ4.text = "}";
+        SEQ4.TYPE = "OPERATOR";
+        SEQ SEQ5 = new SEQ();
+        SEQ5.text = ",";
+        SEQ5.TYPE = "OPERATOR";
+        SEQ SEQ6 = new SEQ();
+        SEQ6.text = ".";
+        SEQ6.TYPE = "OPERATOR";
+        SEQ SEQ7 = new SEQ();
+        SEQ7.text = "!";
+        SEQ7.TYPE = "OPERATOR";
+        SPAN SPAN2 = new SPAN();
+        SPAN2.TYPE = "COMMENT1";
+        BEGIN BEGIN2 = new BEGIN();
+        BEGIN2.text = "/*";
+        END END2 = new END();
+        END2.text = "*/";
+        SPAN2.END = new END[] { END2, };
+
+        SPAN2.BEGIN = new BEGIN[] { BEGIN2, };
+
+        KEYWORDS KEYWORDS1 = new KEYWORDS();
+        KEYWORDS1.add("KEYWORD2", new String[]{"content", "quotes", "counter-reset", "counter-increment", "marker-offset", "list-style", "list-style-image", "list-style-position", "list-style-type", "@import", "@media", "@page", "@font-face", });
+        RULES1.SPAN = new SPAN[] { SPAN1, SPAN2, };
+
+        RULES1.SEQ = new SEQ[] { SEQ1, SEQ2, SEQ3, SEQ4, SEQ5, SEQ6, SEQ7, };
+
+        RULES1.KEYWORDS = new KEYWORDS[] { KEYWORDS1, };
+
+        return RULES1;
+    }
+
+    public RULES[] RULES() {
+        return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), RULES5(), };
+    }
+
+    public PROPS[] PROPS() {
+        return new PROPS[] {PROPS1(), };
+    }
+
+
 }
