@@ -36,6 +36,11 @@ public class MARK_FOLLOWING implements XMLElement {
     public String AT_WHITESPACE_END;
 
     @Override
+    public String tag() {
+        return "MARK_FOLLOWING";
+    }
+
+    @Override
     public String text() {
         return text;
     }

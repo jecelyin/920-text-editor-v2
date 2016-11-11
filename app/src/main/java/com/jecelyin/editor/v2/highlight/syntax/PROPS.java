@@ -30,6 +30,11 @@ public class PROPS implements XMLElement {
     public PROPERTY[] PROPERTY;
 
     @Override
+    public String tag() {
+        return "PROPS";
+    }
+
+    @Override
     public String text() {
         return null;
     }

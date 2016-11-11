@@ -34,6 +34,11 @@ public class END implements XMLElement {
     public String AT_WORD_START;
 
     @Override
+    public String tag() {
+        return "END";
+    }
+
+    @Override
     public String text() {
         return text;
     }

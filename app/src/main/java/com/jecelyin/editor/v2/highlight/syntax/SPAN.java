@@ -40,6 +40,11 @@ public class SPAN implements XMLElement {
     public String AT_WHITESPACE_END;
 
     @Override
+    public String tag() {
+        return "SPAN";
+    }
+
+    @Override
     public String text() {
         return null;
     }

@@ -39,6 +39,11 @@ public class SEQ_REGEXP implements XMLElement {
     public String AT_WHITESPACE_END;
 
     @Override
+    public String tag() {
+        return "SEQ_REGEXP";
+    }
+
+    @Override
     public String text() {
         return text;
     }

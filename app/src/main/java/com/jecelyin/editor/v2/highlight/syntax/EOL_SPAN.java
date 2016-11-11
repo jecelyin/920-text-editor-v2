@@ -37,6 +37,11 @@ public class EOL_SPAN implements XMLElement {
     public String MATCH_TYPE;
 
     @Override
+    public String tag() {
+        return "EOL_SPAN";
+    }
+
+    @Override
     public String text() {
         return text;
     }

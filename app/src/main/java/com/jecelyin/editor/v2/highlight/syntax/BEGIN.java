@@ -30,6 +30,11 @@ public class BEGIN implements XMLElement {
     public String text;
 
     @Override
+    public String tag() {
+        return "BEGIN";
+    }
+
+    @Override
     public String text() {
         return text;
     }

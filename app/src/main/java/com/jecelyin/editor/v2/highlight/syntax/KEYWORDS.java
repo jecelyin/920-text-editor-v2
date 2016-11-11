@@ -43,6 +43,11 @@ public class KEYWORDS implements XMLElement {
     }
 
     @Override
+    public String tag() {
+        return "KEYWORDS";
+    }
+
+    @Override
     public String text() {
         return null;
     }

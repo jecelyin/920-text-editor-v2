@@ -18,16 +18,16 @@
 
 package com.jecelyin.editor.v2.highlight;
 
-import java.util.HashMap;
 import com.jecelyin.editor.v2.highlight.lang.*;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LangMap {
-    public static final HashMap<String, LangDefine> map = new HashMap<>();
-
-    static {
-@MAP_LIST@
+    public static LangDefine get(String filename) {
+        switch(filename) {
+@CASE_LIST@
+        }
+        return null;
     }
 }

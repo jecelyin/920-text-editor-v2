@@ -85,7 +85,7 @@ public class XML2Java {
             }
 
             String langMap = readFile(new File(assetsPath, "lang_map.tpl"));
-            langMap = langMap.replace("@MAP_LIST@", mapCode.toString());
+            langMap = langMap.replace("@CASE_LIST@", mapCode.toString());
             writeFile(new File(highlightPath, "LangMap.java"), langMap);
         }catch (Exception e) {
             e.printStackTrace();
@@ -184,8 +184,8 @@ public class XML2Java {
 
                 handleMode((Element)item);
 
-                mapCode.append("        map.put( \"")
-                        .append(file.getName()).append("\", new ").append(clsName).append("() );\n");
+                mapCode.append(space(12)).append("case ").append(textString(file.getName()))
+                        .append(": return new ").append(clsName).append("();\n");
 
                 File langFile = new File(langPath, clsName + ".java");
                 writeFile(langFile, code);
@@ -225,6 +225,9 @@ public class XML2Java {
             countMap.clear();
         }
 
+        if (!countMap2.containsKey("PROPS")) {
+            countMap2.put("PROPS", 0);
+        }
         for (Map.Entry<String, Integer> entry : countMap2.entrySet()) {
             String tag = entry.getKey();
             sb.append(space(4)).append("public ").append(tag).append("[] ")

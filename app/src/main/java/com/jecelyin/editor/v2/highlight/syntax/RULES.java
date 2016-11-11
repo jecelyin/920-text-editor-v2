@@ -20,11 +20,13 @@ package com.jecelyin.editor.v2.highlight.syntax;
 
 import com.jecelyin.editor.v2.highlight.XMLElement;
 
+import java.util.HashMap;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class RULES {
+public class RULES implements XMLElement {
     public String ESCAPE;
     public String IGNORE_CASE;
     public String HIGHLIGHT_DIGITS;
@@ -47,8 +49,24 @@ public class RULES {
     //WHITESPACE
     public TERMINATE[] TERMINATE;
 
-    public XMLElement[][] childen() {
-        return new XMLElement[][] {SPAN, MARK_PREVIOUS, EOL_SPAN, SEQ, SPAN_REGEXP, SEQ_REGEXP,
-        IMPORT, MARK_FOLLOWING, EOL_SPAN_REGEXP, PROPS, TERMINATE};
+    @Override
+    public String tag() {
+        return "RULES";
+    }
+
+    @Override
+    public String text() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, String> attrs() {
+        return null;
+    }
+
+    @Override
+    public XMLElement[][] children() {
+        return new XMLElement[][]{SPAN, MARK_PREVIOUS, EOL_SPAN, SEQ, SPAN_REGEXP, SEQ_REGEXP,
+                IMPORT, MARK_FOLLOWING, EOL_SPAN_REGEXP, PROPS, TERMINATE};
     }
 }

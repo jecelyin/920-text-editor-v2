@@ -40,6 +40,11 @@ public class SPAN_REGEXP implements XMLElement {
     public String AT_WHITESPACE_END;
 
     @Override
+    public String tag() {
+        return "SPAN_REGEXP";
+    }
+
+    @Override
     public String text() {
         return null;
     }

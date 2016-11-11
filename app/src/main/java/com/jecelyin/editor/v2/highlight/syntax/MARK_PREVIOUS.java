@@ -35,6 +35,11 @@ public class MARK_PREVIOUS implements XMLElement {
     public String EXCLUDE_MATCH;
 
     @Override
+    public String tag() {
+        return "MARK_PREVIOUS";
+    }
+
+    @Override
     public String text() {
         return text;
     }

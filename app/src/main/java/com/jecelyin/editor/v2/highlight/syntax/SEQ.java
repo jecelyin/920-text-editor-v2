@@ -35,6 +35,11 @@ public class SEQ implements XMLElement {
     public String AT_WHITESPACE_END;
 
     @Override
+    public String tag() {
+        return "SEQ";
+    }
+
+    @Override
     public String text() {
         return text;
     }

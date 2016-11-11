@@ -31,6 +31,11 @@ public class PROPERTY implements XMLElement {
     public String VALUE;
 
     @Override
+    public String tag() {
+        return "PROPERTY";
+    }
+
+    @Override
     public String text() {
         return null;
     }

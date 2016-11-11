@@ -95,5 +95,9 @@ public class PowercenterParameterFileLang implements LangDefine {
         return new RULES[] {RULES1(), };
     }
 
+    public PROPS[] PROPS() {
+        return new PROPS[] {};
+    }
+
 
 }

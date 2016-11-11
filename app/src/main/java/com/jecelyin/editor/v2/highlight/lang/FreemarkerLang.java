@@ -469,5 +469,9 @@ public class FreemarkerLang implements LangDefine {
         return new RULES[] {RULES1(), RULES2(), RULES3(), RULES4(), RULES5(), };
     }
 
+    public PROPS[] PROPS() {
+        return new PROPS[] {};
+    }
+
 
 }

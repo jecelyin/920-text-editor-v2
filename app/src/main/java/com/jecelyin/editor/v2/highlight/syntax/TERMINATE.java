@@ -30,6 +30,11 @@ public class TERMINATE implements XMLElement {
     public String AT_CHAR;
 
     @Override
+    public String tag() {
+        return "TERMINATE";
+    }
+
+    @Override
     public String text() {
         return null;
     }

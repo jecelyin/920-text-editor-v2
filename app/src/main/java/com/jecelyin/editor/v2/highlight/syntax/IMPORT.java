@@ -30,6 +30,11 @@ public class IMPORT implements XMLElement {
     public String DELEGATE;
 
     @Override
+    public String tag() {
+        return "IMPORT";
+    }
+
+    @Override
     public String text() {
         return null;
     }

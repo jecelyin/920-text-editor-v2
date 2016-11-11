@@ -233,5 +233,9 @@ public class RegexLang implements LangDefine {
         return new RULES[] {RULES1(), RULES2(), };
     }
 
+    public PROPS[] PROPS() {
+        return new PROPS[] {};
+    }
+
 
 }

@@ -30,7 +30,7 @@ import com.jecelyin.editor.v2.highlight.jedit.syntax.ParserRuleSet;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.TokenMarker;
 import com.jecelyin.editor.v2.highlight.syntax.KEYWORDS;
-import com.jecelyin.editor.v2.highlight.syntax.PROPERTY;
+import com.jecelyin.editor.v2.highlight.syntax.PROPS;
 import com.jecelyin.editor.v2.highlight.syntax.RULES;
 import com.jecelyin.editor.v2.highlight.syntax.SEQ;
 
@@ -59,28 +59,45 @@ public class ModeObjectHandler {
     public void process(LangDefine lang) {
         startDocument();
 
-        PROPERTY[] props = lang.PROPS();
-        if (props != null) {
-            startElement("PROPS", null);
-            for (PROPERTY prop : props) {
-                startElement("PROPERTY", prop.attrs());
-                endElement("PROPERTY");
+        for (RULES rules : lang.RULES()) {
+            handleChild(rules);
+        }
+
+        PROPS[] propses = lang.PROPS();
+        if (propses != null) {
+            for (PROPS props : propses) {
+                handleChild(props);
             }
-            endElement("PROPS");
-        }
-
-        RULES rules = lang.RULES();
-        XMLElement[] childen = rules.childen();
-        for (XMLElement element : childen) {
-            if (element == null)continue;
-            handleElement(element);
-        }
-
-        if (rules.KEYWORDS != null) {
-            handleKeywords(rules.KEYWORDS);
         }
 
         endDocument();
+    }
+
+    private void handleChild(XMLElement child) {
+        if (child instanceof KEYWORDS) {
+            handleKeywords((KEYWORDS) child);
+            return;
+        }
+
+        String tag = child.tag();
+        startElement(tag, child.attrs());
+        if (child.text() != null) {
+            characters(child.text());
+        }
+
+        XMLElement[][] children = child.children();
+        if (children != null) {
+            for (XMLElement[] xmlElements : children) {
+                if (xmlElements == null)continue;
+
+                for (XMLElement xmlElement : xmlElements) {
+                    if (xmlElement != null)
+                        handleChild(xmlElement);
+                }
+            }
+        }
+
+        endElement(tag);
     }
 
     private void handleKeywords(KEYWORDS keywords) {
@@ -100,38 +117,11 @@ public class ModeObjectHandler {
 
         if (keywords.SEQs != null) {
             for (SEQ seq : keywords.SEQs) {
-                startElement("SEQ", seq.attrs());
-                if (seq.text() != null) {
-                    characters(seq.text());
-                }
-                endElement("SEQ");
+                handleChild(seq);
             }
         }
 
         endElement("KEYWORDS");
-    }
-
-    private void handleElement(XMLElement element) {
-        String tag = element.getClass().getSimpleName();
-        L.d("handleElement: " + tag);
-
-        startElement(tag, element.attrs());
-
-        String text = element.text();
-        if (text != null) {
-            characters(text);
-        }
-
-        XMLElement[] children = element.children();
-        if (children != null) {
-            for (XMLElement child : children) {
-                if (child == null)continue;
-
-                handleElement(child);
-            }
-        }
-
-        endElement(tag);
     }
 
     //{{{ characters() method 在每次解析到元素标签携带的内容时都会调用，即使该元素标签的内容为空或换行。而且如果元素内嵌套元素，在父元素结束标签前， characters()方法会再次被调用，此处需要注意。

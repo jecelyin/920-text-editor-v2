@@ -28,7 +28,7 @@ import com.jecelyin.editor.v2.highlight.jedit.Mode;
 public class SyntaxParser {
     public static void loadMode(Mode mode) {
         String filename = mode.getFile();
-        LangDefine langDefine = LangMap.map.get(filename);
+        LangDefine langDefine = LangMap.get(filename);
         if (langDefine == null) {
             L.d("Can't find a lang define: " + filename);
             return;

@@ -38,6 +38,11 @@ public class EOL_SPAN_REGEXP implements XMLElement {
     public String HASH_CHARS;
 
     @Override
+    public String tag() {
+        return "EOL_SPAN_REGEXP";
+    }
+
+    @Override
     public String text() {
         return text;
     }

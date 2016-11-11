@@ -25,6 +25,7 @@ import java.util.HashMap;
  */
 
 public interface XMLElement {
+    String tag();
     String text();
     HashMap<String, String> attrs();
     XMLElement[][] children();
