@@ -18,16 +18,16 @@
 
 package com.jecelyin.editor.v2.highlight;
 
-import com.jecelyin.editor.v2.highlight.lang.*;
+import com.jecelyin.editor.v2.R;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LangMap {
-    public static LangDefine get(String filename) {
+    public static int get(String filename) {
         switch(filename) {
 @CASE_LIST@
         }
-        return null;
+        return 0;
     }
 }

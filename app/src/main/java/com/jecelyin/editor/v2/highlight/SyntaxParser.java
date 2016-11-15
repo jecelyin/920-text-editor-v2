@@ -21,6 +21,8 @@ package com.jecelyin.editor.v2.highlight;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.highlight.jedit.Mode;
 
+import java.io.IOException;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
@@ -28,14 +30,20 @@ import com.jecelyin.editor.v2.highlight.jedit.Mode;
 public class SyntaxParser {
     public static void loadMode(Mode mode) {
         String filename = mode.getFile();
-        LangDefine langDefine = LangMap.get(filename);
-        if (langDefine == null) {
+        int langDefine = LangMap.get(filename);
+        if (langDefine == 0) {
             L.d("Can't find a lang define: " + filename);
             return;
         }
+        L.d("load mode: " + filename);
 
         ModeObjectHandler handler = new ModeObjectHandler(mode.getName());
-        handler.process(langDefine);
+        mode.setTokenMarker(handler.getTokenMarker());
+        try {
+            handler.process(langDefine);
+        } catch (IOException e) {
+            L.e(e);
+        }
     }
 
 

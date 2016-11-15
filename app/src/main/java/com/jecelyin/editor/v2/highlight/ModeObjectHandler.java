@@ -21,6 +21,7 @@ package com.jecelyin.editor.v2.highlight;
 
 //{{{ Imports
 
+import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.highlight.jedit.Mode;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.KeywordMap;
@@ -29,11 +30,12 @@ import com.jecelyin.editor.v2.highlight.jedit.syntax.ParserRule;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.ParserRuleSet;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.TokenMarker;
-import com.jecelyin.editor.v2.highlight.syntax.KEYWORDS;
-import com.jecelyin.editor.v2.highlight.syntax.PROPS;
-import com.jecelyin.editor.v2.highlight.syntax.RULES;
-import com.jecelyin.editor.v2.highlight.syntax.SEQ;
 
+import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessageUnpacker;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Stack;
@@ -48,6 +50,7 @@ import java.util.regex.PatternSyntaxException;
  * @version $Id: XModeHandler.java 21831 2012-06-18 22:54:17Z ezust $
  */
 public class ModeObjectHandler {
+
     //{{{ XModeHandler constructor
     public ModeObjectHandler(String modeName) {
         this.modeName = modeName;
@@ -56,72 +59,43 @@ public class ModeObjectHandler {
         stateStack = new Stack<>();
     } //}}}
 
-    public void process(LangDefine lang) {
+    public void process(int langRawResId) throws IOException {
         startDocument();
 
-        for (RULES rules : lang.RULES()) {
-            handleChild(rules);
+        InputStream inputStream = JecApp.getContext().getResources().openRawResource(langRawResId);
+        MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(inputStream);
+
+        while (unpacker.hasNext()) {
+            handleChild(unpacker);
         }
 
-        PROPS[] propses = lang.PROPS();
-        if (propses != null) {
-            for (PROPS props : propses) {
-                handleChild(props);
-            }
-        }
+        unpacker.close();
 
         endDocument();
     }
 
-    private void handleChild(XMLElement child) {
-        if (child instanceof KEYWORDS) {
-            handleKeywords((KEYWORDS) child);
-            return;
+    private void handleChild(MessageUnpacker unpacker) throws IOException {
+        String tagName = unpacker.unpackString();
+
+        String text = unpacker.unpackString();
+        int attrCount = unpacker.unpackMapHeader();
+        HashMap<String, String> attrs = new HashMap<>(attrCount);
+        for (int i = 0; i < attrCount; i++) {
+            attrs.put(unpacker.unpackString(), unpacker.unpackString());
         }
 
-        String tag = child.tag();
-        startElement(tag, child.attrs());
-        if (child.text() != null) {
-            characters(child.text());
+        L.d("startElement: " + tagName);
+        startElement(tagName, attrs);
+        if (text != null && !text.isEmpty()) {
+            characters(text);
         }
 
-        XMLElement[][] children = child.children();
-        if (children != null) {
-            for (XMLElement[] xmlElements : children) {
-                if (xmlElements == null)continue;
-
-                for (XMLElement xmlElement : xmlElements) {
-                    if (xmlElement != null)
-                        handleChild(xmlElement);
-                }
-            }
+        int childCount = unpacker.unpackInt();
+        for (int i = 0; i < childCount; i++) {
+            handleChild(unpacker);
         }
 
-        endElement(tag);
-    }
-
-    private void handleKeywords(KEYWORDS keywords) {
-        startElement("KEYWORDS", keywords.attrs());
-
-        HashMap<String, String[]> map = keywords.getKeywords();
-        if (map != null) {
-            for (String tag : map.keySet()) {
-                String[] strings = map.get(tag);
-                for (String kw : strings) {
-                    startElement(tag, null);
-                    characters(kw);
-                    endElement(tag);
-                }
-            }
-        }
-
-        if (keywords.SEQs != null) {
-            for (SEQ seq : keywords.SEQs) {
-                handleChild(seq);
-            }
-        }
-
-        endElement("KEYWORDS");
+        endElement(tagName);
     }
 
     //{{{ characters() method 在每次解析到元素标签携带的内容时都会调用，即使该元素标签的内容为空或换行。而且如果元素内嵌套元素，在父元素结束标签前， characters()方法会再次被调用，此处需要注意。
