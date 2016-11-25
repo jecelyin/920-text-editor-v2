@@ -84,7 +84,7 @@ public class ModeObjectHandler {
             attrs.put(unpacker.unpackString(), unpacker.unpackString());
         }
 
-        L.d("startElement: " + tagName);
+//        L.d("startElement: " + tagName);
         startElement(tagName, attrs);
         if (text != null && !text.isEmpty()) {
             characters(text);

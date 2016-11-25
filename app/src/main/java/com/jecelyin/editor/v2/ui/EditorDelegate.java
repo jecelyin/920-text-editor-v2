@@ -105,7 +105,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     private void init() {
         if (document != null)
             return;
-        L.startTracing("textview");
 
         document = new Document(context, this);
         mEditText.setReadOnly(Pref.getInstance(context).isReadOnly());
@@ -171,8 +170,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         }
         loaded = true;
 
-        // stop tracing
-        L.stopTracing();
     }
 
     public Context getContext() {

@@ -181,7 +181,7 @@ public class XML2Bin {
                 File langFile = new File(rawPath, clsName);
                 packer = MessagePack.newDefaultPacker(new FileOutputStream(langFile));
 
-                handleMode((Element)item);
+                handleChild((Element)item);
 
                 mapCode.append(space(12)).append("case ").append(textString(file.getName()))
                         .append(": return R.raw.").append(clsName).append(";\n");
@@ -206,17 +206,6 @@ public class XML2Bin {
 
             items.add(item);
         }
-
-        Collections.sort(items, new Comparator<Node>() {
-            @Override
-            public int compare(Node node, Node t1) {
-
-//             rules much be first, otherwise：
-//                Caused by: java.lang.NullPointerException: Attempt to read from field 'java.lang.String com.jecelyin.editor.v2.highlight.ModeObjectHandler$TagDecl.tagName' on a null object reference
-//                at com.jecelyin.editor.v2.highlight.ModeObjectHandler.endElement(ModeObjectHandler.java:155)
-                return -node.getNodeName().compareTo(t1.getNodeName());
-            }
-        });
 
         for (Node item : items) {
             handleChild(item);

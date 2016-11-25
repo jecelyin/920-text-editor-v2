@@ -22,21 +22,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.text.Editable;
+import android.text.style.ForegroundColorSpan;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 
-import com.jecelyin.common.adapter.ViewPagerAdapter;
 import com.jecelyin.common.app.JecActivity;
+import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.editor.v2.R;
-import com.jecelyin.editor.v2.view.TabViewPager;
+import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
+import com.jecelyin.editor.v2.core.widget.JecEditText;
+import com.jecelyin.editor.v2.highlight.Buffer;
+import com.jecelyin.editor.v2.highlight.jedit.LineManager;
+import com.jecelyin.editor.v2.highlight.jedit.Mode;
+import com.jecelyin.editor.v2.highlight.jedit.syntax.ModeProvider;
+import com.jecelyin.editor.v2.io.FileReader;
+
+import java.io.File;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
 public class SpeedActivity extends JecActivity {
-    public static void startActicity(Context context) {
+    public static void startActivity(Context context) {
         context.startActivity(new Intent(context, SpeedActivity.class));
     }
 
@@ -45,40 +55,49 @@ public class SpeedActivity extends JecActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.speed_activity);
-//        JecEditText editText = new JecEditText(getContext());
-//        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//        editText.setInputType(editText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
-//        setContentView(editText);
-//
-//        FileReader fr = new FileReader(new File(SysUtils.getAppStoragePath(this), "1/TextView.java"), "utf-8");
-//        long t1 = System.currentTimeMillis();
-//        fr.read();
-//        long t2 = System.currentTimeMillis();
-//        SpannableStringBuilder ssb = fr.getBuffer();
-//        Debug.startMethodTracing("textview");
-//        long t3 = System.currentTimeMillis();
-//        editText.setText(ssb);
-//        long t4 = System.currentTimeMillis();
-//        Debug.stopMethodTracing();
-//
-//        L.d("Speed: #1=%f, #2=%f", (t2 - t1) / 1000f, (t4 - t3) / 1000f);
-        setStatusBarColor((ViewGroup) findViewById(R.id.drawer_layout));
-        TabViewPager pager = (TabViewPager) findViewById(R.id.tab_pager);
-        TestViewPagerAdapter adapter = new TestViewPagerAdapter();
-        pager.setAdapter(adapter);
-        adapter.count = 1;
-        adapter.notifyDataSetChanged();
-    }
-    static class TestViewPagerAdapter extends ViewPagerAdapter {
-        public int count = 0;
-        @Override
-        public View getView(int position, ViewGroup pager) {
-            return LayoutInflater.from(pager.getContext()).inflate(R.layout.editor, pager, false);
+        JecEditText editText = new JecEditText(getContext());
+        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        editText.setInputType(editText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
+        setContentView(editText);
+
+        FileReader fr = new FileReader(new File(SysUtils.getAppStoragePath(this), "1/TextView.java"), "utf-8");
+        fr.read();
+        SpannableStringBuilder ssb = fr.getBuffer();
+        editText.setText(ssb);
+
+        Buffer buffer = new Buffer(this);
+
+        Editable editableText = editText.getEditableText();
+        buffer.setEditable(editableText);
+
+        int start = 0;
+        int count = ssb.length();
+        buffer.insert(0, ssb.toString());
+
+        L.startTracing("hl");
+        int lineNumber = buffer.getLineManager().getLineCount();
+
+        LineManager lineManager = buffer.getLineManager();
+        int startLine = lineManager.getLineOfOffset(start);
+        int endLine = lineManager.getLineOfOffset(start + count);
+        int lineStartOffset = lineManager.getLineStartOffset(startLine);
+        int lineEndOffset = lineManager.getLineEndOffset(endLine);
+
+        boolean canHighlight = buffer.isCanHighlight();
+        if(startLine == 0 && !canHighlight) {
+            Mode mode = ModeProvider.instance.getModeForFile("1/TextView.java", null, ssb.subSequence(0, Math.min(80, ssb.length())).toString());
+
+            buffer.setMode(mode);
         }
 
-        @Override
-        public int getCount() {
-            return count;
+        ForegroundColorSpan[] spans = editableText.getSpans(lineStartOffset, lineEndOffset, ForegroundColorSpan.class);
+        for(ForegroundColorSpan span : spans) {
+            editableText.removeSpan(span);
         }
+
+//        highlight(editableText, startLine, endLine);
+
+        L.stopTracing();
     }
+
 }
