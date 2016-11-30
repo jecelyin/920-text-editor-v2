@@ -48,7 +48,7 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import static javax.sound.midi.ShortMessage.START;
+import static com.jecelyin.editor.v2.tools.Tool.*;
 
 
 public class XML2Bin {
@@ -91,63 +91,6 @@ public class XML2Bin {
             e.printStackTrace();
         }
 
-    }
-
-    public static boolean writeFile(File file, String text) {
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write(text);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            file.delete();
-            return false;
-        }
-    }
-
-    private static void o(String format, Object... args) {
-        System.out.println(String.format(format, args));
-    }
-
-    private static String fileNameToResName(String filename) {
-        StringBuilder sb = new StringBuilder(filename.length());
-        int size = filename.length();
-        for (int i = 0; i < size; i++) {
-            char c = filename.charAt(i);
-            if (c == '-') {
-                i++;
-                sb.append('_');
-            } else if (c == '.') {
-                return sb.toString();
-            } else {
-                sb.append(Character.toLowerCase(filename.charAt(i)));
-            }
-        }
-        return sb.toString();
-    }
-
-    private static String textString(String string) {
-        StringBuilder sb = new StringBuilder(string.length() * 2);
-        sb.append('"');
-        int size = string.length();
-        for (int i = 0; i < size; i++) {
-            char c = string.charAt(i);
-            switch (c) {
-                case '\\':
-                    sb.append("\\\\");
-                    break;
-                case '"':
-                    sb.append("\\\"");
-                    break;
-                default:
-                    sb.append(c);
-                    break;
-            }
-        }
-        sb.append('"');
-        return sb.toString();
     }
 
     private static void parseXml(final File file, StringBuilder mapCode) throws Exception {
@@ -275,22 +218,5 @@ public class XML2Bin {
         return map;
     }
 
-    private static String space(int count) {
-        return new String(new char[count]).replace("\0", " ");
-    }
 
-    public static String readFile(File file) throws IOException {
-        return readFile(file, "UTF-8");
-    }
-
-    public static String readFile(File file, String encoding) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding));
-        char[] buf = new char[8192];
-        int size;
-        StringBuilder sb = new StringBuilder((int) file.length());
-        while ((size = br.read(buf)) != -1) {
-            sb.append(buf, 0, size);
-        }
-        return sb.toString();
-    }
 }

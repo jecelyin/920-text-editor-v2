@@ -4,12 +4,11 @@ package com.jecelyin.editor.v2.highlight.jedit.syntax;
 //{{{ Imports
 
 import com.jecelyin.common.utils.L;
+import com.jecelyin.editor.v2.highlight.jedit.Catalog;
 import com.jecelyin.editor.v2.highlight.jedit.Mode;
-import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 //}}}
 
@@ -22,13 +21,6 @@ import java.util.List;
  */
 public class ModeProvider {
     public static ModeProvider instance = new ModeProvider();
-
-    private static final LinkedHashMap<String, Mode> modes = new LinkedHashMap<>(Catalog.modes.length);
-    static {
-        for (Mode mode : Catalog.modes) {
-            modes.put(mode.getName().toUpperCase(), mode);
-        }
-    }
 
     //{{{ removeAll() method
 //	public void removeAll()
@@ -45,7 +37,7 @@ public class ModeProvider {
      * @since jEdit 4.3pre10
      */
     public Mode getMode(String name) {
-        return modes.get(name.toUpperCase());
+        return Catalog.getModeByName(name);
     } //}}}
 
     //{{{ getModeForFile() method
@@ -80,7 +72,7 @@ public class ModeProvider {
             filename = filename.substring(0, filename.length() - 3);
 
         List<Mode> acceptable = new ArrayList<Mode>(1);
-        for (Mode mode : modes.values()) {
+        for (Mode mode : Catalog.map.values()) {
             if (mode.accept(filepath, filename, firstLine)) {
                 acceptable.add(mode);
             }
@@ -123,38 +115,6 @@ public class ModeProvider {
         // no matching mode found for this file
         return null;
     } //}}}
-
-    //{{{ getModes() method
-
-    /**
-     * Returns an array of installed edit modes.
-     *
-     * @since jEdit 4.3pre10
-     */
-    public Mode[] getModes() {
-//		return modes.values().toArray(new Mode[modes.size()]);
-        return Catalog.modes;
-    } //}}}
-
-    //{{{ addMode() method
-
-    /**
-     * Do not call this method. It is only public so that classes
-     * in the org.gjt.sp.jedit.syntax package can access it.
-     *
-     * @param mode The edit mode
-     * @since jEdit 4.3pre10
-     */
-    public void addMode(Mode mode) {
-        String name = mode.getName();
-
-        // The removal makes the "insertion order" in modes
-        // (LinkedHashMap) follow the order of addMode() calls.
-        modes.remove(name);
-
-        modes.put(name, mode);
-    } //}}}
-
 
     //{{{ error() method
     protected void error(String file, Throwable e) {

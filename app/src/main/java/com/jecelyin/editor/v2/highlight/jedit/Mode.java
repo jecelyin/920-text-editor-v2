@@ -4,7 +4,7 @@ package com.jecelyin.editor.v2.highlight.jedit;
 //{{{ Imports
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.editor.v2.highlight.jedit.util.TextUtilities;
+import com.jecelyin.editor.v2.highlight.SyntaxParser;
 import com.jecelyin.editor.v2.highlight.jedit.syntax.TokenMarker;
 
 import java.util.Hashtable;
@@ -65,25 +65,13 @@ public class Mode {
         try {
             filepathMatcher = null;
             if (fileNameGlob != null && !fileNameGlob.isEmpty()) {
-                // translate glob to regex
-                String filepathRE = TextUtilities.globToRE(fileNameGlob);
-                // if glob includes a path separator (both are supported as
-                // users can supply them in the GUI and thus will copy
-                // Windows paths in there)
-                if (filepathRE.contains("/") || filepathRE.contains("\\\\")) {
-                    // replace path separators by both separator possibilities in the regex
-                    filepathRE = filepathRE.replaceAll("/|\\\\\\\\", "[/\\\\\\\\]");
-                } else {
-                    // glob is for a filename without path, prepend the regex with
-                    // an optional path prefix to be able to match against full paths
-                    filepathRE = String.format("(?:.*[/\\\\])?%s", filepathRE);
-                }
-                this.filepathMatcher = Pattern.compile(filepathRE, Pattern.CASE_INSENSITIVE).matcher("");
+
+                this.filepathMatcher = Pattern.compile(fileNameGlob, Pattern.CASE_INSENSITIVE).matcher("");
             }
 
             firstlineMatcher = null;
             if (firstLineGlob != null && !firstLineGlob.isEmpty()) {
-                firstlineMatcher = Pattern.compile(TextUtilities.globToRE(firstLineGlob),
+                firstlineMatcher = Pattern.compile(firstLineGlob,
                         Pattern.CASE_INSENSITIVE).matcher("");
             }
         } catch (PatternSyntaxException re) {
@@ -130,7 +118,7 @@ public class Mode {
      */
     public void loadIfNecessary() {
         if (marker == null) {
-            JEdit.loadMode(this);
+            SyntaxParser.loadMode(this);
 //			ModeProvider.instance.loadMode(this);
             if (marker == null)
                 L.e("Mode not correctly loaded, token marker is still null");

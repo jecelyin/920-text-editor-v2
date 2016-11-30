@@ -29,7 +29,6 @@ import android.view.inputmethod.EditorInfo;
 
 import com.jecelyin.common.app.JecActivity;
 import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
 import com.jecelyin.editor.v2.core.widget.JecEditText;
@@ -46,6 +45,9 @@ import java.io.File;
  */
 
 public class SpeedActivity extends JecActivity {
+
+    public static final String PATH = "/sdcard/1/build2.xml";
+
     public static void startActivity(Context context) {
         context.startActivity(new Intent(context, SpeedActivity.class));
     }
@@ -60,7 +62,7 @@ public class SpeedActivity extends JecActivity {
         editText.setInputType(editText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
         setContentView(editText);
 
-        FileReader fr = new FileReader(new File(SysUtils.getAppStoragePath(this), "1/TextView.java"), "utf-8");
+        FileReader fr = new FileReader(new File(PATH), "utf-8");
         fr.read();
         SpannableStringBuilder ssb = fr.getBuffer();
         editText.setText(ssb);
@@ -74,7 +76,7 @@ public class SpeedActivity extends JecActivity {
         int count = ssb.length();
         buffer.insert(0, ssb.toString());
 
-        L.startTracing("hl");
+        L.startTracing("textview-highlight");
         int lineNumber = buffer.getLineManager().getLineCount();
 
         LineManager lineManager = buffer.getLineManager();
@@ -85,7 +87,7 @@ public class SpeedActivity extends JecActivity {
 
         boolean canHighlight = buffer.isCanHighlight();
         if(startLine == 0 && !canHighlight) {
-            Mode mode = ModeProvider.instance.getModeForFile("1/TextView.java", null, ssb.subSequence(0, Math.min(80, ssb.length())).toString());
+            Mode mode = ModeProvider.instance.getModeForFile(PATH, null, ssb.subSequence(0, Math.min(80, ssb.length())).toString());
 
             buffer.setMode(mode);
         }

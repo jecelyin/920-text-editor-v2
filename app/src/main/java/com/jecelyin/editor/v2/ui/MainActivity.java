@@ -59,7 +59,7 @@ import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
 import com.jecelyin.editor.v2.common.SaveListener;
-import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
+import com.jecelyin.editor.v2.highlight.jedit.Catalog;
 import com.jecelyin.editor.v2.task.CheckUpgradeTask;
 import com.jecelyin.editor.v2.task.ClusterCommand;
 import com.jecelyin.editor.v2.task.LocalTranslateTask;
@@ -77,8 +77,8 @@ import com.jecelyin.editor.v2.view.TabViewPager;
 import com.jecelyin.editor.v2.view.menu.MenuDef;
 import com.jecelyin.editor.v2.view.menu.MenuFactory;
 import com.jecelyin.editor.v2.view.menu.MenuItemInfo;
-import com.jecelyin.editor.v2.widget.TranslucentDrawerLayout;
 import com.jecelyin.editor.v2.widget.SymbolBarLayout;
+import com.jecelyin.editor.v2.widget.TranslucentDrawerLayout;
 
 import java.io.File;
 import java.io.InputStream;

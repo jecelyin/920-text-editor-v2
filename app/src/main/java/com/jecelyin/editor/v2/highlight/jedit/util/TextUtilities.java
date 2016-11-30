@@ -710,7 +710,8 @@ public class TextUtilities {
         StringBuilder buf = new StringBuilder();
         boolean backslash = false;
 
-        for (int i = 0; i < glob.length(); i++) {
+        int length = glob.length();
+        for (int i = 0; i < length; i++) {
             char c = glob.charAt(i);
             if (backslash) {
                 buf.append('\\');
@@ -744,7 +745,7 @@ public class TextUtilities {
                     break;
                 case '{':
                     buf.append('(');
-                    if (i + 1 != glob.length() && glob.charAt(i + 1) == '!') {
+                    if (i + 1 != length && glob.charAt(i + 1) == '!') {
                         buf.append('?');
                         state.push(NEG);
                     } else

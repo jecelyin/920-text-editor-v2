@@ -24,12 +24,12 @@ import android.view.View;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
-import com.jecelyin.editor.v2.highlight.jedit.Mode;
-import com.jecelyin.editor.v2.highlight.jedit.modes.Catalog;
+import com.jecelyin.editor.v2.highlight.jedit.Catalog;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Set;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -55,17 +55,13 @@ public class LangListDialog extends AbstractDialog {
     }
 
     private void initGrammarInfo() {
-        Mode[] modes = Catalog.modes;
-        ArrayList<Grammar> list = new ArrayList<Grammar>();
+        Set<String> strings = Catalog.map.keySet();
+        ArrayList<Grammar> list = new ArrayList<Grammar>(strings.size());
         Grammar g;
-        Mode mode;
-        for (int i=0; i<modes.length; i++) {
-            mode = modes[i];
-            g = new Grammar(mode.getName(), mode.getName());
-            if("Platform".equalsIgnoreCase(g.name))
-                continue;
-            list.add(g);
+        for (String name : strings) {
+            list.add(new Grammar(name, name));
         }
+
         Collections.sort(list, new Comparator<Grammar>() {
             @Override
             public int compare(Grammar lhs, Grammar rhs) {

@@ -16,21 +16,83 @@
  * limitations under the License.
  */
 
-package com.jecelyin.editor.v2.highlight.jedit.modes;
+package com.jecelyin.editor.v2.tools;
 
-import com.jecelyin.editor.v2.highlight.jedit.Mode;
+import java.io.File;
 
-public class Catalog {
-    public static final String DEFAULT_MODE_NAME = "Text";
+import static com.jecelyin.editor.v2.tools.Tool.*;
 
-    public static Mode getModeByName(String name) {
-        for(Mode mode : modes) {
-            if(mode.getName().equals(name))
-                return mode;
+/**
+ * @author Jecelyin Peng <jecelyin@gmail.com>
+ */
+
+public class ConvertCatalog {
+
+    public static void main(String[] args) {
+        File f = new File(".");
+        String path = f.getAbsolutePath();
+
+        File highlightPath = new File(path, "app/src/main/java/com/jecelyin/editor/v2/highlight");
+        File assetsPath = new File(path, "tools/assets");
+        File jedit = new File(highlightPath, "jedit");
+
+        StringBuilder mapCode = new StringBuilder();
+
+        for (Mode mode : modes) {
+            mapCode.append(space(12)).append("map.put(")
+                    .append(textString(mode.name)).append(", ")
+                    .append("new Mode(")
+                    .append(textString(mode.name)).append(", ")
+                    .append(textString(mode.file)).append(", ");
+
+            if (mode.fileNameGlob == null || mode.fileNameGlob.isEmpty()) {
+                mapCode.append("null, ");
+            } else {
+                // translate glob to regex
+                String filepathRE = globToRE(mode.fileNameGlob);
+                // if glob includes a path separator (both are supported as
+                // users can supply them in the GUI and thus will copy
+                // Windows paths in there)
+                if (filepathRE.contains("/") || filepathRE.contains("\\\\")) {
+                    // replace path separators by both separator possibilities in the regex
+                    filepathRE = filepathRE.replaceAll("/|\\\\\\\\", "[/\\\\\\\\]");
+                } else {
+                    // glob is for a filename without path, prepend the regex with
+                    // an optional path prefix to be able to match against full paths
+                    filepathRE = String.format("(?:.*[/\\\\])?%s", filepathRE);
+                }
+                mapCode.append(textString(filepathRE)).append(", ");
+            }
+            if (mode.firstLineGlob == null || mode.firstLineGlob.isEmpty()) {
+                mapCode.append("null");
+            } else {
+                mapCode.append(textString(globToRE(mode.firstLineGlob)));
+            }
+            mapCode.append("));\n");
         }
-        return null;
+        try {
+            String code = readFile(new File(assetsPath, "catalog.tpl"));
+            code = code.replace("@MAP@", mapCode.toString());
+            writeFile(new File(jedit, "Catalog.java"), code);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
+    static class Mode {
+        private final String fileNameGlob;
+        private final String firstLineGlob;
+        private final String name;
+        private final String file;
+
+        public Mode(String name, String syntaxFilename, String fileNameGlob, String firstLineGlob) {
+            this.fileNameGlob = fileNameGlob;
+            this.firstLineGlob = firstLineGlob;
+            this.name = name;
+            this.file = syntaxFilename;
+        }
+    }
     public static Mode[] modes = new Mode[]{
             new Mode("ActionScript"      , "actionscript.xml"            , "*.as"                        , null),
             new Mode("Ada"               , "ada.xml"                     , "*.{ada,adb,ads}"             , null),
@@ -249,4 +311,5 @@ public class Catalog {
             new Mode("Yaml"              , "yaml.xml"                    , "*.{yml,yaml}"                , null),
             new Mode("Zpt"               , "zpt.xml"                     , "*.{pt,zpt}"                  , null),
     };
+
 }
