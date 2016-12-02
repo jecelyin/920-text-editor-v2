@@ -418,10 +418,10 @@ public class MainActivity extends BaseActivity
                 tabManager.newTab();
                 break;
             case R.id.m_open:
-                if (L.debug) {
-                    SpeedActivity.startActivity(this);
-                    break;
-                }
+//                if (L.debug) {
+//                    SpeedActivity.startActivity(this);
+//                    break;
+//                }
                 FileExplorerActivity.startPickFileActivity(this, null, RC_OPEN_FILE);
                 break;
             case R.id.m_goto_line:

@@ -3,9 +3,9 @@ package com.jecelyin.editor.v2.highlight.jedit.syntax;
 
 //{{{ Imports
 
-import com.jecelyin.editor.v2.highlight.jedit.util.TextUtilities;
 import com.jecelyin.editor.v2.highlight.jedit.Segment;
 import com.jecelyin.editor.v2.highlight.jedit.util.SegmentCharSequence;
+import com.jecelyin.editor.v2.highlight.jedit.util.TextUtilities;
 
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
@@ -26,6 +26,8 @@ import java.util.regex.Pattern;
  * @version $Id: TokenMarker.java 23381 2013-12-09 12:43:14Z kpouer $
  */
 public class TokenMarker {
+    private boolean terminated;
+
     //{{{ TokenMarker constructor
     public TokenMarker() {
     } //}}}
@@ -98,8 +100,46 @@ public class TokenMarker {
 
         //{{{ Main parser loop
         int terminateChar = context.rules.getTerminateChar();
-        boolean terminated = false;
-        main_loop:
+        terminated = false;
+        makeTokenLoopLine(terminateChar);
+
+        //{{{ Mark all remaining characters
+        pos = lineLength;
+
+        if (context.inRule != null)
+            handleRuleEnd(context.inRule);
+
+        handleNoWordBreak();
+        markKeyword(true);
+        //}}}
+
+        //{{{ Unwind any NO_LINE_BREAK parent delegates
+        while (context.parent != null) {
+            ParserRule rule = context.parent.inRule;
+            if ((rule != null && (rule.action
+                    & ParserRule.NO_LINE_BREAK) == ParserRule.NO_LINE_BREAK)
+                    || terminated) {
+                context = context.parent;
+                keywords = context.rules.getKeywords();
+                context.setInRule(null);
+            } else
+                break;
+        } //}}}
+
+        tokenHandler.handleToken(line, Token.END,
+                pos - line.offset, 0, context);
+
+        context = context.intern();
+        tokenHandler.setLineContext(context);
+
+		/* for GC. */
+        this.tokenHandler = null;
+        this.line = null;
+
+        return context;
+    } //}}}
+
+    private void makeTokenLoopLine(int terminateChar) {
         for (pos = line.offset; pos < lineLength; pos++) {
             //{{{ check if we have to stop parsing (happens if the terminateChar has been exceeded)
             if (terminateChar >= 0 && pos - line.offset >= terminateChar
@@ -114,7 +154,7 @@ public class TokenMarker {
             //{{{ Check for the escape rule before anything else.
             if (context.escapeRule != null &&
                     handleRuleStart(context.escapeRule)) {
-                continue main_loop;
+                continue;
             } //}}}
 
             //{{{ check for end of delegate
@@ -122,19 +162,23 @@ public class TokenMarker {
                     && context.parent.inRule != null
                     && checkDelegateEnd(context.parent.inRule)) {
                 seenWhitespaceEnd = true;
-                continue main_loop;
+                continue;
             } //}}}
 
+            boolean c = false;
             //{{{ check every rule
-            Character ch = Character.valueOf(line.array[pos]);
+            Character ch = line.array[pos];
             List<ParserRule> rules = context.rules.getRules(ch);
             for (ParserRule rule : rules) {
                 // stop checking rules if there was a match
                 if (handleRuleStart(rule)) {
                     seenWhitespaceEnd = true;
-                    continue main_loop;
+                    c = true;
+                    break;
                 }
             } //}}}
+
+            if (c)continue;
 
             //{{{ check if current character is a word separator
             if (Character.isWhitespace(ch)) {
@@ -184,43 +228,7 @@ public class TokenMarker {
                 seenWhitespaceEnd = true;
             } //}}}
         } //}}}
-
-        //{{{ Mark all remaining characters
-        pos = lineLength;
-
-        if (context.inRule != null)
-            handleRuleEnd(context.inRule);
-
-        handleNoWordBreak();
-        markKeyword(true);
-        //}}}
-
-        //{{{ Unwind any NO_LINE_BREAK parent delegates
-        unwind:
-        while (context.parent != null) {
-            ParserRule rule = context.parent.inRule;
-            if ((rule != null && (rule.action
-                    & ParserRule.NO_LINE_BREAK) == ParserRule.NO_LINE_BREAK)
-                    || terminated) {
-                context = context.parent;
-                keywords = context.rules.getKeywords();
-                context.setInRule(null);
-            } else
-                break unwind;
-        } //}}}
-
-        tokenHandler.handleToken(line, Token.END,
-                pos - line.offset, 0, context);
-
-        context = context.intern();
-        tokenHandler.setLineContext(context);
-
-		/* for GC. */
-        this.tokenHandler = null;
-        this.line = null;
-
-        return context;
-    } //}}}
+    }
 
     //{{{ Private members
 

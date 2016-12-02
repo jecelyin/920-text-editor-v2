@@ -111,7 +111,7 @@ public class ParserRuleSet {
             if ((null == r.upHashChar) || (0 >= r.upHashChar.length)) {
                 keys[0] = null;
             } else {
-                keys[0] = Character.valueOf(r.upHashChar[0]);
+                keys[0] = r.upHashChar[0];
             }
         } else {
             keys = new Character[r.upHashChars.length];
@@ -134,7 +134,7 @@ public class ParserRuleSet {
     public List<ParserRule> getRules(Character key) {
         List<ParserRule> rulesForNull = ruleMap.get(null);
         boolean emptyForNull = rulesForNull == null || rulesForNull.isEmpty();
-        Character upperKey = key == null ? null : Character.valueOf(Character.toUpperCase(key.charValue()));
+        Character upperKey = key == null ? null : Character.toUpperCase(key);
         List<ParserRule> rulesForKey = upperKey == null ? null : ruleMap.get(upperKey);
         boolean emptyForKey = rulesForKey == null || rulesForKey.isEmpty();
         if (emptyForNull && emptyForKey) {
