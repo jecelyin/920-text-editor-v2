@@ -170,7 +170,7 @@ public class ModeObjectHandler {
             //{{{ IMPORT
             else if (tag.tagName.equals("IMPORT")) {
                 // prevent lockups
-                if (!rules.equals(tag.lastDelegateSet)) {
+                if (!rules.equals(tag.lastDelegateSet) && tag.lastDelegateSet != null) {
                     rules.addRuleSet(tag.lastDelegateSet);
                 }
             } //}}}

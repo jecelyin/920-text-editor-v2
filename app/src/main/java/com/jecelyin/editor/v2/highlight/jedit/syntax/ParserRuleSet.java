@@ -69,6 +69,8 @@ public class ParserRuleSet {
      */
     public void resolveImports() {
         for (ParserRuleSet ruleset : imports) {
+            if (ruleset == null)
+                continue;
             if (!ruleset.imports.isEmpty()) {
                 //prevent infinite recursion
                 ruleset.imports.remove(this);
@@ -285,9 +287,9 @@ public class ParserRuleSet {
     private final String setName;
     private Hashtable<String, String> props;
 
-    private KeywordMap keywords;
+    KeywordMap keywords;
 
-    private int ruleCount;
+    int ruleCount;
 
     private final Map<Character, List<ParserRule>> ruleMap;
 
@@ -298,7 +300,7 @@ public class ParserRuleSet {
      * &lt;TERMINATE AT_CHAR="1" /&gt;
      */
     private int terminateChar = -1;
-    private boolean ignoreCase = true;
+    boolean ignoreCase = true;
     private byte defaultToken;
     private ParserRule escapeRule;
 

@@ -4,6 +4,7 @@ package com.jecelyin.editor.v2.highlight.jedit.syntax;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -55,11 +56,11 @@ public class ParserRule {
     public final char[] upHashChars;
     public final int startPosMatch;
     public final char[] start;
-    public final Pattern startRegexp;
+    public final Matcher startRegexp;
 
     public final int endPosMatch;
     public final char[] end;
-    public final Pattern endRegexp;
+    public final Matcher endRegexp;
 
     public final int action;
     public final byte token;
@@ -100,7 +101,7 @@ public class ParserRule {
             ParserRuleSet delegate, byte id, boolean ignoreCase)
             throws PatternSyntaxException {
         return new ParserRule(SEQ | REGEXP, hashChar, posMatch,
-                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)),
+                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher(""),
                 0, null, null, delegate, id, MATCH_TYPE_CONTEXT, null);
     } //}}}
 
@@ -110,7 +111,7 @@ public class ParserRule {
             ParserRuleSet delegate, byte id, boolean ignoreCase)
             throws PatternSyntaxException {
         return new ParserRule(hashChars, SEQ | REGEXP, posMatch,
-                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)),
+                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher(""),
                 0, null, null, delegate, id, MATCH_TYPE_CONTEXT, null);
     } //}}}
 
@@ -140,11 +141,11 @@ public class ParserRule {
                 ((noLineBreak) ? NO_LINE_BREAK : 0) |
                 ((noWordBreak) ? NO_WORD_BREAK : 0);
 
-        Pattern endRegexpPattern;
+        Matcher endRegexpPattern;
         char[] endArray;
         if (endRegexp) {
             ruleAction |= END_REGEXP;
-            endRegexpPattern = Pattern.compile(end, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0));
+            endRegexpPattern = Pattern.compile(end, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher("");
             endArray = null;
         } else {
             endRegexpPattern = null;
@@ -152,7 +153,7 @@ public class ParserRule {
         }
 
         return new ParserRule(ruleAction, hashChar, startPosMatch, null,
-                Pattern.compile(start, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)),
+                Pattern.compile(start, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher(""),
                 endPosMatch, endArray, endRegexpPattern, delegate, id, matchType,
                 escape);
     } //}}}
@@ -168,11 +169,11 @@ public class ParserRule {
                 ((noLineBreak) ? NO_LINE_BREAK : 0) |
                 ((noWordBreak) ? NO_WORD_BREAK : 0);
 
-        Pattern endRegexpPattern;
+        Matcher endRegexpPattern;
         char[] endArray;
         if (endRegexp) {
             ruleAction |= END_REGEXP;
-            endRegexpPattern = Pattern.compile(end, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0));
+            endRegexpPattern = Pattern.compile(end, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher("");
             endArray = null;
         } else {
             endRegexpPattern = null;
@@ -180,7 +181,7 @@ public class ParserRule {
         }
 
         return new ParserRule(hashChars, ruleAction, startPosMatch, null,
-                Pattern.compile(start, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)),
+                Pattern.compile(start, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher(""),
                 endPosMatch, endArray, endRegexpPattern, delegate, id,
                 matchType, escape);
     } //}}}
@@ -204,7 +205,7 @@ public class ParserRule {
         int ruleAction = EOL_SPAN | REGEXP | NO_LINE_BREAK;
 
         return new ParserRule(ruleAction, hashChar, posMatch,
-                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)),
+                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher(""),
                 0, null, null, delegate, id, matchType, null);
     } //}}}
 
@@ -216,7 +217,7 @@ public class ParserRule {
         int ruleAction = EOL_SPAN | REGEXP | NO_LINE_BREAK;
 
         return new ParserRule(hashChars, ruleAction, posMatch,
-                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)),
+                null, Pattern.compile(seq, (ignoreCase ? Pattern.CASE_INSENSITIVE : 0)).matcher(""),
                 0, null, null, delegate, id, matchType, null);
     } //}}}
 
@@ -300,8 +301,8 @@ public class ParserRule {
 
     //{{{ Private members
     private ParserRule(int action, String hashChar,
-                       int startPosMatch, char[] start, Pattern startRegexp,
-                       int endPosMatch, char[] end, Pattern endRegexp,
+                       int startPosMatch, char[] start, Matcher startRegexp,
+                       int endPosMatch, char[] end, Matcher endRegexp,
                        ParserRuleSet delegate, byte token, byte matchType,
                        String escape) {
         this.action = action;
@@ -327,8 +328,8 @@ public class ParserRule {
     }
 
     private ParserRule(char[] hashChars, int action,
-                       int startPosMatch, char[] start, Pattern startRegexp,
-                       int endPosMatch, char[] end, Pattern endRegexp,
+                       int startPosMatch, char[] start, Matcher startRegexp,
+                       int endPosMatch, char[] end, Matcher endRegexp,
                        ParserRuleSet delegate, byte token, byte matchType,
                        String escape) {
         this.action = action;

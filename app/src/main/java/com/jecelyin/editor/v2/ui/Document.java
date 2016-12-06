@@ -386,7 +386,8 @@ public class Document implements ReadFileListener, TextWatcher {
         if(!buffer.isCanHighlight())
             return;
         DefaultTokenHandler tokenHandler;
-        L.startTracing("textview-highlight2");
+//        L.d("hl startLine=" + startLine + " endLine=" + endLine);
+        L.startTracing(null);
         if(styles == null)
             styles = StyleLoader.loadStyles(context);
         ArrayList<HighlightInfo> mergerArray;
@@ -400,7 +401,7 @@ public class Document implements ReadFileListener, TextWatcher {
             collectToken(buffer, i, token, mergerArray);
             addTokenSpans(spannableStringBuilder, i, mergerArray);
         }
-        L.stopTracing();
+//        L.stopTracing();
     }
 
     private void addTokenSpans(Spannable spannableStringBuilder, int line, ArrayList<HighlightInfo> mergerArray) {

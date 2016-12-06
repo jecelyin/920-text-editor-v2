@@ -19,6 +19,7 @@
 package com.jecelyin.common.utils;
 
 import android.os.Debug;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.jecelyin.common.app.JecApp;
@@ -62,7 +63,8 @@ public class L {
     public static void startTracing(String name) {
         if (!debug)
             return;
-        Debug.startMethodTracing(name);
+        if (!TextUtils.isEmpty(name))
+            Debug.startMethodTracing(name);
         tracingName = name;
         tracingStartTime = System.currentTimeMillis();
     }
@@ -72,7 +74,9 @@ public class L {
             return;
 
         long tracingStopTime = System.currentTimeMillis();
-        Debug.stopMethodTracing();
+
+        if (!TextUtils.isEmpty(tracingName))
+            Debug.stopMethodTracing();
 
         float ts = (tracingStopTime - tracingStartTime) / 1000f;
         L.d("Tracing Name: " + tracingName + " Consuming Time: " + ts + "s");

@@ -68,7 +68,7 @@ public class TokenMarker {
      * @param tokenHandler the token handler
      * @param line         a segment containing the content of the line
      */
-    public synchronized LineContext markTokens(LineContext prevContext,
+    public LineContext markTokens(LineContext prevContext,
                                                TokenHandler tokenHandler, Segment line) {
         //{{{ Set up some instance variables
         // this is to avoid having to pass around lots and lots of
@@ -92,7 +92,7 @@ public class TokenMarker {
             context.spanEndSubstRegex = prevContext.spanEndSubstRegex;
         }
 
-        keywords = context.rules.getKeywords();
+        keywords = context.rules.keywords;
 
         seenWhitespaceEnd = false;
         whitespaceEnd = line.offset;
@@ -120,7 +120,7 @@ public class TokenMarker {
                     & ParserRule.NO_LINE_BREAK) == ParserRule.NO_LINE_BREAK)
                     || terminated) {
                 context = context.parent;
-                keywords = context.rules.getKeywords();
+                keywords = context.rules.keywords;
                 context.setInRule(null);
             } else
                 break;
@@ -148,7 +148,7 @@ public class TokenMarker {
                 context = new LineContext(ParserRuleSet
                         .getStandardRuleSet(context.rules
                                 .getDefault()), context);
-                keywords = context.rules.getKeywords();
+                keywords = context.rules.keywords;
             } //}}}
 
             //{{{ Check for the escape rule before anything else.
@@ -205,7 +205,7 @@ public class TokenMarker {
                         pos - line.offset, 1, context);
                 lastOffset = pos + 1;
             } else {
-                if (keywords != null || context.rules.getRuleCount() != 0) {
+                if (keywords != null || context.rules.ruleCount != 0) {
                     String noWordSep = context.rules.getNoWordSep();
 
                     if (!Character.isLetterOrDigit(ch)
@@ -264,10 +264,10 @@ public class TokenMarker {
 
         LineContext tempContext = context;
         context = context.parent;
-        keywords = context.rules.getKeywords();
+        keywords = context.rules.keywords;
         boolean handled = handleRuleEnd(rule);
         context = tempContext;
-        keywords = context.rules.getKeywords();
+        keywords = context.rules.keywords;
 
         if (handled) {
             if (context.inRule != null)
@@ -281,7 +281,7 @@ public class TokenMarker {
                     matchToken(context.inRule, context.inRule, context),
                     pos - line.offset, pattern.count, context);
 
-            keywords = context.rules.getKeywords();
+            keywords = context.rules.keywords;
             context.setInRule(null);
             lastOffset = pos + pattern.count;
 
@@ -359,7 +359,7 @@ public class TokenMarker {
             matchedChars = pattern.count;
 
             if (!SyntaxUtilities.regionMatches(context.rules
-                    .getIgnoreCase(), line, pos, pattern.array)) {
+                    .ignoreCase, line, pos, pattern.array)) {
                 return false;
             }
         } else {
@@ -368,7 +368,7 @@ public class TokenMarker {
             //int matchStart = pos - line.offset;
             CharSequence charSeq = new SegmentCharSequence(line, pos - line.offset,
                     line.count - (pos - line.offset));
-            match = checkRule.startRegexp.matcher(charSeq);
+            match = checkRule.startRegexp.reset(charSeq);
             if (!match.lookingAt()) {
                 return false;
             } else if (match.start() != 0) {
@@ -417,7 +417,7 @@ public class TokenMarker {
                         context = new LineContext(
                                 checkRule.delegate,
                                 context.parent);
-                        keywords = context.rules.getKeywords();
+                        keywords = context.rules.keywords;
                     }
                     break;
                 //}}}
@@ -442,7 +442,7 @@ public class TokenMarker {
                     }
 
                     char[] spanEndSubst = null;
-                    Pattern spanEndSubstRegex = null;
+                    Matcher spanEndSubstRegex = null;
 				/* substitute result of matching the rule start
 				 * into the end string.
 				 *
@@ -457,10 +457,10 @@ public class TokenMarker {
                             spanEndSubst = substitute(match, checkRule.end, false);
                         } else if (checkRule.endRegexp != null) {
                             char[] pattern =
-                                    checkRule.endRegexp.pattern().toCharArray();
+                                    checkRule.endRegexp.pattern().pattern().toCharArray();
                             pattern = substitute(match, pattern, true);
 
-                            spanEndSubstRegex = Pattern.compile(new String(pattern));
+                            spanEndSubstRegex = Pattern.compile(new String(pattern)).matcher("");
                         }
                     }
 
@@ -469,7 +469,7 @@ public class TokenMarker {
                     context = new LineContext(
                             checkRule.delegate,
                             context);
-                    keywords = context.rules.getKeywords();
+                    keywords = context.rules.keywords;
 
                     break;
                 //}}}
@@ -551,12 +551,12 @@ public class TokenMarker {
                         new SegmentCharSequence(line, pos - line.offset,
                                 line.count - (pos - line.offset));
 
-                Pattern regex;
+                Matcher regex;
                 if (context.spanEndSubstRegex != null)
                     regex = context.spanEndSubstRegex;
                 else
                     regex = checkRule.endRegexp;
-                Matcher match = regex.matcher(charSeq);
+                Matcher match = regex.reset(charSeq);
                 if (!match.lookingAt()) {
                     return false;
                 } else {
@@ -567,7 +567,7 @@ public class TokenMarker {
         }
 
         // Escape rules are handled in handleRuleStart()
-        assert (checkRule.action & ParserRule.IS_ESCAPE) == 0;
+//        assert (checkRule.action & ParserRule.IS_ESCAPE) == 0;
 
         // Handle end of MARK_FOLLOWING
         if ((context.inRule.action & ParserRule.MARK_FOLLOWING) != 0) {
@@ -600,7 +600,7 @@ public class TokenMarker {
 
                 lastOffset = pos;
                 context = context.parent;
-                keywords = context.rules.getKeywords();
+                keywords = context.rules.keywords;
                 context.setInRule(null);
             }
         }
@@ -796,7 +796,7 @@ public class TokenMarker {
         public ParserRuleSet rules;
         // used for SPAN_REGEXP rules; otherwise null
         public char[] spanEndSubst;
-        public Pattern spanEndSubstRegex;
+        public Matcher spanEndSubstRegex;
         public ParserRule escapeRule;
 
         //{{{ LineContext constructor
