@@ -325,6 +325,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
     protected int mPaddingTop = 0;
     protected int mPaddingBottom = 0;
 
+    private int mLastCursorOffset = -1;
 //    private TruncateAt mEllipsize;
 
 //    static class Drawables {
@@ -4988,8 +4989,9 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
                 curs = mText.length();
             }
 
-            if (curs >= 0) {
-//                bringPointIntoView(curs);
+            if (curs >= 0 && mLastCursorOffset != curs) {
+                mLastCursorOffset = curs;
+                bringPointIntoView(curs);
             }
         } else {
             bringTextIntoView();

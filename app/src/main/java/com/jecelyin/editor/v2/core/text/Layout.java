@@ -28,7 +28,6 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.TextKeyListener;
 import android.text.style.LeadingMarginSpan;
-import android.text.style.LeadingMarginSpan.LeadingMarginSpan2;
 import android.text.style.LineBackgroundSpan;
 import android.text.style.ParagraphStyle;
 import android.text.style.ReplacementSpan;
@@ -263,10 +262,10 @@ public abstract class Layout {
             }
             //end jec+
 
-            if (mSpannedText) {
-                Spanned sp = (Spanned) buf;
-                int textLength = buf.length();
-                boolean isFirstParaLine = (start == 0 || buf.charAt(start - 1) == '\n');
+//            if (mSpannedText) {
+//                Spanned sp = (Spanned) buf;
+//                int textLength = buf.length();
+//                boolean isFirstParaLine = (start == 0 || buf.charAt(start - 1) == '\n');
 
                 // New batch of paragraph styles, collect into spans array.
                 // Compute the alignment, last alignment style wins.
@@ -278,12 +277,12 @@ public abstract class Layout {
                 // just collect the ones present at the start of the paragraph.
                 // If spanEnd is before the end of the paragraph, that's not
                 // our problem.
-                if (start >= spanEnd && (i == firstLine || isFirstParaLine)) {
-                    spanEnd = sp.nextSpanTransition(start, textLength,
-                                                    ParagraphStyle.class);
-                    spans = getParagraphSpans(sp, start, spanEnd, ParagraphStyle.class);
-
-                    paraAlign = mAlignment;
+//                if (start >= spanEnd && (i == firstLine || isFirstParaLine)) {
+//                    spanEnd = sp.nextSpanTransition(start, textLength,
+//                                                    ParagraphStyle.class);
+//                    spans = getParagraphSpans(sp, start, spanEnd, ParagraphStyle.class);
+//
+//                    paraAlign = mAlignment;
 //                    for (int n = spans.length - 1; n >= 0; n--) {
 //                        if (spans[n] instanceof AlignmentSpan) {
 //                            paraAlign = ((AlignmentSpan) spans[n]).getAlignment();
@@ -291,8 +290,8 @@ public abstract class Layout {
 //                        }
 //                    }
 
-                    tabStopsIsInitialized = false;
-                }
+//                    tabStopsIsInitialized = false;
+//                }
 
                 // Draw all leading margin spans.  Adjust left or right according
                 // to the paragraph direction of the line.
@@ -326,7 +325,7 @@ public abstract class Layout {
 //                        }
 //                    }
 //                }
-            }
+//            }
 
             boolean hasTabOrEmoji = getLineContainsTab(i);
             // Can't tell if we have tabs for sure, currently
@@ -1576,42 +1575,42 @@ public abstract class Layout {
      * @return the leading margin of this line
      */
     private int getParagraphLeadingMargin(int line) {
-        if (!mSpannedText) {
+//        if (!mSpannedText) {
             return 0;
-        }
-        Spanned spanned = (Spanned) mText;
-
-        int lineStart = getLineStart(line);
-        int lineEnd = getLineEnd(line);
-        int spanEnd = spanned.nextSpanTransition(lineStart, lineEnd,
-                LeadingMarginSpan.class);
-        LeadingMarginSpan[] spans = getParagraphSpans(spanned, lineStart, spanEnd,
-                                                LeadingMarginSpan.class);
-        if (spans.length == 0) {
-            return 0; // no leading margin span;
-        }
-
-        int margin = 0;
-
-        boolean isFirstParaLine = lineStart == 0 ||
-            spanned.charAt(lineStart - 1) == '\n';
-
-        boolean useFirstLineMargin = isFirstParaLine;
-        for (int i = 0; i < spans.length; i++) {
-            if (spans[i] instanceof LeadingMarginSpan2) {
-                int spStart = spanned.getSpanStart(spans[i]);
-                int spanLine = getLineForOffset(spStart);
-                int count = ((LeadingMarginSpan2) spans[i]).getLeadingMarginLineCount();
-                // if there is more than one LeadingMarginSpan2, use the count that is greatest
-                useFirstLineMargin |= line < spanLine + count;
-            }
-        }
-        for (int i = 0; i < spans.length; i++) {
-            LeadingMarginSpan span = spans[i];
-            margin += span.getLeadingMargin(useFirstLineMargin);
-        }
-
-        return margin;
+//        }
+//        Spanned spanned = (Spanned) mText;
+//
+//        int lineStart = getLineStart(line);
+//        int lineEnd = getLineEnd(line);
+//        int spanEnd = spanned.nextSpanTransition(lineStart, lineEnd,
+//                LeadingMarginSpan.class);
+//        LeadingMarginSpan[] spans = getParagraphSpans(spanned, lineStart, spanEnd,
+//                                                LeadingMarginSpan.class);
+//        if (spans.length == 0) {
+//            return 0; // no leading margin span;
+//        }
+//
+//        int margin = 0;
+//
+//        boolean isFirstParaLine = lineStart == 0 ||
+//            spanned.charAt(lineStart - 1) == '\n';
+//
+//        boolean useFirstLineMargin = isFirstParaLine;
+//        for (int i = 0; i < spans.length; i++) {
+//            if (spans[i] instanceof LeadingMarginSpan2) {
+//                int spStart = spanned.getSpanStart(spans[i]);
+//                int spanLine = getLineForOffset(spStart);
+//                int count = ((LeadingMarginSpan2) spans[i]).getLeadingMarginLineCount();
+//                // if there is more than one LeadingMarginSpan2, use the count that is greatest
+//                useFirstLineMargin |= line < spanLine + count;
+//            }
+//        }
+//        for (int i = 0; i < spans.length; i++) {
+//            LeadingMarginSpan span = spans[i];
+//            margin += span.getLeadingMargin(useFirstLineMargin);
+//        }
+//
+//        return margin;
     }
 
     /* package */

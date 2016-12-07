@@ -302,7 +302,6 @@ public class JecEditText extends TextView {
         mScaleDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
 
         mFastScroller = new FastScroller(getContext(), this);
-        mFastScroller.setAlwaysShow(false);
         final ViewConfiguration configuration = ViewConfiguration.get(getContext());
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
@@ -697,16 +696,7 @@ public class JecEditText extends TextView {
         super.draw(canvas);
 
         if (mFastScroller != null) {
-            final int scrollY = getScrollY();
-            if (scrollY != 0) {
-                // Pin to the top/bottom during overscroll
-                int restoreCount = canvas.save();
-                canvas.translate(0, (float) scrollY);
-                mFastScroller.draw(canvas);
-                canvas.restoreToCount(restoreCount);
-            } else {
-                mFastScroller.draw(canvas);
-            }
+            mFastScroller.draw(canvas);
         }
     }
 

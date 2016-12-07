@@ -291,8 +291,11 @@ public class ArrowKeyMovementMethod extends BaseMovementMethod implements Moveme
                 // but we do need to make sure the cursor is still visible at
                 // the current scroll offset to avoid the scroll jumping later
                 // to show it.
-                if ((initialScrollY >= 0 && initialScrollY != widget.getScrollY()) ||
-                    (initialScrollX >= 0 && initialScrollX != widget.getScrollX())) {
+//                if ((initialScrollY >= 0 && initialScrollY != widget.getScrollY()) ||
+//                    (initialScrollX >= 0 && initialScrollX != widget.getScrollX())) {
+                //jec: 避免不换行时跳动
+                if (!widget.getHorizontallyScrolling() && ((initialScrollY >= 0 && initialScrollY != widget.getScrollY()) ||
+                    (initialScrollX >= 0 && initialScrollX != widget.getScrollX()))) {
                     widget.moveCursorToVisibleOffset();
                     return true;
                 }
