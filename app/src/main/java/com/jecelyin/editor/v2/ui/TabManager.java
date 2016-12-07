@@ -113,12 +113,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
                 updateTabList();
 
                 if (!exitApp && editorAdapter.getCount() == 0) {
-                    mainActivity.mTabPager.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            newTab();
-                        }
-                    });
+                    newTab();
                 }
             }
         });
