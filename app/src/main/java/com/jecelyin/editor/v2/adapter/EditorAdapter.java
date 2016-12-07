@@ -38,7 +38,6 @@ import com.jecelyin.editor.v2.task.ClusterCommand;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
 import com.jecelyin.editor.v2.ui.MainActivity;
 import com.jecelyin.editor.v2.ui.dialog.SaveConfirmDialog;
-import com.jecelyin.editor.v2.utils.AppUtils;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.view.EditorView;
 
@@ -99,7 +98,7 @@ public class EditorAdapter extends ViewPagerAdapter {
      */
     public void setEditorView(int index, EditorView editorView) {
         if (index >= getCount()) {
-            AppUtils.showException(context, "setEditorView", new Exception());
+//            AppUtils.showException(context, "setEditorView", new Exception());
             return;
         }
         EditorDelegate delegate = list.get(index);
