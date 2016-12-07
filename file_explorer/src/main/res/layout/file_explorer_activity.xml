@@ -44,6 +44,7 @@
                 android:background="@drawable/input_edittext_background"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:inputType="textNoSuggestions"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:textColor="#333"
