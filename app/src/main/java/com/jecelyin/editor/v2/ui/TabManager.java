@@ -22,6 +22,8 @@ import android.database.DataSetObserver;
 import android.support.v4.view.GravityCompat;
 import android.view.View;
 
+import com.jecelyin.common.utils.L;
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.adapter.EditorAdapter;
 import com.jecelyin.editor.v2.adapter.TabAdapter;
@@ -30,7 +32,6 @@ import com.jecelyin.editor.v2.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.view.EditorView;
 import com.jecelyin.editor.v2.view.TabViewPager;
-import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.io.File;
@@ -73,7 +74,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
             }
         });
         mainActivity.mTabPager.setOnPageChangeListener(this);
-        setCurrentTab(0);
+//        setCurrentTab(0); //fix can't set last open tab
     }
 
     private void onTabMenuViewsClick(View v) {
@@ -105,6 +106,9 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
             }
             editorAdapter.notifyDataSetChanged();
             updateTabList();
+
+            int lastTab = Pref.getInstance(mainActivity).getLastTab();
+            setCurrentTab(lastTab);
         }
 
         editorAdapter.registerDataSetObserver(new DataSetObserver() {
@@ -160,6 +164,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
     }
 
     public void setCurrentTab(final int index) {
+        L.e(new Exception("currenttab"));
         mainActivity.mTabPager.setCurrentItem(index);
         tabAdapter.setCurrentTab(index);
         updateToolbar();
@@ -232,6 +237,9 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
     public boolean closeAllTabAndExitApp() {
         EditorDelegate.setDisableAutoSave(true);
         exitApp = true;
+        if (mainActivity.mTabPager != null) {
+            Pref.getInstance(mainActivity).setLastTab(getCurrentTab());
+        }
         return editorAdapter.removeAll(new TabCloseListener() {
             @Override
             public void onClose(String path, String encoding, int offset) {

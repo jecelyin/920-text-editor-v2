@@ -401,7 +401,7 @@ public class Document implements ReadFileListener, TextWatcher {
             collectToken(buffer, i, token, mergerArray);
             addTokenSpans(spannableStringBuilder, i, mergerArray);
         }
-//        L.stopTracing();
+        L.stopTracing();
     }
 
     private void addTokenSpans(Spannable spannableStringBuilder, int line, ArrayList<HighlightInfo> mergerArray) {
