@@ -159,15 +159,17 @@ public class EditorAdapter extends ViewPagerAdapter {
                             @Override
                             public void onSaved() {
                                 remove(position);
-                                if(listener != null)
+                                if (listener != null)
                                     listener.onClose(path, encoding, offset);
                             }
                         };
                         ((MainActivity) context).doCommand(command);
-                    } else {
+                    } else if (which == DialogAction.NEGATIVE) {
                         remove(position);
                         if(listener != null)
                             listener.onClose(path, encoding, offset);
+                    } else {
+                        dialog.dismiss();
                     }
                 }
             }).show();

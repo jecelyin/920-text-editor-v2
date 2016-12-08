@@ -42,6 +42,7 @@ public class SaveConfirmDialog extends AbstractDialog {
                 .content(context.getString(R.string.confirm_save_msg, filename))
                 .positiveText(R.string.yes)
                 .negativeText(R.string.no)
+                .neutralText(R.string.cancel)
                 .onPositive(callback)
                 .onNegative(callback)
                 .show();
