@@ -22,7 +22,6 @@ import android.database.DataSetObserver;
 import android.support.v4.view.GravityCompat;
 import android.view.View;
 
-import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.adapter.EditorAdapter;
@@ -164,7 +163,6 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
     }
 
     public void setCurrentTab(final int index) {
-        L.e(new Exception("currenttab"));
         mainActivity.mTabPager.setCurrentItem(index);
         tabAdapter.setCurrentTab(index);
         updateToolbar();
