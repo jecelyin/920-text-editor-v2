@@ -18,12 +18,15 @@
 
 package com.jecelyin.editor.v2.ui;
 
+import android.annotation.ColorInt;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Parcelable;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.UpdateAppearance;
 import android.view.View;
 
 import com.jecelyin.common.task.TaskListener;
@@ -51,12 +54,24 @@ public class EditorObjectProcessor {
     private static class FindInFilesProcessor {
         private final JecEditText editText;
         private final EditorDelegate editorDelegate;
+        private final int findResultsKeywordColor;
+        private final int findResultsPathColor;
         ExtGrep grep;
+
         public FindInFilesProcessor(Parcelable object, EditorDelegate editorDelegate) {
             grep = (ExtGrep) object;
             this.editorDelegate = editorDelegate;
             this.editText = editorDelegate.mEditText;
             editText.setMovementMethod(LinkMovementMethod.getInstance());
+
+            TypedArray a = editText.getContext().obtainStyledAttributes(new int[]{
+                    R.attr.findResultsPath,
+                    R.attr.findResultsKeyword,
+            });
+            findResultsPathColor = a.getColor(0, Color.BLACK);
+            findResultsKeywordColor = a.getColor(1, Color.BLACK);
+            a.recycle();
+
             find();
         }
 
@@ -91,24 +106,33 @@ public class EditorObjectProcessor {
                 if(file == null || !rs.file.equals(file)) {
                     file = rs.file;
                     ssb.append("\n");
-                    ssb.append(file.getPath(), new ForegroundColorSpan(Color.BLUE), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ssb.append(file.getPath(), new ForegroundColorSpan(findResultsPathColor), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     ssb.append("\n");
                 }
                 //%[index$][标识]*[最小宽度][.精度]转换符
-                ssb.append(String.format("%1$4d  %2$s\n", rs.lineNumber, rs.line), new FileClickableSpan(editorDelegate, rs), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                ssb.append(String.format("%1$4d  %2$s\n", rs.lineNumber, rs.line), new FileClickableSpan(editorDelegate, rs), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.append(String.format("%1$4d  ", rs.lineNumber));
+                int start = ssb.length();
+                ssb.append(rs.line);
+//                ssb.setSpan(new ForegroundColorSpan(findResultsKeywordColor), start + rs.matchStart, start + rs.matchEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.setSpan(new FileClickableSpan(findResultsKeywordColor, editorDelegate, rs), start + rs.matchStart, start + rs.matchEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssb.append('\n');
             }
             editText.setText(ssb);
         }
 
     }
 
-    private static class FileClickableSpan extends ClickableSpan {
+    private static class FileClickableSpan extends ClickableSpan
+            implements UpdateAppearance {
         private final ExtGrep.Result result;
         private final EditorDelegate editorDelegate;
+        private final int mColor;
 
-        public FileClickableSpan(EditorDelegate editorDelegate, ExtGrep.Result result) {
+        public FileClickableSpan(@ColorInt int color, EditorDelegate editorDelegate, ExtGrep.Result result) {
             this.editorDelegate = editorDelegate;
             this.result = result;
+            mColor = color;
         }
 
         @Override
@@ -121,8 +145,10 @@ public class EditorObjectProcessor {
          */
         @Override
         public void updateDrawState(TextPaint ds) {
-            ds.setColor(editorDelegate.mEditText.getCurrentTextColor());
-            ds.setUnderlineText(false);
+            ds.setColor(mColor);
+            ds.setUnderlineText(true);
         }
+
+
     }
 }

@@ -129,8 +129,9 @@ public class ExtGrep implements Parcelable {
     private Result printMatch(final File file, final String line, final int lineNumber,
                               final int startOffset, final int endOffset, final int lineStartOffset, final List<String> beforeContextLines,
                               final List<String> afterContextLines) {
-        int start = lineStartOffset - 20 < 0 ? 0 : lineStartOffset - 20;
-        int end = lineStartOffset + 20 >= line.length() ? line.length() : lineStartOffset + 20;
+        int maxText = 20;
+        int start = lineStartOffset - maxText < 0 ? 0 : lineStartOffset - maxText;
+        int end = lineStartOffset + maxText >= line.length() ? line.length() : lineStartOffset + maxText;
         Result result = new Result();
         result.file = file;
         result.line = line.substring((int) start, (int) end);
@@ -138,6 +139,11 @@ public class ExtGrep implements Parcelable {
         result.startOffset = startOffset;
         result.endOffset = endOffset;
         result.lineStartOffset = lineStartOffset;
+        result.matchStart = lineStartOffset - start;
+        result.matchEnd = result.matchStart + endOffset - startOffset;
+        if (result.matchEnd > end - start) {
+            result.matchEnd = end - start;
+        }
         return result;
 //        if( quiet || printFilesWithoutMatch || printCountOnly ) {
 //            return;
@@ -578,6 +584,8 @@ public class ExtGrep implements Parcelable {
         public int lineStartOffset;
         public int startOffset;
         public int endOffset;
+        public int matchStart;
+        public int matchEnd;
 
         private Result() {
         }

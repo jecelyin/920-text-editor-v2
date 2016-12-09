@@ -102,6 +102,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
                 if(!f.isFile())
                     continue;
                 editorAdapter.newEditor(false, f, item.offset, item.encoding);
+                setCurrentTab(editorAdapter.getCount() - 1); //fixme: auto load file, otherwise click other tab will crash by search result
             }
             editorAdapter.notifyDataSetChanged();
             updateTabList();
