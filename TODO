@@ -28,7 +28,7 @@ at com.jecelyin.editor.v2.io.FileReader.read(FileReader.java:67)
 
 sl4a的打开选择920报错
 
-加上个关闭左右滑出菜单的选项，这样用户可以进行点击使用
+-加上个关闭左右滑出菜单的选项，这样用户可以进行点击使用
 
 bottom symbol bar visible on activity recreate
 

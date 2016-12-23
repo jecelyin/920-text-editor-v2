@@ -105,6 +105,10 @@
             android:key="pref_enable_root"
             android:title="@string/enable_root" />
 
+        <CheckBoxPreference
+            android:key="pref_enable_drawers"
+            android:title="@string/enable_drawers" />
+
     </PreferenceCategory>
 
     <CheckBoxPreference

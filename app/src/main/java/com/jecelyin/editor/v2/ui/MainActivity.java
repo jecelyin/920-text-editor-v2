@@ -221,6 +221,7 @@ public class MainActivity extends BaseActivity
 
     private void bindPreferences() {
         mDrawerLayout.setKeepScreenOn(pref.isKeepScreenOn());
+        mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         //bind other preference
 //        pref.getSharedPreferences().registerOnSharedPreferenceChangeListener(this); //不能这样使用，无法监听
 //        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
@@ -248,6 +249,9 @@ public class MainActivity extends BaseActivity
                 break;
             case Pref.KEY_SCREEN_ORIENTATION:
                 setScreenOrientation();
+                break;
+            case Pref.KEY_PREF_ENABLE_DRAWERS:
+                mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
         }
     }

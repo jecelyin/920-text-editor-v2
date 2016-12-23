@@ -63,6 +63,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_TOOLBAR_ICONS = "pref_toolbar_icons";
     public static final String KEY_PREF_AUTO_CHECK_UPDATES = "pref_auto_check_updates";
     public static final String KEY_PREF_KEEP_BACKUP_FILE = "pref_keep_backup_file";
+    public static final String KEY_PREF_ENABLE_DRAWERS = "pref_enable_drawers";
     public static final String KEY_LAST_OPEN_PATH = "last_open_path";
     public static final String KEY_READ_ONLY = "readonly_mode";
     public static final String KEY_SHOW_HIDDEN_FILES = "show_hidden_files";
@@ -145,6 +146,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_KEEP_SCREEN_ON, false);
         map.put(KEY_PREF_AUTO_CHECK_UPDATES, true);
         map.put(KEY_PREF_KEEP_BACKUP_FILE, true);
+        map.put(KEY_PREF_ENABLE_DRAWERS, true);
 
         //not at preference setting
         toolbarIcons = pm.getStringSet(KEY_TOOLBAR_ICONS, null);
@@ -405,5 +407,9 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
     public int getLastTab() {
         return (int)map.get(KEY_LAST_TAB);
+    }
+
+    public boolean isEnabledDrawers() {
+        return (boolean)map.get(KEY_PREF_ENABLE_DRAWERS);
     }
 }

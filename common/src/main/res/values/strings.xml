@@ -251,4 +251,5 @@
     <string name="local_translate_message">Please send it to jecelyin@gmail.com after you finish the translation thanks!</string>
     <string name="untitled_file_name">untitled.txt</string>
     <string name="editor_initialing">Editor initialing…</string>
+    <string name="enable_drawers">Enable interaction with tab drawer and main menu drawer.</string>
 </resources>
