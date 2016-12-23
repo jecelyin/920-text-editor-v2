@@ -24,7 +24,7 @@ at com.jecelyin.editor.v2.io.FileReader.read(FileReader.java:67)
 ------
 正则表达式搜索暂时没有发现问题，但是在替换的时候发现，像/n,/r这类的替换是行不通的（比如想将zip替换成zip/n从而达到在zip后面加上换行符的目的）。想请教下，如果想在替换的结果中加入换行符该如何实现呢？
 
-dark theme 设置菜单颜色不一致
+-dark theme 设置菜单颜色不一致
 
 sl4a的打开选择920报错
 

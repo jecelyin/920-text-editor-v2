@@ -18,6 +18,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_enabled="false" android:color="#3Dffffff"/>
-    <item android:color="#c9c9c9"/>
+    <item android:state_enabled="false" android:color="#1Dffffff"/>
+    <item android:color="#878787"/>
 </selector>

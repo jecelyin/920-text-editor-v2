@@ -21,11 +21,13 @@
     <color name="darkColorControlNormal">@color/abc_secondary_text_material_dark</color>
     <color name="darkWindowBackground">#ff424242</color>
     <color name="darkDividerColor">#30ffffff</color>
+    <color name="darkDividerColor2">#ff0066</color>
 
     <style name="DarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!--全局字体-->
-        <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
-        <item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>
+        <item name="android:textColorPrimary">@color/editor_primary_text_material_dark</item>
+        <!-- Preference Label and summary text color -->
+        <item name="android:textColorSecondary">@color/editor_secondary_text_material_dark</item>
         <!-- 工具栏背景 -->
         <item name="colorPrimary">@color/primary_material_dark</item>
         <!--状态栏背景-->
@@ -58,7 +60,6 @@
 
         <item name="android:textViewStyle">@style/DarkTextViewStyle</item>
         <item name="android:editTextStyle">@style/EditTextStyle</item>
-
         <!--App自定义-->
         <item name="netLoadingDrawable">@drawable/loading_icon</item>
         <item name="tabBackground">@drawable/drawer_tab_item_dark_background</item>
@@ -121,7 +122,7 @@
 
     <style name="DarkTextViewStyle" parent="TextViewStyle">
         <!-- 注意,Toolbar Menu也会有影响 -->
-        <item name="android:textColor">@color/editor_primary_text_material_dark</item>
+        <item name="android:textColor">@color/editor_secondary_text_material_dark</item>
     </style>
 
     <color name="dark_actionmode_light_background">#666666</color>
