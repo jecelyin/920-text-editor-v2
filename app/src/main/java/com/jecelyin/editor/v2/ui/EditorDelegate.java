@@ -350,7 +350,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
                 mEditText.backLocation();
                 break;
         }
-        return false;
+        return true;
     }
 
     private void reOpenWithEncoding(final String encoding) {

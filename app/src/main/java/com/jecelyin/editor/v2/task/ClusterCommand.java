@@ -42,6 +42,9 @@ public class ClusterCommand {
         if (buffer == null || buffer.size() == 0)
             return;
         EditorDelegate editorFragment = buffer.remove(0);
-        editorFragment.doCommand(command);
+        //无法继续执行时，这里同步手动执行一下
+        if (!editorFragment.doCommand(command)) {
+            doNextCommand();
+        }
     }
 }

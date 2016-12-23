@@ -84,6 +84,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
+import static com.jecelyin.editor.v2.R.id.symbolBarLayout;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
@@ -105,6 +107,7 @@ public class MainActivity extends BaseActivity
     TranslucentDrawerLayout mDrawerLayout;
     RecyclerView mTabRecyclerView;
     TextView mVersionTextView;
+    SymbolBarLayout mSymbolBarLayout;
 
     private TabManager tabManager;
 
@@ -178,8 +181,8 @@ public class MainActivity extends BaseActivity
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
 
-        SymbolBarLayout symbolBarLayout = (SymbolBarLayout) findViewById(R.id.symbolBarLayout);
-        symbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
+        mSymbolBarLayout = (SymbolBarLayout) findViewById(symbolBarLayout);
+        mSymbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
             @Override
             public void onClick(View v, String text) {
                 insertText(text);
@@ -222,6 +225,7 @@ public class MainActivity extends BaseActivity
     private void bindPreferences() {
         mDrawerLayout.setKeepScreenOn(pref.isKeepScreenOn());
         mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        mSymbolBarLayout.setVisibility(pref.isReadOnly() ? View.GONE : View.VISIBLE);
         //bind other preference
 //        pref.getSharedPreferences().registerOnSharedPreferenceChangeListener(this); //不能这样使用，无法监听
 //        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
@@ -252,6 +256,9 @@ public class MainActivity extends BaseActivity
                 break;
             case Pref.KEY_PREF_ENABLE_DRAWERS:
                 mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case Pref.KEY_READ_ONLY:
+                mSymbolBarLayout.setVisibility(pref.isReadOnly() ? View.GONE : View.VISIBLE);
                 break;
         }
     }
