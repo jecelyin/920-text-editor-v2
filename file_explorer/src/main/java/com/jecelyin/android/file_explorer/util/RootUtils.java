@@ -18,6 +18,8 @@
 
 package com.jecelyin.android.file_explorer.util;
 
+import android.text.TextUtils;
+
 import com.jecelyin.common.utils.L;
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Command;
@@ -164,6 +166,10 @@ public class RootUtils {
                 files.add(failedToRead);
                 continue;
             }
+            // /data/data/com.android.shell/files/bugreports: No such file or directory
+            if (line.startsWith("/") && line.contains(": No such file")) {
+                continue;
+            }
             try {
                 files.add(lsParser(path, line));
             } catch (Exception e) {
@@ -183,7 +189,7 @@ public class RootUtils {
 
         String date = "";
         String time = "";
-
+        //drwxrwx--x 3 root sdcard_rw 4096 2016-12-17 15:02 obb
         for (String token : split) {
             if (token.trim().isEmpty())
                 continue;
@@ -193,6 +199,8 @@ public class RootUtils {
                     break;
                 }
                 case 1: {
+                    if (TextUtils.isDigitsOnly(token))
+                        continue;
                     file.owner = token;
                     break;
                 }
@@ -210,7 +218,11 @@ public class RootUtils {
                         file.size = -2;
                     } else {
                         // Length, this is a file
-                        file.size = Long.parseLong(token);
+                        try {
+                            file.size = Long.parseLong(token);
+                        } catch (Exception e) {
+                            throw new NumberFormatException(e.getMessage() + " Line: " + line);
+                        }
                     }
                     break;
                 }
@@ -261,7 +273,7 @@ public class RootUtils {
             file.lastModified = new SimpleDateFormat("yyyy-MM-ddHH:mm", Locale.getDefault())
                     .parse(date + time).getTime();
         } catch (Exception e) {
-            L.e(e);
+//            L.e(e); //ignore: java.text.ParseException: Unparseable date: ""
             file.lastModified = 0;
         }
 

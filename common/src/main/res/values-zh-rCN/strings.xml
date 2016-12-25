@@ -251,4 +251,5 @@
     <string name="cannt_load_lang_file">无法加载语言文件</string>
     <string name="local_translate_message">翻译完成后请Email: jecelyin@gmail.com, 谢谢</string>
     <string name="editor_initialing">编辑器正在初始化中…</string>
+    <string name="out_of_memory_error">内存不足</string>
 </resources>

@@ -58,6 +58,11 @@ public abstract class JecAsyncTask<Params, Progress, Result> extends AsyncTask<P
         }
     }
 
+    @Override
+    protected void onCancelled() {
+        onComplete();
+    }
+
     protected void onComplete() {
         if (listener != null)
             listener.onCompleted();

@@ -22,6 +22,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -48,6 +50,7 @@ import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.task.JecAsyncTask;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.task.TaskResult;
+import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -149,9 +152,15 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             }
         });
 
-        onRefresh();
-
         Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                isRoot = Pref.getInstance(getContext()).isRootable();
+                onRefresh();
+            }
+        });
     }
 
     @Override
@@ -165,8 +174,9 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
+        // 不能加在onPause，因为请求Root UI会导致pause
         if (task != null) {
             task.cancel(true);
             task = null;
@@ -196,8 +206,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         UpdateRootInfo updateRootInfo = new UpdateRootInfo() {
 
             @Override
-            public void onUpdate(boolean root, JecFile f) {
-                isRoot = root;
+            public void onUpdate(JecFile f) {
                 path = f;
             }
         };
@@ -283,7 +292,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     }
 
     private static interface UpdateRootInfo {
-        public void onUpdate(boolean root, JecFile path);
+        public void onUpdate(JecFile path);
     }
 
     private static class ScanFilesTask extends JecAsyncTask<Void, Void, JecFile[]> {
@@ -304,15 +313,10 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             Pref pref = Pref.getInstance(context);
             final boolean showHiddenFiles = pref.isShowHiddenFiles();
             final int sortType = pref.getFileSortType();
-            boolean canRead = path.canRead();
-            if (!isRoot && !canRead) {
-                //请求Root权限
-                isRoot = pref.isRootable();
-            }
-            if (isRoot && !canRead && !(path instanceof RootFile)) {
+            if (isRoot && !(path instanceof RootFile) && !path.getPath().startsWith(Environment.getExternalStorageDirectory().getPath())) {
                 path = new RootFile(path.getPath());
             }
-            updateRootInfo.onUpdate(isRoot, path);
+            updateRootInfo.onUpdate(path);
             path.listFiles(new FileListResultListener() {
                 @Override
                 public void onResult(JecFile[] result) {

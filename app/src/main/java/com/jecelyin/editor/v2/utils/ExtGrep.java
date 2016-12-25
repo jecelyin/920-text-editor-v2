@@ -81,6 +81,8 @@ public class ExtGrep implements Parcelable {
         ArrayList<Result> results = new ArrayList<Result>();
         // at this point the list was expanded into file names
         for (final File f : filesToProcess) {
+            if (!f.exists() || !f.canRead())
+                continue;
             results.addAll(grepFile(f));
         }
         return results;

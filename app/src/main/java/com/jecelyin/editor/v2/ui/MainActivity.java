@@ -358,8 +358,13 @@ public class MainActivity extends BaseActivity
             if (intent.getScheme().equals("content"))
             {
                 InputStream attachment = getContentResolver().openInputStream(intent.getData());
-                String text = IOUtils.toString(attachment);
-                openText(text);
+                try {
+                    String text = IOUtils.toString(attachment);
+                    openText(text);
+                } catch (OutOfMemoryError e) {
+                    UIUtils.toast(this, R.string.out_of_memory_error);
+                }
+
                 return true;
             }else if(intent.getScheme().equals("file")) {
                 Uri mUri = intent.getData();
