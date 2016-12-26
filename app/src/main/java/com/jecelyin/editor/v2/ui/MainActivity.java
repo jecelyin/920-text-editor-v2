@@ -47,6 +47,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
+import com.afollestad.materialdialogs.util.DialogUtils;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.jecelyin.android.file_explorer.FileExplorerActivity;
 import com.jecelyin.common.utils.CrashDbHelper;
@@ -83,8 +84,6 @@ import com.jecelyin.editor.v2.widget.TranslucentDrawerLayout;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
-
-import static com.jecelyin.editor.v2.R.id.symbolBarLayout;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -181,7 +180,7 @@ public class MainActivity extends BaseActivity
         mTabRecyclerView = (RecyclerView) findViewById(R.id.tabRecyclerView);
         mVersionTextView = (TextView) findViewById(R.id.versionTextView);
 
-        mSymbolBarLayout = (SymbolBarLayout) findViewById(symbolBarLayout);
+        mSymbolBarLayout = (SymbolBarLayout) findViewById(R.id.symbolBarLayout);
         mSymbolBarLayout.setOnSymbolCharClickListener(new SymbolBarLayout.OnSymbolCharClickListener() {
             @Override
             public void onClick(View v, String text) {
@@ -206,7 +205,7 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.setEnabled(false);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
 
-        String version = SysUtils.getVersionName(this);
+        final String version = SysUtils.getVersionName(this);
         mVersionTextView.setText(version);
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
@@ -217,7 +216,12 @@ public class MainActivity extends BaseActivity
             start();
 
             if (savedInstanceState == null && pref.isAutoCheckUpdates()) {
-                new CheckUpgradeTask(this).checkVersion(version);
+                mDrawerLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new CheckUpgradeTask(getContext()).checkVersion(version);
+                    }
+                }, 3000);
             }
         }
     }
@@ -504,7 +508,9 @@ public class MainActivity extends BaseActivity
                 break;
             case R.id.m_color:
                 if (ensureNotReadOnly()) {
-                    ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this);
+                    final int primaryTextColor = DialogUtils.resolveColor(this, android.R.attr.textColorPrimary);
+                    int theme = DialogUtils.isColorDark(primaryTextColor) ? ColorPickerDialog.LIGHT_THEME : ColorPickerDialog.DARK_THEME;
+                    ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this, theme);
                     colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
                         @Override
                         public void onColorPicked(int color, String hexVal) {

@@ -28,6 +28,7 @@
         <item name="android:textColorPrimary">@color/editor_primary_text_material_dark</item>
         <!-- Preference Label and summary text color -->
         <item name="android:textColorSecondary">@color/editor_secondary_text_material_dark</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/editor_secondary_text_material_dark</item>
         <!-- 工具栏背景 -->
         <item name="colorPrimary">@color/primary_material_dark</item>
         <!--状态栏背景-->

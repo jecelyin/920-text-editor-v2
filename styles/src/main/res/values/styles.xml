@@ -63,7 +63,10 @@
     </style>
 
     <style name="MaterialEditText">
-        <item name="met_primaryColor">?colorAccent</item>
+        <item name="met_primaryColor">?attr/colorAccent</item>
+        <item name="met_textColor">?android:attr/textColorPrimary</item>
+        <item name="met_textColorHint">?android:attr/textColorSecondary</item>
+        <item name="met_underlineColor">?attr/dividerColor</item>
     </style>
 
     <style name="ButtonH1">
