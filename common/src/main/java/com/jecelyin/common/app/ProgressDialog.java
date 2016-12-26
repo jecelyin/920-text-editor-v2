@@ -43,7 +43,7 @@ public class ProgressDialog extends Dialog {
     }
 
     public ProgressDialog(Context context, CharSequence title) {
-        super(context, R.style.NetLoadingDialog);
+        super(context, R.style.ProgressDialog);
 
         setCancelable(true);
         setCanceledOnTouchOutside(false);
