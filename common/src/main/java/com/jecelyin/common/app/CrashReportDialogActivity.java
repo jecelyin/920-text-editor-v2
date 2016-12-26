@@ -136,15 +136,15 @@ public class CrashReportDialogActivity extends JecActivity {
         issue.setBody(sb.toString());
         issue.setLabel("bug");
 
-        final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
-        netLoadingDialog.show();
+        final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.string.submitting);
+        progressDialog.show();
 
         final ReportTask task = new ReportTask(getApplicationContext());
         task.setTaskListener(new TaskListener<Void>() {
             @Override
             public void onCompleted() {
                 dbHelper.close();
-                netLoadingDialog.dismiss();
+                progressDialog.dismiss();
             }
 
             @Override
@@ -165,7 +165,7 @@ public class CrashReportDialogActivity extends JecActivity {
         });
         task.execute(issue);
 
-        netLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 dbHelper.close();

@@ -31,23 +31,23 @@ import com.jecelyin.common.R;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class NetLoadingDialog extends Dialog {
+public class ProgressDialog extends Dialog {
     private final TextView messageTextView;
 
-    public NetLoadingDialog(Context context) {
+    public ProgressDialog(Context context) {
         this(context, null);
     }
 
-    public NetLoadingDialog(Context context, @StringRes int titleRes) {
+    public ProgressDialog(Context context, @StringRes int titleRes) {
         this(context, context.getString(titleRes));
     }
 
-    public NetLoadingDialog(Context context, CharSequence title) {
+    public ProgressDialog(Context context, CharSequence title) {
         super(context, R.style.NetLoadingDialog);
 
         setCancelable(true);
         setCanceledOnTouchOutside(false);
-        setContentView(R.layout.net_loading_layout);
+        setContentView(R.layout.progress_layout);
 //        getWindow().setBackgroundDrawable(null);
         getWindow().getAttributes().gravity= Gravity.CENTER;
         WindowManager.LayoutParams lp = getWindow().getAttributes();

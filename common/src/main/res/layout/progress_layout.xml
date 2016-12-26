@@ -39,7 +39,7 @@
         android:textSize="12sp"
         android:visibility="gone" />
 
-    <com.jecelyin.common.view.NetLoadingIndicatorView
+    <com.jecelyin.common.view.ProgressIndicatorView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center" />

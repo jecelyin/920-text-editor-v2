@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class NetLoadingIndicatorView extends View {
+public class ProgressIndicatorView extends View {
     //Sizes (with defaults in DP)
     public static final int DEFAULT_SIZE = 45;
     public static final float SCALE = 1.0f;
@@ -50,24 +50,24 @@ public class NetLoadingIndicatorView extends View {
     private boolean mHasAnimation;
     private List<Animator> mAnimators;
 
-    public NetLoadingIndicatorView(Context context) {
+    public ProgressIndicatorView(Context context) {
         super(context);
         init(null, 0);
     }
 
-    public NetLoadingIndicatorView(Context context, AttributeSet attrs) {
+    public ProgressIndicatorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
 
-    public NetLoadingIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs, defStyleAttr);
     }
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public NetLoadingIndicatorView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ProgressIndicatorView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs, defStyleAttr);
     }

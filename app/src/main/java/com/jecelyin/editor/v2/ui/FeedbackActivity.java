@@ -29,7 +29,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jecelyin.common.app.NetLoadingDialog;
+import com.jecelyin.common.app.ProgressDialog;
 import com.jecelyin.common.github.Issue;
 import com.jecelyin.common.github.IssueService;
 import com.jecelyin.common.task.JecAsyncTask;
@@ -118,14 +118,14 @@ public class FeedbackActivity extends BaseActivity {
         issue.setTitle("[Feedback] " + title);
         issue.setBody(sb.toString());
 
-        final NetLoadingDialog netLoadingDialog = new NetLoadingDialog(getContext(), R.string.submitting);
-        netLoadingDialog.show();
+        final ProgressDialog progressDialog = new ProgressDialog(getContext(), R.string.submitting);
+        progressDialog.show();
 
         final ReportTask task = new ReportTask(getContext());
         task.setTaskListener(new TaskListener<Void>() {
             @Override
             public void onCompleted() {
-                netLoadingDialog.dismiss();
+                progressDialog.dismiss();
             }
 
             @Override
@@ -135,14 +135,14 @@ public class FeedbackActivity extends BaseActivity {
 
             @Override
             public void onError(Exception e) {
-                netLoadingDialog.dismiss();
+                progressDialog.dismiss();
                 UIUtils.alert(getContext(), getString(R.string.feedback_submit_error_x, e.getMessage()));
             }
         });
         task.execute(issue);
 
 
-        netLoadingDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 task.cancel(true);
