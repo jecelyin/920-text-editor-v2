@@ -20,12 +20,15 @@ package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.BackgroundColorSpan;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,6 +71,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     private SavedState savedState;
     private int orientation;
     private boolean loaded = true;
+    private int findResultsKeywordColor;
 
     public EditorDelegate(SavedState ss) {
         savedState = ss;
@@ -105,6 +109,12 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     private void init() {
         if (document != null)
             return;
+
+        TypedArray a = context.obtainStyledAttributes(new int[]{
+                R.attr.findResultsKeyword,
+        });
+        findResultsKeywordColor = a.getColor(0, Color.BLACK);
+        a.recycle();
 
         document = new Document(context, this);
         mEditText.setReadOnly(Pref.getInstance(context).isReadOnly());
@@ -227,7 +237,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     public void addHightlight(int start, int end) {
-        mEditText.setSelection(start, end);
+        mEditText.getText().setSpan(new BackgroundColorSpan(findResultsKeywordColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mEditText.setSelection(end, end);
     }
 
     public int getCursorOffset() {

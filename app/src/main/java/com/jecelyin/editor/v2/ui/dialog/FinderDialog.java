@@ -103,7 +103,8 @@ public class FinderDialog extends AbstractDialog {
         View view = LayoutInflater.from(context).inflate(R.layout.search_replace, null);
 
         final ViewHolder holder = new ViewHolder(view);
-        holder.mFindEditText.setText(findText);
+        if (findText != null)
+            holder.mFindEditText.setText(findText.toString());
         if (Pref.getInstance(context).isReadOnly()) {
             holder.mReplaceCheckBox.setVisibility(View.GONE);
             holder.mReplaceEditText.setVisibility(View.GONE);
@@ -322,9 +323,11 @@ public class FinderDialog extends AbstractDialog {
 
             if(replaceText != null) {
                 menu.add(0, ID_REPLACE, 0, R.string.replace)
+                        .setIcon(R.drawable.replace)
                         .setShowAsAction(
                                 MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
                 menu.add(0, ID_REPLACE_ALL, 0, R.string.replace_all)
+                        .setIcon(R.drawable.replace_all)
                         .setShowAsAction(
                                 MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
             }
