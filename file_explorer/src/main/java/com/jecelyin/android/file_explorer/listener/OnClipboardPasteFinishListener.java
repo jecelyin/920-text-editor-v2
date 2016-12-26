@@ -16,30 +16,12 @@
  * limitations under the License.
  */
 
-package com.jecelyin.common.task;
+package com.jecelyin.android.file_explorer.listener;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class TaskResult<T> {
-    private T result;
-    private boolean waitResult;
-    private boolean hasResult;
 
-    void waitResult() throws InterruptedException {
-        this.waitResult = true;
-        if (!hasResult)
-            wait();
-    }
-
-    T getResult() {
-        return result;
-    }
-
-    public void setResult(T result) {
-        this.hasResult = true;
-        this.result = result;
-        if (waitResult)
-            notify();
-    }
+public interface OnClipboardPasteFinishListener {
+    void onFinish(int count, String error);
 }

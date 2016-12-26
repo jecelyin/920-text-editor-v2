@@ -44,6 +44,7 @@ import com.jecelyin.android.file_explorer.databinding.FileExplorerFragmentBindin
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.RootFile;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
+import com.jecelyin.android.file_explorer.listener.OnClipboardPasteFinishListener;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.OnItemClickListener;
@@ -192,9 +193,15 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.paste_menu) {
-            ((FileExplorerActivity)getActivity()).getFileClipboard().paste(getCurrentDirectory());
+            final FileClipboard fileClipboard = ((FileExplorerActivity) getActivity()).getFileClipboard();
+            fileClipboard.paste(getContext(), getCurrentDirectory(), new OnClipboardPasteFinishListener() {
+                @Override
+                public void onFinish(int count, String error) {
+                    onRefresh();
+                    fileClipboard.showPasteResult(getContext(), count, error);
+                }
+            });
             item.setVisible(false);
-            onRefresh();
         } else if (item.getItemId() == R.id.add_folder_menu) {
             action.doCreateFolder();
         }

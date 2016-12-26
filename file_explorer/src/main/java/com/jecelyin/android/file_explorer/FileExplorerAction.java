@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
 import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.android.file_explorer.listener.OnClipboardPasteFinishListener;
 import com.jecelyin.android.file_explorer.util.MimeTypes;
 import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
 import com.jecelyin.common.utils.UIUtils;
@@ -133,7 +134,12 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
             destroyActionMode();
         } else if (id == R.id.paste) {
             destroyActionMode();
-            fileClipboard.paste(explorerContext.getCurrentDirectory());
+            fileClipboard.paste(context, explorerContext.getCurrentDirectory(), new OnClipboardPasteFinishListener() {
+                @Override
+                public void onFinish(int count, String error) {
+                    fileClipboard.showPasteResult(context, count, error);
+                }
+            });
         } else if (id == R.id.rename) {
             doRenameAction();
         } else if (id == R.id.share) {

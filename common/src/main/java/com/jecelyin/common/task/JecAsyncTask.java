@@ -20,16 +20,45 @@ package com.jecelyin.common.task;
 
 import android.os.AsyncTask;
 
+import com.jecelyin.common.listeners.OnDismissListener;
+import com.jecelyin.common.listeners.ProgressInterface;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public abstract class JecAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
     private Exception exception;
     private TaskListener<Result> listener;
+    private ProgressInterface progressInterface;
+    private boolean complete = false;
 
     public JecAsyncTask<Params, Progress, Result> setTaskListener(TaskListener<Result> listener) {
         this.listener = listener;
         return this;
+    }
+
+    public void setProgress(ProgressInterface progressInterface) {
+        this.progressInterface = progressInterface;
+        if (progressInterface != null) {
+            progressInterface.addOnDismissListener(new OnDismissListener() {
+                @Override
+                public void onDismiss() {
+                    if (!complete)
+                        cancel(true);
+                }
+            });
+        }
+    }
+
+    public ProgressInterface getProgress() {
+        return progressInterface;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        if (progressInterface != null) {
+            progressInterface.show();
+        }
     }
 
     @Override
@@ -64,8 +93,13 @@ public abstract class JecAsyncTask<Params, Progress, Result> extends AsyncTask<P
     }
 
     protected void onComplete() {
+        complete = true;
         if (listener != null)
             listener.onCompleted();
+
+        if (progressInterface != null) {
+            progressInterface.dismiss();
+        }
     }
 
     protected void onSuccess(Result result) {

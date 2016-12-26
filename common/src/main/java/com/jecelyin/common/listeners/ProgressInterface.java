@@ -16,30 +16,16 @@
  * limitations under the License.
  */
 
-package com.jecelyin.common.task;
+package com.jecelyin.common.listeners;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class TaskResult<T> {
-    private T result;
-    private boolean waitResult;
-    private boolean hasResult;
 
-    void waitResult() throws InterruptedException {
-        this.waitResult = true;
-        if (!hasResult)
-            wait();
-    }
-
-    T getResult() {
-        return result;
-    }
-
-    public void setResult(T result) {
-        this.hasResult = true;
-        this.result = result;
-        if (waitResult)
-            notify();
-    }
+public interface ProgressInterface {
+    void addOnDismissListener(OnDismissListener listener);
+    void removeOnDismissListener(OnDismissListener listener);
+    void setMessage(CharSequence message);
+    void show();
+    void dismiss();
 }
