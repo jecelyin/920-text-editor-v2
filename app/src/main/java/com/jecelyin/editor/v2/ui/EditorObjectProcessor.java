@@ -68,8 +68,8 @@ public class EditorObjectProcessor {
                     R.attr.findResultsPath,
                     R.attr.findResultsKeyword,
             });
-            findResultsPathColor = a.getColor(0, Color.BLACK);
-            findResultsKeywordColor = a.getColor(1, Color.BLACK);
+            findResultsPathColor = a.getColor(a.getIndex(0), Color.BLACK);
+            findResultsKeywordColor = a.getColor(a.getIndex(1), Color.BLACK);
             a.recycle();
 
             find();

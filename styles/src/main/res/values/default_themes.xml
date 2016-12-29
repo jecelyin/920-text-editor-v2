@@ -72,7 +72,7 @@
         <item name="gutterBackground">#dfdfdf</item>
         <item name="gutterDivider">#000000</item>
         <item name="findResultsPath">#0000ff</item>
-        <item name="findResultsKeyword">#C26509</item>
+        <item name="findResultsKeyword">#eaa95e</item>
 
         <!--高亮-->
         <item name="hlComment1">#cc0000</item>

@@ -251,4 +251,8 @@
     <string name="cannt_load_lang_file">無法加載語言文件</string>
     <string name="local_translate_message">翻譯完後請Email给: jecelyin@gmail.com, 謝謝</string>
     <string name="editor_initialing">編輯器正在初始化中…</string>
+    <string name="enable_drawers">啟用標籤頁和主菜單的滑動</string>
+    <string name="out_of_memory_error">內存不足</string>
+    <string name="x_items_completed">%d 個文件已完成</string>
+    <string name="x_items_completed_and_error_x">%1$d 個文件已完成，但是有些文件發生一些錯誤： %2$s</string>
 </resources>

@@ -254,5 +254,5 @@
     <string name="enable_drawers">Enable interaction with tab drawer and main menu drawer.</string>
     <string name="out_of_memory_error">Out of application memory</string>
     <string name="x_items_completed">%d items Completed</string>
-    <string name="x_items_completed_and_error_x">%d items Completed, but occur some error: %s</string>
+    <string name="x_items_completed_and_error_x">%1$d items Completed, but has some items occur error: %2$s</string>
 </resources>

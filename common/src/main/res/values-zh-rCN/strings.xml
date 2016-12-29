@@ -252,4 +252,7 @@
     <string name="local_translate_message">翻译完成后请Email: jecelyin@gmail.com, 谢谢</string>
     <string name="editor_initialing">编辑器正在初始化中…</string>
     <string name="out_of_memory_error">内存不足</string>
+    <string name="enable_drawers">启用标签页和主菜单的滑动</string>
+    <string name="x_items_completed">%d 个文件已完成</string>
+    <string name="x_items_completed_and_error_x">%1$d 个文件已完成，但是有些文件发生一些错误： %2$s</string>
 </resources>
