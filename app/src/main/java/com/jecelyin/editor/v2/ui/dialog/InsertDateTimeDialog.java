@@ -57,6 +57,7 @@ public class InsertDateTimeDialog extends AbstractDialog implements AdapterView.
     };
     private static final String[] chinese = new String[]{
             "yyyy年M月d日 EEEE",
+            "yyyy年M月d日 HH:mm EEEE",
             "yyyy年M月d日",
             "'EEEE'年'O'月",
             "'O'月'A'日",
