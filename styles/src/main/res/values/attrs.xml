@@ -2,6 +2,7 @@
 <resources>
     <attr name="dividerColor" format="color" />
     <attr name="listItemBackground" format="reference" />
+    <attr name="highlightBackground" format="color" />
     <attr name="toolbarIconNormalColor" format="color" />
     <attr name="toolbarIconDisabledColor" format="color" />
     <attr name="menuIconNormalColor" format="color" />

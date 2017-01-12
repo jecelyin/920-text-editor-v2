@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/appNameTextView"
             android:layout_marginTop="30dp"
-            android:background="#fff"
+            android:background="?attr/highlightBackground"
             android:divider="@drawable/divider"
             android:orientation="vertical"
             android:showDividers="middle">
