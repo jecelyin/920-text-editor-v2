@@ -38,3 +38,36 @@ bottom symbol bar visible on activity recreate
 -只读必须重启
 
 -没有全部替换功能
+
+支持autohotkey语法高亮
+
+using the tab button on hackers keyboard instead of doing the indent whitespace it changes between the menus in the app which leaves me forced to add spaces to a file that previously only had tabs.
+
+When word wrap is disabled text will render on top of the line numbers.
+
+It would be good to have something to mark unsaved files in the tab sidebar.
+
+
+Unfortunately it doesn't appear to want to write to the / folder even though root is enabled.
+The file I tried to save was in /system/etc/
+
+Tag: JecLog
+Msg: /system/etc/.920bak.media_profiles.xml: open failed: EROFS (Read-only file system)
+Stacktrace:
+java.io.FileNotFoundException: /system/etc/.920bak.media_profiles.xml: open failed: EROFS (Read-only file system)
+at libcore.io.IoBridge.open(IoBridge.java:452)
+at java.io.FileOutputStream.(FileOutputStream.java:87)
+at com.jecelyin.common.utils.IOUtils.copyFile(IOUtils.java:160)
+at com.jecelyin.editor.v2.io.FileWriter.doInBackground(FileWriter.java:76)
+at com.jecelyin.editor.v2.io.FileWriter.doInBackground(FileWriter.java:37)
+
+
+Sometimes I've noticed that if the save button isn't active, rotating from portrait to landscape or vice versa will make it active.
+
+Replace feature does NOT work - you enter what to find and with what to replace, but it only finds the word - no way to replace
+
+
+单文件中使用搜索功能时，查找结果同样不能自动出现，总是要把该页文字往上移两行才能看到高亮显示的查找结果
+查找框中输入的字符串不能保留，这在多次搜索同一字符串时很不方便，只能多次重复输入。
+
+make it possible to hide top menu bar and bottom special characters bar
