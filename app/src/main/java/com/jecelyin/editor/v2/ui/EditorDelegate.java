@@ -440,6 +440,12 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             noticeMenuChanged();
     }
 
+    public String getLang() {
+        if (document == null)
+            return null;
+        return document.getModeName();
+    }
+
     private class EditorSelectionActionModeCallback implements ActionMode.Callback {
 
         @Override

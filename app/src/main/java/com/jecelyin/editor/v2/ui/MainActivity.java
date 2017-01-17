@@ -603,11 +603,21 @@ public class MainActivity extends BaseActivity
 
     public void doCommand(Command command) {
         clusterCommand = null;
-        if (tabManager == null || tabManager.getEditorAdapter() == null)
-            return;
-        EditorDelegate editorDelegate = tabManager.getEditorAdapter().getCurrentEditorDelegate();
-        if (editorDelegate != null)
+
+        EditorDelegate editorDelegate = getCurrentEditorDelegate();
+        if (editorDelegate != null) {
             editorDelegate.doCommand(command);
+
+            if (command.what == Command.CommandEnum.HIGHLIGHT) {
+                mToolbar.setTitle(editorDelegate.getToolbarText());
+            }
+        }
+    }
+
+    private EditorDelegate getCurrentEditorDelegate() {
+        if (tabManager == null || tabManager.getEditorAdapter() == null)
+            return null;
+        return tabManager.getEditorAdapter().getCurrentEditorDelegate();
     }
 
     public void startOpenFileSelectorActivity(Intent it) {
@@ -707,6 +717,14 @@ public class MainActivity extends BaseActivity
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public String getCurrentLang() {
+        EditorDelegate editorDelegate = getCurrentEditorDelegate();
+        if (editorDelegate == null)
+            return null;
+
+        return editorDelegate.getLang();
     }
 
 }

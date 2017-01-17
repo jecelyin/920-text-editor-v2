@@ -44,6 +44,7 @@ public class LangMap {
             case "assembly_parrot.xml": return R.raw.assembly_parrot_lang;
             case "assembly_r2000.xml": return R.raw.assembly_r2000_lang;
             case "assembly_x86.xml": return R.raw.assembly_x86_lang;
+            case "autohotkey.xml": return R.raw.autohotkey_lang;
             case "avro.xml": return R.raw.avro_lang;
             case "awk.xml": return R.raw.awk_lang;
             case "b.xml": return R.raw.b_lang;

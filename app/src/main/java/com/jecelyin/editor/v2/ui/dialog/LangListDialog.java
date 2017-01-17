@@ -37,6 +37,7 @@ import java.util.Set;
 public class LangListDialog extends AbstractDialog {
     private String[] scopeList;
     private String[] langList;
+    private int currentLangIndex = -1;
 
     private static class Grammar {
         String name;
@@ -69,6 +70,8 @@ public class LangListDialog extends AbstractDialog {
             }
         });
 
+        String currLang = getMainActivity().getCurrentLang();
+
         int size = list.size();
         langList = new String[size];
         scopeList = new String[size];
@@ -77,14 +80,17 @@ public class LangListDialog extends AbstractDialog {
             g = list.get(i);
             langList[i] = g.name;
             scopeList[i] = g.scope;
+
+            if (currLang != null && currLang.equals(g.scope)) {
+                currentLangIndex = i;
+            }
         }
     }
-
     @Override
     public void show() {
         MaterialDialog dlg = getDialogBuilder().items(langList)
                 .title(R.string.select_lang_to_highlight)
-                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                .itemsCallbackSingleChoice(currentLangIndex, new MaterialDialog.ListCallbackSingleChoice() {
 
                     @Override
                     public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
