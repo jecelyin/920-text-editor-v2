@@ -24,10 +24,12 @@ package com.jecelyin.editor.v2.common;
 public class TabInfo {
     private String title;
     private String path;
+    private boolean hasChanged;
 
-    public TabInfo(String title, String file) {
+    public TabInfo(String title, String file, boolean hasChanged) {
         this.title = title;
         this.path = file;
+        this.hasChanged = hasChanged;
     }
 
     public String getTitle() {
@@ -36,5 +38,9 @@ public class TabInfo {
 
     public String getPath() {
         return path;
+    }
+
+    public boolean hasChanged() {
+        return hasChanged;
     }
 }

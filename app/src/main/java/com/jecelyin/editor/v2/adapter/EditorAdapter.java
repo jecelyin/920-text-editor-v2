@@ -136,7 +136,7 @@ public class EditorAdapter extends ViewPagerAdapter {
         EditorDelegate f;
         for (int i=0; i<size; i++) {
             f = list.get(i);
-            arr[i] = new TabInfo(f.getTitle(), f.getPath());
+            arr[i] = new TabInfo(f.getTitle(), f.getPath(), f.isChanged());
         }
 
         return arr;

@@ -45,7 +45,7 @@ using the tab button on hackers keyboard instead of doing the indent whitespace 
 
 -When word wrap is disabled text will render on top of the line numbers.
 
-It would be good to have something to mark unsaved files in the tab sidebar.
+-It would be good to have something to mark unsaved files in the tab sidebar.
 
 
 Unfortunately it doesn't appear to want to write to the / folder even though root is enabled.

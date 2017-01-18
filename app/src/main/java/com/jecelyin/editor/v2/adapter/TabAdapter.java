@@ -53,7 +53,7 @@ public class TabAdapter extends RecyclerView.Adapter {
 //        }
         viewHolder.itemView.setSelected(position == currentTab);
 
-        viewHolder.mTitleTextView.setText(tabInfo.getTitle());
+        viewHolder.mTitleTextView.setText((tabInfo.hasChanged() ? "* " : "") + tabInfo.getTitle());
         viewHolder.mFileTextView.setText(tabInfo.getPath());
 
         if(onClickListener != null) {

@@ -221,8 +221,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         return document.isChanged();
     }
 
-    public String getToolbarText() {
-        return String.format("%s  \t|\t  %s \t %s", getTitle()
+    public CharSequence getToolbarText() {
+        return String.format("%s%s  \t|\t  %s \t %s", isChanged() ? "*" : "", getTitle()
                 , document == null ? "UTF-8" : document.getEncoding()
                 , document == null || document.getModeName() == null ? "" : document.getModeName()
         );
@@ -399,7 +399,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             // 另存为后更新一下文件名
             savedState.title = file.getName();
         }
-        ((MainActivity)context).getTabManager().onDocumentChanged(savedState.index);
+
         //保存文件后判断改变
         noticeMenuChanged();
     }
@@ -419,9 +419,11 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     private void noticeMenuChanged() {
-        ((MainActivity)context).setMenuStatus(R.id.m_save, isChanged() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
-        ((MainActivity)context).setMenuStatus(R.id.m_undo, mEditText != null && mEditText.canUndo() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
-        ((MainActivity)context).setMenuStatus(R.id.m_redo, mEditText != null && mEditText.canRedo() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+        MainActivity mainActivity = (MainActivity) this.context;
+        mainActivity.setMenuStatus(R.id.m_save, isChanged() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+        mainActivity.setMenuStatus(R.id.m_undo, mEditText != null && mEditText.canUndo() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+        mainActivity.setMenuStatus(R.id.m_redo, mEditText != null && mEditText.canRedo() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
+        ((MainActivity)context).getTabManager().onDocumentChanged(savedState.index);
     }
 
     @Override
