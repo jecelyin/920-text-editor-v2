@@ -18,28 +18,35 @@
 
 package com.jecelyin.editor.v2.core.text;
 
-import android.graphics.Paint;
-
-import com.jecelyin.editor.v2.Pref;
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class LayoutContext {
-    public int lineNumber = 1;
-    public Paint lineNumberPaint;
-    public Paint linePaint;
-    public Paint gutterBackgroundPaint;
-    public float tabPath;
-    public int gutterWidth;
-    public int lineNumberX;
-    public float translateX;
-    public float translateY;
-    public int cursorThickness;
-    public Pref pref;
-    public int scrollX;
-    public boolean isShowWhiteSpace;
-    public int whiteSpaceColor;
-    public TextLineNumber textLineNumber = new TextLineNumber();
+
+public class TextLineNumber {
+    private List<LineInfo> lineInfoList = new ArrayList<>();
+
+    public static class LineInfo {
+        public String text;
+        public int y;
+
+        public LineInfo(String text, int y) {
+            this.text = text;
+            this.y = y;
+        }
+    }
+
+    public void clear() {
+        lineInfoList.clear();
+    }
+
+    public void addLine(String text, int y) {
+        lineInfoList.add(new LineInfo(text, y));
+    }
+
+    public List<LineInfo> getLines() {
+        return lineInfoList;
+    }
 }

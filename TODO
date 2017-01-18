@@ -43,7 +43,7 @@ bottom symbol bar visible on activity recreate
 
 using the tab button on hackers keyboard instead of doing the indent whitespace it changes between the menus in the app which leaves me forced to add spaces to a file that previously only had tabs.
 
-When word wrap is disabled text will render on top of the line numbers.
+-When word wrap is disabled text will render on top of the line numbers.
 
 It would be good to have something to mark unsaved files in the tab sidebar.
 

@@ -110,6 +110,7 @@ import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
 import com.jecelyin.editor.v2.core.text.StaticLayout;
 import com.jecelyin.editor.v2.core.text.TextDirectionHeuristic;
 import com.jecelyin.editor.v2.core.text.TextDirectionHeuristics;
+import com.jecelyin.editor.v2.core.text.TextLineNumber;
 import com.jecelyin.editor.v2.core.text.TextUtils;
 import com.jecelyin.editor.v2.core.text.method.ArrowKeyMovementMethod;
 import com.jecelyin.editor.v2.core.text.method.LinkMovementMethod;
@@ -125,6 +126,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 //import android.text.Selection;
@@ -5422,7 +5424,6 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         mTextPaint.setColor(color);
         mTextPaint.drawableState = getDrawableState();
 
-        drawLineNumber(canvas);
         canvas.save();
         /*  Would be faster if we didn't have to do this. Can we chop the
             (displayable) text so that we don't need to do this ever?
@@ -5497,6 +5498,8 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
 //        }
 
         canvas.restore();
+
+        drawLineNumber(canvas);
     }
 
     @Override
@@ -9699,6 +9702,16 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         int height = getScrollY() + getHeight();
         canvas.drawRect(getScrollX(), getScrollY(), width, height, layoutContext.gutterBackgroundPaint);
         canvas.drawLine(width, getScrollY(), width, height, layoutContext.linePaint);
+
+        List<TextLineNumber.LineInfo> lines = layoutContext.textLineNumber.getLines();
+        for (TextLineNumber.LineInfo line : lines) {
+//            canvas.restore();
+//            canvas.translate(layoutContext.scrollX, 0);
+            canvas.drawText(line.text, layoutContext.lineNumberX + layoutContext.scrollX, line.y, layoutContext.lineNumberPaint);
+//            canvas.translate(-layoutContext.scrollX, 0);
+//            canvas.save();
+//            canvas.translate(layoutContext.translateX, layoutContext.translateY);
+        }
     }
 
     public int getMaxScrollY() {

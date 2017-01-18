@@ -232,6 +232,7 @@ public abstract class Layout {
         boolean tabStopsIsInitialized = false;
 
         TextLine tl = TextLine.obtain();
+        layoutContext.textLineNumber.clear();
         // Draw the lines, one at a time.
         // The baseline is the top of the following line minus the current line's descent.
         for (int i = firstLine; i <= lastLine; i++) {
@@ -252,12 +253,7 @@ public abstract class Layout {
             if(layoutContext.pref.isShowLineNumber()) {
                 int realLine = getRealLine(i);
                 if(realLine != 0) {
-                    canvas.restore();
-                    canvas.translate(layoutContext.scrollX, 0);
-                    canvas.drawText(Integer.toString(realLine), layoutContext.lineNumberX, lbottom, layoutContext.lineNumberPaint);
-                    canvas.translate(-layoutContext.scrollX, 0);
-                    canvas.save();
-                    canvas.translate(layoutContext.translateX, layoutContext.translateY);
+                    layoutContext.textLineNumber.addLine(Integer.toString(realLine), lbottom);
                 }
             }
             //end jec+
