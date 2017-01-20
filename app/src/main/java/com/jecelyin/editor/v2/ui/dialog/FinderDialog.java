@@ -23,9 +23,7 @@ import android.content.DialogInterface;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.view.ActionMode;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -40,11 +39,11 @@ import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.utils.GrepBuilder;
-import com.jecelyin.editor.v2.Pref;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
@@ -279,34 +278,25 @@ public class FinderDialog extends AbstractDialog {
 
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            actionMode.setTitle(replaceText == null ? R.string.find : R.string.replace);
+            actionMode.setTitle(null);
             actionMode.setSubtitle(null);
 
+            View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.search_replace_action_mode_layout, null);
             int w = fragment.getContext().getResources().getDimensionPixelSize(R.dimen.cab_find_text_width);
-            MaterialEditText et = new MaterialEditText(fragment.getContext());
-            et.setLayoutParams(new ViewGroup.LayoutParams(w, ViewGroup.LayoutParams.MATCH_PARENT));
-            et.setText(grep.getRegex());
-            et.setHint(R.string.keyword);
-            et.setSingleLine();
-            et.setTextAppearance(et.getContext(), R.style.ActionMode_Subtitle);
-            et.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            view.setLayoutParams(new ViewGroup.LayoutParams(w, ViewGroup.LayoutParams.MATCH_PARENT));
 
-                }
+            TextView searchTextView = (TextView) view.findViewById(R.id.searchTextView);
+            searchTextView.setText(grep.getRegex());
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    grep.setRegex(s.toString());
-                }
+            TextView replaceTextView = (TextView) view.findViewById(R.id.replaceTextView);
+            if (replaceText == null) {
+                replaceTextView.setVisibility(View.GONE);
+            } else {
+                replaceTextView.setText(replaceText);
+            }
 
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
             menu.add(0, ID_FIND_TEXT, 0, R.string.keyword)
-                    .setActionView(et)
+                    .setActionView(view)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
             menu.add(0, ID_FIND_PREV, 0, R.string.previous_occurrence)
