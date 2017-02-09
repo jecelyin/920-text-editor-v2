@@ -255,4 +255,6 @@
     <string name="out_of_memory_error">內存不足</string>
     <string name="x_items_completed">%d 個文件已完成</string>
     <string name="x_items_completed_and_error_x">%1$d 個文件已完成，但是有些文件發生一些錯誤： %2$s</string>
+    <string name="find_log">查找日誌</string>
+    <string name="replace_log">替換日誌</string>
 </resources>

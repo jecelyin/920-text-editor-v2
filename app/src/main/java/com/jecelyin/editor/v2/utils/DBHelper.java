@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "920-text-editor.db";
-    private static final int DATABASE_VERSION = 3; // Version must be >= 1
+    private static final int DATABASE_VERSION = 4; // Version must be >= 1
 
     public static DBHelper getInstance(Context context) {
         return new DBHelper(context.getApplicationContext());
@@ -61,16 +61,48 @@ public class DBHelper extends SQLiteOpenHelper {
                 "\tPRIMARY KEY(\"path\")\n" +
                 ")");
         db.execSQL("CREATE INDEX \"open_time\" ON recent_files (\"open_time\" DESC)");
+
+        createFindKeywordsTable(db);
+    }
+
+    public void createFindKeywordsTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE \"find_keywords\" (\n" +
+                "\t \"keyword\" TEXT NOT NULL,\n" +
+                "\t \"is_replace\" integer,\n" +
+                "\t \"ctime\" integer,\n" +
+                "\tPRIMARY KEY(\"keyword\", \"is_replace\")\n" +
+                ")");
+        db.execSQL("CREATE INDEX \"ctime\" ON find_keywords (\"ctime\" DESC)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if(oldVersion == 1 && newVersion == 2) {
-            db.execSQL("alter table recent_files ADD COLUMN encoding TEXT");
-        } else if(oldVersion == 2 && newVersion == 3) {
-            db.execSQL("alter table recent_files ADD COLUMN offset integer");
-            db.execSQL("alter table recent_files ADD COLUMN last_open integer");
+        for (int version = oldVersion; version < newVersion; version++) {
+            switch (version) {
+                case 1:
+                    upgradeTo2(db);
+                    break;
+                case 2:
+                    upgradeTo3(db);
+                    break;
+                case 3:
+                    upgradeTo4(db);
+                    break;
+            }
         }
+    }
+
+    private void upgradeTo4(SQLiteDatabase db) {
+        createFindKeywordsTable(db);
+    }
+
+    private void upgradeTo3(SQLiteDatabase db) {
+        db.execSQL("alter table recent_files ADD COLUMN offset integer");
+        db.execSQL("alter table recent_files ADD COLUMN last_open integer");
+    }
+
+    private void upgradeTo2(SQLiteDatabase db) {
+        db.execSQL("alter table recent_files ADD COLUMN encoding TEXT");
     }
 
     public void addRecentFile(String path, String encoding) {
@@ -137,5 +169,32 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("delete from recent_files");
         db.close();
+    }
+
+    public void clearFindKeywords(boolean isReplace) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("delete from find_keywords where is_replace=" + (isReplace ? "1" : "0"));
+        db.close();
+    }
+
+    public void addFindKeyword(String keyword, boolean isReplace) {
+        if (TextUtils.isEmpty(keyword))
+            return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("REPLACE INTO find_keywords VALUES (?, ?, ?)", new Object[]{keyword, isReplace ? 1 : 0, System.currentTimeMillis()});
+        db.close();
+    }
+
+    public ArrayList<String> getFindKeywords(boolean isReplace) {
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query("find_keywords", new String[]{"keyword"}, "is_replace=?", new String[]{isReplace ? "1" : "0"}, null, null,  "ctime desc" , "100");
+
+        while (cursor.moveToNext()) {
+            list.add(cursor.getString(0));
+        }
+        cursor.close();
+        db.close();
+        return list;
     }
 }

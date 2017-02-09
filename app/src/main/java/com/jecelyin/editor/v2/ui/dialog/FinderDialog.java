@@ -39,9 +39,11 @@ import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.common.widget.DrawClickableEditText;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
+import com.jecelyin.editor.v2.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.utils.GrepBuilder;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -52,7 +54,7 @@ import java.io.File;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FinderDialog extends AbstractDialog {
+public class FinderDialog extends AbstractDialog implements DrawClickableEditText.DrawableClickListener {
     private static final int ID_FIND_PREV = 1;
     private static final int ID_FIND_NEXT = 2;
     private static final int ID_REPLACE = 3;
@@ -102,6 +104,8 @@ public class FinderDialog extends AbstractDialog {
         View view = LayoutInflater.from(context).inflate(R.layout.search_replace, null);
 
         final ViewHolder holder = new ViewHolder(view);
+        holder.mFindEditText.setDrawableClickListener(this);
+        holder.mReplaceEditText.setDrawableClickListener(this);
         if (findText != null)
             holder.mFindEditText.setText(findText.toString());
         if (Pref.getInstance(context).isReadOnly()) {
@@ -226,6 +230,9 @@ public class FinderDialog extends AbstractDialog {
 
         ExtGrep grep = builder.build();
 
+        DBHelper.getInstance(context).addFindKeyword(findText, false);
+        DBHelper.getInstance(context).addFindKeyword(replaceText, true);
+
         if(findInFiles) {
             doInFiles(grep, replaceText);
         } else {
@@ -261,6 +268,11 @@ public class FinderDialog extends AbstractDialog {
                     }
                 }
         );
+    }
+
+    @Override
+    public void onClick(DrawClickableEditText editText, DrawClickableEditText.DrawablePosition target) {
+        new FindKeywordsDialog(context, editText, editText.getId() != R.id.find_edit_text).show();
     }
 
     private static class FindTextActionModeCallback implements ActionMode.Callback {
@@ -426,8 +438,8 @@ public class FinderDialog extends AbstractDialog {
      * @author ButterKnifeZelezny, plugin for Android Studio by Inmite Developers (http://inmite.github.io)
      */
     static class ViewHolder {
-        MaterialEditText mFindEditText;
-        MaterialEditText mReplaceEditText;
+        DrawClickableEditText mFindEditText;
+        DrawClickableEditText mReplaceEditText;
         CheckBox mReplaceCheckBox;
         CheckBox mCaseSensitiveCheckBox;
         CheckBox mWholeWordsOnlyCheckBox;
@@ -439,8 +451,8 @@ public class FinderDialog extends AbstractDialog {
         View mPathLayout;
 
         ViewHolder(View view) {
-            mFindEditText = (MaterialEditText) view.findViewById(R.id.find_edit_text);
-            mReplaceEditText = (MaterialEditText) view.findViewById(R.id.replace_edit_text);
+            mFindEditText = (DrawClickableEditText) view.findViewById(R.id.find_edit_text);
+            mReplaceEditText = (DrawClickableEditText) view.findViewById(R.id.replace_edit_text);
             mReplaceCheckBox = (CheckBox) view.findViewById(R.id.replace_check_box);
             mCaseSensitiveCheckBox = (CheckBox) view.findViewById(R.id.case_sensitive_check_box);
             mWholeWordsOnlyCheckBox = (CheckBox) view.findViewById(R.id.whole_words_only_check_box);

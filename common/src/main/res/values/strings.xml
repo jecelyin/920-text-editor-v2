@@ -255,4 +255,6 @@
     <string name="out_of_memory_error">Out of application memory</string>
     <string name="x_items_completed">%d items Completed</string>
     <string name="x_items_completed_and_error_x">%1$d items Completed, but has some items occur error: %2$s</string>
+    <string name="find_log">Find Log</string>
+    <string name="replace_log">Replace Log</string>
 </resources>

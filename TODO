@@ -14,6 +14,9 @@ at com.jecelyin.editor.v2.io.CharArrayBuffer.(CharArrayBuffer.java:15)
 at com.jecelyin.editor.v2.io.FileReader.read(FileReader.java:67)
 -----
 
+自定义主题
+替换全部会卡死
+toolbar按钮调整
 -----
 但是，使用“文件夹查找”功能时，查询结果条目较多时，似乎无法全部显示。比如我用PC
 版的emeditor可以从某文件夹搜到10个结果，920却只显示3个结果，特别是正则表达式稍复杂时这一现象更明显。简单正则表达式则可以显示更多结果。

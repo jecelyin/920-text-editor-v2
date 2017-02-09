@@ -29,7 +29,7 @@ public class Catalog {
             map.put("Ada", new Mode("Ada", "ada.xml", "(?:.*[/\\\\])?.*\\.(ada|adb|ads)", null));
             map.put("Ada95", new Mode("Ada95", "ada95.xml", null, null));
             //<MODE NAME="ahk" FILE="ahk.xml" FILE_NAME_GLOB="*.{ahk}"/>
-            map.put("AutoHotkey", new Mode("AutoHotkey", "autohotkey.xml", "*.{ahk}", null));
+            map.put("AutoHotkey", new Mode("AutoHotkey", "autohotkey.xml", "(?:.*[/\\\\])?.*\\.ahk", null));
             map.put("Ant", new Mode("Ant", "ant.xml", "(?:.*[/\\\\])?.*build\\.xml", ".*<project.*"));
             map.put("Antlr", new Mode("Antlr", "antlr.xml", "(?:.*[/\\\\])?.*\\.g", null));
             map.put("ApacheConf", new Mode("ApacheConf", "apacheconf.xml", "([/\\\\]etc[/\\\\]apache2[/\\\\](.*\\.conf|(conf\\.d|(mods|sites)-(available|enabled))[/\\\\].*)|.*httpd.*\\.conf)", null));
