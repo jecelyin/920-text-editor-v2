@@ -46,6 +46,7 @@ import com.jecelyin.editor.v2.ui.EditorDelegate;
 import com.jecelyin.editor.v2.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.utils.GrepBuilder;
+import com.jecelyin.editor.v2.utils.MatcherResult;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
@@ -156,6 +157,14 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
         if(fragment.getPath() != null) {
             holder.mPathEditText.setText(new File(fragment.getPath()).getParent());
         }
+        holder.mRegexCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    UIUtils.toast(context, R.string.use_regex_to_find_tip);
+                }
+            }
+        });
 
         MaterialDialog dlg = getDialogBuilder().title(R.string.find_replace)
                 .customView(view, false)
@@ -216,11 +225,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
         if(holder.mWholeWordsOnlyCheckBox.isChecked()) {
             builder.wordRegex();
         }
-        if(!holder.mRegexCheckBox.isChecked()) {
-            builder.setRegex(escapeRegexChar(findText));
-        } else {
-            builder.setRegex(findText);
-        }
+        builder.setRegex(findText, holder.mRegexCheckBox.isChecked());
         if(findInFiles) {
             if(holder.mRecursivelyCheckBox.isChecked()) {
                 builder.recurseDirectories();
@@ -245,19 +250,19 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
         grep.grepText(ExtGrep.GrepDirect.NEXT,
                 fragment.getEditableText(),
                 fragment.getCursorOffset(),
-                new TaskListener<int[]>() {
+                new TaskListener<MatcherResult>() {
                     @Override
                     public void onCompleted() {
 
                     }
 
                     @Override
-                    public void onSuccess(int[] match) {
+                    public void onSuccess(MatcherResult match) {
                         if (match == null) {
                             UIUtils.toast(context, R.string.find_not_found);
                             return;
                         }
-                        fragment.addHightlight(match[0], match[1]);
+                        fragment.addHightlight(match.start(), match.end());
                         getMainActivity().startSupportActionMode(new FindTextActionModeCallback(replaceText, fragment, grep, match));
                     }
 
@@ -279,9 +284,9 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
         private String replaceText;
         EditorDelegate fragment;
         ExtGrep grep;
-        private int[] lastResults;
+        private MatcherResult lastResults;
 
-        public FindTextActionModeCallback(String replaceText, EditorDelegate fragment, ExtGrep grep, int[] match) {
+        public FindTextActionModeCallback(String replaceText, EditorDelegate fragment, ExtGrep grep, MatcherResult match) {
             this.replaceText = replaceText;
             this.fragment = fragment;
             this.grep = grep;
@@ -355,7 +360,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
                     break;
                 case ID_REPLACE:
                     if(lastResults != null) {
-                        fragment.getEditableText().replace(lastResults[0], lastResults[1], replaceText);
+                        fragment.getEditableText().replace(lastResults.start(), lastResults.end(), ExtGrep.parseReplacement(lastResults, replaceText));
                         lastResults = null;
                     }
                     break;
@@ -373,19 +378,19 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
             grep.grepText(id == ID_FIND_PREV ? ExtGrep.GrepDirect.PREV : ExtGrep.GrepDirect.NEXT,
                     fragment.getEditableText(),
                     fragment.getCursorOffset(),
-                    new TaskListener<int[]>() {
+                    new TaskListener<MatcherResult>() {
                         @Override
                         public void onCompleted() {
 
                         }
 
                         @Override
-                        public void onSuccess(int[] match) {
+                        public void onSuccess(MatcherResult match) {
                             if (match == null) {
                                 UIUtils.toast(fragment.getContext(), R.string.find_not_found);
                                 return;
                             }
-                            fragment.addHightlight(match[0], match[1]);
+                            fragment.addHightlight(match.start(), match.end());
                             lastResults = match;
                         }
 
@@ -408,27 +413,6 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
 //        intent.putExtra("grep", grep);
 //        getMainActivity().startFileSelectorActivity(intent);
         getMainActivity().getTabManager().newTab(grep);
-    }
-
-
-    private static String escapeRegexChar(String pattern)
-    {
-        final String metachar = ".^$[]*+?|()\\{}";
-
-        StringBuilder newpat = new StringBuilder();
-
-        int len = pattern.length();
-
-        for (int i = 0; i < len; i++)
-        {
-            char c = pattern.charAt(i);
-            if (metachar.indexOf(c) >= 0)
-            {
-                newpat.append('\\');
-            }
-            newpat.append(c);
-        }
-        return newpat.toString();
     }
 
     /**

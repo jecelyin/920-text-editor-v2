@@ -257,4 +257,5 @@
     <string name="x_items_completed_and_error_x">%1$d items Completed, but has some items occur error: %2$s</string>
     <string name="find_log">Find Log</string>
     <string name="replace_log">Replace Log</string>
+    <string name="use_regex_to_find_tip">Replace keyword support: \\r, \\n, \\t and capturing groups $0 ~ $9</string>
 </resources>

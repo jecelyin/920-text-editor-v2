@@ -15,9 +15,9 @@ public class GrepBuilder {
     }
 
     // Regex options
-    public GrepBuilder setRegex( final String regex ) {
+    public GrepBuilder setRegex( final String find, boolean regex ) {
 
-        theGrep.setRegex(regex);
+        theGrep.setRegex(find, regex);
 
         return this;
     }

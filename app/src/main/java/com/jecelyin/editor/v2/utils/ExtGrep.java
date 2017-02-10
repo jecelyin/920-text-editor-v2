@@ -57,6 +57,7 @@ public class ExtGrep implements Parcelable {
     private Pattern grepPattern;
     private String regex;
     private List<File> filesToProcess = new ArrayList<>();
+    private boolean useRegex;
 
     public static interface OnSearchFinishListener {
         public void onFinish(List<Result> results);
@@ -401,6 +402,46 @@ public class ExtGrep implements Parcelable {
         UIUtils.toast(JecApp.getContext(), JecApp.getContext().getResources().getQuantityString(R.plurals.x_text_replaced, count, count));
     }
 
+    public static String parseReplacement(MatcherResult m, String replaceText) {
+        boolean escape = false;
+        boolean dollar = false;
+
+        StringBuilder buffer = new StringBuilder();
+        int length = replaceText.length();
+        for (int i = 0; i < length; i++) {
+            char c = replaceText.charAt(i);
+            if (c == '\\' && !escape) {
+                escape = true;
+            } else if (c == '$' && !escape) {
+                dollar = true;
+            } else if (c >= '0' && c <= '9' && dollar) {
+                int group = c - '0';
+                if (group < m.groupCount())
+                    buffer.append(m.group(group));
+                dollar = false;
+            } else if (c == 'r' && escape) {
+                buffer.append('\r');
+                escape = false;
+            } else if (c == 'n' && escape) {
+                buffer.append('\n');
+                escape = false;
+            } else if (c == 't' && escape) {
+                buffer.append('\t');
+                escape = false;
+            } else {
+                buffer.append(c);
+                dollar = false;
+                escape = false;
+            }
+        }
+
+        // This seemingly stupid piece of code reproduces a JDK bug.
+        if (escape) {
+            throw new ArrayIndexOutOfBoundsException(replaceText.length());
+        }
+        return buffer.toString();
+    }
+
     private List<Result> grepFile(final File file) {
         int lineNumber = 0;
         int count = 0;
@@ -490,19 +531,19 @@ public class ExtGrep implements Parcelable {
         return results;
     }
 
-    public void grepText(final GrepDirect direct, final CharSequence line, int start, TaskListener<int[]> listener) {
-        new JecAsyncTask<Integer, Void, int[]>() {
+    public void grepText(final GrepDirect direct, final CharSequence line, int start, TaskListener<MatcherResult> listener) {
+        new JecAsyncTask<Integer, Void, MatcherResult>() {
 
             @Override
-            protected void onRun(TaskResult<int[]> taskResult, Integer... params) throws Exception {
+            protected void onRun(TaskResult<MatcherResult> taskResult, Integer... params) throws Exception {
                 compilePattern();
-                int[] results = null;
+                MatcherResult results = null;
                 int index = params[0];
                 Matcher m = grepPattern.matcher(line);
                 if (direct == GrepDirect.NEXT) {
                     for (int tryCount = 0; tryCount < 2; tryCount++) {
                         if (m.find(index)) {
-                            results = new int[]{m.start(), m.end()};
+                            results = new MatcherResult(m);
                             break;
                         } else if (index > 0) {
                             index = 0;
@@ -519,7 +560,7 @@ public class ExtGrep implements Parcelable {
                         if (m.end() >= index) {
                             break;
                         }
-                        results = new int[]{m.start(), m.end()};
+                        results = new MatcherResult(m);
                     }
                 }
                 taskResult.setResult(results);
@@ -527,8 +568,33 @@ public class ExtGrep implements Parcelable {
         }.setTaskListener(listener).execute(start);
     }
 
-    public void setRegex(final String r) {
-        regex = r;
+    private static String escapeRegexChar(String pattern)
+    {
+        final String metachar = ".^$[]*+?|()\\{}";
+
+        StringBuilder newpat = new StringBuilder();
+
+        int len = pattern.length();
+
+        for (int i = 0; i < len; i++)
+        {
+            char c = pattern.charAt(i);
+            if (metachar.indexOf(c) >= 0)
+            {
+                newpat.append('\\');
+            }
+            newpat.append(c);
+        }
+        return newpat.toString();
+    }
+
+    public void setRegex(final String r, boolean useRegex) {
+        regex = !useRegex ? escapeRegexChar(r) : r;
+        this.useRegex = useRegex;
+    }
+
+    public boolean isUseRegex() {
+        return useRegex;
     }
 
     public String getRegex() {

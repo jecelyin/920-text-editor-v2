@@ -257,4 +257,5 @@
     <string name="x_items_completed_and_error_x">%1$d 个文件已完成，但是有些文件发生一些错误： %2$s</string>
     <string name="find_log">查找日志</string>
     <string name="replace_log">替换日志</string>
+    <string name="use_regex_to_find_tip">替换关键字支持： \\r, \\n, \\t 和捕捉组 $0 ~ $9</string>
 </resources>
