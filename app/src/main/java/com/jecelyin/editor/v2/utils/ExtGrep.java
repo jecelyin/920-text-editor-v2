@@ -603,7 +603,8 @@ public class ExtGrep implements Parcelable {
 
     private void compilePattern() {
 
-        int flags = Pattern.COMMENTS;
+//        int flags = Pattern.COMMENTS;
+        int flags = 0;
 
         String pattern = regex;
 
