@@ -1,13 +1,10 @@
 复制路径功能
 4.4关掉Tab后代码还在
 清空剪贴板功能
--不换行时,向右拖会跳回
--add fast scroller to explorer
+
 监控文件改变
--new file can't save
--勾选了“记住最后打开的文件”后，下次启动软件时，打开的不是最后打开的那个文件
+
 check upgrade crash on 4.4
--add cancel exit button on exit app
 -----
 Caused by: java.lang.OutOfMemoryError: Failed to allocate a 872622740 byte allocation with 16777216 free bytes and 505MB until OOM
 at com.jecelyin.editor.v2.io.CharArrayBuffer.(CharArrayBuffer.java:15)
@@ -21,35 +18,16 @@ toolbar按钮调整
 但是，使用“文件夹查找”功能时，查询结果条目较多时，似乎无法全部显示。比如我用PC
 版的emeditor可以从某文件夹搜到10个结果，920却只显示3个结果，特别是正则表达式稍复杂时这一现象更明显。简单正则表达式则可以显示更多结果。
 
--另外，用“文件夹查找”多个文件时，从列表的查询结果点击某项目后，不能准确定位到查询结果的位置，总会错几十行。
-
--“文件夹查找”是，查找结果不能高亮显示。
 ------
 正则表达式搜索暂时没有发现问题，但是在替换的时候发现，像/n,/r这类的替换是行不通的（比如想将zip替换成zip/n从而达到在zip后面加上换行符的目的）。想请教下，如果想在替换的结果中加入换行符该如何实现呢？
 
--dark theme 设置菜单颜色不一致
-
 sl4a的打开选择920报错
-
--加上个关闭左右滑出菜单的选项，这样用户可以进行点击使用
 
 bottom symbol bar visible on activity recreate
 
 启动时转太久了
 
--每次启动后，下面的工具条仍然存在，虽然是只读模式
--只读必须重启
-
--没有全部替换功能
-
--支持autohotkey语法高亮
-
 using the tab button on hackers keyboard instead of doing the indent whitespace it changes between the menus in the app which leaves me forced to add spaces to a file that previously only had tabs.
-
--When word wrap is disabled text will render on top of the line numbers.
-
--It would be good to have something to mark unsaved files in the tab sidebar.
-
 
 Unfortunately it doesn't appear to want to write to the / folder even though root is enabled.
 The file I tried to save was in /system/etc/
@@ -64,11 +42,9 @@ at com.jecelyin.common.utils.IOUtils.copyFile(IOUtils.java:160)
 at com.jecelyin.editor.v2.io.FileWriter.doInBackground(FileWriter.java:76)
 at com.jecelyin.editor.v2.io.FileWriter.doInBackground(FileWriter.java:37)
 
-
 Sometimes I've noticed that if the save button isn't active, rotating from portrait to landscape or vice versa will make it active.
 
 Replace feature does NOT work - you enter what to find and with what to replace, but it only finds the word - no way to replace
-
 
 单文件中使用搜索功能时，查找结果同样不能自动出现，总是要把该页文字往上移两行才能看到高亮显示的查找结果
 查找框中输入的字符串不能保留，这在多次搜索同一字符串时很不方便，只能多次重复输入。
