@@ -262,7 +262,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
                             UIUtils.toast(context, R.string.find_not_found);
                             return;
                         }
-                        fragment.addHightlight(match.start(), match.end());
+                        fragment.addHighlight(match.start(), match.end());
                         getMainActivity().startSupportActionMode(new FindTextActionModeCallback(replaceText, fragment, grep, match));
                     }
 
@@ -390,7 +390,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
                                 UIUtils.toast(fragment.getContext(), R.string.find_not_found);
                                 return;
                             }
-                            fragment.addHightlight(match.start(), match.end());
+                            fragment.addHighlight(match.start(), match.end());
                             lastResults = match;
                         }
 
@@ -404,7 +404,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
 
         @Override
         public void onDestroyActionMode(ActionMode actionMode) {
-
+            fragment.clearHighlight();
         }
     }
 

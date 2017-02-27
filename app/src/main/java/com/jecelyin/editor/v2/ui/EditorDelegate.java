@@ -236,9 +236,17 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         document.saveTo(file, encoding == null ? document.getEncoding() : encoding);
     }
 
-    public void addHightlight(int start, int end) {
+    public void addHighlight(int start, int end) {
         mEditText.getText().setSpan(new BackgroundColorSpan(findResultsKeywordColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mEditText.setSelection(end, end);
+    }
+
+    public void clearHighlight() {
+        Editable text = mEditText.getText();
+        BackgroundColorSpan[] spans = text.getSpans(0, text.length(), BackgroundColorSpan.class);
+        for (BackgroundColorSpan span : spans) {
+            text.removeSpan(span);
+        }
     }
 
     public int getCursorOffset() {

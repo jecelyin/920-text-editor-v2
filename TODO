@@ -50,3 +50,5 @@ Replace feature does NOT work - you enter what to find and with what to replace,
 查找框中输入的字符串不能保留，这在多次搜索同一字符串时很不方便，只能多次重复输入。
 
 make it possible to hide top menu bar and bottom special characters bar
+
+remove highlight on find CAB destroy
