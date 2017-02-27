@@ -18,7 +18,6 @@
 
 package com.jecelyin.editor.v2.widget;
 
-import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -32,11 +31,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
-import android.view.ViewHierarchyEncoder;
 import android.widget.RemoteViews.RemoteView;
 
 import java.util.ArrayList;
-
 
 /**
  * FrameLayout is designed to block out an area on the screen to display
@@ -377,17 +374,17 @@ public class BottomDrawerLayout extends ViewGroup {
         return BottomDrawerLayout.class.getName();
     }
 
-    /** @hide */
-    @Override
-    protected void encodeProperties(@NonNull ViewHierarchyEncoder encoder) {
-        super.encodeProperties(encoder);
-
-        encoder.addProperty("measurement:measureAllChildren", mMeasureAllChildren);
-        encoder.addProperty("padding:foregroundPaddingLeft", mForegroundPaddingLeft);
-        encoder.addProperty("padding:foregroundPaddingTop", mForegroundPaddingTop);
-        encoder.addProperty("padding:foregroundPaddingRight", mForegroundPaddingRight);
-        encoder.addProperty("padding:foregroundPaddingBottom", mForegroundPaddingBottom);
-    }
+//    /** @hide */
+//    @Override
+//    protected void encodeProperties(@NonNull ViewHierarchyEncoder encoder) {
+//        super.encodeProperties(encoder);
+//
+//        encoder.addProperty("measurement:measureAllChildren", mMeasureAllChildren);
+//        encoder.addProperty("padding:foregroundPaddingLeft", mForegroundPaddingLeft);
+//        encoder.addProperty("padding:foregroundPaddingTop", mForegroundPaddingTop);
+//        encoder.addProperty("padding:foregroundPaddingRight", mForegroundPaddingRight);
+//        encoder.addProperty("padding:foregroundPaddingBottom", mForegroundPaddingBottom);
+//    }
 
     /**
      * Per-child layout information for layouts that support margins.
