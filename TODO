@@ -52,3 +52,5 @@ Replace feature does NOT work - you enter what to find and with what to replace,
 make it possible to hide top menu bar and bottom special characters bar
 
 remove highlight on find CAB destroy
+
+搜索文件结果，跳转到包含检索结果的文件后，还是需要下翻数行才能找到检索结果
