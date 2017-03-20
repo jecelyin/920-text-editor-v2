@@ -7,7 +7,7 @@ def GITHUB_PWD = properties.getProperty('GITHUB_PWD')
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         minSdkVersion 17
@@ -30,5 +30,5 @@ dependencies {
     // ColorChooserDialog, FolderChooserDialog, the Material Preference classes, and MaterialSimpleListAdapter/MaterialSimpleListItem
     compile 'com.github.afollestad.material-dialogs:commons:0.8.5.8'
     // require by github client
-    compile 'com.google.code.gson:gson:2.5'
+    compile 'com.google.code.gson:gson:2.7'
 }
