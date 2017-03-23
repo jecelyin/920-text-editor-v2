@@ -20,13 +20,13 @@ package com.jecelyin.android.file_explorer.adapter;
 
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SectionIndexer;
 
 import com.jecelyin.android.file_explorer.R;
 import com.jecelyin.android.file_explorer.databinding.FileListItemBinding;
@@ -37,15 +37,17 @@ import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
 import com.jecelyin.common.adapter.BindingViewHolder;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.utils.StringUtils;
-import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<FileListItemBinding>> implements FastScrollRecyclerView.SectionedAdapter {
+public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<FileListItemBinding>> implements SectionIndexer {
     private JecFile[] data;
     private final String year;
     private final SparseIntArray checkedArray;
@@ -53,6 +55,7 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
     private OnItemClickListener onItemClickListener;
     private JecFile[] mOriginalValues;
     private int itemCount;
+    private ArrayList<Integer> mSectionPositions;
 
     public FileListItemAdapter() {
 //        year = String.valueOf(new Date().getYear());
@@ -91,9 +94,31 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         notifyDataSetChanged();
     }
 
-    @NonNull
     @Override
-    public String getSectionName(int position) {
+    public int getSectionForPosition(int position) {
+        return 0;
+    }
+
+    @Override
+    public Object[] getSections() {
+        List<String> sections = new ArrayList<>(27);
+        mSectionPositions = new ArrayList<>(27);
+        for (int i = 0, size = data.length; i < size; i++) {
+            String section = getSectionName(i);
+            if (!sections.contains(section)) {
+                sections.add(section);
+                mSectionPositions.add(i);
+            }
+        }
+        return sections.toArray(new String[0]);
+    }
+
+    @Override
+    public int getPositionForSection(int sectionIndex) {
+        return mSectionPositions.get(sectionIndex);
+    }
+
+    private String getSectionName(int position) {
         JecFile file = getItem(position);
         char c = file.getName().charAt(0);
 
@@ -101,7 +126,7 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
             || (c >= 'a' && c <= 'z')
             || (c >= 'A' && c <= 'Z')
                 ) {
-            return String.valueOf(c);
+            return String.valueOf(c).toUpperCase();
         }
 
         return "#";
