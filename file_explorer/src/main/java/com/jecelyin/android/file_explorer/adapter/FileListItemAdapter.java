@@ -101,6 +101,9 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
 
     @Override
     public Object[] getSections() {
+        if (data == null) {
+            return new String[0];
+        }
         List<String> sections = new ArrayList<>(27);
         mSectionPositions = new ArrayList<>(27);
         for (int i = 0, size = data.length; i < size; i++) {

@@ -65,24 +65,26 @@ public class CursorWidthPreference extends JecListPreference {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = super.getView(position, convertView, parent);
+        public RangeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            RangeViewHolder rvh = super.onCreateViewHolder(parent, viewType);
+            rvh.mViewMap.put(R.id.cursorView, rvh.itemView.findViewById(R.id.cursorView));
+            return rvh;
+        }
+
+        @Override
+        public void onBindViewHolder(RangeViewHolder holder, int position) {
+            super.onBindViewHolder(holder, position);
+
             int value = getValue(position);
 
-            View cursorView = (View)view.getTag(R.id.cursorView);
-            if(cursorView == null) {
-                cursorView = view.findViewById(R.id.cursorView);
-                view.setTag(R.id.cursorView, cursorView);
-            }
-
+            View cursorView = holder.mViewMap.get(R.id.cursorView);
             ViewGroup.LayoutParams lp = cursorView.getLayoutParams();
             if(lp == null)
                 lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            lp.width = SysUtils.dpAsPixels(parent.getContext(), value);
+            lp.width = SysUtils.dpAsPixels(cursorView.getContext(), value);
             cursorView.setLayoutParams(lp);
-
-            return view;
         }
+
 
         @Override
         protected int getLayoutResId() {

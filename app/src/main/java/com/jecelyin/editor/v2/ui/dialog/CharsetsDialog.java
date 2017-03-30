@@ -20,13 +20,12 @@ package com.jecelyin.editor.v2.ui.dialog;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-import android.widget.ListView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.nio.charset.Charset;
 import java.util.Iterator;
@@ -91,9 +90,6 @@ public class CharsetsDialog extends AbstractDialog {
         int dividerColor = a.getColor(0, 0);
         a.recycle();
 
-        ListView listView = dlg.getListView();
-        listView.setDivider(new ColorDrawable(dividerColor));
-        listView.setDividerHeight(context.getResources().getDimensionPixelSize(R.dimen.divider_height));
-
+        dlg.getRecyclerView().addItemDecoration(new HorizontalDividerItemDecoration.Builder(getMainActivity()).build());
     }
 }

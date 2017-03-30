@@ -20,8 +20,8 @@ package com.jecelyin.editor.v2.preference;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.widget.BaseAdapter;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.prefs.MaterialListPreference;
@@ -30,7 +30,7 @@ import com.afollestad.materialdialogs.prefs.MaterialListPreference;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class JecListPreference extends MaterialListPreference {
-    private BaseAdapter adapter;
+    private RecyclerView.Adapter adapter;
 
     public JecListPreference(Context context) {
         super(context);
@@ -54,10 +54,10 @@ public class JecListPreference extends MaterialListPreference {
 
         MaterialDialog dialog = (MaterialDialog) getDialog();
         if(adapter != null)
-            dialog.getListView().setAdapter(adapter);
+            dialog.getRecyclerView().setAdapter(adapter);
     }
 
-    public void setAdapter(BaseAdapter adapter) {
+    public void setAdapter(RecyclerView.Adapter adapter) {
         this.adapter = adapter;
     }
 }

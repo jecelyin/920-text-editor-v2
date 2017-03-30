@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -141,11 +142,10 @@ public class RunDialog extends AbstractDialog {
         Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.jecelyin.com"));
         final List<ResolveInfo> apps = context.getPackageManager().queryIntentActivities(it, PackageManager.MATCH_DEFAULT_ONLY);
 
-        getDialogBuilder().adapter(new IntentChooserAdapter(context, apps), new MaterialDialog.ListCallback() {
+        IntentChooserAdapter adapter = new IntentChooserAdapter(context, apps);
+        adapter.setOnIntentItemSelectedListener(new IntentChooserAdapter.OnIntentItemSelectedListener() {
             @Override
-            public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-                dialog.dismiss();
-                ResolveInfo info = apps.get(which);
+            public void onItemSelected(ResolveInfo info) {
                 //该应用的包名
                 String pkg = info.activityInfo.packageName;
                 //应用的主activity类
@@ -160,7 +160,8 @@ public class RunDialog extends AbstractDialog {
                     UIUtils.toast(context, R.string.run_fail_message);
                 }
             }
-        })
+        });
+        getDialogBuilder().adapter(adapter, new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
         .title(R.string.chooser_browser)
         .show();
     }

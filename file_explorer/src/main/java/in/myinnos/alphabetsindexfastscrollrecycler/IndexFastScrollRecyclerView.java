@@ -13,6 +13,8 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
+import com.jecelyin.android.file_explorer.R;
+
 public class IndexFastScrollRecyclerView extends RecyclerView {
 
     private IndexFastScrollRecyclerSection mScroller = null;

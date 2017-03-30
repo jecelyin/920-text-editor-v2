@@ -18,19 +18,21 @@
 
 package com.jecelyin.editor.v2.adapter;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jecelyin.editor.v2.R;
+
+import java.util.HashMap;
 
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class RangeAdapter extends BaseAdapter {
+public class RangeAdapter extends RecyclerView.Adapter<RangeAdapter.RangeViewHolder> {
     protected final int minValue;
     protected final int maxValue;
     private final CharSequence[] items;
@@ -40,7 +42,7 @@ public class RangeAdapter extends BaseAdapter {
         this.minValue = min;
         this.maxValue = max;
 
-        int count = getCount();
+        int count = getItemCount();
         items = new String[count];
         values = new String[count];
 
@@ -59,18 +61,22 @@ public class RangeAdapter extends BaseAdapter {
         return values;
     }
 
-    @Override
-    public int getCount() {
-        return maxValue - minValue + 1;
-    }
-
     public int getValue(int position) {
         return minValue + position;
     }
 
     @Override
-    public CharSequence getItem(int position) {
-        return items[position];
+    public RangeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutResId(), parent, false);
+        RangeViewHolder vh = new RangeViewHolder(view);
+        vh.mTitleTextView = (TextView) view.findViewById(getTextResId());
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(RangeViewHolder holder, int position) {
+        holder.mTitleTextView.setText(items[position]);
+        setupTextView(holder.mTitleTextView, position);
     }
 
     @Override
@@ -79,20 +85,8 @@ public class RangeAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        TextView tv;
-        if(convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(getLayoutResId(), parent, false);
-            tv = (TextView) convertView.findViewById(getTextResId());
-            convertView.setTag(tv);
-        } else {
-            tv = (TextView) convertView.getTag();
-        }
-
-        tv.setText(getItem(position));
-        setupTextView(tv, position);
-
-        return convertView;
+    public int getItemCount() {
+        return maxValue - minValue + 1;
     }
 
     protected int getLayoutResId() {
@@ -105,5 +99,14 @@ public class RangeAdapter extends BaseAdapter {
 
     protected void setupTextView(TextView tv, int position) {
 
+    }
+
+    public static class RangeViewHolder extends RecyclerView.ViewHolder {
+        public TextView mTitleTextView;
+        public HashMap<Integer, View> mViewMap;
+
+        public RangeViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 }

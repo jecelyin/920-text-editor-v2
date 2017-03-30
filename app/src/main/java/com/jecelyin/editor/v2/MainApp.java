@@ -19,6 +19,8 @@
 package com.jecelyin.editor.v2;
 
 import com.jecelyin.common.app.JecApp;
+import com.letv.sarrsdesktop.blockcanaryex.jrt.BlockCanaryEx;
+import com.letv.sarrsdesktop.blockcanaryex.jrt.Config;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -32,6 +34,9 @@ public class MainApp extends JecApp {
     @Override
     protected void installMonitor() {
         refWatcher = LeakCanary.install(this);
+        if(!BlockCanaryEx.isInSamplerProcess(this)) {
+            BlockCanaryEx.install(new Config(this));
+        }
     }
 
     @Override
