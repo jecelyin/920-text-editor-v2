@@ -45,7 +45,13 @@ public class UIUtils {
         if (!TextUtils.isEmpty(title))
             builder.title(title);
 
-        builder.show();
+        //fix: com.afollestad.materialdialogs.MaterialDialog$DialogException: Bad window token, you cannot show a dialog before an Activity is created or after it's hidden.
+        try {
+            builder.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void toast(Context context, int messageResId) {
