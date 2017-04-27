@@ -233,6 +233,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     public void saveTo(File file, String encoding) {
+        if (document == null)
+            return;
         document.saveTo(file, encoding == null ? document.getEncoding() : encoding);
     }
 
