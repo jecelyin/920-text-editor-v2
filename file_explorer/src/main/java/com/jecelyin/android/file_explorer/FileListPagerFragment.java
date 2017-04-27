@@ -158,6 +158,8 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         view.post(new Runnable() {
             @Override
             public void run() {
+                if (getActivity() == null)
+                    return;
                 isRoot = Pref.getInstance(getContext()).isRootable();
                 onRefresh();
             }
