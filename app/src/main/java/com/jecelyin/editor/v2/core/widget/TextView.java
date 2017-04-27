@@ -8888,6 +8888,8 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             for (int i=0; i<clip.getItemCount(); i++) {
                 CharSequence paste = clip.getItemAt(i).coerceToStyledText(getContext());
                 if (paste != null) {
+                    //fix: some input software has span: java.lang.RuntimeException: PARAGRAPH span must start at paragraph boundary
+                    paste = paste.toString();
                     if (!didFirst) {
                         Selection.setSelection((Spannable) mText, max);
                         ((Editable) mText).replace(min, max, paste);
