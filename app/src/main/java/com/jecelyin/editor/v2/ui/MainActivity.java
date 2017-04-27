@@ -49,6 +49,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
+import com.azeesoft.lib.colorpicker.Stools;
 import com.jecelyin.android.file_explorer.FileExplorerActivity;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.IOUtils;
@@ -512,14 +513,22 @@ public class MainActivity extends BaseActivity
                 if (ensureNotReadOnly()) {
                     final int primaryTextColor = DialogUtils.resolveColor(this, android.R.attr.textColorPrimary);
                     int theme = DialogUtils.isColorDark(primaryTextColor) ? ColorPickerDialog.LIGHT_THEME : ColorPickerDialog.DARK_THEME;
-                    ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this, theme);
-                    colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
-                        @Override
-                        public void onColorPicked(int color, String hexVal) {
-                            insertText(hexVal);
-                        }
-                    });
-                    colorPickerDialog.show();
+                    try {
+                        ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this, theme);
+                        colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
+                            @Override
+                            public void onColorPicked(int color, String hexVal) {
+                                insertText(hexVal);
+                            }
+                        });
+                        colorPickerDialog.show();
+                    } catch (IllegalArgumentException e) {
+//                        java.lang.IllegalArgumentException: Unknown color
+//                        at android.graphics.Color.parseColor(Color.java)
+//                        at com.azeesoft.lib.colorpicker.ColorPickerDialog.getLastColor(ColorPickerDialog.java:508)
+                        Stools.saveLastColor(this, "#000000");
+                    }
+
                 }
                 break;
             case R.id.m_datetime:
