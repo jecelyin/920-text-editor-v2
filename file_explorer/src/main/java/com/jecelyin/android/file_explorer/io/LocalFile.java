@@ -148,7 +148,7 @@ public class LocalFile extends JecFile {
             throw new NullPointerException();
 
         File[] files = file.listFiles();
-        if (files.length == 0) {
+        if (files == null || files.length == 0) {
             listener.onResult(new LocalFile[0]);
             return;
         }
