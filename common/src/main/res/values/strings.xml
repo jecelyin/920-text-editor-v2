@@ -258,4 +258,5 @@
     <string name="find_log">Find Log</string>
     <string name="replace_log">Replace Log</string>
     <string name="use_regex_to_find_tip">Replace keyword support: \\r, \\n, \\t and capturing groups $0 ~ $9</string>
+    <string name="cannt_open_external_file_x">Can\'t open external file: %s</string>
 </resources>

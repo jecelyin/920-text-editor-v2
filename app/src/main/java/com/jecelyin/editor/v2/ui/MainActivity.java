@@ -361,10 +361,12 @@ public class MainActivity extends BaseActivity
         if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_EDIT.equals(action) ) {
             if (intent.getScheme().equals("content"))
             {
-                InputStream attachment = getContentResolver().openInputStream(intent.getData());
                 try {
+                    InputStream attachment = getContentResolver().openInputStream(intent.getData());
                     String text = IOUtils.toString(attachment);
                     openText(text);
+                } catch (Exception e) {
+                    UIUtils.toast(this, getString(R.string.cannt_open_external_file_x, e.getMessage()));
                 } catch (OutOfMemoryError e) {
                     UIUtils.toast(this, R.string.out_of_memory_error);
                 }

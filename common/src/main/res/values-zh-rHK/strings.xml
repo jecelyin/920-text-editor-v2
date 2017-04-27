@@ -258,4 +258,5 @@
     <string name="find_log">查找日誌</string>
     <string name="replace_log">替換日誌</string>
     <string name="use_regex_to_find_tip">替換關鍵字支持： \\r, \\n, \\t 和捕捉組 $0 ~ $9</string>
+    <string name="cannt_open_external_file_x">無法打開外部文件：%s</string>
 </resources>
