@@ -102,7 +102,7 @@ public class FeedbackActivity extends BaseActivity {
         sb.append("\n\n");
         sb.append(content);
 
-        sb.append("Exception Start ==============================\n");
+        sb.append("\n\nException Start ==============================\n");
         sb.append(getIntent().getStringExtra("exception"));
         sb.append("\nException End ==============================\n");
 
