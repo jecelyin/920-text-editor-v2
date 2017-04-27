@@ -281,7 +281,10 @@ public class MainActivity extends BaseActivity
     }
 
     private void start() {
-        ((ViewGroup) mLoadingLayout.getParent()).removeView(mLoadingLayout);
+        ViewGroup parent = (ViewGroup) mLoadingLayout.getParent();
+        if (parent != null) {
+            parent.removeView(mLoadingLayout);
+        }
 
 //                inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mTabPager.setVisibility(View.VISIBLE);
