@@ -94,7 +94,9 @@ public class RootFile extends LocalFile {
         {
             @Override
             public void onFinish(boolean success, String output) {
-                listener.onResult(success && output.trim().isEmpty());
+                if (listener == null)
+                    return;
+                listener.onResult(success && output != null && output.trim().isEmpty());
             }
         };
         try {
