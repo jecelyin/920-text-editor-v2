@@ -63,7 +63,11 @@ public class SpeedActivity extends JecActivity {
         setContentView(editText);
 
         FileReader fr = new FileReader(new File(PATH), "utf-8");
-        fr.read();
+        try {
+            fr.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         SpannableStringBuilder ssb = fr.getBuffer();
         editText.setText(ssb);
 
