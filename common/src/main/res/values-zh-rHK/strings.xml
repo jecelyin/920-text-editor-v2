@@ -107,7 +107,7 @@
     <string name="cannt_access_file">文件 %s 無法訪問</string>
     <string name="cannt_read_file">無法讀取文件%s</string>
     <string name="ok">確定</string>
-    <string name="read_file_exception">讀取文件時發生異常</string>
+    <string name="read_file_exception">讀取文件時發生異常：</string>
     <string name="init_syntax_msg">正在初始化語法高亮…</string>
     <string name="init_syntax_error">初始化語法文件失敗，請檢查是否有足夠的存儲空間</string>
     <string name="init_build_index_error">建立索引失敗</string>

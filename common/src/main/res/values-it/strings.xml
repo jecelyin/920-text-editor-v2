@@ -107,7 +107,7 @@
     <string name="cannt_access_file">Non posso accedere al file: %s</string>
     <string name="cannt_read_file">Non posso leggere il file: %s</string>
     <string name="ok">OK</string>
-    <string name="read_file_exception">Eccezione durante lettura file</string>
+    <string name="read_file_exception">Eccezione durante lettura file:</string>
     <string name="init_syntax_msg">Inizializzazione sintassi…</string>
     <string name="init_syntax_error">Inizializzazione sintassi fallita</string>
     <string name="init_build_index_error">Costruzione indice fallita</string>

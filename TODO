@@ -6,7 +6,7 @@
 
 check upgrade crash on 4.4
 -----
-Caused by: java.lang.OutOfMemoryError: Failed to allocate a 872622740 byte allocation with 16777216 free bytes and 505MB until OOM
+-Caused by: java.lang.OutOfMemoryError: Failed to allocate a 872622740 byte allocation with 16777216 free bytes and 505MB until OOM
 at com.jecelyin.editor.v2.io.CharArrayBuffer.(CharArrayBuffer.java:15)
 at com.jecelyin.editor.v2.io.FileReader.read(FileReader.java:67)
 -----

@@ -44,13 +44,12 @@ public class FileReader {
         this.encoding = encodingName;
     }
 
-    public boolean read() {
-        try {
-            if(TextUtils.isEmpty(encoding))
-                encoding = FileEncodingDetector.detectEncoding(file);
+    public void read() throws Exception, OutOfMemoryError {
+        if(TextUtils.isEmpty(encoding))
+            encoding = FileEncodingDetector.detectEncoding(file);
 
-            L.d(file.getPath()+" encoding is "+encoding);
-            LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(file), encoding));
+        L.d(file.getPath()+" encoding is "+encoding);
+        LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(file), encoding));
 //            String line, firstLine = null;
 //            while ((line = reader.readLine()) != null) {
 //                if (firstLine == null && !line.trim().isEmpty())
@@ -62,23 +61,17 @@ public class FileReader {
 //                //仅支持\r\n , \n两种结束符
 //                buffer.append(offset, line + (reader.isLastWasCR() ? "\r\n" : "\n"));
 //            }
-            char[] buf = new char[BUFFER_SIZE];
-            int len;
-            CharArrayBuffer arrayBuffer = new CharArrayBuffer(GrowingArrayUtils.growSize((int)file.length()));
-            while ((len = reader.read(buf, 0, BUFFER_SIZE)) != -1) {
-                arrayBuffer.append(buf, 0, len);
-            }
-
-            lineNumber = reader.getLineNumber() + 1;
-            reader.close();
-
-            ssb = new SpannableStringBuilder(arrayBuffer.buffer(), 0, arrayBuffer.length());
-
-            return true;
-        } catch (Exception e) {
-            L.e(e);
-            return false;
+        char[] buf = new char[BUFFER_SIZE];
+        int len;
+        CharArrayBuffer arrayBuffer = new CharArrayBuffer(GrowingArrayUtils.growSize((int)file.length()));
+        while ((len = reader.read(buf, 0, BUFFER_SIZE)) != -1) {
+            arrayBuffer.append(buf, 0, len);
         }
+
+        lineNumber = reader.getLineNumber() + 1;
+        reader.close();
+
+        ssb = new SpannableStringBuilder(arrayBuffer.buffer(), 0, arrayBuffer.length());
     }
 
     public String getEncoding() {

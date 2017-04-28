@@ -107,7 +107,7 @@
     <string name="cannt_access_file">لا يمكن الوصول إلى الملف: %s</string>
     <string name="cannt_read_file">لا يمكن قراءة الملف: %s</string>
     <string name="ok">موافق</string>
-    <string name="read_file_exception">حدث استثناء عند قراءة الملف</string>
+    <string name="read_file_exception">"حدث استثناء عند قراءة الملف: "</string>
     <string name="init_syntax_msg">تهيئة الجملة…</string>
     <string name="init_syntax_error">فشل تهيئة الجملة</string>
     <string name="init_build_index_error">فشل بناء الفهرس</string>

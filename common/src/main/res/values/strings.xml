@@ -107,7 +107,7 @@
     <string name="cannt_access_file">Can not access file: %s</string>
     <string name="cannt_read_file">Can not read file: %s</string>
     <string name="ok">OK</string>
-    <string name="read_file_exception">Occurs exception when read file</string>
+    <string name="read_file_exception">"Occurs exception when read file: "</string>
     <string name="init_syntax_msg">Initialize syntax…</string>
     <string name="init_syntax_error">Initialize syntax fail</string>
     <string name="init_build_index_error">Build index fail</string>

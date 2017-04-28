@@ -146,7 +146,7 @@ public class Document implements ReadFileListener, TextWatcher {
     }
 
     @Override
-    public SpannableStringBuilder onAsyncReaded(FileReader fileReader, boolean ok) {
+    public SpannableStringBuilder onAsyncReaded(FileReader fileReader) {
         Editable text = fileReader.getBuffer();
         Mode mode = ModeProvider.instance.getModeForFile(file == null ? null : file.getPath(), null, text.subSequence(0, Math.min(80, text.length())).toString());
         if(mode == null)
@@ -165,13 +165,19 @@ public class Document implements ReadFileListener, TextWatcher {
     }
 
     @Override
-    public void onDone(SpannableStringBuilder spannableStringBuilder, boolean ok) {
+    public void onDone(SpannableStringBuilder spannableStringBuilder, Throwable throwable) {
         //给回收了。。
         if(editorDelegate == null || editorDelegate.mEditText == null)
             return;
-        if(!ok) {
+        if(throwable != null) {
             editorDelegate.onLoadFinish();
-            UIUtils.alert(context, context.getString(R.string.read_file_exception));
+            String message;
+            if (throwable instanceof OutOfMemoryError) {
+                message = context.getString(R.string.out_of_memory_error);
+            } else {
+                message = context.getString(R.string.read_file_exception) + throwable.getMessage();
+            }
+            UIUtils.alert(context, message);
             return;
         }
 
@@ -238,6 +244,7 @@ public class Document implements ReadFileListener, TextWatcher {
     private final static class ReadFileTask extends AsyncTask<File, Void, SpannableStringBuilder> {
         private final ReadFileListener listener;
         private final FileReader fileReader;
+        private Throwable error;
 
         public ReadFileTask(FileReader reader, ReadFileListener listener) {
             this.fileReader = reader;
@@ -251,15 +258,18 @@ public class Document implements ReadFileListener, TextWatcher {
 
         @Override
         protected SpannableStringBuilder doInBackground(File... params) {
-            if(! fileReader.read() )
-                return null;
+            try {
+                fileReader.read();
+            } catch (Throwable t) {
+                error = t;
+            }
 
-            return listener.onAsyncReaded(fileReader, true);
+            return listener.onAsyncReaded(fileReader);
         }
 
         @Override
         protected void onPostExecute(SpannableStringBuilder spannableStringBuilder) {
-            listener.onDone(spannableStringBuilder, spannableStringBuilder != null);
+            listener.onDone(spannableStringBuilder, error);
         }
     }
 

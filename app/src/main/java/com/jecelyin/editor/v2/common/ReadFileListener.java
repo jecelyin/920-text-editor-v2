@@ -26,6 +26,6 @@ import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
  */
 public interface ReadFileListener {
     void onStart();
-    SpannableStringBuilder onAsyncReaded(FileReader fileReader, boolean ok);
-    void onDone(SpannableStringBuilder spannableStringBuilder, boolean ok);
+    SpannableStringBuilder onAsyncReaded(FileReader fileReader);
+    void onDone(SpannableStringBuilder spannableStringBuilder, Throwable throwable);
 }
