@@ -7093,7 +7093,8 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         if (top - vs < vslack)
             vs = top - vslack;
         if (bottom - vs > vspace - vslack)
-            vs = bottom - (vspace - vslack);
+//            vs = bottom - (vspace - vslack);
+            vs = bottom - (vspace / 2 - vslack); //jec: move to center
         if (ht - vs < vspace)
             vs = ht - vspace;
         if (0 - vs > 0)

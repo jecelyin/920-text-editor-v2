@@ -52,6 +52,7 @@ import java.util.Arrays;
 public abstract class Layout {
     private static final ParagraphStyle[] NO_PARA_SPANS =
         ArrayUtils.emptyArray(ParagraphStyle.class);
+    private static final int EXTEND_HEIGHT = 920;
     private final LayoutContext layoutContext;
 
 //    /* package */ static final EmojiFactory EMOJI_FACTORY = EmojiFactory.newAvailableInstance();
@@ -586,7 +587,7 @@ public abstract class Layout {
      * Return the total height of this layout.
      */
     public int getHeight() {
-        return getLineTop(getLineCount()) + 920; //可以拉出底部空白处
+        return getLineTop(getLineCount()) + EXTEND_HEIGHT; //可以拉出底部空白处
     }
 
     /**

@@ -47,8 +47,8 @@ Sometimes I've noticed that if the save button isn't active, rotating from portr
 
 Replace feature does NOT work - you enter what to find and with what to replace, but it only finds the word - no way to replace
 
-单文件中使用搜索功能时，查找结果同样不能自动出现，总是要把该页文字往上移两行才能看到高亮显示的查找结果
-查找框中输入的字符串不能保留，这在多次搜索同一字符串时很不方便，只能多次重复输入。
+-单文件中使用搜索功能时，查找结果同样不能自动出现，总是要把该页文字往上移两行才能看到高亮显示的查找结果
+-查找框中输入的字符串不能保留，这在多次搜索同一字符串时很不方便，只能多次重复输入。
 
 make it possible to hide top menu bar and bottom special characters bar
 
