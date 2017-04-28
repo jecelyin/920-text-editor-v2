@@ -228,8 +228,22 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         );
     }
 
+    private String getFirstLineAsFileName() {
+        Editable text = getEditableText();
+        if (text.length() == 0)
+            return "";
+
+        int maxLen = 50;
+        String name = text.subSequence(0, Math.min(maxLen, text.length())).toString().trim();
+        int breakIndex = name.indexOf('\n');
+        if (breakIndex > 0)
+            return name.substring(0, breakIndex);
+
+        return name;
+    }
+
     public void startSaveFileSelectorActivity() {
-        getMainActivity().startPickPathActivity(document.getPath(), document.getEncoding());
+        getMainActivity().startPickPathActivity(document.getPath(), getFirstLineAsFileName(), document.getEncoding());
     }
 
     public void saveTo(File file, String encoding) {

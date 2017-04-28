@@ -70,10 +70,11 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
         activity.startActivityForResult(it, requestCode);
     }
 
-    public static void startPickPathActivity(Activity activity, String destFile, String encoding, int requestCode) {
+    public static void startPickPathActivity(Activity activity, String destFile, String filename, String encoding, int requestCode) {
         Intent it = new Intent(activity, FileExplorerActivity.class);
         it.putExtra("mode", MODE_PICK_PATH);
         it.putExtra("dest_file", destFile);
+        it.putExtra("filename", filename);
         it.putExtra("encoding", encoding);
         activity.startActivityForResult(it, requestCode);
     }
@@ -118,13 +119,14 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
         }
 
         String destPath = it.getStringExtra("dest_file");
+        String filename = it.getStringExtra("filename");
 
         if(!TextUtils.isEmpty(destPath)) {
             File dest = new File(destPath);
             lastPath = dest.isFile() ? dest.getParent() : dest.getPath();
             binding.filenameEditText.setText(dest.getName());
         } else {
-            binding.filenameEditText.setText(getString(R.string.untitled_file_name));
+            binding.filenameEditText.setText(TextUtils.isEmpty(filename) ? getString(R.string.untitled_file_name) : filename + ".txt");
         }
 
         initPager();

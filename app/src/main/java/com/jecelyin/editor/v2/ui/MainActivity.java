@@ -638,8 +638,8 @@ public class MainActivity extends BaseActivity
         startActivityForResult(it, RC_OPEN_FILE);
     }
 
-    public void startPickPathActivity(String path, String encoding) {
-        FileExplorerActivity.startPickPathActivity(this, path, encoding, RC_SAVE);
+    public void startPickPathActivity(String path, String filename, String encoding) {
+        FileExplorerActivity.startPickPathActivity(this, path, filename, encoding, RC_SAVE);
     }
 
     @Override
