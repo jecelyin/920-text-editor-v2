@@ -22,7 +22,6 @@ import android.os.AsyncTask;
 import android.text.Editable;
 
 import com.jecelyin.android.file_explorer.io.RootFile;
-import com.jecelyin.common.utils.IOUtils;
 import com.stericson.RootTools.RootTools;
 
 import java.io.BufferedWriter;
@@ -73,9 +72,8 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
 //            }
 //        }
 
-        if(file.isFile() && (orgiFile == null
-                ? !IOUtils.copyFile(file, backupFile)
-                : !RootTools.copyFile(file.getPath(), backupFile.getPath(), true, true))) {
+        if(file.isFile() && (orgiFile == null &&
+                !RootTools.copyFile(file.getPath(), backupFile.getPath(), true, false))) {
             return new IOException("Couldn't copy file " + file
                     + " to backup file " + backupFile);
         }

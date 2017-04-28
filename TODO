@@ -19,7 +19,7 @@ toolbar按钮调整
 版的emeditor可以从某文件夹搜到10个结果，920却只显示3个结果，特别是正则表达式稍复杂时这一现象更明显。简单正则表达式则可以显示更多结果。
 
 ------
-正则表达式搜索暂时没有发现问题，但是在替换的时候发现，像/n,/r这类的替换是行不通的（比如想将zip替换成zip/n从而达到在zip后面加上换行符的目的）。想请教下，如果想在替换的结果中加入换行符该如何实现呢？
+-正则表达式搜索暂时没有发现问题，但是在替换的时候发现，像/n,/r这类的替换是行不通的（比如想将zip替换成zip/n从而达到在zip后面加上换行符的目的）。想请教下，如果想在替换的结果中加入换行符该如何实现呢？
 
 sl4a的打开选择920报错
 
@@ -32,6 +32,7 @@ using the tab button on hackers keyboard instead of doing the indent whitespace 
 Unfortunately it doesn't appear to want to write to the / folder even though root is enabled.
 The file I tried to save was in /system/etc/
 
+fix:
 Tag: JecLog
 Msg: /system/etc/.920bak.media_profiles.xml: open failed: EROFS (Read-only file system)
 Stacktrace:
