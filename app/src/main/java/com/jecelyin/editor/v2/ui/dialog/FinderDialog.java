@@ -300,6 +300,8 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
 
             View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.search_replace_action_mode_layout, null);
             int w = fragment.getContext().getResources().getDimensionPixelSize(R.dimen.cab_find_text_width);
+            if (replaceText == null)
+                w *= 2;
             view.setLayoutParams(new ViewGroup.LayoutParams(w, ViewGroup.LayoutParams.MATCH_PARENT));
 
             TextView searchTextView = (TextView) view.findViewById(R.id.searchTextView);
