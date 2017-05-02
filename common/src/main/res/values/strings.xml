@@ -259,4 +259,7 @@
     <string name="replace_log">Replace Log</string>
     <string name="use_regex_to_find_tip">Replace keyword support: \\r, \\n, \\t and capturing groups $0 ~ $9</string>
     <string name="cannt_open_external_file_x">Can\'t open external file: %s</string>
+    <string name="call_external_app_or_share">Call external App / Share...</string>
+    <string name="share_menu">Share...</string>
+    <string name="share_html_menu">Share(HTML)...</string>
 </resources>

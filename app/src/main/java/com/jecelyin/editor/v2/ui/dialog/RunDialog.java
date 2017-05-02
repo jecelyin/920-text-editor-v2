@@ -64,6 +64,8 @@ public class RunDialog extends AbstractDialog {
         list.add(new Executor(R.string.use_sl4a_in_terminal_run_script, context.getString(R.string.use_sl4a_in_terminal_run_script)));
         list.add(new Executor(R.string.preview_in_browser, context.getString(R.string.preview_in_browser)));
         list.add(new Executor(R.string.other_application, context.getString(R.string.other_application)));
+        list.add(new Executor(R.string.share_menu, context.getString(R.string.share_menu)));
+        list.add(new Executor(R.string.share_html_menu, context.getString(R.string.share_html_menu)));
     }
 
     @Override
@@ -74,7 +76,7 @@ public class RunDialog extends AbstractDialog {
             items[i] = list.get(i).name;
         }
         MaterialDialog dlg = getDialogBuilder().items(items)
-                .title(R.string.run)
+                .title(R.string.call_external_app_or_share)
                 .positiveText(R.string.close)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
@@ -102,7 +104,8 @@ public class RunDialog extends AbstractDialog {
         }
         File file = new File(path);
         Uri data = Uri.fromFile(file);
-        String type = MimeTypes.getInstance().getMimeType(file.getName());
+        String fileName = file.getName();
+        String type = MimeTypes.getInstance().getMimeType(fileName);
         Executor executor = list.get(i);
         Intent it = null;
         switch (executor.id) {
@@ -124,6 +127,26 @@ public class RunDialog extends AbstractDialog {
                 it.setDataAndType(data, type); //注意调用it.setType会设置Data为null
 //                it.setComponent(new ComponentName("com.n0n3m4.droidc", "com.n0n3m4.droidc.CCompilerMain"));
                 it = Intent.createChooser(it, context.getString(R.string.chooser_application));
+                break;
+            case R.string.share_menu:
+            case R.string.share_html_menu:
+                String text = null;
+                try {
+                    text = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate().getText();
+                    if (executor.id == R.string.share_html_menu && text != null) {
+                        text = TextUtils.htmlEncode(text);
+                        text = text.replace("\n", "<br/>\n");
+                    }
+                } catch (Throwable e) {
+                    L.e(e);
+                    UIUtils.toast(context, e.getMessage());
+                    return;
+                }
+                it = new Intent(Intent.ACTION_SEND);//注意调用it.setType会设置Data为null
+                it.setDataAndType(data, type); //注意调用it.setType会设置Data为null
+                it.putExtra(Intent.EXTRA_TITLE, fileName); //for youdaoNote
+                it.putExtra(Intent.EXTRA_TEXT, text); //for youdaoNote
+                it = Intent.createChooser(it, context.getString(R.string.share_menu));
                 break;
         }
         if(it != null) {

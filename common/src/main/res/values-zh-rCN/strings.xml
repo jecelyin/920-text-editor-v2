@@ -259,4 +259,7 @@
     <string name="replace_log">替换日志</string>
     <string name="use_regex_to_find_tip">替换关键字支持： \\r, \\n, \\t 和捕捉组 $0 ~ $9</string>
     <string name="cannt_open_external_file_x">无法打开外部文件：%s</string>
+    <string name="call_external_app_or_share">调用外部程序/分享...</string>
+    <string name="share_menu">分享...</string>
+    <string name="share_html_menu">分享（HTML）...</string>
 </resources>
