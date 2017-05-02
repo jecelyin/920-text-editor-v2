@@ -199,11 +199,16 @@ public class Document implements ReadFileListener, TextWatcher {
         Editable editableText = editorDelegate.getEditableText();
         buffer.setEditable(editableText);
 
-        if(before > 0) {
-            buffer.remove(start, before);
-        }
-        if(count > 0) {
-            buffer.insert(start, s.subSequence(start, start + count));
+        try {
+            if(before > 0) {
+                buffer.remove(start, before);
+            }
+            if(count > 0) {
+                buffer.insert(start, s.subSequence(start, start + count));
+            }
+        } catch (Exception e) {
+            //// TODO: 2017/5/2 fix: java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 1
+//            at com.jecelyin.editor.v2.highlight.Buffer.insert(Buffer.java:320) 
         }
 
         lineNumber = buffer.getLineManager().getLineCount();
@@ -402,14 +407,22 @@ public class Document implements ReadFileListener, TextWatcher {
             styles = StyleLoader.loadStyles(context);
         ArrayList<HighlightInfo> mergerArray;
 
-        for (int i = startLine; i <= endLine; i++) {
-            tokenHandler = new DefaultTokenHandler();
-            buffer.markTokens(i, tokenHandler);
-            Token token = tokenHandler.getTokens();
+        try {
+            for (int i = startLine; i <= endLine; i++) {
+                tokenHandler = new DefaultTokenHandler();
+                buffer.markTokens(i, tokenHandler);
+                Token token = tokenHandler.getTokens();
 
-            mergerArray = new ArrayList<>();
-            collectToken(buffer, i, token, mergerArray);
-            addTokenSpans(spannableStringBuilder, i, mergerArray);
+                mergerArray = new ArrayList<>();
+                collectToken(buffer, i, token, mergerArray);
+                addTokenSpans(spannableStringBuilder, i, mergerArray);
+            }
+        } catch (Exception e) {
+            // TODO: 2017/5/2 fix: java.lang.ArrayIndexOutOfBoundsException: 0+9 > 0
+//            at com.jecelyin.editor.v2.highlight.Buffer.getText(Buffer.java:129)
+//            at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:121)
+//            at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:97)
+//            at com.jecelyin.editor.v2.highlight.Buffer.markTokens(Buffer.java:221)
         }
         L.stopTracing();
     }
