@@ -74,6 +74,10 @@ public class SysUtils {
         return result != null && ((boolean)result);
     }
 
+    public static boolean isMonkeyRunner(Context context) {
+        return true;
+    }
+
     public static int dpAsPixels(Context context, int dp)
     {
         Resources resources = context.getResources();

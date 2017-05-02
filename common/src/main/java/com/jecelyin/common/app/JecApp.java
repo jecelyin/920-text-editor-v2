@@ -54,7 +54,8 @@ public abstract class JecApp extends Application implements Thread.UncaughtExcep
         // 捕捉未知异常
         Thread.setDefaultUncaughtExceptionHandler(this);
         // 安装内存泄漏监控或UI卡顿监控
-        installMonitor();
+        if (!SysUtils.isMonkeyRunner(this))
+            installMonitor();
     }
 
     @Override

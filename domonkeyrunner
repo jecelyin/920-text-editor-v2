@@ -1,0 +1,3 @@
+adb shell ps | awk '/com\.android\.commands\.monkey/ { system("adb shell kill " $2) }'
+ exit
+adb shell monkey -p com.jecelyin.editor.v2  -v --pct-touch 25  --pct-flip 15 --pct-anyevent 0 --pct-appswitch 10 --ignore-timeouts --ignore-crashes --ignore-timeouts --ignore-security-exceptions --hprof --throttle 5 2000000

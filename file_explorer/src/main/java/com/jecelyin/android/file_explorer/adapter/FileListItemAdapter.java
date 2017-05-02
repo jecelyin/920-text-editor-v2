@@ -118,6 +118,8 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
 
     @Override
     public int getPositionForSection(int sectionIndex) {
+        if (mSectionPositions == null || mSectionPositions.size() <= sectionIndex)
+            return 0;
         return mSectionPositions.get(sectionIndex);
     }
 

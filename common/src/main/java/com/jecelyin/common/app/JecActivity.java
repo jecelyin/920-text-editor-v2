@@ -22,13 +22,17 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.jecelyin.common.R;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.view.StatusBarUtil;
 
 /**
@@ -37,6 +41,23 @@ import com.jecelyin.common.view.StatusBarUtil;
 public class JecActivity extends AppCompatActivity {
 
     private boolean isAttached;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (SysUtils.isMonkeyRunner(this)) {//Monkey Test
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            hideStatusBar();
+        }
+    }
+
+    protected void hideStatusBar() {
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
 
     @Override
     public void setSupportActionBar(@Nullable Toolbar toolbar) {

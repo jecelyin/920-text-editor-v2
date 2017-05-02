@@ -103,7 +103,7 @@ public class RangeAdapter extends RecyclerView.Adapter<RangeAdapter.RangeViewHol
 
     public static class RangeViewHolder extends RecyclerView.ViewHolder {
         public TextView mTitleTextView;
-        public HashMap<Integer, View> mViewMap;
+        public HashMap<Integer, View> mViewMap = new HashMap<>();
 
         public RangeViewHolder(View itemView) {
             super(itemView);
