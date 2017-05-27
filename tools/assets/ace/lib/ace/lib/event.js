@@ -398,16 +398,22 @@ else
     };
 
 exports.getClientX = function(e) {
-    if (e instanceof TouchEvent)
-        return e.touches[0].clientX;
-    else
+    if (e instanceof TouchEvent) {
+        var touch = e.touches[0] || e.changedTouches[0];
+        // if(!touch || !touch.clientX)
+        //     debugger;
+        return touch.clientX;
+    } else
         return e.clientX;
 };
 
 exports.getClientY = function(e) {
-    if (e instanceof TouchEvent)
-        return e.touches[0].clientY;
-    else
+    if (e instanceof TouchEvent) {
+        var touch = e.touches[0] || e.changedTouches[0];
+        // if(!touch || !touch.clientX)
+        //     debugger;
+        return touch.clientY;
+    } else
         return e.clientY;
 };
 

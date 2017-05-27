@@ -34,6 +34,7 @@ define(function(require, exports, module) {
 var dom = require("../lib/dom");
 var event = require("../lib/event");
 var useragent = require("../lib/useragent");
+var FastScroller = require("../fastscroll/Scroller").Scroller;
 var SelectDrawableEventHandler = require("./select_drawables_event_handler").SelectDrawableEventHandler;
 var DRAG_OFFSET = 0; // pixels
 
@@ -47,7 +48,10 @@ function DefaultHandlers(mouseHandler) {
     editor.setDefaultHandler("tripleclick", this.onTripleClick.bind(mouseHandler));
     editor.setDefaultHandler("quadclick", this.onQuadClick.bind(mouseHandler));
     editor.setDefaultHandler("mousewheel", this.onMouseWheel.bind(mouseHandler));
-    editor.setDefaultHandler("touchmove", this.onTouchMove.bind(mouseHandler));
+    // editor.setDefaultHandler("touchmove", this.onTouchMove.bind(mouseHandler));
+    editor.setDefaultHandler("touchmove", this.onTouchMove.bind(this));
+    editor.setDefaultHandler("touchstart", this.onTouchStart.bind(this));
+    editor.setDefaultHandler("touchend", this.onTouchEnd.bind(this));
 
     var exports = ["select", "startSelect", "selectEnd", "selectAllEnd", "selectByWordsEnd",
         "selectByLinesEnd", "dragWait", "dragWaitEnd", "focusWait"];
@@ -59,6 +63,14 @@ function DefaultHandlers(mouseHandler) {
     mouseHandler.selectByLines = this.extendSelectionBy.bind(mouseHandler, "getLineRange");
     mouseHandler.selectByWords = this.extendSelectionBy.bind(mouseHandler, "getWordRange");
     new SelectDrawableEventHandler(this, mouseHandler);
+
+    this.fastScroller = new FastScroller(function (left, top, zoom) {
+        console.log("fast scroll left="+left+" top="+top+" zoom="+zoom);
+        var isScrolable = editor.renderer.isScrollableBy(left, top);
+        if (isScrolable) {
+            editor.renderer.scrollBy(left, top);
+        }
+    }, {"scrollingX": false});
 }
 
 (function() {
@@ -264,16 +276,29 @@ function DefaultHandlers(mouseHandler) {
     };
     
     this.onTouchMove = function (ev) {
-        var t = ev.domEvent.timeStamp;
-        var dt = t - (this.$lastScrollTime || 0);
+        // var t = ev.domEvent.timeStamp;
+        // var dt = t - (this.$lastScrollTime || 0);
+        //
+        // var editor = this.editor;
+        // var isScrolable = editor.renderer.isScrollableBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
+        // if (isScrolable || dt < 200) {
+        //     this.$lastScrollTime = t;
+        //     editor.renderer.scrollBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
+        //     return ev.stop();
+        // }
+        this.fastScroller.doTouchMove(ev.domEvent.touches, ev.domEvent.timeStamp);
+    };
 
-        var editor = this.editor;
-        var isScrolable = editor.renderer.isScrollableBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
-        if (isScrolable || dt < 200) {
-            this.$lastScrollTime = t;
-            editor.renderer.scrollBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
-            return ev.stop();
-        }
+    this.onTouchStart = function (ev) {
+        var container = ev.editor.container;
+        var layerConfig = ev.editor.renderer.layerConfig;
+        this.fastScroller.setPosition(0, 0);
+        this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, container.clientWidth, layerConfig.maxHeight);
+        this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);
+    };
+
+    this.onTouchEnd = function (ev) {
+        this.fastScroller.doTouchEnd(ev.domEvent.timeStamp);
     };
 
 }).call(DefaultHandlers.prototype);

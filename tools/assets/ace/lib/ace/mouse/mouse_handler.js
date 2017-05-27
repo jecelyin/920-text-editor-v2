@@ -61,6 +61,8 @@ var MouseHandler = function(editor) {
     event.addListener(mouseTarget, "click", this.onMouseEvent.bind(this, "click"));
     // event.addListener(mouseTarget, "mousemove", this.onMouseMove.bind(this, "mousemove"));
     event.addListener(mouseTarget, "touchmove", this.onMouseMove.bind(this, "touchmove"));
+    event.addListener(mouseTarget, "touchstart", this.onMouseMove.bind(this, "touchstart"));
+    event.addListener(mouseTarget, "touchend", this.onMouseMove.bind(this, "touchend"));
     event.addMultiMouseDownListener([
         mouseTarget,
         editor.renderer.scrollBarV && editor.renderer.scrollBarV.inner,
@@ -68,7 +70,7 @@ var MouseHandler = function(editor) {
         editor.textInput && editor.textInput.getElement()
     ].filter(Boolean), [400, 300, 250], this, "onMouseEvent");
     event.addMouseWheelListener(editor.container, this.onMouseWheel.bind(this, "mousewheel"));
-    event.addTouchMoveListener(editor.container, this.onTouchMove.bind(this, "touchmove"));
+    event.addTouchMoveListener(editor.container, this.onTouchMove.bind(this, "touchmove")); //fix mobile
 
     var gutterEl = editor.renderer.$gutter;
     event.addListener(gutterEl, "mousedown", this.onMouseEvent.bind(this, "guttermousedown"));
@@ -108,7 +110,8 @@ var MouseHandler = function(editor) {
 
     this.onMouseMove = function(name, e) {
         // optimization, because mousemove doesn't have a default handler.
-        var listeners = this.editor._eventRegistry && this.editor._eventRegistry.mousemove;
+        // var listeners = this.editor._eventRegistry && this.editor._eventRegistry.mousemove;
+        var listeners = this.editor._eventRegistry && this.editor._eventRegistry.touchmove;
         if (!listeners || !listeners.length)
             return;
 
