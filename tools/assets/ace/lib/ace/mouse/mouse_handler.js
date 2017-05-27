@@ -59,7 +59,8 @@ var MouseHandler = function(editor) {
 
     var mouseTarget = editor.renderer.getMouseEventTarget();
     event.addListener(mouseTarget, "click", this.onMouseEvent.bind(this, "click"));
-    event.addListener(mouseTarget, "mousemove", this.onMouseMove.bind(this, "mousemove"));
+    // event.addListener(mouseTarget, "mousemove", this.onMouseMove.bind(this, "mousemove"));
+    event.addListener(mouseTarget, "touchmove", this.onMouseMove.bind(this, "touchmove"));
     event.addMultiMouseDownListener([
         mouseTarget,
         editor.renderer.scrollBarV && editor.renderer.scrollBarV.inner,
@@ -75,14 +76,16 @@ var MouseHandler = function(editor) {
     event.addListener(gutterEl, "dblclick", this.onMouseEvent.bind(this, "gutterdblclick"));
     event.addListener(gutterEl, "mousemove", this.onMouseEvent.bind(this, "guttermousemove"));
 
-    event.addListener(mouseTarget, "mousedown", focusEditor);
+    // event.addListener(mouseTarget, "mousedown", focusEditor);
+    event.addListener(mouseTarget, "touchstart", focusEditor);
     event.addListener(gutterEl, "mousedown", focusEditor);
     if (useragent.isIE && editor.renderer.scrollBarV) {
         event.addListener(editor.renderer.scrollBarV.element, "mousedown", focusEditor);
         event.addListener(editor.renderer.scrollBarH.element, "mousedown", focusEditor);
     }
 
-    editor.on("mousemove", function(e){
+    // editor.on("mousemove", function(e){
+    editor.on("touchmove", function(e){
         if (_self.state || _self.$dragDelay || !_self.$dragEnabled)
             return;
 
@@ -152,8 +155,10 @@ var MouseHandler = function(editor) {
             if (useragent.isWebKit && !e.which && self.releaseMouse)
                 return self.releaseMouse();
 
-            self.x = e.clientX;
-            self.y = e.clientY;
+            // self.x = e.clientX;
+            // self.y = e.clientY;
+            self.x = event.getClientX(e);
+            self.y = event.getClientY(e);
             mouseMoveHandler && mouseMoveHandler(e);
             self.mouseEvent = new MouseEvent(e, self.editor);
             self.$mouseMoved = true;
@@ -170,7 +175,8 @@ var MouseHandler = function(editor) {
             }
             self.isMousePressed = false;
             self.$onCaptureMouseMove = self.releaseMouse = null;
-            e && self.onMouseEvent("mouseup", e);
+            // e && self.onMouseEvent("mouseup", e);
+            e && self.onMouseEvent("touchend", e);
         };
 
         var onCaptureInterval = function() {

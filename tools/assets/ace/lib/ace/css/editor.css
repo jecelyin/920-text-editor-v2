@@ -8,7 +8,7 @@
 
 .ace_scroller {
     position: absolute;
-    overflow: hidden;
+    /*overflow: hidden;*/
     top: 0;
     bottom: 0;
     background-color: inherit;
@@ -143,10 +143,10 @@
     padding: 0 1px;
     margin: 0 -1px;
     text-indent: -1em;
-    -ms-user-select: text;
-    -moz-user-select: text;
-    -webkit-user-select: text;
-    user-select: text;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     /*with `pre-line` chrome inserts &nbsp; instead of space*/
     white-space: pre!important;
 }
@@ -159,10 +159,31 @@
     text-indent: 0;
 }
 
+.ace_select_handle {
+    z-index: 25;
+    position: absolute;
+    cursor: default;
+    pointer-events: auto;
+}
+
+.ace_mid_select_handle {
+    margin-left: -10px;
+    width: 20px;
+}
+
+.ace_l_select_handle {
+    margin-left: -33px;
+    width: 44px;
+}
+
+.ace_r_select_handle {
+    margin-left: -11px;
+    width: 44px;
+}
 .ace_layer {
     z-index: 1;
     position: absolute;
-    overflow: hidden;
+    /*overflow: hidden;*/
     /* workaround for chrome bug https://github.com/ajaxorg/ace/issues/2312*/
     word-wrap: normal;
     white-space: pre;

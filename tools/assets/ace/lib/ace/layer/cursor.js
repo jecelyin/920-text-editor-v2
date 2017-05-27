@@ -32,6 +32,7 @@ define(function(require, exports, module) {
 "use strict";
 
 var dom = require("../lib/dom");
+var SelectHandleDrawables = require("./select_handle_drawables").SelectHandleDrawables;
 var isIE8;
 
 var Cursor = function(parentEl) {
@@ -53,6 +54,7 @@ var Cursor = function(parentEl) {
     this.$updateCursors = (isIE8
         ? this.$updateVisibility
         : this.$updateOpacity).bind(this);
+    this.selectHandleDrawables = new SelectHandleDrawables(this);
 };
 
 (function() {
@@ -207,6 +209,8 @@ var Cursor = function(parentEl) {
         }
         while (this.cursors.length > cursorIndex)
             this.removeCursor();
+
+        this.selectHandleDrawables.update(config);
 
         var overwrite = this.session.getOverwrite();
         this.$setOverwrite(overwrite);

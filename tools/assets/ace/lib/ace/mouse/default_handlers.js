@@ -34,14 +34,15 @@ define(function(require, exports, module) {
 var dom = require("../lib/dom");
 var event = require("../lib/event");
 var useragent = require("../lib/useragent");
-
+var SelectDrawableEventHandler = require("./select_drawables_event_handler").SelectDrawableEventHandler;
 var DRAG_OFFSET = 0; // pixels
 
 function DefaultHandlers(mouseHandler) {
     mouseHandler.$clickSelection = null;
 
     var editor = mouseHandler.editor;
-    editor.setDefaultHandler("mousedown", this.onMouseDown.bind(mouseHandler));
+    this.mousedown = this.onMouseDown.bind(mouseHandler);
+    editor.setDefaultHandler("mousedown", this.mousedown);
     editor.setDefaultHandler("dblclick", this.onDoubleClick.bind(mouseHandler));
     editor.setDefaultHandler("tripleclick", this.onTripleClick.bind(mouseHandler));
     editor.setDefaultHandler("quadclick", this.onQuadClick.bind(mouseHandler));
@@ -57,18 +58,19 @@ function DefaultHandlers(mouseHandler) {
 
     mouseHandler.selectByLines = this.extendSelectionBy.bind(mouseHandler, "getLineRange");
     mouseHandler.selectByWords = this.extendSelectionBy.bind(mouseHandler, "getWordRange");
+    new SelectDrawableEventHandler(this, mouseHandler);
 }
 
 (function() {
 
-    this.onMouseDown = function(ev) {
+    this.onMouseDown = function(ev, isSelectDrawable) {
         var inSelection = ev.inSelection();
         var pos = ev.getDocumentPosition();
         this.mousedownEvent = ev;
         var editor = this.editor;
 
         var button = ev.getButton();
-        if (button !== 0) {
+        if (button !== 0 && !isSelectDrawable) {
             var selectionRange = editor.getSelectionRange();
             var selectionEmpty = selectionRange.isEmpty();
             editor.$blockScrolling++;

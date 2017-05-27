@@ -396,4 +396,19 @@ else
     exports.nextFrame = function(callback) {
         setTimeout(callback, 17);
     };
+
+exports.getClientX = function(e) {
+    if (e instanceof TouchEvent)
+        return e.touches[0].clientX;
+    else
+        return e.clientX;
+};
+
+exports.getClientY = function(e) {
+    if (e instanceof TouchEvent)
+        return e.touches[0].clientY;
+    else
+        return e.clientY;
+};
+
 });

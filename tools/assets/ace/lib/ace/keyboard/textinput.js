@@ -73,15 +73,15 @@ var TextInput = function(parentNode, host) {
     });
     this.focus = function() {
         if (tempStyle) return text.focus();
-        var top = text.style.top;
-        text.style.position = "fixed";
-        text.style.top = "0px";
+        // var top = text.style.top;
+        // text.style.position = "fixed";
+        // text.style.top = "0px";
         text.focus();
-        setTimeout(function() {
-            text.style.position = "";
-            if (text.style.top == "0px")
-                text.style.top = top;
-        }, 0);
+        // setTimeout(function() {
+        //     text.style.position = "";
+        //     if (text.style.top == "0px")
+        //         text.style.top = top;
+        // }, 0);
     };
     this.blur = function() {
         text.blur();
@@ -114,7 +114,8 @@ var TextInput = function(parentNode, host) {
             selectionEnd = isEmpty ? 0 : text.value.length - 1;
         } else {
             var selectionStart = isEmpty ? 2 : 1;
-            var selectionEnd = 2;
+            // var selectionEnd = 2;
+            var selectionEnd = selectionStart;
         }
         // on firefox this throws if textarea is hidden
         try {

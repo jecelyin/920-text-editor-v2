@@ -37,12 +37,12 @@ var useragent = require("../lib/useragent");
 /*
  * Custom Ace mouse event
  */
-var MouseEvent = exports.MouseEvent = function(domEvent, editor) {
+var MouseEvent = exports.MouseEvent = function(domEvent, editor, offsetX, offsetY) {
     this.domEvent = domEvent;
     this.editor = editor;
-    
-    this.x = this.clientX = domEvent.clientX;
-    this.y = this.clientY = domEvent.clientY;
+
+    this.x = this.clientX = offsetX || event.getClientX(domEvent);
+    this.y = this.clientY = offsetY || event.getClientY(domEvent);
 
     this.$pos = null;
     this.$inSelection = null;
