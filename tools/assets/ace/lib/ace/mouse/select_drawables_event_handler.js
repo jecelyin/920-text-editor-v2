@@ -34,8 +34,8 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
     event.addListener(selectHandleDrawables.selectHandleMid, "touchstart", function (e) {
         event.stopEvent(e);
         // debugger;
-        diffX = getClientX(e) - this.x;
-        diffY = getClientY(e) - this.y;
+        diffX = event.getClientX(e) - this.x;
+        diffY = event.getClientY(e) - this.y;
         console.log("touchstart diffX="+diffX+" diffY="+diffY);
         var mouseEvent = new MouseEvent(e, editor, this.x + this.clientWidth/2, this.y - editor.renderer.layerConfig.lineHeight);
         defaultHandler.mousedown(mouseEvent, true);
@@ -44,8 +44,8 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
     event.addListener(selectHandleDrawables.selectHandleMid, "touchmove", function (e) {
         event.stopEvent(e);
         var x, y;
-        x = getClientX(e) - diffX + this.clientWidth/2;
-        y = getClientY(e) - diffY - this.clientHeight*0.2;
+        x = event.getClientX(e) - diffX + this.clientWidth/2;
+        y = event.getClientY(e) - diffY - this.clientHeight*0.2;
         console.log("move x="+x+" y="+y);
         // mouseHandler.x = getClientX(e) + this.clientWidth/2;
         // mouseHandler.y = getClientY(e) - editor.renderer.layerConfig.lineHeight;
@@ -69,8 +69,8 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
         event.stopEvent(e);
         var elem = e.target || e.srcElement;
         // debugger;
-        diffX = getClientX(e) - elem.x;
-        diffY = getClientY(e) - elem.y;
+        diffX = event.getClientX(e) - elem.x;
+        diffY = event.getClientY(e) - elem.y;
         var selection = this.editor.selection;
 
         var anchor = selection.getSelectionAnchor();
@@ -92,8 +92,8 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
         event.stopEvent(e);
         var elem = e.target || e.srcElement;
         var x, y;
-        x = getClientX(e) - diffX + elem.clientWidth/2;
-        y = getClientY(e) - diffY - elem.clientHeight*0.2;
+        x = event.getClientX(e) - diffX + elem.clientWidth/2;
+        y = event.getClientY(e) - diffY - elem.clientHeight*0.2;
         var pos = this.editor.renderer.screenToTextCoordinates(x, y);
         var selection = this.editor.selection;
 
