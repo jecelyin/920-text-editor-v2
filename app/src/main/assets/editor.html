@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>920 Text Editor</title>
+    <!--<base href="file:///android_asset/" />-->
+    <style type="text/css" media="screen">
+
+	body {
+        overflow: hidden;
+    }
+
+    #editor {
+        margin: 0;
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+	.scrollmargin {
+		height: 80px;
+        text-align: center;
+	}
+    </style>
+</head>
+<body>
+<div id="editor" class="code" ace-gutter="true">
+
+</div>
+<script src="ace/src/ace.js" type="text/javascript"></script>
+<script>
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/eclieepse");
+    editor.session.setMode("ace/mode/java");
+    editor.getSession().setUseWrapMode(true);
+    editor.renderer.setVScrollBarAlwaysVisible(true);
+    editor.renderer.setAnimatedScroll(true);
+    //editor.setAutoScrollEditorIntoView(true);
+
+    function handleJava(data) {
+        if (!data.cmd)return;
+
+    }
+</script>
+</body>
+</html>

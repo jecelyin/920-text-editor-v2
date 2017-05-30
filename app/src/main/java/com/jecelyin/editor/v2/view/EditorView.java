@@ -25,13 +25,13 @@ import android.widget.RelativeLayout;
 
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.OnVisibilityChangedListener;
-import com.jecelyin.editor.v2.core.widget.JecEditText;
+import com.jecelyin.editor.v2.widget.EditAreaView;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class EditorView extends RelativeLayout {
-    private JecEditText editText;
+    private EditAreaView editAreaView;
     private ProgressBar progressView;
     private boolean removed = false;
     private OnVisibilityChangedListener visibilityChangedListener;
@@ -48,21 +48,21 @@ public class EditorView extends RelativeLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        editText = (JecEditText) findViewById(R.id.edit_text);
+        editAreaView = (EditAreaView) findViewById(R.id.edit_text);
         progressView = (ProgressBar) findViewById(R.id.progress_view);
 
     }
 
-    public JecEditText getEditText() {
-        return editText;
+    public EditAreaView getEditAreaView() {
+        return editAreaView;
     }
 
     public void setLoading(boolean loading) {
         if (loading) {
-            editText.setVisibility(GONE);
+            editAreaView.setVisibility(GONE);
             progressView.setVisibility(VISIBLE);
         } else {
-            editText.setVisibility(VISIBLE);
+            editAreaView.setVisibility(VISIBLE);
             progressView.setVisibility(GONE);
         }
     }
