@@ -35,7 +35,7 @@ var copy = require('architect-build/copy');
 var build = require('architect-build/build');
 
 var ACE_HOME = __dirname;
-var BUILD_DIR = ACE_HOME + "/build";
+var BUILD_DIR = ACE_HOME + "/../../../app/src/main/assets/ace";
 var CACHE = {};
 
 function main(args) {
