@@ -102,8 +102,19 @@ var VScrollBar = function(parent, renderer) {
     // make element a little bit wider to retain scrollbar when page is zoomed 
     renderer.$scrollbarWidth = 
     this.width = dom.scrollbarWidth(parent.ownerDocument);
+    var thumbWidth = 31;
+
     this.inner.style.width =
-    this.element.style.width = (this.width || 15) + 5 + "px";
+    // this.element.style.width = (this.width || 15) + 5 + "px";
+    this.element.style.width = (this.width || thumbWidth) + "px";
+
+    var thumb = dom.createElement("img");
+    thumb.style.width = thumbWidth + "px";
+    thumb.src = "img/scrollbar_handle_accelerated.png";
+    this.inner.appendChild(thumb);
+
+    event.addListener(this.inner, "touchstart", this.onTouchStart.bind(this));
+    event.addListener(this.inner, "touchmove", this.onTouchMove.bind(this));
 };
 
 oop.inherits(VScrollBar, ScrollBar);
@@ -111,6 +122,26 @@ oop.inherits(VScrollBar, ScrollBar);
 (function() {
 
     this.classSuffix = '-v';
+
+    this.onTouchStart = function (ev) {
+        event.stopEvent(ev);
+        this.startY = event.getClientY(ev) - this.inner.offsetTop;
+    };
+
+    this.onTouchMove = function (ev) {
+        event.stopEvent(ev);
+
+        var y = event.getClientY(ev);
+        // var diffY = y - this.startY;
+        // var rect = this.inner.getBoundingClientRect();
+        // var top = rect.top + diffY;
+        // // this.inner.style.top = top + "px";
+        var top = y - this.startY;
+        var per = top / (this.element.clientHeight - this.inner.clientHeight);
+        var scrollTop = Math.min(per, 1) * (this.scrollHeight - this.element.clientHeight);
+        console.log("thumb top="+top+" scrollTop="+scrollTop);
+        this._emit("scroll", {data: scrollTop});
+    };
 
     /**
      * Emitted when the scroll bar, well, scrolls.
@@ -163,7 +194,8 @@ oop.inherits(VScrollBar, ScrollBar);
         } else if (this.coeff != 1) {
             this.coeff = 1
         }
-        this.inner.style.height = height + "px";
+        // this.inner.style.height = height + "px";
+        this.inner.style.height = "40px";
     };
 
     /**
@@ -177,6 +209,9 @@ oop.inherits(VScrollBar, ScrollBar);
             this.skipEvent = true;
             this.scrollTop = scrollTop;
             this.element.scrollTop = scrollTop * this.coeff;
+
+            var per = scrollTop / (this.scrollHeight - this.element.clientHeight);
+            this.inner.style.top = (per * this.element.clientHeight) + "px";
         }
     };
 

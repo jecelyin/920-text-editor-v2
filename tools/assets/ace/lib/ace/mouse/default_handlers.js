@@ -66,10 +66,7 @@ function DefaultHandlers(mouseHandler) {
 
     this.fastScroller = new FastScroller(function (left, top, zoom) {
         console.log("fast scroll left="+left+" top="+top+" zoom="+zoom);
-        var isScrolable = editor.renderer.isScrollableBy(left, top);
-        if (isScrolable) {
-            editor.renderer.scrollBy(left, top);
-        }
+        editor.renderer.scrollTo(left, top);
     }, {"scrollingX": false});
 }
 
@@ -292,6 +289,7 @@ function DefaultHandlers(mouseHandler) {
     this.onTouchStart = function (ev) {
         var container = ev.editor.container;
         var layerConfig = ev.editor.renderer.layerConfig;
+        // var st = ev.editor.renderer.getScrollTop();
         this.fastScroller.setPosition(0, 0);
         this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, container.clientWidth, layerConfig.maxHeight);
         this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);

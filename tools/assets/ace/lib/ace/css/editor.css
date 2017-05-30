@@ -111,7 +111,8 @@
 
 .ace_scrollbar-v{
     overflow-x: hidden;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
+    overflow-y: hidden;
     top: 0;
 }
 

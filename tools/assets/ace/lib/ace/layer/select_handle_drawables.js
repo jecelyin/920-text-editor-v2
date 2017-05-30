@@ -78,7 +78,7 @@ var SelectHandleDrawables = function(cursor) {
 
     this.update = function(config) {
         this.config = config;
-        console.trace("update drawable");
+        // console.trace("update drawable");
         if (!this.cursor.isVisible) {
             if (this.isMidVisible) this.hideMidSelectHandle();
             if (this.isLRVisible) this.hideLeftRightSelectHandle();
