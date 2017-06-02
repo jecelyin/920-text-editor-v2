@@ -119,7 +119,7 @@ oop.inherits(PhpMode, TextMode);
         return this.$completer.getCompletions(state, session, pos, prefix);
     };
 
-    this.$id = "ace/mode/php-inline";
+    this.$id = "ace/mode/php";
 }).call(PhpMode.prototype);
 
 var Mode = function(opts) {

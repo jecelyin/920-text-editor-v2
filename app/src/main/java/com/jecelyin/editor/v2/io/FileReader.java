@@ -21,8 +21,6 @@ package com.jecelyin.editor.v2.io;
 import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
-import com.jecelyin.editor.v2.core.util.GrowingArrayUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,7 +30,7 @@ import java.io.InputStreamReader;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class FileReader {
-    private SpannableStringBuilder ssb = null;
+    private StringBuilder ssb = null;
     private File file;
     private String encoding;
     private int lineNumber;
@@ -63,15 +61,13 @@ public class FileReader {
 //            }
         char[] buf = new char[BUFFER_SIZE];
         int len;
-        CharArrayBuffer arrayBuffer = new CharArrayBuffer(GrowingArrayUtils.growSize((int)file.length()));
+        ssb = new StringBuilder(BUFFER_SIZE * 4);
         while ((len = reader.read(buf, 0, BUFFER_SIZE)) != -1) {
-            arrayBuffer.append(buf, 0, len);
+            ssb.append(buf, 0, len);
         }
 
         lineNumber = reader.getLineNumber() + 1;
         reader.close();
-
-        ssb = new SpannableStringBuilder(arrayBuffer.buffer(), 0, arrayBuffer.length());
     }
 
     public String getEncoding() {
@@ -82,7 +78,7 @@ public class FileReader {
         return lineNumber;
     }
 
-    public SpannableStringBuilder getBuffer() {
+    public StringBuilder getBuffer() {
         return ssb;
     }
 

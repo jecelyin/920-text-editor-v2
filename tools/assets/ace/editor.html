@@ -4,7 +4,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>simple</title>
+    <name>simple</name>
     <!--<base href="file:///android_asset/" />-->
     <style type="text/css" media="screen">
 
@@ -75,10 +75,13 @@
     editor.renderer.setAnimatedScroll(true);
     //editor.setAutoScrollEditorIntoView(true);
     //editor.setOption("maxLines", 100);
-    editor.setValue("aaaa dsf dd 水电费a sdf sdf sdf sf sdf sdfsfwefsdf sdf sdf sdfsdf sdf sdf sdf sfasfhuhuk tutik l tuik \n".repeat(500));
+    editor.setValue("胜多负少df \n".repeat(500));
     function setText(data) {
         //alert(data.text);
         editor.setValue(data.text);
+        Android.returnValue(JSON.stringify({'b':
+            3}));
+        return {'a':3};
     }
 </script>
 </body>

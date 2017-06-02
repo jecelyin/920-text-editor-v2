@@ -54,7 +54,7 @@ oop.inherits(Mode, TextMode);
         return session.$mode.$highlightRules.completions;
     };
     
-    this.$id = "ace/mode/sql";
+    this.$id = "ace/mode/sqlserver";
 }).call(Mode.prototype);
 
 exports.Mode = Mode;

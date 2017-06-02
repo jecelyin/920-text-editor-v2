@@ -25,10 +25,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.text.Editable;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.style.BackgroundColorSpan;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,16 +40,12 @@ import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
 import com.jecelyin.editor.v2.common.OnVisibilityChangedListener;
 import com.jecelyin.editor.v2.common.SaveListener;
-import com.jecelyin.editor.v2.core.widget.JecEditText;
-import com.jecelyin.editor.v2.core.widget.TextView;
-import com.jecelyin.editor.v2.highlight.jedit.Catalog;
-import com.jecelyin.editor.v2.highlight.jedit.Mode;
-import com.jecelyin.editor.v2.highlight.jedit.syntax.ModeProvider;
 import com.jecelyin.editor.v2.ui.dialog.DocumentInfoDialog;
 import com.jecelyin.editor.v2.ui.dialog.FinderDialog;
 import com.jecelyin.editor.v2.utils.AppUtils;
 import com.jecelyin.editor.v2.view.EditorView;
 import com.jecelyin.editor.v2.view.menu.MenuDef;
+import com.jecelyin.editor.v2.widget.text.EditAreaView;
 
 import java.io.File;
 
@@ -62,7 +56,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     public final static String KEY_CLUSTER = "is_cluster";
 
     private Context context;
-    public JecEditText mEditText;
+    public EditAreaView mEditText;
     private EditorView mEditorView;
     private Document document;
 
@@ -121,14 +115,14 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         mEditText.setCustomSelectionActionModeCallback(new EditorSelectionActionModeCallback());
 
         //还原文本时，onTextChange事件触发高亮
-        if (savedState.editorState != null) {
-            document.onRestoreInstanceState(savedState);
-            mEditText.onRestoreInstanceState(savedState.editorState);
-        } else if (savedState.file != null) {
-            document.loadFile(savedState.file, savedState.encoding);
-        } else if(!TextUtils.isEmpty(savedState.content)) {
-            mEditText.setText(savedState.content);
-        }
+//        if (savedState.editorState != null) {
+//            document.onRestoreInstanceState(savedState);
+//            mEditText.onRestoreInstanceState(savedState.editorState);
+//        } else if (savedState.file != null) {
+//            document.loadFile(savedState.file, savedState.encoding);
+//        } else if(!TextUtils.isEmpty(savedState.content)) {
+//            mEditText.setText(savedState.content);
+//        }
 
         mEditText.addTextChangedListener(this);
 
@@ -147,7 +141,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     public void setEditorView(EditorView editorView) {
         context = editorView.getContext();
         this.mEditorView = editorView;
-        this.mEditText = editorView.getEditText();
+        this.mEditText = editorView.getEditAreaView();
 
         this.orientation = context.getResources().getConfiguration().orientation;
 
@@ -203,15 +197,11 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     }
 
     public String getText() {
-        return mEditText.getText().toString();
-    }
-
-    public Editable getEditableText() {
         return mEditText.getText();
     }
 
     public CharSequence getSelectedText() {
-        return mEditText.hasSelection() ? mEditText.getEditableText().subSequence(mEditText.getSelectionStart(), mEditText.getSelectionEnd()) : "";
+        return mEditText.getSelectedText();
     }
 
     public boolean isChanged() {
@@ -224,22 +214,12 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
     public CharSequence getToolbarText() {
         return String.format("%s%s  \t|\t  %s \t %s", isChanged() ? "*" : "", getTitle()
                 , document == null ? "UTF-8" : document.getEncoding()
-                , document == null || document.getModeName() == null ? "" : document.getModeName()
+                , getModeName()
         );
     }
 
     private String getFirstLineAsFileName() {
-        Editable text = getEditableText();
-        if (text.length() == 0)
-            return "";
-
-        int maxLen = 50;
-        String name = text.subSequence(0, Math.min(maxLen, text.length())).toString().trim();
-        int breakIndex = name.indexOf('\n');
-        if (breakIndex > 0)
-            return name.substring(0, breakIndex);
-
-        return name;
+        return mEditText.getLineText(1, 50);
     }
 
     public void startSaveFileSelectorActivity() {
@@ -250,19 +230,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         if (document == null)
             return;
         document.saveTo(file, encoding == null ? document.getEncoding() : encoding);
-    }
-
-    public void addHighlight(int start, int end) {
-        mEditText.getText().setSpan(new BackgroundColorSpan(findResultsKeywordColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mEditText.setSelection(end, end);
-    }
-
-    public void clearHighlight() {
-        Editable text = mEditText.getText();
-        BackgroundColorSpan[] spans = text.getSpans(0, text.length(), BackgroundColorSpan.class);
-        for (BackgroundColorSpan span : spans) {
-            text.removeSpan(span);
-        }
     }
 
     public int getCursorOffset() {
@@ -324,7 +291,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             case DOC_INFO:
                 DocumentInfoDialog documentInfoDialog = new DocumentInfoDialog(context);
                 documentInfoDialog.setDocument(document);
-                documentInfoDialog.setJecEditText(mEditText);
+                documentInfoDialog.setText(mEditText.getText());
                 documentInfoDialog.setPath(document.getPath());
                 documentInfoDialog.show();
                 break;
@@ -345,23 +312,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
                 FinderDialog.showFindDialog(this);
                 break;
             case HIGHLIGHT:
-                String scope = (String) command.object;
-                if (scope == null) {
-                    Mode mode;
-                    String firstLine = getEditableText().subSequence(0, Math.min(80, getEditableText().length())).toString();
-                    if (TextUtils.isEmpty(document.getPath()) || TextUtils.isEmpty(firstLine)) {
-                        mode = ModeProvider.instance.getMode(Catalog.DEFAULT_MODE_NAME);
-                    } else {
-                        mode = ModeProvider.instance.getModeForFile(document.getPath(), null, firstLine);
-                    }
-
-                    if (mode == null) {
-                        mode = ModeProvider.instance.getMode(Catalog.DEFAULT_MODE_NAME);
-                    }
-
-                    scope = mode.getName();
-                }
-                document.setMode(scope);
+                boolean scope = (boolean) command.object;
+                mEditText.setMode(scope ? "auto" : null);
                 ((MainActivity)context).doNextCommand();
                 break;
             case INSERT_TEXT:
@@ -369,9 +321,9 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
                     int selStart = mEditText.getSelectionStart();
                     int selEnd = mEditText.getSelectionEnd();
                     if (selStart == -1 || selEnd == -1) {
-                        mEditText.getText().insert(0, (CharSequence) command.object);
+                        mEditText.insert(0, (CharSequence) command.object);
                     } else {
-                        mEditText.getText().replace(selStart, selEnd, (CharSequence) command.object);
+                        mEditText.replace(selStart, selEnd, (CharSequence) command.object);
                     }
                 }
                 break;
@@ -466,10 +418,10 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             noticeMenuChanged();
     }
 
-    public String getLang() {
-        if (document == null)
-            return null;
-        return document.getModeName();
+    public String getModeName() {
+        if (mEditText == null)
+            return "";
+        return mEditText.getModeName();
     }
 
     private class EditorSelectionActionModeCallback implements ActionMode.Callback {
@@ -547,7 +499,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         int start = mEditText.getSelectionStart();
         int end = mEditText.getSelectionEnd();
 
-        String selectedText = getEditableText().subSequence(start, end).toString();
+        String selectedText = mEditText.getSelectedText();
 
         switch (id) {
             case R.id.m_convert_to_uppercase:
@@ -557,7 +509,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
                 selectedText = selectedText.toLowerCase();
                 break;
         }
-        getEditableText().replace(start, end, selectedText);
+        mEditText.replace(start, end, selectedText);
     }
 
     public Parcelable onSaveInstanceState() {
@@ -566,8 +518,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             document.onSaveInstanceState(ss);
         }
         if (mEditText != null) {
-            mEditText.setFreezesText(true);
-            ss.editorState = (TextView.SavedState) mEditText.onSaveInstanceState();
+//            mEditText.setFreezesText(true);
+//            ss.editorState = (TextView.SavedState) mEditText.onSaveInstanceState();
         }
 
         if (loaded && !disableAutoSave && document != null && document.getFile() != null && Pref.getInstance(context).isAutoSave()) {
@@ -595,8 +547,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
         File file;
         String title;
         String encoding;
-        String modeName;
-        TextView.SavedState editorState;
+//        TextView.SavedState editorState;
         byte[] textMd5;
 
         boolean root;
@@ -618,10 +569,9 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             dest.writeInt(root ? 1 : 0);
             dest.writeString(this.title);
             dest.writeString(this.encoding);
-            dest.writeString(this.modeName);
-            dest.writeInt(this.editorState == null ? 0 : 1);
-            if (this.editorState != null)
-                dest.writeParcelable(this.editorState, flags);
+//            dest.writeInt(this.editorState == null ? 0 : 1);
+//            if (this.editorState != null)
+//                dest.writeParcelable(this.editorState, flags);
             dest.writeByteArray(this.textMd5);
             dest.writeInt(textLength);
         }
@@ -641,10 +591,9 @@ public class EditorDelegate implements OnVisibilityChangedListener, TextWatcher 
             this.root = in.readInt() == 1;
             this.title = in.readString();
             this.encoding = in.readString();
-            this.modeName = in.readString();
-            int hasState = in.readInt();
-            if (hasState == 1)
-                this.editorState = in.readParcelable(TextView.SavedState.class.getClassLoader());
+//            int hasState = in.readInt();
+//            if (hasState == 1)
+//                this.editorState = in.readParcelable(TextView.SavedState.class.getClassLoader());
             this.textMd5 = in.createByteArray();
             this.textLength = in.readInt();
         }

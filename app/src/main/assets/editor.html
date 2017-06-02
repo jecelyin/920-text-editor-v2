@@ -59,9 +59,18 @@
     editor.renderer.setAnimatedScroll(true);
     //editor.setAutoScrollEditorIntoView(true);
 
-    function handleJava(data) {
-        if (!data.cmd)return;
+    function handleJava(id, editorCommand) {
+        if (!editorCommand.cmd)return;
 
+
+    }
+
+    function returnToAndroid(id, value) {
+        if (id == 0) {
+          return value;
+        }
+        AndroidEditor.returnValue(id, value);
+        return null;
     }
 </script>
 </body>

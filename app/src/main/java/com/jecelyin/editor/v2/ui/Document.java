@@ -20,10 +20,6 @@ package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
@@ -33,17 +29,6 @@ import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.ReadFileListener;
 import com.jecelyin.editor.v2.common.SaveListener;
-import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
-import com.jecelyin.editor.v2.highlight.Buffer;
-import com.jecelyin.editor.v2.highlight.HighlightInfo;
-import com.jecelyin.editor.v2.highlight.jedit.Catalog;
-import com.jecelyin.editor.v2.highlight.jedit.LineManager;
-import com.jecelyin.editor.v2.highlight.jedit.Mode;
-import com.jecelyin.editor.v2.highlight.jedit.StyleLoader;
-import com.jecelyin.editor.v2.highlight.jedit.syntax.DefaultTokenHandler;
-import com.jecelyin.editor.v2.highlight.jedit.syntax.ModeProvider;
-import com.jecelyin.editor.v2.highlight.jedit.syntax.SyntaxStyle;
-import com.jecelyin.editor.v2.highlight.jedit.syntax.Token;
 import com.jecelyin.editor.v2.io.FileReader;
 import com.jecelyin.editor.v2.task.SaveTask;
 import com.stericson.RootTools.RootTools;
@@ -51,27 +36,20 @@ import com.stericson.RootTools.RootTools;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class Document implements ReadFileListener, TextWatcher {
-    public static SyntaxStyle[] styles;
+public class Document implements ReadFileListener {
 
     private final EditorDelegate editorDelegate;
     private final Context context;
     private final SaveTask saveTask;
     private final Pref pref;
-    private int lineNumber;
     private String encoding = "UTF-8";
     private byte[] srcMD5;
     private int srcLength;
-    private final Buffer buffer;
-    private final HashMap<Integer, ArrayList<ForegroundColorSpan>> colorSpanMap;
     private File file, rootFile;
-    private String modeName;
     private boolean root;
 
     public Document(Context context, EditorDelegate EditorDelegate) {
@@ -80,33 +58,19 @@ public class Document implements ReadFileListener, TextWatcher {
         pref = Pref.getInstance(context);
         root = false;
 
-        buffer = new Buffer(context);
-        colorSpanMap = new HashMap<>();
         this.saveTask = new SaveTask(context, EditorDelegate, this);
-        EditorDelegate.mEditText.addTextChangedListener(this);
     }
 
     public void onSaveInstanceState(EditorDelegate.SavedState ss) {
-        ss.lineNumber = lineNumber;
         ss.textMd5 = srcMD5;
         ss.textLength = srcLength;
         ss.encoding = encoding;
-        ss.modeName = modeName;
         ss.file = file;
         ss.rootFile = rootFile;
         ss.root = root;
     }
 
     public void onRestoreInstanceState(EditorDelegate.SavedState ss) {
-        //为了避免光标不正确的现象（原因暂时不研究），先设置好高亮类型
-        if (ss.modeName != null) {
-            setMode(ss.modeName);
-        }
-
-        //还原行数，不能放在上面，避免因还没设置文本导致高亮崩溃
-        if (ss.lineNumber > 0) {
-            lineNumber = ss.lineNumber;
-        }
         srcMD5 = ss.textMd5;
         srcLength = ss.textLength;
         encoding = ss.encoding;
@@ -146,26 +110,20 @@ public class Document implements ReadFileListener, TextWatcher {
     }
 
     @Override
-    public SpannableStringBuilder onAsyncReaded(FileReader fileReader) {
-        Editable text = fileReader.getBuffer();
-        Mode mode = ModeProvider.instance.getModeForFile(file == null ? null : file.getPath(), null, text.subSequence(0, Math.min(80, text.length())).toString());
-        if(mode == null)
-            mode = ModeProvider.instance.getMode(Catalog.DEFAULT_MODE_NAME);
-        modeName = mode.getName();
-        buffer.setMode(mode);
+    public StringBuilder onAsyncReaded(FileReader fileReader) {
+        StringBuilder text = fileReader.getBuffer();
 
-        lineNumber = fileReader.getLineNumber();
         encoding = fileReader.getEncoding();
 
         srcMD5 = md5(text);
         srcLength = text.length();
 
-        return (SpannableStringBuilder)text;
+        return text;
 
     }
 
     @Override
-    public void onDone(SpannableStringBuilder spannableStringBuilder, Throwable throwable) {
+    public void onDone(StringBuilder StringBuilder, Throwable throwable) {
         //给回收了。。
         if(editorDelegate == null || editorDelegate.mEditText == null)
             return;
@@ -181,72 +139,12 @@ public class Document implements ReadFileListener, TextWatcher {
             return;
         }
 
-        editorDelegate.mEditText.setLineNumber(lineNumber);
-        editorDelegate.mEditText.setText(spannableStringBuilder);
+        editorDelegate.mEditText.setText(StringBuilder);
         editorDelegate.onLoadFinish();
 
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//        L.d("","onTextChanged: start=" + start + " before=" + before + " count=" + count, new Exception());
-
-        Editable editableText = editorDelegate.getEditableText();
-        buffer.setEditable(editableText);
-
-        try {
-            if(before > 0) {
-                buffer.remove(start, before);
-            }
-            if(count > 0) {
-                buffer.insert(start, s.subSequence(start, start + count));
-            }
-        } catch (Exception e) {
-            //// TODO: 2017/5/2 fix: java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 1
-//            at com.jecelyin.editor.v2.highlight.Buffer.insert(Buffer.java:320) 
-        }
-
-        lineNumber = buffer.getLineManager().getLineCount();
-
-        if (!pref.isHighlight() || editableText.length() > pref.getHighlightSizeLimit())
-            return;
-
-        LineManager lineManager = buffer.getLineManager();
-        int startLine = lineManager.getLineOfOffset(start);
-        int endLine = lineManager.getLineOfOffset(start + count);
-        int lineStartOffset = lineManager.getLineStartOffset(startLine);
-        int lineEndOffset = lineManager.getLineEndOffset(endLine);
-
-        boolean canHighlight = buffer.isCanHighlight();
-        if(startLine == 0 && !canHighlight) {
-            Mode mode = ModeProvider.instance.getModeForFile(file == null ? null : file.getPath(), null, s.subSequence(0, Math.min(80, s.length())).toString());
-            if (mode != null)
-                modeName = mode.getName();
-            buffer.setMode(mode);
-        }
-
-        if (!canHighlight)
-            return;
-
-        ForegroundColorSpan[] spans = editableText.getSpans(lineStartOffset, lineEndOffset, ForegroundColorSpan.class);
-        for(ForegroundColorSpan span : spans) {
-            editableText.removeSpan(span);
-        }
-
-        highlight(editableText, startLine, endLine);
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
-
-    private final static class ReadFileTask extends AsyncTask<File, Void, SpannableStringBuilder> {
+    private final static class ReadFileTask extends AsyncTask<File, Void, StringBuilder> {
         private final ReadFileListener listener;
         private final FileReader fileReader;
         private Throwable error;
@@ -262,7 +160,7 @@ public class Document implements ReadFileListener, TextWatcher {
         }
 
         @Override
-        protected SpannableStringBuilder doInBackground(File... params) {
+        protected StringBuilder doInBackground(File... params) {
             try {
                 fileReader.read();
             } catch (Throwable t) {
@@ -273,26 +171,9 @@ public class Document implements ReadFileListener, TextWatcher {
         }
 
         @Override
-        protected void onPostExecute(SpannableStringBuilder spannableStringBuilder) {
-            listener.onDone(spannableStringBuilder, error);
+        protected void onPostExecute(StringBuilder StringBuilder) {
+            listener.onDone(StringBuilder, error);
         }
-    }
-
-    public void setMode(String name) {
-        modeName = name;
-
-        buffer.setMode(Catalog.getModeByName(name));
-        editorDelegate.getEditableText().clearSpans();
-
-        highlight(editorDelegate.getEditableText());
-    }
-
-    public String getModeName() {
-        return modeName;
-    }
-
-    public Buffer getBuffer() {
-        return buffer;
     }
 
     public File getFile() {
@@ -301,10 +182,6 @@ public class Document implements ReadFileListener, TextWatcher {
 
     public String getPath() {
         return file == null ? null : file.getPath();
-    }
-
-    public int getLineNumber() {
-        return lineNumber;
     }
 
     public String getEncoding() {
@@ -353,13 +230,14 @@ public class Document implements ReadFileListener, TextWatcher {
     }
 
     public boolean isChanged() {
+        String text = editorDelegate.getText();
         if(srcMD5 == null) {
-            return editorDelegate.getText().length() != 0;
+            return text.length() != 0;
         }
-        if (srcLength != editorDelegate.getEditableText().length())
+        if (srcLength != text.length())
             return true;
 
-        byte[] curMD5 = md5(editorDelegate.getEditableText());
+        byte[] curMD5 = md5(text);
 
         return !StringUtils.isEqual(srcMD5, curMD5);
     }
@@ -393,110 +271,4 @@ public class Document implements ReadFileListener, TextWatcher {
         }
     }
 
-    private void highlight(Spannable spannableStringBuilder) {
-        highlight(spannableStringBuilder, 0, lineNumber - 1);
-    }
-
-    private void highlight(Spannable spannableStringBuilder, int startLine, int endLine) {
-        if(!buffer.isCanHighlight())
-            return;
-        DefaultTokenHandler tokenHandler;
-//        L.d("hl startLine=" + startLine + " endLine=" + endLine);
-        L.startTracing(null);
-        if(styles == null)
-            styles = StyleLoader.loadStyles(context);
-        ArrayList<HighlightInfo> mergerArray;
-
-        try {
-            for (int i = startLine; i <= endLine; i++) {
-                tokenHandler = new DefaultTokenHandler();
-                buffer.markTokens(i, tokenHandler);
-                Token token = tokenHandler.getTokens();
-
-                mergerArray = new ArrayList<>();
-                collectToken(buffer, i, token, mergerArray);
-                addTokenSpans(spannableStringBuilder, i, mergerArray);
-            }
-        } catch (Exception e) {
-            // TODO: 2017/5/2 fix: java.lang.ArrayIndexOutOfBoundsException: 0+9 > 0
-//            at com.jecelyin.editor.v2.highlight.Buffer.getText(Buffer.java:129)
-//            at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:121)
-//            at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:97)
-//            at com.jecelyin.editor.v2.highlight.Buffer.markTokens(Buffer.java:221)
-        }
-        L.stopTracing();
-    }
-
-    private void addTokenSpans(Spannable spannableStringBuilder, int line, ArrayList<HighlightInfo> mergerArray) {
-        ForegroundColorSpan fcs;
-
-        ArrayList<ForegroundColorSpan> oldSpans = colorSpanMap.remove(line);
-        if(oldSpans != null) {
-            for(ForegroundColorSpan span : oldSpans) {
-                spannableStringBuilder.removeSpan(span);
-            }
-        }
-
-        int length = spannableStringBuilder.length();
-
-        ArrayList<ForegroundColorSpan> spans = new ArrayList<>(mergerArray.size());
-        for(HighlightInfo hi : mergerArray) {
-            if(hi.endOffset > length) {
-                // TODO: 15/12/27 不应该出现这种情况，要找到原因并解决
-                L.e("assert hi.endOffset %d > maxLength %d", hi.endOffset, length);
-                hi.endOffset = length;
-            }
-            if(hi.startOffset >= hi.endOffset) {
-                L.e("hi.startOffset %d >= hi.endOffset %d", hi.startOffset, hi.endOffset);
-                continue;
-            }
-            fcs = new ForegroundColorSpan(hi.color);
-            spannableStringBuilder.setSpan(fcs, hi.startOffset, hi.endOffset, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE);
-            spans.add(fcs);
-        }
-        colorSpanMap.put(line, spans);
-    }
-
-    private void collectToken(Buffer buffer, int lineNumber, Token token
-            , ArrayList<HighlightInfo> mergerArray) {
-//        Segment segment = new Segment();
-//        buffer.getLineText(lineNumber, segment);
-//        String line = segment.toString();
-//        String match;
-
-        int lineStartOffset = buffer.getLineManager().getLineStartOffset(lineNumber);
-
-        HighlightInfo hi;
-        while(token.id != Token.END)
-        {
-            int startIndex = lineStartOffset + token.offset;
-            int endIndex = lineStartOffset + token.offset+token.length;
-            SyntaxStyle style = styles[token.id];
-            //注意下面这句的使用
-            token = token.next;
-
-            if(style == null)
-                continue;
-
-//            int color = 0xFFFFFF & style.getForegroundColor();
-            int color = style.getForegroundColor();
-
-            if(mergerArray.isEmpty()) {
-                mergerArray.add(new HighlightInfo(startIndex, endIndex, color));
-            } else {
-                hi = mergerArray.get(mergerArray.size() - 1);
-                if(hi.color == color && hi.endOffset == startIndex) {
-                    hi.endOffset = endIndex;
-                } else {
-                    mergerArray.add(new HighlightInfo(startIndex, endIndex, color));
-                }
-            }
-        }
-
-//        for(HighlightInfo hl : mergerArray) {
-//            match = line.substring(hl.startOffset, hl.endOffset);
-//            System.err.println("<" + String.format("#%06X", hl.color) + ">" + match + "</" + String.format("#%06X", hl.color) + ">");
-//        }
-
-    }
 }

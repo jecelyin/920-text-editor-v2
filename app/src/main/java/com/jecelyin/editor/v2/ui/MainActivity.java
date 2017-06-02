@@ -61,7 +61,6 @@ import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
 import com.jecelyin.editor.v2.common.SaveListener;
-import com.jecelyin.editor.v2.highlight.jedit.Catalog;
 import com.jecelyin.editor.v2.task.CheckUpgradeTask;
 import com.jecelyin.editor.v2.task.ClusterCommand;
 import com.jecelyin.editor.v2.task.LocalTranslateTask;
@@ -253,7 +252,7 @@ public class MainActivity extends BaseActivity
                 break;
             case Pref.KEY_ENABLE_HIGHLIGHT:
                 Command command = new Command(Command.CommandEnum.HIGHLIGHT);
-                command.object = pref.isHighlight() ? null : Catalog.DEFAULT_MODE_NAME;
+                command.object = pref.isHighlight();
                 doClusterCommand(command);
                 break;
             case Pref.KEY_SCREEN_ORIENTATION:
@@ -738,7 +737,7 @@ public class MainActivity extends BaseActivity
         if (editorDelegate == null)
             return null;
 
-        return editorDelegate.getLang();
+        return editorDelegate.getModeName();
     }
 
 }

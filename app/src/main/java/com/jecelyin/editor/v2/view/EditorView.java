@@ -25,7 +25,7 @@ import android.widget.RelativeLayout;
 
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.OnVisibilityChangedListener;
-import com.jecelyin.editor.v2.widget.EditAreaView;
+import com.jecelyin.editor.v2.widget.text.EditAreaView;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>

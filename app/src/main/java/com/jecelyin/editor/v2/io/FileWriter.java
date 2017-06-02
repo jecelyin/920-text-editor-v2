@@ -33,7 +33,7 @@ import java.io.OutputStreamWriter;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileWriter extends AsyncTask<Editable, Void, Exception> {
+public class FileWriter extends AsyncTask<String, Void, Exception> {
     private final String encoding;
     private final File file;
     private final static int BUFFER_SIZE = 16*1024;
@@ -55,7 +55,7 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
         this.keepBackupFile = keepBackupFile;
     }
 
-    public void write(Editable text) {
+    public void write(String text) {
         execute(text);
     }
 
@@ -64,7 +64,7 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
     }
 
     @Override
-    protected Exception doInBackground(Editable... params) {
+    protected Exception doInBackground(String... params) {
 
 //        if(backupFile.exists()) {
 //            if(!backupFile.delete()) {
@@ -78,7 +78,7 @@ public class FileWriter extends AsyncTask<Editable, Void, Exception> {
                     + " to backup file " + backupFile);
         }
 
-        Editable text = params[0];
+        String text = params[0];
         try {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding), BUFFER_SIZE);
             char[] buffer = new char[BUFFER_SIZE]; //16kb

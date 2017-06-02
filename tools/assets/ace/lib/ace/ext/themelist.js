@@ -42,7 +42,7 @@
 define(function(require, exports, module) {
 "use strict";
 require("ace/lib/fixoldbrowsers");
-
+// MAKE-START
 var themeData = [
     ["Chrome"         ],
     ["Clouds"         ],
@@ -82,7 +82,7 @@ var themeData = [
     ["Vibrant Ink"          ,"vibrant_ink"             ,  "dark"]
 ];
 
-
+// MAKE-END
 exports.themesByName = {};
 
 /**

@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 "use strict";
-
+// MAKE-START
 var modes = [];
 /**
  * Suggests a mode based on the file extension present in the given path
@@ -204,7 +204,7 @@ for (var name in supportedModes) {
     modesByName[filename] = mode;
     modes.push(mode);
 }
-
+// MAKE-END
 module.exports = {
     getModeForPath: getModeForPath,
     modes: modes,

@@ -120,6 +120,6 @@ public class SaveTask {
                     UIUtils.alert(contextWR.get(), e.getMessage());
             }
         });
-        fileWriter.write(editorDelegateWR.get().getEditableText());
+        fileWriter.write(editorDelegateWR.get().getText());
     }
 }

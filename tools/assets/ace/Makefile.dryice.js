@@ -333,7 +333,84 @@ function buildSubmodule(options, extra, file, callback) {
     });
 }
 
+function buildJava() {
+    var modelist = fs.readFileSync("lib/ace/ext/modelist.js", "utf8");
+    var modeCode = modelist.substring(modelist.indexOf("// MAKE-START"), modelist.indexOf("// MAKE-END"));
+
+    eval(modeCode);
+    modes.sort(function(a, b) {
+        var nameA = a.caption.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.caption.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        // names must be equal
+        return 0;
+    });
+    var code = [];
+    var mode;
+    for (var i in modes) {
+        mode = modes[i];
+        code.push('        new Mode("');
+        code.push(mode.caption);
+        code.push('", "');
+        code.push(mode.mode);
+        code.push('"),');
+        code.push("\n");
+    }
+
+    var file = "../../../app/src/main/java/com/jecelyin/editor/v2/ui/ModeList.java";
+    var javaCode = fs.readFileSync(file, "utf8");
+    javaCode = javaCode.replace(/\/\/BEGIN\-REPLACE[\s\S]+?\/\/END\-REPLACE/g, "//BEGIN-REPLACE\n" + code.join("") + "\n//END-REPLACE");
+    fs.writeFileSync(file, javaCode, "utf-8");
+
+    var themelist = fs.readFileSync("lib/ace/ext/themelist.js", "utf8");
+    var themeCode = themelist.substring(themelist.indexOf("// MAKE-START"), themelist.indexOf("// MAKE-END"));
+    eval(themeCode);
+
+    themeData.sort(function(a, b) {
+        var nameA = a[0].toUpperCase(); // ignore upper and lowercase
+        var nameB = b[0].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        // names must be equal
+        return 0;
+    });
+
+    var data;
+    code = [];
+    for (var i in themeData) {
+        data = themeData[i];
+        var name = data[1] || data[0].replace(/ /g, "_").toLowerCase();
+        code.push('        new Theme("');
+        code.push(data[0]);
+        code.push('", "');
+        code.push("ace/theme/" + name);
+        code.push('", ');
+        code.push(data[2] == "dark" ? 'true' : 'false');
+        code.push('),');
+        code.push("\n");
+    }
+
+    file = "../../../app/src/main/java/com/jecelyin/editor/v2/ui/ThemeList.java";
+    javaCode = fs.readFileSync(file, "utf8");
+    javaCode = javaCode.replace(/\/\/BEGIN\-REPLACE[\s\S]+?\/\/END\-REPLACE/g, "//BEGIN-REPLACE\n" + code.join("") + "\n//END-REPLACE");
+    fs.writeFileSync(file, javaCode, "utf-8");
+
+}
+
 function buildAce(options, callback) {
+    buildJava();
+
     var snippetFiles = jsFileList("lib/ace/snippets");
     var modeNames = modeList();
 
@@ -345,6 +422,7 @@ function buildAce(options, callback) {
             require: ["ace/mode/" + name]
         }, "mode-" + name, addCb());
     });
+
     // snippets
     modeNames.forEach(function(name) {
         if (snippetFiles.indexOf(name + ".js") == -1)

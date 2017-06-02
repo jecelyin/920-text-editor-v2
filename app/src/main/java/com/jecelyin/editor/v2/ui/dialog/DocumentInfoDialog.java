@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.editor.v2.R;
-import com.jecelyin.editor.v2.core.widget.JecEditText;
 import com.jecelyin.editor.v2.ui.Document;
 
 import java.util.regex.Matcher;
@@ -36,7 +35,7 @@ import java.util.regex.Pattern;
  */
 public class DocumentInfoDialog extends AbstractDialog {
     private CharSequence path;
-    private JecEditText jecEditText;
+    private CharSequence text;
     private Document document;
 
     public DocumentInfoDialog(Context context) {
@@ -47,8 +46,8 @@ public class DocumentInfoDialog extends AbstractDialog {
         this.path = path;
     }
 
-    public void setJecEditText(JecEditText jecEditText) {
-        this.jecEditText = jecEditText;
+    public void setText(CharSequence text) {
+        this.text = text;
     }
 
     public void setDocument(Document document) {
@@ -57,18 +56,25 @@ public class DocumentInfoDialog extends AbstractDialog {
 
     @Override
     public void show() {
-        Matcher matcher = Pattern.compile("[a-zA-Z]+").matcher(jecEditText.getText());
+        Matcher matcher = Pattern.compile("[a-zA-Z]+").matcher(text);
         int wordCount = 0;
         while (matcher.find())
             wordCount++;
 
+        int lineNumber = 1;
+        int size = text.length();
+        for (int i = 0; i < size; i++) {
+            if (text.charAt(i) == '\n')
+                lineNumber++;
+        }
+
         View view = LayoutInflater.from(context).inflate(R.layout.document_info, null);
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.mPathTextView.setText(context.getString(R.string.path_x, path == null ? "" : path));
-        viewHolder.mCharCountTextView.setText(context.getString(R.string.char_x, jecEditText.getText().length()));
+        viewHolder.mCharCountTextView.setText(context.getString(R.string.char_x, text.length()));
         viewHolder.mWordCountTextView.setText(context.getString(R.string.word_x, wordCount));
         viewHolder.mEncodingTextView.setText(context.getString(R.string.encoding_x, document.getEncoding()));
-        viewHolder.mLineCountTextView.setText(context.getString(R.string.line_number_x, document.getLineNumber()));
+        viewHolder.mLineCountTextView.setText(context.getString(R.string.line_number_x, lineNumber));
 
         MaterialDialog dlg = getDialogBuilder().title(R.string.document_info)
                 .customView(view, false)
