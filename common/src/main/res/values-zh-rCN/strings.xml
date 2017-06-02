@@ -262,4 +262,5 @@
     <string name="call_external_app_or_share">调用外部程序/分享...</string>
     <string name="share_menu">分享...</string>
     <string name="share_html_menu">分享（HTML）...</string>
+    <string name="dark">黑色</string>
 </resources>

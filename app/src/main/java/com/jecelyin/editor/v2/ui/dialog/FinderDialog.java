@@ -39,6 +39,7 @@ import com.jecelyin.editor.v2.ui.EditorDelegate;
 import com.jecelyin.editor.v2.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.utils.GrepBuilder;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
@@ -69,27 +70,17 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
     }
 
     public static void showFindDialog(EditorDelegate fragment) {
-        FinderDialog dialog = new FinderDialog(fragment.getContext());
+        final FinderDialog dialog = new FinderDialog(fragment.getContext());
         dialog.mode = 0;
         dialog.fragment = fragment;
-        dialog.findText = fragment.getSelectedText();
-        dialog.show();
-    }
 
-    public static void showReplaceDialog(EditorDelegate fragment) {
-        FinderDialog dialog = new FinderDialog(fragment.getContext());
-        dialog.mode = 1;
-        dialog.fragment = fragment;
-        dialog.findText = fragment.getSelectedText();
-        dialog.show();
-    }
-
-    public static void showFindInFilesDialog(EditorDelegate fragment) {
-        FinderDialog dialog = new FinderDialog(fragment.getContext());
-        dialog.mode = 2;
-        dialog.fragment = fragment;
-        dialog.findText = fragment.getSelectedText();
-        dialog.show();
+        fragment.getSelectedText(new JsCallback<String>() {
+            @Override
+            public void onCallback(String selectedText) {
+                dialog.findText = selectedText;
+                dialog.show();
+            }
+        });
     }
 
     @Override

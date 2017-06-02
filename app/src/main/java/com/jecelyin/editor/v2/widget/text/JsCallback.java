@@ -18,40 +18,30 @@
 
 package com.jecelyin.editor.v2.widget.text;
 
-import java.util.HashMap;
+import android.webkit.ValueCallback;
+
+import com.google.gson.Gson;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class EditorCommand {
-    String cmd;
-    HashMap<String, Object> data;
-    JsCallback callback;
+public abstract class JsCallback<T>  implements ValueCallback<String> {
+    private final Type type;
 
-    private EditorCommand() {}
-
-    public static class Builder {
-        private EditorCommand ec;
-
-        public Builder(String cmd) {
-            ec = new EditorCommand();
-            ec.cmd = cmd;
-            ec.data = new HashMap<>();
-        }
-
-        public Builder put(String key, Object value) {
-            ec.data.put(key, value);
-            return this;
-        }
-
-        public Builder callback(JsCallback callback) {
-            ec.callback = callback;
-            return this;
-        }
-
-        public EditorCommand build() {
-            return ec;
-        }
+    protected JsCallback(){
+        Type superClass = getClass().getGenericSuperclass();
+        type = ((ParameterizedType) superClass).getActualTypeArguments()[0];
     }
+
+    @Override
+    public final void onReceiveValue(String value) {
+        T result = new Gson().fromJson(value, type);
+        onCallback(result);
+    }
+
+    abstract public void onCallback(T data);
 }

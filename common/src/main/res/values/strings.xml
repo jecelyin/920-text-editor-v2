@@ -262,4 +262,5 @@
     <string name="call_external_app_or_share">Call external App / Share...</string>
     <string name="share_menu">Share...</string>
     <string name="share_html_menu">Share(HTML)...</string>
+    <string name="dark">Dark</string>
 </resources>

@@ -28,6 +28,7 @@ import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.io.FileWriter;
 import com.jecelyin.editor.v2.ui.Document;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -94,7 +95,7 @@ public class SaveTask {
         if (editorDelegateWR.get() == null || contextWR.get() == null)
             return;
         writing = true;
-        FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding, Pref.getInstance(contextWR.get()).isKeepBackupFile());
+        final FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding, Pref.getInstance(contextWR.get()).isKeepBackupFile());
         fileWriter.setFileWriteListener(new FileWriter.FileWriteListener() {
             @Override
             public void onSuccess() {
@@ -120,6 +121,12 @@ public class SaveTask {
                     UIUtils.alert(contextWR.get(), e.getMessage());
             }
         });
-        fileWriter.write(editorDelegateWR.get().getText());
+        editorDelegateWR.get().getText(new JsCallback<String>() {
+            @Override
+            public void onCallback(String data) {
+                fileWriter.write(data);
+            }
+        });
+
     }
 }

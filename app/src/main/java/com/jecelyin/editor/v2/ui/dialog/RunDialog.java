@@ -34,7 +34,9 @@ import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.adapter.IntentChooserAdapter;
+import com.jecelyin.editor.v2.ui.EditorDelegate;
 import com.jecelyin.editor.v2.utils.SL4AIntentBuilders;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -102,11 +104,11 @@ public class RunDialog extends AbstractDialog {
             UIUtils.toast(context, R.string.please_save_as_file_first);
             return;
         }
-        File file = new File(path);
-        Uri data = Uri.fromFile(file);
-        String fileName = file.getName();
-        String type = MimeTypes.getInstance().getMimeType(fileName);
-        Executor executor = list.get(i);
+        final File file = new File(path);
+        final Uri data = Uri.fromFile(file);
+        final String fileName = file.getName();
+        final String type = MimeTypes.getInstance().getMimeType(fileName);
+        final Executor executor = list.get(i);
         Intent it = null;
         switch (executor.id) {
             case R.string.use_sl4a_in_background_run_script:
@@ -130,24 +132,27 @@ public class RunDialog extends AbstractDialog {
                 break;
             case R.string.share_menu:
             case R.string.share_html_menu:
-                String text = null;
-                try {
-                    text = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate().getText();
-                    if (executor.id == R.string.share_html_menu && text != null) {
-                        text = TextUtils.htmlEncode(text);
-                        text = text.replace("\n", "<br/>\n");
-                    }
-                } catch (Throwable e) {
-                    L.e(e);
-                    UIUtils.toast(context, e.getMessage());
-                    return;
+                EditorDelegate editorDelegate = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate();
+                if (editorDelegate != null) {
+                    final int id = executor.id;
+                    editorDelegate.getText(new JsCallback<String>() {
+                        @Override
+                        public void onCallback(String text) {
+                            if (id == R.string.share_html_menu && text != null && text.length() > 0) {
+                                text = TextUtils.htmlEncode(text);
+                                text = text.replace("\n", "<br/>\n");
+                            }
+                            Intent it = new Intent(Intent.ACTION_SEND);//注意调用it.setType会设置Data为null
+                            it.setDataAndType(data, type); //注意调用it.setType会设置Data为null
+                            it.putExtra(Intent.EXTRA_TITLE, fileName); //for youdaoNote
+                            it.putExtra(Intent.EXTRA_TEXT, text); //for youdaoNote
+                            it = Intent.createChooser(it, context.getString(R.string.share_menu));
+                            getMainActivity().startActivity(it);
+                        }
+                    });
                 }
-                it = new Intent(Intent.ACTION_SEND);//注意调用it.setType会设置Data为null
-                it.setDataAndType(data, type); //注意调用it.setType会设置Data为null
-                it.putExtra(Intent.EXTRA_TITLE, fileName); //for youdaoNote
-                it.putExtra(Intent.EXTRA_TEXT, text); //for youdaoNote
-                it = Intent.createChooser(it, context.getString(R.string.share_menu));
-                break;
+
+                return;
         }
         if(it != null) {
             if (it.resolveActivity(context.getPackageManager()) != null) {

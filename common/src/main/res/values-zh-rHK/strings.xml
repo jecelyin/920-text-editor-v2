@@ -261,4 +261,5 @@
     <string name="cannt_open_external_file_x">無法打開外部文件：%s</string>
     <string name="share_menu">分享...</string>
     <string name="share_html_menu">分享（HTML）...</string>
+    <string name="dark">黑色</string>
 </resources>

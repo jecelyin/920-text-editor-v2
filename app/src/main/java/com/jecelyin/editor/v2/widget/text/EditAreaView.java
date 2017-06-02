@@ -21,9 +21,9 @@ package com.jecelyin.editor.v2.widget.text;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.ActionMode;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -51,6 +51,12 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     private Gson gson = new Gson();
     private AtomicLong cmdID = new AtomicLong(0);
     private HashMap<Long, ValueCallback<String>> callbackMap;
+    private ActionMode.Callback actionModeCallback;
+    private ActionMode actionMode;
+    private OnTextChangeListener onTextChangeListener;
+    private String modeName;
+    private boolean selected;
+    private boolean textChanged;
 
     public EditAreaView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -129,12 +135,55 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 callbackMap.remove(id);
             }
         }
+
+        @JavascriptInterface
+        public void showActionMode() {
+            if (actionModeCallback == null)
+                return;
+
+            if (actionMode != null){
+                actionMode.finish();
+            }
+            actionMode = startActionMode(actionModeCallback);
+        }
+
+        @JavascriptInterface
+        public void hideActionMode() {
+            if (actionMode != null){
+                actionMode.finish();
+            }
+        }
+
+        @JavascriptInterface
+        public void onSelectionChange(boolean s) {
+            selected = s;
+        }
+
+        @JavascriptInterface
+        public void onTextChanged(boolean s) {
+            textChanged = s;
+        }
+
+        @JavascriptInterface
+        public void onTextChange() {
+            if (onTextChangeListener != null)
+                onTextChangeListener.onTextChanged();
+        }
+
+        @JavascriptInterface
+        public void onModeChanged(String name) {
+            modeName = name;
+        }
     }
 
     private class EditorViewClient extends WebViewClient {
         @Override
         public void onPageFinished(WebView view, String url) {
             pageLoaded = true;
+
+            for (EditorCommand command : cmdQueue) {
+                execCommand(command);
+            }
         }
 
         @Override
@@ -180,12 +229,12 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         execCommand(new EditorCommand.Builder("undo").build());
     }
 
-    public boolean canRedo() {
-        return false;
+    public void canRedo(JsCallback<Boolean> callback) {
+        execCommand(new EditorCommand.Builder("canRedo").callback(callback).build());
     }
 
-    public boolean canUndo() {
-        return false;
+    public void canUndo(JsCallback<Boolean> callback) {
+        execCommand(new EditorCommand.Builder("canUndo").callback(callback).build());
     }
 
     public boolean copy() {
@@ -228,71 +277,71 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-
+        this.actionModeCallback = callback;
     }
 
     public boolean hasSelection() {
-        return false;
-    }
-
-    public int getSelectionStart() {
-        return 0;
-    }
-
-    public int getSelectionEnd() {
-        return 0;
+        return selected;
     }
 
     public boolean selectAll() {
+        execCommand(new EditorCommand.Builder("selectAll").build());
         return true;
     }
 
     public void setSelection(int index) {
-
+        //// TODO: 2017/6/2 recommend last cursor position through cookie
     }
 
     public void forwardLocation() {
-
+        execCommand(new EditorCommand.Builder("forwardLocation").build());
     }
 
     public void backLocation() {
-
+        execCommand(new EditorCommand.Builder("backLocation").build());
     }
 
-    public void insert(int index, CharSequence text) {
-
-    }
-
-    public void replace(int startIndex, int endIndex, CharSequence text) {
-
+    public void insertOrReplaceText(CharSequence text, boolean requireSelected) {
+        execCommand(new EditorCommand.Builder("insertOrReplaceText")
+                .put("text", text.toString())
+                .put("requireSelected", requireSelected)
+                .build());
     }
 
     public void hideSoftInput() {
-
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public void showSoftInput() {
-
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
     }
 
-    public void addTextChangedListener(TextWatcher textWatcher) {
-
+    public void addTextChangedListener(OnTextChangeListener onTextChangeListener) {
+        this.onTextChangeListener = onTextChangeListener;
     }
 
-    public void setText(CharSequence text) {
-
+    public void setText(String file, CharSequence text) {
+        execCommand(new EditorCommand.Builder("setText")
+                .put("text", text)
+                .put("file", file)
+                .build());
     }
 
-    public String getText() {
-        return null;
+    public void getText(JsCallback<String> callback) {
+        execCommand(new EditorCommand.Builder("getText").callback(callback).build());
     }
 
-    public String getSelectedText() {
-        return null;
+    public void getSelectedText(JsCallback<String> callback) {
+        execCommand(new EditorCommand.Builder("getSelectedText").callback(callback).build());
     }
 
-    public String getLineText(int line, int limitLength) {
-        return null;
+    public void getLineText(int line, int limitLength, JsCallback<String> callback) {
+        execCommand(new EditorCommand.Builder("getLineText")
+                .put("line", line)
+                .put("limitLength", limitLength)
+                .callback(callback).build());
     }
 
     /**
@@ -300,14 +349,28 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
      * @param mode [auto, null, ace/mode/js,,,]
      */
     public void setMode(String mode) {
-
+        execCommand(new EditorCommand.Builder("setMode").put("mode", mode).build());
     }
 
     public String getModeName() {
-        return null;
+        return modeName;
     }
 
     public void doFind(String findText, String replaceText, boolean caseSensitive, boolean wholeWordOnly, boolean regex) {
+        execCommand(new EditorCommand.Builder("doFind")
+                .put("findText", findText)
+                .put("replaceText", replaceText)
+                .put("caseSensitive", caseSensitive)
+                .put("wholeWordOnly", wholeWordOnly)
+                .put("regex", regex)
+                .build());
+    }
 
+    public boolean isTextChanged() {
+        return textChanged;
+    }
+
+    public void resetTextChange() {
+        execCommand(new EditorCommand.Builder("resetTextChange").build());
     }
 }

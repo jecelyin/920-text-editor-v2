@@ -22,7 +22,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.StringUtils;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
@@ -47,8 +46,6 @@ public class Document implements ReadFileListener {
     private final SaveTask saveTask;
     private final Pref pref;
     private String encoding = "UTF-8";
-    private byte[] srcMD5;
-    private int srcLength;
     private File file, rootFile;
     private boolean root;
 
@@ -62,8 +59,6 @@ public class Document implements ReadFileListener {
     }
 
     public void onSaveInstanceState(EditorDelegate.SavedState ss) {
-        ss.textMd5 = srcMD5;
-        ss.textLength = srcLength;
         ss.encoding = encoding;
         ss.file = file;
         ss.rootFile = rootFile;
@@ -71,8 +66,6 @@ public class Document implements ReadFileListener {
     }
 
     public void onRestoreInstanceState(EditorDelegate.SavedState ss) {
-        srcMD5 = ss.textMd5;
-        srcLength = ss.textLength;
         encoding = ss.encoding;
         file = ss.file;
         rootFile = ss.rootFile;
@@ -115,9 +108,6 @@ public class Document implements ReadFileListener {
 
         encoding = fileReader.getEncoding();
 
-        srcMD5 = md5(text);
-        srcLength = text.length();
-
         return text;
 
     }
@@ -139,7 +129,7 @@ public class Document implements ReadFileListener {
             return;
         }
 
-        editorDelegate.mEditText.setText(StringBuilder);
+        editorDelegate.mEditText.setText(file.getPath(), StringBuilder);
         editorDelegate.onLoadFinish();
 
     }
@@ -224,22 +214,14 @@ public class Document implements ReadFileListener {
     public void onSaveSuccess(File file, String encoding) {
         this.file = file;
         this.encoding = encoding;
-        srcMD5 = md5(editorDelegate.getText());
-        srcLength = editorDelegate.getText().length();
+
+        editorDelegate.resetTextChange();
+
         editorDelegate.noticeDocumentChanged();
     }
 
     public boolean isChanged() {
-        String text = editorDelegate.getText();
-        if(srcMD5 == null) {
-            return text.length() != 0;
-        }
-        if (srcLength != text.length())
-            return true;
-
-        byte[] curMD5 = md5(text);
-
-        return !StringUtils.isEqual(srcMD5, curMD5);
+        return editorDelegate.isTextChanged();
     }
 
 

@@ -146,7 +146,6 @@ public class EditorAdapter extends ViewPagerAdapter {
         EditorDelegate f = list.get(position);
 
         final String encoding = f.getEncoding();
-        final int offset = f.getCursorOffset();
         final String path = f.getPath();
 
         if(f.isChanged()) {
@@ -160,14 +159,14 @@ public class EditorAdapter extends ViewPagerAdapter {
                             public void onSaved() {
                                 remove(position);
                                 if (listener != null)
-                                    listener.onClose(path, encoding, offset);
+                                    listener.onClose(path, encoding, 0);
                             }
                         };
                         ((MainActivity) context).doCommand(command);
                     } else if (which == DialogAction.NEGATIVE) {
                         remove(position);
                         if(listener != null)
-                            listener.onClose(path, encoding, offset);
+                            listener.onClose(path, encoding, 0);
                     } else {
                         dialog.dismiss();
                     }
@@ -177,7 +176,7 @@ public class EditorAdapter extends ViewPagerAdapter {
         } else {
             remove(position);
             if(listener != null)
-                listener.onClose(path, encoding, offset);
+                listener.onClose(path, encoding, 0);
             return true;
         }
     }
