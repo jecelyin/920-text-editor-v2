@@ -93,25 +93,25 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
             case Pref.KEY_FONT_SIZE:
-                execCommand(new EditorCommand.Builder(Pref.KEY_FONT_SIZE).put("value", pref.getFontSize()).build());
+                execCommand(new EditorCommand.Builder("setFontSize").put("value", pref.getFontSize()).build());
                 break;
             case Pref.KEY_CURSOR_WIDTH:
-                execCommand(new EditorCommand.Builder(Pref.KEY_CURSOR_WIDTH).put("value", pref.getCursorThickness()).build());
+                execCommand(new EditorCommand.Builder("setCursorWidth").put("value", pref.getCursorThickness()).build());
                 break;
             case Pref.KEY_SHOW_LINE_NUMBER:
-                execCommand(new EditorCommand.Builder(Pref.KEY_SHOW_LINE_NUMBER).put("value", pref.isShowLineNumber()).build());
+                execCommand(new EditorCommand.Builder("setShowLineNumber").put("value", pref.isShowLineNumber()).build());
                 break;
             case Pref.KEY_WORD_WRAP:
-                execCommand(new EditorCommand.Builder(Pref.KEY_WORD_WRAP).put("value", pref.isWordWrap()).build());
+                execCommand(new EditorCommand.Builder("setWordWrap").put("value", pref.isWordWrap()).build());
                 break;
             case Pref.KEY_SHOW_WHITESPACE:
-                execCommand(new EditorCommand.Builder(Pref.KEY_SHOW_WHITESPACE).put("value", pref.isShowWhiteSpace()).build());
+                execCommand(new EditorCommand.Builder("setShowInvisible").put("value", pref.isShowWhiteSpace()).build());
                 break;
             case Pref.KEY_TAB_SIZE:
-                execCommand(new EditorCommand.Builder(Pref.KEY_TAB_SIZE).put("value", pref.getTabSize()).build());
+                execCommand(new EditorCommand.Builder("setTabSize").put("value", pref.getTabSize()).build());
                 break;
             case Pref.KEY_AUTO_INDENT:
-                execCommand(new EditorCommand.Builder(Pref.KEY_AUTO_INDENT).put("value", pref.isAutoIndent()).build());
+                execCommand(new EditorCommand.Builder("setAutoIndent").put("value", pref.isAutoIndent()).build());
                 break;
             case Pref.KEY_AUTO_CAPITALIZE:
 //                if (mEditor != null) {
@@ -121,6 +121,9 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
 //                        mEditor.mInputType |= EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES;
 //                    }
 //                }
+                break;
+            case Pref.KEY_THEME:
+                //todo:
                 break;
         }
     }
@@ -162,10 +165,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         @JavascriptInterface
         public void onTextChanged(boolean s) {
             textChanged = s;
-        }
 
-        @JavascriptInterface
-        public void onTextChange() {
             if (onTextChangeListener != null)
                 onTextChangeListener.onTextChanged();
         }
