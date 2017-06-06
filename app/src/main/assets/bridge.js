@@ -26,7 +26,7 @@ function Bridge(editor) {
 
     this.execCommand = function(cmd, data) {
         if (this[cmd]) {
-            this[cmd](data);
+            return this[cmd](data);
         } else {
             alert('Unknown cmd: ' + cmd);
         }

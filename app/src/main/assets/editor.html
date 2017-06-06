@@ -69,8 +69,8 @@
         var data = editorCommand.data;
 
         var result = bridge.execCommand(editorCommand.cmd, editorCommand.data);
-
-        return returnToAndroid(id, result == undefined ? null : result);
+        console.log("cmd="+editorCommand.cmd+" result="+result);
+        return returnToAndroid(id, result === undefined ? null : result);
     }
 
     function returnToAndroid(id, value) {

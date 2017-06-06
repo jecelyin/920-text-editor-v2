@@ -45,6 +45,7 @@ import java.util.StringTokenizer;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SysUtils {
+    public static final boolean MONKEY_RUNNER_MODE = false;
     /**
      * Gets a field from the project's BuildConfig. This is useful when, for example, flavors
      * are used at the project level to set custom fields.
@@ -75,7 +76,7 @@ public class SysUtils {
     }
 
     public static boolean isMonkeyRunner(Context context) {
-        return true;
+        return isDebug(context) && MONKEY_RUNNER_MODE;
     }
 
     public static int dpAsPixels(Context context, int dp)

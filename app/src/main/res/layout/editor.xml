@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.jecelyin.editor.v2.view.EditorView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.jecelyin.editor.v2.widget.text.EditAreaView
         android:id="@+id/edit_text"
+        app:theme="@style/EditorWebViewTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffffff"
