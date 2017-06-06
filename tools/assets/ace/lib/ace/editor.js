@@ -2613,6 +2613,8 @@ Editor.$uid = 0;
         cursorLayer.setSmoothBlinking(/smooth/.test(style));
         cursorLayer.isBlinking = !this.$readOnly && style != "wide";
         dom.setCssClass(cursorLayer.element, "ace_slim-cursors", /slim/.test(style));
+
+        this.textInput.setReadOnly(this.$readOnly);
     };
 
 }).call(Editor.prototype);

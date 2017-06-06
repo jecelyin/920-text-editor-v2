@@ -21,7 +21,6 @@ package com.jecelyin.editor.v2.ui;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
@@ -33,8 +32,6 @@ import com.jecelyin.editor.v2.task.SaveTask;
 import com.stericson.RootTools.RootTools;
 
 import java.io.File;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -222,35 +219,6 @@ public class Document implements ReadFileListener {
 
     public boolean isChanged() {
         return editorDelegate.isTextChanged();
-    }
-
-
-    /**
-     * Returns the md5sum for given string. Or dummy byte array on error
-     * Suppress NoSuchAlgorithmException because MD5 algorithm always present in JRE
-     * @param charSequence Given string
-     * @return md5 sum of given string
-     */
-    private static byte[] md5(CharSequence charSequence)
-    {
-        try
-        {
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            byte[] ba = new byte[2];
-            for(int i = 0, n = charSequence.length(); i < n; i++)
-            {
-                char cp = charSequence.charAt(i);
-                ba[0] = (byte)(cp & 0xff);
-                ba[1] = (byte)(cp >> 8 & 0xff);
-                digest.update(ba);
-            }
-            return digest.digest();
-        }
-        catch (NoSuchAlgorithmException e)
-        {
-            L.e("Can't Calculate MD5 hash!", e);
-            return charSequence.toString().getBytes();
-        }
     }
 
 }

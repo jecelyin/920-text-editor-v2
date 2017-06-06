@@ -22,6 +22,8 @@
  * @constructor
  */
 function Bridge(editor) {
+    this.mode = null;
+    this.lastTextLength = -1;
     this.editor = editor;
 
     this.execCommand = function(cmd, data) {
@@ -99,18 +101,23 @@ function Bridge(editor) {
     this.insertOrReplaceText = function (data) {
         var requireSelected = data['requireSelected'];
         var text = data['text'];
-        if (requireSelected && editor.selection.isEmpty()) {
+        if (requireSelected && !this.hasSelection()) {
             return;
         }
         editor.insert(text);
+    };
+
+    this.hasSelection = function () {
+        return !editor.selection.isEmpty();
     };
 
     this.setText = function (data) {
         var text = data['text'];
         var file = data['file'];
         var modeCls = modelist.getModeForPath(file ? file : '');
-        editor.session.setMode(modeCls.mode);
+        this.setMode({'mode':modeCls.mode});
         editor.setValue(text);
+        this.resetTextChange();
     };
 
     this.getSelectedText = function () {
@@ -125,17 +132,36 @@ function Bridge(editor) {
         return text.substring(0, Math.min(limitLength, text.length));
     };
 
+    this.enableHighlight = function (data) {
+        var value = data['value'];
+        if (value) {
+            editor.session.setMode(this.mode);
+        } else {
+            editor.session.setMode(null);
+        }
+    };
+
     this.setMode = function (data) {
-        var mode = data['mode'];
+        this.mode = data['mode'];
         //editor.session.setMode("ace/mode/java");
-        editor.session.setMode(mode);
+        editor.session.setMode(this.mode);
+        var modeName = "Text";
+        var m;
+        for (var i in modelist.modes) {
+            m = modelist.modes[i];
+            if (this.mode == m.mode) {
+                modeName = m.caption;
+                break;
+            }
+        }
+        AndroidEditor.onModeChanged(modeName);
     };
 
     /**
      * 保存文件后，设置文本为非改变状态
      */
     this.resetTextChange = function () {
-        //todo:
+        this.lastTextLength = editor.session.getDocument().getTextLength();
     };
 
     /**
@@ -167,7 +193,7 @@ function Bridge(editor) {
     };
 
     this.setTabSize = function (data) {
-        //todo:
+        editor.session.setTabSize(data['value']);
     };
 
     this.setAutoIndent = function (data) {
@@ -177,6 +203,27 @@ function Bridge(editor) {
 
 (function () {
     this.bindEditorEventToJava = function () {
-        //todo:
+        var self = this;
+        this.editor.on("change", function (data) {
+            var len = self.editor.session.getDocument().getTextLength();
+            AndroidEditor.onTextChanged(self.lastTextLength != -1 && len != self.lastTextLength);
+        });
+
+        self.selected = false;
+        this.editor.getSelection().on("changeSelection", function () {
+            var s = self.hasSelection();
+            if (s == self.selected)
+                return;
+            self.selected = s;
+
+            AndroidEditor.onSelectionChange(s);
+            
+            if (s) {
+                AndroidEditor.showActionMode();
+            } else {
+                AndroidEditor.hideActionMode();
+            }
+
+        });
     };
 }).call(Bridge.prototype);

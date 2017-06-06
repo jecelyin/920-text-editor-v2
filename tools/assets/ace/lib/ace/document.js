@@ -87,6 +87,17 @@ var Document = function(textOrLines) {
         return this.getAllLines().join(this.getNewLineCharacter());
     };
 
+    this.getTextLength = function () {
+        var lineCharLen = this.getNewLineCharacter().length;
+        var length = 0;
+        for( var i in this.$lines) {
+            length += this.$lines[i].length + lineCharLen
+        }
+        if (length >= lineCharLen)length -= lineCharLen;
+
+        return length;
+    };
+
     /** 
      * Creates a new `Anchor` to define a floating point in the document.
      * @param {Number} row The row number to use

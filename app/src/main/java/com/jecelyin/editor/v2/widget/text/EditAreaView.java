@@ -35,6 +35,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.google.gson.Gson;
+import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.Pref;
 
 import java.util.ArrayList;
@@ -54,12 +55,16 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     private ActionMode.Callback actionModeCallback;
     private ActionMode actionMode;
     private OnTextChangeListener onTextChangeListener;
-    private String modeName;
+    private String modeName = "Text";
     private boolean selected;
     private boolean textChanged;
 
     public EditAreaView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        if (L.debug) {
+            setWebContentsDebuggingEnabled(true);
+        }
 
         WebSettings ws = getSettings();
         ws.setJavaScriptEnabled(true);
@@ -144,16 +149,26 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
             if (actionModeCallback == null)
                 return;
 
-            if (actionMode != null){
-                actionMode.finish();
-            }
-            actionMode = startActionMode(actionModeCallback);
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    if (actionMode != null){
+                        actionMode.finish();
+                    }
+                    actionMode = startActionMode(actionModeCallback);
+                }
+            });
         }
 
         @JavascriptInterface
         public void hideActionMode() {
             if (actionMode != null){
-                actionMode.finish();
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        actionMode.finish();
+                    }
+                });
             }
         }
 
@@ -166,8 +181,14 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         public void onTextChanged(boolean s) {
             textChanged = s;
 
-            if (onTextChangeListener != null)
-                onTextChangeListener.onTextChanged();
+            if (onTextChangeListener != null) {
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        onTextChangeListener.onTextChanged();
+                    }
+                });
+            }
         }
 
         @JavascriptInterface
@@ -344,9 +365,14 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 .callback(callback).build());
     }
 
+
+    public void enableHighlight(boolean enable) {
+        execCommand(new EditorCommand.Builder("enableHighlight").put("value", enable).build());
+    }
+
     /**
      *
-     * @param mode [auto, null, ace/mode/js,,,]
+     * @param mode [null, ace/mode/js,,,]
      */
     public void setMode(String mode) {
         execCommand(new EditorCommand.Builder("setMode").put("mode", mode).build());

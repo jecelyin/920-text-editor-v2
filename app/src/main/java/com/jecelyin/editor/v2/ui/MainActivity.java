@@ -251,7 +251,7 @@ public class MainActivity extends BaseActivity
                 mToolbar.setKeepScreenOn(sharedPreferences.getBoolean(key, false));
                 break;
             case Pref.KEY_ENABLE_HIGHLIGHT:
-                Command command = new Command(Command.CommandEnum.HIGHLIGHT);
+                Command command = new Command(Command.CommandEnum.ENABLE_HIGHLIGHT);
                 command.object = pref.isHighlight();
                 doClusterCommand(command);
                 break;
@@ -621,7 +621,7 @@ public class MainActivity extends BaseActivity
         if (editorDelegate != null) {
             editorDelegate.doCommand(command);
 
-            if (command.what == Command.CommandEnum.HIGHLIGHT) {
+            if (command.what == Command.CommandEnum.CHANGE_MODE) {
                 mToolbar.setTitle(editorDelegate.getToolbarText());
             }
         }

@@ -49,17 +49,19 @@
 
 </div>
 <script src="ace/src/ace.js" type="text/javascript"></script>
+<script src="ace/src/ext-modelist.js" type="text/javascript"></script>
 <script src="bridge.js" type="text/javascript"></script>
 <script>
     var modelist = require("ace/ext/modelist");
 
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
-    editor.session.setMode("ace/mode/java");
+    //editor.session.setMode("ace/mode/java");
     editor.getSession().setUseWrapMode(true);
     editor.renderer.setVScrollBarAlwaysVisible(true);
     editor.renderer.setAnimatedScroll(true);
     //editor.setAutoScrollEditorIntoView(true);
+    editor.setValue("");
 
     var bridge = new Bridge(editor);
     bridge.bindEditorEventToJava();

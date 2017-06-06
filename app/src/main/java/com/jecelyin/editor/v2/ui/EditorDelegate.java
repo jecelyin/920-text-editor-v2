@@ -18,6 +18,7 @@
 
 package com.jecelyin.editor.v2.ui;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -76,7 +77,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         savedState.index = index;
         savedState.file = file;
         savedState.encoding = encoding;
-        if(savedState.file != null) {
+        if (savedState.file != null) {
             savedState.title = savedState.file.getName();
         }
     }
@@ -117,22 +118,23 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
 //        if (savedState.editorState != null) {
 //            document.onRestoreInstanceState(savedState);
 //            mEditText.onRestoreInstanceState(savedState.editorState);
-//        } else if (savedState.file != null) {
-//            document.loadFile(savedState.file, savedState.encoding);
-//        } else if(!TextUtils.isEmpty(savedState.content)) {
-//            mEditText.setText(savedState.content);
-//        }
+//        } else
+        if (savedState.file != null) {
+            document.loadFile(savedState.file, savedState.encoding);
+        } else if (!TextUtils.isEmpty(savedState.content)) {
+            mEditText.setText(null, savedState.content);
+        }
 
         mEditText.addTextChangedListener(this);
 
         // 更新标题
         noticeDocumentChanged();
 
-        if(!AppUtils.verifySign(context)) {
+        if (!AppUtils.verifySign(context)) {
             mEditText.setText(null, context.getString(R.string.verify_sign_failure));
         }
 
-        if(savedState.object != null) {
+        if (savedState.object != null) {
             EditorObjectProcessor.process(savedState.object, this);
         }
     }
@@ -161,7 +163,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
 
         noticeDocumentChanged();
 
-        if(!"com.jecelyin.editor.v2".equals(context.getPackageName())) {
+        if (!"com.jecelyin.editor.v2".equals(context.getPackageName())) {
             mEditText.setEnabled(false);
         }
         loaded = true;
@@ -173,7 +175,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
     }
 
     public MainActivity getMainActivity() {
-        return (MainActivity)context;
+        return (MainActivity) context;
     }
 
     public String getTitle() {
@@ -231,7 +233,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
      * @return 执行结果
      */
     public boolean doCommand(Command command) {
-        if(mEditText == null)
+        if (mEditText == null)
             return false;
         boolean readonly = Pref.getInstance(context).isReadOnly();
         switch (command.what) {
@@ -293,7 +295,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
                 Pref pref = Pref.getInstance(context);
                 boolean readOnly = pref.isReadOnly();
                 mEditText.setReadOnly(readOnly);
-                ((MainActivity)context).doNextCommand();
+                ((MainActivity) context).doNextCommand();
                 break;
             case SAVE:
                 if (!readonly)
@@ -305,10 +307,12 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             case FIND:
                 FinderDialog.showFindDialog(this);
                 break;
-            case HIGHLIGHT:
-                boolean scope = (boolean) command.object;
-                mEditText.setMode(scope ? "auto" : null);
-                ((MainActivity)context).doNextCommand();
+            case ENABLE_HIGHLIGHT:
+                mEditText.enableHighlight((boolean) command.object);
+                ((MainActivity) context).doNextCommand();
+            case CHANGE_MODE:
+                String scope = (String) command.object;
+                mEditText.setMode(scope);
                 break;
             case INSERT_TEXT:
                 if (!readonly) {
@@ -401,7 +405,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
                 }
             });
         }
-        ((MainActivity)context).getTabManager().onDocumentChanged(savedState.index);
+        ((MainActivity) context).getTabManager().onDocumentChanged(savedState.index);
     }
 
     @Override
@@ -433,6 +437,37 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
 
             boolean readOnly = Pref.getInstance(context).isReadOnly();
             boolean selected = mEditText.hasSelection();
+            if (selected) {
+                menu.add(0, R.id.m_cut, 0,
+                        R.string.cut).
+                        setIcon(styledAttributes.getResourceId(
+                                R.styleable.SelectionModeDrawables_actionModeCutDrawable, 0)).
+                        setAlphabeticShortcut('x').
+                        setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                menu.add(0, R.id.m_copy, 0,
+                        R.string.copy).
+                        setIcon(styledAttributes.getResourceId(
+                                R.styleable.SelectionModeDrawables_actionModeCopyDrawable, 0)).
+                        setAlphabeticShortcut('c').
+                        setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            }
+
+            if (((ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE)).
+                    hasPrimaryClip()) {
+                menu.add(Menu.NONE, R.id.m_paste, 0,
+                        R.string.paste).
+                        setIcon(styledAttributes.getResourceId(
+                                R.styleable.SelectionModeDrawables_actionModePasteDrawable, 0)).
+                        setAlphabeticShortcut('v').
+                        setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            }
+
+            menu.add(Menu.NONE, R.id.m_select_all, 0,
+                    R.string.selectAll)
+                    .setIcon(styledAttributes.getResourceId(
+                            R.styleable.SelectionModeDrawables_actionModeSelectAllDrawable, 0))
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
             if (selected) {
                 menu.add(0, R.id.m_find_replace, 0, R.string.find).
                         setIcon(styledAttributes.getResourceId(
@@ -472,6 +507,18 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch (item.getItemId()) {
+                case R.id.m_select_all:
+                    mEditText.selectAll();
+                    return true;
+                case R.id.m_cut:
+                    mEditText.cut();
+                    return true;
+                case R.id.m_copy:
+                    mEditText.copy();
+                    return true;
+                case R.id.m_paste:
+                    mEditText.paste();
+                    return true;
                 case R.id.m_find_replace:
                     doCommand(new Command(Command.CommandEnum.FIND));
                     return true;

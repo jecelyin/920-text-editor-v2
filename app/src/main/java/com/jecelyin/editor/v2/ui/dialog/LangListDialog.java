@@ -56,7 +56,7 @@ public class LangListDialog extends AbstractDialog {
 
                     @Override
                     public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                        Command command = new Command(Command.CommandEnum.HIGHLIGHT);
+                        Command command = new Command(Command.CommandEnum.CHANGE_MODE);
                         command.object = ModeList.modes[i].mode;
                         getMainActivity().doCommand(command);
                         return true;
