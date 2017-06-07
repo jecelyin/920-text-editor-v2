@@ -201,3 +201,10 @@ Hi! thank you for great app! it would be nice to have "Word wrap" and "Show line
 
 
 可修改查找的cab关键字
+
+有root权限
+启用了root设置
+打开 /data/data/appname下文件
+提示: 文件不存在
+java.lang.NullPointerException: Attempt to get length of null array
+at com.jecelyin.android.file_explorer.io.LocalFile.listFiles(LocalFile.java:151)
