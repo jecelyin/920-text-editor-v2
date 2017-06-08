@@ -50,15 +50,16 @@ function Bridge(editor) {
         return editor.session.getUndoManager().hasRedo();
     };
 
-    this.copy = function () {
+    this.onCopy = function () {
         editor.onCopy();
+        editor.clearSelection();
     };
 
-    this.paste = function () {
-        editor.onPaste();
+    this.onPaste = function (data) {
+        editor.onPaste(data['text']);
     };
 
-    this.cut = function () {
+    this.onCut = function () {
         editor.onCut();
     };
 
@@ -217,7 +218,7 @@ function Bridge(editor) {
             self.selected = s;
 
             AndroidEditor.onSelectionChange(s);
-            
+
             if (s) {
                 AndroidEditor.showActionMode();
             } else {

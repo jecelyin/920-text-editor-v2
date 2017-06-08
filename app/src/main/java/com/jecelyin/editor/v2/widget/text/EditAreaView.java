@@ -18,6 +18,8 @@
 
 package com.jecelyin.editor.v2.widget.text;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -63,7 +65,9 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         super(context, attrs);
 
         if (L.debug) {
-            setWebContentsDebuggingEnabled(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                setWebContentsDebuggingEnabled(true);
+            }
         }
 
         WebSettings ws = getSettings();
@@ -259,18 +263,46 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public boolean copy() {
-        execCommand(new EditorCommand.Builder("copy").build());
+        getSelectedText(new JsCallback<String>() {
+            @Override
+            public void onCallback(String data) {
+                setPrimaryClip(ClipData.newPlainText(null, data));
+                execCommand(new EditorCommand.Builder("onCopy").build());
+            }
+        });
+
         return true;
     }
 
     public boolean paste() {
-        execCommand(new EditorCommand.Builder("paste").build());
+        ClipboardManager clipboard = (ClipboardManager) getContext().
+                getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+
+// Gets the clipboard as text.
+        CharSequence pasteData = item.getText();
+        if (pasteData == null)
+            return false;
+
+        execCommand(new EditorCommand.Builder("onPaste").put("text", pasteData.toString()).build());
         return true;
     }
 
     public boolean cut() {
-        execCommand(new EditorCommand.Builder("cut").build());
+        getSelectedText(new JsCallback<String>() {
+            @Override
+            public void onCallback(String data) {
+                setPrimaryClip(ClipData.newPlainText(null, data));
+                execCommand(new EditorCommand.Builder("onCut").build());
+            }
+        });
         return true;
+    }
+
+    private void setPrimaryClip(ClipData clip) {
+        ClipboardManager clipboard = (ClipboardManager) getContext().
+                getSystemService(Context.CLIPBOARD_SERVICE);
+        clipboard.setPrimaryClip(clip);
     }
 
     public void duplication() {
