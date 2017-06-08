@@ -310,6 +310,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             case ENABLE_HIGHLIGHT:
                 mEditText.enableHighlight((boolean) command.object);
                 ((MainActivity) context).doNextCommand();
+                break;
             case CHANGE_MODE:
                 String scope = (String) command.object;
                 mEditText.setMode(scope);
