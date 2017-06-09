@@ -90,5 +90,10 @@ public class CursorWidthPreference extends JecListPreference {
         protected int getLayoutResId() {
             return R.layout.pref_cursor_width_layout;
         }
+
+        @Override
+        protected int getTextResId() {
+            return R.id.title;
+        }
     }
 }
