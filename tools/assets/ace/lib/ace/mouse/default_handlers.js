@@ -40,6 +40,7 @@ var DRAG_OFFSET = 0; // pixels
 
 function DefaultHandlers(mouseHandler) {
     mouseHandler.$clickSelection = null;
+    this.touchTimer = null;
 
     var editor = mouseHandler.editor;
     this.mousedown = this.onMouseDown.bind(mouseHandler);
@@ -287,16 +288,29 @@ function DefaultHandlers(mouseHandler) {
     };
 
     this.onTouchStart = function (ev) {
-        var container = ev.editor.container;
-        var renderer = ev.editor.renderer;
+        var editor = ev.editor;
+        var container = editor.container;
+        var renderer = editor.renderer;
         var layerConfig = renderer.layerConfig;
         renderer.showScrollBarV();
         this.fastScroller.setPosition(0, renderer.getScrollTop());
         this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, container.clientWidth, layerConfig.maxHeight);
         this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);
+
+        this.touchTimer = setTimeout(function () {
+            event.stopEvent(ev);
+            editor._signal("onLongTouch");
+        }, 500);
     };
 
     this.onTouchEnd = function (ev) {
+        if (this.touchTimer != null) {
+            clearTimeout(this.touchTimer);
+            this.touchTimer = null;
+        } else {
+            editor._signal("onClick");
+        }
+
         ev.editor.renderer.hideScrollBarV();
         this.fastScroller.doTouchEnd(ev.domEvent.timeStamp);
     };

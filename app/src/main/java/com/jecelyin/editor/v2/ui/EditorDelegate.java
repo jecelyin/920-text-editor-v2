@@ -510,28 +510,29 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             switch (item.getItemId()) {
                 case R.id.m_select_all:
                     mEditText.selectAll();
-                    return true;
+                    break;
                 case R.id.m_cut:
                     mEditText.cut();
-                    return true;
+                    break;
                 case R.id.m_copy:
                     mEditText.copy();
-                    return true;
+                    break;
                 case R.id.m_paste:
                     mEditText.paste();
-                    return true;
+                    break;
                 case R.id.m_find_replace:
                     doCommand(new Command(Command.CommandEnum.FIND));
-                    return true;
+                    break;
                 case R.id.m_convert_to_uppercase:
                 case R.id.m_convert_to_lowercase:
                     convertSelectedText(item.getItemId());
-                    return true;
+                    break;
                 case R.id.m_duplication:
                     mEditText.duplication();
-                    return true;
+                    break;
             }
-            return false;
+            mode.finish();
+            return true;
         }
 
         @Override

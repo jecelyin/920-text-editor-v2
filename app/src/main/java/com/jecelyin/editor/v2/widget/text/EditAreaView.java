@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ActionMode;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -69,6 +70,14 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 setWebContentsDebuggingEnabled(true);
             }
         }
+
+        setLongClickable(false);
+        setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
 
         WebSettings ws = getSettings();
         ws.setJavaScriptEnabled(true);

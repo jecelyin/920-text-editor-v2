@@ -57,14 +57,17 @@ function Bridge(editor) {
 
     this.onPaste = function (data) {
         editor.onPaste(data['text']);
+        editor.clearSelection();
     };
 
     this.onCut = function () {
         editor.onCut();
+        editor.clearSelection();
     };
 
     this.duplication = function () {
         editor.duplicateSelection();
+        editor.clearSelection();
     };
 
     this.convertWrapCharTo = function (data) {
@@ -88,7 +91,7 @@ function Bridge(editor) {
     };
 
     this.selectAll = function () {
-        editor.selection.selectAll();
+        editor.selectAll();
     };
 
     this.forwardLocation = function () {
@@ -225,6 +228,14 @@ function Bridge(editor) {
                 AndroidEditor.hideActionMode();
             }
 
+        });
+        this.editor.on("onLongTouch", function () {
+            AndroidEditor.showActionMode();
+        });
+        this.editor.on("onClick", function () {
+            if (self.hasSelection())
+                return;
+            AndroidEditor.hideActionMode();
         });
     };
 }).call(Bridge.prototype);
