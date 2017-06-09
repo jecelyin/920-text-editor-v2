@@ -439,12 +439,14 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             boolean readOnly = Pref.getInstance(context).isReadOnly();
             boolean selected = mEditText.hasSelection();
             if (selected) {
-                menu.add(0, R.id.m_cut, 0,
-                        R.string.cut).
-                        setIcon(styledAttributes.getResourceId(
-                                R.styleable.SelectionModeDrawables_actionModeCutDrawable, 0)).
-                        setAlphabeticShortcut('x').
-                        setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                if (!readOnly) {
+                    menu.add(0, R.id.m_cut, 0,
+                            R.string.cut).
+                            setIcon(styledAttributes.getResourceId(
+                                    R.styleable.SelectionModeDrawables_actionModeCutDrawable, 0)).
+                            setAlphabeticShortcut('x').
+                            setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+                }
                 menu.add(0, R.id.m_copy, 0,
                         R.string.copy).
                         setIcon(styledAttributes.getResourceId(
