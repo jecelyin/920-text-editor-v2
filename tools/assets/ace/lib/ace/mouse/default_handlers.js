@@ -296,10 +296,13 @@ function DefaultHandlers(mouseHandler) {
         this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, container.clientWidth, layerConfig.maxHeight);
         this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);
 
-        this.touchTimer = setTimeout(function () {
-            event.stopEvent(ev);
-            editor._signal("onLongTouch");
-        }, 500);
+        var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
+        if (touches.length === 1) {
+            this.touchTimer = setTimeout(function () {
+                event.stopEvent(ev);
+                editor._signal("onLongTouch");
+            }, 500);
+        }
     };
 
     this.onTouchEnd = function (ev) {
@@ -307,7 +310,10 @@ function DefaultHandlers(mouseHandler) {
             clearTimeout(this.touchTimer);
             this.touchTimer = null;
         } else {
-            ev.editor._signal("onClick");
+            var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
+            if (touches.length === 1) {
+                ev.editor._signal("onClick");
+            }
         }
 
         ev.editor.renderer.hideScrollBarV();
