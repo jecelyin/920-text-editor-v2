@@ -137,6 +137,10 @@ function Bridge(editor) {
         this.loading = false;
     };
 
+    this.getText = function () {
+        return editor.getValue();
+    };
+
     this.getSelectedText = function () {
         var range = editor.getSelection().getRange();
         return editor.session.getTextRange(range);
