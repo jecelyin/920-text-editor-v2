@@ -94,7 +94,7 @@ public class RangeAdapter extends RecyclerView.Adapter<RangeAdapter.RangeViewHol
     }
 
     protected int getTextResId() {
-        return R.id.title;
+        return R.id.md_title;
     }
 
     protected void setupTextView(TextView tv, int position) {
