@@ -279,16 +279,10 @@ function DefaultHandlers(mouseHandler) {
     };
     
     this.onTouchMove = function (ev) {
-        // var t = ev.domEvent.timeStamp;
-        // var dt = t - (this.$lastScrollTime || 0);
-        //
-        // var editor = this.editor;
-        // var isScrolable = editor.renderer.isScrollableBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
-        // if (isScrolable || dt < 200) {
-        //     this.$lastScrollTime = t;
-        //     editor.renderer.scrollBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
-        //     return ev.stop();
-        // }
+        if (this.touchTimer != null) {
+            clearTimeout(this.touchTimer);
+            this.touchTimer = null;
+        }
         this.fastScroller.doTouchMove(ev.domEvent.touches, ev.domEvent.timeStamp);
     };
 
