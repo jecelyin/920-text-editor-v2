@@ -351,10 +351,6 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         return true;
     }
 
-    public void setSelection(int index) {
-        //// TODO: 2017/6/2 recommend last cursor position through cookie
-    }
-
     public void forwardLocation() {
         execCommand(new EditorCommand.Builder("forwardLocation").build());
     }

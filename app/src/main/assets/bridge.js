@@ -25,6 +25,7 @@ function Bridge(editor) {
     this.mode = null;
     this.lastTextLength = -1;
     this.editor = editor;
+    this.loading = false;
 
     this.execCommand = function(cmd, data) {
         if (this[cmd]) {
@@ -71,7 +72,14 @@ function Bridge(editor) {
     };
 
     this.convertWrapCharTo = function (data) {
-        editor.replaceAll(data['value'], {'needle':"\r\n|\n|\r", 'regExp':true});
+        // editor.replaceAll(data['value'], {'needle':"\r\n|\n|\r", 'regExp':true});
+        var mode = "auto";
+        if(data['value'] === "\r\n") {
+            mode = "windows";
+        } else if (data['value'] === "\n") {
+            mode = "unix";
+        }
+        editor.getSession().getDocument().setNewLineMode(mode);
     };
 
     this.gotoTop = function () {
@@ -95,11 +103,11 @@ function Bridge(editor) {
     };
 
     this.forwardLocation = function () {
-        //todo:
+        editor._emit('forwardLocation');
     };
 
     this.backLocation = function () {
-        //todo:
+        editor._emit('backLocation');
     };
 
     this.insertOrReplaceText = function (data) {
@@ -116,12 +124,17 @@ function Bridge(editor) {
     };
 
     this.setText = function (data) {
+        this.loading = true;
+
         var text = data['text'];
         var file = data['file'];
         var modeCls = modelist.getModeForPath(file ? file : '');
         this.setMode({'mode':modeCls.mode});
-        editor.setValue(text);
+        editor.setValue(text, -1);
+        editor.clearSelection();
         this.resetTextChange();
+
+        this.loading = false;
     };
 
     this.getSelectedText = function () {
@@ -209,12 +222,16 @@ function Bridge(editor) {
     this.bindEditorEventToJava = function () {
         var self = this;
         this.editor.on("change", function (data) {
+            if (self.loading)
+                return;
             var len = self.editor.session.getDocument().getTextLength();
             AndroidEditor.onTextChanged(self.lastTextLength != -1 && len != self.lastTextLength);
         });
 
         self.selected = false;
         this.editor.getSelection().on("changeSelection", function () {
+            if (self.loading)
+                return;
             var s = self.hasSelection();
             if (s == self.selected)
                 return;

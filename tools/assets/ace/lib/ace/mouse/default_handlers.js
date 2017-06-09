@@ -41,8 +41,11 @@ var DRAG_OFFSET = 0; // pixels
 function DefaultHandlers(mouseHandler) {
     mouseHandler.$clickSelection = null;
     this.touchTimer = null;
+    this.stacks = [];
+    this.stackPosition = 0;
 
     var editor = mouseHandler.editor;
+    this.editor = editor;
     this.mousedown = this.onMouseDown.bind(mouseHandler);
     editor.setDefaultHandler("mousedown", this.mousedown);
     editor.setDefaultHandler("dblclick", this.onDoubleClick.bind(mouseHandler));
@@ -53,6 +56,8 @@ function DefaultHandlers(mouseHandler) {
     editor.setDefaultHandler("touchmove", this.onTouchMove.bind(this));
     editor.setDefaultHandler("touchstart", this.onTouchStart.bind(this));
     editor.setDefaultHandler("touchend", this.onTouchEnd.bind(this));
+    editor.setDefaultHandler("forwardLocation", this.forwardLocation.bind(this));
+    editor.setDefaultHandler("backLocation", this.backLocation.bind(this));
 
     var exports = ["select", "startSelect", "selectEnd", "selectAllEnd", "selectByWordsEnd",
         "selectByLinesEnd", "dragWait", "dragWaitEnd", "focusWait"];
@@ -308,11 +313,44 @@ function DefaultHandlers(mouseHandler) {
             clearTimeout(this.touchTimer);
             this.touchTimer = null;
         } else {
-            editor._signal("onClick");
+            ev.editor._signal("onClick");
         }
 
         ev.editor.renderer.hideScrollBarV();
         this.fastScroller.doTouchEnd(ev.domEvent.timeStamp);
+
+        this.updateStacks(ev.editor);
+    };
+
+    this.updateStacks = function (editor) {
+        var pos = editor.selection.getSelectionLead();
+        var entity = {'row':pos.row, 'column':pos.column};
+        if (this.stacks.length > 0) {
+            if (this.stacks[this.stacks.length - 1].row != pos.row) {
+                this.stacks.push(entity);
+            }
+        } else {
+            this.stacks.push(entity);
+        }
+        this.stackPosition = this.stacks.length - 1;
+    };
+
+    this.forwardLocation = function () {
+        if ( (this.stackPosition + 1) >= this.stacks.length)
+            return;
+
+        this.stackPosition++;
+        var pos = this.stacks[this.stackPosition];
+        this.editor.selection.moveToPosition(pos);
+    };
+
+    this.backLocation = function () {
+        if (this.stacks.length === 0 || (this.stackPosition - 1) < 0)
+            return;
+
+        this.stackPosition--;
+        var pos = this.stacks[this.stackPosition];
+        this.editor.selection.moveToPosition(pos);
     };
 
 }).call(DefaultHandlers.prototype);
