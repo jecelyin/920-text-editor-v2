@@ -213,7 +213,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
     }
 
     public void startSaveFileSelectorActivity() {
-        mEditText.getLineText(1, 50, new JsCallback<String>() {
+        mEditText.getLineText(0, 50, new JsCallback<String>() {
             @Override
             public void onCallback(String data) {
                 getMainActivity().startPickPathActivity(document.getPath(), data, document.getEncoding());

@@ -23,7 +23,7 @@
  */
 function Bridge(editor) {
     this.mode = null;
-    this.lastTextLength = -1;
+    this.lastTextLength = 0;
     this.editor = editor;
     this.loading = false;
 
@@ -229,7 +229,7 @@ function Bridge(editor) {
             if (self.loading)
                 return;
             var len = self.editor.session.getDocument().getTextLength();
-            AndroidEditor.onTextChanged(self.lastTextLength != -1 && len != self.lastTextLength);
+            AndroidEditor.onTextChanged(len != self.lastTextLength);
         });
 
         self.selected = false;

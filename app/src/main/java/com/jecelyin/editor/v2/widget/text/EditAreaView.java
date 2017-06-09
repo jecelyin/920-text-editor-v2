@@ -395,6 +395,12 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         execCommand(new EditorCommand.Builder("getSelectedText").callback(callback).build());
     }
 
+    /**
+     *
+     * @param line begin with 0
+     * @param limitLength
+     * @param callback
+     */
     public void getLineText(int line, int limitLength, JsCallback<String> callback) {
         execCommand(new EditorCommand.Builder("getLineText")
                 .put("line", line)
