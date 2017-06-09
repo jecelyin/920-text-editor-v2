@@ -938,6 +938,14 @@ var VirtualRenderer = function(container, theme) {
             this._signal("autosize");
         }
     };
+
+    this.showScrollBarV = function () {
+        this.scrollBarV.setAnimVisible(true);
+    };
+
+    this.hideScrollBarV = function () {
+        this.scrollBarV.setAnimVisible(false);
+    };
     
     this.$computeLayerConfig = function() {
         var session = this.session;

@@ -324,8 +324,9 @@ var members = {
 		var self = this;
 
 		self.__clientLeft = left || 0;
-		self.__clientTop = top || 0;
-
+		// self.__clientTop = top || 0;
+		self.__clientTop = 0;
+        self.__scrollTop = top;
 	},
 
 

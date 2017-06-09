@@ -36,7 +36,7 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
         // debugger;
         diffX = event.getClientX(e) - this.x;
         diffY = event.getClientY(e) - this.y;
-        console.log("touchstart diffX="+diffX+" diffY="+diffY);
+        // console.log("touchstart diffX="+diffX+" diffY="+diffY);
         var mouseEvent = new MouseEvent(e, editor, this.x + this.clientWidth/2, this.y - editor.renderer.layerConfig.lineHeight);
         defaultHandler.mousedown(mouseEvent, true);
 
@@ -46,7 +46,7 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
         var x, y;
         x = event.getClientX(e) - diffX + this.clientWidth/2;
         y = event.getClientY(e) - diffY - this.clientHeight*0.2;
-        console.log("move x="+x+" y="+y);
+        // console.log("move x="+x+" y="+y);
         // mouseHandler.x = getClientX(e) + this.clientWidth/2;
         // mouseHandler.y = getClientY(e) - editor.renderer.layerConfig.lineHeight;
         mouseHandler.x = x;
@@ -99,7 +99,7 @@ function SelectDrawableEventHandler(defaultHandler, mouseHandler) {
 
         var auchor = selection.getSelectionAnchor();
         var lead = selection.getSelectionLead();
-        console.log("row="+auchorRow+" col="+auchorColumn+" -> row="+pos.row+" col="+pos.column);
+        // console.log("row="+auchorRow+" col="+auchorColumn+" -> row="+pos.row+" col="+pos.column);
 
         this.editor.$blockScrolling++;
         this.editor.selection.setSelectionAnchor(auchorRow, auchorColumn);

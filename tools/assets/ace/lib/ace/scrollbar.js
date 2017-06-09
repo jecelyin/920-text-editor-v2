@@ -52,6 +52,7 @@ var MAX_SCROLL_H = 0x8000;
  * @constructor
  **/
 var ScrollBar = function(parent) {
+    this.timerId = null;
     this.element = dom.createElement("div");
     this.element.className = "ace_scrollbar ace_scrollbar" + this.classSuffix;
 
@@ -75,6 +76,26 @@ var ScrollBar = function(parent) {
         this.element.style.display = isVisible ? "" : "none";
         this.isVisible = isVisible;
         this.coeff = 1;
+    };
+
+    this.stopAnimation = function () {
+        if (this.timerId) {
+            clearTimeout(this.timerId);
+            this.timerId = null;
+        }
+    };
+
+    this.setAnimVisible = function (isVisible) {
+        this.stopAnimation();
+
+        if (isVisible) {
+            this.setVisible(true);
+        } else {
+            var self = this;
+            this.timerId = setTimeout(function () {
+                self.setVisible(false);
+            }, 1500);
+        }
     };
 }).call(ScrollBar.prototype);
 
@@ -115,6 +136,7 @@ var VScrollBar = function(parent, renderer) {
 
     event.addListener(this.inner, "touchstart", this.onTouchStart.bind(this));
     event.addListener(this.inner, "touchmove", this.onTouchMove.bind(this));
+    event.addListener(this.inner, "touchend", this.onTouchEnd.bind(this));
 };
 
 oop.inherits(VScrollBar, ScrollBar);
@@ -126,6 +148,7 @@ oop.inherits(VScrollBar, ScrollBar);
     this.onTouchStart = function (ev) {
         event.stopEvent(ev);
         this.startY = event.getClientY(ev) - this.inner.offsetTop;
+        this.stopAnimation();
     };
 
     this.onTouchMove = function (ev) {
@@ -139,8 +162,12 @@ oop.inherits(VScrollBar, ScrollBar);
         var top = y - this.startY;
         var per = top / (this.element.clientHeight - this.inner.clientHeight);
         var scrollTop = Math.min(per, 1) * (this.scrollHeight - this.element.clientHeight);
-        console.log("thumb top="+top+" scrollTop="+scrollTop);
+        // console.log("thumb top="+top+" scrollTop="+scrollTop);
         this._emit("scroll", {data: scrollTop});
+    };
+
+    this.onTouchEnd = function (ev) {
+        this.setAnimVisible(false);
     };
 
     /**

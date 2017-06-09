@@ -793,7 +793,7 @@ Editor.$uid = 0;
 
         var re = this.$highlightSelectedWord && this.$getSelectionHighLightRegexp();
         this.session.highlight(re);
-
+        this.$cursorChange();
         this._signal("changeSelection");
     };
 

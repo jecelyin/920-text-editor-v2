@@ -65,7 +65,7 @@ function DefaultHandlers(mouseHandler) {
     new SelectDrawableEventHandler(this, mouseHandler);
 
     this.fastScroller = new FastScroller(function (left, top, zoom) {
-        console.log("fast scroll left="+left+" top="+top+" zoom="+zoom);
+        // console.log("fast scroll left="+left+" top="+top+" zoom="+zoom);
         editor.renderer.scrollTo(left, top);
     }, {"scrollingX": false});
 }
@@ -288,14 +288,16 @@ function DefaultHandlers(mouseHandler) {
 
     this.onTouchStart = function (ev) {
         var container = ev.editor.container;
-        var layerConfig = ev.editor.renderer.layerConfig;
-        // var st = ev.editor.renderer.getScrollTop();
-        this.fastScroller.setPosition(0, 0);
+        var renderer = ev.editor.renderer;
+        var layerConfig = renderer.layerConfig;
+        renderer.showScrollBarV();
+        this.fastScroller.setPosition(0, renderer.getScrollTop());
         this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, container.clientWidth, layerConfig.maxHeight);
         this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);
     };
 
     this.onTouchEnd = function (ev) {
+        ev.editor.renderer.hideScrollBarV();
         this.fastScroller.doTouchEnd(ev.domEvent.timeStamp);
     };
 
