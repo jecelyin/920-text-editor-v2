@@ -311,7 +311,7 @@ function DefaultHandlers(mouseHandler) {
             this.touchTimer = null;
         } else {
             var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
-            if (touches.length === 1) {
+            if (!touches || touches.length === 1) {
                 ev.editor._signal("onClick");
             }
         }

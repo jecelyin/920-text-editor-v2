@@ -27,7 +27,6 @@ import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
-import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.styles.R;
 import com.stericson.RootTools.RootTools;
 
@@ -309,7 +308,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         if (width == 0)
             return 0;
 
-        return SysUtils.dpAsPixels(context, width);
+        return width;
     }
 
     public boolean isReadOnly() {

@@ -32,7 +32,7 @@ import java.util.HashMap;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class RangeAdapter extends RecyclerView.Adapter<RangeAdapter.RangeViewHolder> {
+public class RangeAdapter extends PreferenceAdapter<RangeAdapter.RangeViewHolder> {
     protected final int minValue;
     protected final int maxValue;
     private final CharSequence[] items;
@@ -74,9 +74,18 @@ public class RangeAdapter extends RecyclerView.Adapter<RangeAdapter.RangeViewHol
     }
 
     @Override
-    public void onBindViewHolder(RangeViewHolder holder, int position) {
+    public void onBindViewHolder(final RangeViewHolder holder, final int position) {
         holder.mTitleTextView.setText(items[position]);
         setupTextView(holder.mTitleTextView, position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getOnItemClickListener() != null) {
+                    getOnItemClickListener().onItemClick(holder, position);
+                }
+            }
+        });
     }
 
     @Override

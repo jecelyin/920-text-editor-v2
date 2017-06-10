@@ -210,7 +210,8 @@ function Bridge(editor) {
     };
 
     this.setCursorWidth = function (data) {
-        //todo:
+        editor.renderer.$cursorLayer.setCursorWidth(data['value']);
+        editor.renderer.updateCursor();
     };
 
     this.setTabSize = function (data) {

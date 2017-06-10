@@ -82,7 +82,7 @@ public class SysUtils {
     public static int dpAsPixels(Context context, int dp)
     {
         Resources resources = context.getResources();
-        return (int) TypedValue.applyDimension(1, dp, resources.getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
     }
 
     public static File getCacheDir(Context context) {

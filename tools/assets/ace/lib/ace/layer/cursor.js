@@ -47,6 +47,7 @@ var Cursor = function(parentEl) {
     this.isBlinking = true;
     this.blinkInterval = 1000;
     this.smoothBlinking = false;
+    this.cursorWidth = 0;
 
     this.cursors = [];
     this.cursor = this.addCursor();
@@ -179,6 +180,10 @@ var Cursor = function(parentEl) {
         return {left : cursorLeft, top : cursorTop};
     };
 
+    this.setCursorWidth = function (w) {
+        this.cursorWidth = w;
+    };
+
     this.update = function(config) {
         this.config = config;
 
@@ -202,6 +207,7 @@ var Cursor = function(parentEl) {
                 style.left = pixelPos.left + "px";
                 style.top = pixelPos.top + "px";
                 style.width = config.characterWidth + "px";
+                style.borderLeftWidth = (this.cursorWidth || 2) + "px";
                 style.height = config.lineHeight + "px";
             } else {
                 this.drawCursor(style, pixelPos, config, selections[i], this.session);
