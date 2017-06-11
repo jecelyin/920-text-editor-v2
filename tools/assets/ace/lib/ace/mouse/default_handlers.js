@@ -72,7 +72,7 @@ function DefaultHandlers(mouseHandler) {
 
     this.fastScroller = new FastScroller(function (left, top, zoom) {
         // console.log("fast scroll left="+left+" top="+top+" zoom="+zoom);
-        editor.renderer.scrollTo(left, top);
+        editor.session.setScrollTop(top);
     }, {"scrollingX": false});
 }
 
@@ -299,7 +299,6 @@ function DefaultHandlers(mouseHandler) {
         var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
         if (touches.length === 1) {
             this.touchTimer = setTimeout(function () {
-                event.stopEvent(ev);
                 editor._signal("onLongTouch");
             }, 500);
         }

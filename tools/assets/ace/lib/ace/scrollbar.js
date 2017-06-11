@@ -146,7 +146,7 @@ oop.inherits(VScrollBar, ScrollBar);
     this.classSuffix = '-v';
 
     this.onTouchStart = function (ev) {
-        event.stopEvent(ev);
+        // event.stopEvent(ev);
         this.startY = event.getClientY(ev) - this.inner.offsetTop;
         this.stopAnimation();
     };
