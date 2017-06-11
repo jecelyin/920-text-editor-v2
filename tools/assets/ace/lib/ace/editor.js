@@ -2298,8 +2298,8 @@ Editor.$uid = 0;
      * Moves the cursor to the start of the current line. Note that this does de-select the current selection.
      **/
     this.navigateLineStart = function() {
-        this.selection.moveCursorLineStart();
         this.clearSelection();
+        this.selection.moveCursorLineStart();
     };
 
     /**
@@ -2307,8 +2307,8 @@ Editor.$uid = 0;
      * Moves the cursor to the end of the current line. Note that this does de-select the current selection.
      **/
     this.navigateLineEnd = function() {
-        this.selection.moveCursorLineEnd();
         this.clearSelection();
+        this.selection.moveCursorLineEnd();
     };
 
     /**
@@ -2316,8 +2316,8 @@ Editor.$uid = 0;
      * Moves the cursor to the end of the current file. Note that this does de-select the current selection.
      **/
     this.navigateFileEnd = function() {
-        this.selection.moveCursorFileEnd();
         this.clearSelection();
+        this.selection.moveCursorFileEnd();
     };
 
     /**
@@ -2325,8 +2325,8 @@ Editor.$uid = 0;
      * Moves the cursor to the start of the current file. Note that this does de-select the current selection.
      **/
     this.navigateFileStart = function() {
-        this.selection.moveCursorFileStart();
         this.clearSelection();
+        this.selection.moveCursorFileStart();
     };
 
     /**
@@ -2334,8 +2334,8 @@ Editor.$uid = 0;
      * Moves the cursor to the word immediately to the right of the current position. Note that this does de-select the current selection.
      **/
     this.navigateWordRight = function() {
-        this.selection.moveCursorWordRight();
         this.clearSelection();
+        this.selection.moveCursorWordRight();
     };
 
     /**
@@ -2343,8 +2343,8 @@ Editor.$uid = 0;
      * Moves the cursor to the word immediately to the left of the current position. Note that this does de-select the current selection.
      **/
     this.navigateWordLeft = function() {
-        this.selection.moveCursorWordLeft();
         this.clearSelection();
+        this.selection.moveCursorWordLeft();
     };
 
     /**
