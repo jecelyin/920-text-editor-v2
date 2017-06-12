@@ -1024,7 +1024,7 @@ Editor.$uid = 0;
             }
         }
 
-        if (session.getDocument().isNewLine(text)) {
+        if (session.getDocument().isNewLine(text) && this.isAutoIndent()) {
             var lineIndent = mode.getNextLineIndent(lineState, line.slice(0, cursor.column), session.getTabString());
 
             session.insert({row: cursor.row+1, column: 0}, lineIndent);
@@ -2617,6 +2617,14 @@ Editor.$uid = 0;
         this.textInput.setReadOnly(this.$readOnly);
     };
 
+    this.setAutoIndent = function(b) {
+        this.setOption("isAutoIndent", b);
+    };
+
+    this.isAutoIndent = function () {
+        return this.getOption("isAutoIndent");
+    };
+
 }).call(Editor.prototype);
 
 
@@ -2701,7 +2709,8 @@ config.defineOptions(Editor.prototype, "editor", {
     wrap: "session",
     indentedSoftWrap: "session",
     foldStyle: "session",
-    mode: "session"
+    mode: "session",
+    isAutoIndent: {initialValue: true}
 });
 
 exports.Editor = Editor;

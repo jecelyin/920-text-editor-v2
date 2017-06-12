@@ -219,7 +219,7 @@ function Bridge(editor) {
     };
 
     this.setAutoIndent = function (data) {
-        //todo:
+        editor.setAutoIndent(data['value']);
     };
 }
 
@@ -245,19 +245,38 @@ function Bridge(editor) {
             AndroidEditor.onSelectionChange(s);
 
             if (s) {
-                AndroidEditor.showActionMode();
+                self.showActionMode();
             } else {
-                AndroidEditor.hideActionMode();
+                self.hideActionMode();
             }
 
         });
         this.editor.on("onLongTouch", function () {
-            AndroidEditor.showActionMode();
+            self.showActionMode();
         });
         this.editor.on("onClick", function () {
             if (self.hasSelection())
                 return;
-            AndroidEditor.hideActionMode();
+            self.hideActionMode();
         });
+    };
+
+    this.actionModeTimer = null;
+    this.showActionMode = function() {
+        if (this.actionModeTimer)
+            clearTimeout(this.actionModeTimer);
+
+        this.actionModeTimer = setTimeout(function(){
+            AndroidEditor.showActionMode();
+        }, 500);
+    };
+
+    this.hideActionMode = function() {
+        if (this.actionModeTimer)
+            clearTimeout(this.actionModeTimer);
+
+        this.actionModeTimer = setTimeout(function(){
+            AndroidEditor.hideActionMode();
+        }, 500);
     };
 }).call(Bridge.prototype);
