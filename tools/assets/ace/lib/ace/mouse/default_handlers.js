@@ -72,8 +72,9 @@ function DefaultHandlers(mouseHandler) {
 
     this.fastScroller = new FastScroller(function (left, top, zoom) {
         // console.log("fast scroll left="+left+" top="+top+" zoom="+zoom);
+        editor.session.setScrollLeft(left);
         editor.session.setScrollTop(top);
-    }, {"scrollingX": false});
+    }, {"scrollingX": true});
 }
 
 (function() {
@@ -290,10 +291,11 @@ function DefaultHandlers(mouseHandler) {
         var editor = ev.editor;
         var container = editor.container;
         var renderer = editor.renderer;
+        var content = renderer.content;
         var layerConfig = renderer.layerConfig;
         renderer.showScrollBarV();
-        this.fastScroller.setPosition(0, renderer.getScrollTop());
-        this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, container.clientWidth, layerConfig.maxHeight);
+        this.fastScroller.setPosition(renderer.getScrollLeft(), renderer.getScrollTop());
+        this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, content.clientWidth, layerConfig.maxHeight);
         this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);
 
         var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
