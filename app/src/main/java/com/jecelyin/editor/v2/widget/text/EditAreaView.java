@@ -106,6 +106,8 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_INDENT);
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_CAPITALIZE);
         onSharedPreferenceChanged(null, Pref.KEY_INSERT_SPACE_FOR_TAB);
+        enableHighlight(pref.isHighlight());
+        setReadOnly(pref.isReadOnly());
     }
 
     @Override
@@ -379,6 +381,10 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public void setText(String file, CharSequence text) {
+        if (text != null && text.length() > pref.getHighlightSizeLimit()) {
+            enableHighlight(false);
+        }
+
         execCommand(new EditorCommand.Builder("setText")
                 .put("text", text)
                 .put("file", file)
