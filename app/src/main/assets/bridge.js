@@ -221,6 +221,10 @@ function Bridge(editor) {
     this.setAutoIndent = function (data) {
         editor.setAutoIndent(data['value']);
     };
+
+    this.setSpaceAsTab = function (data) {
+        editor.session.setUseSoftTabs(data['value']);
+    }
 }
 
 (function () {

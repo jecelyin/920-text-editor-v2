@@ -105,6 +105,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         onSharedPreferenceChanged(null, Pref.KEY_TAB_SIZE);
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_INDENT);
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_CAPITALIZE);
+        onSharedPreferenceChanged(null, Pref.KEY_INSERT_SPACE_FOR_TAB);
     }
 
     @Override
@@ -131,7 +132,11 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
             case Pref.KEY_AUTO_INDENT:
                 execCommand(new EditorCommand.Builder("setAutoIndent").put("value", pref.isAutoIndent()).build());
                 break;
+            case Pref.KEY_INSERT_SPACE_FOR_TAB:
+                execCommand(new EditorCommand.Builder("setSpaceAsTab").put("value", pref.isInsertSpaceForTab()).build());
+                break;
             case Pref.KEY_AUTO_CAPITALIZE:
+
 //                if (mEditor != null) {
 //                    if (!pref.isAutoCapitalize()) {
 //                        mEditor.mInputType &= ~EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES;
