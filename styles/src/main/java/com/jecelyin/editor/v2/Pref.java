@@ -411,4 +411,8 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public boolean isEnabledDrawers() {
         return (boolean)map.get(KEY_PREF_ENABLE_DRAWERS);
     }
+
+    public boolean isInsertSpaceForTab() {
+        return (boolean)map.get(KEY_INSERT_SPACE_FOR_TAB);
+    }
 }
