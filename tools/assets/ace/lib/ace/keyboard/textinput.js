@@ -58,6 +58,10 @@ var TextInput = function(parentNode, host) {
     var tempStyle = '';
     var isSelectionEmpty = true;
 
+    this.setAutoCapitalize = function (b) {
+        text.setAttribute("autocapitalize", b ? "sentences" : "off");
+    };
+
     // FOCUS
     // ie9 throws error if document.activeElement is accessed too soon
     try { var isFocused = document.activeElement === text; } catch(e) {}

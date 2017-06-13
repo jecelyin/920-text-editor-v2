@@ -136,14 +136,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 execCommand(new EditorCommand.Builder("setSpaceAsTab").put("value", pref.isInsertSpaceForTab()).build());
                 break;
             case Pref.KEY_AUTO_CAPITALIZE:
-
-//                if (mEditor != null) {
-//                    if (!pref.isAutoCapitalize()) {
-//                        mEditor.mInputType &= ~EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES;
-//                    } else {
-//                        mEditor.mInputType |= EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES;
-//                    }
-//                }
+                execCommand(new EditorCommand.Builder("setAutoCapitalize").put("value", pref.isAutoCapitalize()).build());
                 break;
             case Pref.KEY_THEME:
                 //todo:

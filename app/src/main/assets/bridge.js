@@ -224,7 +224,11 @@ function Bridge(editor) {
 
     this.setSpaceAsTab = function (data) {
         editor.session.setUseSoftTabs(data['value']);
-    }
+    };
+
+    this.setAutoCapitalize = function (data) {
+        editor.textInput.setAutoCapitalize(data['value']);
+    };
 }
 
 (function () {
