@@ -34,6 +34,8 @@
         <!--<item name="android:navigationBarColor">@color/navigationBarColor</item>-->
         <!-- 浮在toolbar上面 -->
         <item name="windowActionModeOverlay">true</item>
+        <!--window背景-->
+        <item name="android:windowBackground">@android:color/white</item>
 
         <!--<item name="android:actionBarStyle">@style/Toolbar</item>-->
         <item name="actionBarStyle">@style/Toolbar</item>
@@ -63,41 +65,6 @@
         <item name="toolbarIconDisabledColor">#50ffffff</item>
         <item name="menuIconNormalColor">#23c5dd</item>
 
-        <!--编辑器样式-->
-        <item name="textForeground">#000000</item>
-        <item name="textBackground">#FFFFFF</item>
-        <item name="caret">#000000</item>
-        <item name="selection">#4D97FF54</item>
-        <item name="invisibles">#dddddd</item>
-        <item name="gutterForeground">#000000</item>
-        <item name="gutterBackground">#dfdfdf</item>
-        <item name="gutterDivider">#000000</item>
-        <item name="findResultsPath">#0000ff</item>
-        <item name="findResultsKeyword">#eaa95e</item>
-
-        <!--高亮-->
-        <item name="hlComment1">#cc0000</item>
-        <item name="hlComment2">#ff8400</item>
-        <item name="hlComment3">#cc6600</item>
-        <item name="hlComment4">#cc6600</item>
-        <item name="hlDigit">#ff0000</item>
-        <item name="hlFoldLine0">#000000</item>
-        <item name="hlFoldLine1">#000000</item>
-        <item name="hlFoldLine2">#000000</item>
-        <item name="hlFoldLine3">#000000</item>
-        <item name="hlFunction">#9966ff</item>
-        <item name="hlInvalid">#ff0066</item>
-        <item name="hlKeyword1">#006699</item>
-        <item name="hlKeyword2">#009966</item>
-        <item name="hlKeyword3">#0099ff</item>
-        <item name="hlKeyword4">#66ccff</item>
-        <item name="hlLabel">#02b902</item>
-        <item name="hlLiteral1">#ff00cc</item>
-        <item name="hlLiteral2">#cc00cc</item>
-        <item name="hlLiteral3">#9900cc</item>
-        <item name="hlLiteral4">#9900cc</item>
-        <item name="hlMarkup">#0000ff</item>
-        <item name="hlOperator">#000000</item>
     </style>
 
     <style name="DefaultToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">

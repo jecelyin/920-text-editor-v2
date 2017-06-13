@@ -27,7 +27,7 @@ import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ui.MainActivity;
-import com.jecelyin.editor.v2.ui.ThemeList;
+import com.jecelyin.editor.v2.ThemeList;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>

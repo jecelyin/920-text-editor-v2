@@ -30,9 +30,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -40,6 +37,7 @@ import android.webkit.WebViewClient;
 import com.google.gson.Gson;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.Pref;
+import com.jecelyin.editor.v2.ThemeList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,9 +91,16 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         setWebViewClient(new EditorViewClient());
         setWebChromeClient(new EditorViewChromeClient());
 
-        loadUrl("file:///android_asset/editor.html");
-
         pref = Pref.getInstance(getContext());
+        ThemeList.Theme theme = pref.getThemeInfo();
+        String themeMode = "ace/theme/chrome";
+        if (theme != null) {
+            themeMode = theme.mode;
+        }
+
+        loadUrl("file:///android_asset/editor.html?theme=" + themeMode);
+
+
         pref.registerOnSharedPreferenceChangeListener(this);
         onSharedPreferenceChanged(null, Pref.KEY_FONT_SIZE);
         onSharedPreferenceChanged(null, Pref.KEY_CURSOR_WIDTH);
@@ -106,6 +111,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_INDENT);
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_CAPITALIZE);
         onSharedPreferenceChanged(null, Pref.KEY_INSERT_SPACE_FOR_TAB);
+        onSharedPreferenceChanged(null, Pref.KEY_THEME);
         enableHighlight(pref.isHighlight());
         setReadOnly(pref.isReadOnly());
     }
@@ -141,7 +147,10 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 execCommand(new EditorCommand.Builder("setAutoCapitalize").put("value", pref.isAutoCapitalize()).build());
                 break;
             case Pref.KEY_THEME:
-                //todo:
+                ThemeList.Theme theme = pref.getThemeInfo();
+                if (theme != null) {
+                    execCommand(new EditorCommand.Builder("setTheme").put("value", theme.mode).build());
+                }
                 break;
         }
     }
@@ -220,15 +229,6 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
             }
         }
 
-        @Override
-        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-            super.onReceivedError(view, request, error);
-        }
-
-        @Override
-        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-            super.onReceivedHttpError(view, request, errorResponse);
-        }
     }
 
     private class EditorViewChromeClient extends WebChromeClient {

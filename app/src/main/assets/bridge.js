@@ -230,6 +230,10 @@ function Bridge(editor) {
     this.setAutoCapitalize = function (data) {
         editor.textInput.setAutoCapitalize(data['value']);
     };
+
+    this.setTheme = function (data) {
+        editor.setTheme(data['value']);
+    };
 }
 
 (function () {

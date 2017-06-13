@@ -27,7 +27,6 @@ import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
-import com.jecelyin.styles.R;
 import com.stericson.RootTools.RootTools;
 
 import java.util.HashMap;
@@ -80,11 +79,6 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
             , ",", ";", "'", "\"", "(", ")", "/", "\\", "%", "[", "]", "|", "#", "=", "$", ":"
             , "&", "?", "!", "@", "^", "+", "*", "-", "_", "`", "\\t", "\\n" });
 
-    public static final int[] THEMES = new int[] {
-            R.style.DefaultTheme,
-            R.style.DarkTheme
-    };
-
     @IntDef({SCREEN_ORIENTATION_AUTO, SCREEN_ORIENTATION_LANDSCAPE, SCREEN_ORIENTATION_PORTRAIT})
     public @interface ScreenOrientation {}
 
@@ -92,7 +86,6 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     private final SharedPreferences pm;
 
     private final Map<String, Object> map;
-    private final Context context;
     private Set<String> toolbarIcons;
 
     private static final Object mContent = new Object();
@@ -118,7 +111,6 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     }
     
     public Pref(Context context) {
-        this.context = context;
         pm =  PreferenceManager.getDefaultSharedPreferences(context);
         pm.registerOnSharedPreferenceChangeListener(this);
 
@@ -137,7 +129,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_AUTO_CAPITALIZE, true);
         map.put(KEY_ENABLE_HIGHLIGHT, true);
         map.put(KEY_HIGHLIGHT_FILE_SIZE_LIMIT, 800);
-        map.put(KEY_THEME, 0);
+        map.put(KEY_THEME, 2);
         map.put(KEY_AUTO_SAVE, false);
         map.put(KEY_ENABLE_ROOT, true);
         map.put(KEY_REMEMBER_LAST_OPENED_FILES, true);
@@ -145,7 +137,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         map.put(KEY_KEEP_SCREEN_ON, false);
         map.put(KEY_PREF_AUTO_CHECK_UPDATES, true);
         map.put(KEY_PREF_KEEP_BACKUP_FILE, true);
-        map.put(KEY_PREF_ENABLE_DRAWERS, true);
+        map.put(KEY_PREF_ENABLE_DRAWERS, false);
 
         //not at preference setting
         toolbarIcons = pm.getStringSet(KEY_TOOLBAR_ICONS, null);
@@ -242,10 +234,14 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         return (int) map.get(KEY_THEME);
     }
 
-    /**
-     * theme index of {@link #THEMES}
-     * @param theme
-     */
+    public ThemeList.Theme getThemeInfo() {
+        int themeIndex = getTheme();
+        if (themeIndex >= 0 && themeIndex < ThemeList.themes.length) {
+            return ThemeList.themes[themeIndex];
+        }
+        return null;
+    }
+
     public void setTheme(int theme) {
         map.put(KEY_THEME, theme);
         pm.edit().putInt(KEY_THEME, theme).commit();

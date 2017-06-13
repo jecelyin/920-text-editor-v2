@@ -55,12 +55,8 @@
     var modelist = require("ace/ext/modelist");
 
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/chrome");
-    //editor.session.setMode("ace/mode/java");
     editor.getSession().setUseWrapMode(true);
-//    editor.renderer.setVScrollBarAlwaysVisible(false);
     editor.renderer.setAnimatedScroll(true);
-    //editor.setAutoScrollEditorIntoView(true);
     editor.setValue("");
 
     var bridge = new Bridge(editor);

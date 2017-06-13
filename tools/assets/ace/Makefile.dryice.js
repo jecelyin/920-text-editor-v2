@@ -401,7 +401,7 @@ function buildJava() {
         code.push("\n");
     }
 
-    file = "../../../app/src/main/java/com/jecelyin/editor/v2/ui/ThemeList.java";
+    file = "../../../styles/src/main/java/com/jecelyin/editor/v2/ThemeList.java";
     javaCode = fs.readFileSync(file, "utf8");
     javaCode = javaCode.replace(/\/\/BEGIN\-REPLACE[\s\S]+?\/\/END\-REPLACE/g, "//BEGIN-REPLACE\n" + code.join("") + "\n//END-REPLACE");
     fs.writeFileSync(file, javaCode, "utf-8");

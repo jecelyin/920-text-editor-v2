@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.jecelyin.editor.v2.ui;
+package com.jecelyin.editor.v2;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>

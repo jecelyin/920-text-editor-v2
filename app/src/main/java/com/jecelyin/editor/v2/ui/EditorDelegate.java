@@ -21,7 +21,6 @@ package com.jecelyin.editor.v2.ui;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -65,7 +64,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
     private SavedState savedState;
     private int orientation;
     private boolean loaded = true;
-    private int findResultsKeywordColor;
 
     public EditorDelegate(SavedState ss) {
         savedState = ss;
@@ -102,12 +100,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
     private void init() {
         if (document != null)
             return;
-
-        TypedArray a = context.obtainStyledAttributes(new int[]{
-                R.attr.findResultsKeyword,
-        });
-        findResultsKeywordColor = a.getColor(0, Color.BLACK);
-        a.recycle();
 
         document = new Document(context, this);
         mEditText.setReadOnly(Pref.getInstance(context).isReadOnly());

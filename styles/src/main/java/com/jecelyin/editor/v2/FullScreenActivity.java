@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.jecelyin.common.app.JecActivity;
+import com.jecelyin.styles.R;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -33,9 +34,9 @@ public class FullScreenActivity extends JecActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int theme = Pref.getInstance(this).getTheme();
-        if (theme != 0) {
-            setTheme(Pref.THEMES[theme]);
+        ThemeList.Theme theme = Pref.getInstance(this).getThemeInfo();
+        if (theme != null) {
+            setTheme(theme.isDark ? R.style.DarkTheme : R.style.DefaultTheme);
         }
 
         if (isFullScreenMode()) {
