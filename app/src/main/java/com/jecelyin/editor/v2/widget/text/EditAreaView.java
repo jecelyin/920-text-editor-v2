@@ -444,6 +444,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public void resetTextChange() {
+        textChanged = false;
         execCommand(new EditorCommand.Builder("resetTextChange").build());
     }
 }

@@ -183,6 +183,7 @@ function Bridge(editor) {
      */
     this.resetTextChange = function () {
         this.lastTextLength = editor.session.getDocument().getTextLength();
+        return true;
     };
 
     /**

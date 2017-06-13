@@ -32,7 +32,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
@@ -93,7 +92,7 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         savedState = new SavedState();
         savedState.index = index;
         savedState.title = title;
-        savedState.content = content;
+        savedState.text = (content != null ? content.toString() : null);
     }
 
     public static void setDisableAutoSave(boolean b) {
@@ -121,8 +120,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
 //        } else
         if (savedState.file != null) {
             document.loadFile(savedState.file, savedState.encoding);
-        } else if (!TextUtils.isEmpty(savedState.content)) {
-            mEditText.setText(null, savedState.content);
+        } else if (!TextUtils.isEmpty(savedState.text)) {
+            mEditText.setText(null, savedState.text);
         }
 
         mEditText.addTextChangedListener(this);
@@ -572,7 +571,6 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         if (loaded && !disableAutoSave && document != null && document.getFile() != null && Pref.getInstance(context).isAutoSave()) {
             int newOrientation = context.getResources().getConfiguration().orientation;
             if (orientation != newOrientation) {
-                L.d("current is screen orientation, discard auto save!");
                 orientation = newOrientation;
             } else {
                 document.save();
@@ -582,19 +580,16 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         return ss;
     }
 
-    private static class Arguments {
-        CharSequence content;
-        Parcelable object;
-    }
-
-    public static class SavedState extends Arguments implements Parcelable {
+    public static class SavedState implements Parcelable {
         int index;
         File file;
         String title;
         String encoding;
+        String text;
 
         boolean root;
         File rootFile;
+        Parcelable object;
 
         @Override
         public int describeContents() {
@@ -604,11 +599,13 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(this.index);
-            dest.writeString(this.file == null ? null : this.file.getPath());
-            dest.writeString(this.rootFile == null ? null : this.rootFile.getPath());
-            dest.writeInt(root ? 1 : 0);
+            dest.writeSerializable(this.file);
             dest.writeString(this.title);
             dest.writeString(this.encoding);
+            dest.writeString(this.text);
+            dest.writeByte(this.root ? (byte) 1 : (byte) 0);
+            dest.writeSerializable(this.rootFile);
+            dest.writeParcelable(this.object, flags);
         }
 
         public SavedState() {
@@ -616,14 +613,13 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
 
         protected SavedState(Parcel in) {
             this.index = in.readInt();
-            String file, rootFile;
-            file = in.readString();
-            rootFile = in.readString();
-            this.file = TextUtils.isEmpty(file) ? null : new File(file);
-            this.rootFile = TextUtils.isEmpty(rootFile) ? null : new File(rootFile);
-            this.root = in.readInt() == 1;
+            this.file = (File) in.readSerializable();
             this.title = in.readString();
             this.encoding = in.readString();
+            this.text = in.readString();
+            this.root = in.readByte() != 0;
+            this.rootFile = (File) in.readSerializable();
+            this.object = in.readParcelable(Parcelable.class.getClassLoader());
         }
 
         public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
