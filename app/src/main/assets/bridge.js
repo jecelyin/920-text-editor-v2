@@ -132,6 +132,10 @@ function Bridge(editor) {
         this.setMode({'mode':modeCls.mode});
         editor.setValue(text, -1);
         editor.clearSelection();
+
+        if (this.lastTextLength === 0) {
+            editor.session.getUndoManager().reset();
+        }
         this.resetTextChange();
 
         this.loading = false;
@@ -233,6 +237,12 @@ function Bridge(editor) {
 
     this.setTheme = function (data) {
         editor.setTheme(data['value']);
+        setTimeout(function(){
+            var style = document.getElementById('theme');
+            if (style) {
+                style.parentNode.removeChild(style);
+            }
+        }, 380);
     };
 }
 

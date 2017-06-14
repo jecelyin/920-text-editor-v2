@@ -22,6 +22,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ActionMode;
@@ -35,10 +36,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.google.gson.Gson;
+import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
+import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ThemeList;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -93,13 +98,29 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
 
         pref = Pref.getInstance(getContext());
         ThemeList.Theme theme = pref.getThemeInfo();
-        String themeMode = "ace/theme/chrome";
+        boolean isDark = false;
         if (theme != null) {
-            themeMode = theme.mode;
+            isDark = theme.isDark;
         }
 
-        loadUrl("file:///android_asset/editor.html?theme=" + themeMode);
+        String html = null;
 
+        try {
+            InputStream is = getContext().getAssets().open("editor.html");
+            html = IOUtils.readFile(is, "utf-8");
+            is.close();
+        } catch (Exception e) {
+            L.e(e);
+            UIUtils.toast(getContext(), R.string.editor_create_unknown_exception);
+            return;
+        }
+
+        if (!isDark)
+            html = html.replaceAll("<\\!\\-\\-\\{DARK\\-START\\}\\-\\->[\\w\\W]+?<\\!\\-\\-\\{DARK\\-END\\}\\-\\->", "");
+
+        loadDataWithBaseURL("file:///android_asset/", html, "text/html", "utf-8", null);
+        //fix dark theme background spark
+        setBackgroundColor(Color.TRANSPARENT);
 
         pref.registerOnSharedPreferenceChangeListener(this);
         onSharedPreferenceChanged(null, Pref.KEY_FONT_SIZE);

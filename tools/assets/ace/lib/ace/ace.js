@@ -53,7 +53,7 @@ require("./keyboard/hash_handler");
 require("./placeholder");
 require("./multi_select");
 require("./mode/folding/fold_mode");
-require("./theme/textmate");
+require("./theme/default");
 require("./ext/error_marker");
 
 exports.config = require("./config");

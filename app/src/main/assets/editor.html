@@ -25,7 +25,6 @@
     <title>920 Text Editor</title>
     <!--<base href="file:///android_asset/" />-->
     <style type="text/css" media="screen">
-
 	body {
         overflow: hidden;
     }
@@ -43,9 +42,14 @@
         text-align: center;
 	}
     </style>
+    <!--{DARK-START}-->
+    <style type="text/css" id="theme" media="screen">
+        *,html,body {background: #333;}
+    </style>
+    <!--{DARK-END}-->
 </head>
 <body>
-<div id="editor" class="code" ace-gutter="true">
+<div id="editor">
 
 </div>
 <script src="ace/src/ace.js" type="text/javascript"></script>
