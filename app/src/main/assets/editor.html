@@ -61,6 +61,7 @@
     var editor = ace.edit("editor");
     editor.getSession().setUseWrapMode(true);
     editor.renderer.setAnimatedScroll(true);
+    editor.getSession().setUndoSelect(false);
     editor.setValue("");
 
     var bridge = new Bridge(editor);

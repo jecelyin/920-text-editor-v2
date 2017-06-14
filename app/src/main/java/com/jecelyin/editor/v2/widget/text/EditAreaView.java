@@ -118,7 +118,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         if (!isDark)
             html = html.replaceAll("<\\!\\-\\-\\{DARK\\-START\\}\\-\\->[\\w\\W]+?<\\!\\-\\-\\{DARK\\-END\\}\\-\\->", "");
 
-        loadDataWithBaseURL("file:///android_asset/", html, "text/html", "utf-8", null);
+        loadDataWithBaseURL("file:///android_asset/", html, "text/html", "utf-8", "file:///android_asset/");
         //fix dark theme background spark
         setBackgroundColor(Color.TRANSPARENT);
 

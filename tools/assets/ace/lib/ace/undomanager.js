@@ -51,6 +51,10 @@ var UndoManager = function() {
 
 (function() {
 
+    this.setInitializeOnce = function (b) {
+        this.initializeOnce = b;
+    };
+
     /**
      * Provides a means for implementing your own undo manager. `options` has one property, `args`, an [[Array `Array`]], with two elements:
      *
@@ -61,6 +65,10 @@ var UndoManager = function() {
      *
      **/
     this.execute = function(options) {
+        if (this.initializeOnce) {
+            this.initializeOnce = false;
+            return;
+        }
         // Normalize deltas for storage.
         // var deltaSets = this.$serializeDeltas(options.args[0]);
         var deltaSets = options.args[0];
@@ -127,6 +135,7 @@ var UndoManager = function() {
         this.$undoStack = [];
         this.$redoStack = [];
         this.dirtyCounter = 0;
+        this.initializeOnce = false;
     };
 
     /**

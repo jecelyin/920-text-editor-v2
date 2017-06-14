@@ -126,6 +126,9 @@ function Bridge(editor) {
     this.setText = function (data) {
         this.loading = true;
 
+        editor.session.getUndoManager().reset();
+        editor.session.getUndoManager().setInitializeOnce(true);
+
         var text = data['text'];
         var file = data['file'];
         var modeCls = modelist.getModeForPath(file ? file : '');
@@ -133,9 +136,6 @@ function Bridge(editor) {
         editor.setValue(text, -1);
         editor.clearSelection();
 
-        if (this.lastTextLength === 0) {
-            editor.session.getUndoManager().reset();
-        }
         this.resetTextChange();
 
         this.loading = false;
