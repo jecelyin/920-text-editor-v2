@@ -278,13 +278,23 @@ function DefaultHandlers(mouseHandler) {
             return ev.stop();
         }
     };
-    
+
     this.onTouchMove = function (ev) {
         if (this.touchTimer != null) {
             clearTimeout(this.touchTimer);
             this.touchTimer = null;
         }
-        this.fastScroller.doTouchMove(ev.domEvent.touches, ev.domEvent.timeStamp);
+        var touches = ev.domEvent.changedTouches || ev.domEvent.touches;
+
+        this.fastScroller.doTouchMove(touches, ev.domEvent.timeStamp);
+        var t = ev.domEvent.timeStamp;
+        var dt = t - (this.$lastScrollTime || 0);
+        var isScrolable = editor.renderer.isScrollableBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
+        if (isScrolable || dt < 200) {
+            this.$lastScrollTime = t;
+            // editor.renderer.scrollBy(ev.wheelX * ev.speed, ev.wheelY * ev.speed);
+            return ev.stop();
+        }
     };
 
     this.onTouchStart = function (ev) {
@@ -293,12 +303,13 @@ function DefaultHandlers(mouseHandler) {
         var renderer = editor.renderer;
         var content = renderer.content;
         var layerConfig = renderer.layerConfig;
+        var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
+
         renderer.showScrollBarV();
         this.fastScroller.setPosition(renderer.getScrollLeft(), renderer.getScrollTop());
         this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, content.clientWidth, layerConfig.maxHeight);
-        this.fastScroller.doTouchStart(ev.domEvent.touches, ev.domEvent.timeStamp);
+        this.fastScroller.doTouchStart(touches, ev.domEvent.timeStamp);
 
-        var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
         if (touches.length === 1) {
             this.touchTimer = setTimeout(function () {
                 editor._signal("onLongTouch");
