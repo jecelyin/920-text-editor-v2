@@ -108,7 +108,7 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         mSectionPositions = new ArrayList<>(27);
         for (int i = 0, size = data.length; i < size; i++) {
             String section = getSectionName(i);
-            if (!sections.contains(section)) {
+            if (section != null && !sections.contains(section)) {
                 sections.add(section);
                 mSectionPositions.add(i);
             }
@@ -125,6 +125,8 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
 
     private String getSectionName(int position) {
         JecFile file = getItem(position);
+        if (file == null)
+            return null;
         char c = file.getName().charAt(0);
 
         if ( (c >= '0' && c <= '9')
