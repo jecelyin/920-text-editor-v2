@@ -1748,7 +1748,7 @@ config.defineOptions(VirtualRenderer.prototype, "renderer", {
             this.$scrollPastEnd = val;
             this.$loop.schedule(this.CHANGE_SCROLL);
         },
-        initialValue: 0,
+        initialValue: 30,
         handlesSet: true
     },
     fixedWidthGutter: {
