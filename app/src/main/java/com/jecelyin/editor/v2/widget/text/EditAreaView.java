@@ -83,6 +83,15 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         });
 
         WebSettings ws = getSettings();
+        ws.setDefaultZoom(WebSettings.ZoomDensity.FAR);
+        ws.setAllowContentAccess(true);
+        ws.setAllowFileAccess(true);
+        ws.setBuiltInZoomControls(false);
+        ws.setDefaultTextEncodingName("utf-8");
+        ws.setDisplayZoomControls(false);
+        ws.setSupportZoom(false);
+        ws.setLoadWithOverviewMode(false);
+
         ws.setJavaScriptEnabled(true);
         ws.setAppCacheEnabled(false);
         ws.setDomStorageEnabled(true);
