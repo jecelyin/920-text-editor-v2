@@ -58,6 +58,7 @@ function DefaultHandlers(mouseHandler) {
     editor.setDefaultHandler("touchmove", this.onTouchMove.bind(this));
     editor.setDefaultHandler("touchstart", this.onTouchStart.bind(this));
     editor.setDefaultHandler("touchend", this.onTouchEnd.bind(this));
+    editor.setDefaultHandler("touchcancel", this.onTouchEnd.bind(this));
     editor.setDefaultHandler("forwardLocation", this.forwardLocation.bind(this));
     editor.setDefaultHandler("backLocation", this.backLocation.bind(this));
 
@@ -282,6 +283,8 @@ function DefaultHandlers(mouseHandler) {
     };
 
     this.onTouchMove = function (ev) {
+        if (ev.editor.renderer.scrollBar.isDragging)
+            return;
         if (this.longTouchTimer !== null) {
             clearTimeout(this.longTouchTimer);
             this.longTouchTimer = null;
@@ -307,16 +310,20 @@ function DefaultHandlers(mouseHandler) {
         var layerConfig = renderer.layerConfig;
         var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
 
+        if (renderer.scrollBar.isDragging)
+            return;
+
         renderer.showScrollBarV();
         this.fastScroller.setPosition(renderer.getScrollLeft(), renderer.getScrollTop());
         this.fastScroller.setDimensions(container.clientWidth, layerConfig.height, content.clientWidth, layerConfig.maxHeight);
         this.fastScroller.doTouchStart(touches, ev.domEvent.timeStamp);
+        renderer.scrollBar._emit("startScroll");
 
         if (touches.length === 1) {
             var now = ev.domEvent.timeStamp;
             var delta = this.lastTouchTime ? now - this.lastTouchTime : 0;
 
-            if (delta < 300 && delta > 30) {
+            if (delta < 250 && delta > 30) {
                 this.onDoubleClickHandler(ev);
                 return;
             }
@@ -338,7 +345,7 @@ function DefaultHandlers(mouseHandler) {
                 ev.editor._signal("onClick");
             }
         }
-
+        ev.editor.renderer.scrollBar._emit("endScroll");
         ev.editor.renderer.hideScrollBarV();
         this.fastScroller.doTouchEnd(ev.domEvent.timeStamp);
 

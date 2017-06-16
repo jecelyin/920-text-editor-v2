@@ -738,4 +738,10 @@ public class MainActivity extends BaseActivity
         return editorDelegate.getModeName();
     }
 
+    public void setSymbolVisibility(boolean b) {
+        if (pref.isReadOnly())
+            return;
+        mSymbolBarLayout.setVisibility(b ? View.VISIBLE : View.GONE);
+    }
+
 }

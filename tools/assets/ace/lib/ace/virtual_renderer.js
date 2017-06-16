@@ -762,13 +762,13 @@ var VirtualRenderer = function(container, theme) {
     this.$updateScrollBarV = function() {
         var scrollHeight = this.layerConfig.maxHeight;
         var scrollerHeight = this.$size.scrollerHeight;
-        if (!this.$maxLines && this.$scrollPastEnd) {
-            scrollHeight -= (scrollerHeight - this.lineHeight) * this.$scrollPastEnd;
-            if (this.scrollTop > scrollHeight - scrollerHeight) {
-                scrollHeight = this.scrollTop + scrollerHeight;
-                this.scrollBarV.scrollTop = null;
-            }
-        }
+        // if (!this.$maxLines && this.$scrollPastEnd) {
+        //     scrollHeight -= (scrollerHeight - this.lineHeight) * this.$scrollPastEnd;
+        //     if (this.scrollTop > scrollHeight - scrollerHeight) {
+        //         scrollHeight = this.scrollTop + scrollerHeight;
+        //         this.scrollBarV.scrollTop = null;
+        //     }
+        // }
         this.scrollBarV.setScrollHeight(scrollHeight + this.scrollMargin.v);
         this.scrollBarV.setScrollTop(this.scrollTop + this.scrollMargin.top);
     };
@@ -1748,7 +1748,7 @@ config.defineOptions(VirtualRenderer.prototype, "renderer", {
             this.$scrollPastEnd = val;
             this.$loop.schedule(this.CHANGE_SCROLL);
         },
-        initialValue: 30,
+        initialValue: 1.05,
         handlesSet: true
     },
     fixedWidthGutter: {

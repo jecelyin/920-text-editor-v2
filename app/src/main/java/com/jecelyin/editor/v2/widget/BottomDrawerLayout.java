@@ -542,7 +542,7 @@ public class BottomDrawerLayout extends ViewGroup {
             // This lets us use two ViewDragHelpers, one for each side drawer.
 //            return isDrawerView(child) && checkDrawerViewAbsoluteGravity(child, mAbsGravity)
 //                    && getDrawerLockMode(child) == LOCK_MODE_UNLOCKED;
-            return getDrawerViewAbsoluteGravity(child) == Gravity.BOTTOM;
+            return getDrawerViewAbsoluteGravity(child) == Gravity.BOTTOM && child.getVisibility() == VISIBLE;
         }
 
         @Override

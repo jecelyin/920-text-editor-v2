@@ -53,6 +53,7 @@ var MAX_SCROLL_H = 0x8000;
  **/
 var ScrollBar = function(parent) {
     this.timerId = null;
+    this.isDragging = false;
     this.element = dom.createElement("div");
     this.element.className = "ace_scrollbar ace_scrollbar" + this.classSuffix;
 
@@ -137,6 +138,7 @@ var VScrollBar = function(parent, renderer) {
     event.addListener(this.inner, "touchstart", this.onTouchStart.bind(this));
     event.addListener(this.inner, "touchmove", this.onTouchMove.bind(this));
     event.addListener(this.inner, "touchend", this.onTouchEnd.bind(this));
+    event.addListener(this.inner, "touchcancel", this.onTouchEnd.bind(this));
 };
 
 oop.inherits(VScrollBar, ScrollBar);
@@ -146,28 +148,28 @@ oop.inherits(VScrollBar, ScrollBar);
     this.classSuffix = '-v';
 
     this.onTouchStart = function (ev) {
+        this.isDragging = true;
         // event.stopEvent(ev);
-        this.startY = event.getClientY(ev) - this.inner.offsetTop;
+        // this.startY = event.getClientY(ev) - this.inner.offsetTop;
         this.stopAnimation();
+        this._emit("startScroll");
     };
 
     this.onTouchMove = function (ev) {
         event.stopEvent(ev);
 
         var y = event.getClientY(ev);
-        // var diffY = y - this.startY;
-        // var rect = this.inner.getBoundingClientRect();
-        // var top = rect.top + diffY;
-        // // this.inner.style.top = top + "px";
-        var top = y - this.startY;
-        var per = top / (this.element.clientHeight - this.inner.clientHeight);
+        var h = this.element.clientHeight;
+        var per = y / h;
         var scrollTop = Math.min(per, 1) * (this.scrollHeight - this.element.clientHeight);
         // console.log("thumb top="+top+" scrollTop="+scrollTop);
         this._emit("scroll", {data: scrollTop});
     };
 
     this.onTouchEnd = function (ev) {
+        this.isDragging = false;
         this.setAnimVisible(false);
+        this._emit("endScroll");
     };
 
     /**
@@ -238,7 +240,7 @@ oop.inherits(VScrollBar, ScrollBar);
             this.element.scrollTop = scrollTop * this.coeff;
 
             var per = scrollTop / (this.scrollHeight - this.element.clientHeight);
-            this.inner.style.top = (per * this.element.clientHeight) + "px";
+            this.inner.style.top = (per * (this.element.clientHeight - this.inner.clientHeight))+ "px";
         }
     };
 

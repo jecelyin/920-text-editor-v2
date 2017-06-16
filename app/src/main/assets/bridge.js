@@ -282,6 +282,12 @@ function Bridge(editor) {
                 return;
             self.hideActionMode();
         });
+        this.editor.renderer.scrollBar.on("startScroll", function () {
+            AndroidEditor.onScrollStart();
+        });
+        this.editor.renderer.scrollBar.on("endScroll", function () {
+            AndroidEditor.onScrollEnd();
+        });
     };
 
     this.actionModeTimer = null;

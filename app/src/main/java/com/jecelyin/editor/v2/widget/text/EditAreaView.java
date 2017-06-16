@@ -42,6 +42,7 @@ import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ThemeList;
+import com.jecelyin.editor.v2.ui.MainActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -247,6 +248,28 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         public void onModeChanged(String name) {
             modeName = name;
         }
+
+        @JavascriptInterface
+        public void onScrollStart() {
+            notifySymbolBarVisibility(false);
+        }
+
+        @JavascriptInterface
+        public void onScrollEnd() {
+            notifySymbolBarVisibility(true);
+        }
+    }
+
+    private void notifySymbolBarVisibility(final boolean b) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                MainActivity activity = (MainActivity) UIUtils.getActivity(EditAreaView.this);
+                if (activity != null) {
+                    activity.setSymbolVisibility(b);
+                }
+            }
+        });
     }
 
     private class EditorViewClient extends WebViewClient {

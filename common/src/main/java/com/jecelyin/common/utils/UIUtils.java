@@ -18,11 +18,14 @@
 
 package com.jecelyin.common.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
@@ -154,5 +157,17 @@ public class UIUtils {
 
     public static abstract class OnShowInputCallback {
         public abstract void onConfirm(CharSequence input);
+    }
+
+    public static Activity getActivity(View view) {
+        // Gross way of unwrapping the Activity so we can get the FragmentManager
+        Context context = view.getContext();
+        while (context instanceof ContextWrapper) {
+            if (context instanceof Activity) {
+                return (Activity)context;
+            }
+            context = ((ContextWrapper)context).getBaseContext();
+        }
+        return null;
     }
 }

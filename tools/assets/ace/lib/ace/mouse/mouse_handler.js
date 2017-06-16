@@ -62,6 +62,7 @@ var MouseHandler = function(editor) {
     // event.addListener(mouseTarget, "mousemove", this.onMouseMove.bind(this, "mousemove"));
     event.addListener(mouseTarget, "touchstart", this.onMouseMove.bind(this, "touchstart"));
     event.addListener(mouseTarget, "touchend", this.onMouseMove.bind(this, "touchend"));
+    event.addListener(mouseTarget, "touchcancel", this.onMouseMove.bind(this, "touchcancel"));
     event.addMultiMouseDownListener([
         mouseTarget,
         editor.renderer.scrollBarV && editor.renderer.scrollBarV.inner,
