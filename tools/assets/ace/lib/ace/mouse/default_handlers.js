@@ -40,7 +40,8 @@ var DRAG_OFFSET = 0; // pixels
 
 function DefaultHandlers(mouseHandler) {
     mouseHandler.$clickSelection = null;
-    this.touchTimer = null;
+    this.longTouchTimer = null;
+    this.lastTouchTime = 0;
     this.stacks = [];
     this.stackPosition = 0;
 
@@ -48,7 +49,8 @@ function DefaultHandlers(mouseHandler) {
     this.editor = editor;
     this.mousedown = this.onMouseDown.bind(mouseHandler);
     editor.setDefaultHandler("mousedown", this.mousedown);
-    editor.setDefaultHandler("dblclick", this.onDoubleClick.bind(mouseHandler));
+    this.onDoubleClickHandler = this.onDoubleClick.bind(mouseHandler);
+    // editor.setDefaultHandler("dblclick", this.onDoubleClick.bind(mouseHandler));
     editor.setDefaultHandler("tripleclick", this.onTripleClick.bind(mouseHandler));
     editor.setDefaultHandler("quadclick", this.onQuadClick.bind(mouseHandler));
     editor.setDefaultHandler("mousewheel", this.onMouseWheel.bind(mouseHandler));
@@ -280,9 +282,9 @@ function DefaultHandlers(mouseHandler) {
     };
 
     this.onTouchMove = function (ev) {
-        if (this.touchTimer != null) {
-            clearTimeout(this.touchTimer);
-            this.touchTimer = null;
+        if (this.longTouchTimer !== null) {
+            clearTimeout(this.longTouchTimer);
+            this.longTouchTimer = null;
         }
         var touches = ev.domEvent.changedTouches || ev.domEvent.touches;
 
@@ -311,16 +313,25 @@ function DefaultHandlers(mouseHandler) {
         this.fastScroller.doTouchStart(touches, ev.domEvent.timeStamp);
 
         if (touches.length === 1) {
-            this.touchTimer = setTimeout(function () {
+            var now = ev.domEvent.timeStamp;
+            var delta = this.lastTouchTime ? now - this.lastTouchTime : 0;
+
+            if (delta < 300 && delta > 30) {
+                this.onDoubleClickHandler(ev);
+                return;
+            }
+            this.lastTouchTime = now;
+
+            this.longTouchTimer = setTimeout(function () {
                 editor._signal("onLongTouch");
             }, 500);
         }
     };
 
     this.onTouchEnd = function (ev) {
-        if (this.touchTimer != null) {
-            clearTimeout(this.touchTimer);
-            this.touchTimer = null;
+        if (this.longTouchTimer !== null) {
+            clearTimeout(this.longTouchTimer);
+            this.longTouchTimer = null;
         } else {
             var touches = ev.domEvent.touches || ev.domEvent.changedTouches;
             if (!touches || touches.length === 1) {
