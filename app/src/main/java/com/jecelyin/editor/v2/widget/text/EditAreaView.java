@@ -35,7 +35,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
@@ -56,7 +56,6 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     private final Pref pref;
     private ArrayList<EditorCommand> cmdQueue = new ArrayList<>();
     private boolean pageLoaded;
-    private Gson gson = new Gson();
     private AtomicLong cmdID = new AtomicLong(0);
     private HashMap<Long, ValueCallback<String>> callbackMap;
     private ActionMode.Callback actionModeCallback;
@@ -258,6 +257,14 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         public void onScrollEnd() {
             notifySymbolBarVisibility(true);
         }
+
+        @JavascriptInterface
+        public void openFile(String file, int offset) {
+            MainActivity activity = (MainActivity) UIUtils.getActivity(EditAreaView.this);
+            if (activity != null) {
+                activity.openFile(file, null, offset);
+            }
+        }
     }
 
     private void notifySymbolBarVisibility(final boolean b) {
@@ -293,7 +300,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
             cmdQueue.add(ec);
             return;
         }
-        String json = gson.toJson(ec);
+        String json = JSON.toJSONString(ec);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             evaluateJavascript(String.format("handleJava(%d, %s);", 0, json), ec.callback);
         } else {
@@ -431,6 +438,13 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
 
     public void addTextChangedListener(OnTextChangeListener onTextChangeListener) {
         this.onTextChangeListener = onTextChangeListener;
+    }
+
+    public void setHTML(CharSequence html) {
+
+        execCommand(new EditorCommand.Builder("setHTML")
+                .put("html", html)
+                .build());
     }
 
     public void setText(String file, CharSequence text) {

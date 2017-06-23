@@ -1,7 +1,6 @@
 
 package com.jecelyin.common.github;
 
-import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -38,10 +37,8 @@ public class Release implements Serializable {
 
     private String body;
 
-    @SerializedName("draft")
     private boolean isDraft;
 
-    @SerializedName("prerelease")
     private boolean isPrerelease;
 
     private Date createdAt;

@@ -123,6 +123,13 @@ function Bridge(editor) {
         return !editor.selection.isEmpty();
     };
 
+    this.setHTML = function (data) {
+        this.loading = true;
+        editor.setReadOnly(true);
+        editor.setValue(data['html'], -1);
+        editor.renderer.content.innerHTML = data['html'];
+    };
+
     this.setText = function (data) {
         this.loading = true;
 
@@ -195,7 +202,7 @@ function Bridge(editor) {
      * @param data object {String findText, String replaceText, boolean caseSensitive, boolean wholeWordOnly, boolean regex}
      */
     this.doFind = function (data) {
-        //todo:
+        (new Finder(data)).show();
     };
 
     this.setFontSize = function (data) {
@@ -309,3 +316,149 @@ function Bridge(editor) {
         }, 500);
     };
 }).call(Bridge.prototype);
+
+/**
+ *
+ *
+ * Creates a new `Search` object. The following search options are avaliable:
+ *
+ * - `needle`: The string or regular expression you're looking for
+ * - `backwards`: Whether to search backwards from where cursor currently is. Defaults to `false`.
+ * - `wrap`: Whether to wrap the search back to the beginning when it hits the end. Defaults to `false`.
+ * - `caseSensitive`: Whether the search ought to be case-sensitive. Defaults to `false`.
+ * - `wholeWord`: Whether the search matches only on whole words. Defaults to `false`.
+ * - `range`: The [[Range]] to search within. Set this to `null` for the whole document
+ * - `regExp`: Whether the search is a regular expression or not. Defaults to `false`.
+ * - `start`: The starting [[Range]] or cursor position to begin the search
+ * - `skipCurrent`: Whether or not to include the current line in the search. Default to `false`.
+ *
+ * @constructor
+ **/
+function Finder(data) {
+    var dom = require("ace/lib/dom");
+    var event = require("ace/lib/event");
+
+    this.searchInput = null;
+    this.replaceInput = null;
+    this.replaceText = null;
+    this.fineNextBtn = null;
+
+    var options = {};
+    options['needle'] = data['findText'];
+    if (data['regex']) {
+        options['regExp'] = true;
+    }
+    options['wholeWord'] = data['wholeWordOnly'];
+    options['caseSensitive'] = data['caseSensitive'];
+    options['wrap'] = true;
+
+    var searchBar = dom.createElement("div");
+    searchBar.id = "searchbar";
+    if (dom.hasCssClass(editor.container, "ace_dark")) {
+        searchBar.className = "ace_dark";
+    }
+
+    this.show = function () {
+        var old = document.getElementById(searchBar.id);
+        if (old) {
+            old.parentNode.removeChild(old);
+        }
+        this.createSearchBox();
+        if (data['replaceText'] || data['replaceText'] === "") {
+            this.createReplaceBox();
+        }
+
+        var closeBox = dom.createElement("div");
+        closeBox.id = "close_box";
+        var closeBtn = dom.createElement("i");
+        closeBtn.className = "css-icon icon-up-open-big";
+        closeBtn.innerHTML = "&#xe805;";
+        closeBox.appendChild(closeBtn);
+        event.addListener(closeBox, 'click', function (e) {
+            editor.container.style.top = "0px";
+            searchBar.parentNode.removeChild(searchBar);
+            editor.clearSelection();
+        });
+        searchBar.appendChild(closeBox);
+
+        document.body.appendChild(searchBar);
+
+        editor.container.style.top = searchBar.clientHeight + "px";
+        this.fineNextBtn.click();
+    };
+
+    this.updateData = function () {
+        if (this.searchInput) {
+            options['needle'] = this.searchInput.value;
+        }
+        if (this.replaceInput) {
+            this.replaceText = this.replaceInput.value;
+        }
+    };
+
+    this.createSearchBox = function () {
+        var self = this;
+        var searchBox = dom.createElement("div");
+        searchBox.id = "search_box";
+
+        var searchInput = dom.createElement("input");
+        searchInput.setAttribute("type", "text");
+        searchInput.value = data['findText'];
+        searchBox.appendChild(searchInput);
+        this.searchInput = searchInput;
+
+        var finePrevBtn = dom.createElement("i");
+        finePrevBtn.className = "css-icon icon-up-1";
+        finePrevBtn.innerHTML = "&#xe802;";
+        event.addListener(finePrevBtn, 'click', function (e) {
+            self.updateData();
+            editor.findPrevious(options, true);
+        });
+        searchBox.appendChild(finePrevBtn);
+
+        var fineNextBtn = dom.createElement("i");
+        fineNextBtn.className = "css-icon icon-down";
+        fineNextBtn.innerHTML = "&#xe801;";
+        event.addListener(fineNextBtn, 'click', function (e) {
+            self.updateData();
+            editor.findNext(options, true);
+        });
+        searchBox.appendChild(fineNextBtn);
+        this.fineNextBtn = fineNextBtn;
+
+        searchBar.appendChild(searchBox);
+    };
+
+    this.createReplaceBox = function () {
+        var self = this;
+        var replaceBox = dom.createElement("div");
+        replaceBox.id = "replace_box";
+
+        var replaceInput = dom.createElement("input");
+        replaceInput.setAttribute("type", "text");
+        replaceBox.appendChild(replaceInput);
+        this.replaceInput = replaceInput;
+
+        var replaceOnceBtn = dom.createElement("i");
+        replaceOnceBtn.className = "css-icon icon-ccw";
+        replaceOnceBtn.innerHTML = "&#xe803;";
+        event.addListener(replaceOnceBtn, 'click', function (e) {
+            self.updateData();
+            editor.replace(self.replaceText, options);
+            editor.clearSelection();
+        });
+        replaceBox.appendChild(replaceOnceBtn);
+
+        var replaceAllBtn = dom.createElement("i");
+        replaceAllBtn.className = "css-icon icon-arrows-ccw";
+        replaceAllBtn.innerHTML = "&#xe804;";
+        event.addListener(replaceAllBtn, 'click', function (e) {
+            self.updateData();
+            editor.replaceAll(self.replaceText, options);
+            editor.clearSelection();
+        });
+        replaceBox.appendChild(replaceAllBtn);
+
+        searchBar.appendChild(replaceBox);
+    };
+}

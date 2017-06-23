@@ -20,7 +20,7 @@ package com.jecelyin.editor.v2.widget.text;
 
 import android.webkit.ValueCallback;
 
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -39,7 +39,7 @@ public abstract class JsCallback<T>  implements ValueCallback<String> {
 
     @Override
     public final void onReceiveValue(String value) {
-        T result = new Gson().fromJson(value, type);
+        T result = JSON.parseObject(value, type);
         onCallback(result);
     }
 

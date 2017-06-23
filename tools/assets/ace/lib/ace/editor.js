@@ -2497,7 +2497,7 @@ Editor.$uid = 0;
      * @related Editor.find
      **/
     this.findPrevious = function(options, animate) {
-        this.find(options, {skipCurrent: true, backwards: true}, animate);
+        this.find({skipCurrent: true, backwards: true}, options, animate);
     };
 
     this.revealRange = function(range, animate) {
