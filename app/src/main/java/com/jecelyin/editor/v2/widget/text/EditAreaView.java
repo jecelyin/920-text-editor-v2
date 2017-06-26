@@ -28,6 +28,7 @@ import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -292,7 +293,11 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     private class EditorViewChromeClient extends WebChromeClient {
-
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            L.d("CONSOLE", consoleMessage.message() + " (#" + consoleMessage.lineNumber() + " " + consoleMessage.sourceId() + ")");
+            return true;
+        }
     }
 
     public void execCommand(EditorCommand ec) {
@@ -300,7 +305,10 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
             cmdQueue.add(ec);
             return;
         }
-        String json = JSON.toJSONString(ec);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("cmd", ec.cmd);
+        map.put("data", ec.data);
+        String json = JSON.toJSONString(map);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             evaluateJavascript(String.format("handleJava(%d, %s);", 0, json), ec.callback);
         } else {
@@ -443,17 +451,19 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     public void setHTML(CharSequence html) {
 
         execCommand(new EditorCommand.Builder("setHTML")
-                .put("html", html)
+                .put("html", html.toString())
                 .build());
     }
 
     public void setText(String file, CharSequence text) {
-        if (text != null && text.length() > pref.getHighlightSizeLimit()) {
+        if (text == null)
+            return;
+        if (text.length() > pref.getHighlightSizeLimit()) {
             enableHighlight(false);
         }
 
         execCommand(new EditorCommand.Builder("setText")
-                .put("text", text)
+                .put("text", text.toString())
                 .put("file", file)
                 .build());
     }
