@@ -19,7 +19,6 @@
 package com.jecelyin.editor.v2.io;
 
 import android.os.AsyncTask;
-import android.text.Editable;
 
 import com.jecelyin.android.file_explorer.io.RootFile;
 import com.stericson.RootTools.RootTools;
@@ -66,11 +65,11 @@ public class FileWriter extends AsyncTask<String, Void, Exception> {
     @Override
     protected Exception doInBackground(String... params) {
 
-//        if(backupFile.exists()) {
-//            if(!backupFile.delete()) {
-//                return new IOException("Couldn't remove old backup file " + backupFile);
-//            }
-//        }
+        if(backupFile.exists()) {
+            if(!backupFile.delete()) {
+                RootTools.deleteFileOrDirectory(backupFile.getPath(), false);
+            }
+        }
 
         if(file.isFile() && (orgiFile == null &&
                 !RootTools.copyFile(file.getPath(), backupFile.getPath(), true, false))) {

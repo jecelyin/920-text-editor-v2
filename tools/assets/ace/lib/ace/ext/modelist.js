@@ -182,7 +182,8 @@ var supportedModes = {
     XQuery:      ["xq"],
     YAML:        ["yaml|yml"],
     // Add the missing mode "Django" to ext-modelist
-    Django:      ["html"]
+    Django:      ["html"],
+    Search:      ["searchresult"]
 };
 
 var nameOverrides = {

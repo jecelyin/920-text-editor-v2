@@ -146,6 +146,7 @@ public class ModeList {
         new Mode("Scala", "ace/mode/scala"),
         new Mode("Scheme", "ace/mode/scheme"),
         new Mode("SCSS", "ace/mode/scss"),
+        new Mode("Search", "ace/mode/search"),
         new Mode("ShellScript", "ace/mode/shellscript"),
         new Mode("SJS", "ace/mode/sjs"),
         new Mode("Smarty", "ace/mode/smarty"),

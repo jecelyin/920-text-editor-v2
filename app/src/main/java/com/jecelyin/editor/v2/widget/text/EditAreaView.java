@@ -448,14 +448,18 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         this.onTextChangeListener = onTextChangeListener;
     }
 
-    public void setHTML(CharSequence html) {
-
-        execCommand(new EditorCommand.Builder("setHTML")
-                .put("html", html.toString())
+    public void setSearchResult(String text, String find) {
+        execCommand(new EditorCommand.Builder("setSearchResult")
+                .put("text", text)
+                .put("find", find)
                 .build());
     }
 
     public void setText(String file, CharSequence text) {
+        setText(file, 0, 0, text);
+    }
+
+    public void setText(String file, int line, int column, CharSequence text) {
         if (text == null)
             return;
         if (text.length() > pref.getHighlightSizeLimit()) {
@@ -464,6 +468,8 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
 
         execCommand(new EditorCommand.Builder("setText")
                 .put("text", text.toString())
+                .put("line", line)
+                .put("column", column)
                 .put("file", file)
                 .build());
     }

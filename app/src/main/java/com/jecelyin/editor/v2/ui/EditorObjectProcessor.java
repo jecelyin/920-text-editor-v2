@@ -20,9 +20,9 @@ package com.jecelyin.editor.v2.ui;
 
 import android.os.Parcelable;
 
-import com.alibaba.fastjson.JSON;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
+import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 
 import java.io.File;
@@ -40,15 +40,17 @@ public class EditorObjectProcessor {
     }
 
     private static class FindInFilesProcessor {
+        private final EditorDelegate editorDelegate;
         ExtGrep grep;
 
         public FindInFilesProcessor(Parcelable object, EditorDelegate editorDelegate) {
             grep = (ExtGrep) object;
-
+            this.editorDelegate = editorDelegate;
             find();
         }
 
         private void find() {
+            editorDelegate.mEditText.setSearchResult(editorDelegate.getContext().getString(R.string.searching), grep.getPattern());
             grep.execute(new TaskListener<List<ExtGrep.Result>>() {
                 @Override
                 public void onCompleted() {
@@ -75,33 +77,29 @@ public class EditorObjectProcessor {
                 if(file == null || !rs.file.equals(file)) {
                     file = rs.file;
                     ssb.append("\n")
-                    .append("<div class=\"ace_line\"><span class=\"ace_constant ace_language\">")
+                    .append("[PATH]")
                     .append(file.getPath())
-                    .append("</span></div>")
+                    .append("[/PATH]")
 //                    ssb.append(file.getPath(), new ForegroundColorSpan(findResultsPathColor), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     .append("\n");
                 }
                 //%[index$][标识]*[最小宽度][.精度]转换符
 //                ssb.append(String.format("%1$4d  %2$s\n", rs.lineNumber, rs.line), new FileClickableSpan(editorDelegate, rs), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.append("<div class=\"ace_line\">");
-                ssb.append(String.format("%1$4d  ", rs.lineNumber));
-                int length = ssb.length();
-                int start = length + rs.matchStart;
-                int end = length + rs.matchEnd;
-                ssb.append(rs.line.substring(0, start));
-                ssb.append("<span onclick=\"AndroidEditor.openFile(")
-                   .append(JSON.toJSONString(rs.file.getPath()))
-                   .append(", ")
-                   .append(rs.startOffset)
-                   .append(")\" class=\"ace_constant ace_language\">")
+                int start = rs.matchStart;
+                int end = rs.matchEnd;
+
+                ssb.append(String.format("%1$4d:%d\t", rs.lineNumber, start))
+                   .append(rs.line.substring(0, start))
                    .append(rs.line.substring(start, end))
-                   .append("</span>")
                    .append(rs.line.substring(end));
-//                ssb.setSpan(new ForegroundColorSpan(findResultsKeywordColor), length + rs.matchStart, length + rs.matchEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                ssb.setSpan(new FileClickableSpan(findResultsKeywordColor, editorDelegate, rs), length + rs.matchStart, length + rs.matchEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.append('\n');
+                ssb.append("\n");
             }
-//            editText.setText(ssb);
+
+            if (ssb.length() == 0) {
+                ssb.append(editorDelegate.getContext().getString(R.string.find_not_found));
+            }
+
+            editorDelegate.mEditText.setSearchResult(ssb.toString(), grep.getPattern());
         }
 
     }

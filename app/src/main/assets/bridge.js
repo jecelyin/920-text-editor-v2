@@ -123,11 +123,10 @@ function Bridge(editor) {
         return !editor.selection.isEmpty();
     };
 
-    this.setHTML = function (data) {
-        this.loading = true;
-        editor.setReadOnly(true);
-        editor.setValue(data['html'], -1);
-        editor.renderer.content.innerHTML = data['html'];
+    this.setSearchResult = function (data) {
+        data['file'] = "file.searchresult";
+        window.findText = data['find'];
+        this.setText(data);
     };
 
     this.setText = function (data) {
@@ -142,6 +141,11 @@ function Bridge(editor) {
         this.setMode({'mode':modeCls.mode});
         editor.setValue(text, -1);
         editor.clearSelection();
+        var line = data['line'] || 0;
+        var column = data['column'] || 0;
+        if (line > 0 || column > 0) {
+            editor.gotoLine(line, column, true);
+        }
 
         this.resetTextChange();
 
