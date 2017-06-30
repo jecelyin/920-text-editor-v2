@@ -477,4 +477,4 @@ styles.join("\n")
 .ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
 .ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
 
-.ace_search-path, .ace_search-line, .ace_search-tag{display: none}
+.ace_search-path{display: none}
