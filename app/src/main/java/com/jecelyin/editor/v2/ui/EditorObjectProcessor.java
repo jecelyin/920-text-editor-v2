@@ -88,7 +88,7 @@ public class EditorObjectProcessor {
                 int start = rs.matchStart;
                 int end = rs.matchEnd;
 
-                ssb.append(String.format("%1$4d:%d\t", rs.lineNumber, start))
+                ssb.append(String.format("%1$4d:%d\t", rs.lineNumber, rs.lineStartOffset))
                    .append(rs.line.substring(0, start))
                    .append(rs.line.substring(start, end))
                    .append(rs.line.substring(end));

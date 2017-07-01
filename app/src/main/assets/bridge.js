@@ -126,6 +126,7 @@ function Bridge(editor) {
     this.setSearchResult = function (data) {
         data['file'] = "file.searchresult";
         window.findText = data['find'];
+        console.log("find=" + window.findText);
         this.setText(data);
     };
 
