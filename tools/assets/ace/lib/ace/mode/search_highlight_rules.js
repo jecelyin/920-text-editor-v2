@@ -56,17 +56,19 @@ var SearchHighlightRules = function() {
             //         "constant.numeric"
             //     ];
             // },
-            token : [
-                "constant.numeric",
-                "constant.numeric"
-            ],
+            token : "constant.numeric",
             next: "keyword"
         }
         ],
         "keyword" : [
             {
+                caseInsensitive: true,
                 regex: find,
                 token: "keyword"
+            },
+            {
+                regex: "$",
+                next: "start"
             }
         ]
     };
