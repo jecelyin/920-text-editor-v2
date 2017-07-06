@@ -69,11 +69,13 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         savedState = ss;
     }
 
-    public EditorDelegate(int index, @Nullable File file, int offset, String encoding) {
+    public EditorDelegate(int index, @Nullable File file, int line, int column, String encoding) {
         savedState = new SavedState();
         savedState.index = index;
         savedState.file = file;
         savedState.encoding = encoding;
+        savedState.line = line;
+        savedState.column = column;
         if (savedState.file != null) {
             savedState.title = savedState.file.getName();
         }
@@ -159,6 +161,9 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         }
         loaded = true;
 
+        if (savedState.line > 0 || savedState.column > 0) {
+            mEditText.gotoLine(savedState.line, savedState.column);
+        }
     }
 
     public Context getContext() {
@@ -582,6 +587,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
         boolean root;
         File rootFile;
         Parcelable object;
+        int line;
+        int column;
 
         @Override
         public int describeContents() {
@@ -598,6 +605,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             dest.writeByte(this.root ? (byte) 1 : (byte) 0);
             dest.writeSerializable(this.rootFile);
             dest.writeParcelable(this.object, flags);
+            dest.writeInt(this.line);
+            dest.writeInt(this.column);
         }
 
         public SavedState() {
@@ -612,9 +621,11 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             this.root = in.readByte() != 0;
             this.rootFile = (File) in.readSerializable();
             this.object = in.readParcelable(Parcelable.class.getClassLoader());
+            this.line = in.readInt();
+            this.column = in.readInt();
         }
 
-        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
             @Override
             public SavedState createFromParcel(Parcel source) {
                 return new SavedState(source);

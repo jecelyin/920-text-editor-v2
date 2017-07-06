@@ -38,7 +38,7 @@ public class RecentFilesManager implements MaterialDialog.ListCallback, Material
     private ArrayList<DBHelper.RecentFileItem> list;
 
     static interface OnFileItemClickListener {
-        void onClick(String file, String encoding);
+        void onClick(DBHelper.RecentFileItem item);
     }
 
     public RecentFilesManager(Context context) {
@@ -81,7 +81,7 @@ public class RecentFilesManager implements MaterialDialog.ListCallback, Material
         if(onFileItemClickListener == null)
             return;
         DBHelper.RecentFileItem item = list.get(i);
-        onFileItemClickListener.onClick(item.path, item.encoding);
+        onFileItemClickListener.onClick(item);
     }
 
     public void setOnFileItemClickListener(OnFileItemClickListener onFileItemClickListener) {

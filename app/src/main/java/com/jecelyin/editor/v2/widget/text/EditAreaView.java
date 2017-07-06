@@ -48,6 +48,7 @@ import com.jecelyin.editor.v2.ui.MainActivity;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -260,11 +261,16 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         }
 
         @JavascriptInterface
-        public void openFile(String file, int offset) {
-            MainActivity activity = (MainActivity) UIUtils.getActivity(EditAreaView.this);
-            if (activity != null) {
-                activity.openFile(file, null, offset);
-            }
+        public void openFile(final String file, final int line, final int column) {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity activity = (MainActivity) UIUtils.getActivity(EditAreaView.this);
+                    if (activity != null) {
+                        activity.openFile(file, null, line, column);
+                    }
+                }
+            });
         }
     }
 
@@ -399,7 +405,11 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public void gotoLine(int line) {
-        execCommand(new EditorCommand.Builder("gotoLine").put("value", line).build());
+        gotoLine(line, 0);
+    }
+
+    public void gotoLine(int line, int column) {
+        execCommand(new EditorCommand.Builder("gotoLine").put("line", line).put("column", column).build());
     }
 
     public void setReadOnly(boolean readOnly) {
@@ -448,10 +458,11 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         this.onTextChangeListener = onTextChangeListener;
     }
 
-    public void setSearchResult(String text, String find) {
+    public void setSearchResult(String text, String find, List<HashMap<String, Object>> data) {
         execCommand(new EditorCommand.Builder("setSearchResult")
                 .put("text", text)
                 .put("find", find)
+                .put("data", data)
                 .build());
     }
 
@@ -530,4 +541,10 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         textChanged = false;
         execCommand(new EditorCommand.Builder("resetTextChange").build());
     }
+
+    public void getCurrentPosition(JsCallback<Integer[]> callback) {
+        execCommand(new EditorCommand.Builder("getCurrentPosition")
+                .callback(callback).build());
+    }
+
 }

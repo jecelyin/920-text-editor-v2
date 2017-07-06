@@ -91,7 +91,7 @@ function Bridge(editor) {
     };
 
     this.gotoLine = function (data) {
-        editor.gotoLine(data['value'], 0, true);
+        editor.gotoLine(data['line'], data['column'], true);
     };
 
     this.readOnly = function (data) {
@@ -124,9 +124,23 @@ function Bridge(editor) {
     };
 
     this.setSearchResult = function (data) {
+        var event = require("ace/lib/event");
+
         data['file'] = "file.searchresult";
         window.findText = data['find'];
-        console.log("find=" + window.findText);
+        window.findData = data['data'];
+
+        editor.selection.on('changeCursor', function (e, selection) {
+            if(!window.findData)return;
+            var lead = selection.getSelectionLead();
+            var token = selection.session.getTokenAt(lead.row, lead.column);
+            if (!token || token.type !== 'keyword')return;
+            var doc = selection.session.getDocument();
+            if (lead.row >= window.findData.length)return;
+            var data = window.findData[lead.row];
+            AndroidEditor.openFile(data['file'], data['line'], data['column']);
+        });
+        editor.setReadOnly(true);
         this.setText(data);
     };
 
@@ -255,6 +269,11 @@ function Bridge(editor) {
                 style.parentNode.removeChild(style);
             }
         }, 380);
+    };
+
+    this.getCurrentPosition = function () {
+        var lead = editor.selection.getSelectionLead();
+        return [lead.row, lead.column];
     };
 }
 

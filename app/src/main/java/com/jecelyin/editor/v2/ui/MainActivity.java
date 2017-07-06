@@ -454,8 +454,8 @@ public class MainActivity extends BaseActivity
                 RecentFilesManager rfm = new RecentFilesManager(this);
                 rfm.setOnFileItemClickListener(new RecentFilesManager.OnFileItemClickListener() {
                     @Override
-                    public void onClick(String file, String encoding) {
-                        openFile(file, encoding, 0);
+                    public void onClick(DBHelper.RecentFileItem item) {
+                        openFile(item.path, item.encoding, item.line, item.column);
                     }
                 });
                 rfm.show(getContext());
@@ -649,7 +649,7 @@ public class MainActivity extends BaseActivity
             case RC_OPEN_FILE:
                 if(data == null)
                     break;
-                openFile(FileExplorerActivity.getFile(data), FileExplorerActivity.getFileEncoding(data), data.getIntExtra("offset", 0));
+                openFile(FileExplorerActivity.getFile(data), FileExplorerActivity.getFileEncoding(data), 0, 0);
                 break;
             case RC_SAVE:
                 String file = FileExplorerActivity.getFile(data);
@@ -664,13 +664,6 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    public static Intent getOpenFileIntent(File file, int offset) {
-        Intent intent = new Intent();
-        intent.putExtra("file", file.getPath());
-        intent.putExtra("offset", offset);
-        return intent;
-    }
-
     private void openText(CharSequence content) {
         if(TextUtils.isEmpty(content))
             return;
@@ -678,10 +671,10 @@ public class MainActivity extends BaseActivity
     }
 
     private void openFile(String file) {
-        openFile(file, null, 0);
+        openFile(file, null, 0, 0);
     }
 
-    public void openFile(String file, String encoding, int offset) {
+    public void openFile(String file, String encoding, int line, int column) {
         if(TextUtils.isEmpty(file))
             return;
         File f = new File(file);
@@ -689,9 +682,9 @@ public class MainActivity extends BaseActivity
             UIUtils.toast(this, R.string.file_not_exists);
             return;
         }
-        if (!tabManager.newTab(f, offset, encoding))
+        if (!tabManager.newTab(f, line, column, encoding))
             return;
-        DBHelper.getInstance(this).addRecentFile(file, encoding);
+        DBHelper.getInstance(this).addRecentFile(file, encoding, line, column);
     }
 
     public void insertText(CharSequence text) {

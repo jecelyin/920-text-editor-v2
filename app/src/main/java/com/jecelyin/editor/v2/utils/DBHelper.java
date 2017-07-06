@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "920-text-editor.db";
-    private static final int DATABASE_VERSION = 4; // Version must be >= 1
+    private static final int DATABASE_VERSION = 5; // Version must be >= 1
 
     public static DBHelper getInstance(Context context) {
         return new DBHelper(context.getApplicationContext());
@@ -52,17 +52,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE \"recent_files\" (\n" +
+        createRecentFilesTable(db, "recent_files");
+
+        createFindKeywordsTable(db);
+    }
+
+    private void createRecentFilesTable(SQLiteDatabase db, String tableName) {
+        db.execSQL("CREATE TABLE \"" + tableName + "\" (\n" +
                 "\t \"path\" TEXT NOT NULL,\n" +
                 "\t \"open_time\" integer,\n" +
                 "\t \"encoding\" TEXT,\n" +
-                "\t \"offset\" integer,\n" +
+                "\t \"line\" integer,\n" +
+                "\t \"column\" integer,\n" +
                 "\t \"last_open\" integer,\n" +
                 "\tPRIMARY KEY(\"path\")\n" +
                 ")");
-        db.execSQL("CREATE INDEX \"open_time\" ON recent_files (\"open_time\" DESC)");
-
-        createFindKeywordsTable(db);
+        db.execSQL("CREATE INDEX \"open_time_index\" ON " + tableName + " (\"open_time\" DESC)");
     }
 
     public void createFindKeywordsTable(SQLiteDatabase db) {
@@ -88,8 +93,18 @@ public class DBHelper extends SQLiteOpenHelper {
                 case 3:
                     upgradeTo4(db);
                     break;
+                case 4:
+                    upgradeTo5(db);
+                    break;
             }
         }
+    }
+
+    private void upgradeTo5(SQLiteDatabase db) {
+        createRecentFilesTable(db, "recent_files_tmp");
+        db.execSQL("INSERT INTO recent_files_tmp SELECT path, open_time,encoding,0,0,last_open FROM recent_files");
+        db.execSQL("DROP TABLE recent_files");
+        db.execSQL("ALTER TABLE recent_files_tmp RENAME TO recent_files");
     }
 
     private void upgradeTo4(SQLiteDatabase db) {
@@ -105,11 +120,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("alter table recent_files ADD COLUMN encoding TEXT");
     }
 
-    public void addRecentFile(String path, String encoding) {
+    public void addRecentFile(String path, String encoding, int line, int column) {
         if (TextUtils.isEmpty(path))
             return;
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("REPLACE INTO recent_files VALUES (?, ?, ?, ?, ?)", new Object[]{path, System.currentTimeMillis(), encoding, 0, 1});
+        db.execSQL("REPLACE INTO recent_files (path,open_time,encoding,line,column,last_open) VALUES (?, ?, ?, ?, ?, ?)", new Object[]{path, System.currentTimeMillis(), encoding, line, column, 1});
         db.close();
     }
 
@@ -119,12 +134,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateRecentFile(String path, String encoding, int offset) {
+    public void updateRecentFile(String path, String encoding, int line, int column) {
         SQLiteDatabase db = getWritableDatabase();
-        if (offset >= 0)
-            db.execSQL("UPDATE recent_files SET encoding = ?, offset = ? WHERE path = ?", new Object[]{encoding, offset, path});
-        else
-            db.execSQL("UPDATE recent_files SET encoding = ? WHERE path = ?", new Object[]{encoding, path});
+        db.execSQL("UPDATE recent_files SET encoding = ?, line = ?, column = ? WHERE path = ?", new Object[]{encoding, line, column, path});
         db.close();
     }
 
@@ -132,7 +144,8 @@ public class DBHelper extends SQLiteOpenHelper {
         public long time;
         public String path;
         public String encoding;
-        public int offset;
+        public int line;
+        public int column;
         public boolean isLastOpen;
     }
 
@@ -147,7 +160,7 @@ public class DBHelper extends SQLiteOpenHelper {
         RecentFileItem item;
         boolean isLastOpen;
         while (cursor.moveToNext()) {
-            isLastOpen = cursor.getInt(4) == 1;
+            isLastOpen = cursor.getInt(5) == 1;
 
             if (lastOpenFiles && !isLastOpen)
                 continue;
@@ -156,7 +169,8 @@ public class DBHelper extends SQLiteOpenHelper {
             item.path = cursor.getString(0);
             item.time = cursor.getLong(1);
             item.encoding = cursor.getString(2);
-            item.offset = cursor.getInt(3);
+            item.line = cursor.getInt(3);
+            item.column = cursor.getInt(4);
             item.isLastOpen = isLastOpen;
             list.add(item);
         }

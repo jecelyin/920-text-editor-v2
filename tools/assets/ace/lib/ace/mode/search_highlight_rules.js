@@ -49,14 +49,12 @@ var SearchHighlightRules = function() {
                 "constant.search-path"
             ]
         }, {
-            regex: "^\\s*(\\d+)\\:(\\d+)\t",
-            // onMatch : function(value, currentState, stack){
-            //     return [
-            //         "constant.numeric",
-            //         "constant.numeric"
-            //     ];
-            // },
-            token : "constant.numeric",
+            regex: "^(\\s*)(\\d+)(\t)",
+            token : [
+                "text",
+                "constant.numeric",
+                "text"
+            ],
             next: "keyword"
         }
         ],

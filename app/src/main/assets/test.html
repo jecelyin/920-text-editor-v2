@@ -149,19 +149,19 @@ body {
 
 </div>
 <script type="text/tpl" id="code" style="display:none">
-
+<!--
 [PATH]/storage/emulated/0/1/README.md[/PATH]
-   6:6	 C#, Erlang, Frink, HTML/XML/WML, CSS, HTML/HTM
-  31:31	1. preview the HTML file
-  41:41	 C#, Erlang, Frink, HTML/XML/WML, CSS, J
-  64:64	1. 预览HTML文件
+1    6:6	 C#, Erlang, Frink, HTML/XML/WML, CSS, HTML/HTM
+1   31:31	1. preview the HTML file
+1   41:41	 C#, Erlang, Frink, HTML/XML/WML, CSS, J
+1   64:64	1. 预览HTML文件
 
 [PATH]/storage/emulated/0/1/support.php[/PATH]
-   4:4	<!DOCTYPE html PUBLIC "-//W3C/
-   5:5	<html xmlns="http://w
-   7:7	Type" content="text/html;charset=UTF-8"/
-  16:16	</html>
-
+2    4:4	<!DOCTYPE html PUBLIC "-//W3C/
+2    5:5	<html xmlns="http://w
+2    7:7	Type" content="text/html;charset=UTF-8"/
+2   16:16	</html>
+-->
 </script>
 <script src="ace/src/ace.js" type="text/javascript"></script>
 <script src="ace/src/ext-modelist.js" type="text/javascript"></script>
@@ -177,7 +177,16 @@ body {
     editor.getSession().setUndoSelect(false);
     editor.session.setMode("ace/mode/search");
     editor.setValue(document.getElementById("code").innerHTML, -1);
-    editor.session.setMode("ace/mode/search", null, true);
+    editor.selection.on('changeCursor', function (e, selection) {
+        var lead = selection.getSelectionLead();
+        var token = selection.session.getTokenAt(lead.row, lead.column);
+        if (!token || token.type !== 'keyword')return;
+        var doc = selection.session.getDocument();
+        var text = doc.getLine(lead.row);
+        var match = /^(\d+)\s/.exec(text);
+        if (!match)return;
+
+    });
 </script>
 </body>
 </html>
