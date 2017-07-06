@@ -111,6 +111,7 @@ function Bridge(editor) {
     };
 
     this.insertOrReplaceText = function (data) {
+        if (editor.getReadOnly())return;
         var requireSelected = data['requireSelected'];
         var text = data['text'];
         if (requireSelected && !this.hasSelection()) {
