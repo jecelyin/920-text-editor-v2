@@ -27,6 +27,8 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
@@ -66,6 +68,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     private String modeName = "Text";
     private boolean selected;
     private boolean textChanged;
+    private InputConnectionHacker inputConnectionHacker;
 
     public EditAreaView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -271,6 +274,21 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                     }
                 }
             });
+        }
+
+        @JavascriptInterface
+        public boolean isShiftPressed() {
+            return inputConnectionHacker != null && inputConnectionHacker.isShiftPressed();
+        }
+
+        @JavascriptInterface
+        public boolean isAltPressed() {
+            return inputConnectionHacker != null && inputConnectionHacker.isAltPressed();
+        }
+
+        @JavascriptInterface
+        public boolean isCtrlPressed() {
+            return inputConnectionHacker != null && inputConnectionHacker.isCtrlPressed();
         }
     }
 
@@ -547,4 +565,11 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 .callback(callback).build());
     }
 
+    @Override
+    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+        final InputConnection ic = super.onCreateInputConnection(outAttrs);
+
+        inputConnectionHacker = new InputConnectionHacker(ic);
+        return inputConnectionHacker;
+    }
 }
