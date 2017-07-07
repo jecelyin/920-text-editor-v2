@@ -33,13 +33,15 @@ import android.view.inputmethod.InputConnection;
 
 public class InputConnectionHacker implements InputConnection {
     private final InputConnection ic;
+    private final EditAreaView editAreaView;
     private boolean isShiftPressed;
     private boolean isAltPressed;
     private boolean isSymPressed;
     private boolean isCtrlPressed;
 
-    public InputConnectionHacker(InputConnection ic) {
+    public InputConnectionHacker(InputConnection ic, EditAreaView editAreaView) {
         this.ic = ic;
+        this.editAreaView = editAreaView;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public CharSequence getSelectedText(int flags) {
-        return ic.getSelectedText(flags);
+        return editAreaView.getSelectedText();
     }
 
     @Override
@@ -64,7 +66,15 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public ExtractedText getExtractedText(ExtractedTextRequest request, int flags) {
-        return ic.getExtractedText(request, flags);
+//        return ic.getExtractedText(request, flags);
+        String text = editAreaView.getSelectedText();
+        ExtractedText et = new ExtractedText();
+        et.text = text;
+        et.partialEndOffset = text.length();
+        et.selectionStart = 0;
+        et.selectionEnd = text.length();
+        et.flags = 0;
+        return et;
     }
 
     @Override
@@ -145,6 +155,11 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public boolean clearMetaKeyStates(int states) {
+        isAltPressed = false;
+        isShiftPressed = false;
+        isCtrlPressed = false;
+        isSymPressed = false;
+        editAreaView.clearSelection();
         return ic.clearMetaKeyStates(states);
     }
 

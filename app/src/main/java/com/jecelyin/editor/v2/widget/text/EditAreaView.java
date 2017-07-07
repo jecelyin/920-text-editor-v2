@@ -69,6 +69,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     private boolean selected;
     private boolean textChanged;
     private InputConnectionHacker inputConnectionHacker;
+    private String selectedText;
 
     public EditAreaView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -230,7 +231,8 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         }
 
         @JavascriptInterface
-        public void onSelectionChange(boolean s) {
+        public void onSelectionChange(boolean s, String text) {
+            selectedText = text;
             selected = s;
         }
 
@@ -508,7 +510,12 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public void getSelectedText(JsCallback<String> callback) {
-        execCommand(new EditorCommand.Builder("getSelectedText").callback(callback).build());
+//        execCommand(new EditorCommand.Builder("getSelectedText").callback(callback).build());
+        callback.onCallback(getSelectedText());
+    }
+
+    public String getSelectedText() {
+        return selectedText;
     }
 
     /**
@@ -560,6 +567,10 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         execCommand(new EditorCommand.Builder("resetTextChange").build());
     }
 
+    public void clearSelection() {
+        execCommand(new EditorCommand.Builder("clearSelection").build());
+    }
+
     public void getCurrentPosition(JsCallback<Integer[]> callback) {
         execCommand(new EditorCommand.Builder("getCurrentPosition")
                 .callback(callback).build());
@@ -568,8 +579,10 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
         final InputConnection ic = super.onCreateInputConnection(outAttrs);
-
-        inputConnectionHacker = new InputConnectionHacker(ic);
+        if (ic == null)
+            return null;
+        inputConnectionHacker = new InputConnectionHacker(ic, this);
         return inputConnectionHacker;
     }
+
 }

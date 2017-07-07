@@ -276,6 +276,10 @@ function Bridge(editor) {
         var lead = editor.selection.getSelectionLead();
         return [lead.row, lead.column];
     };
+
+    this.clearSelection = function () {
+        editor.clearSelection();
+    };
 }
 
 (function () {
@@ -292,12 +296,13 @@ function Bridge(editor) {
         this.editor.getSelection().on("changeSelection", function () {
             if (self.loading)
                 return;
-            var s = self.hasSelection();
-            if (s == self.selected)
-                return;
-            self.selected = s;
+            var s = self.getSelectedText();
+            var selected = !!s;
+            AndroidEditor.onSelectionChange(selected, s ? s : '');
 
-            AndroidEditor.onSelectionChange(s);
+            if (selected === self.selected)
+                return;
+            self.selected = selected;
 
             if (s) {
                 self.showActionMode();
