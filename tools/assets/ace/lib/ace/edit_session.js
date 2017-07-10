@@ -2544,7 +2544,7 @@ config.defineOptions(EditSession.prototype, "session", {
         },
         initialValue: "auto"
     },
-    indentedSoftWrap: { initialValue: true },
+    indentedSoftWrap: { initialValue: false },
     firstLineNumber: {
         set: function() {this._signal("changeBreakpoint");},
         initialValue: 1
