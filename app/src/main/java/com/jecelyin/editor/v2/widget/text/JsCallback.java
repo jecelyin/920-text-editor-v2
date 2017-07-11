@@ -37,6 +37,7 @@ public abstract class JsCallback<T>  implements ValueCallback<String> {
         type = ((ParameterizedType) superClass).getActualTypeArguments()[0];
     }
 
+    @Deprecated
     @Override
     public final void onReceiveValue(String value) {
         T result = JSON.parseObject(value, type);
