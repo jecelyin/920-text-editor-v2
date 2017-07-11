@@ -20,7 +20,6 @@ package com.jecelyin.editor.v2.ui.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,6 +30,7 @@ import android.widget.CompoundButton;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.common.widget.DrawClickableEditText;
 import com.jecelyin.editor.v2.Pref;
@@ -129,7 +129,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
             public void onClick(View v) {
                 String path = Pref.getInstance(context).getLastOpenPath();
                 if(! new File(path).isDirectory())
-                    path = Environment.getExternalStorageDirectory().getPath();
+                    path = SysUtils.getInternalStorageDirectory();
                 new FolderChooserDialog.Builder(getMainActivity())
                         .initialPath(path)
                         .cancelButton(android.R.string.cancel)

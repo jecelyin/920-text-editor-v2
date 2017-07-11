@@ -24,6 +24,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -52,6 +53,8 @@ import com.jecelyin.common.task.JecAsyncTask;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.RootUtils;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -322,7 +325,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             Pref pref = Pref.getInstance(context);
             final boolean showHiddenFiles = pref.isShowHiddenFiles();
             final int sortType = pref.getFileSortType();
-            if (isRoot && !(path instanceof RootFile) && !path.getPath().startsWith(Environment.getExternalStorageDirectory().getPath())) {
+            if (isRoot && !(path instanceof RootFile) && RootUtils.isRootPath(path.getPath())) {
                 path = new RootFile(path.getPath());
             }
             updateRootInfo.onUpdate(path);

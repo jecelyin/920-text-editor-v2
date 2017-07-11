@@ -90,7 +90,7 @@ public class RootFile extends LocalFile {
 
     @Override
     public void delete(final BoolResultListener listener) {
-        RootUtils.RootCommand command = new RootUtils.RootCommand("rm -rf \"%s\"", getAbsolutePath())
+        RootUtils.RootCommand command = new RootUtils.RootCommand("rm -rf \"%s\"", getPath())
         {
             @Override
             public void onFinish(boolean success, String output) {
@@ -109,7 +109,7 @@ public class RootFile extends LocalFile {
 
     @Override
     public void listFiles(FileListResultListener listener) {
-        List<FileInfo> list = RootUtils.listFileInfo(getAbsolutePath());
+        List<FileInfo> list = RootUtils.listFileInfo(getPath());
 
         int size = list.size();
         RootFile[] results = new RootFile[size];
@@ -125,7 +125,7 @@ public class RootFile extends LocalFile {
     @Override
     public void mkdirs(final BoolResultListener listener) {
         try {
-            RootTools.getShell(true).add(new RootUtils.RootCommand("mkdir -p \"%s\"", getAbsolutePath()) {
+            RootTools.getShell(true).add(new RootUtils.RootCommand("mkdir -p \"%s\"", getPath()) {
                 @Override
                 public void onFinish(boolean success, String output) {
                     listener.onResult(success && output.trim().isEmpty());
@@ -139,7 +139,7 @@ public class RootFile extends LocalFile {
     @Override
     public void renameTo(JecFile dest, final BoolResultListener listener) {
         try {
-            RootTools.getShell(true).add(new RootUtils.RootCommand("mv \"%s\" \"%s\"", getAbsolutePath(), dest.getAbsolutePath()) {
+            RootTools.getShell(true).add(new RootUtils.RootCommand("mv \"%s\" \"%s\"", getPath(), dest.getPath()) {
                 @Override
                 public void onFinish(boolean success, String output) {
                     listener.onResult(success && output.trim().isEmpty());

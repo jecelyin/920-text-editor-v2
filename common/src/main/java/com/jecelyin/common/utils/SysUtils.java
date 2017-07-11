@@ -29,6 +29,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.TypedValue;
 
 import java.io.BufferedReader;
@@ -169,7 +170,7 @@ public class SysUtils {
     }
 
     /* Checks if external storage is available for read and write */
-    public boolean isExternalStorageWritable() {
+    public boolean isInternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             return true;
@@ -178,7 +179,7 @@ public class SysUtils {
     }
 
     /* Checks if external storage is available to at least read */
-    public boolean isExternalStorageReadable() {
+    public boolean isInternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
@@ -187,10 +188,21 @@ public class SysUtils {
         return false;
     }
 
+    public static String getInternalStorageDirectory() {
+        File file;
+        String path = System.getenv("EXTERNAL_STORAGE");
+        if (!TextUtils.isEmpty(path)) {
+            file = new File(path);
+            if (file.exists())
+                return path;
+        }
+        return Environment.getExternalStorageDirectory().getPath();
+    }
+
     public static List<String> getStorageDirectories(boolean removableStorageOnly)
     {
         List<String> list = new ArrayList<String>();
-        String internalPath = Environment.getExternalStorageDirectory().getPath();
+        String internalPath = getInternalStorageDirectory();
 
         BufferedReader buf_reader = null;
         try {

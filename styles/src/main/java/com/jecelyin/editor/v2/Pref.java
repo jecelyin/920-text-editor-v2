@@ -21,12 +21,12 @@ package com.jecelyin.editor.v2;
 import android.annotation.IntDef;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
+import com.jecelyin.common.utils.SysUtils;
 import com.stericson.RootTools.RootTools;
 
 import java.util.HashMap;
@@ -62,7 +62,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
     public static final String KEY_PREF_AUTO_CHECK_UPDATES = "pref_auto_check_updates";
     public static final String KEY_PREF_KEEP_BACKUP_FILE = "pref_keep_backup_file";
     public static final String KEY_PREF_ENABLE_DRAWERS = "pref_enable_drawers";
-    public static final String KEY_LAST_OPEN_PATH = "last_open_path";
+    public static final String KEY_LAST_OPEN_PATH = "last_open_path2";
     public static final String KEY_READ_ONLY = "readonly_mode";
     public static final String KEY_SHOW_HIDDEN_FILES = "show_hidden_files";
     public static final String KEY_FILE_SORT_TYPE = "show_file_sort";
@@ -141,7 +141,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
         //not at preference setting
         toolbarIcons = pm.getStringSet(KEY_TOOLBAR_ICONS, null);
-        map.put(KEY_LAST_OPEN_PATH, Environment.getExternalStorageDirectory().getPath());
+        map.put(KEY_LAST_OPEN_PATH, SysUtils.getInternalStorageDirectory());
         map.put(KEY_READ_ONLY, false);
         map.put(KEY_SHOW_HIDDEN_FILES, false);
         map.put(KEY_FILE_SORT_TYPE, 0);

@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -39,6 +38,7 @@ import com.jecelyin.android.file_explorer.listener.OnClipboardDataChangedListene
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.FullScreenActivity;
 import com.jecelyin.editor.v2.Pref;
@@ -112,10 +112,9 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(mode == MODE_PICK_FILE ? R.string.open_file : R.string.save_file);
-
         lastPath = Pref.getInstance(this).getLastOpenPath();
         if(TextUtils.isEmpty(lastPath)) {
-            lastPath = Environment.getExternalStorageDirectory().getPath();
+            lastPath = SysUtils.getInternalStorageDirectory();
         }
 
         String destPath = it.getStringExtra("dest_file");
