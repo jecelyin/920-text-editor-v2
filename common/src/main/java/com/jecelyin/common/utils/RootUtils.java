@@ -18,17 +18,18 @@
 
 package com.jecelyin.common.utils;
 
+import android.text.TextUtils;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import eu.chainfire.libsuperuser.Shell;
 
 public class RootUtils {
-    public static final String DATA_APP_DIR = "/data/app";
-    private static final String LS = "ls -lAnH \"%\" --color=never";
-    private static final String LSDIR = "ls -land \"%\" --color=never";
-    public static final String SYSTEM_APP_DIR = "/system/app";
     private static final Pattern mLsPattern;
     private static final Shell.Builder shellBuilder;
 
@@ -88,18 +89,6 @@ public class RootUtils {
 
     public static boolean isUnixVirtualDirectory(String str) {
         return str.startsWith("/proc") || str.startsWith("/sys");
-    }
-
-    /**
-     * Get a shell based listing
-     * Context is superuser level shell
-     *
-     * @param str
-     * @return
-     */
-    public static ArrayList<String> getDirListingSu(String str) {
-        ArrayList<String> arrayLis = runShellCommand(LS.replace("%", str));
-        return arrayLis;
     }
 
     /**
@@ -208,37 +197,18 @@ public class RootUtils {
      * Creates an empty directory using root
      *
      * @param path path to new directory
-     * @param name name of directory
      * @
      */
-    public static void mkDir(String path, String name) {
+    public static void mkdirs(String path) {
 
         String mountPoint = mountFileSystemRW(path);
 
-        runShellCommand("mkdir \"" + path + "/" + name + "\"");
+        runShellCommand("mkdir -p \"" + path + "\"");
         if (mountPoint != null) {
             // we mounted the filesystem as rw, let's mount it back to ro
             mountFileSystemRO(mountPoint);
         }
     }
-
-    /**
-     * Creates an empty file using root
-     *
-     * @param path path to new file
-     * @
-     */
-    public static void mkFile(String path) {
-
-        String mountPoint = mountFileSystemRW(path);
-
-        runShellCommand("touch \"" + path + "\"");
-        if (mountPoint != null) {
-            // we mounted the filesystem as rw, let's mount it back to ro
-            mountFileSystemRO(mountPoint);
-        }
-    }
-
 
     /**
      * Returns file permissions in octal notation
@@ -378,5 +348,193 @@ public class RootUtils {
             return path.startsWith(androidPath) || androidPath.equals(path);
         }
         return true;
+    }
+
+    public static boolean exists(String path) {
+        ArrayList<String> results = runShellCommand("[ -e \"" + path + "\" ] && echo \"yes\" || echo \"no\"");
+        return !(results == null || results.isEmpty()) && results.get(0).equals("yes");
+    }
+
+    public static boolean isDirectory(String path) {
+        ArrayList<String> results = runShellCommand("[ -d \"" + path + "\" ] && echo \"yes\" || echo \"no\"");
+        return !(results == null || results.isEmpty()) && results.get(0).equals("yes");
+    }
+
+    public static String getRealPath(String file) {
+        List<String> paths = new ArrayList<>();
+        File parent = new File(file);
+
+        do {
+            paths.add(parent.getName());
+        } while ((parent = parent.getParentFile()) != null);
+
+        List<FileInfo> infos;
+        FileInfo fi;
+        String path;
+        StringBuilder sb = new StringBuilder();
+        for (int i = paths.size() - 1; i >= 0; i--) {
+            path = paths.get(i);
+
+            if ("/".equals(path)) {
+                continue;
+            }
+            sb.append("/").append(path);
+            infos = listFileInfo(sb.toString());
+            if (infos.isEmpty())
+                break;
+            fi = infos.get(0);
+            if (fi.isSymlink) {
+                sb.setLength(0);
+                sb.append(fi.linkedPath);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static List<FileInfo> listFileInfo(String path) {
+        final List<FileInfo> files = new ArrayList<>();
+        if (isDirectory(path) && !path.endsWith("/"))
+            path += "/";
+        final List<String> result = runShellCommand("ls -la \"" + path + "\"");
+
+        for (String line : result) {
+            line = line.trim();
+            // lstat '//persist' failed: Permission denied
+            if (line.startsWith("lstat \'" + path) && line.contains("\' failed: Permission denied")) {
+                line = line.replace("lstat \'" + path, "");
+                line = line.replace("\' failed: Permission denied", "");
+                if (line.startsWith("/")) {
+                    line = line.substring(1);
+                }
+                FileInfo failedToRead = new FileInfo(false, line);
+                files.add(failedToRead);
+                continue;
+            }
+            // /data/data/com.android.shell/files/bugreports: No such file or directory
+            if (line.startsWith("/") && line.contains(": No such file")) {
+                continue;
+            }
+            try {
+                files.add(lsParser(path, line));
+            } catch (Exception e) {
+                L.e("parse line error: " + line, e);
+            }
+        }
+
+        result.clear();
+        return files;
+    }
+
+    private static FileInfo lsParser(String path, String line) {
+        final String[] split = line.split(" ");
+        int index = 0;
+
+        FileInfo file = new FileInfo(false, "");
+
+        String date = "";
+        String time = "";
+        //drwxrwx--x 3 root sdcard_rw 4096 2016-12-17 15:02 obb
+        for (String token : split) {
+            if (token.trim().isEmpty())
+                continue;
+            switch (index) {
+                case 0: {
+                    file.permissions = token;
+                    break;
+                }
+                case 1: {
+                    if (TextUtils.isDigitsOnly(token))
+                        continue;
+                    file.owner = token;
+                    break;
+                }
+                case 2: {
+                    file.group = token;
+                    break;
+                }
+                case 3: {
+                    if (token.contains("-")) {
+                        // No length, this is the date
+                        file.size = -1;
+                        date = token;
+                    } else if (token.contains(",")) {
+                        //In /dev, ls lists the major and minor device numbers
+                        file.size = -2;
+                    } else {
+                        // Length, this is a file
+                        try {
+                            file.size = Long.parseLong(token);
+                        } catch (Exception e) {
+                            throw new NumberFormatException(e.getMessage() + " Line: " + line);
+                        }
+                    }
+                    break;
+                }
+                case 4: {
+                    if (file.size == -1) {
+                        // This is the time
+                        time = token;
+                    } else {
+                        // This is the date
+                        date = token;
+                    }
+                    break;
+                }
+                case 5: {
+                    if (file.size == -2) {
+                        date = token;
+                    } else if (file.size > -1) {
+                        time = token;
+                    }
+                    break;
+                }
+                case 6:
+                    if (file.size == -2) {
+                        time = token;
+                    }
+                    break;
+            }
+            index++;
+        }
+
+        if (line.length() > 0) {
+            final String nameAndLink = line.substring(line.indexOf(time) + time.length() + 1);
+            if (nameAndLink.contains(" -> ")) {
+                final String[] splitSl = nameAndLink.split(" -> ");
+                file.name = splitSl[0].trim();
+                String realPath = splitSl[1].trim();
+                if (realPath.charAt(0) != '/') {
+                    file.linkedPath  = new File(path).getParent() + "/" + realPath;
+                } else {
+                    file.linkedPath  = realPath;
+                }
+            } else {
+                file.name = nameAndLink;
+            }
+        }
+
+        try {
+            file.lastModified = new SimpleDateFormat("yyyy-MM-ddHH:mm", Locale.getDefault())
+                    .parse(date + time).getTime();
+        } catch (Exception e) {
+//            L.e(e); //ignore: java.text.ParseException: Unparseable date: ""
+            file.lastModified = 0;
+        }
+
+        file.readAvailable = true;
+        file.directoryFileCount = "";
+
+        char type = file.permissions.charAt(0);
+
+        if (type == 'd') {
+            file.isDirectory = true;
+        } else if (type == 'l') {
+            file.isSymlink = true;
+            String linkPath = file.linkedPath;
+            file.isDirectory = isDirectory(linkPath);
+        }
+
+        return file;
     }
 }

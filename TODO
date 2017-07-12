@@ -25,7 +25,7 @@ sl4a的打开选择920报错
 
 bottom symbol bar visible on activity recreate
 
-启动时转太久了
+-启动时转太久了
 
 using the tab button on hackers keyboard instead of doing the indent whitespace it changes between the menus in the app which leaves me forced to add spaces to a file that previously only had tabs.
 
@@ -65,117 +65,11 @@ make it possible to hide top menu bar and bottom special characters bar
 
 
 
-java.lang.ArrayIndexOutOfBoundsException: 0+9 > 0
-at com.jecelyin.editor.v2.highlight.Buffer.getText(Buffer.java:129)
-at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:121)
-at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:97)
-at com.jecelyin.editor.v2.highlight.Buffer.markTokens(Buffer.java:221)
-at com.jecelyin.editor.v2.ui.Document.highlight(Document.java:397)
-at com.jecelyin.editor.v2.ui.Document.onTextChanged(Document.java:230)
-at com.jecelyin.editor.v2.core.widget.TextView.sendOnTextChanged(TextView.java:7737)
-at com.jecelyin.editor.v2.core.widget.TextView.setText(TextView.java:4107)
-at com.jecelyin.editor.v2.core.widget.TextView.setText(TextView.java:3960)
-at com.jecelyin.editor.v2.core.widget.JecEditText.setText(JecEditText.java:184)
-at com.jecelyin.editor.v2.core.widget.TextView.setText(TextView.java:3935)
-at com.jecelyin.editor.v2.ui.Document.onDone(Document.java:179)
-at com.jecelyin.editor.v2.ui.Document$ReadFileTask.onPostExecute(Document.java:262)
-at com.jecelyin.editor.v2.ui.Document$ReadFileTask.onPostExecute(Document.java:238)
-at android.os.AsyncTask.finish(AsyncTask.java:651)
-
-java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 1
-at com.jecelyin.editor.v2.highlight.Buffer.insert(Buffer.java:320)
-at com.jecelyin.editor.v2.ui.Document.onTextChanged(Document.java:200)
-at com.jecelyin.editor.v2.core.widget.TextView.sendOnTextChanged(TextView.java:7737)
-at com.jecelyin.editor.v2.core.widget.TextView.handleTextChanged(TextView.java:7797)
-at com.jecelyin.editor.v2.core.widget.TextView$ChangeWatcher.onTextChanged(TextView.java:9531)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.sendTextChanged(SpannableStringBuilder.java:1084)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:594)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:505)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:54)
-at android.view.inputmethod.BaseInputConnection.replaceText(BaseInputConnection.java:844)
-at android.view.inputmethod.BaseInputConnection.commitText(BaseInputConnection.java:198)
-at com.jecelyin.editor.v2.core.widget.EditableInputConnection.commitText(EditableInputConnection.java:192)
-at com.android.internal.view.IInputConnectionWrapper.executeMessage(IInputConnectionWrapper.java:345)
-at com.android.internal.view.IInputConnectionWrapper$MyHandler.handleMessage(IInputConnectionWrapper.java:91)
-用户：i opened test.sh
-   looked on recent files - there also "untitled"
-   then opened second doc test2.sh
-   looked on recent files - all text in test.sh are go to untitled.
-   i edited untitled and press save button.
-   and crash appears.
-
-java.lang.ArrayIndexOutOfBoundsException: 0+18 > 0
-at com.jecelyin.editor.v2.highlight.Buffer.getText(Buffer.java:129)
-at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:121)
-at com.jecelyin.editor.v2.highlight.Buffer.getLineText(Buffer.java:97)
-at com.jecelyin.editor.v2.highlight.Buffer.markTokens(Buffer.java:221)
-at com.jecelyin.editor.v2.ui.Document.highlight(Document.java:397)
-at com.jecelyin.editor.v2.ui.Document.onTextChanged(Document.java:230)
-at com.jecelyin.editor.v2.core.widget.TextView.sendOnTextChanged(TextView.java:7737)
-at com.jecelyin.editor.v2.core.widget.TextView.setText(TextView.java:4107)
-at com.jecelyin.editor.v2.core.widget.TextView.setText(TextView.java:3960)
-at com.jecelyin.editor.v2.core.widget.JecEditText.setText(JecEditText.java:184)
-at com.jecelyin.editor.v2.core.widget.TextView.setText(TextView.java:3935)
-at com.jecelyin.editor.v2.core.widget.TextView.onRestoreInstanceState(TextView.java:3835)
-at com.jecelyin.editor.v2.ui.EditorDelegate.init(EditorDelegate.java:126)
-at com.jecelyin.editor.v2.ui.EditorDelegate.setEditorView(EditorDelegate.java:156)
-at com.jecelyin.editor.v2.adapter.EditorAdapter.setEditorView(EditorAdapter.java:106)
-at com.jecelyin.editor.v2.adapter.EditorAdapter.setPrimaryItem(EditorAdapter.java:114)
-at com.jecelyin.editor.v2.view.TabViewPager.populate(TabViewPager.java:959)
-at com.jecelyin.editor.v2.view.TabViewPager.setCurrentItemInternal(TabViewPager.java:503)
-at com.jecelyin.editor.v2.view.TabViewPager.setCurrentItemInternal(TabViewPager.java:462)
-at com.jecelyin.editor.v2.view.TabViewPager.dataSetChanged(TabViewPager.java:801)
-at com.jecelyin.editor.v2.view.TabViewPager$PagerObserver.onChanged(TabViewPager.java:2181)
-at android.database.DataSetObservable.notifyChanged(DataSetObservable.java:37)
-at android.support.v4.view.PagerAdapter.notifyDataSetChanged(PagerAdapter.java:282)
-at com.jecelyin.editor.v2.adapter.EditorAdapter.remove(EditorAdapter.java:188)
-at com.jecelyin.editor.v2.adapter.EditorAdapter.removeEditor(EditorAdapter.java:178)
-at com.jecelyin.editor.v2.ui.TabManager.closeTab(TabManager.java:183)
-at com.jecelyin.editor.v2.ui.TabManager.onTabMenuViewsClick(TabManager.java:82)
-
-
 I opened three files and I edit last one.After I save it,I will exit but app is error.The second file become blank and app ask me whether to save it
 打开多个文件时，文件未进行任何修改，点两次返回键退出时提示保存文件，如果点 是 那么不崩溃，但是保存的那个文件内容会丢失，如果点否，那么软件就会崩溃，手机是华为荣耀畅玩6
 
 希望增加行距配置！当前文字间距离太近。
 另外发现中文支持不大好，光标错位，特别是中英都存在的文档。
-
-java.lang.IndexOutOfBoundsException: replace (3798 ... 3796) has end before start
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.checkRange(SpannableStringBuilder.java:1132)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:539)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:505)
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.replace(SpannableStringBuilder.java:54)
-at com.jecelyin.editor.v2.ui.EditorDelegate.doCommand(EditorDelegate.java:350)
-at com.jecelyin.editor.v2.ui.MainActivity.doCommand(MainActivity.java:609)
-at com.jecelyin.editor.v2.ui.MainActivity.insertText(MainActivity.java:691)
-at com.jecelyin.editor.v2.ui.MainActivity$8.onColorPicked(MainActivity.java:517)
-at com.azeesoft.lib.colorpicker.ColorPickerDialog$8.onClick(ColorPickerDialog.java:310)
-at android.view.View.performClick(View.java:4858)
-
-
-Caused by: java.lang.OutOfMemoryError: Failed to allocate a 899667428 byte allocation with 1593012 free bytes and 509MB until OOM
-at com.jecelyin.editor.v2.io.CharArrayBuffer.(CharArrayBuffer.java:15)
-at com.jecelyin.editor.v2.io.FileReader.read(FileReader.java:67)
-at com.jecelyin.editor.v2.ui.Document$ReadFileTask.doInBackground(Document.java:254)
-at com.jecelyin.editor.v2.ui.Document$ReadFileTask.doInBackground(Document.java:238)
-at android.os.AsyncTask$2.call(AsyncTask.java:295)
-at java.util.concurrent.FutureTask.run(FutureTask.java:237)
-... 4 more
-
-
-java.lang.IndexOutOfBoundsException: charAt: 126 >= length 126
-at com.jecelyin.editor.v2.core.text.SpannableStringBuilder.charAt(SpannableStringBuilder.java:158)
-at com.jecelyin.editor.v2.core.text.Layout.getLineVisibleEnd(Layout.java:1195)
-at com.jecelyin.editor.v2.core.text.Layout.drawText(Layout.java:241)
-at com.jecelyin.editor.v2.core.text.Layout.draw(Layout.java:215)
-at com.jecelyin.editor.v2.core.widget.Editor.onDraw(Editor.java:1339)
-at com.jecelyin.editor.v2.core.widget.TextView.onDraw(TextView.java:5489)
-at android.view.View.draw(View.java:17476)
-at com.jecelyin.editor.v2.core.widget.JecEditText.draw(JecEditText.java:696)
-at android.view.View.updateDisplayListIfDirty(View.java:16469)
-at android.view.ViewGroup.recreateChildDisplayList(ViewGroup.java:3905)
-at android.view.ViewGroup.dispatchGetDisplayList(ViewGroup.java:3885)
-at android.view.View.updateDisplayListIfDirty(View.java:16429)
 
 
 com_android_settings.xml

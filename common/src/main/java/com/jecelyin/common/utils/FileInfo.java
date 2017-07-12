@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.jecelyin.android.file_explorer.util;
+package com.jecelyin.common.utils;
 
 import android.support.annotation.NonNull;
 

@@ -94,6 +94,8 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
         notifyDataSetChanged();
     }
 
+
+
     @Override
     public int getSectionForPosition(int position) {
         return 0;
@@ -129,14 +131,15 @@ public class FileListItemAdapter extends RecyclerView.Adapter<BindingViewHolder<
             return null;
         char c = file.getName().charAt(0);
 
+        String prefix = file.isDirectory() ? "/" : "";
         if ( (c >= '0' && c <= '9')
             || (c >= 'a' && c <= 'z')
             || (c >= 'A' && c <= 'Z')
                 ) {
-            return String.valueOf(c).toUpperCase();
+            return prefix + String.valueOf(c).toUpperCase();
         }
 
-        return "#";
+        return prefix + "#";
     }
 
     public JecFile getItem(int position) {

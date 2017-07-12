@@ -22,10 +22,8 @@ import android.os.Parcel;
 
 import com.jecelyin.android.file_explorer.listener.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
-import com.jecelyin.android.file_explorer.util.FileInfo;
-import com.jecelyin.android.file_explorer.util.RootUtils;
-import com.jecelyin.common.utils.L;
-import com.stericson.RootTools.RootTools;
+import com.jecelyin.common.utils.FileInfo;
+import com.jecelyin.common.utils.RootUtils;
 
 import java.util.List;
 
@@ -89,22 +87,14 @@ public class RootFile extends LocalFile {
     }
 
     @Override
+    public boolean exists() {
+        return RootUtils.exists(getPath());
+    }
+
+    @Override
     public void delete(final BoolResultListener listener) {
-        RootUtils.RootCommand command = new RootUtils.RootCommand("rm -rf \"%s\"", getPath())
-        {
-            @Override
-            public void onFinish(boolean success, String output) {
-                if (listener == null)
-                    return;
-                listener.onResult(success && output != null && output.trim().isEmpty());
-            }
-        };
-        try {
-            RootTools.getShell(true).add(command);
-        }catch (Exception e) {
-            L.e(e);
-            listener.onResult(false);
-        }
+        RootUtils.delete(getPath());
+        listener.onResult(!exists());
     }
 
     @Override
@@ -124,30 +114,14 @@ public class RootFile extends LocalFile {
 
     @Override
     public void mkdirs(final BoolResultListener listener) {
-        try {
-            RootTools.getShell(true).add(new RootUtils.RootCommand("mkdir -p \"%s\"", getPath()) {
-                @Override
-                public void onFinish(boolean success, String output) {
-                    listener.onResult(success && output.trim().isEmpty());
-                }
-            });
-        } catch (Exception e) {
-            L.e(e);
-        }
+        RootUtils.mkdirs(getPath());
+        listener.onResult(RootUtils.isDirectory(getPath()));
     }
 
     @Override
     public void renameTo(JecFile dest, final BoolResultListener listener) {
-        try {
-            RootTools.getShell(true).add(new RootUtils.RootCommand("mv \"%s\" \"%s\"", getPath(), dest.getPath()) {
-                @Override
-                public void onFinish(boolean success, String output) {
-                    listener.onResult(success && output.trim().isEmpty());
-                }
-            });
-        } catch (Exception e) {
-            L.e(e);
-        }
+        boolean rt = RootUtils.rename(getPath(), dest.getPath());
+        listener.onResult(rt);
     }
 
     @Override

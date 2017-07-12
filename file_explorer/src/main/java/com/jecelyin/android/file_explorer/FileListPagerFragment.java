@@ -257,15 +257,6 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         }
     }
 
-    public boolean onBackPressed() {
-        JecFile parent = path.getParentFile();
-        if(parent == null || parent.getPath().startsWith(path.getPath())) {
-            switchToPath(parent);
-            return true;
-        }
-        return false;
-    }
-
     private void switchToPath(JecFile file) {
         path = file;
         pathAdapter.setPath(file);
@@ -300,7 +291,8 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        onRefresh();
+        if (!key.equals(Pref.KEY_LAST_OPEN_PATH))
+            onRefresh();
     }
 
     private static interface UpdateRootInfo {
