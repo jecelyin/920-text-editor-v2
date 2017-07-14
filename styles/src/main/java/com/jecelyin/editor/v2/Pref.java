@@ -27,7 +27,6 @@ import android.text.TextUtils;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
 import com.jecelyin.common.utils.SysUtils;
-import com.stericson.RootTools.RootTools;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -356,8 +355,8 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
         }
     }
 
-    public boolean isRootable() {
-        return ((boolean)map.get(KEY_ENABLE_ROOT)) && RootTools.isRootAvailable() && RootTools.isAccessGiven();
+    public boolean isRootEnabled() {
+        return ((boolean)map.get(KEY_ENABLE_ROOT));
     }
 
     public boolean isKeepBackupFile() {

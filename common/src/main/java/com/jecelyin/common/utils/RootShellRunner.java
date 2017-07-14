@@ -20,144 +20,88 @@ package com.jecelyin.common.utils;
 
 import android.text.TextUtils;
 
+import com.jecelyin.common.listeners.BoolResultListener;
+import com.jecelyin.common.utils.command.Runner;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Pattern;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import eu.chainfire.libsuperuser.Debug;
 import eu.chainfire.libsuperuser.Shell;
 
-public class RootUtils {
-    private static final Pattern mLsPattern;
-    private static final Shell.Builder shellBuilder;
+public class RootShellRunner {
+    private static final int CALLBACK_CODE = 0;
+    private final Shell.Interactive interactive;
+    private OnErrorListener onErrorListener;
+    private AtomicInteger code = new AtomicInteger(0);
 
-    static {
-        mLsPattern = Pattern.compile(".[rwxsStT-]{9}\\s+.*");
-        shellBuilder = new Shell.Builder().
+    public interface OnErrorListener {
+        void onError(Runner callback);
+    }
+
+    public RootShellRunner() {
+        interactive = new Shell.Builder().
                 useSU().
                 setWantSTDERR(true).
                 setWatchdogTimeout(5).
-                setMinimalLogging(false);
+                setMinimalLogging(false).open();
     }
 
-    /**
-     * @param cmd the command
-     * @return a list of results. Null only if the command passed is a blocking call or no output is
-     * there for the command passed
-     * @
-     */
-    public static ArrayList<String> runShellCommand(String cmd) {
-        final ArrayList<String> result = new ArrayList<>();
+    public void onError(OnErrorListener listener) {
+        this.onErrorListener = listener;
+    }
 
-        Shell.Interactive interactive = shellBuilder.open();
-        interactive.addCommand(cmd, 1, new Shell.OnCommandResultListener() {
+    public void run(final Runner runner) {
+        interactive.addCommand(runner.command(), code.getAndIncrement(), new Shell.OnCommandResultListener() {
             @Override
             public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+                runner.onResult(RootShellRunner.this, output);
+            }
+        });
+    }
 
+    private static void mountFileSystemRW(final String path, final BoolResultListener listener) {
+        runShellCommand("mount", new Shell.OnCommandResultListener() {
+            @Override
+            public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+                String mountPoint = "", types = null;
                 for (String line : output) {
-                    result.add(line);
+                    String[] words = line.split(" ");
+
+                    if (words.length >= 4 && path.contains(words[1])) {
+                        // current found point is bigger than last one, hence not a conflicting one
+                        // we're finding the best match, this omits for eg. / and /sys when we're actually
+                        // looking for /system
+                        if (words[1].length() > mountPoint.length()) {
+                            mountPoint = words[1];
+                            types = words[3];
+                        }
+                    }
+                }
+
+                if (!mountPoint.equals("") && types != null) {
+
+                    // we have the mountpoint, check for mount options if already rw
+                    if (types.contains("rw")) {
+                        // already a rw filesystem return
+                        listener.onResult(false);
+                    } else if (types.contains("ro")) {
+                        // read-only file system, remount as rw
+                        String mountCommand = "mount -o rw,remount " + mountPoint;
+                        runShellCommand(mountCommand, new Shell.OnCommandResultListener() {
+                            @Override
+                            public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+                                listener.onResult(output.isEmpty());
+                            }
+                        });
+                    }
                 }
             }
         });
-        interactive.close();
-        return result;
-    }
-
-    /**
-     * Runs the command on an interactive shell. Provides a listener for the caller to interact.
-     * The caller is executed on a worker background thread, hence any calls from the callback
-     * should be thread safe.
-     * Command is run from superuser context (u:r:SuperSU0)
-     *
-     * @param cmd      the command
-     * @param callback
-     * @return a list of results. Null only if the command passed is a blocking call or no output is
-     * there for the command passed
-     * @
-     */
-    public static void runShellCommand(String cmd, Shell.OnCommandResultListener callback) {
-        Shell.Interactive interactive = shellBuilder.open();
-        interactive.addCommand(cmd, 1, callback);
-        interactive.close();
-    }
-
-    public static boolean isValid(String str) {
-        return mLsPattern.matcher(str).matches();
-    }
-
-    public static boolean isUnixVirtualDirectory(String str) {
-        return str.startsWith("/proc") || str.startsWith("/sys");
-    }
-
-    /**
-     * Change permissions (owner/group/others) of a specified path
-     *
-     * @param path
-     * @param octalNotation octal notation of permission
-     * @
-     */
-    public static void chmod(String path, int octalNotation) {
-
-        String mountPoint = mountFileSystemRW(path);
-
-        String command = "chmod %d \"%s\"";
-
-        runShellCommand(String.format(command, octalNotation, path));
-
-        if (mountPoint != null) {
-            // we mounted the filesystem as rw, let's mount it back to ro
-            mountFileSystemRO(mountPoint);
-        }
-    }
-
-
-    /**
-     * Mount filesystem associated with path for writable access (rw)
-     * Since we don't have the root of filesystem to remount, we need to parse output of
-     * # mount command.
-     *
-     * @param path the path on which action to perform
-     * @return String the root of mount point that was ro, and mounted to rw; null otherwise
-     * @
-     */
-    private static String mountFileSystemRW(String path) {
-        String command = "mount";
-        ArrayList<String> output = runShellCommand(command);
-        String mountPoint = "", types = null;
-        for (String line : output) {
-            String[] words = line.split(" ");
-
-            if (words.length >= 4 && path.contains(words[1])) {
-                // current found point is bigger than last one, hence not a conflicting one
-                // we're finding the best match, this omits for eg. / and /sys when we're actually
-                // looking for /system
-                if (words[1].length() > mountPoint.length()) {
-                    mountPoint = words[1];
-                    types = words[3];
-                }
-            }
-        }
-
-        if (!mountPoint.equals("") && types != null) {
-
-            // we have the mountpoint, check for mount options if already rw
-            if (types.contains("rw")) {
-                // already a rw filesystem return
-                return null;
-            } else if (types.contains("ro")) {
-                // read-only file system, remount as rw
-                String mountCommand = "mount -o rw,remount " + mountPoint;
-                ArrayList<String> mountOutput = runShellCommand(mountCommand);
-
-                if (mountOutput.size() != 0) {
-                    // command failed, and we got a reason echo'ed
-                    return null;
-                } else return mountPoint;
-            }
-        }
-        return null;
     }
 
     /**
@@ -171,6 +115,21 @@ public class RootUtils {
         runShellCommand(command);
     }
 
+
+    public static void chmod(String path, int octalNotation) {
+
+        String mountPoint = mountFileSystemRW(path);
+
+        String command = "chmod %d \"%s\"";
+
+        runShellCommand(String.format(command, octalNotation, path), null);
+
+        if (mountPoint != null) {
+            // we mounted the filesystem as rw, let's mount it back to ro
+            mountFileSystemRO(mountPoint);
+        }
+    }
+
     /**
      * Copies file using root
      *
@@ -178,19 +137,30 @@ public class RootUtils {
      * @param destination
      * @
      */
-    public static boolean copy(String source, String destination) {
+    public static void copy(final String source, final String destination, BoolResultListener listener) {
 
         // remounting destination as rw
-        String mountPoint = mountFileSystemRW(destination);
+        mountFileSystemRW(destination, new BoolResultListener() {
+            @Override
+            public void onResult(final boolean result) {
+                runShellCommand("cp \"" + source + "\" \"" + destination + "\"", new Shell.OnCommandResultListener() {
+                    @Override
+                    public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+                        if (result) {
+                            mountFileSystemRO();
+                        }
+                    }
+                });
+            }
+        });
 
-        ArrayList<String> results = runShellCommand("cp \"" + source + "\" \"" + destination + "\"");
 
 
         if (mountPoint != null) {
             // we mounted the filesystem as rw, let's mount it back to ro
             mountFileSystemRO(mountPoint);
         }
-        return false;
+        return results != null && results.isEmpty() && exists(destination);
     }
 
     /**
@@ -351,12 +321,13 @@ public class RootUtils {
     }
 
     public static boolean exists(String path) {
-        ArrayList<String> results = runShellCommand("[ -e \"" + path + "\" ] && echo \"yes\" || echo \"no\"");
+        Debug.setDebug(true);
+        ArrayList<String> results = runShellCommand("if [ -e \"" + path + "\" ]; then echo \"yes\"; else echo \"no\"; fi");
         return !(results == null || results.isEmpty()) && results.get(0).equals("yes");
     }
 
     public static boolean isDirectory(String path) {
-        ArrayList<String> results = runShellCommand("[ -d \"" + path + "\" ] && echo \"yes\" || echo \"no\"");
+        ArrayList<String> results = runShellCommand("if [ -d \"" + path + "\" ]; then echo \"yes\"; else echo \"no\"; fi");
         return !(results == null || results.isEmpty()) && results.get(0).equals("yes");
     }
 
@@ -536,5 +507,14 @@ public class RootUtils {
         }
 
         return file;
+    }
+
+    public static void isRootAvailable(final BoolResultListener listener) {
+        runShellCommand("id", new Shell.OnCommandResultListener() {
+            @Override
+            public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+                listener.onResult(output != null && !output.isEmpty() && output.get(0).contains("uid=0"));
+            }
+        });
     }
 }

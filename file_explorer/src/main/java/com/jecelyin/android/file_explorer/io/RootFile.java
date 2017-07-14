@@ -20,10 +20,10 @@ package com.jecelyin.android.file_explorer.io;
 
 import android.os.Parcel;
 
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.common.utils.FileInfo;
-import com.jecelyin.common.utils.RootUtils;
+import com.jecelyin.common.utils.RootShellRunner;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class RootFile extends LocalFile {
     }
 
     private void init() {
-        List<FileInfo> files = RootUtils.listFileInfo(getPath());
+        List<FileInfo> files = RootShellRunner.listFileInfo(getPath());
         if (!files.isEmpty()) {
             fileInfo = files.get(0);
         }
@@ -83,23 +83,23 @@ public class RootFile extends LocalFile {
 
     @Override
     public String getAbsolutePath() {
-        return fileInfo != null && fileInfo.isSymlink ? fileInfo.linkedPath : RootUtils.getRealPath(getPath());
+        return fileInfo != null && fileInfo.isSymlink ? fileInfo.linkedPath : RootShellRunner.getRealPath(getPath());
     }
 
     @Override
     public boolean exists() {
-        return RootUtils.exists(getPath());
+        return RootShellRunner.exists(getPath());
     }
 
     @Override
     public void delete(final BoolResultListener listener) {
-        RootUtils.delete(getPath());
+        RootShellRunner.delete(getPath());
         listener.onResult(!exists());
     }
 
     @Override
     public void listFiles(FileListResultListener listener) {
-        List<FileInfo> list = RootUtils.listFileInfo(getPath());
+        List<FileInfo> list = RootShellRunner.listFileInfo(getPath());
 
         int size = list.size();
         RootFile[] results = new RootFile[size];
@@ -114,13 +114,13 @@ public class RootFile extends LocalFile {
 
     @Override
     public void mkdirs(final BoolResultListener listener) {
-        RootUtils.mkdirs(getPath());
-        listener.onResult(RootUtils.isDirectory(getPath()));
+        RootShellRunner.mkdirs(getPath());
+        listener.onResult(RootShellRunner.isDirectory(getPath()));
     }
 
     @Override
     public void renameTo(JecFile dest, final BoolResultListener listener) {
-        boolean rt = RootUtils.rename(getPath(), dest.getPath());
+        boolean rt = RootShellRunner.rename(getPath(), dest.getPath());
         listener.onResult(rt);
     }
 

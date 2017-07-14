@@ -16,11 +16,19 @@
  * limitations under the License.
  */
 
-package com.jecelyin.android.file_explorer.listener;
+package com.jecelyin.common.utils.command;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public interface BoolResultListener {
-    void onResult(boolean result);
+
+import com.jecelyin.common.utils.RootShellRunner;
+
+import java.util.List;
+
+public interface Runner<T> {
+    String command();
+    void onResult(RootShellRunner runner, List<String> results);
+    void onError(String error);
+    void onSuccess(T result);
 }

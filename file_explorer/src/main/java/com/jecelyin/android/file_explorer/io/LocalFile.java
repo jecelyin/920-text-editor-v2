@@ -21,7 +21,7 @@ package com.jecelyin.android.file_explorer.io;
 import android.os.Parcel;
 
 import com.jecelyin.android.file_explorer.ExplorerException;
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
 import com.jecelyin.common.utils.IOUtils;

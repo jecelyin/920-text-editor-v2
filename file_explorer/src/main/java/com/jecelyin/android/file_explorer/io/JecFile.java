@@ -20,7 +20,7 @@ package com.jecelyin.android.file_explorer.io;
 
 import android.os.Parcelable;
 
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
 

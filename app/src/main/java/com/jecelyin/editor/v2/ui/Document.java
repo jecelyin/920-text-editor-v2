@@ -21,6 +21,8 @@ package com.jecelyin.editor.v2.ui;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.jecelyin.common.listeners.BoolResultListener;
+import com.jecelyin.common.utils.RootShellRunner;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
@@ -29,7 +31,6 @@ import com.jecelyin.editor.v2.common.ReadFileListener;
 import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.io.FileReader;
 import com.jecelyin.editor.v2.task.SaveTask;
-import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 
@@ -72,25 +73,45 @@ public class Document implements ReadFileListener {
     public void loadFile(File file) {
         loadFile(file, null);
     }
-    public void loadFile(File file, String encodingName) {
-        if(!file.isFile() || !file.exists()) {
+    public void loadFile(File f, String encodingName) {
+        if(!f.isFile() || !f.exists()) {
             UIUtils.alert(context, context.getString(R.string.cannt_access_file, file.getPath()));
             return;
         }
-        root = false;
-        if ((!file.canRead() || !file.canWrite()) && pref.isRootable()) {
-            rootFile = new File(SysUtils.getAppStoragePath(context), file.getName() + ".root");
-            if (rootFile.exists())
-                rootFile.delete();
+        encoding = encodingName;
+        this.file = f;
+        root = pref.isRootEnabled();
+        if (root) {
+            if (RootShellRunner.isRootPath(file.getPath())) {
+                RootShellRunner.isRootAvailable(new BoolResultListener() {
+                    @Override
+                    public void onResult(boolean result) {
+                        root = result;
+                        if (root) {
+                            rootFile = new File(SysUtils.getAppStoragePath(context), file.getName() + ".root");
+                            if (rootFile.exists())
+                                rootFile.delete();
 
-            root = RootTools.copyFile(file.getPath(), rootFile.getPath(), false, true);
+                            root = RootShellRunner.copy(file.getPath(), rootFile.getPath());
+                        }
+                        doLoad();
+                    }
+                });
+                return;
+            } else {
+                root = false;
+            }
         }
+        doLoad();
+    }
+
+    private void doLoad() {
         if(!file.canRead() && !root) {
             UIUtils.alert(context, context.getString(R.string.cannt_read_file, file.getPath()));
             return;
         }
-        this.file = file;
-        FileReader reader = new FileReader(root ? rootFile : file, encodingName);
+
+        FileReader reader = new FileReader(root ? rootFile : file, encoding);
         new ReadFileTask(reader, this).execute();
     }
 

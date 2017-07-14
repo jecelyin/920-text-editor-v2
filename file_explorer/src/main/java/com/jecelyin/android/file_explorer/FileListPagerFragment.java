@@ -22,9 +22,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -48,13 +45,12 @@ import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.OnClipboardPasteFinishListener;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
 import com.jecelyin.common.task.JecAsyncTask;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.task.TaskResult;
-import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.RootUtils;
-import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.common.utils.RootShellRunner;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -158,15 +154,21 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
         Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
 
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-                if (getActivity() == null)
-                    return;
-                isRoot = Pref.getInstance(getContext()).isRootable();
-                onRefresh();
-            }
-        });
+        if (Pref.getInstance(getContext()).isRootEnabled()) {
+            RootShellRunner.isRootAvailable(new BoolResultListener() {
+                @Override
+                public void onResult(boolean result) {
+                    if (getActivity() == null)
+                        return;
+
+                    isRoot = result;
+                    onRefresh();
+                }
+            });
+        } else {
+            isRoot = false;
+            onRefresh();
+        }
     }
 
     @Override
@@ -317,7 +319,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             Pref pref = Pref.getInstance(context);
             final boolean showHiddenFiles = pref.isShowHiddenFiles();
             final int sortType = pref.getFileSortType();
-            if (isRoot && !(path instanceof RootFile) && RootUtils.isRootPath(path.getPath())) {
+            if (isRoot && !(path instanceof RootFile) && RootShellRunner.isRootPath(path.getPath())) {
                 path = new RootFile(path.getPath());
             }
             updateRootInfo.onUpdate(path);

@@ -20,7 +20,7 @@ package com.jecelyin.android.file_explorer.util;
 
 import com.jecelyin.android.file_explorer.ExplorerException;
 import com.jecelyin.android.file_explorer.io.JecFile;
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.stericson.RootTools.RootTools;
 
