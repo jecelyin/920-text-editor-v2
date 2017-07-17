@@ -26,21 +26,20 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class MountFileSystemRORunner extends Runner<Boolean> {
+public class MkdirRunner extends Runner<Boolean> {
     private final String path;
 
-    public MountFileSystemRORunner(String path) {
+    public MkdirRunner(String path) {
         this.path = path;
     }
 
     @Override
     public String command() {
-        return "umount -r \"" + path + "\"";
+        return "mkdir -p \"" + path + "\"";
     }
 
     @Override
     public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(true);
+        onSuccess(results.isEmpty());
     }
-
 }

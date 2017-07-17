@@ -26,9 +26,17 @@ import com.jecelyin.common.utils.RootShellRunner;
 
 import java.util.List;
 
-public interface Runner<T> {
-    String command();
-    void onResult(RootShellRunner runner, List<String> results);
-    void onError(String error);
-    void onSuccess(T result);
+public abstract class Runner<T> implements OnCommandResultCallback<T> {
+    abstract public String command();
+    abstract public void onResult(RootShellRunner runner, List<String> results);
+
+    @Override
+    public void onError(String error) {
+
+    }
+
+    @Override
+    public void onSuccess(T result) {
+
+    }
 }

@@ -18,29 +18,11 @@
 
 package com.jecelyin.common.utils.command;
 
-import com.jecelyin.common.utils.RootShellRunner;
-
-import java.util.List;
-
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class MountFileSystemRORunner extends Runner<Boolean> {
-    private final String path;
-
-    public MountFileSystemRORunner(String path) {
-        this.path = path;
-    }
-
-    @Override
-    public String command() {
-        return "umount -r \"" + path + "\"";
-    }
-
-    @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(true);
-    }
-
+public interface OnCommandResultCallback<T> {
+    void onError(String error);
+    void onSuccess(T result);
 }

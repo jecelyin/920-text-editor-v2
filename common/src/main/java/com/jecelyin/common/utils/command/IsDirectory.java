@@ -26,21 +26,20 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class MountFileSystemRORunner extends Runner<Boolean> {
+public class IsDirectory extends Runner<Boolean> {
     private final String path;
 
-    public MountFileSystemRORunner(String path) {
+    public IsDirectory(String path) {
         this.path = path;
     }
 
     @Override
     public String command() {
-        return "umount -r \"" + path + "\"";
+        return "if [ -d \"" + path + "\" ]; then echo \"yes\"; else echo \"no\"; fi";
     }
 
     @Override
     public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(true);
+        onSuccess(!results.isEmpty() && "yes".equals(results.get(0)));
     }
-
 }

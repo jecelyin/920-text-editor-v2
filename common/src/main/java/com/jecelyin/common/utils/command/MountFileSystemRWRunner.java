@@ -26,7 +26,7 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class MountFileSystemRWRunner implements Runner<String> {
+public class MountFileSystemRWRunner extends Runner<String> {
     private final String path;
 
     public MountFileSystemRWRunner(String path) {
@@ -76,28 +76,9 @@ public class MountFileSystemRWRunner implements Runner<String> {
                         else
                             MountFileSystemRWRunner.this.onError(results.toString());
                     }
-
-                    @Override
-                    public void onError(String error) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(Object result) {
-
-                    }
                 });
             }
         }
     }
 
-    @Override
-    public void onError(String error) {
-
-    }
-
-    @Override
-    public void onSuccess(String result) {
-
-    }
 }

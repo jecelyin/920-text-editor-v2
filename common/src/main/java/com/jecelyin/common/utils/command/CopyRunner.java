@@ -26,24 +26,23 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class CopyRunner implements Runner<Boolean> {
+public class CopyRunner extends Runner<Boolean> {
+    private final String source;
+    private final String destination;
+
+    public CopyRunner(String source, String destination) {
+        this.source = source;
+        this.destination = destination;
+    }
+
     @Override
     public String command() {
-        return null;
+        return "cp \"" + source + "\" \"" + destination + "\"";
     }
 
     @Override
     public void onResult(RootShellRunner runner, List<String> results) {
-
+        onSuccess(results.isEmpty());
     }
 
-    @Override
-    public void onError(String error) {
-
-    }
-
-    @Override
-    public void onSuccess(Boolean result) {
-
-    }
 }
