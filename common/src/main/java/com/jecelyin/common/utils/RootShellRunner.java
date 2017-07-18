@@ -185,18 +185,31 @@ public class RootShellRunner {
      * @param destination
      * @
      */
-    public static void move(String path, String destination) {
+    public void move(final String path, final String destination, final OnCommandResultCallback<Boolean> listener) {
+        run(new MountFileSystemRWRunner(path) {
+            @Override
+            public void onSuccess(final String mountPoint) {
+                run(new Runner<String>(){
+                    @Override
+                    public String command() {
+                        return "mv \"" + path + "\" \"" + destination + "\"";
+                    }
 
-        // remounting destination as rw
-        String mountPoint = mountFileSystemRW(destination);
+                    @Override
+                    public void onResult(RootShellRunner runner, List<String> results) {
+                        if (mountPoint != null && !mountPoint.isEmpty()) {
+                            run(new MountFileSystemRORunner(path));
+                        }
+                        listener.onSuccess(results.isEmpty());
+                    }
+                });
+            }
 
-        //mountOwnerRW(mountPath);
-        runShellCommand("mv \"" + path + "\" \"" + destination + "\"");
-
-        if (mountPoint != null) {
-            // we mounted the filesystem as rw, let's mount it back to ro
-            mountFileSystemRO(mountPoint);
-        }
+            @Override
+            public void onError(String error) {
+                listener.onError(error);
+            }
+        });
     }
 
     /**
@@ -207,29 +220,8 @@ public class RootShellRunner {
      * @return if rename was successful or not
      * @
      */
-    public static boolean rename(String oldPath, String newPath) {
-
-        String mountPoint = mountFileSystemRW(oldPath);
-
-        ArrayList<String> output = runShellCommand("mv \"" + oldPath + "\" \"" + newPath + "\"");
-
-        if (mountPoint != null) {
-            // we mounted the filesystem as rw, let's mount it back to ro
-            mountFileSystemRO(mountPoint);
-        }
-
-        return output.size() == 0;
-    }
-
-    public static void cat(String sourcePath, String destinationPath) {
-
-        String mountPoint = mountFileSystemRW(destinationPath);
-
-        runShellCommand("cat \"" + sourcePath + "\" > \"" + destinationPath + "\"");
-        if (mountPoint != null) {
-            // we mounted the filesystem as rw, let's mount it back to ro
-            mountFileSystemRO(mountPoint);
-        }
+    public void rename(String oldPath, String newPath, final OnCommandResultCallback<Boolean> listener) {
+        move(oldPath, newPath, listener);
     }
 
     public static String parsePermission(String permLine) {
@@ -334,10 +326,11 @@ public class RootShellRunner {
         return sb.toString();
     }
 
-    public static List<FileInfo> listFileInfo(String path) {
+    public List<FileInfo> listFileInfo(String path) {
         final List<FileInfo> files = new ArrayList<>();
-        if (isDirectory(path) && !path.endsWith("/"))
+        if (!path.endsWith("/"))
             path += "/";
+
         final List<String> result = runShellCommand("ls -la \"" + path + "\"");
 
         for (String line : result) {
