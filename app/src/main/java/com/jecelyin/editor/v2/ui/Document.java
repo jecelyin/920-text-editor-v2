@@ -21,7 +21,7 @@ package com.jecelyin.editor.v2.ui;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.jecelyin.common.listeners.BoolResultListener;
+import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.RootShellRunner;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
@@ -83,18 +83,40 @@ public class Document implements ReadFileListener {
         root = pref.isRootEnabled();
         if (root) {
             if (RootShellRunner.isRootPath(file.getPath())) {
-                RootShellRunner.isRootAvailable(new BoolResultListener() {
+                final RootShellRunner runner = new RootShellRunner();
+                runner.setAutoClose(false);
+                runner.isRootAvailable(new OnResultCallback<Boolean>() {
                     @Override
-                    public void onResult(boolean result) {
-                        root = result;
+                    public void onError(String error) {
+                        runner.close();
+                        doLoad();
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean result) {
                         if (root) {
                             rootFile = new File(SysUtils.getAppStoragePath(context), file.getName() + ".root");
                             if (rootFile.exists())
                                 rootFile.delete();
 
-                            root = RootShellRunner.copy(file.getPath(), rootFile.getPath());
+                            runner.copy(file.getPath(), rootFile.getPath(), new OnResultCallback<Boolean>() {
+                                @Override
+                                public void onError(String error) {
+                                    runner.close();
+                                    doLoad();
+                                }
+
+                                @Override
+                                public void onSuccess(Boolean result) {
+                                    root = result;
+                                    runner.close();
+                                    doLoad();
+                                }
+                            });
+                        } else {
+                            runner.close();
+                            doLoad();
                         }
-                        doLoad();
                     }
                 });
                 return;

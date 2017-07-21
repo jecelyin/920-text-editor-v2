@@ -22,11 +22,12 @@ package com.jecelyin.common.utils.command;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
+import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.RootShellRunner;
 
 import java.util.List;
 
-public abstract class Runner<T> implements OnCommandResultCallback<T> {
+public abstract class Runner<T> implements OnResultCallback<T> {
     abstract public String command();
     abstract public void onResult(RootShellRunner runner, List<String> results);
 

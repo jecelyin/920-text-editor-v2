@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-package com.jecelyin.common.utils.command;
+package com.jecelyin.common.listeners;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public interface OnCommandResultCallback<T> {
+public interface OnResultCallback<T> {
     void onError(String error);
     void onSuccess(T result);
 }

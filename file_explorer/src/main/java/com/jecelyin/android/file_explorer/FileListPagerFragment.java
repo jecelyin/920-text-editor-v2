@@ -47,6 +47,7 @@ import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.common.listeners.OnItemClickListener;
+import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.task.JecAsyncTask;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.task.TaskResult;
@@ -155,9 +156,14 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
 
         if (Pref.getInstance(getContext()).isRootEnabled()) {
-            RootShellRunner.isRootAvailable(new BoolResultListener() {
+            new RootShellRunner().isRootAvailable(new OnResultCallback<Boolean>() {
                 @Override
-                public void onResult(boolean result) {
+                public void onError(String error) {
+                    onRefresh();
+                }
+
+                @Override
+                public void onSuccess(Boolean result) {
                     if (getActivity() == null)
                         return;
 
@@ -316,12 +322,29 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
         @Override
         protected void onRun(final TaskResult<JecFile[]> taskResult, Void... params) throws Exception {
+
+            if (isRoot && !(path instanceof RootFile) && RootShellRunner.isRootPath(path.getPath())) {
+                RootFile.obtain(path.getPath(), new OnResultCallback<RootFile>() {
+                    @Override
+                    public void onError(String error) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(RootFile result) {
+                        path = result;
+                        updateList(taskResult);
+                    }
+                });
+            } else{
+                updateList(taskResult);
+            }
+        }
+
+        private void updateList(final TaskResult<JecFile[]> taskResult) {
             Pref pref = Pref.getInstance(context);
             final boolean showHiddenFiles = pref.isShowHiddenFiles();
             final int sortType = pref.getFileSortType();
-            if (isRoot && !(path instanceof RootFile) && RootShellRunner.isRootPath(path.getPath())) {
-                path = new RootFile(path.getPath());
-            }
             updateRootInfo.onUpdate(path);
             path.listFiles(new FileListResultListener() {
                 @Override
