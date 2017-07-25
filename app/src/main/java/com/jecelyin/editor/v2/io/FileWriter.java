@@ -20,8 +20,11 @@ package com.jecelyin.editor.v2.io;
 
 import android.os.AsyncTask;
 
-import com.jecelyin.android.file_explorer.io.RootFile;
-import com.stericson.RootTools.RootTools;
+import com.jecelyin.common.listeners.OnResultCallback;
+import com.jecelyin.common.utils.IOUtils;
+import com.jecelyin.common.utils.RootShellRunner;
+import com.jecelyin.common.utils.SysUtils;
+import com.jecelyin.editor.v2.MainApp;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,23 +35,24 @@ import java.io.OutputStreamWriter;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class FileWriter extends AsyncTask<String, Void, Exception> {
+public class FileWriter extends AsyncTask<String, Void, Void> {
     private final String encoding;
     private final File file;
     private final static int BUFFER_SIZE = 16*1024;
     private final File backupFile;
-    private final File orgiFile;
+    private final boolean root;
     private final boolean keepBackupFile;
     private FileWriteListener fileWriteListener;
+    private Exception error;
 
     public static interface FileWriteListener {
         public void onSuccess();
         public void onError(Exception e);
     }
 
-    public FileWriter(File file, File orgiFile, String encoding, boolean keepBackupFile) {
+    public FileWriter(boolean root, File file, String encoding, boolean keepBackupFile) {
         this.file = file;
-        this.orgiFile = orgiFile;
+        this.root = root;
         this.backupFile = makeBackupFile(file);
         this.encoding = encoding;
         this.keepBackupFile = keepBackupFile;
@@ -63,70 +67,116 @@ public class FileWriter extends AsyncTask<String, Void, Exception> {
     }
 
     @Override
-    protected Exception doInBackground(String... params) {
-
-        if(backupFile.exists()) {
-            if(!backupFile.delete()) {
-                RootTools.deleteFileOrDirectory(backupFile.getPath(), false);
-            }
-        }
-
-        if(file.isFile() && (orgiFile == null &&
-                !RootTools.copyFile(file.getPath(), backupFile.getPath(), true, false))) {
-            return new IOException("Couldn't copy file " + file
-                    + " to backup file " + backupFile);
-        }
-
+    protected Void doInBackground(String... params) {
         String text = params[0];
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding), BUFFER_SIZE);
-            char[] buffer = new char[BUFFER_SIZE]; //16kb
-            int size = text.length();
-            if (size > 0) {
-                int start = 0, end = BUFFER_SIZE;
-                for (;;) {
-                    end = Math.min(end, size);
-                    text.getChars(start, end, buffer, 0);
-
-                    bw.write(buffer, 0, end - start);
-                    start = end;
-
-                    if (end >= size)
-                        break;
-
-                    end += BUFFER_SIZE;
-                }
+            if (root) {
+                writeFileWithRoot(text);
+            } else {
+                writeFileWithoutRoot(text);
             }
-
-            bw.close();
         } catch (Exception e) {
-            return e;
+            error = e;
         }
 
-        // 注意路径可能是 symbolic links
-        if (orgiFile != null && !RootTools.copyFile(file.getAbsolutePath() , (new RootFile(orgiFile.getPath())).getAbsolutePath(), true, false)) {
-            return new IOException("Can't copy " + file.getPath() + " content to " + orgiFile.getPath());
-        }
-        if(file.exists()) {
-            if(!keepBackupFile && backupFile.exists() && !backupFile.delete()) {
-                return new IOException("Couldn't remove backup file " + backupFile);
-            }
-        }
         return null;
     }
 
+    private void writeFileWithRoot(final String text) throws Exception {
+        final RootShellRunner runner = new RootShellRunner();
+        runner.setAutoClose(false);
+        runner.copy(file.getPath(), backupFile.getPath(), new OnResultCallback<Boolean>() {
+            @Override
+            public void onError(String msg) {
+                error = new Exception(msg);
+                runner.close();
+                runner.notify();
+            }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                File writableFile = new File(SysUtils.getAppStoragePath(MainApp.getContext()), file.getName());
+                try {
+                    writeFile(writableFile, text);
+
+                    runner.move(writableFile.getPath(), file.getPath(), new OnResultCallback<Boolean>() {
+                        @Override
+                        public void onError(String msg) {
+                            error = new Exception(msg);
+                            onSuccess(false);
+                        }
+
+                        @Override
+                        public void onSuccess(Boolean result) {
+                            runner.close();
+                            runner.notify();
+                        }
+                    });
+                } catch (Exception e) {
+                    error = e;
+                    runner.close();
+                    runner.notify();
+                }
+
+            }
+        });
+        runner.wait();
+    }
+
+    private void writeFileWithoutRoot(String text) throws Exception {
+        if(backupFile.exists()) {
+            if(!backupFile.delete()) {
+                throw new IOException("Couldn't delete backup file " + backupFile);
+            }
+        }
+
+        if(file.isFile() && !IOUtils.copyFile(file, backupFile)) {
+            throw new IOException("Couldn't copy file " + file
+                    + " to backup file " + backupFile);
+        }
+
+        writeFile(file, text);
+
+        if(!keepBackupFile && backupFile.exists() && !backupFile.delete()) {
+            throw new IOException("Couldn't remove backup file " + backupFile);
+        }
+    }
+
+    private void writeFile(File f, String text) throws Exception {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), encoding), BUFFER_SIZE);
+        char[] buffer = new char[BUFFER_SIZE]; //16kb
+        int size = text.length();
+        if (size > 0) {
+            int start = 0, end = BUFFER_SIZE;
+            for (;;) {
+                end = Math.min(end, size);
+                text.getChars(start, end, buffer, 0);
+
+                bw.write(buffer, 0, end - start);
+                start = end;
+
+                if (end >= size)
+                    break;
+
+                end += BUFFER_SIZE;
+            }
+        }
+
+        bw.close();
+    }
+
     @Override
-    protected void onPostExecute(Exception e) {
+    protected void onPostExecute(Void v) {
         if(fileWriteListener == null)
             return;
-        if(e == null)
+        if(error == null)
             fileWriteListener.onSuccess();
         else
-            fileWriteListener.onError(e);
+            fileWriteListener.onError(error);
     }
 
     private static File makeBackupFile(File file) {
-        return new File(file.getParent(), ".920bak." + file.getName());
+        return new File(file.getParent(), file.getName() + ".bak");
     }
 
 }

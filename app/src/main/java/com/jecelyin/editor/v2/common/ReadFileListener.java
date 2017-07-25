@@ -18,13 +18,10 @@
 
 package com.jecelyin.editor.v2.common;
 
-import com.jecelyin.editor.v2.io.FileReader;
-
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public interface ReadFileListener {
     void onStart();
-    StringBuilder onAsyncReaded(FileReader fileReader);
-    void onDone(StringBuilder stringBuilder, Throwable throwable);
+    void onDone(StringBuilder stringBuilder, String encoding, Throwable throwable);
 }

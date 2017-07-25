@@ -37,7 +37,7 @@ public class CopyRunner extends Runner<Boolean> {
 
     @Override
     public String command() {
-        return "cp \"" + source + "\" \"" + destination + "\"";
+        return "cp -f \"" + source + "\" \"" + destination + "\"";
     }
 
     @Override

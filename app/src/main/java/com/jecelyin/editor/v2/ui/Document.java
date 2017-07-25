@@ -19,11 +19,9 @@
 package com.jecelyin.editor.v2.ui;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.RootShellRunner;
-import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
@@ -44,7 +42,7 @@ public class Document implements ReadFileListener {
     private final SaveTask saveTask;
     private final Pref pref;
     private String encoding = "UTF-8";
-    private File file, rootFile;
+    private File file;
     private boolean root;
 
     public Document(Context context, EditorDelegate EditorDelegate) {
@@ -59,14 +57,12 @@ public class Document implements ReadFileListener {
     public void onSaveInstanceState(EditorDelegate.SavedState ss) {
         ss.encoding = encoding;
         ss.file = file;
-        ss.rootFile = rootFile;
         ss.root = root;
     }
 
     public void onRestoreInstanceState(EditorDelegate.SavedState ss) {
         encoding = ss.encoding;
         file = ss.file;
-        rootFile = ss.rootFile;
         root = ss.root;
     }
 
@@ -84,7 +80,6 @@ public class Document implements ReadFileListener {
         if (root) {
             if (RootShellRunner.isRootPath(file.getPath())) {
                 final RootShellRunner runner = new RootShellRunner();
-                runner.setAutoClose(false);
                 runner.isRootAvailable(new OnResultCallback<Boolean>() {
                     @Override
                     public void onError(String error) {
@@ -94,29 +89,9 @@ public class Document implements ReadFileListener {
 
                     @Override
                     public void onSuccess(Boolean result) {
-                        if (root) {
-                            rootFile = new File(SysUtils.getAppStoragePath(context), file.getName() + ".root");
-                            if (rootFile.exists())
-                                rootFile.delete();
-
-                            runner.copy(file.getPath(), rootFile.getPath(), new OnResultCallback<Boolean>() {
-                                @Override
-                                public void onError(String error) {
-                                    runner.close();
-                                    doLoad();
-                                }
-
-                                @Override
-                                public void onSuccess(Boolean result) {
-                                    root = result;
-                                    runner.close();
-                                    doLoad();
-                                }
-                            });
-                        } else {
-                            runner.close();
-                            doLoad();
-                        }
+                        root = result;
+                        runner.close();
+                        doLoad();
                     }
                 });
                 return;
@@ -133,8 +108,8 @@ public class Document implements ReadFileListener {
             return;
         }
 
-        FileReader reader = new FileReader(root ? rootFile : file, encoding);
-        new ReadFileTask(reader, this).execute();
+        FileReader reader = new FileReader(context, file, encoding, root, this);
+        reader.start();
     }
 
     @Override
@@ -143,21 +118,12 @@ public class Document implements ReadFileListener {
     }
 
     @Override
-    public StringBuilder onAsyncReaded(FileReader fileReader) {
-        StringBuilder text = fileReader.getBuffer();
-
-        encoding = fileReader.getEncoding();
-
-        return text;
-
-    }
-
-    @Override
-    public void onDone(StringBuilder StringBuilder, Throwable throwable) {
+    public void onDone(StringBuilder StringBuilder, String encoding, Throwable throwable) {
         //给回收了。。
         if(editorDelegate == null || editorDelegate.mEditText == null)
             return;
         if(throwable != null) {
+            this.encoding = encoding;
             editorDelegate.onLoadFinish();
             String message;
             if (throwable instanceof OutOfMemoryError) {
@@ -174,38 +140,6 @@ public class Document implements ReadFileListener {
 
     }
 
-    private final static class ReadFileTask extends AsyncTask<File, Void, StringBuilder> {
-        private final ReadFileListener listener;
-        private final FileReader fileReader;
-        private Throwable error;
-
-        public ReadFileTask(FileReader reader, ReadFileListener listener) {
-            this.fileReader = reader;
-            this.listener = listener;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            listener.onStart();
-        }
-
-        @Override
-        protected StringBuilder doInBackground(File... params) {
-            try {
-                fileReader.read();
-            } catch (Throwable t) {
-                error = t;
-            }
-
-            return listener.onAsyncReaded(fileReader);
-        }
-
-        @Override
-        protected void onPostExecute(StringBuilder StringBuilder) {
-            listener.onDone(StringBuilder, error);
-        }
-    }
-
     public File getFile() {
         return file;
     }
@@ -216,10 +150,6 @@ public class Document implements ReadFileListener {
 
     public String getEncoding() {
         return encoding;
-    }
-
-    public File getRootFile() {
-        return rootFile;
     }
 
     public boolean isRoot() {

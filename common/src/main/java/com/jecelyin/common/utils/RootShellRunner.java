@@ -120,6 +120,33 @@ public class RootShellRunner {
         });
     }
 
+    public void chmod(final String mode, final String path,  final OnResultCallback<Boolean> listener) {
+        run(new MountFileSystemRWRunner(path) {
+            @Override
+            public void onSuccess(final String mountPoint) {
+                run(new Runner<String>(){
+                    @Override
+                    public String command() {
+                        return "chmod " + mode + " \"" + path + "\"";
+                    }
+
+                    @Override
+                    public void onResult(RootShellRunner runner, List<String> results) {
+                        if (mountPoint != null && !mountPoint.isEmpty()) {
+                            run(new MountFileSystemRORunner(path));
+                        }
+                        listener.onSuccess(results.isEmpty());
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String error) {
+                listener.onError(error);
+            }
+        });
+    }
+
     public void delete(final String path, final OnResultCallback<Boolean> listener) {
         run(new MountFileSystemRWRunner(path) {
             @Override
