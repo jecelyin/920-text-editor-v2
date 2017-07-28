@@ -29,7 +29,9 @@ public class TaskResult<T> {
     void waitResult() throws InterruptedException {
         this.waitResult = true;
         if (!hasResult)
-            wait();
+            synchronized (this) {
+                wait();
+            }
     }
 
     T getResult() {
@@ -40,6 +42,8 @@ public class TaskResult<T> {
         this.hasResult = true;
         this.result = result;
         if (waitResult)
-            notify();
+            synchronized (this) {
+                notify();
+            }
     }
 }

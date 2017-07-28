@@ -20,10 +20,10 @@ package com.jecelyin.common.utils.command;
 
 import android.text.TextUtils;
 
-import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.FileInfo;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.RootShellRunner;
+import com.jecelyin.common.utils.ShellProcessor;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -50,10 +50,10 @@ public class ListFileRunner extends Runner<List<FileInfo>> {
     @Override
     public void onResult(RootShellRunner runner, List<String> results) {
         final List<FileInfo> files = new ArrayList<>();
-        eachResults(runner, results, files);
+        eachResults(results, files);
     }
 
-    private void eachResults(RootShellRunner runner, List<String> results, List<FileInfo> files) {
+    private void eachResults(List<String> results, List<FileInfo> files) {
         if (results.isEmpty()) {
             onSuccess(files);
             return;
@@ -69,23 +69,23 @@ public class ListFileRunner extends Runner<List<FileInfo>> {
             }
             FileInfo failedToRead = new FileInfo(false, line);
             files.add(failedToRead);
-            eachResults(runner, results, files);
+            eachResults(results, files);
             return;
         }
         // /data/data/com.android.shell/files/bugreports: No such file or directory
         if (line.startsWith("/") && line.contains(": No such file")) {
-            eachResults(runner, results, files);
+            eachResults(results, files);
             return;
         }
         try {
-            lsParser(runner, results, files, path, line);
+            lsParser(results, files, path, line);
         } catch (Exception e) {
             L.e("parse line error: " + line, e);
-            eachResults(runner, results, files);
+            eachResults(results, files);
         }
     }
 
-    private void lsParser(final RootShellRunner runner, final List<String> results, final List<FileInfo> files, String path, String line) {
+    private void lsParser(final List<String> results, final List<FileInfo> files, String path, String line) {
         final String[] split = line.split(" ");
         int index = 0;
 
@@ -189,27 +189,27 @@ public class ListFileRunner extends Runner<List<FileInfo>> {
         if (type == 'd') {
             file.isDirectory = true;
             files.add(file);
-            eachResults(runner, results, files);
+            eachResults(results, files);
         } else if (type == 'l') {
             file.isSymlink = true;
             String linkPath = file.linkedPath;
-            runner.isDirectory(linkPath, new OnResultCallback<Boolean>() {
+            ShellProcessor.getShell().addCommand(new IsDirectoryRunner(linkPath) {
                 @Override
                 public void onError(String error) {
                     files.add(file);
-                    eachResults(runner, results, files);
+                    eachResults(results, files);
                 }
 
                 @Override
                 public void onSuccess(Boolean result) {
                     file.isDirectory = result;
                     files.add(file);
-                    eachResults(runner, results, files);
+                    eachResults(results, files);
                 }
             });
         } else {
             files.add(file);
-            eachResults(runner, results, files);
+            eachResults(results, files);
         }
 
 

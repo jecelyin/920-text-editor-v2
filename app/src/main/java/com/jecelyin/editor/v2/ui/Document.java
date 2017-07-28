@@ -122,8 +122,8 @@ public class Document implements ReadFileListener {
         //给回收了。。
         if(editorDelegate == null || editorDelegate.mEditText == null)
             return;
+        this.encoding = encoding;
         if(throwable != null) {
-            this.encoding = encoding;
             editorDelegate.onLoadFinish();
             String message;
             if (throwable instanceof OutOfMemoryError) {

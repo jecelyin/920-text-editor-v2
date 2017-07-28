@@ -124,6 +124,11 @@ public class RootFile extends LocalFile {
             public void onSuccess(List<FileInfo> result) {
                 int size = result.size();
                 RootFile[] results = new RootFile[size];
+                String path = getPath();
+                for (int i = 0; i < size; i++) {
+                    FileInfo fileInfo = result.get(i);
+                    results[i] = new RootFile(path + "/" + fileInfo.name, fileInfo);
+                }
                 listener.onResult(result.toArray(results));
             }
         });

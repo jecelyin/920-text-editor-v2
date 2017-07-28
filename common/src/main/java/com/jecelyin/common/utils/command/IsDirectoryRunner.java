@@ -26,16 +26,22 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class IsDirectory extends Runner<Boolean> {
+public class IsDirectoryRunner extends Runner<Boolean> {
     private final String path;
 
-    public IsDirectory(String path) {
+    public IsDirectoryRunner(String path) {
         this.path = path;
     }
 
     @Override
     public String command() {
         return "if [ -d \"" + path + "\" ]; then echo \"yes\"; else echo \"no\"; fi";
+    }
+
+    @Override
+    public void onError(String error) {
+        super.onError(error);
+        onSuccess(false);
     }
 
     @Override

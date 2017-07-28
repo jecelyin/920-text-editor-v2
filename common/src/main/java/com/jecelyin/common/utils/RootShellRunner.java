@@ -18,51 +18,29 @@
 
 package com.jecelyin.common.utils;
 
+import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.command.CopyRunner;
 import com.jecelyin.common.utils.command.ExistsRunner;
-import com.jecelyin.common.utils.command.IsDirectory;
+import com.jecelyin.common.utils.command.IsDirectoryRunner;
 import com.jecelyin.common.utils.command.ListFileRunner;
 import com.jecelyin.common.utils.command.MkdirRunner;
 import com.jecelyin.common.utils.command.MountFileSystemRORunner;
 import com.jecelyin.common.utils.command.MountFileSystemRWRunner;
-import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.command.Runner;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import eu.chainfire.libsuperuser.Shell;
 
 public class RootShellRunner {
-    private final Shell.Interactive interactive;
-    private AtomicInteger code = new AtomicInteger(0);
-    private boolean autoClose = true;
-
-    public RootShellRunner() {
-        interactive = new Shell.Builder().
-                useSU().
-                setWantSTDERR(true).
-                setWatchdogTimeout(5).
-                setMinimalLogging(false).open();
-    }
 
     public void close() {
-        interactive.close();
     }
 
     public void setAutoClose(boolean autoClose) {
-        this.autoClose = autoClose;
     }
 
     public void run(final Runner runner) {
-        interactive.addCommand(runner.command(), code.getAndIncrement(), new Shell.OnCommandResultListener() {
-            @Override
-            public void onCommandResult(int commandCode, int exitCode, List<String> output) {
-                runner.onResult(RootShellRunner.this, output);
-                if (autoClose)
-                    close();
-            }
-        });
+
+        ShellProcessor.getShell().addCommand(runner);
     }
 
     public void copy(final String source, final String destination, final OnResultCallback<Boolean> listener) {
@@ -267,7 +245,7 @@ public class RootShellRunner {
     }
 
     public void isDirectory(String path, final OnResultCallback<Boolean> listener) {
-        run(new IsDirectory(path) {
+        run(new IsDirectoryRunner(path) {
             @Override
             public void onSuccess(Boolean result) {
                 listener.onSuccess(result);
