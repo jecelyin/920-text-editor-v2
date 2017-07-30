@@ -20,6 +20,9 @@ package com.jecelyin.common.utils;
 
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 
 import com.jecelyin.common.utils.command.Runner;
 
@@ -28,14 +31,17 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class ShellProcessor extends AsyncTask<Runner, Void, List<String>> {
+public class ShellProcessor {
     private Process process;
     private static ShellProcessor shellProcessor;
     private BufferedReader inputStream;
@@ -45,34 +51,103 @@ public class ShellProcessor extends AsyncTask<Runner, Void, List<String>> {
     private volatile Runner runner;
     private volatile ArrayList<String> result;
     private volatile ArrayList<String> error;
+    private static InternalHandler sHandler;
+    private final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();
+    private Runnable mActive;
+    private static final int MESSAGE_POST_RESULT = 1;
+
+    private static class TaskResult {
+        final ShellProcessor mTask;
+        final List<String> mData;
+
+        TaskResult(ShellProcessor task, List<String> data) {
+            mTask = task;
+            mData = data;
+        }
+    }
+
+    private static class InternalHandler extends Handler {
+
+        public InternalHandler() {
+            super(Looper.getMainLooper());
+        }
+
+        @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"})
+        @Override
+        public void handleMessage(Message msg) {
+            TaskResult result = (TaskResult) msg.obj;
+            switch (msg.what) {
+                case MESSAGE_POST_RESULT:
+                    result.mTask.onPostExecute(result.mData);
+                    break;
+            }
+        }
+    }
+
+    private synchronized void execute(final Runnable r) {
+        mTasks.offer(new Runnable() {
+            public void run() {
+                try {
+                    r.run();
+                } finally {
+                    scheduleNext();
+                }
+            }
+        });
+        if (mActive == null) {
+            scheduleNext();
+        }
+    }
+
+    private synchronized void scheduleNext() {
+        if ((mActive = mTasks.poll()) != null) {
+            THREAD_POOL_EXECUTOR.execute(mActive);
+        }
+    }
+
+    private static Handler getHandler() {
+        synchronized (AsyncTask.class) {
+            if (sHandler == null) {
+                sHandler = new InternalHandler();
+            }
+            return sHandler;
+        }
+    }
+
 
     private ShellProcessor() {}
 
     public static ShellProcessor getShell() {
-//        if (shellProcessor != null)
-//            return shellProcessor;
-//
-//        shellProcessor = new ShellProcessor();
+        if (shellProcessor != null)
+            return shellProcessor;
+
+        shellProcessor = new ShellProcessor();
 
         return new ShellProcessor();
     }
 
-    public void addCommand(Runner runner) {
-        execute(runner);
+    public void addCommand(final Runner runner) {
+        execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    processCommand(runner);
+                    postResult(result);
+                } catch (Exception e) {
+                    L.e(e);
+                }
+            }
+        });
     }
 
-    @Override
-    protected List<String> doInBackground(Runner... params) {
-        try {
-            processCommand(params[0]);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    private void postResult(List<String> result) {
+        @SuppressWarnings("unchecked")
+        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
+                new TaskResult(this, result));
+        message.sendToTarget();
     }
 
-    @Override
-    protected void onPostExecute(List<String> strings) {
+    private void onPostExecute(List<String> strings) {
         runner.onResult(null, strings);
     }
 
@@ -133,9 +208,8 @@ public class ShellProcessor extends AsyncTask<Runner, Void, List<String>> {
                     if (pos == -1) {
                         buffer.add(outputLine);
                     } else if (pos >= 0) {
-                        L.d("Found token, line: " + outputLine);
+                        L.d("CND", "Found token, line: " + outputLine);
                         buffer.add(outputLine.substring(0, pos));
-                        break;
                     }
                 }
 
@@ -157,7 +231,7 @@ public class ShellProcessor extends AsyncTask<Runner, Void, List<String>> {
                 closeable.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            L.e(e);
         }
     }
 }
