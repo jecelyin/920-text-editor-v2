@@ -89,7 +89,6 @@ public class FileWriter extends AsyncTask<String, Void, Void> {
             public void onError(String msg) {
                 error = new Exception(msg);
                 runner.close();
-                runner.notify();
             }
 
             @Override
@@ -108,18 +107,16 @@ public class FileWriter extends AsyncTask<String, Void, Void> {
                         @Override
                         public void onSuccess(Boolean result) {
                             runner.close();
-                            runner.notify();
                         }
                     });
                 } catch (Exception e) {
                     error = e;
                     runner.close();
-                    runner.notify();
                 }
 
             }
         });
-        runner.wait();
+        runner.waitFor();
     }
 
     private void writeFileWithoutRoot(String text) throws Exception {

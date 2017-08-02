@@ -31,15 +31,30 @@ import com.jecelyin.common.utils.command.MountFileSystemRWRunner;
 import com.jecelyin.common.utils.command.Runner;
 import com.jecelyin.common.utils.command.ShellProcessor;
 
+import java.io.File;
 import java.util.List;
 
 public class RootShellRunner {
+    private final Object lock = new Object();
 
     public static RootShellRunner getRunner() {
         return new RootShellRunner();
     }
 
+    public void waitFor() {
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void close() {
+        synchronized (lock) {
+            lock.notifyAll();
+        }
     }
 
     private void run(final Runner runner) {
@@ -177,7 +192,8 @@ public class RootShellRunner {
                 run(new Runner<Boolean>(){
                     @Override
                     public String command() {
-                        return "mv \"" + path + "\" \"" + destination + "\"";
+                        return "cat \"" + path + "\" > \"" + destination + "\";" +
+                                "if [ -f \"" + destination + "\" ]; then rm -f \"" + path + "\"; fi";
                     }
 
                     @Override
@@ -206,12 +222,16 @@ public class RootShellRunner {
     }
 
     public static boolean isRootPath(String path) {
-        String isd = SysUtils.getInternalStorageDirectory();
-        if (path.startsWith(isd)) {
-            String androidPath = isd + "/Android/";
-            return path.startsWith(androidPath) || androidPath.equals(path);
+        String[] paths = new String[] {SysUtils.getInternalStorageDirectory(), "/sdcard", "/mnt/sdcard", "/storage/emulated", "/storage/sdcard0", "/storage/sdcard1"};
+        for (String prefix : paths) {
+            if (path.startsWith(prefix)) {
+                String androidPath = prefix + "/Android/";
+                return path.startsWith(androidPath) || androidPath.equals(path);
+            }
         }
-        return true;
+
+        File file = new File(path);
+        return !file.canRead() || !file.canWrite();
     }
 
     public void exists(String path, final OnResultCallback<Boolean> listener) {

@@ -193,8 +193,6 @@ public class ShellProcessor {
         String line = "echo " + runner.token + "\n";
         outputStream.write(line);
         outputStream.flush();
-
-        L.d("CMD", "finish");
     }
 
     private class ReadTask implements Runnable {
