@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'blockcanaryex'
+//apply plugin: 'blockcanaryex'
 
 Properties properties = new Properties()
 properties.load(file('../../keystore/920-text-editor-v2.gradle.properties').newDataInputStream())
@@ -137,6 +137,6 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     compile 'org.msgpack:msgpack-core:0.8.11'
 
-    debugCompile 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.5.2'
-    releaseCompile 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.5.2'
+//    debugCompile 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.5.2'
+//    releaseCompile 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.5.2'
 }

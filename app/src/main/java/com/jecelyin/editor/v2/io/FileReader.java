@@ -67,8 +67,7 @@ public class FileReader extends AsyncTask<Void, Void, StringBuilder> {
             rootFile.delete();
 
         final RootShellRunner runner = new RootShellRunner();
-        runner.setAutoClose(false);
-        runner.copy(file.getPath(), rootFile.getPath(), new OnResultCallback<Boolean>() {
+        runner.copy(file.getPath(), rootFile.getPath(), "a+r", new OnResultCallback<Boolean>() {
             @Override
             public void onError(String error) {
                 runner.close();
@@ -77,28 +76,13 @@ public class FileReader extends AsyncTask<Void, Void, StringBuilder> {
 
             @Override
             public void onSuccess(Boolean result) {
+                runner.close();
                 if (!result) {
-                    runner.close();
                     listener.onDone(null, null, new Exception(context.getString(R.string.read_file_exception)));
                     return;
                 }
-                runner.chmod("777", rootFile.getPath(), new OnResultCallback<Boolean>() {
-                    @Override
-                    public void onError(String error) {
-                        runner.close();
-                        listener.onDone(null, null, new Exception(error));
-                    }
 
-                    @Override
-                    public void onSuccess(Boolean result) {
-                        runner.close();
-                        if (!result) {
-                            listener.onDone(null, null, new Exception(context.getString(R.string.read_file_exception)));
-                            return;
-                        }
-                        execute();
-                    }
-                });
+                execute();
             }
         });
     }
@@ -120,15 +104,18 @@ public class FileReader extends AsyncTask<Void, Void, StringBuilder> {
 
     @Override
     protected void onPostExecute(StringBuilder StringBuilder) {
+        if (rootFile != null)
+            rootFile.delete();
         listener.onDone(StringBuilder, encoding, error);
     }
 
     private StringBuilder read() throws Exception, OutOfMemoryError {
+        File f = rootFile != null && rootFile.isFile() ? rootFile : file;
         if(TextUtils.isEmpty(encoding))
-            encoding = FileEncodingDetector.detectEncoding(file);
+            encoding = FileEncodingDetector.detectEncoding(f);
 
         L.d(file.getPath()+" encoding is "+encoding);
-        LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(file), encoding));
+        LineNumberReader reader = new LineNumberReader(new InputStreamReader(new FileInputStream(f), encoding));
 
         char[] buf = new char[BUFFER_SIZE];
         int len;

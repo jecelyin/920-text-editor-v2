@@ -16,26 +16,24 @@
  * limitations under the License.
  */
 
-package com.jecelyin.common.utils;
+package com.jecelyin.common.utils.command;
 
 
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.TextUtils;
 
-import com.jecelyin.common.utils.command.Runner;
+import com.jecelyin.common.utils.L;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -48,72 +46,61 @@ public class ShellProcessor {
     private BufferedReader errorStream;
     private OutputStreamWriter outputStream;
     private boolean close;
-    private volatile Runner runner;
-    private volatile ArrayList<String> result;
-    private volatile ArrayList<String> error;
+    private Runner runner;
+    private ArrayList<String> result;
+    private ArrayList<String> error;
     private static InternalHandler sHandler;
-    private final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();
-    private Runnable mActive;
+    private TaskQueue taskQueue = new TaskQueue();
+
     private static final int MESSAGE_POST_RESULT = 1;
 
     private static class TaskResult {
         final ShellProcessor mTask;
-        final List<String> mData;
+        final List<String> mResults;
+        final List<String> mErrors;
 
-        TaskResult(ShellProcessor task, List<String> data) {
+        TaskResult(ShellProcessor task, List<String> data, List<String> error) {
             mTask = task;
-            mData = data;
-        }
-    }
-
-    private static class InternalHandler extends Handler {
-
-        public InternalHandler() {
-            super(Looper.getMainLooper());
-        }
-
-        @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"})
-        @Override
-        public void handleMessage(Message msg) {
-            TaskResult result = (TaskResult) msg.obj;
-            switch (msg.what) {
-                case MESSAGE_POST_RESULT:
-                    result.mTask.onPostExecute(result.mData);
-                    break;
-            }
+            mResults = data;
+            mErrors = error;
         }
     }
 
     private synchronized void execute(final Runnable r) {
-        mTasks.offer(new Runnable() {
-            public void run() {
+        try {
+            prepare();
+        } catch (Exception e) {
+            L.e(e);
+        }
+
+        taskQueue.addTask(r);
+    }
+
+    private static class TaskQueue implements Runnable {
+        private Runnable mActive;
+        private final ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(30);
+
+        private void addTask(Runnable r) {
+            queue.add(r);
+        }
+
+        @Override
+        public void run() {
+            for (;;) {
                 try {
-                    r.run();
-                } finally {
-                    scheduleNext();
+                    if ((mActive = queue.take()) != null) {
+                        try {
+                            mActive.run();
+                        } catch (Exception e) {
+                            L.e(e);
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        });
-        if (mActive == null) {
-            scheduleNext();
         }
     }
-
-    private synchronized void scheduleNext() {
-        if ((mActive = mTasks.poll()) != null) {
-            THREAD_POOL_EXECUTOR.execute(mActive);
-        }
-    }
-
-    private static Handler getHandler() {
-        synchronized (AsyncTask.class) {
-            if (sHandler == null) {
-                sHandler = new InternalHandler();
-            }
-            return sHandler;
-        }
-    }
-
 
     private ShellProcessor() {}
 
@@ -132,7 +119,6 @@ public class ShellProcessor {
             public void run() {
                 try {
                     processCommand(runner);
-                    postResult(result);
                 } catch (Exception e) {
                     L.e(e);
                 }
@@ -140,36 +126,65 @@ public class ShellProcessor {
         });
     }
 
-    private void postResult(List<String> result) {
+    private static Handler getHandler() {
+        synchronized (ShellProcessor.class) {
+            if (sHandler == null) {
+                sHandler = new InternalHandler();
+            }
+            return sHandler;
+        }
+    }
+
+    private static class InternalHandler extends Handler {
+
+        public InternalHandler() {
+            super(Looper.getMainLooper());
+        }
+
+        @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"})
+        @Override
+        public void handleMessage(Message msg) {
+            TaskResult result = (TaskResult) msg.obj;
+            switch (msg.what) {
+                case MESSAGE_POST_RESULT:
+                    result.mTask.runner.process(result.mResults, TextUtils.join("\n", result.mErrors));
+                    break;
+            }
+        }
+    }
+
+    private void postResult() {
+//        process.notifyAll();
         @SuppressWarnings("unchecked")
         Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
-                new TaskResult(this, result));
+                new TaskResult(this, result, error));
         message.sendToTarget();
     }
 
-    private void onPostExecute(List<String> strings) {
-        runner.onResult(null, strings);
-    }
+    private void prepare() throws Exception {
+        if (process != null) {
+            return;
+        }
+        L.d("CMD", "prepare start");
 
-    private void prepare() throws IOException {
-//        if (process != null) {
-//            return;
-//        }
         process = Runtime.getRuntime().exec("su");
         inputStream = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
         errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream(), "UTF-8"));
         outputStream = new OutputStreamWriter(process.getOutputStream(), "UTF-8");
 
-        new Thread(new ReadTask(inputStream)).start();
-        new Thread(new ReadTask(errorStream)).start();
+        new Thread(new ReadTask(inputStream), "CMD-INPUT").start();
+        new Thread(new ReadTask(errorStream), "CMD-OUTPUT").start();
+        new Thread(taskQueue, "CMD-TASK-QUEUE").start();
+        L.d("CMD", "prepare end");
     }
 
     private void processCommand(Runner runner) throws Exception {
         this.runner = runner;
+
+        L.d("CMD", runner.command());
         result = new ArrayList<>();
         error = new ArrayList<>();
-        L.d("CMD", runner.command());
-        prepare();
+
         //write the command
         outputStream.write(runner.command() + "\n");
         outputStream.flush();
@@ -179,8 +194,7 @@ public class ShellProcessor {
         outputStream.write(line);
         outputStream.flush();
 
-        process.waitFor();
-        L.d("CMD", "wait finish");
+        L.d("CMD", "finish");
     }
 
     private class ReadTask implements Runnable {
@@ -192,7 +206,6 @@ public class ShellProcessor {
 
         public void run() {
             try {
-                ArrayList<String> buffer = reader == errorStream ? error : result;
                 //as long as there is something to read, we will keep reading.
                 while (!close || reader.ready() ) {
                     String outputLine = reader.readLine();
@@ -201,7 +214,11 @@ public class ShellProcessor {
                         break;
                     }
 
-                    L.d("CMD", ">" + outputLine);
+                    L.d("CMD", "> " + outputLine);
+
+                    ArrayList<String> buffer = reader == errorStream ? error : result;
+                    if (buffer == null)
+                        continue;
 
                     int pos = outputLine.indexOf(runner.token);
 
@@ -209,7 +226,10 @@ public class ShellProcessor {
                         buffer.add(outputLine);
                     } else if (pos >= 0) {
                         L.d("CND", "Found token, line: " + outputLine);
-                        buffer.add(outputLine.substring(0, pos));
+                        String line = outputLine.substring(0, pos);
+                        if (!TextUtils.isEmpty(line))
+                            buffer.add(line);
+                        postResult();
                     }
                 }
 

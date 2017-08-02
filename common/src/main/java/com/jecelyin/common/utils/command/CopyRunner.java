@@ -18,7 +18,8 @@
 
 package com.jecelyin.common.utils.command;
 
-import com.jecelyin.common.utils.RootShellRunner;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import java.util.List;
 
@@ -29,20 +30,30 @@ import java.util.List;
 public class CopyRunner extends Runner<Boolean> {
     private final String source;
     private final String destination;
+    private final String mode;
 
-    public CopyRunner(String source, String destination) {
+    public CopyRunner(String source, String destination, String mode) {
         this.source = source;
         this.destination = destination;
+        this.mode = mode;
     }
 
     @Override
     public String command() {
-        return "cp -f \"" + source + "\" \"" + destination + "\"";
+        String cmd = "cp -f \"" + source + "\" \"" + destination + "\"";
+        if (!TextUtils.isEmpty(mode)) {
+            cmd += ";chmod " + mode + "\"" + destination + "\"";
+        }
+        return cmd;
     }
 
     @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(results.isEmpty());
+    protected void process(List<String> result, @NonNull String errors) {
+        onResult(result.isEmpty(), errors);
     }
 
+    @Override
+    public void onResult(Boolean result, @NonNull String errors) {
+
+    }
 }

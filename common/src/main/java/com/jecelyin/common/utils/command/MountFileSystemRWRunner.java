@@ -18,7 +18,7 @@
 
 package com.jecelyin.common.utils.command;
 
-import com.jecelyin.common.utils.RootShellRunner;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class MountFileSystemRWRunner extends Runner<String> {
     }
 
     @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
+    protected void process(List<String> results, @NonNull String errors) {
         String mountPoint = "", types = null;
         for (String line : results) {
             String[] words = line.split(" ");
@@ -60,25 +60,32 @@ public class MountFileSystemRWRunner extends Runner<String> {
             // we have the mountpoint, check for mount options if already rw
             if (types.contains("rw")) {
                 // already a rw filesystem return
-                onSuccess(null);
+                onResult(null, errors);
             } else if (types.contains("ro")) {
                 // read-only file system, remount as rw
-                runner.run(new Runner() {
+                ShellProcessor.getShell().addCommand(new Runner<Boolean>() {
                     @Override
                     public String command() {
                         return "mount -o rw,remount " + mountPointPath;
                     }
 
                     @Override
-                    public void onResult(RootShellRunner runner, List results) {
-                        if (results.isEmpty())
-                            MountFileSystemRWRunner.this.onSuccess(mountPointPath);
-                        else
-                            MountFileSystemRWRunner.this.onError(results.toString());
+                    protected void process(List result, @NonNull String errors) {
+                        onResult(result.isEmpty(), errors);
+                    }
+
+                    @Override
+                    public void onResult(Boolean result, @NonNull String errors) {
+                        MountFileSystemRWRunner.this.onResult(result ? mountPointPath : null, errors);
                     }
                 });
             }
         }
+    }
+
+    @Override
+    public void onResult(String mountPoint, @NonNull String errors) {
+
     }
 
 }

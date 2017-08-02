@@ -18,6 +18,8 @@
 
 package com.jecelyin.common.utils;
 
+import android.support.annotation.NonNull;
+
 import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.command.CopyRunner;
 import com.jecelyin.common.utils.command.ExistsRunner;
@@ -27,73 +29,69 @@ import com.jecelyin.common.utils.command.MkdirRunner;
 import com.jecelyin.common.utils.command.MountFileSystemRORunner;
 import com.jecelyin.common.utils.command.MountFileSystemRWRunner;
 import com.jecelyin.common.utils.command.Runner;
+import com.jecelyin.common.utils.command.ShellProcessor;
 
 import java.util.List;
 
 public class RootShellRunner {
 
+    public static RootShellRunner getRunner() {
+        return new RootShellRunner();
+    }
+
     public void close() {
     }
 
-    public void setAutoClose(boolean autoClose) {
-    }
-
-    public void run(final Runner runner) {
-
+    private void run(final Runner runner) {
         ShellProcessor.getShell().addCommand(runner);
     }
 
     public void copy(final String source, final String destination, final OnResultCallback<Boolean> listener) {
+        copy(source, destination, null, listener);
+    }
+
+    public void copy(final String source, final String destination, final String mode, final OnResultCallback<Boolean> listener) {
         run(new MountFileSystemRWRunner(destination) {
             @Override
-            public void onSuccess(final String mountPoint) {
-                run(new CopyRunner(source, destination){
+            public void onResult(final String mountPoint, @NonNull String errors) {
+                if (!errors.isEmpty()) {
+                    listener.onError(errors);
+                    return;
+                }
+                run(new CopyRunner(source, destination, mode){
                     @Override
-                    public void onSuccess(Boolean result) {
+                    public void onResult(Boolean result, @NonNull String errors) {
                         if (mountPoint != null && !mountPoint.isEmpty()) {
                             run(new MountFileSystemRORunner(destination));
                         }
                         listener.onSuccess(result);
                     }
-
-                    @Override
-                    public void onError(String error) {
-                        listener.onError(error);
-                    }
                 });
             }
-
-            @Override
-            public void onError(String error) {
-                listener.onError(error);
-            }
         });
-
     }
 
     public void mkdirs(final String path, final OnResultCallback<Boolean> listener) {
         run(new MountFileSystemRWRunner(path) {
             @Override
-            public void onSuccess(final String mountPoint) {
+            public void onResult(final String mountPoint, @NonNull String errors) {
+                if (!errors.isEmpty()) {
+                    listener.onError(errors);
+                    return;
+                }
                 run(new MkdirRunner(path){
                     @Override
-                    public void onSuccess(Boolean result) {
+                    public void onResult(Boolean result, @NonNull String errors) {
+                        if (!errors.isEmpty()) {
+                            listener.onError(errors);
+                            return;
+                        }
                         if (mountPoint != null && !mountPoint.isEmpty()) {
                             run(new MountFileSystemRORunner(path));
                         }
                         listener.onSuccess(result);
                     }
-
-                    @Override
-                    public void onError(String error) {
-                        listener.onError(error);
-                    }
                 });
-            }
-
-            @Override
-            public void onError(String error) {
-                listener.onError(error);
             }
         });
     }
@@ -101,26 +99,34 @@ public class RootShellRunner {
     public void chmod(final String mode, final String path,  final OnResultCallback<Boolean> listener) {
         run(new MountFileSystemRWRunner(path) {
             @Override
-            public void onSuccess(final String mountPoint) {
-                run(new Runner<String>(){
+            public void onResult(final String mountPoint, @NonNull String errors) {
+                if (!errors.isEmpty()) {
+                    listener.onError(errors);
+                    return;
+                }
+                run(new Runner<Boolean>(){
                     @Override
                     public String command() {
                         return "chmod " + mode + " \"" + path + "\"";
                     }
 
                     @Override
-                    public void onResult(RootShellRunner runner, List<String> results) {
+                    protected void process(List<String> result, @NonNull String errors) {
+                        if (!errors.isEmpty()) {
+                            listener.onError(errors);
+                            return;
+                        }
+                        onResult(result.isEmpty(), errors);
+                    }
+
+                    @Override
+                    public void onResult(Boolean result, @NonNull String errors) {
                         if (mountPoint != null && !mountPoint.isEmpty()) {
                             run(new MountFileSystemRORunner(path));
                         }
-                        listener.onSuccess(results.isEmpty());
+                        listener.onSuccess(result);
                     }
                 });
-            }
-
-            @Override
-            public void onError(String error) {
-                listener.onError(error);
             }
         });
     }
@@ -128,26 +134,33 @@ public class RootShellRunner {
     public void delete(final String path, final OnResultCallback<Boolean> listener) {
         run(new MountFileSystemRWRunner(path) {
             @Override
-            public void onSuccess(final String mountPoint) {
-                run(new Runner<String>(){
+            public void onResult(final String mountPoint, @NonNull String errors) {
+                if (!errors.isEmpty()) {
+                    listener.onError(errors);
+                    return;
+                }
+                run(new Runner<Boolean>(){
                     @Override
                     public String command() {
                         return "rm -rf \"" + path + "\"";
                     }
 
                     @Override
-                    public void onResult(RootShellRunner runner, List<String> results) {
-                        if (mountPoint != null && !mountPoint.isEmpty()) {
-                            run(new MountFileSystemRORunner(path));
+                    protected void process(List<String> result, @NonNull String errors) {
+                        onResult(result.isEmpty(), errors);
+                    }
+
+                    @Override
+                    public void onResult(Boolean result, @NonNull String errors) {
+                        if (errors.isEmpty()) {
+                            if (mountPoint != null && !mountPoint.isEmpty()) {
+                                run(new MountFileSystemRORunner(path));
+                            }
+                            return;
                         }
-                        listener.onSuccess(results.isEmpty());
+                        listener.onError(errors);
                     }
                 });
-            }
-
-            @Override
-            public void onError(String error) {
-                listener.onError(error);
             }
         });
     }
@@ -155,70 +168,41 @@ public class RootShellRunner {
     public void move(final String path, final String destination, final OnResultCallback<Boolean> listener) {
         run(new MountFileSystemRWRunner(path) {
             @Override
-            public void onSuccess(final String mountPoint) {
-                run(new Runner<String>(){
+            public void onResult(final String mountPoint, @NonNull String errors) {
+                if (!errors.isEmpty()) {
+                    listener.onError(errors);
+                    return;
+                }
+
+                run(new Runner<Boolean>(){
                     @Override
                     public String command() {
                         return "mv \"" + path + "\" \"" + destination + "\"";
                     }
 
                     @Override
-                    public void onResult(RootShellRunner runner, List<String> results) {
+                    protected void process(List<String> result, @NonNull String errors) {
+                        if (!errors.isEmpty()) {
+                            listener.onError(errors);
+                            return;
+                        }
+                        onResult(result.isEmpty(), errors);
+                    }
+
+                    @Override
+                    public void onResult(Boolean result, @NonNull String errors) {
                         if (mountPoint != null && !mountPoint.isEmpty()) {
                             run(new MountFileSystemRORunner(path));
                         }
-                        listener.onSuccess(results.isEmpty());
+                        listener.onSuccess(result);
                     }
                 });
-            }
-
-            @Override
-            public void onError(String error) {
-                listener.onError(error);
             }
         });
     }
 
     public void rename(String oldPath, String newPath, final OnResultCallback<Boolean> listener) {
         move(oldPath, newPath, listener);
-    }
-
-    public static String parsePermission(String permLine) {
-        int owner = 0;
-        int READ = 4;
-        int WRITE = 2;
-        int EXECUTE = 1;
-        if (permLine.charAt(1) == 'r') {
-            owner += READ;
-        }
-        if (permLine.charAt(2) == 'w') {
-            owner += WRITE;
-        }
-        if (permLine.charAt(3) == 'x') {
-            owner += EXECUTE;
-        }
-        int group = 0;
-        if (permLine.charAt(4) == 'r') {
-            group += READ;
-        }
-        if (permLine.charAt(5) == 'w') {
-            group += WRITE;
-        }
-        if (permLine.charAt(6) == 'x') {
-            group += EXECUTE;
-        }
-        int world = 0;
-        if (permLine.charAt(7) == 'r') {
-            world += READ;
-        }
-        if (permLine.charAt(8) == 'w') {
-            world += WRITE;
-        }
-        if (permLine.charAt(9) == 'x') {
-            world += EXECUTE;
-        }
-        String finalValue = owner + "" + group + "" + world;
-        return finalValue;
     }
 
     public static boolean isRootPath(String path) {
@@ -232,22 +216,24 @@ public class RootShellRunner {
 
     public void exists(String path, final OnResultCallback<Boolean> listener) {
         run(new ExistsRunner(path) {
+
             @Override
-            public void onSuccess(Boolean result) {
+            public void onResult(Boolean result, @NonNull String errors) {
+                if (!errors.isEmpty()) {
+                    listener.onError(errors);
+                    return;
+                }
                 listener.onSuccess(result);
             }
 
-            @Override
-            public void onError(String error) {
-                listener.onError(error);
-            }
         });
     }
 
     public void isDirectory(String path, final OnResultCallback<Boolean> listener) {
         run(new IsDirectoryRunner(path) {
+
             @Override
-            public void onSuccess(Boolean result) {
+            public void onResult(Boolean result, @NonNull String errors) {
                 listener.onSuccess(result);
             }
         });
@@ -260,22 +246,27 @@ public class RootShellRunner {
 
         run(new ListFileRunner(path) {
             @Override
-            public void onSuccess(List<FileInfo> result) {
+            public void onResult(List<FileInfo> result, @NonNull String errors) {
                 callback.onSuccess(result);
             }
         });
     }
 
     public void isRootAvailable(final OnResultCallback<Boolean> listener) {
-        run(new Runner<String>() {
+        run(new Runner<Boolean>() {
             @Override
             public String command() {
                 return "id";
             }
 
             @Override
-            public void onResult(RootShellRunner runner, List<String> results) {
-                listener.onSuccess(results != null && !results.isEmpty() && results.get(0).contains("uid=0"));
+            protected void process(List<String> result, @NonNull String errors) {
+                onResult(result != null && !result.isEmpty() && result.get(0).contains("uid=0"), errors);
+            }
+
+            @Override
+            public void onResult(Boolean result, @NonNull String errors) {
+                listener.onSuccess(result);
             }
         });
     }

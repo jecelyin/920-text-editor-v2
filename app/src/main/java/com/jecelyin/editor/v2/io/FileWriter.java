@@ -84,7 +84,6 @@ public class FileWriter extends AsyncTask<String, Void, Void> {
 
     private void writeFileWithRoot(final String text) throws Exception {
         final RootShellRunner runner = new RootShellRunner();
-        runner.setAutoClose(false);
         runner.copy(file.getPath(), backupFile.getPath(), new OnResultCallback<Boolean>() {
             @Override
             public void onError(String msg) {

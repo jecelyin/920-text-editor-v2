@@ -18,7 +18,7 @@
 
 package com.jecelyin.common.utils.command;
 
-import com.jecelyin.common.utils.RootShellRunner;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -39,8 +39,13 @@ public class MountFileSystemRORunner extends Runner<Boolean> {
     }
 
     @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(true);
+    protected void process(List<String> results, @NonNull String errors) {
+        onResult(results.isEmpty(), errors);
+    }
+
+    @Override
+    public void onResult(Boolean results, @NonNull String errors) {
+
     }
 
 }

@@ -18,7 +18,7 @@
 
 package com.jecelyin.common.utils.command;
 
-import com.jecelyin.common.utils.RootShellRunner;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -39,7 +39,12 @@ public class MkdirRunner extends Runner<Boolean> {
     }
 
     @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(results.isEmpty());
+    protected void process(List<String> results, @NonNull String errors) {
+        onResult(results.isEmpty(), errors);
+    }
+
+    @Override
+    public void onResult(Boolean result, @NonNull String errors) {
+
     }
 }

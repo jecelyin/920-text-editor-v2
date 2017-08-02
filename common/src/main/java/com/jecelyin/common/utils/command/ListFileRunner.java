@@ -18,12 +18,11 @@
 
 package com.jecelyin.common.utils.command;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.jecelyin.common.utils.FileInfo;
 import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.RootShellRunner;
-import com.jecelyin.common.utils.ShellProcessor;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -35,8 +34,11 @@ import java.util.Locale;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class ListFileRunner extends Runner<List<FileInfo>> {
+public abstract class ListFileRunner extends Runner<List<FileInfo>> {
     private final String path;
+    private String errors;
+    private List<String> mResults;
+    private ArrayList<FileInfo> mFiles;
 
     public ListFileRunner(String path) {
         this.path = path;
@@ -48,18 +50,29 @@ public class ListFileRunner extends Runner<List<FileInfo>> {
     }
 
     @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
-        final List<FileInfo> files = new ArrayList<>();
-        eachResults(results, files);
+    protected void process(List<String> results, String errors) {
+        this.errors = errors;
+        mResults = results;
+        mFiles = new ArrayList<>();
+        eachResults();
     }
 
-    private void eachResults(List<String> results, List<FileInfo> files) {
-        if (results.isEmpty()) {
-            onSuccess(files);
+    private void eachResults() {
+        if (mResults.isEmpty()) {
+            onResult(mFiles, errors);
             return;
         }
-        String line = results.remove(0);
-        line = line.trim();
+        String line;
+        do {
+            line = mResults.remove(0);
+            line = line.trim();
+        } while (!mResults.isEmpty() && line.isEmpty());
+
+        if (line.isEmpty()) {
+            onResult(mFiles, errors);
+            return;
+        }
+
         // lstat '//persist' failed: Permission denied
         if (line.startsWith("lstat \'" + path) && line.contains("\' failed: Permission denied")) {
             line = line.replace("lstat \'" + path, "");
@@ -68,24 +81,24 @@ public class ListFileRunner extends Runner<List<FileInfo>> {
                 line = line.substring(1);
             }
             FileInfo failedToRead = new FileInfo(false, line);
-            files.add(failedToRead);
-            eachResults(results, files);
+            mFiles.add(failedToRead);
+            eachResults();
             return;
         }
         // /data/data/com.android.shell/files/bugreports: No such file or directory
         if (line.startsWith("/") && line.contains(": No such file")) {
-            eachResults(results, files);
+            eachResults();
             return;
         }
         try {
-            lsParser(results, files, path, line);
+            lsParser(path, line);
         } catch (Exception e) {
             L.e("parse line error: " + line, e);
-            eachResults(results, files);
+            eachResults();
         }
     }
 
-    private void lsParser(final List<String> results, final List<FileInfo> files, String path, String line) {
+    private void lsParser(String path, String line) {
         final String[] split = line.split(" ");
         int index = 0;
 
@@ -188,28 +201,22 @@ public class ListFileRunner extends Runner<List<FileInfo>> {
 
         if (type == 'd') {
             file.isDirectory = true;
-            files.add(file);
-            eachResults(results, files);
+            mFiles.add(file);
+            eachResults();
         } else if (type == 'l') {
             file.isSymlink = true;
             String linkPath = file.linkedPath;
             ShellProcessor.getShell().addCommand(new IsDirectoryRunner(linkPath) {
                 @Override
-                public void onError(String error) {
-                    files.add(file);
-                    eachResults(results, files);
-                }
-
-                @Override
-                public void onSuccess(Boolean result) {
+                public void onResult(Boolean result, @NonNull String errors) {
                     file.isDirectory = result;
-                    files.add(file);
-                    eachResults(results, files);
+                    mFiles.add(file);
+                    eachResults();
                 }
             });
         } else {
-            files.add(file);
-            eachResults(results, files);
+            mFiles.add(file);
+            eachResults();
         }
 
 

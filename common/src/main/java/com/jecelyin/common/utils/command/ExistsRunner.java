@@ -18,7 +18,7 @@
 
 package com.jecelyin.common.utils.command;
 
-import com.jecelyin.common.utils.RootShellRunner;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class ExistsRunner extends Runner<Boolean> {
+public abstract class ExistsRunner extends Runner<Boolean> {
     private final String path;
 
     public ExistsRunner(String path) {
@@ -39,7 +39,7 @@ public class ExistsRunner extends Runner<Boolean> {
     }
 
     @Override
-    public void onResult(RootShellRunner runner, List<String> results) {
-        onSuccess(!results.isEmpty() && "yes".equals(results.get(0)));
+    protected void process(List<String> results, @NonNull String errors) {
+        onResult(!results.isEmpty() && "yes".equals(results.get(0)), errors);
     }
 }

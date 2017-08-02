@@ -162,7 +162,7 @@ public class SysUtils {
     }
 
     public static String getAppStoragePath(Context context) {
-        File path = new File(Environment.getExternalStorageDirectory(), context.getPackageName());
+        File path = new File(getInternalStorageDirectory(), context.getPackageName());
         if (!path.exists()) {
             path.mkdirs();
         }

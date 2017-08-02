@@ -68,6 +68,7 @@ public class InputConnectionHacker implements InputConnection {
     public ExtractedText getExtractedText(ExtractedTextRequest request, int flags) {
 //        return ic.getExtractedText(request, flags);
         String text = editAreaView.getSelectedText();
+        if (text == null) text = "";
         ExtractedText et = new ExtractedText();
         et.text = text;
         et.partialEndOffset = text.length();

@@ -22,25 +22,14 @@ package com.jecelyin.common.utils.command;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-import com.jecelyin.common.listeners.OnResultCallback;
-import com.jecelyin.common.utils.L;
-import com.jecelyin.common.utils.RootShellRunner;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 import java.util.UUID;
 
-public abstract class Runner<T> implements OnResultCallback<T> {
+public abstract class Runner<T> {
     public final String token = UUID.randomUUID().toString();
     abstract public String command();
-    abstract public void onResult(RootShellRunner runner, List<String> results);
-
-    @Override
-    public void onError(String error) {
-        L.d("CMD", "ERROR:" + error);
-    }
-
-    @Override
-    public void onSuccess(T result) {
-
-    }
+    abstract protected void process(List<String> result, @NonNull String errors);
+    abstract public void onResult(T result, @NonNull String errors);
 }

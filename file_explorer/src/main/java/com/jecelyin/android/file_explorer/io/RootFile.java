@@ -129,7 +129,7 @@ public class RootFile extends LocalFile {
                     FileInfo fileInfo = result.get(i);
                     results[i] = new RootFile(path + "/" + fileInfo.name, fileInfo);
                 }
-                listener.onResult(result.toArray(results));
+                listener.onResult(results);
             }
         });
     }
