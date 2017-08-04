@@ -70,10 +70,6 @@ public class Document implements ReadFileListener {
         loadFile(file, null);
     }
     public void loadFile(File f, String encodingName) {
-        if(!f.isFile() || !f.exists()) {
-            UIUtils.alert(context, context.getString(R.string.cannt_access_file, file.getPath()));
-            return;
-        }
         encoding = encodingName;
         this.file = f;
         root = pref.isRootEnabled();
@@ -98,6 +94,10 @@ public class Document implements ReadFileListener {
             } else {
                 root = false;
             }
+        }
+        if(!f.isFile() || !f.exists()) {
+            UIUtils.alert(context, context.getString(R.string.cannt_access_file, f.getPath()));
+            return;
         }
         doLoad();
     }

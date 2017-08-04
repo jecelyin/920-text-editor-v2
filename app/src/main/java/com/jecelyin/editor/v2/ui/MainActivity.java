@@ -677,12 +677,8 @@ public class MainActivity extends BaseActivity
     public void openFile(String file, String encoding, int line, int column) {
         if(TextUtils.isEmpty(file))
             return;
-        File f = new File(file);
-        if(!f.isFile()) {
-            UIUtils.toast(this, R.string.file_not_exists);
-            return;
-        }
-        if (!tabManager.newTab(f, line, column, encoding))
+
+        if (!tabManager.newTab(new File(file), line, column, encoding))
             return;
         DBHelper.getInstance(this).addRecentFile(file, encoding, line, column);
     }
