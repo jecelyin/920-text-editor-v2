@@ -55,6 +55,7 @@ public class RootShellRunner {
         synchronized (lock) {
             lock.notifyAll();
         }
+        ShellProcessor.getShell().close();
     }
 
     private void run(final Runner runner) {

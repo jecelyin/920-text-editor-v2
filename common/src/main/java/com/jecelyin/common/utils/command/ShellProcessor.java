@@ -66,18 +66,7 @@ public class ShellProcessor {
         }
     }
 
-    private synchronized void execute(final Runnable r) {
-        try {
-            prepare();
-        } catch (Exception e) {
-            L.e(e);
-        }
-
-        taskQueue.addTask(r);
-    }
-
     private static class TaskQueue implements Runnable {
-        private Runnable mActive;
         private final ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(30);
 
         private void addTask(Runnable r) {
@@ -86,9 +75,11 @@ public class ShellProcessor {
 
         @Override
         public void run() {
+            Runnable mActive;
             for (;;) {
                 try {
                     if ((mActive = queue.take()) != null) {
+                        queue.remove(mActive);
                         try {
                             mActive.run();
                         } catch (Exception e) {
@@ -124,6 +115,24 @@ public class ShellProcessor {
                 }
             }
         });
+    }
+
+
+
+    public void close() {
+        if (taskQueue == null)
+            return;
+        taskQueue.queue.clear();
+    }
+
+    private synchronized void execute(final Runnable r) {
+        try {
+            prepare();
+        } catch (Exception e) {
+            L.e(e);
+        }
+
+        taskQueue.addTask(r);
     }
 
     private static Handler getHandler() {

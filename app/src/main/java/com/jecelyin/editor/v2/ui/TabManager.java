@@ -27,7 +27,7 @@ import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.adapter.EditorAdapter;
 import com.jecelyin.editor.v2.adapter.TabAdapter;
 import com.jecelyin.editor.v2.common.TabCloseListener;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.view.EditorView;
 import com.jecelyin.editor.v2.view.TabViewPager;

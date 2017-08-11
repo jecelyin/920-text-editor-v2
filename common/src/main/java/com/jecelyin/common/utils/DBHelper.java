@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.jecelyin.editor.v2.utils;
+package com.jecelyin.common.utils;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -26,13 +26,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "920-text-editor.db";
-    private static final int DATABASE_VERSION = 5; // Version must be >= 1
+    private static final int DATABASE_VERSION = 6; // Version must be >= 1
 
     public static DBHelper getInstance(Context context) {
         return new DBHelper(context.getApplicationContext());
@@ -55,6 +56,8 @@ public class DBHelper extends SQLiteOpenHelper {
         createRecentFilesTable(db, "recent_files");
 
         createFindKeywordsTable(db);
+
+        createRecentPathsTable(db);
     }
 
     private void createRecentFilesTable(SQLiteDatabase db, String tableName) {
@@ -68,6 +71,15 @@ public class DBHelper extends SQLiteOpenHelper {
                 "\tPRIMARY KEY(\"path\")\n" +
                 ")");
         db.execSQL("CREATE INDEX \"open_time_index\" ON " + tableName + " (\"open_time\" DESC)");
+    }
+
+    private void createRecentPathsTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE \"recent_paths\" (\n" +
+                "\t \"path\" TEXT NOT NULL,\n" +
+                "\t \"open_time\" integer,\n" +
+                "\tPRIMARY KEY(\"path\")\n" +
+                ")");
+        db.execSQL("CREATE INDEX \"open_time_index_rp\" ON recent_paths (\"open_time\" DESC)");
     }
 
     public void createFindKeywordsTable(SQLiteDatabase db) {
@@ -96,8 +108,15 @@ public class DBHelper extends SQLiteOpenHelper {
                 case 4:
                     upgradeTo5(db);
                     break;
+                case 5:
+                    upgradeTo6(db);
+                    break;
             }
         }
+    }
+
+    private void upgradeTo6(SQLiteDatabase db) {
+        createRecentPathsTable(db);
     }
 
     private void upgradeTo5(SQLiteDatabase db) {
@@ -118,6 +137,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void upgradeTo2(SQLiteDatabase db) {
         db.execSQL("alter table recent_files ADD COLUMN encoding TEXT");
+    }
+
+    public List<String> getRecentPathList() {
+        ArrayList<String> list = new ArrayList<>(30);
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query("recent_paths", null, null, null, null, null, "open_time desc", "30");
+        while (cursor.moveToNext()) {
+            list.add(cursor.getString(0));
+        }
+        cursor.close();
+        db.close();
+        return list;
+    }
+
+    public void addRecentPath(String path) {
+        if (TextUtils.isEmpty(path))
+            return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM recent_paths WHERE path in (select path FROM recent_paths ORDER BY open_time DESC LIMIT 30,10000)");
+        db.execSQL("REPLACE INTO recent_paths (path,open_time) VALUES (?, ?)", new Object[]{path, System.currentTimeMillis()});
+        db.close();
     }
 
     public void addRecentFile(String path, String encoding, int line, int column) {

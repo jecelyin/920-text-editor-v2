@@ -73,7 +73,7 @@ import com.jecelyin.editor.v2.ui.dialog.RunDialog;
 import com.jecelyin.editor.v2.ui.dialog.WrapCharDialog;
 import com.jecelyin.editor.v2.ui.settings.SettingsActivity;
 import com.jecelyin.editor.v2.utils.AppUtils;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.editor.v2.view.TabViewPager;
 import com.jecelyin.editor.v2.view.menu.MenuDef;
 import com.jecelyin.editor.v2.view.menu.MenuFactory;

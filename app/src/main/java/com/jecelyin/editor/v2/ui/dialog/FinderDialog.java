@@ -36,7 +36,7 @@ import com.jecelyin.common.widget.DrawClickableEditText;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.utils.GrepBuilder;
 import com.jecelyin.editor.v2.widget.text.JsCallback;

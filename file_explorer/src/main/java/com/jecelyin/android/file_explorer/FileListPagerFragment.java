@@ -40,6 +40,7 @@ import com.jecelyin.android.file_explorer.adapter.FileListItemAdapter;
 import com.jecelyin.android.file_explorer.adapter.PathButtonAdapter;
 import com.jecelyin.android.file_explorer.databinding.FileExplorerFragmentBinding;
 import com.jecelyin.android.file_explorer.io.JecFile;
+import com.jecelyin.android.file_explorer.io.LocalFile;
 import com.jecelyin.android.file_explorer.io.RootFile;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.OnClipboardPasteFinishListener;
@@ -50,9 +51,11 @@ import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.task.JecAsyncTask;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.task.TaskResult;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.RootShellRunner;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.common.utils.command.ShellProcessor;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -153,6 +156,20 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             }
         });
 
+        binding.recentPathBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecentPathsMenu menu = new RecentPathsMenu(getContext(), v);
+                menu.setOnPathSelectListener(new RecentPathsMenu.OnPathSelectListener() {
+                    @Override
+                    public void onSelect(String path) {
+                        switchToPath(new LocalFile(path));
+                    }
+                });
+                menu.show();
+            }
+        });
+
         Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
 
         if (Pref.getInstance(getContext()).isRootEnabled()) {
@@ -184,7 +201,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         if (action != null) {
             action.destroy();
         }
-
+        ShellProcessor.getShell().close();
     }
 
     @Override
@@ -269,6 +286,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         path = file;
         pathAdapter.setPath(file);
         Pref.getInstance(getContext()).setLastOpenPath(file.getPath());
+        DBHelper.getInstance(getContext()).addRecentPath(file.getPath());
         onRefresh();
     }
 

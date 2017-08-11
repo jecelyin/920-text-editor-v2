@@ -26,7 +26,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.common.widget.DrawClickableEditText;
 import com.jecelyin.editor.v2.R;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 
 import java.util.List;
 

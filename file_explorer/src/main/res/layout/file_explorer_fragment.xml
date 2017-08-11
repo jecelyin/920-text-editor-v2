@@ -25,10 +25,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/pathScrollView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="30dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pathScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/recentPathBtn"
+                android:src="@drawable/ic_arrow_drop_down_black"
+                android:background="?android:attr/windowBackground"
+                android:layout_gravity="right"
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
         <EditText
             android:id="@+id/nameFilterEditText"
