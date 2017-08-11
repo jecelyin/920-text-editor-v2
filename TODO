@@ -58,13 +58,6 @@ Replace feature does NOT work - you enter what to find and with what to replace,
 I opened three files and I edit last one.After I save it,I will exit but app is error.The second file become blank and app ask me whether to save it
 打开多个文件时，文件未进行任何修改，点两次返回键退出时提示保存文件，如果点 是 那么不崩溃，但是保存的那个文件内容会丢失，如果点否，那么软件就会崩溃，手机是华为荣耀畅玩6
 
-希望增加行距配置！当前文字间距离太近。
-另外发现中文支持不大好，光标错位，特别是中英都存在的文档。
-
-
-com_android_settings.xml
-The manifest file for Settings, which is only 240kb. 920 freezes and does not respond
-
 
 java.lang.IndexOutOfBoundsException: Invalid index 2, size is 2
 at java.util.ArrayList.throwIndexOutOfBoundsException(ArrayList.java:255)
@@ -84,7 +77,7 @@ Hi! thank you for great app! it would be nice to have "Word wrap" and "Show line
 -文件管理器添加最近的路径列表
 
 
-可修改查找的cab关键字
+-可修改查找的cab关键字
 
 有root权限
 启用了root设置
