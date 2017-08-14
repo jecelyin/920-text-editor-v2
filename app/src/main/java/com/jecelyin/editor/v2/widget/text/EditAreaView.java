@@ -24,6 +24,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.View;
@@ -326,9 +328,18 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         }
     }
 
-    public void execCommand(EditorCommand ec) {
+    public void execCommand(final EditorCommand ec) {
         if (!pageLoaded) {
             cmdQueue.add(ec);
+            return;
+        }
+        if (Looper.getMainLooper().getThread() != Thread.currentThread()) {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    execCommand(ec);
+                }
+            });
             return;
         }
         HashMap<String, Object> map = new HashMap<>();
