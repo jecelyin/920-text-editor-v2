@@ -1013,7 +1013,6 @@ public class TranslucentDrawerLayout extends ViewGroup implements DrawerLayoutIm
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
                 getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
-        Log.e("layoua", "heightMeasureSpec="+heightMeasureSpec);
         measureChildren(widthMeasureSpec, heightMeasureSpec);
     }
 

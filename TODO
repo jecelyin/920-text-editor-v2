@@ -29,8 +29,8 @@ bottom symbol bar visible on activity recreate
 
 using the tab button on hackers keyboard instead of doing the indent whitespace it changes between the menus in the app which leaves me forced to add spaces to a file that previously only had tabs.
 
-Unfortunately it doesn't appear to want to write to the / folder even though root is enabled.
-The file I tried to save was in /system/etc/
+-Unfortunately it doesn't appear to want to write to the / folder even though root is enabled.
+-The file I tried to save was in /system/etc/
 
 
 Sometimes I've noticed that if the save button isn't active, rotating from portrait to landscape or vice versa will make it active.
@@ -51,7 +51,7 @@ Replace feature does NOT work - you enter what to find and with what to replace,
 
 -分享到为知笔记，有道笔记...
 
-编辑文档过程中，软件切换到后台，等到再切换回来的时候，代码高亮没有了，是怎么回事儿？
+-编辑文档过程中，软件切换到后台，等到再切换回来的时候，代码高亮没有了，是怎么回事儿？
 
 
 
@@ -79,9 +79,9 @@ Hi! thank you for great app! it would be nice to have "Word wrap" and "Show line
 
 -可修改查找的cab关键字
 
-有root权限
-启用了root设置
-打开 /data/data/appname下文件
-提示: 文件不存在
-java.lang.NullPointerException: Attempt to get length of null array
-at com.jecelyin.android.file_explorer.io.LocalFile.listFiles(LocalFile.java:151)
+-有root权限
+-启用了root设置
+-打开 /data/data/appname下文件
+-提示: 文件不存在
+-java.lang.NullPointerException: Attempt to get length of null array
+-at com.jecelyin.android.file_explorer.io.LocalFile.listFiles(LocalFile.java:151)

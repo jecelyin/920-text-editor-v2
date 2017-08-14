@@ -77,18 +77,22 @@ public class RunDialog extends AbstractDialog {
         for (int i=0; i<size; i++) {
             items[i] = list.get(i).name;
         }
-        MaterialDialog dlg = getDialogBuilder().items(items)
-                .title(R.string.call_external_app_or_share)
-                .positiveText(R.string.close)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                        onItemClick(i);
-                    }
-                })
-                .show();
+        try {
+            MaterialDialog dlg = getDialogBuilder().items(items)
+                    .title(R.string.call_external_app_or_share)
+                    .positiveText(R.string.close)
+                    .itemsCallback(new MaterialDialog.ListCallback() {
+                        @Override
+                        public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                            onItemClick(i);
+                        }
+                    })
+                    .show();
 
-        handleDialog(dlg);
+            handleDialog(dlg);
+        } catch (Exception e) {
+            // android.view.WindowLeaked: Activity com.jecelyin.editor.v2.ui.MainActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{65c348b8 V.E..... R......D 0,0-684,914} that was originally added here
+        }
     }
 
     private void onItemClick(int i) {

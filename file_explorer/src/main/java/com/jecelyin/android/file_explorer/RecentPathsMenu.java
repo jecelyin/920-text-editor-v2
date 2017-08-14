@@ -60,7 +60,11 @@ public class RecentPathsMenu extends PopupMenu implements PopupMenu.OnMenuItemCl
         for (int i = 0; i < size; i++) {
             menu.add(0, i, 0, list.get(i));
         }
-        super.show();
+        try {
+            super.show();
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
     }
 
     @Override

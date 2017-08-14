@@ -133,8 +133,8 @@ dependencies {
     compile 'com.azeesoft.lib.colorpicker:colorpicker:1.0.8@aar'
 //    compile 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     compile 'org.msgpack:msgpack-core:0.8.11'
 
 //    debugCompile 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.5.2'

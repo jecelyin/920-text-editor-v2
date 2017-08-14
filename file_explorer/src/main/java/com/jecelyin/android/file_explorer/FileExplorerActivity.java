@@ -40,6 +40,7 @@ import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.common.utils.command.ShellProcessor;
 import com.jecelyin.editor.v2.FullScreenActivity;
 import com.jecelyin.editor.v2.Pref;
 
@@ -98,6 +99,8 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         ((JecApp)getApplication()).watch(this);
+
+        ShellProcessor.getShell().close();
     }
 
     @Override
@@ -250,18 +253,22 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
             names[i++] = n;
         }
 
-        new MaterialDialog.Builder(this)
-                .items(names)
-                .itemsCallbackSingleChoice(selected, new MaterialDialog.ListCallbackSingleChoice() {
-                    @Override
-                    public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                        binding.fileEncodingTextView.setText(charSequence);
-                        if(i > 0)
-                            fileEncoding = charSequence.toString();
-                        return true;
-                    }
-                })
-                .show();
+        try {
+            new MaterialDialog.Builder(this)
+                    .items(names)
+                    .itemsCallbackSingleChoice(selected, new MaterialDialog.ListCallbackSingleChoice() {
+                        @Override
+                        public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                            binding.fileEncodingTextView.setText(charSequence);
+                            if(i > 0)
+                                fileEncoding = charSequence.toString();
+                            return true;
+                        }
+                    })
+                    .show();
+        } catch (Exception e) {
+            // android.view.WindowLeaked: Activity com.jecelyin.android.file_explorer.FileExplorerActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{65b370e8 V.E..... R.....ID 0,0-684,1280} that was originally added here
+        }
     }
 
     private void onSave() {

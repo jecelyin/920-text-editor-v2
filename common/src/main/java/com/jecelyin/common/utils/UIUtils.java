@@ -102,9 +102,11 @@ public class UIUtils {
                 })
                 .inputType(inputType == 0 ? EditorInfo.TYPE_CLASS_TEXT : inputType);
 
-        MaterialDialog dlg = dialog.show();
-        dlg.setCanceledOnTouchOutside(false);
-        dlg.setCancelable(true);
+        try {
+            MaterialDialog dlg = dialog.show();
+            dlg.setCanceledOnTouchOutside(false);
+            dlg.setCancelable(true);
+        } catch (Exception e) {}
     }
 
     public static void showConfirmDialog(Context context, @StringRes int messageRes, final OnClickCallback callback) {

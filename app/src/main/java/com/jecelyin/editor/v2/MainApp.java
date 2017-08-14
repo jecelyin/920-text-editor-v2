@@ -31,6 +31,11 @@ public class MainApp extends JecApp {
 
     @Override
     protected void installMonitor() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
         refWatcher = LeakCanary.install(this);
 //        if(!BlockCanaryEx.isInSamplerProcess(this)) {
 //            BlockCanaryEx.install(new Config(this));

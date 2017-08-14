@@ -31,6 +31,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -67,21 +68,22 @@ public class ShellProcessor {
     }
 
     private static class TaskQueue implements Runnable {
-        private final ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(30);
+        private final ArrayBlockingQueue<WeakReference<Runnable>> queue = new ArrayBlockingQueue<>(30);
 
         private void addTask(Runnable r) {
-            queue.add(r);
+            queue.add(new WeakReference<>(r));
         }
 
         @Override
         public void run() {
-            Runnable mActive;
+            WeakReference<Runnable> active;
             for (;;) {
                 try {
-                    if ((mActive = queue.take()) != null) {
-                        queue.remove(mActive);
+                    if ((active = queue.take()) != null) {
+                        queue.remove(active);
                         try {
-                            mActive.run();
+                            Runnable runnable = active.get();
+                            if (runnable != null)runnable.run();
                         } catch (Exception e) {
                             L.e(e);
                         }
