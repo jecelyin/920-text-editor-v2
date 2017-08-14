@@ -80,6 +80,8 @@ public class MountFileSystemRWRunner extends Runner<String> {
                     }
                 });
             }
+        } else {
+            onResult(null, "");
         }
     }
 
