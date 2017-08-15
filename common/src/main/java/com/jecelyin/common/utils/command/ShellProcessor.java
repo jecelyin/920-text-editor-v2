@@ -106,35 +106,29 @@ public class ShellProcessor {
         return new ShellProcessor();
     }
 
-    public void addCommand(final Runner runner) {
-        execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    processCommand(runner);
-                } catch (Exception e) {
-                    L.e(e);
-                }
-            }
-        });
-    }
-
-
-
     public void close() {
         if (taskQueue == null)
             return;
         taskQueue.queue.clear();
     }
 
-    private synchronized void execute(final Runnable r) {
+    public synchronized void addCommand(final Runner runner) {
         try {
             prepare();
+            taskQueue.addTask(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        processCommand(runner);
+                    } catch (Exception e) {
+                        L.e(e);
+                    }
+                }
+            });
         } catch (Exception e) {
             L.e(e);
+            runner.process(new ArrayList<String>(), e.getMessage());
         }
-
-        taskQueue.addTask(r);
     }
 
     private static Handler getHandler() {
