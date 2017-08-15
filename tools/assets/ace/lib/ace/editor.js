@@ -510,6 +510,14 @@ Editor.$uid = 0;
         this.setOption("fontSize", size);
     };
 
+    this.getZoomable = function () {
+        return this.getOption("zoomable");
+    };
+
+    this.setZoomable = function(b) {
+        this.setOption("zoomable", b);
+    };
+
     this.$highlightBrackets = function() {
         if (this.session.$bracketHighlight) {
             this.session.removeMarker(this.session.$bracketHighlight);
@@ -2710,7 +2718,8 @@ config.defineOptions(Editor.prototype, "editor", {
     indentedSoftWrap: "session",
     foldStyle: "session",
     mode: "session",
-    isAutoIndent: {initialValue: true}
+    isAutoIndent: {initialValue: true},
+    zoomable: {initialValue: false}
 });
 
 exports.Editor = Editor;

@@ -262,6 +262,10 @@ function Bridge(editor) {
         editor.textInput.setAutoCapitalize(data['value']);
     };
 
+    this.setZoomable = function (data) {
+        editor.setZoomable(data['value']);
+    };
+
     this.setTheme = function (data) {
         editor.setTheme(data['value']);
         setTimeout(function(){

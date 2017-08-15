@@ -150,6 +150,7 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         onSharedPreferenceChanged(null, Pref.KEY_AUTO_CAPITALIZE);
         onSharedPreferenceChanged(null, Pref.KEY_INSERT_SPACE_FOR_TAB);
         onSharedPreferenceChanged(null, Pref.KEY_THEME);
+        onSharedPreferenceChanged(null, Pref.KEY_TOUCH_TO_ADJUST_TEXT_SIZE);
         enableHighlight(pref.isHighlight());
         setReadOnly(pref.isReadOnly());
     }
@@ -183,6 +184,9 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 break;
             case Pref.KEY_AUTO_CAPITALIZE:
                 execCommand(new EditorCommand.Builder("setAutoCapitalize").put("value", pref.isAutoCapitalize()).build());
+                break;
+            case Pref.KEY_TOUCH_TO_ADJUST_TEXT_SIZE:
+                execCommand(new EditorCommand.Builder("setZoomable").put("value", pref.isTouchScaleTextSize()).build());
                 break;
             case Pref.KEY_THEME:
                 ThemeList.Theme theme = pref.getThemeInfo();

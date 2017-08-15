@@ -59,6 +59,14 @@ exports.removeListener = function(elem, type, callback) {
     }
 };
 
+exports.makeEventMutable = function (e) {
+    var E = function () {};
+    // any property it doesn't find on the object
+    // itself, look up prototype for original `e`
+    E.prototype = e;
+    return new E();
+};
+
 /*
 * Prevents propagation and clobbers the default action of the passed event
 */

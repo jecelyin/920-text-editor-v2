@@ -31,6 +31,7 @@
 define(function(require, exports, module) {
 "use strict";
 
+var Pinch = require("../mouse/pinch_zoom").Pinch;
 var dom = require("../lib/dom");
 var event = require("../lib/event");
 var useragent = require("../lib/useragent");
@@ -47,6 +48,9 @@ function DefaultHandlers(mouseHandler) {
 
     var editor = mouseHandler.editor;
     this.editor = editor;
+
+    this.pinch = new Pinch(editor);
+
     this.mousedown = this.onMouseDown.bind(mouseHandler);
     editor.setDefaultHandler("mousedown", this.mousedown);
     this.onDoubleClickHandler = this.onDoubleClick.bind(mouseHandler);
@@ -289,6 +293,9 @@ function DefaultHandlers(mouseHandler) {
             clearTimeout(this.longTouchTimer);
             this.longTouchTimer = null;
         }
+
+        this.pinch.ontouchmove(ev.domEvent);
+
         var touches = ev.domEvent.changedTouches || ev.domEvent.touches;
 
         this.fastScroller.doTouchMove(touches, ev.domEvent.timeStamp);
@@ -332,6 +339,8 @@ function DefaultHandlers(mouseHandler) {
             this.longTouchTimer = setTimeout(function () {
                 editor._signal("onLongTouch");
             }, 500);
+        } else {
+            this.pinch.ontouchstart(ev.domEvent);
         }
     };
 
@@ -348,6 +357,7 @@ function DefaultHandlers(mouseHandler) {
         ev.editor.renderer.scrollBar._emit("endScroll");
         ev.editor.renderer.hideScrollBarV();
         this.fastScroller.doTouchEnd(ev.domEvent.timeStamp);
+        this.pinch.ontouchend(ev.domEvent);
 
         this.updateStacks(ev.editor);
     };
