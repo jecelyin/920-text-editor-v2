@@ -85,8 +85,10 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
             eachResults();
             return;
         }
-        // /data/data/com.android.shell/files/bugreports: No such file or directory
-        if (line.startsWith("/") && line.contains(": No such file")) {
+        // /data/data/com.android.shell/files/bugreports: No such file or directory ls: /: Permission denied
+        if (line.startsWith("/") && (line.contains(": No such file")
+                || line.contains("Permission denied"))) {
+            errors += line + "\n";
             eachResults();
             return;
         }

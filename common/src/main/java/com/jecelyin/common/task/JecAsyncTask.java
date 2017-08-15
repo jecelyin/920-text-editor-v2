@@ -68,6 +68,7 @@ public abstract class JecAsyncTask<Params, Progress, Result> extends AsyncTask<P
         try {
             onRun(taskResult, params);
             taskResult.waitResult();
+            exception = taskResult.getError();
             return taskResult.getResult();
         } catch (Exception e) {
             exception = e;

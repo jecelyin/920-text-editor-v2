@@ -21,12 +21,12 @@ package com.jecelyin.editor.v2;
 import android.annotation.IntDef;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.StringUtils;
-import com.jecelyin.common.utils.SysUtils;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -140,7 +140,7 @@ public class Pref implements SharedPreferences.OnSharedPreferenceChangeListener 
 
         //not at preference setting
         toolbarIcons = pm.getStringSet(KEY_TOOLBAR_ICONS, null);
-        map.put(KEY_LAST_OPEN_PATH, SysUtils.getInternalStorageDirectory());
+        map.put(KEY_LAST_OPEN_PATH, Environment.getExternalStorageDirectory().getPath());
         map.put(KEY_READ_ONLY, false);
         map.put(KEY_SHOW_HIDDEN_FILES, false);
         map.put(KEY_FILE_SORT_TYPE, 0);

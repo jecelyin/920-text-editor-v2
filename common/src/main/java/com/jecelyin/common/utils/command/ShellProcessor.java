@@ -122,6 +122,7 @@ public class ShellProcessor {
                         processCommand(runner);
                     } catch (Exception e) {
                         L.e(e);
+                        runner.process(new ArrayList<String>(), e.getMessage());
                     }
                 }
             });
@@ -172,7 +173,12 @@ public class ShellProcessor {
         }
         L.d("CMD", "prepare start");
 
-        process = Runtime.getRuntime().exec("su");
+        try {
+            process = Runtime.getRuntime().exec("su");
+        } catch (Exception e) {
+            //没有Root的设备无法执行su，但是要访问 / 根目录（用File.listFiles会返回null）
+            process = Runtime.getRuntime().exec("/system/bin/sh");
+        }
         inputStream = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
         errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream(), "UTF-8"));
         outputStream = new OutputStreamWriter(process.getOutputStream(), "UTF-8");

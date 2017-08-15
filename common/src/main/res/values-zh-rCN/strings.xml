@@ -263,4 +263,6 @@
     <string name="share_menu">分享...</string>
     <string name="share_html_menu">分享（HTML）...</string>
     <string name="dark">黑色</string>
+    <string name="error_occurred_x">发生一个错误：\n%s</string>
+    <string name="goto_x">转到 %s</string>
 </resources>

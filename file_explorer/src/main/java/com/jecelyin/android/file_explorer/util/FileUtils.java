@@ -94,6 +94,11 @@ public class FileUtils {
                     }
                     doCopyDirectory(srcDir, destDir2, moveFile, exclusionList);
                 }
+
+                @Override
+                public void onError(String error) {
+                    throw new ExplorerException(error);
+                }
             });
         } else {
             doCopyDirectory(srcDir, destDir2, moveFile, null);
@@ -124,6 +129,11 @@ public class FileUtils {
                         }
                     });
                 }
+            }
+
+            @Override
+            public void onError(String error) {
+                throw new ExplorerException(error);
             }
         });
     }

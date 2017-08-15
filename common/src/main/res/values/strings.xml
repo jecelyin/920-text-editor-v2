@@ -263,4 +263,6 @@
     <string name="share_menu">Share...</string>
     <string name="share_html_menu">Share(HTML)...</string>
     <string name="dark">Dark</string>
+    <string name="error_occurred_x">An error occurred: \n%s</string>
+    <string name="goto_x">Goto %s</string>
 </resources>

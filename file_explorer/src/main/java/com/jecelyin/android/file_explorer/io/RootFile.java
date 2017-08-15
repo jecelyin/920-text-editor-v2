@@ -117,7 +117,7 @@ public class RootFile extends LocalFile {
         runner.listFileInfo(getPath(), new OnResultCallback<List<FileInfo>>() {
             @Override
             public void onError(String error) {
-                listener.onResult(null);
+                listener.onError(error);
             }
 
             @Override

@@ -25,6 +25,7 @@ public class TaskResult<T> {
     private T result;
     private boolean waitResult;
     private boolean hasResult;
+    private Exception error;
 
     void waitResult() throws InterruptedException {
         this.waitResult = true;
@@ -41,6 +42,19 @@ public class TaskResult<T> {
     public void setResult(T result) {
         this.hasResult = true;
         this.result = result;
+        done();
+    }
+
+    public Exception getError() {
+        return error;
+    }
+
+    public void setError(Exception error) {
+        this.error = error;
+        done();
+    }
+
+    private void done() {
         if (waitResult)
             synchronized (this) {
                 notify();

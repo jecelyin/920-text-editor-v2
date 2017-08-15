@@ -268,7 +268,11 @@ public class RootShellRunner {
         run(new ListFileRunner(path) {
             @Override
             public void onResult(List<FileInfo> result, @NonNull String errors) {
-                callback.onSuccess(result);
+                if (result.isEmpty() && !errors.isEmpty()) {
+                    callback.onError(errors);
+                } else {
+                    callback.onSuccess(result);
+                }
             }
         });
     }
