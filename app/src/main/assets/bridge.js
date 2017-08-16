@@ -293,7 +293,7 @@ function Bridge(editor) {
             if (self.loading)
                 return;
             var len = self.editor.session.getDocument().getTextLength();
-            AndroidEditor.onTextChanged(len != self.lastTextLength);
+            AndroidEditor.onTextChanged(len != self.lastTextLength || (len == self.lastTextLength && self.canUndo()) );
         });
 
         self.selected = false;
