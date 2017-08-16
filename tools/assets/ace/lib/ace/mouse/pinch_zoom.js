@@ -19,8 +19,8 @@
 define(function(require, exports, module) {
     "use strict";
     var event = require("../lib/event");
-    var minFontSize = 9;
-    var maxFontSize = 32;
+    var minFontSize = 8;
+    var maxFontSize = 72;
 
     function Pinch(editor) {
         this.editor = editor;
