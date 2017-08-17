@@ -149,6 +149,7 @@ public class ModeList {
         new Mode("Search", "ace/mode/search"),
         new Mode("ShellScript", "ace/mode/shellscript"),
         new Mode("SJS", "ace/mode/sjs"),
+        new Mode("Smali", "ace/mode/smali"),
         new Mode("Smarty", "ace/mode/smarty"),
         new Mode("snippets", "ace/mode/snippets"),
         new Mode("Soy Template", "ace/mode/soy_template"),

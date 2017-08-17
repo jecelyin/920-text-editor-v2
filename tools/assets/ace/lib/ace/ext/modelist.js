@@ -155,6 +155,7 @@ var supportedModes = {
     SCSS:        ["scss"],
     ShellScript: ["sh|bash|^.bashrc", "#!/.*sh.*"],
     SJS:         ["sjs"],
+    Smali:       ["Smali"],
     Smarty:      ["smarty|tpl"],
     snippets:    ["snippets"],
     Soy_Template:["soy"],
