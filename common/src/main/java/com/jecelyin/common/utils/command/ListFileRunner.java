@@ -188,12 +188,15 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
             }
         }
 
+        file.lastModified = 0;
         try {
-            file.lastModified = new SimpleDateFormat("yyyy-MM-ddHH:mm", Locale.getDefault())
-                    .parse(date + time).getTime();
+            if (!TextUtils.isEmpty(date) && !TextUtils.isEmpty(time)) {
+                file.lastModified = new SimpleDateFormat("yyyy-MM-ddHH:mm", Locale.getDefault())
+                        .parse(date + time).getTime();
+            }
+
         } catch (Exception e) {
 //            L.e(e); //ignore: java.text.ParseException: Unparseable date: ""
-            file.lastModified = 0;
         }
 
         file.readAvailable = true;

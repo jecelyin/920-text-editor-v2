@@ -37,7 +37,7 @@ import java.io.OutputStream;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LocalFile extends JecFile {
-    private File file;
+    private final File file;
 
     public LocalFile(JecFile parent, String child) {
         super(parent, child);
