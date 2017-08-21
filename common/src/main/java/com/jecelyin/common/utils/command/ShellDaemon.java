@@ -40,100 +40,94 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 
-public class ShellProcessor {
+public class ShellDaemon extends Thread {
     private Process process;
-    private static ShellProcessor shellProcessor;
+    private static ShellDaemon shellDaemon;
     private BufferedReader inputStream;
     private BufferedReader errorStream;
     private OutputStreamWriter outputStream;
     private boolean close;
-    private Runner runner;
-    private ArrayList<String> result;
-    private ArrayList<String> error;
+
     private static InternalHandler sHandler;
-    private TaskQueue taskQueue = new TaskQueue();
+    private final ArrayBlockingQueue<Runner> queue = new ArrayBlockingQueue<>(30);
+    private final Object waiter = new Object();
 
     private static final int MESSAGE_POST_RESULT = 1;
+    private ReadTask inputReadTask;
+    private ReadTask errorReadTask;
 
-    private static class TaskResult {
-        final ShellProcessor mTask;
-        final List<String> mResults;
-        final List<String> mErrors;
-
-        TaskResult(ShellProcessor task, List<String> data, List<String> error) {
-            mTask = task;
-            mResults = data;
-            mErrors = error;
-        }
+    private ShellDaemon() {
+        setName("ShellDaemon");
     }
 
-    private static class TaskQueue implements Runnable {
-        private final ArrayBlockingQueue<WeakReference<Runnable>> queue = new ArrayBlockingQueue<>(30);
+    public static ShellDaemon getShell() {
+        if (shellDaemon != null)
+            return shellDaemon;
 
-        private void addTask(Runnable r) {
-            queue.add(new WeakReference<>(r));
-        }
+        shellDaemon = new ShellDaemon();
 
-        @Override
-        public void run() {
-            WeakReference<Runnable> active;
-            for (;;) {
-                try {
-                    if ((active = queue.take()) != null) {
-                        queue.remove(active);
-                        try {
-                            Runnable runnable = active.get();
-                            if (runnable != null)runnable.run();
-                        } catch (Exception e) {
-                            L.e(e);
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        return new ShellDaemon();
     }
 
-    private ShellProcessor() {}
-
-    public static ShellProcessor getShell() {
-        if (shellProcessor != null)
-            return shellProcessor;
-
-        shellProcessor = new ShellProcessor();
-
-        return new ShellProcessor();
-    }
-
-    public void close() {
-        if (taskQueue == null)
-            return;
-        taskQueue.queue.clear();
+    public void reset() {
+        queue.clear();
     }
 
     public synchronized void addCommand(final Runner runner) {
         try {
             prepare();
-            taskQueue.addTask(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        processCommand(runner);
-                    } catch (Exception e) {
-                        L.e(e);
-                        runner.process(new ArrayList<String>(), e.getMessage());
-                    }
-                }
-            });
+            queue.add(runner);
         } catch (Exception e) {
             L.e(e);
             runner.process(new ArrayList<String>(), e.getMessage());
         }
     }
 
+    /** ------------------------------------------------------------------------
+     ------------------------------- IN THREAD ---------------------------------
+     --------------------------------------------------------------------------*/
+    private static class TaskResult {
+        final Runner mRunner;
+        final List<String> mResults;
+        final String mErrors;
+
+        TaskResult(Runner runner, List<String> data, String error) {
+            mRunner = runner;
+            mResults = data;
+            mErrors = error;
+        }
+    }
+
+    @Override
+    public void run() {
+        Runner active;
+        for (;;) {
+            try {
+                if ((active = queue.take()) != null) {
+                    queue.remove(active);
+                    try {
+                        processCommand(active);
+                        if (!active.done) {
+                            synchronized (waiter) {
+                                L.d("CMD", "wait " + active.command());
+                                waiter.wait();
+                            }
+                        }
+                    } catch (Exception e) {
+                        L.e(e);
+                        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
+                                new TaskResult(active, new ArrayList<String>(), e.getMessage()));
+                        message.sendToTarget();
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private static Handler getHandler() {
-        synchronized (ShellProcessor.class) {
+        synchronized (ShellDaemon.class) {
             if (sHandler == null) {
                 sHandler = new InternalHandler();
             }
@@ -153,18 +147,10 @@ public class ShellProcessor {
             TaskResult result = (TaskResult) msg.obj;
             switch (msg.what) {
                 case MESSAGE_POST_RESULT:
-                    result.mTask.runner.process(result.mResults, TextUtils.join("\n", result.mErrors));
+                    result.mRunner.process(result.mResults, result.mErrors);
                     break;
             }
         }
-    }
-
-    private void postResult() {
-//        process.notifyAll();
-        @SuppressWarnings("unchecked")
-        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
-                new TaskResult(this, result, error));
-        message.sendToTarget();
     }
 
     private void prepare() throws Exception {
@@ -183,18 +169,20 @@ public class ShellProcessor {
         errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream(), "UTF-8"));
         outputStream = new OutputStreamWriter(process.getOutputStream(), "UTF-8");
 
-        new Thread(new ReadTask(inputStream), "CMD-INPUT").start();
-        new Thread(new ReadTask(errorStream), "CMD-OUTPUT").start();
-        new Thread(taskQueue, "CMD-TASK-QUEUE").start();
+        inputReadTask = new ReadTask(inputStream, "CMD-INPUT");
+        errorReadTask = new ReadTask(errorStream, "CMD-OUTPUT");
+
+        inputReadTask.start();
+        errorReadTask.start();
+        start();
         L.d("CMD", "prepare end");
     }
 
     private void processCommand(Runner runner) throws Exception {
-        this.runner = runner;
-
         L.d("CMD", runner.command());
-        result = new ArrayList<>();
-        error = new ArrayList<>();
+
+        inputReadTask.setRunner(runner);
+        errorReadTask.setRunner(runner);
 
         //write the command
         outputStream.write(runner.command() + "\n");
@@ -206,11 +194,31 @@ public class ShellProcessor {
         outputStream.flush();
     }
 
-    private class ReadTask implements Runnable {
-        private final BufferedReader reader;
+    private void doNext() {
+        try {
+            synchronized (waiter) {
+                waiter.notifyAll();
+            }
+        } catch (IllegalMonitorStateException e) {
+            e.printStackTrace();
+        }
+    }
 
-        private ReadTask(BufferedReader reader) {
+    private class ReadTask extends Thread {
+        private final BufferedReader reader;
+        private WeakReference<Runner> runner;
+        private ArrayList<String> result;
+        private ArrayList<String> error;
+
+        private ReadTask(BufferedReader reader, String name) {
             this.reader = reader;
+            setName(name);
+        }
+
+        private void setRunner(Runner runner) {
+            this.runner = new WeakReference<>(runner);
+            result = new ArrayList<>();
+            error = new ArrayList<>();
         }
 
         public void run() {
@@ -226,10 +234,18 @@ public class ShellProcessor {
                     L.d("CMD", "> " + outputLine);
 
                     ArrayList<String> buffer = reader == errorStream ? error : result;
-                    if (buffer == null)
+                    if (buffer == null || runner == null) {
+                        doNext();
                         continue;
+                    }
 
-                    int pos = outputLine.indexOf(runner.token);
+                    Runner r = runner.get();
+                    if (r == null) {
+                        doNext();
+                        continue;
+                    }
+
+                    int pos = outputLine.indexOf(r.token);
 
                     if (pos == -1) {
                         buffer.add(outputLine);
@@ -238,7 +254,13 @@ public class ShellProcessor {
                         String line = outputLine.substring(0, pos);
                         if (!TextUtils.isEmpty(line))
                             buffer.add(line);
-                        postResult();
+
+                        r.done = true;
+                        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
+                                new TaskResult(r, result, TextUtils.join("\n", error)));
+                        message.sendToTarget();
+
+                        doNext();
                     }
                 }
 

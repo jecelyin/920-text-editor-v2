@@ -55,7 +55,7 @@ import com.jecelyin.common.task.TaskResult;
 import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.common.utils.RootShellRunner;
 import com.jecelyin.common.utils.UIUtils;
-import com.jecelyin.common.utils.command.ShellProcessor;
+import com.jecelyin.common.utils.command.ShellDaemon;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -201,7 +201,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         if (action != null) {
             action.destroy();
         }
-        ShellProcessor.getShell().close();
+        ShellDaemon.getShell().reset();
     }
 
     @Override

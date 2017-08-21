@@ -40,7 +40,7 @@ import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
 import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
-import com.jecelyin.common.utils.command.ShellProcessor;
+import com.jecelyin.common.utils.command.ShellDaemon;
 import com.jecelyin.editor.v2.FullScreenActivity;
 import com.jecelyin.editor.v2.Pref;
 
@@ -100,7 +100,7 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
         super.onDestroy();
         ((JecApp)getApplication()).watch(this);
 
-        ShellProcessor.getShell().close();
+        ShellDaemon.getShell().reset();
     }
 
     @Override

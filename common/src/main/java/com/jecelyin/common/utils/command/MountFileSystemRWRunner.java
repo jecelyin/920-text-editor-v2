@@ -63,7 +63,7 @@ public class MountFileSystemRWRunner extends Runner<String> {
                 onResult(null, errors);
             } else if (types.contains("ro")) {
                 // read-only file system, remount as rw
-                ShellProcessor.getShell().addCommand(new Runner<Boolean>() {
+                ShellDaemon.getShell().addCommand(new Runner<Boolean>() {
                     @Override
                     public String command() {
                         return "mount -o rw,remount " + mountPointPath;

@@ -211,7 +211,7 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
         } else if (type == 'l') {
             file.isSymlink = true;
             String linkPath = file.linkedPath;
-            ShellProcessor.getShell().addCommand(new IsDirectoryRunner(linkPath) {
+            ShellDaemon.getShell().addCommand(new IsDirectoryRunner(linkPath) {
                 @Override
                 public void onResult(Boolean result, @NonNull String errors) {
                     file.isDirectory = result;

@@ -29,7 +29,7 @@ import com.jecelyin.common.utils.command.MkdirRunner;
 import com.jecelyin.common.utils.command.MountFileSystemRORunner;
 import com.jecelyin.common.utils.command.MountFileSystemRWRunner;
 import com.jecelyin.common.utils.command.Runner;
-import com.jecelyin.common.utils.command.ShellProcessor;
+import com.jecelyin.common.utils.command.ShellDaemon;
 
 import java.io.File;
 import java.util.List;
@@ -55,11 +55,11 @@ public class RootShellRunner {
         synchronized (lock) {
             lock.notifyAll();
         }
-        ShellProcessor.getShell().close();
+        ShellDaemon.getShell().reset();
     }
 
     private void run(final Runner runner) {
-        ShellProcessor.getShell().addCommand(runner);
+        ShellDaemon.getShell().addCommand(runner);
     }
 
     public void copy(final String source, final String destination, final OnResultCallback<Boolean> listener) {
