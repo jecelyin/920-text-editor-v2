@@ -18,9 +18,9 @@
 
 package com.jecelyin.editor.v2.widget;
 
-import android.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
@@ -31,9 +31,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RemoteViews.RemoteView;
 
 import java.util.ArrayList;
+
 
 /**
  * FrameLayout is designed to block out an area on the screen to display
@@ -121,19 +123,19 @@ public class BottomDrawerLayout extends ViewGroup {
     }
 
     int getPaddingLeftWithForeground() {
-        return mPaddingLeft + mForegroundPaddingLeft;
+        return getPaddingLeft() + mForegroundPaddingLeft;
     }
 
     int getPaddingRightWithForeground() {
-        return mPaddingRight + mForegroundPaddingRight;
+        return getPaddingRight() + mForegroundPaddingRight;
     }
 
     private int getPaddingTopWithForeground() {
-        return mPaddingTop + mForegroundPaddingTop;
+        return getPaddingTop() + mForegroundPaddingTop;
     }
 
     private int getPaddingBottomWithForeground() {
-        return mPaddingBottom + mForegroundPaddingBottom;
+        return getPaddingBottom() + mForegroundPaddingBottom;
     }
 
 
@@ -258,7 +260,7 @@ public class BottomDrawerLayout extends ViewGroup {
                     gravity = Gravity.NO_GRAVITY;
                 }
 
-                final int layoutDirection = getLayoutDirection();
+                final int layoutDirection = ViewCompat.getLayoutDirection(this);
                 final int absoluteGravity = Gravity.getAbsoluteGravity(gravity, layoutDirection);
                 final int verticalGravity = gravity & Gravity.VERTICAL_GRAVITY_MASK;
 
@@ -312,7 +314,6 @@ public class BottomDrawerLayout extends ViewGroup {
      *
      * @attr ref android.R.styleable#FrameLayout_measureAllChildren
      */
-    @android.view.RemotableViewMethod
     public void setMeasureAllChildren(boolean measureAll) {
         mMeasureAllChildren = measureAll;
     }
@@ -386,83 +387,17 @@ public class BottomDrawerLayout extends ViewGroup {
 //        encoder.addProperty("padding:foregroundPaddingBottom", mForegroundPaddingBottom);
 //    }
 
-    /**
-     * Per-child layout information for layouts that support margins.
-     * See {@link android.R.styleable#FrameLayout_Layout FrameLayout Layout Attributes}
-     * for a list of all child view attributes that this class supports.
-     *
-     * @attr ref android.R.styleable#FrameLayout_Layout_layout_gravity
-     */
-    public static class LayoutParams extends MarginLayoutParams {
-        /**
-         * The gravity to apply with the View to which these layout parameters
-         * are associated.
-         *
-         * @see Gravity
-         *
-         * @attr ref android.R.styleable#FrameLayout_Layout_layout_gravity
-         */
-        public int gravity = -1;
+    public static class LayoutParams extends FrameLayout.LayoutParams {
+        public LayoutParams(@NonNull ViewGroup.LayoutParams source) {
+            super(source);
+        }
 
-        /**
-         * {@inheritDoc}
-         */
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
-
-            TypedArray a = c.obtainStyledAttributes(attrs, com.android.internal.R.styleable.FrameLayout_Layout);
-            gravity = a.getInt(com.android.internal.R.styleable.FrameLayout_Layout_layout_gravity, -1);
-            a.recycle();
         }
 
-        /**
-         * {@inheritDoc}
-         */
         public LayoutParams(int width, int height) {
             super(width, height);
-        }
-
-        /**
-         * Creates a new set of layout parameters with the specified width, height
-         * and weight.
-         *
-         * @param width the width, either {@link #MATCH_PARENT},
-         *        {@link #WRAP_CONTENT} or a fixed size in pixels
-         * @param height the height, either {@link #MATCH_PARENT},
-         *        {@link #WRAP_CONTENT} or a fixed size in pixels
-         * @param gravity the gravity
-         *
-         * @see Gravity
-         */
-        public LayoutParams(int width, int height, int gravity) {
-            super(width, height);
-            this.gravity = gravity;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public LayoutParams(ViewGroup.LayoutParams source) {
-            super(source);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public LayoutParams(MarginLayoutParams source) {
-            super(source);
-        }
-
-        /**
-         * Copy constructor. Clones the width, height, margin values, and
-         * gravity of the source.
-         *
-         * @param source The layout params to copy from.
-         */
-        public LayoutParams(LayoutParams source) {
-            super(source);
-
-            this.gravity = source.gravity;
         }
     }
 

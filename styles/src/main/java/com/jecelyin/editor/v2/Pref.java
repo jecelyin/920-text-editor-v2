@@ -18,7 +18,7 @@
 
 package com.jecelyin.editor.v2;
 
-import android.annotation.IntDef;
+import android.support.annotation.IntDef;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;

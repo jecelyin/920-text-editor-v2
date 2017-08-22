@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion rootProject.ext.minSdkVersion
     }
     packagingOptions {
         exclude 'proguard-project.txt'
@@ -29,19 +29,4 @@ dependencies {
     compile project(':styles')
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
-//    compile 'com.github.myinnos:AlphabetIndex-Fast-Scroll-RecyclerView:1.0.2'
 }
-
-// fix for dataBinder: Source folders generated at incorrect location
-//android.applicationVariants.all { variant ->
-//    def variantName = variant.name.capitalize()
-//    def inputDir = "${buildDir}/intermediates/classes/${variant.dirName}"
-//    def sourceDir = "${buildDir}/generated/source/dataBinding/${variant.dirName}"
-//    def copyTask = tasks.create(name: "dataBindingFix${variantName}", type: Copy) {
-//        from inputDir
-//        into sourceDir
-//        include '*/.java'
-//    }
-//    tasks["generate${variantName}Sources"].dependsOn copyTask
-//    variant.addJavaSourceFoldersToModel new File(sourceDir)
-//}
