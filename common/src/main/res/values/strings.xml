@@ -265,4 +265,5 @@
     <string name="dark">Dark</string>
     <string name="error_occurred_x">An error occurred: \n%s</string>
     <string name="goto_x">Goto %s</string>
+    <string name="copy_path">Copy Path</string>
 </resources>

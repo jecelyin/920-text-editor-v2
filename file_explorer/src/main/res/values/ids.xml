@@ -25,4 +25,5 @@
     <item name="share" type="id" />
     <item name="rename" type="id" />
     <item name="delete" type="id" />
+    <item name="copy_path" type="id" />
 </resources>

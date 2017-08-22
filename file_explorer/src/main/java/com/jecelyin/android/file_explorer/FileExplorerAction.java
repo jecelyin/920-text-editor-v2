@@ -18,6 +18,8 @@
 
 package com.jecelyin.android.file_explorer;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,10 +32,10 @@ import android.view.MenuItem;
 
 import com.jecelyin.android.file_explorer.io.JecFile;
 import com.jecelyin.android.file_explorer.io.LocalFile;
-import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.OnClipboardPasteFinishListener;
 import com.jecelyin.android.file_explorer.util.MimeTypes;
 import com.jecelyin.android.file_explorer.util.OnCheckedChangeListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.common.utils.UIUtils;
 
 import java.io.File;
@@ -54,6 +56,7 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
     private ShareActionProvider shareActionProvider;
     private MenuItem renameMenu;
     private MenuItem shareMenu;
+    private MenuItem copyPathMenu;
 
     public FileExplorerAction(Context context, FileExplorerView view, FileClipboard fileClipboard, ExplorerContext explorerContext) {
         this.view = view;
@@ -105,6 +108,9 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
         MenuItemCompat.setActionProvider(shareMenu, shareActionProvider);
 
         menu.add(0, R.id.delete, 0, R.string.delete).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+
+        copyPathMenu = menu.add(0, R.id.copy_path, 0, R.string.copy_path);
+        copyPathMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         return true;
     }
 
@@ -112,6 +118,7 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
         shareMenu.setEnabled(canShare());
         renameMenu.setEnabled(checkedList.size()  == 1);
+        copyPathMenu.setEnabled(checkedList.size()  == 1);
         return true;
     }
 
@@ -146,6 +153,11 @@ public class FileExplorerAction implements OnCheckedChangeListener, ActionMode.C
             shareFile();
         } else if (id == R.id.delete) {
             doDeleteAction();
+        } else if (id == R.id.copy_path) {
+            ClipboardManager clipboard = (ClipboardManager)
+                    context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("path", checkedList.get(0).getPath());
+            clipboard.setPrimaryClip(clip);
         } else {
             return false;
         }

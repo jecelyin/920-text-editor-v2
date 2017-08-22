@@ -57,7 +57,7 @@
     <string name="rename">重命名</string>
     <string name="rename_fail">重命名失败</string>
     <string name="select_all">全选</string>
-    <string name="share">共享</string>
+    <string name="share">分享</string>
     <string name="show_hidden_files">显示隐藏文件</string>
     <string name="sort_by_datetime">按时间</string>
     <string name="sort_by_name">按名称</string>
@@ -265,4 +265,5 @@
     <string name="dark">黑色</string>
     <string name="error_occurred_x">发生一个错误：\n%s</string>
     <string name="goto_x">转到 %s</string>
+    <string name="copy_path">复制路径</string>
 </resources>
