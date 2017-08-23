@@ -20,13 +20,13 @@ package com.jecelyin.android.file_explorer.io;
 
 import android.os.Parcel;
 
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
-import com.jecelyin.android.file_explorer.util.FileInfo;
-import com.jecelyin.android.file_explorer.util.RootUtils;
-import com.jecelyin.common.utils.L;
-import com.stericson.RootTools.RootTools;
+import com.jecelyin.common.listeners.BoolResultListener;
+import com.jecelyin.common.listeners.OnResultCallback;
+import com.jecelyin.common.utils.FileInfo;
+import com.jecelyin.common.utils.RootShellRunner;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -36,31 +36,33 @@ public class RootFile extends LocalFile {
     private static final String TAG = RootFile.class.getName();
     private FileInfo fileInfo;
 
-    public RootFile(JecFile parent, String child) {
-        super(parent, child);
-        init();
+    private RootFile(String path) {
+        super(path);
     }
 
-    public RootFile(String parent, String child) {
-        super(parent, child);
-        init();
-    }
+    public static void obtain(final String pathname, final OnResultCallback<RootFile> callback) {
+        final RootShellRunner runner = new RootShellRunner();
+        runner.listFileInfo(pathname, new OnResultCallback<List<FileInfo>>() {
+            @Override
+            public void onError(String error) {
+                callback.onSuccess(new RootFile(pathname));
+            }
 
-    public RootFile(String pathname) {
-        super(pathname);
-        init();
+            @Override
+            public void onSuccess(List<FileInfo> files) {
+                if (!files.isEmpty()) {
+                    FileInfo fileInfo = files.get(0);
+                    callback.onSuccess(new RootFile(pathname, fileInfo));
+                } else {
+                    callback.onSuccess(new RootFile(pathname));
+                }
+            }
+        });
     }
 
     private RootFile(String pathname, FileInfo fileInfo) {
         super(pathname);
         this.fileInfo = fileInfo;
-    }
-
-    private void init() {
-        List<FileInfo> files = RootUtils.listFileInfo(getPath());
-        if (!files.isEmpty()) {
-            fileInfo = files.get(0);
-        }
     }
 
     @Override
@@ -85,67 +87,81 @@ public class RootFile extends LocalFile {
 
     @Override
     public String getAbsolutePath() {
-        return fileInfo != null && fileInfo.isSymlink ? fileInfo.linkedPath : RootUtils.getRealPath(getPath());
+        return fileInfo != null && fileInfo.isSymlink ? fileInfo.linkedPath : (new File(getPath()).getAbsolutePath());
+    }
+
+    @Override
+    public boolean exists() {
+        return fileInfo != null;
     }
 
     @Override
     public void delete(final BoolResultListener listener) {
-        RootUtils.RootCommand command = new RootUtils.RootCommand("rm -rf \"%s\"", getAbsolutePath())
-        {
+        RootShellRunner runner = new RootShellRunner();
+        runner.delete(getPath(), new OnResultCallback<Boolean>() {
             @Override
-            public void onFinish(boolean success, String output) {
-                listener.onResult(success && output.trim().isEmpty());
+            public void onError(String error) {
+                listener.onResult(false);
             }
-        };
-        try {
-            RootTools.getShell(true).add(command);
-        }catch (Exception e) {
-            L.e(e);
-            listener.onResult(false);
-        }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onResult(result);
+            }
+        });
     }
 
     @Override
-    public void listFiles(FileListResultListener listener) {
-        List<FileInfo> list = RootUtils.listFileInfo(getAbsolutePath());
+    public void listFiles(final FileListResultListener listener) {
+        RootShellRunner runner = new RootShellRunner();
+        runner.listFileInfo(getPath(), new OnResultCallback<List<FileInfo>>() {
+            @Override
+            public void onError(String error) {
+                listener.onError(error);
+            }
 
-        int size = list.size();
-        RootFile[] results = new RootFile[size];
-        FileInfo fi;
-        for (int i = 0; i < size; i++) {
-            fi = list.get(i);
-            results[i] = new RootFile(getPath() + "/" + fi.name, fi);
-        }
-
-        listener.onResult(results);
+            @Override
+            public void onSuccess(List<FileInfo> result) {
+                int size = result.size();
+                RootFile[] results = new RootFile[size];
+                String path = getPath();
+                for (int i = 0; i < size; i++) {
+                    FileInfo fileInfo = result.get(i);
+                    results[i] = new RootFile(path + "/" + fileInfo.name, fileInfo);
+                }
+                listener.onResult(results);
+            }
+        });
     }
 
     @Override
     public void mkdirs(final BoolResultListener listener) {
-        try {
-            RootTools.getShell(true).add(new RootUtils.RootCommand("mkdir -p \"%s\"", getAbsolutePath()) {
-                @Override
-                public void onFinish(boolean success, String output) {
-                    listener.onResult(success && output.trim().isEmpty());
-                }
-            });
-        } catch (Exception e) {
-            L.e(e);
-        }
+        new RootShellRunner().mkdirs(getPath(), new OnResultCallback<Boolean>() {
+            @Override
+            public void onError(String error) {
+                listener.onResult(false);
+            }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onResult(result);
+            }
+        });
     }
 
     @Override
     public void renameTo(JecFile dest, final BoolResultListener listener) {
-        try {
-            RootTools.getShell(true).add(new RootUtils.RootCommand("mv \"%s\" \"%s\"", getAbsolutePath(), dest.getAbsolutePath()) {
-                @Override
-                public void onFinish(boolean success, String output) {
-                    listener.onResult(success && output.trim().isEmpty());
-                }
-            });
-        } catch (Exception e) {
-            L.e(e);
-        }
+        new RootShellRunner().rename(getPath(), dest.getPath(), new OnResultCallback<Boolean>() {
+            @Override
+            public void onError(String error) {
+                listener.onResult(false);
+            }
+
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onResult(result);
+            }
+        });
     }
 
     @Override

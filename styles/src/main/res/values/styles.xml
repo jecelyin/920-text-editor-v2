@@ -1,5 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
     <!--Toolbar主题，使用方式：app:theme="@style/ToolbarTheme"-->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">#fff</item>
@@ -78,5 +82,11 @@
         <item name="android:background">@drawable/button_h1_selector</item>
         <item name="android:textColor">#fff</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="EditorWebViewTheme" parent="android:Widget.WebView">
+        <item name="android:textSelectHandleLeft">@drawable/transparent1px</item>
+        <item name="android:textSelectHandleRight">@drawable/transparent1px</item>
+        <item name="android:textSelectHandle">@drawable/transparent1px</item>
     </style>
 </resources>

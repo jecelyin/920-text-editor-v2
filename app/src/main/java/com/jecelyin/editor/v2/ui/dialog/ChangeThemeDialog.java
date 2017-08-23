@@ -26,8 +26,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
-import com.jecelyin.editor.v2.ui.Document;
 import com.jecelyin.editor.v2.ui.MainActivity;
+import com.jecelyin.editor.v2.ThemeList;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
@@ -39,11 +39,15 @@ public class ChangeThemeDialog extends AbstractDialog {
 
     @Override
     public void show() {
-        final String[] names = new String[] {
-                context.getString(R.string.default_theme),
-                context.getString(R.string.dark_theme)
-        };
+        int length = ThemeList.themes.length;
+        final String[] names = new String[length];
         int themeIndex = Pref.getInstance(context).getTheme();
+
+        ThemeList.Theme theme;
+        for (int i = 0; i < length; i++) {
+            theme = ThemeList.themes[i];
+            names[i] = theme.title + (theme.isDark ? " (" + context.getString(R.string.dark) + ")" : "");
+        }
 
         getDialogBuilder()
             .items(names)
@@ -68,7 +72,6 @@ public class ChangeThemeDialog extends AbstractDialog {
     }
 
     private void restartApp() {
-        Document.styles = null;
         Intent it = new Intent(context, MainActivity.class);
         it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(it);

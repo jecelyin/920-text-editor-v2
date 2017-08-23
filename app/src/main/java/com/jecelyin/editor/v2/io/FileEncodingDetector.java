@@ -21,7 +21,7 @@ package com.jecelyin.editor.v2.io;
 import android.text.TextUtils;
 
 import com.jecelyin.common.utils.L;
-import com.jecelyin.editor.v2.core.detector.CharsetDetector;
+import com.jecelyin.editor.v2.utils.CharsetDetector;
 
 import java.io.BufferedInputStream;
 import java.io.File;

@@ -1,7 +1,7 @@
 
 package com.jecelyin.common.github;
 
-import com.google.gson.reflect.TypeToken;
+import com.alibaba.fastjson.TypeReference;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class ReleasesService extends GitHubService {
         PagedRequest<Release> request = createPagedRequest(start, size);
         request.setParams(filterData);
         request.setUri(uri);
-        request.setType(new TypeToken<List<Release>>() {
+        request.setType(new TypeReference<List<Release>>() {
         }.getType());
         return createPageIterator(request);
     }

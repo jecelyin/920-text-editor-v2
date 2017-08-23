@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/920-Text-Editor.iml" filepath="$PROJECT_DIR$/920-Text-Editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/920-text-editor-v2.iml" filepath="$PROJECT_DIR$/920-text-editor-v2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/file_explorer/file_explorer.iml" filepath="$PROJECT_DIR$/file_explorer/file_explorer.iml" />

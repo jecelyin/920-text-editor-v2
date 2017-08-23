@@ -3,17 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jecelyin.editor.v2.core.widget.JecEditText
+    <com.jecelyin.editor.v2.widget.text.EditAreaView
         android:id="@+id/edit_text"
+        android:theme="@style/EditorWebViewTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffffff"
-        android:inputType="textMultiLine"
-        android:scrollbars="vertical"
+        android:background="?android:attr/windowBackground"
+        android:scrollbars="none"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbarThumbVertical="@android:color/transparent"
         android:scrollbarTrackVertical="@null"
-        android:padding="5dp"
         android:enabled="false"
         android:gravity="start|top" />
 

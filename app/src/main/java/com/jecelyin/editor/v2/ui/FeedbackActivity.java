@@ -100,11 +100,13 @@ public class FeedbackActivity extends BaseActivity {
 
         StringBuilder sb = new StringBuilder(email);
         sb.append("\n\n");
+        sb.append("Version: ").append(SysUtils.getVersionName(this));
+        sb.append("\n\n");
         sb.append(content);
 
-        sb.append("Exception Start ==============================\n");
+        sb.append("\n\nException Start ==============================\n");
         sb.append(getIntent().getStringExtra("exception"));
-        sb.append("Exception End ==============================\n");
+        sb.append("\nException End ==============================\n");
 
         if (withLog) {
             sb.append("\n\n");

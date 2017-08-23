@@ -20,33 +20,26 @@ package com.jecelyin.editor.v2.ui.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.v7.view.ActionMode;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
-import com.jecelyin.common.task.TaskListener;
-import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.common.widget.DrawClickableEditText;
 import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.utils.GrepBuilder;
-import com.jecelyin.editor.v2.utils.MatcherResult;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.File;
@@ -77,27 +70,17 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
     }
 
     public static void showFindDialog(EditorDelegate fragment) {
-        FinderDialog dialog = new FinderDialog(fragment.getContext());
+        final FinderDialog dialog = new FinderDialog(fragment.getContext());
         dialog.mode = 0;
         dialog.fragment = fragment;
-        dialog.findText = fragment.getSelectedText();
-        dialog.show();
-    }
 
-    public static void showReplaceDialog(EditorDelegate fragment) {
-        FinderDialog dialog = new FinderDialog(fragment.getContext());
-        dialog.mode = 1;
-        dialog.fragment = fragment;
-        dialog.findText = fragment.getSelectedText();
-        dialog.show();
-    }
-
-    public static void showFindInFilesDialog(EditorDelegate fragment) {
-        FinderDialog dialog = new FinderDialog(fragment.getContext());
-        dialog.mode = 2;
-        dialog.fragment = fragment;
-        dialog.findText = fragment.getSelectedText();
-        dialog.show();
+        fragment.getSelectedText(new JsCallback<String>() {
+            @Override
+            public void onCallback(String selectedText) {
+                dialog.findText = selectedText;
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -146,7 +129,7 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
             public void onClick(View v) {
                 String path = Pref.getInstance(context).getLastOpenPath();
                 if(! new File(path).isDirectory())
-                    path = Environment.getExternalStorageDirectory().getPath();
+                    path = SysUtils.getInternalStorageDirectory();
                 new FolderChooserDialog.Builder(getMainActivity())
                         .initialPath(path)
                         .cancelButton(android.R.string.cancel)
@@ -219,13 +202,16 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
         }
 
         GrepBuilder builder = GrepBuilder.start();
-        if (!holder.mCaseSensitiveCheckBox.isChecked()) {
+        boolean caseSensitive = holder.mCaseSensitiveCheckBox.isChecked();
+        if (!caseSensitive) {
             builder.ignoreCase();
         }
-        if(holder.mWholeWordsOnlyCheckBox.isChecked()) {
+        boolean wholeWordOnly = holder.mWholeWordsOnlyCheckBox.isChecked();
+        if(wholeWordOnly) {
             builder.wordRegex();
         }
-        builder.setRegex(findText, holder.mRegexCheckBox.isChecked());
+        boolean regex = holder.mRegexCheckBox.isChecked();
+        builder.setRegex(findText, regex);
         if(findInFiles) {
             if(holder.mRecursivelyCheckBox.isChecked()) {
                 builder.recurseDirectories();
@@ -241,171 +227,14 @@ public class FinderDialog extends AbstractDialog implements DrawClickableEditTex
         if(findInFiles) {
             doInFiles(grep, replaceText);
         } else {
-            findNext(grep, replaceText);
+            fragment.mEditText.doFind(findText, replaceText, caseSensitive, wholeWordOnly, regex);
         }
         return true;
-    }
-
-    private void findNext(final ExtGrep grep, final String replaceText) {
-        grep.grepText(ExtGrep.GrepDirect.NEXT,
-                fragment.getEditableText(),
-                fragment.getCursorOffset(),
-                new TaskListener<MatcherResult>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onSuccess(MatcherResult match) {
-                        if (match == null) {
-                            UIUtils.toast(context, R.string.find_not_found);
-                            return;
-                        }
-                        fragment.addHightlight(match.start(), match.end());
-                        getMainActivity().startSupportActionMode(new FindTextActionModeCallback(replaceText, fragment, grep, match));
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        L.e(e);
-                        UIUtils.toast(context, e.getMessage());
-                    }
-                }
-        );
     }
 
     @Override
     public void onClick(DrawClickableEditText editText, DrawClickableEditText.DrawablePosition target) {
         new FindKeywordsDialog(context, editText, editText.getId() != R.id.find_edit_text).show();
-    }
-
-    private static class FindTextActionModeCallback implements ActionMode.Callback {
-        private String replaceText;
-        EditorDelegate fragment;
-        ExtGrep grep;
-        private MatcherResult lastResults;
-
-        public FindTextActionModeCallback(String replaceText, EditorDelegate fragment, ExtGrep grep, MatcherResult match) {
-            this.replaceText = replaceText;
-            this.fragment = fragment;
-            this.grep = grep;
-            this.lastResults = match;
-        }
-
-        @Override
-        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            actionMode.setTitle(null);
-            actionMode.setSubtitle(null);
-
-            View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.search_replace_action_mode_layout, null);
-            int w = fragment.getContext().getResources().getDimensionPixelSize(R.dimen.cab_find_text_width);
-            view.setLayoutParams(new ViewGroup.LayoutParams(w, ViewGroup.LayoutParams.MATCH_PARENT));
-
-            TextView searchTextView = (TextView) view.findViewById(R.id.searchTextView);
-            searchTextView.setText(grep.getRegex());
-
-            TextView replaceTextView = (TextView) view.findViewById(R.id.replaceTextView);
-            if (replaceText == null) {
-                replaceTextView.setVisibility(View.GONE);
-            } else {
-                replaceTextView.setText(replaceText);
-            }
-
-            menu.add(0, ID_FIND_TEXT, 0, R.string.keyword)
-                    .setActionView(view)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-            menu.add(0, ID_FIND_PREV, 0, R.string.previous_occurrence)
-                    .setIcon(R.drawable.up)
-                    .setAlphabeticShortcut('p')
-                    .setShowAsAction(
-                            MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
-            menu.add(0, ID_FIND_NEXT, 0, R.string.next_occurrence)
-                    .setIcon(R.drawable.down)
-                    .setAlphabeticShortcut('n')
-                    .setShowAsAction(
-                            MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
-            if(replaceText != null) {
-                menu.add(0, ID_REPLACE, 0, R.string.replace)
-                        .setIcon(R.drawable.replace)
-                        .setShowAsAction(
-                                MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-                menu.add(0, ID_REPLACE_ALL, 0, R.string.replace_all)
-                        .setIcon(R.drawable.replace_all)
-                        .setShowAsAction(
-                                MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-            }
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-            return true;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            if (TextUtils.isEmpty(grep.getRegex())) {
-                UIUtils.toast(fragment.getContext(), R.string.find_keyword_is_empty);
-                return false;
-            }
-            int id = menuItem.getItemId();
-            switch (id) {
-                case ID_FIND_PREV:
-                case ID_FIND_NEXT:
-                    doFind(id);
-                    break;
-                case ID_REPLACE:
-                    if(lastResults != null) {
-                        fragment.getEditableText().replace(lastResults.start(), lastResults.end(), ExtGrep.parseReplacement(lastResults, replaceText));
-                        lastResults = null;
-                    }
-                    break;
-                case ID_REPLACE_ALL:
-                    grep.replaceAll(fragment.getEditableText(), replaceText);
-                    break;
-                default:
-                    return false;
-            }
-            return true;
-        }
-
-        private void doFind(int id) {
-            id = id == ID_FIND_PREV ? ID_FIND_PREV : ID_FIND_NEXT;
-            grep.grepText(id == ID_FIND_PREV ? ExtGrep.GrepDirect.PREV : ExtGrep.GrepDirect.NEXT,
-                    fragment.getEditableText(),
-                    fragment.getCursorOffset(),
-                    new TaskListener<MatcherResult>() {
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void onSuccess(MatcherResult match) {
-                            if (match == null) {
-                                UIUtils.toast(fragment.getContext(), R.string.find_not_found);
-                                return;
-                            }
-                            fragment.addHightlight(match.start(), match.end());
-                            lastResults = match;
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            L.e(e);
-                            UIUtils.toast(fragment.getContext(), e.getMessage());
-                        }
-                    });
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode actionMode) {
-
-        }
     }
 
     private void doInFiles(ExtGrep grep, String replaceText) {

@@ -107,7 +107,7 @@
     <string name="cannt_access_file">Can not access file: %s</string>
     <string name="cannt_read_file">Can not read file: %s</string>
     <string name="ok">OK</string>
-    <string name="read_file_exception">Occurs exception when read file</string>
+    <string name="read_file_exception">"Occurs exception when read file: "</string>
     <string name="init_syntax_msg">Initialize syntax…</string>
     <string name="init_syntax_error">Initialize syntax fail</string>
     <string name="init_build_index_error">Build index fail</string>
@@ -258,4 +258,12 @@
     <string name="find_log">Find Log</string>
     <string name="replace_log">Replace Log</string>
     <string name="use_regex_to_find_tip">Replace keyword support: \\r, \\n, \\t and capturing groups $0 ~ $9</string>
+    <string name="cannt_open_external_file_x">Can\'t open external file: %s</string>
+    <string name="call_external_app_or_share">Call external App / Share...</string>
+    <string name="share_menu">Share...</string>
+    <string name="share_html_menu">Share(HTML)...</string>
+    <string name="dark">Dark</string>
+    <string name="error_occurred_x">An error occurred: \n%s</string>
+    <string name="goto_x">Goto %s</string>
+    <string name="copy_path">Copy Path</string>
 </resources>

@@ -29,6 +29,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.TypedValue;
 
 import java.io.BufferedReader;
@@ -45,6 +46,7 @@ import java.util.StringTokenizer;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class SysUtils {
+    public static final boolean MONKEY_RUNNER_MODE = false;
     /**
      * Gets a field from the project's BuildConfig. This is useful when, for example, flavors
      * are used at the project level to set custom fields.
@@ -74,10 +76,14 @@ public class SysUtils {
         return result != null && ((boolean)result);
     }
 
+    public static boolean isMonkeyRunner(Context context) {
+        return isDebug(context) && MONKEY_RUNNER_MODE;
+    }
+
     public static int dpAsPixels(Context context, int dp)
     {
         Resources resources = context.getResources();
-        return (int) TypedValue.applyDimension(1, dp, resources.getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
     }
 
     public static File getCacheDir(Context context) {
@@ -156,7 +162,7 @@ public class SysUtils {
     }
 
     public static String getAppStoragePath(Context context) {
-        File path = new File(Environment.getExternalStorageDirectory(), context.getPackageName());
+        File path = new File(getInternalStorageDirectory(), context.getPackageName());
         if (!path.exists()) {
             path.mkdirs();
         }
@@ -164,7 +170,7 @@ public class SysUtils {
     }
 
     /* Checks if external storage is available for read and write */
-    public boolean isExternalStorageWritable() {
+    public boolean isInternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             return true;
@@ -173,7 +179,7 @@ public class SysUtils {
     }
 
     /* Checks if external storage is available to at least read */
-    public boolean isExternalStorageReadable() {
+    public boolean isInternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
@@ -182,10 +188,21 @@ public class SysUtils {
         return false;
     }
 
+    public static String getInternalStorageDirectory() {
+        File file;
+        String path = System.getenv("EXTERNAL_STORAGE");
+        if (!TextUtils.isEmpty(path)) {
+            file = new File(path);
+            if (file.exists())
+                return path;
+        }
+        return Environment.getExternalStorageDirectory().getPath();
+    }
+
     public static List<String> getStorageDirectories(boolean removableStorageOnly)
     {
         List<String> list = new ArrayList<String>();
-        String internalPath = Environment.getExternalStorageDirectory().getPath();
+        String internalPath = getInternalStorageDirectory();
 
         BufferedReader buf_reader = null;
         try {

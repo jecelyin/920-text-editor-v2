@@ -18,14 +18,10 @@
 
 package com.jecelyin.editor.v2.common;
 
-import com.jecelyin.editor.v2.io.FileReader;
-import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
-
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public interface ReadFileListener {
     void onStart();
-    SpannableStringBuilder onAsyncReaded(FileReader fileReader, boolean ok);
-    void onDone(SpannableStringBuilder spannableStringBuilder, boolean ok);
+    void onDone(StringBuilder stringBuilder, String encoding, Throwable throwable);
 }

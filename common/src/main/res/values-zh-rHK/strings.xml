@@ -57,7 +57,7 @@
     <string name="rename">重命名</string>
     <string name="rename_fail">重命名失敗</string>
     <string name="select_all">全選</string>
-    <string name="share">共享</string>
+    <string name="share">分享</string>
     <string name="show_hidden_files">顯示隱藏文件</string>
     <string name="sort_by_datetime">按時間</string>
     <string name="sort_by_name">按名稱</string>
@@ -107,7 +107,7 @@
     <string name="cannt_access_file">文件 %s 無法訪問</string>
     <string name="cannt_read_file">無法讀取文件%s</string>
     <string name="ok">確定</string>
-    <string name="read_file_exception">讀取文件時發生異常</string>
+    <string name="read_file_exception">讀取文件時發生異常：</string>
     <string name="init_syntax_msg">正在初始化語法高亮…</string>
     <string name="init_syntax_error">初始化語法文件失敗，請檢查是否有足夠的存儲空間</string>
     <string name="init_build_index_error">建立索引失敗</string>
@@ -258,4 +258,11 @@
     <string name="find_log">查找日誌</string>
     <string name="replace_log">替換日誌</string>
     <string name="use_regex_to_find_tip">替換關鍵字支持： \\r, \\n, \\t 和捕捉組 $0 ~ $9</string>
+    <string name="cannt_open_external_file_x">無法打開外部文件：%s</string>
+    <string name="share_menu">分享...</string>
+    <string name="share_html_menu">分享（HTML）...</string>
+    <string name="dark">黑色</string>
+    <string name="error_occurred_x">發生一個錯誤：\n%s</string>
+    <string name="goto_x">轉到 %s</string>
+    <string name="copy_path">複製路徑</string>
 </resources>

@@ -3,10 +3,9 @@ package com.jecelyin.common.github;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.JsonReader;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
-import com.google.gson.stream.JsonReader;
+import com.alibaba.fastjson.JSON;
 import com.jecelyin.common.BuildConfig;
 import com.jecelyin.common.utils.EncryptionUtils;
 import com.jecelyin.common.utils.L;
@@ -21,7 +20,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.google.gson.stream.JsonToken.BEGIN_ARRAY;
+import static android.util.JsonToken.BEGIN_ARRAY;
 import static com.jecelyin.common.github.IGitHubConstants.AUTH_TOKEN;
 import static com.jecelyin.common.github.IGitHubConstants.CHARSET_UTF8;
 import static com.jecelyin.common.github.IGitHubConstants.CONTENT_TYPE_JSON;
@@ -132,11 +131,6 @@ public class GitHubClient {
      */
     protected final String prefix;
 
-    /**
-     * {@link Gson} instance
-     */
-    protected Gson gson = GsonUtils.getGson();
-
     private String user;
 
     private String credentials;
@@ -188,17 +182,6 @@ public class GitHubClient {
             prefix = null;
         else
             prefix = SEGMENT_V3_API;
-    }
-
-    /**
-     * Set whether or not serialized data should include fields that are null.
-     *
-     * @param serializeNulls
-     * @return this client
-     */
-    public GitHubClient setSerializeNulls(boolean serializeNulls) {
-        gson = GsonUtils.getGson(serializeNulls);
-        return this;
     }
 
     /**
@@ -429,8 +412,8 @@ public class GitHubClient {
      */
     protected String toJson(Object object) throws IOException {
         try {
-            return gson.toJson(object);
-        } catch (JsonParseException jpe) {
+            return JSON.toJSONString(object);
+        } catch (Exception jpe) {
             IOException ioe = new IOException(
                     "Parse exception converting object to JSON"); //$NON-NLS-1$
             ioe.initCause(jpe);
@@ -467,8 +450,8 @@ public class GitHubClient {
                 stream, CHARSET_UTF8), bufferSize);
         if (listType == null)
             try {
-                return gson.fromJson(reader, type);
-            } catch (JsonParseException jpe) {
+                return GsonUtils.parseObject(reader, type);
+            } catch (Exception jpe) {
                 L.e(jpe);
                 IOException ioe = new IOException(
                         "Parse exception converting JSON to object"); //$NON-NLS-1$
@@ -485,10 +468,10 @@ public class GitHubClient {
             JsonReader jsonReader = new JsonReader(reader);
             try {
                 if (jsonReader.peek() == BEGIN_ARRAY)
-                    return gson.fromJson(jsonReader, listType);
+                    return GsonUtils.parseObject(reader, listType);
                 else
-                    return gson.fromJson(jsonReader, type);
-            } catch (JsonParseException jpe) {
+                    return GsonUtils.parseObject(reader, type);
+            } catch (Exception jpe) {
                 L.e(jpe);
                 IOException ioe = new IOException(
                         "Parse exception converting JSON to object"); //$NON-NLS-1$

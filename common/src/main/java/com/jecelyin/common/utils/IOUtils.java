@@ -48,10 +48,18 @@ public class IOUtils {
     }
 
     public static String readFile(File file, String encoding) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding));
+        FileInputStream is = new FileInputStream(file);
+        String text = readFile(is, encoding);
+        is.close();
+
+        return text;
+    }
+
+    public static String readFile(InputStream is, String encoding) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, encoding));
         char[] buf = new char[8192];
         int size;
-        StringBuilder sb = new StringBuilder((int) file.length());
+        StringBuilder sb = new StringBuilder(buf.length * 4);
         while ((size = br.read(buf)) != -1) {
             sb.append(buf, 0, size);
         }

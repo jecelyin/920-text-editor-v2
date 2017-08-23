@@ -23,7 +23,6 @@ import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -42,17 +41,21 @@ import com.jecelyin.android.file_explorer.adapter.FileListItemAdapter;
 import com.jecelyin.android.file_explorer.adapter.PathButtonAdapter;
 import com.jecelyin.android.file_explorer.databinding.FileExplorerFragmentBinding;
 import com.jecelyin.android.file_explorer.io.JecFile;
+import com.jecelyin.android.file_explorer.io.LocalFile;
 import com.jecelyin.android.file_explorer.io.RootFile;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.OnClipboardPasteFinishListener;
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecFragment;
 import com.jecelyin.common.listeners.OnItemClickListener;
+import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.task.JecAsyncTask;
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.task.TaskResult;
-import com.jecelyin.common.utils.L;
+import com.jecelyin.common.utils.DBHelper;
+import com.jecelyin.common.utils.RootShellRunner;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.common.utils.command.ShellDaemon;
 import com.jecelyin.editor.v2.Pref;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -153,15 +156,42 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
             }
         });
 
-        Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
-
-        view.post(new Runnable() {
+        binding.recentPathBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                isRoot = Pref.getInstance(getContext()).isRootable();
-                onRefresh();
+            public void onClick(View v) {
+                RecentPathsMenu menu = new RecentPathsMenu(getContext(), v);
+                menu.setOnPathSelectListener(new RecentPathsMenu.OnPathSelectListener() {
+                    @Override
+                    public void onSelect(String path) {
+                        switchToPath(new LocalFile(path));
+                    }
+                });
+                menu.show();
             }
         });
+
+        Pref.getInstance(getContext()).registerOnSharedPreferenceChangeListener(this);
+
+        if (Pref.getInstance(getContext()).isRootEnabled()) {
+            new RootShellRunner().isRootAvailable(new OnResultCallback<Boolean>() {
+                @Override
+                public void onError(String error) {
+                    onRefresh();
+                }
+
+                @Override
+                public void onSuccess(Boolean result) {
+                    if (getActivity() == null)
+                        return;
+
+                    isRoot = result;
+                    onRefresh();
+                }
+            });
+        } else {
+            isRoot = false;
+            onRefresh();
+        }
     }
 
     @Override
@@ -171,7 +201,7 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         if (action != null) {
             action.destroy();
         }
-
+        ShellDaemon.getShell().reset();
     }
 
     @Override
@@ -227,8 +257,13 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
             @Override
             public void onSuccess(JecFile[] result) {
-                if (adapter != null)
+                if (adapter != null) {
+                    pathAdapter.setPath(path);
                     adapter.setData(result);
+                    Pref.getInstance(getContext()).setLastOpenPath(path.getPath());
+                    DBHelper.getInstance(getContext()).addRecentPath(path.getPath());
+                }
+
             }
 
             @Override
@@ -236,7 +271,19 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
                 if (binding.explorerSwipeRefreshLayout == null)
                     return;
                 binding.explorerSwipeRefreshLayout.setRefreshing(false);
-                UIUtils.toast(getContext(), e);
+                final String storage = Environment.getExternalStorageDirectory().getPath();
+                UIUtils.showConfirmDialog(getContext()
+                        , null
+                        , getString(R.string.error_occurred_x, e.getMessage())
+                        , new UIUtils.OnClickCallback() {
+                            @Override
+                            public void onOkClick() {
+                                switchToPath(new LocalFile(storage));
+                            }
+                        }
+                        , getString(R.string.goto_x, storage)
+                        , getString(android.R.string.cancel)
+                );
             }
         });
         task.execute();
@@ -252,19 +299,9 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
         }
     }
 
-    public boolean onBackPressed() {
-        JecFile parent = path.getParentFile();
-        if(parent == null || parent.getPath().startsWith(path.getPath())) {
-            switchToPath(parent);
-            return true;
-        }
-        return false;
-    }
-
     private void switchToPath(JecFile file) {
         path = file;
-        pathAdapter.setPath(file);
-        Pref.getInstance(getContext()).setLastOpenPath(file.getPath());
+
         onRefresh();
     }
 
@@ -295,7 +332,8 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        onRefresh();
+        if (!key.equals(Pref.KEY_LAST_OPEN_PATH))
+            onRefresh();
     }
 
     private static interface UpdateRootInfo {
@@ -317,17 +355,34 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
         @Override
         protected void onRun(final TaskResult<JecFile[]> taskResult, Void... params) throws Exception {
+
+            if (!(path instanceof RootFile) && (isRoot || RootShellRunner.isRootPath(path.getPath()))) {
+                RootFile.obtain(path.getPath(), new OnResultCallback<RootFile>() {
+                    @Override
+                    public void onError(String error) {
+                        updateList(taskResult);
+                    }
+
+                    @Override
+                    public void onSuccess(RootFile result) {
+                        path = result;
+                        updateList(taskResult);
+                    }
+                });
+            } else {
+                updateList(taskResult);
+            }
+        }
+
+        private void updateList(final TaskResult<JecFile[]> taskResult) {
             Pref pref = Pref.getInstance(context);
             final boolean showHiddenFiles = pref.isShowHiddenFiles();
             final int sortType = pref.getFileSortType();
-            if (isRoot && !(path instanceof RootFile) && !path.getPath().startsWith(Environment.getExternalStorageDirectory().getPath())) {
-                path = new RootFile(path.getPath());
-            }
             updateRootInfo.onUpdate(path);
             path.listFiles(new FileListResultListener() {
                 @Override
                 public void onResult(JecFile[] result) {
-                    if (result.length == 0) {
+                    if (result == null || result.length == 0) {
                         taskResult.setResult(result);
                         return;
                     }
@@ -344,6 +399,11 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
                     }
                     Arrays.sort(result, new FileListSorter(true, sortType, true));
                     taskResult.setResult(result);
+                }
+
+                @Override
+                public void onError(String error) {
+                    taskResult.setError(new Exception(error));
                 }
             });
         }

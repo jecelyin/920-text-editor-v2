@@ -25,7 +25,7 @@ import android.view.View;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.editor.v2.R;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class RecentFilesManager implements MaterialDialog.ListCallback, Material
     private ArrayList<DBHelper.RecentFileItem> list;
 
     static interface OnFileItemClickListener {
-        void onClick(String file, String encoding);
+        void onClick(DBHelper.RecentFileItem item);
     }
 
     public RecentFilesManager(Context context) {
@@ -81,7 +81,7 @@ public class RecentFilesManager implements MaterialDialog.ListCallback, Material
         if(onFileItemClickListener == null)
             return;
         DBHelper.RecentFileItem item = list.get(i);
-        onFileItemClickListener.onClick(item.path, item.encoding);
+        onFileItemClickListener.onClick(item);
     }
 
     public void setOnFileItemClickListener(OnFileItemClickListener onFileItemClickListener) {

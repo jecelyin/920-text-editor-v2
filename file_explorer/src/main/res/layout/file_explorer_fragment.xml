@@ -25,10 +25,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/pathScrollView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="30dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pathScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/recentPathBtn"
+                android:src="@drawable/ic_arrow_drop_down_black"
+                android:background="?android:attr/windowBackground"
+                android:layout_gravity="right"
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
         <EditText
             android:id="@+id/nameFilterEditText"
@@ -49,18 +62,10 @@
                 android:id="@+id/explorer_swipe_refresh_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+                <in.myinnos.alphabetsindexfastscrollrecycler.IndexFastScrollRecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:fastScrollAutoHide="false"
-                    app:fastScrollAutoHideDelay="1500"
-                    app:fastScrollPopupBgColor="?attr/colorAccent"
-                    app:fastScrollPopupTextColor="?attr/colorPrimaryDark"
-                    app:fastScrollThumbColor="?attr/colorAccent"
-                    app:fastScrollPopupTextSize="56sp"
-                    app:fastScrollPopupBackgroundSize="88dp"
-                    app:fastScrollTrackColor="#1f000000" />
+                    android:layout_height="match_parent" />
             </android.support.v4.widget.SwipeRefreshLayout>
 
             <TextView android:id="@+id/emptyLayout"

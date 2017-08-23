@@ -40,6 +40,7 @@ import com.jecelyin.editor.v2.ui.MainActivity;
 import com.jecelyin.editor.v2.ui.dialog.SaveConfirmDialog;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.view.EditorView;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -72,11 +73,11 @@ public class EditorAdapter extends ViewPagerAdapter {
      *
      * @param file 一个路径或标题
      */
-    public void newEditor(@Nullable File file, int offset, String encoding) {
-        newEditor(true, file, offset, encoding);
+    public void newEditor(@Nullable File file, int line, int column, String encoding) {
+        newEditor(true, file, line, column, encoding);
     }
-    public void newEditor(boolean notify, @Nullable File file, int offset, String encoding) {
-        list.add(new EditorDelegate(list.size(), file, offset, encoding));
+    public void newEditor(boolean notify, @Nullable File file, int line, int column, String encoding) {
+        list.add(new EditorDelegate(list.size(), file, line, column, encoding));
         if (notify)
             notifyDataSetChanged();
     }
@@ -145,10 +146,6 @@ public class EditorAdapter extends ViewPagerAdapter {
     public boolean removeEditor(final int position, final TabCloseListener listener) {
         EditorDelegate f = list.get(position);
 
-        final String encoding = f.getEncoding();
-        final int offset = f.getCursorOffset();
-        final String path = f.getPath();
-
         if(f.isChanged()) {
             new SaveConfirmDialog(context, f.getTitle(), new MaterialDialog.SingleButtonCallback() {
                 @Override
@@ -158,16 +155,12 @@ public class EditorAdapter extends ViewPagerAdapter {
                         command.object = new SaveListener() {
                             @Override
                             public void onSaved() {
-                                remove(position);
-                                if (listener != null)
-                                    listener.onClose(path, encoding, offset);
+                                doRemove(position, listener);
                             }
                         };
                         ((MainActivity) context).doCommand(command);
                     } else if (which == DialogAction.NEGATIVE) {
-                        remove(position);
-                        if(listener != null)
-                            listener.onClose(path, encoding, offset);
+                        doRemove(position, listener);
                     } else {
                         dialog.dismiss();
                     }
@@ -175,14 +168,36 @@ public class EditorAdapter extends ViewPagerAdapter {
             }).show();
             return false;
         } else {
-            remove(position);
-            if(listener != null)
-                listener.onClose(path, encoding, offset);
+            doRemove(position, listener);
             return true;
         }
     }
 
+    private void doRemove(final int position, final TabCloseListener listener) {
+        EditorDelegate f = list.get(position);
+
+        final String encoding = f.getEncoding();
+        final String path = f.getPath();
+
+        if (f.mEditText != null) {
+            f.mEditText.getCurrentPosition(new JsCallback<Integer[]>() {
+                @Override
+                public void onCallback(Integer[] data) {
+                    remove(position);
+                    if (listener != null)
+                        listener.onClose(path, encoding, data[0], data[1]);
+                }
+            });
+        } else {
+            remove(position);
+            if (listener != null)
+                listener.onClose(path, encoding, 0, 0);
+        }
+    }
+
     private void remove(int position) {
+        if (list.isEmpty() || list.size() <= position)
+            return;
         EditorDelegate delegate = list.remove(position);
         delegate.setRemoved();
         notifyDataSetChanged();

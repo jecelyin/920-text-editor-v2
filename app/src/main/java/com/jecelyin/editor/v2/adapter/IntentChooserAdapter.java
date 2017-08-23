@@ -18,13 +18,12 @@
 
 package com.jecelyin.editor.v2.adapter;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ResolveInfo;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,29 +34,42 @@ import java.util.List;
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
-public class IntentChooserAdapter extends BaseAdapter {
+public class IntentChooserAdapter extends RecyclerView.Adapter<IntentChooserAdapter.IntentViewHolder> {
     private final Context context;
     private final List<ResolveInfo> apps;
-    private final int iconDpi;
+    private OnIntentItemSelectedListener onIntentItemSelectedListener;
+
+    public interface OnIntentItemSelectedListener {
+        void onItemSelected(ResolveInfo ri);
+    }
 
     public IntentChooserAdapter(Context context, List<ResolveInfo> apps) {
         this.context = context;
         this.apps = apps;
+    }
 
-        ActivityManager activityManager =
-                (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-
-        iconDpi = activityManager.getLauncherLargeIconDensity();
+    public void setOnIntentItemSelectedListener(OnIntentItemSelectedListener onIntentItemSelectedListener) {
+        this.onIntentItemSelectedListener = onIntentItemSelectedListener;
     }
 
     @Override
-    public int getCount() {
-        return apps == null ? 0 : apps.size();
+    public IntentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new IntentViewHolder(LayoutInflater.from(context).inflate(R.layout.intent_chooser_listitem, parent, false));
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public void onBindViewHolder(IntentViewHolder holder, int position) {
+        final ResolveInfo info = apps.get(position);
+        holder.titleTextView.setText(info.activityInfo.loadLabel(context.getPackageManager()));
+        holder.iconImageView.setImageDrawable(info.activityInfo.loadIcon(context.getPackageManager()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onIntentItemSelectedListener != null) {
+                    onIntentItemSelectedListener.onItemSelected(info);
+                }
+            }
+        });
     }
 
     @Override
@@ -66,24 +78,19 @@ public class IntentChooserAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        TextView title;
-        ImageView icon;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.intent_chooser_listitem, parent, false);
-            title = (TextView) convertView.findViewById(R.id.title_text_view);
-            icon = (ImageView) convertView.findViewById(R.id.iconImageView);
-            convertView.setTag(R.id.title_text_view, title);
-            convertView.setTag(R.id.iconImageView, icon);
-        } else {
-            title = (TextView) convertView.getTag(R.id.title_text_view);
-            icon = (ImageView) convertView.getTag(R.id.iconImageView);
+    public int getItemCount() {
+        return apps == null ? 0 : apps.size();
+    }
+
+    static class IntentViewHolder extends RecyclerView.ViewHolder {
+        ImageView iconImageView;
+        TextView titleTextView;
+
+
+        public IntentViewHolder(View itemView) {
+            super(itemView);
+            iconImageView = (ImageView) itemView.findViewById(R.id.iconImageView);
+            titleTextView = (TextView) itemView.findViewById(R.id.title_text_view);
         }
-
-        ResolveInfo ri = apps.get(position);
-        title.setText(ri.activityInfo.loadLabel(context.getPackageManager()));
-        icon.setImageDrawable(ri.activityInfo.loadIcon(context.getPackageManager()));
-
-        return convertView;
     }
 }

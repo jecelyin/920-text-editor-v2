@@ -6,41 +6,5 @@
     <attr name="toolbarIconNormalColor" format="color" />
     <attr name="toolbarIconDisabledColor" format="color" />
     <attr name="menuIconNormalColor" format="color" />
-
-    <declare-styleable name="Editor">
-        <attr name="textForeground" format="color" />
-        <attr name="textBackground" format="color" />
-        <attr name="caret" format="color" />
-        <attr name="selection" format="color" />
-        <attr name="invisibles" format="color" />
-        <attr name="gutterForeground" format="color" />
-        <attr name="gutterBackground" format="color" />
-        <attr name="gutterDivider" format="color" />
-        <attr name="findResultsPath" format="color" />
-        <attr name="findResultsKeyword" format="color" />
-    </declare-styleable>
-    <declare-styleable name="Highlight">
-        <attr name="hlComment1" format="color" />
-        <attr name="hlComment2" format="color" />
-        <attr name="hlComment3" format="color" />
-        <attr name="hlComment4" format="color" />
-        <attr name="hlDigit" format="color" />
-        <attr name="hlFoldLine0" format="color" />
-        <attr name="hlFoldLine1" format="color" />
-        <attr name="hlFoldLine2" format="color" />
-        <attr name="hlFoldLine3" format="color" />
-        <attr name="hlFunction" format="color" />
-        <attr name="hlInvalid" format="color" />
-        <attr name="hlKeyword1" format="color" />
-        <attr name="hlKeyword2" format="color" />
-        <attr name="hlKeyword3" format="color" />
-        <attr name="hlKeyword4" format="color" />
-        <attr name="hlLabel" format="color" />
-        <attr name="hlLiteral1" format="color" />
-        <attr name="hlLiteral2" format="color" />
-        <attr name="hlLiteral3" format="color" />
-        <attr name="hlLiteral4" format="color" />
-        <attr name="hlMarkup" format="color" />
-        <attr name="hlOperator" format="color" />
-    </declare-styleable>
+    <attr name="editorDefaultBackground" format="color" />
 </resources>

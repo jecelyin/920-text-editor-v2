@@ -24,68 +24,30 @@ import android.view.View;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
-import com.jecelyin.editor.v2.highlight.jedit.Catalog;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Set;
+import com.jecelyin.editor.v2.ui.ModeList;
 
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LangListDialog extends AbstractDialog {
-    private String[] scopeList;
     private String[] langList;
     private int currentLangIndex = -1;
-
-    private static class Grammar {
-        String name;
-        String scope;
-
-        public Grammar(String scope, String name) {
-            this.name = name;
-            this.scope = scope;
-        }
-    }
 
     public LangListDialog(Context context) {
         super(context);
 
-        initGrammarInfo();
-    }
-
-    private void initGrammarInfo() {
-        Set<String> strings = Catalog.map.keySet();
-        ArrayList<Grammar> list = new ArrayList<Grammar>(strings.size());
-        Grammar g;
-        for (String name : strings) {
-            list.add(new Grammar(name, name));
-        }
-
-        Collections.sort(list, new Comparator<Grammar>() {
-            @Override
-            public int compare(Grammar lhs, Grammar rhs) {
-                return lhs.name.compareToIgnoreCase(rhs.name);
-            }
-        });
-
         String currLang = getMainActivity().getCurrentLang();
 
-        int size = list.size();
-        langList = new String[size];
-        scopeList = new String[size];
-
-        for (int i=0; i<size; i++) {
-            g = list.get(i);
-            langList[i] = g.name;
-            scopeList[i] = g.scope;
-
-            if (currLang != null && currLang.equals(g.scope)) {
+        int length = ModeList.modes.length;
+        langList = new String[length];
+        for (int i = 0; i < length; i++) {
+            langList[i] = ModeList.modes[i].name;
+            if (currLang != null && currLang.equals(langList[i])) {
                 currentLangIndex = i;
             }
         }
     }
+
     @Override
     public void show() {
         MaterialDialog dlg = getDialogBuilder().items(langList)
@@ -94,8 +56,8 @@ public class LangListDialog extends AbstractDialog {
 
                     @Override
                     public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                        Command command = new Command(Command.CommandEnum.HIGHLIGHT);
-                        command.object = scopeList[i];
+                        Command command = new Command(Command.CommandEnum.CHANGE_MODE);
+                        command.object = ModeList.modes[i].mode;
                         getMainActivity().doCommand(command);
                         return true;
                     }

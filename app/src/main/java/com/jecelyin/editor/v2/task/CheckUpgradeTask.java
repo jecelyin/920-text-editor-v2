@@ -64,6 +64,9 @@ public class CheckUpgradeTask extends AsyncTask<String, Void, Release> {
 
                 Release release = list.iterator().next();
                 String version = release.getTagName();
+                if (version == null || currentVersion == null)
+                    return null;
+
                 int vc = versionCompare(version, currentVersion);
                 if (vc > 0) {
                     return release;

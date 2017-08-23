@@ -27,7 +27,7 @@ import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.adapter.EditorAdapter;
 import com.jecelyin.editor.v2.adapter.TabAdapter;
 import com.jecelyin.editor.v2.common.TabCloseListener;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 import com.jecelyin.editor.v2.view.EditorView;
 import com.jecelyin.editor.v2.view.TabViewPager;
@@ -101,7 +101,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
                 f = new File(item.path);
                 if(!f.isFile())
                     continue;
-                editorAdapter.newEditor(false, f, item.offset, item.encoding);
+                editorAdapter.newEditor(false, f, item.line, item.column, item.encoding);
                 setCurrentTab(editorAdapter.getCount() - 1); //fixme: auto load file, otherwise click other tab will crash by search result
             }
             editorAdapter.notifyDataSetChanged();
@@ -144,10 +144,10 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
     }
 
     public boolean newTab(File path, String encoding) {
-        return newTab(path, 0, encoding);
+        return newTab(path, 0, 0, encoding);
     }
 
-    public boolean newTab(File path, int offset, String encoding) {
+    public boolean newTab(File path, int line, int column, String encoding) {
         int count = editorAdapter.getCount();
         for(int i = 0; i < count; i++) {
             EditorDelegate fragment = editorAdapter.getItem(i);
@@ -158,7 +158,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
                 return false;
             }
         }
-        editorAdapter.newEditor(path, offset, encoding);
+        editorAdapter.newEditor(path, line, column, encoding);
         setCurrentTab(count);
         return true;
     }
@@ -182,7 +182,7 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
     public void closeTab(int position) {
         editorAdapter.removeEditor(position, new TabCloseListener() {
             @Override
-            public void onClose(String path, String encoding, int offset) {
+            public void onClose(String path, String encoding, int line, int column) {
                 DBHelper.getInstance(mainActivity).updateRecentFile(path, false);
                 int currentTab = getCurrentTab();
                 if (getTabCount() != 0) {
@@ -241,8 +241,8 @@ public class TabManager implements TabViewPager.OnPageChangeListener {
         }
         return editorAdapter.removeAll(new TabCloseListener() {
             @Override
-            public void onClose(String path, String encoding, int offset) {
-                DBHelper.getInstance(mainActivity).updateRecentFile(path, encoding, offset);
+            public void onClose(String path, String encoding, int line, int column) {
+                DBHelper.getInstance(mainActivity).updateRecentFile(path, encoding, line, column);
                 int count = getTabCount();
                 if (count == 0) {
                     mainActivity.finish();

@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -33,7 +34,9 @@ import com.jecelyin.common.utils.L;
 import com.jecelyin.common.utils.UIUtils;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.adapter.IntentChooserAdapter;
+import com.jecelyin.editor.v2.ui.EditorDelegate;
 import com.jecelyin.editor.v2.utils.SL4AIntentBuilders;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -63,6 +66,8 @@ public class RunDialog extends AbstractDialog {
         list.add(new Executor(R.string.use_sl4a_in_terminal_run_script, context.getString(R.string.use_sl4a_in_terminal_run_script)));
         list.add(new Executor(R.string.preview_in_browser, context.getString(R.string.preview_in_browser)));
         list.add(new Executor(R.string.other_application, context.getString(R.string.other_application)));
+        list.add(new Executor(R.string.share_menu, context.getString(R.string.share_menu)));
+        list.add(new Executor(R.string.share_html_menu, context.getString(R.string.share_html_menu)));
     }
 
     @Override
@@ -72,18 +77,22 @@ public class RunDialog extends AbstractDialog {
         for (int i=0; i<size; i++) {
             items[i] = list.get(i).name;
         }
-        MaterialDialog dlg = getDialogBuilder().items(items)
-                .title(R.string.run)
-                .positiveText(R.string.close)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                        onItemClick(i);
-                    }
-                })
-                .show();
+        try {
+            MaterialDialog dlg = getDialogBuilder().items(items)
+                    .title(R.string.call_external_app_or_share)
+                    .positiveText(R.string.close)
+                    .itemsCallback(new MaterialDialog.ListCallback() {
+                        @Override
+                        public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                            onItemClick(i);
+                        }
+                    })
+                    .show();
 
-        handleDialog(dlg);
+            handleDialog(dlg);
+        } catch (Exception e) {
+            // android.view.WindowLeaked: Activity com.jecelyin.editor.v2.ui.MainActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{65c348b8 V.E..... R......D 0,0-684,914} that was originally added here
+        }
     }
 
     private void onItemClick(int i) {
@@ -99,10 +108,11 @@ public class RunDialog extends AbstractDialog {
             UIUtils.toast(context, R.string.please_save_as_file_first);
             return;
         }
-        File file = new File(path);
-        Uri data = Uri.fromFile(file);
-        String type = MimeTypes.getInstance().getMimeType(file.getName());
-        Executor executor = list.get(i);
+        final File file = new File(path);
+        final Uri data = Uri.fromFile(file);
+        final String fileName = file.getName();
+        final String type = MimeTypes.getInstance().getMimeType(fileName);
+        final Executor executor = list.get(i);
         Intent it = null;
         switch (executor.id) {
             case R.string.use_sl4a_in_background_run_script:
@@ -124,6 +134,29 @@ public class RunDialog extends AbstractDialog {
 //                it.setComponent(new ComponentName("com.n0n3m4.droidc", "com.n0n3m4.droidc.CCompilerMain"));
                 it = Intent.createChooser(it, context.getString(R.string.chooser_application));
                 break;
+            case R.string.share_menu:
+            case R.string.share_html_menu:
+                EditorDelegate editorDelegate = getMainActivity().getTabManager().getEditorAdapter().getCurrentEditorDelegate();
+                if (editorDelegate != null) {
+                    final int id = executor.id;
+                    editorDelegate.getText(new JsCallback<String>() {
+                        @Override
+                        public void onCallback(String text) {
+                            if (id == R.string.share_html_menu && text != null && text.length() > 0) {
+                                text = TextUtils.htmlEncode(text);
+                                text = text.replace("\n", "<br/>\n");
+                            }
+                            Intent it = new Intent(Intent.ACTION_SEND);//注意调用it.setType会设置Data为null
+                            it.setDataAndType(data, type); //注意调用it.setType会设置Data为null
+                            it.putExtra(Intent.EXTRA_TITLE, fileName); //for youdaoNote
+                            it.putExtra(Intent.EXTRA_TEXT, text); //for youdaoNote
+                            it = Intent.createChooser(it, context.getString(R.string.share_menu));
+                            getMainActivity().startActivity(it);
+                        }
+                    });
+                }
+
+                return;
         }
         if(it != null) {
             if (it.resolveActivity(context.getPackageManager()) != null) {
@@ -141,11 +174,10 @@ public class RunDialog extends AbstractDialog {
         Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.jecelyin.com"));
         final List<ResolveInfo> apps = context.getPackageManager().queryIntentActivities(it, PackageManager.MATCH_DEFAULT_ONLY);
 
-        getDialogBuilder().adapter(new IntentChooserAdapter(context, apps), new MaterialDialog.ListCallback() {
+        IntentChooserAdapter adapter = new IntentChooserAdapter(context, apps);
+        adapter.setOnIntentItemSelectedListener(new IntentChooserAdapter.OnIntentItemSelectedListener() {
             @Override
-            public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-                dialog.dismiss();
-                ResolveInfo info = apps.get(which);
+            public void onItemSelected(ResolveInfo info) {
                 //该应用的包名
                 String pkg = info.activityInfo.packageName;
                 //应用的主activity类
@@ -160,7 +192,8 @@ public class RunDialog extends AbstractDialog {
                     UIUtils.toast(context, R.string.run_fail_message);
                 }
             }
-        })
+        });
+        getDialogBuilder().adapter(adapter, new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false))
         .title(R.string.chooser_browser)
         .show();
     }

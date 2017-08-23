@@ -49,6 +49,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.folderselector.FolderChooserDialog;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
+import com.azeesoft.lib.colorpicker.Stools;
 import com.jecelyin.android.file_explorer.FileExplorerActivity;
 import com.jecelyin.common.utils.CrashDbHelper;
 import com.jecelyin.common.utils.IOUtils;
@@ -60,7 +61,6 @@ import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.common.Command;
 import com.jecelyin.editor.v2.common.SaveListener;
-import com.jecelyin.editor.v2.highlight.jedit.Catalog;
 import com.jecelyin.editor.v2.task.CheckUpgradeTask;
 import com.jecelyin.editor.v2.task.ClusterCommand;
 import com.jecelyin.editor.v2.task.LocalTranslateTask;
@@ -73,7 +73,7 @@ import com.jecelyin.editor.v2.ui.dialog.RunDialog;
 import com.jecelyin.editor.v2.ui.dialog.WrapCharDialog;
 import com.jecelyin.editor.v2.ui.settings.SettingsActivity;
 import com.jecelyin.editor.v2.utils.AppUtils;
-import com.jecelyin.editor.v2.utils.DBHelper;
+import com.jecelyin.common.utils.DBHelper;
 import com.jecelyin.editor.v2.view.TabViewPager;
 import com.jecelyin.editor.v2.view.menu.MenuDef;
 import com.jecelyin.editor.v2.view.menu.MenuFactory;
@@ -228,11 +228,9 @@ public class MainActivity extends BaseActivity
 
     private void bindPreferences() {
         mDrawerLayout.setKeepScreenOn(pref.isKeepScreenOn());
-        mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         mSymbolBarLayout.setVisibility(pref.isReadOnly() ? View.GONE : View.VISIBLE);
-        //bind other preference
-//        pref.getSharedPreferences().registerOnSharedPreferenceChangeListener(this); //不能这样使用，无法监听
-//        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+
+        onSharedPreferenceChanged(null, Pref.KEY_PREF_ENABLE_DRAWERS);
         pref.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -251,15 +249,15 @@ public class MainActivity extends BaseActivity
                 mToolbar.setKeepScreenOn(sharedPreferences.getBoolean(key, false));
                 break;
             case Pref.KEY_ENABLE_HIGHLIGHT:
-                Command command = new Command(Command.CommandEnum.HIGHLIGHT);
-                command.object = pref.isHighlight() ? null : Catalog.DEFAULT_MODE_NAME;
+                Command command = new Command(Command.CommandEnum.ENABLE_HIGHLIGHT);
+                command.object = pref.isHighlight();
                 doClusterCommand(command);
                 break;
             case Pref.KEY_SCREEN_ORIENTATION:
                 setScreenOrientation();
                 break;
             case Pref.KEY_PREF_ENABLE_DRAWERS:
-                mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                mDrawerLayout.setDrawerLockMode(pref.isEnabledDrawers() ? TranslucentDrawerLayout.LOCK_MODE_UNDEFINED : TranslucentDrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.RIGHT);
                 break;
             case Pref.KEY_READ_ONLY:
                 mSymbolBarLayout.setVisibility(pref.isReadOnly() ? View.GONE : View.VISIBLE);
@@ -280,7 +278,10 @@ public class MainActivity extends BaseActivity
     }
 
     private void start() {
-        ((ViewGroup) mLoadingLayout.getParent()).removeView(mLoadingLayout);
+        ViewGroup parent = (ViewGroup) mLoadingLayout.getParent();
+        if (parent != null) {
+            parent.removeView(mLoadingLayout);
+        }
 
 //                inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mTabPager.setVisibility(View.VISIBLE);
@@ -361,10 +362,12 @@ public class MainActivity extends BaseActivity
         if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_EDIT.equals(action) ) {
             if (intent.getScheme().equals("content"))
             {
-                InputStream attachment = getContentResolver().openInputStream(intent.getData());
                 try {
+                    InputStream attachment = getContentResolver().openInputStream(intent.getData());
                     String text = IOUtils.toString(attachment);
                     openText(text);
+                } catch (Exception e) {
+                    UIUtils.toast(this, getString(R.string.cannt_open_external_file_x, e.getMessage()));
                 } catch (OutOfMemoryError e) {
                     UIUtils.toast(this, R.string.out_of_memory_error);
                 }
@@ -451,8 +454,8 @@ public class MainActivity extends BaseActivity
                 RecentFilesManager rfm = new RecentFilesManager(this);
                 rfm.setOnFileItemClickListener(new RecentFilesManager.OnFileItemClickListener() {
                     @Override
-                    public void onClick(String file, String encoding) {
-                        openFile(file, encoding, 0);
+                    public void onClick(DBHelper.RecentFileItem item) {
+                        openFile(item.path, item.encoding, item.line, item.column);
                     }
                 });
                 rfm.show(getContext());
@@ -510,14 +513,22 @@ public class MainActivity extends BaseActivity
                 if (ensureNotReadOnly()) {
                     final int primaryTextColor = DialogUtils.resolveColor(this, android.R.attr.textColorPrimary);
                     int theme = DialogUtils.isColorDark(primaryTextColor) ? ColorPickerDialog.LIGHT_THEME : ColorPickerDialog.DARK_THEME;
-                    ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this, theme);
-                    colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
-                        @Override
-                        public void onColorPicked(int color, String hexVal) {
-                            insertText(hexVal);
-                        }
-                    });
-                    colorPickerDialog.show();
+                    try {
+                        ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(this, theme);
+                        colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
+                            @Override
+                            public void onColorPicked(int color, String hexVal) {
+                                insertText(hexVal);
+                            }
+                        });
+                        colorPickerDialog.show();
+                    } catch (IllegalArgumentException e) {
+//                        java.lang.IllegalArgumentException: Unknown color
+//                        at android.graphics.Color.parseColor(Color.java)
+//                        at com.azeesoft.lib.colorpicker.ColorPickerDialog.getLastColor(ColorPickerDialog.java:508)
+                        Stools.saveLastColor(this, "#000000");
+                    }
+
                 }
                 break;
             case R.id.m_datetime:
@@ -608,7 +619,7 @@ public class MainActivity extends BaseActivity
         if (editorDelegate != null) {
             editorDelegate.doCommand(command);
 
-            if (command.what == Command.CommandEnum.HIGHLIGHT) {
+            if (command.what == Command.CommandEnum.CHANGE_MODE) {
                 mToolbar.setTitle(editorDelegate.getToolbarText());
             }
         }
@@ -624,8 +635,8 @@ public class MainActivity extends BaseActivity
         startActivityForResult(it, RC_OPEN_FILE);
     }
 
-    public void startPickPathActivity(String path, String encoding) {
-        FileExplorerActivity.startPickPathActivity(this, path, encoding, RC_SAVE);
+    public void startPickPathActivity(String path, String filename, String encoding) {
+        FileExplorerActivity.startPickPathActivity(this, path, filename, encoding, RC_SAVE);
     }
 
     @Override
@@ -638,7 +649,7 @@ public class MainActivity extends BaseActivity
             case RC_OPEN_FILE:
                 if(data == null)
                     break;
-                openFile(FileExplorerActivity.getFile(data), FileExplorerActivity.getFileEncoding(data), data.getIntExtra("offset", 0));
+                openFile(FileExplorerActivity.getFile(data), FileExplorerActivity.getFileEncoding(data), 0, 0);
                 break;
             case RC_SAVE:
                 String file = FileExplorerActivity.getFile(data);
@@ -653,13 +664,6 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    public static Intent getOpenFileIntent(File file, int offset) {
-        Intent intent = new Intent();
-        intent.putExtra("file", file.getPath());
-        intent.putExtra("offset", offset);
-        return intent;
-    }
-
     private void openText(CharSequence content) {
         if(TextUtils.isEmpty(content))
             return;
@@ -667,20 +671,16 @@ public class MainActivity extends BaseActivity
     }
 
     private void openFile(String file) {
-        openFile(file, null, 0);
+        openFile(file, null, 0, 0);
     }
 
-    public void openFile(String file, String encoding, int offset) {
+    public void openFile(String file, String encoding, int line, int column) {
         if(TextUtils.isEmpty(file))
             return;
-        File f = new File(file);
-        if(!f.isFile()) {
-            UIUtils.toast(this, R.string.file_not_exists);
+
+        if (!tabManager.newTab(new File(file), line, column, encoding))
             return;
-        }
-        if (!tabManager.newTab(f, offset, encoding))
-            return;
-        DBHelper.getInstance(this).addRecentFile(file, encoding);
+        DBHelper.getInstance(this).addRecentFile(file, encoding, line, column);
     }
 
     public void insertText(CharSequence text) {
@@ -724,7 +724,13 @@ public class MainActivity extends BaseActivity
         if (editorDelegate == null)
             return null;
 
-        return editorDelegate.getLang();
+        return editorDelegate.getModeName();
+    }
+
+    public void setSymbolVisibility(boolean b) {
+        if (pref.isReadOnly())
+            return;
+        mSymbolBarLayout.setVisibility(b ? View.VISIBLE : View.GONE);
     }
 
 }

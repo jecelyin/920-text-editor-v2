@@ -70,7 +70,7 @@
             android:title="@string/highlight_the_file_size_limit"
             android:inputType="number"
             android:singleLine="true"
-            android:summary="500 KB"/>
+            android:summary="800 KB"/>
 
     </PreferenceCategory>
 

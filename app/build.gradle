@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'blockcanaryex'
 
 Properties properties = new Properties()
 properties.load(file('../../keystore/920-text-editor-v2.gradle.properties').newDataInputStream())
@@ -7,14 +8,14 @@ def KEYSTORE_PASSWORD = properties.getProperty('KEYSTORE_PASSWORD')
 def GOOGLE_BILLING_KEY = properties.getProperty('GOOGLE_BILLING_KEY')
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.jecelyin.editor.v2"
-        minSdkVersion 17
-        targetSdkVersion 23
-        versionCode 26
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 30
         versionName "v2"
         buildConfigField "String", "GOOGLE_BILLING_KEY", "\"" + GOOGLE_BILLING_KEY + "\""
     }
@@ -66,13 +67,13 @@ android {
     dataBinding {
         enabled = true
     }
-
-    dexOptions {
-//        preDexLibraries true
-//        javaMaxHeapSize "2g" // Use gig increments depending on needs
-        incremental true //增量编译，加快
-        jumboMode true
-    }
+//
+//    dexOptions {
+////        preDexLibraries true
+////        javaMaxHeapSize "2g" // Use gig increments depending on needs
+//        incremental true //增量编译，加快
+//        jumboMode true
+//    }
     changeApkName(applicationVariants, defaultConfig)
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -124,7 +125,6 @@ dependencies {
     compile project(':styles')
     //避免AS找不到相关文件（可以编译通过）
     compile 'com.android.support:design:23.4.0'
-    compile 'com.github.afollestad.material-dialogs:commons:0.8.5.8'
     compile 'com.rengwuxian.materialedittext:library:2.0.3'
 
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
@@ -133,7 +133,10 @@ dependencies {
     compile 'com.azeesoft.lib.colorpicker:colorpicker:1.0.8@aar'
 //    compile 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     compile 'org.msgpack:msgpack-core:0.8.11'
+
+//    debugCompile 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.5.2'
+//    releaseCompile 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.5.2'
 }

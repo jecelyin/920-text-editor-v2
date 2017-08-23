@@ -28,6 +28,7 @@ import com.jecelyin.editor.v2.common.SaveListener;
 import com.jecelyin.editor.v2.io.FileWriter;
 import com.jecelyin.editor.v2.ui.Document;
 import com.jecelyin.editor.v2.ui.EditorDelegate;
+import com.jecelyin.editor.v2.widget.text.JsCallback;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -71,30 +72,25 @@ public class SaveTask {
             editorDelegate.startSaveFileSelectorActivity();
             return;
         }
-        if (document.isRoot()) {
-            saveTo(document.getRootFile(), file, document.getEncoding(), listener);
-        } else {
-            saveTo(file, null, document.getEncoding(), listener);
-        }
-
+        saveTo(file, document.getEncoding(), listener);
     }
 
     public void saveTo(final File file, final String encoding) {
-        saveTo(file, null, encoding, null);
+        saveTo(file, encoding, null);
     }
 
     /**
      *
-     * @param rootFile 要注意这里是否ROOT处理
-     * @param orgiFile 如果是Root处理，保存成功后要回写到原始文件
+     * @param file 如果是Root处理，保存成功后要回写到原始文件
      * @param encoding
      * @param listener
      */
-    private void saveTo(final File rootFile, final File orgiFile, final String encoding, final SaveListener listener) {
-        if (editorDelegateWR.get() == null || contextWR.get() == null)
+    private void saveTo(final File file, final String encoding, final SaveListener listener) {
+        if (editorDelegateWR.get() == null || contextWR.get() == null || documentWR.get() == null || file == null)
             return;
+        boolean root = documentWR.get().isRoot();
         writing = true;
-        FileWriter fileWriter = new FileWriter(rootFile, orgiFile, encoding, Pref.getInstance(contextWR.get()).isKeepBackupFile());
+        final FileWriter fileWriter = new FileWriter(root, file, encoding, Pref.getInstance(contextWR.get()).isKeepBackupFile());
         fileWriter.setFileWriteListener(new FileWriter.FileWriteListener() {
             @Override
             public void onSuccess() {
@@ -102,7 +98,7 @@ public class SaveTask {
 
                 if (documentWR.get() == null || contextWR.get() == null || editorDelegateWR.get() == null)
                     return;
-                documentWR.get().onSaveSuccess(orgiFile != null ? orgiFile : rootFile, encoding);
+                documentWR.get().onSaveSuccess(file, encoding);
                 if(!isCluster) {
                     UIUtils.toast(contextWR.get(), R.string.save_success);
                 } else {
@@ -120,6 +116,12 @@ public class SaveTask {
                     UIUtils.alert(contextWR.get(), e.getMessage());
             }
         });
-        fileWriter.write(editorDelegateWR.get().getEditableText());
+        editorDelegateWR.get().getText(new JsCallback<String>() {
+            @Override
+            public void onCallback(String data) {
+                fileWriter.write(data);
+            }
+        });
+
     }
 }

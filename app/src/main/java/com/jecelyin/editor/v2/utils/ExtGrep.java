@@ -628,6 +628,12 @@ public class ExtGrep implements Parcelable {
 
     }
 
+    public String getPattern() {
+        if (grepPattern == null)
+            compilePattern();
+        return grepPattern == null ? null : grepPattern.pattern();
+    }
+
     public void addFile(final String name) {
 
         filesToProcess.add(new File(name));

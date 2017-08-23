@@ -58,7 +58,7 @@ public class LocalTranslateTask extends JecAsyncTask<Void, Void, Boolean> {
             UIUtils.alert(context, context.getString(R.string.cannt_load_lang_file));
             return;
         }
-        ((MainActivity)context).openFile(stringsFile.getPath(), "UTF-8", 0);
+        ((MainActivity)context).openFile(stringsFile.getPath(), "UTF-8", 0, 0);
         UIUtils.alert(context, context.getString(R.string.local_translate_message));
     }
 

@@ -20,9 +20,8 @@ package com.jecelyin.android.file_explorer.util;
 
 import com.jecelyin.android.file_explorer.ExplorerException;
 import com.jecelyin.android.file_explorer.io.JecFile;
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
-import com.stericson.RootTools.RootTools;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,19 +31,6 @@ import java.util.List;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class FileUtils {
-    private static Boolean mRootAccess = null;
-
-    public static boolean hasRootAccess() {
-        if (mRootAccess != null)
-            return mRootAccess;
-        try {
-            mRootAccess = RootTools.isAccessGiven();
-        } catch (Exception e) {
-            mRootAccess = false;
-        }
-        return mRootAccess;
-    }
-
 
     /**
      * Indicates whether file is considered to be "text".
@@ -108,6 +94,11 @@ public class FileUtils {
                     }
                     doCopyDirectory(srcDir, destDir2, moveFile, exclusionList);
                 }
+
+                @Override
+                public void onError(String error) {
+                    throw new ExplorerException(error);
+                }
             });
         } else {
             doCopyDirectory(srcDir, destDir2, moveFile, null);
@@ -138,6 +129,11 @@ public class FileUtils {
                         }
                     });
                 }
+            }
+
+            @Override
+            public void onError(String error) {
+                throw new ExplorerException(error);
             }
         });
     }

@@ -18,26 +18,16 @@
 
 package com.jecelyin.editor.v2.ui;
 
-import android.annotation.ColorInt;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Parcelable;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.UpdateAppearance;
-import android.view.View;
 
 import com.jecelyin.common.task.TaskListener;
 import com.jecelyin.common.utils.L;
 import com.jecelyin.editor.v2.R;
-import com.jecelyin.editor.v2.core.text.SpannableStringBuilder;
-import com.jecelyin.editor.v2.core.text.method.LinkMovementMethod;
-import com.jecelyin.editor.v2.core.widget.JecEditText;
 import com.jecelyin.editor.v2.utils.ExtGrep;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -52,32 +42,17 @@ public class EditorObjectProcessor {
     }
 
     private static class FindInFilesProcessor {
-        private final JecEditText editText;
         private final EditorDelegate editorDelegate;
-        private final int findResultsKeywordColor;
-        private final int findResultsPathColor;
         ExtGrep grep;
 
         public FindInFilesProcessor(Parcelable object, EditorDelegate editorDelegate) {
             grep = (ExtGrep) object;
             this.editorDelegate = editorDelegate;
-            this.editText = editorDelegate.mEditText;
-            editText.setMovementMethod(LinkMovementMethod.getInstance());
-
-            TypedArray a = editText.getContext().obtainStyledAttributes(new int[]{
-                    R.attr.findResultsPath,
-                    R.attr.findResultsKeyword,
-            });
-            findResultsPathColor = a.getColor(a.getIndex(0), Color.BLACK);
-            findResultsKeywordColor = a.getColor(a.getIndex(1), Color.BLACK);
-            a.recycle();
-
             find();
         }
 
         private void find() {
-            editText.setText(R.string.searching);
-            editText.append("\n\n");
+            editorDelegate.mEditText.setSearchResult(editorDelegate.getContext().getString(R.string.searching), grep.getPattern(), null);
             grep.execute(new TaskListener<List<ExtGrep.Result>>() {
                 @Override
                 public void onCompleted() {
@@ -91,64 +66,53 @@ public class EditorObjectProcessor {
 
                 @Override
                 public void onError(Exception e) {
-                    editText.append(e.getMessage());
-                    editText.append(editText.getContext().getString(R.string.zero_matches));
                     L.e(e);
                 }
             });
         }
 
         private void buildResults(List<ExtGrep.Result> results) {
-            SpannableStringBuilder ssb = new SpannableStringBuilder();
+            StringBuilder ssb = new StringBuilder();
 
+            List<HashMap<String, Object>> data = new ArrayList<>();
             File file = null;
             for(ExtGrep.Result rs : results) {
                 if(file == null || !rs.file.equals(file)) {
                     file = rs.file;
-                    ssb.append("\n");
-                    ssb.append(file.getPath(), new ForegroundColorSpan(findResultsPathColor), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    ssb.append("\n");
+                    ssb.append("\n")
+                    .append("[PATH]")
+                    .append(file.getPath())
+                    .append("[/PATH]")
+//                    ssb.append(file.getPath(), new ForegroundColorSpan(findResultsPathColor), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    .append("\n");
+                    data.add(null);
+                    data.add(null);
                 }
                 //%[index$][标识]*[最小宽度][.精度]转换符
 //                ssb.append(String.format("%1$4d  %2$s\n", rs.lineNumber, rs.line), new FileClickableSpan(editorDelegate, rs), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.append(String.format("%1$4d  ", rs.lineNumber));
-                int start = ssb.length();
-                ssb.append(rs.line);
-//                ssb.setSpan(new ForegroundColorSpan(findResultsKeywordColor), start + rs.matchStart, start + rs.matchEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.setSpan(new FileClickableSpan(findResultsKeywordColor, editorDelegate, rs), start + rs.matchStart, start + rs.matchEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                ssb.append('\n');
+                int start = rs.matchStart;
+                int end = rs.matchEnd;
+
+                ssb.append(String.format("%1$4d\t", rs.lineNumber))
+                   .append(rs.line.substring(0, start))
+                   .append(rs.line.substring(start, end))
+                   .append(rs.line.substring(end));
+                ssb.append("\n");
+
+                HashMap<String, Object> json = new HashMap<>();
+                json.put("file", file.getPath());
+                json.put("line", rs.lineNumber);
+                json.put("column", rs.lineStartOffset);
+                data.add(json);
             }
-            editText.setText(ssb);
+
+            if (ssb.length() == 0) {
+                ssb.append(editorDelegate.getContext().getString(R.string.find_not_found));
+            }
+
+            editorDelegate.mEditText.setSearchResult(ssb.toString(), grep.getPattern(), data);
         }
 
     }
 
-    private static class FileClickableSpan extends ClickableSpan
-            implements UpdateAppearance {
-        private final ExtGrep.Result result;
-        private final EditorDelegate editorDelegate;
-        private final int mColor;
-
-        public FileClickableSpan(@ColorInt int color, EditorDelegate editorDelegate, ExtGrep.Result result) {
-            this.editorDelegate = editorDelegate;
-            this.result = result;
-            mColor = color;
-        }
-
-        @Override
-        public void onClick(View widget) {
-            editorDelegate.getMainActivity().openFile(result.file.getPath(), null, result.startOffset);
-        }
-
-        /**
-         * Makes the text underlined and in the link color.
-         */
-        @Override
-        public void updateDrawState(TextPaint ds) {
-            ds.setColor(mColor);
-            ds.setUnderlineText(true);
-        }
-
-
-    }
 }

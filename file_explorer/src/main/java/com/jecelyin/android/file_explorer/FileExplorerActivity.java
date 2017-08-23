@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -39,7 +38,9 @@ import com.jecelyin.android.file_explorer.listener.OnClipboardDataChangedListene
 import com.jecelyin.android.file_explorer.util.FileListSorter;
 import com.jecelyin.common.app.JecApp;
 import com.jecelyin.common.utils.IOUtils;
+import com.jecelyin.common.utils.SysUtils;
 import com.jecelyin.common.utils.UIUtils;
+import com.jecelyin.common.utils.command.ShellDaemon;
 import com.jecelyin.editor.v2.FullScreenActivity;
 import com.jecelyin.editor.v2.Pref;
 
@@ -70,10 +71,11 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
         activity.startActivityForResult(it, requestCode);
     }
 
-    public static void startPickPathActivity(Activity activity, String destFile, String encoding, int requestCode) {
+    public static void startPickPathActivity(Activity activity, String destFile, String filename, String encoding, int requestCode) {
         Intent it = new Intent(activity, FileExplorerActivity.class);
         it.putExtra("mode", MODE_PICK_PATH);
         it.putExtra("dest_file", destFile);
+        it.putExtra("filename", filename);
         it.putExtra("encoding", encoding);
         activity.startActivityForResult(it, requestCode);
     }
@@ -97,6 +99,8 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         ((JecApp)getApplication()).watch(this);
+
+        ShellDaemon.getShell().reset();
     }
 
     @Override
@@ -111,20 +115,20 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(mode == MODE_PICK_FILE ? R.string.open_file : R.string.save_file);
-
         lastPath = Pref.getInstance(this).getLastOpenPath();
         if(TextUtils.isEmpty(lastPath)) {
-            lastPath = Environment.getExternalStorageDirectory().getPath();
+            lastPath = SysUtils.getInternalStorageDirectory();
         }
 
         String destPath = it.getStringExtra("dest_file");
+        String filename = it.getStringExtra("filename");
 
         if(!TextUtils.isEmpty(destPath)) {
             File dest = new File(destPath);
             lastPath = dest.isFile() ? dest.getParent() : dest.getPath();
             binding.filenameEditText.setText(dest.getName());
         } else {
-            binding.filenameEditText.setText(getString(R.string.untitled_file_name));
+            binding.filenameEditText.setText(TextUtils.isEmpty(filename) ? getString(R.string.untitled_file_name) : filename + ".txt");
         }
 
         initPager();
@@ -249,18 +253,22 @@ public class FileExplorerActivity extends FullScreenActivity implements View.OnC
             names[i++] = n;
         }
 
-        new MaterialDialog.Builder(this)
-                .items(names)
-                .itemsCallbackSingleChoice(selected, new MaterialDialog.ListCallbackSingleChoice() {
-                    @Override
-                    public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                        binding.fileEncodingTextView.setText(charSequence);
-                        if(i > 0)
-                            fileEncoding = charSequence.toString();
-                        return true;
-                    }
-                })
-                .show();
+        try {
+            new MaterialDialog.Builder(this)
+                    .items(names)
+                    .itemsCallbackSingleChoice(selected, new MaterialDialog.ListCallbackSingleChoice() {
+                        @Override
+                        public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                            binding.fileEncodingTextView.setText(charSequence);
+                            if(i > 0)
+                                fileEncoding = charSequence.toString();
+                            return true;
+                        }
+                    })
+                    .show();
+        } catch (Exception e) {
+            // android.view.WindowLeaked: Activity com.jecelyin.android.file_explorer.FileExplorerActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{65b370e8 V.E..... R.....ID 0,0-684,1280} that was originally added here
+        }
     }
 
     private void onSave() {

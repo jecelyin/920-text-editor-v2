@@ -21,7 +21,7 @@ package com.jecelyin.android.file_explorer.io;
 import android.os.Parcel;
 
 import com.jecelyin.android.file_explorer.ExplorerException;
-import com.jecelyin.android.file_explorer.listener.BoolResultListener;
+import com.jecelyin.common.listeners.BoolResultListener;
 import com.jecelyin.android.file_explorer.listener.FileListResultListener;
 import com.jecelyin.android.file_explorer.listener.ProgressUpdateListener;
 import com.jecelyin.common.utils.IOUtils;
@@ -37,7 +37,7 @@ import java.io.OutputStream;
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
 public class LocalFile extends JecFile {
-    private File file;
+    private final File file;
 
     public LocalFile(JecFile parent, String child) {
         super(parent, child);
@@ -148,7 +148,7 @@ public class LocalFile extends JecFile {
             throw new NullPointerException();
 
         File[] files = file.listFiles();
-        if (files.length == 0) {
+        if (files == null || files.length == 0) {
             listener.onResult(new LocalFile[0]);
             return;
         }
