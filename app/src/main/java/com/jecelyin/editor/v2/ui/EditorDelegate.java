@@ -392,12 +392,14 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
             mEditText.canUndo(new JsCallback<Boolean>() {
                 @Override
                 public void onCallback(Boolean data) {
+                    if (data == null) return;
                     mainActivity.setMenuStatus(R.id.m_undo, data ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
                 }
             });
             mEditText.canRedo(new JsCallback<Boolean>() {
                 @Override
                 public void onCallback(Boolean data) {
+                    if (data == null) return;
                     mainActivity.setMenuStatus(R.id.m_redo, data ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
                 }
             });
