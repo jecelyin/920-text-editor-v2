@@ -37,7 +37,6 @@ import java.util.Locale;
 public abstract class ListFileRunner extends Runner<List<FileInfo>> {
     private final String path;
     private String errors;
-    private List<String> mResults;
     private ArrayList<FileInfo> mFiles;
 
     public ListFileRunner(String path) {
@@ -52,24 +51,17 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
     @Override
     protected void process(List<String> results, String errors) {
         this.errors = errors;
-        mResults = results;
         mFiles = new ArrayList<>();
-        eachResults();
+        for (String result : results) {
+            eachResults(result);
+        }
+        onResult(mFiles, errors);
     }
 
-    private void eachResults() {
-        if (mResults.isEmpty()) {
-            onResult(mFiles, errors);
-            return;
-        }
-        String line;
-        do {
-            line = mResults.remove(0);
-            line = line.trim();
-        } while (!mResults.isEmpty() && line.isEmpty());
+    private void eachResults(String result) {
+        String line = result.trim();
 
         if (line.isEmpty()) {
-            onResult(mFiles, errors);
             return;
         }
 
@@ -82,21 +74,21 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
             }
             FileInfo failedToRead = new FileInfo(false, line);
             mFiles.add(failedToRead);
-            eachResults();
+            eachResults(result);
             return;
         }
         // /data/data/com.android.shell/files/bugreports: No such file or directory ls: /: Permission denied
         if (line.startsWith("/") && (line.contains(": No such file")
                 || line.contains("Permission denied"))) {
             errors += line + "\n";
-            eachResults();
+            eachResults(result);
             return;
         }
         try {
             lsParser(path, line);
         } catch (Exception e) {
             L.e("parse line error: " + line, e);
-            eachResults();
+            eachResults(result);
         }
     }
 
@@ -207,21 +199,25 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
         if (type == 'd') {
             file.isDirectory = true;
             mFiles.add(file);
-            eachResults();
         } else if (type == 'l') {
             file.isSymlink = true;
             String linkPath = file.linkedPath;
+            final Object locker = new Object();
             ShellDaemon.getShell().addCommand(new IsDirectoryRunner(linkPath) {
                 @Override
                 public void onResult(Boolean result, @NonNull String errors) {
                     file.isDirectory = result;
                     mFiles.add(file);
-                    eachResults();
+                    locker.notifyAll();
                 }
             });
+            try {
+                locker.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             mFiles.add(file);
-            eachResults();
         }
 
 
