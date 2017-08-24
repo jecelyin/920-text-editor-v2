@@ -346,21 +346,26 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
             });
             return;
         }
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("cmd", ec.cmd);
-        map.put("data", ec.data);
-        String json = JSON.toJSONString(map);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            evaluateJavascript(String.format("handleJava(%d, %s);", 0, json), ec.callback);
-        } else {
-            long id = cmdID.incrementAndGet();
-            if (ec.callback != null) {
-                if (callbackMap == null)
-                    callbackMap = new HashMap<>();
-                callbackMap.put(id, ec.callback);
-            }
 
-            loadUrl(String.format("javascript:handleJava(%d, %s);", id, json));
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("cmd", ec.cmd);
+            map.put("data", ec.data);
+            String json = JSON.toJSONString(map);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                evaluateJavascript(String.format("handleJava(%d, %s);", 0, json), ec.callback);
+            } else {
+                long id = cmdID.incrementAndGet();
+                if (ec.callback != null) {
+                    if (callbackMap == null)
+                        callbackMap = new HashMap<>();
+                    callbackMap.put(id, ec.callback);
+                }
+
+                loadUrl(String.format("javascript:handleJava(%d, %s);", id, json));
+            }
+        } catch (OutOfMemoryError e) {
+            UIUtils.toast(getContext(), R.string.out_of_memory_error);
         }
     }
 
