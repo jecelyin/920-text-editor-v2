@@ -654,7 +654,8 @@ var VirtualRenderer = function(container, theme) {
         posLeft += this.gutterWidth;
         style.height = h + "px";
         style.width = w + "px";
-        style.left = Math.min(posLeft, this.$size.scrollerWidth - w) + "px";
+        // style.left = Math.min(posLeft, this.$size.scrollerWidth - w) + "px";
+        style.left = Math.min(posLeft, this.gutterWidth + this.$size.scrollerWidth - w) + "px"; //当开启输入法的联想（word predictions）功能时，textarea无法达到右边
         style.top = Math.min(posTop, this.$size.height - h) + "px";
     };
 

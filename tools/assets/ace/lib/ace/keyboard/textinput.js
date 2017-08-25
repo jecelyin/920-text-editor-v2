@@ -50,7 +50,8 @@ var TextInput = function(parentNode, host) {
     text.style.opacity = "0";
     parentNode.insertBefore(text, parentNode.firstChild);
 
-    var PLACEHOLDER = "\u2028\u2028";
+    // var PLACEHOLDER = "\u2028\u2028";
+    var PLACEHOLDER = "\x01\x01";
 
     var copied = false;
     var pasted = false;
@@ -180,11 +181,11 @@ var TextInput = function(parentNode, host) {
             if (data)
                 host.onPaste(data);
             pasted = false;
-        } else if (data == PLACEHOLDER.charAt(0)) {
-            if (afterContextMenu)
-                host.execCommand("del", {source: "ace"});
-            else // some versions of android do not fire keydown when pressing backspace
-                host.execCommand("backspace", {source: "ace"});
+        // } else if (data == PLACEHOLDER.charAt(0)) {
+        //     if (afterContextMenu)
+        //         host.execCommand("del", {source: "ace"});
+        //     else // some versions of android do not fire keydown when pressing backspace
+        //         host.execCommand("backspace", {source: "ace"});
         } else {
             if (data.substring(0, 2) == PLACEHOLDER)
                 data = data.substr(2);
@@ -195,7 +196,7 @@ var TextInput = function(parentNode, host) {
             // can happen if undo in textarea isn't stopped
             if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
                 data = data.slice(0, -1);
-            
+
             if (data)
                 host.onTextInput(data);
         }
