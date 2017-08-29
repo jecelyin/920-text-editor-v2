@@ -298,6 +298,12 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         public boolean isCtrlPressed() {
             return inputConnectionHacker != null && inputConnectionHacker.isCtrlPressed();
         }
+
+        @JavascriptInterface
+        public void updateCursorBeforeText(String text) {
+            if(inputConnectionHacker != null)
+                inputConnectionHacker.cursorBeforeText = text;
+        }
     }
 
     private void notifySymbolBarVisibility(final boolean b) {

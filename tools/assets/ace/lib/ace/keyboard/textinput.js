@@ -51,7 +51,7 @@ var TextInput = function(parentNode, host) {
     parentNode.insertBefore(text, parentNode.firstChild);
 
     // var PLACEHOLDER = "\u2028\u2028";
-    var PLACEHOLDER = "\x01\x01";
+    // var PLACEHOLDER = "\x01\x01";
 
     var copied = false;
     var pasted = false;
@@ -101,13 +101,13 @@ var TextInput = function(parentNode, host) {
     });
     var syncValue = lang.delayedCall(function() {
          if (!inComposition) {
-            text.value = PLACEHOLDER;
-            isFocused && resetSelection();
+            // text.value = PLACEHOLDER;
+            // isFocused && resetSelection();
          }
     });
 
     function resetSelection(isEmpty) {
-        if (inComposition)
+        // if (inComposition)
             return;
         
         // this prevents infinite recursion on safari 8 
@@ -131,12 +131,12 @@ var TextInput = function(parentNode, host) {
     }
 
     function resetValue() {
-        if (inComposition)
-            return;
-        text.value = PLACEHOLDER;
-        //http://code.google.com/p/chromium/issues/detail?id=76516
-        if (useragent.isWebKit)
-            syncValue.schedule();
+        // if (inComposition)
+        //     return;
+        // text.value = PLACEHOLDER;
+        // //http://code.google.com/p/chromium/issues/detail?id=76516
+        // if (useragent.isWebKit)
+        //     syncValue.schedule();
     }
 
     useragent.isWebKit || host.addEventListener('changeSelection', function() {
@@ -187,15 +187,15 @@ var TextInput = function(parentNode, host) {
         //     else // some versions of android do not fire keydown when pressing backspace
         //         host.execCommand("backspace", {source: "ace"});
         } else {
-            if (data.substring(0, 2) == PLACEHOLDER)
-                data = data.substr(2);
-            else if (data.charAt(0) == PLACEHOLDER.charAt(0))
-                data = data.substr(1);
-            else if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
-                data = data.slice(0, -1);
-            // can happen if undo in textarea isn't stopped
-            if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
-                data = data.slice(0, -1);
+            // if (data.substring(0, 2) == PLACEHOLDER)
+            //     data = data.substr(2);
+            // else if (data.charAt(0) == PLACEHOLDER.charAt(0))
+            //     data = data.substr(1);
+            // else if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
+            //     data = data.slice(0, -1);
+            // // can happen if undo in textarea isn't stopped
+            // if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
+            //     data = data.slice(0, -1);
 
             if (data)
                 host.onTextInput(data);
@@ -209,9 +209,9 @@ var TextInput = function(parentNode, host) {
             return;
         var data = text.value;
         sendText(data);
-        resetValue();
+        // resetValue();
     };
-    
+
     var handleClipboardData = function(e, data, forceIEMime) {
         var clipboardData = e.clipboardData || window.clipboardData;
         if (!clipboardData || BROKEN_SETDATA)
@@ -311,7 +311,7 @@ var TextInput = function(parentNode, host) {
     var onCompositionStart = function(e) {
         if (inComposition || !host.onCompositionStart || host.$readOnly) 
             return;
-        // console.log("onCompositionStart", inComposition)
+        //console.log("onCompositionStart", inComposition)
         inComposition = {};
         inComposition.canUndo = host.session.$undoManager;
         host.onCompositionStart();
@@ -326,9 +326,11 @@ var TextInput = function(parentNode, host) {
     };
 
     var onCompositionUpdate = function() {
-        // console.log("onCompositionUpdate", inComposition && JSON.stringify(text.value))
-        if (!inComposition || !host.onCompositionUpdate || host.$readOnly)
+        //console.log("onCompositionUpdate", text.value)
+        if (!inComposition || !host.onCompositionUpdate || host.$readOnly) {
+            text.value = '';
             return;
+        }
         var val = text.value.replace(/\x01/g, "");
         if (inComposition.lastValue === val) return;
         
@@ -339,6 +341,7 @@ var TextInput = function(parentNode, host) {
             inComposition.lastValue = val;
         if (inComposition.lastValue) {
             var r = host.selection.getRange();
+            //console.log("onCompositionUpdate lastvalue", inComposition.lastValue);
             host.insert(inComposition.lastValue);
             host.session.markUndoGroup();
             inComposition.range = host.selection.getRange();
@@ -349,7 +352,7 @@ var TextInput = function(parentNode, host) {
 
     var onCompositionEnd = function(e) {
         if (!host.onCompositionEnd || host.$readOnly) return;
-        // console.log("onCompositionEnd", inComposition &&inComposition.lastValue)
+        //console.log("onCompositionEnd", inComposition);
         var c = inComposition;
         inComposition = false;
         var timer = setTimeout(function() {
@@ -381,6 +384,7 @@ var TextInput = function(parentNode, host) {
         if (e.type == "compositionend" && c.range) {
             host.selection.setRange(c.range);
         }
+        // 会导致自动完成时，重复单词，比如输入：en 空格后，会有2个End出来
         // Workaround for #3027, #3045, #3097, #3100, #3249
         var needsOnInput =
             (!!useragent.isChrome && useragent.isChrome >= 53) ||
@@ -388,6 +392,7 @@ var TextInput = function(parentNode, host) {
 
         if (needsOnInput) {
           onInput();
+          text.value = '';
         }
     };
     
@@ -397,10 +402,10 @@ var TextInput = function(parentNode, host) {
 
     event.addListener(text, "compositionstart", onCompositionStart);
     if (useragent.isGecko) {
-        event.addListener(text, "text", function(){syncComposition.schedule()});
+        event.addListener(text, "text", function(){syncComposition.schedule();});
     } else {
-        event.addListener(text, "keyup", function(){syncComposition.schedule()});
-        event.addListener(text, "keydown", function(){syncComposition.schedule()});
+        event.addListener(text, "keyup", function(){syncComposition.schedule();return false;});
+        event.addListener(text, "keydown", function(){syncComposition.schedule();return false;});
     }
     event.addListener(text, "compositionend", onCompositionEnd);
 

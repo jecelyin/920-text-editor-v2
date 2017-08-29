@@ -315,6 +315,15 @@ function Bridge(editor) {
             }
 
         });
+        var Range = require("ace/range").Range;
+        this.editor.getSelection().on("changeCursor", function () {
+            try {
+                var cursor = self.editor.getSelection().getCursor();
+                var range = new Range(cursor.row, Math.max(0, cursor.column - 30), cursor.row, cursor.column);
+                var text = self.editor.session.getDocument().getTextRange(range);
+                AndroidEditor.updateCursorBeforeText(text);
+            } catch (e) { }
+        });
         this.editor.on("onLongTouch", function () {
             self.showActionMode();
         });
