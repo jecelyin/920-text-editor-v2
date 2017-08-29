@@ -314,7 +314,7 @@ var TextInput = function(parentNode, host) {
         //console.log("onCompositionStart", inComposition)
         inComposition = {};
         inComposition.canUndo = host.session.$undoManager;
-        host.onCompositionStart();
+        // host.onCompositionStart();
         setTimeout(onCompositionUpdate, 0);
         host.on("mousedown", onCompositionEnd);
         if (inComposition.canUndo && !host.selection.isEmpty()) {
