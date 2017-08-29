@@ -38,6 +38,8 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
     private final String path;
     private String errors;
     private ArrayList<FileInfo> mFiles;
+    final Object locker = new Object();
+
 
     public ListFileRunner(String path) {
         this.path = path;
@@ -55,7 +57,7 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
         for (String result : results) {
             eachResults(result);
         }
-        onResult(mFiles, errors);
+        onResult(mFiles, this.errors);
     }
 
     private void eachResults(String result) {
@@ -202,19 +204,27 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
         } else if (type == 'l') {
             file.isSymlink = true;
             String linkPath = file.linkedPath;
-            final Object locker = new Object();
+
             ShellDaemon.getShell().addCommand(new IsDirectoryRunner(linkPath) {
                 @Override
                 public void onResult(Boolean result, @NonNull String errors) {
                     file.isDirectory = result;
                     mFiles.add(file);
-                    locker.notifyAll();
+                    synchronized (locker) {
+                        try {
+                            locker.notifyAll();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             });
-            try {
-                locker.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            synchronized (locker) {
+                try {
+                    locker.wait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             mFiles.add(file);
