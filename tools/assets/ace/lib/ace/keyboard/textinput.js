@@ -52,6 +52,7 @@ var TextInput = function(parentNode, host) {
 
     // var PLACEHOLDER = "\u2028\u2028";
     // var PLACEHOLDER = "\x01\x01";
+    var PLACEHOLDER = "@@";
 
     var copied = false;
     var pasted = false;
@@ -87,9 +88,11 @@ var TextInput = function(parentNode, host) {
         //     if (text.style.top == "0px")
         //         text.style.top = top;
         // }, 0);
+        console.trace("focus");
     };
     this.blur = function() {
         text.blur();
+        console.trace("blur");
     };
     this.isFocused = function() {
         return isFocused;
@@ -101,26 +104,25 @@ var TextInput = function(parentNode, host) {
     });
     var syncValue = lang.delayedCall(function() {
          if (!inComposition) {
-            // text.value = PLACEHOLDER;
-            // isFocused && resetSelection();
+            text.value = PLACEHOLDER;
+            isFocused && resetSelection();
          }
     });
 
     function resetSelection(isEmpty) {
-        // if (inComposition)
+        if (inComposition)
             return;
         
         // this prevents infinite recursion on safari 8 
         // see https://github.com/ajaxorg/ace/issues/2114
         inComposition = true;
-        
+        var selectionStart, selectionEnd;
         if (inputHandler) {
             selectionStart = 0;
             selectionEnd = isEmpty ? 0 : text.value.length - 1;
         } else {
-            var selectionStart = isEmpty ? 2 : 1;
-            // var selectionEnd = 2;
-            var selectionEnd = selectionStart;
+            selectionStart = isEmpty ? 2 : 1;
+            selectionEnd = 2;
         }
         // on firefox this throws if textarea is hidden
         try {
@@ -131,12 +133,12 @@ var TextInput = function(parentNode, host) {
     }
 
     function resetValue() {
-        // if (inComposition)
-        //     return;
-        // text.value = PLACEHOLDER;
-        // //http://code.google.com/p/chromium/issues/detail?id=76516
-        // if (useragent.isWebKit)
-        //     syncValue.schedule();
+        if (inComposition)
+            return;
+        text.value = PLACEHOLDER;
+        //http://code.google.com/p/chromium/issues/detail?id=76516
+        if (useragent.isWebKit)
+            syncValue.schedule();
     }
 
     useragent.isWebKit || host.addEventListener('changeSelection', function() {
@@ -170,6 +172,19 @@ var TextInput = function(parentNode, host) {
     this.setInputHandler = function(cb) {inputHandler = cb};
     this.getInputHandler = function() {return inputHandler};
     var afterContextMenu = false;
+
+    var cleanData = function (data) {
+        if (!data)
+            return data;
+
+        if (data.charAt(0) == PLACEHOLDER.charAt(0))
+            data = data.substr(1);
+
+        if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
+            data = data.slice(0, -1);
+
+        return data;
+    };
     
     var sendText = function(data) {
         if (inputHandler) {
@@ -181,21 +196,13 @@ var TextInput = function(parentNode, host) {
             if (data)
                 host.onPaste(data);
             pasted = false;
-        // } else if (data == PLACEHOLDER.charAt(0)) {
-        //     if (afterContextMenu)
-        //         host.execCommand("del", {source: "ace"});
-        //     else // some versions of android do not fire keydown when pressing backspace
-        //         host.execCommand("backspace", {source: "ace"});
+        } else if (data === PLACEHOLDER.charAt(0)) {
+            if (afterContextMenu)
+                host.execCommand("del", {source: "ace"});
+            else // some versions of android do not fire keydown when pressing backspace
+                host.execCommand("backspace", {source: "ace"});
         } else {
-            // if (data.substring(0, 2) == PLACEHOLDER)
-            //     data = data.substr(2);
-            // else if (data.charAt(0) == PLACEHOLDER.charAt(0))
-            //     data = data.substr(1);
-            // else if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
-            //     data = data.slice(0, -1);
-            // // can happen if undo in textarea isn't stopped
-            // if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
-            //     data = data.slice(0, -1);
+            data = cleanData(data);
 
             if (data)
                 host.onTextInput(data);
@@ -207,9 +214,9 @@ var TextInput = function(parentNode, host) {
         // console.log("onInput", inComposition)
         if (inComposition)
             return;
-        var data = text.value;
+        var data = cleanData(text.value);
         sendText(data);
-        // resetValue();
+        resetValue();
     };
 
     var handleClipboardData = function(e, data, forceIEMime) {
@@ -311,7 +318,7 @@ var TextInput = function(parentNode, host) {
     var onCompositionStart = function(e) {
         if (inComposition || !host.onCompositionStart || host.$readOnly) 
             return;
-        //console.log("onCompositionStart", inComposition)
+        // console.log("onCompositionStart", inComposition)
         inComposition = {};
         inComposition.canUndo = host.session.$undoManager;
         // host.onCompositionStart();
@@ -328,10 +335,11 @@ var TextInput = function(parentNode, host) {
     var onCompositionUpdate = function() {
         //console.log("onCompositionUpdate", text.value)
         if (!inComposition || !host.onCompositionUpdate || host.$readOnly) {
-            text.value = '';
+            resetValue();
             return;
         }
-        var val = text.value.replace(/\x01/g, "");
+        // var val = text.value.replace(/\x01/g, "");
+        var val = cleanData(text.value).replace(/\x01/g, "");
         if (inComposition.lastValue === val) return;
         
         host.onCompositionUpdate(val);
@@ -357,7 +365,8 @@ var TextInput = function(parentNode, host) {
         inComposition = false;
         var timer = setTimeout(function() {
             timer = null;
-            var str = text.value.replace(/\x01/g, "");
+            // var str = text.value.replace(/\x01/g, "");
+            var str = cleanData(text.value).replace(/\x01/g, "");
             // console.log(str, c.lastValue)
             if (inComposition)
                 return;
@@ -392,7 +401,6 @@ var TextInput = function(parentNode, host) {
 
         if (needsOnInput) {
           onInput();
-          text.value = '';
         }
     };
     
