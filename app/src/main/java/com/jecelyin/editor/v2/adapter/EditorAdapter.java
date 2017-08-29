@@ -184,7 +184,7 @@ public class EditorAdapter extends ViewPagerAdapter {
                 @Override
                 public void onCallback(Integer[] data) {
                     remove(position);
-                    if (listener != null)
+                    if (listener != null && data != null)
                         listener.onClose(path, encoding, data[0], data[1]);
                 }
             });
