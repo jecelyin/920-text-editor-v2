@@ -386,8 +386,8 @@ public class EditorDelegate implements OnVisibilityChangedListener, OnTextChange
     private void noticeMenuChanged() {
         final MainActivity mainActivity = (MainActivity) this.context;
         mainActivity.setMenuStatus(R.id.m_save, isChanged() ? MenuDef.STATUS_NORMAL : MenuDef.STATUS_DISABLED);
-        mainActivity.setMenuStatus(R.id.m_undo, MenuDef.STATUS_DISABLED);
-        mainActivity.setMenuStatus(R.id.m_redo, MenuDef.STATUS_DISABLED);
+//        mainActivity.setMenuStatus(R.id.m_undo, MenuDef.STATUS_DISABLED);
+//        mainActivity.setMenuStatus(R.id.m_redo, MenuDef.STATUS_DISABLED);
         if (mEditText != null) {
             mEditText.canUndo(new JsCallback<Boolean>() {
                 @Override
