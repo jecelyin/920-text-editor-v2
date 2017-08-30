@@ -411,8 +411,12 @@ public class MainActivity extends BaseActivity
         if (menuItem == null) {
             throw new RuntimeException("Can't find a menu item");
         }
+        boolean enable = status != MenuDef.STATUS_DISABLED;
+        if (menuItem.isEnabled() == enable) {
+            return;
+        }
         Drawable icon = menuItem.getIcon();
-        if (status == MenuDef.STATUS_DISABLED) {
+        if (!enable) {
             menuItem.setEnabled(false);
             menuItem.setIcon(MenuManager.makeToolbarDisabledIcon(icon));
         } else {

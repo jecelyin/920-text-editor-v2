@@ -32,6 +32,8 @@ import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputContentInfo;
 
+import com.jecelyin.common.utils.L;
+
 /**
  * @author Jecelyin Peng <jecelyin@gmail.com>
  */
@@ -43,6 +45,7 @@ public class InputConnectionHacker implements InputConnection {
     private boolean isAltPressed;
     private boolean isSymPressed;
     private boolean isCtrlPressed;
+    public String cursorBeforeText;
 
     public InputConnectionHacker(InputConnection ic, EditAreaView editAreaView) {
         this.ic = ic;
@@ -51,7 +54,9 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public CharSequence getTextBeforeCursor(int n, int flags) {
-        return ic.getTextBeforeCursor(n, flags);
+//        return ic.getTextBeforeCursor(n, flags);
+        // TODO: 2017/8/28
+        return cursorBeforeText == null ? "" : cursorBeforeText;
     }
 
     @Override
@@ -85,7 +90,12 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public boolean deleteSurroundingText(int beforeLength, int afterLength) {
-        return ic.deleteSurroundingText(beforeLength, afterLength);
+        boolean b = ic.deleteSurroundingText(beforeLength, afterLength);
+        beginBatchEdit();
+        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+        endBatchEdit();
+        return b;
     }
 
     @Override
@@ -100,6 +110,7 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public boolean finishComposingText() {
+        L.d("ICH", "finishComposingText");
         return ic.finishComposingText();
     }
 
@@ -110,6 +121,7 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public boolean commitCompletion(CompletionInfo text) {
+        L.d("ICH", "commitCompletion text=" + text);
         return ic.commitCompletion(text);
     }
 
@@ -135,11 +147,13 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public boolean beginBatchEdit() {
+        L.d("ICH", "beginBatchEdit");
         return ic.beginBatchEdit();
     }
 
     @Override
     public boolean endBatchEdit() {
+        L.d("ICH", "endBatchEdit");
         return ic.endBatchEdit();
     }
 

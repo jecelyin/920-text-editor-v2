@@ -51,6 +51,7 @@ var TextInput = function(parentNode, host) {
     parentNode.insertBefore(text, parentNode.firstChild);
 
     var PLACEHOLDER = "\u2028\u2028";
+    // var PLACEHOLDER = "\x01\x01";
 
     var copied = false;
     var pasted = false;
@@ -86,9 +87,11 @@ var TextInput = function(parentNode, host) {
         //     if (text.style.top == "0px")
         //         text.style.top = top;
         // }, 0);
+        console.trace("focus");
     };
     this.blur = function() {
         text.blur();
+        console.trace("blur");
     };
     this.isFocused = function() {
         return isFocused;
@@ -112,14 +115,13 @@ var TextInput = function(parentNode, host) {
         // this prevents infinite recursion on safari 8 
         // see https://github.com/ajaxorg/ace/issues/2114
         inComposition = true;
-        
+        var selectionStart, selectionEnd;
         if (inputHandler) {
             selectionStart = 0;
             selectionEnd = isEmpty ? 0 : text.value.length - 1;
         } else {
-            var selectionStart = isEmpty ? 2 : 1;
-            // var selectionEnd = 2;
-            var selectionEnd = selectionStart;
+            selectionStart = isEmpty ? 2 : 1;
+            selectionEnd = 2;
         }
         // on firefox this throws if textarea is hidden
         try {
@@ -169,33 +171,41 @@ var TextInput = function(parentNode, host) {
     this.setInputHandler = function(cb) {inputHandler = cb};
     this.getInputHandler = function() {return inputHandler};
     var afterContextMenu = false;
+
+    var cleanData = function (data) {
+        if (!data)
+            return data;
+
+        if (data.charAt(0) == PLACEHOLDER.charAt(0))
+            data = data.substr(1);
+        // 当输入一个单词时，比如AnySoftKeyboard会自己追加一个空格，这个空格可能在PLACEHOLDER后面，不是中间
+        if (data.length > 0 && data.charAt(0) == PLACEHOLDER.charAt(0))
+            data = data.substr(1);
+
+        if (data.length > 0 && data.charAt(data.length - 1) == PLACEHOLDER.charAt(1))
+            data = data.slice(0, -1);
+
+        return data;
+    };
     
     var sendText = function(data) {
         if (inputHandler) {
             data = inputHandler(data);
             inputHandler = null;
         }
+
         if (pasted) {
             resetSelection();
             if (data)
                 host.onPaste(data);
             pasted = false;
-        } else if (data == PLACEHOLDER.charAt(0)) {
+        } else if (data == PLACEHOLDER.charAt(0)) { //一些输入法会在删除一个字符后，留下一个PLACEHOLDER字符，但是不触发其他delete事件，比如搜狗输入法
             if (afterContextMenu)
                 host.execCommand("del", {source: "ace"});
             else // some versions of android do not fire keydown when pressing backspace
                 host.execCommand("backspace", {source: "ace"});
         } else {
-            if (data.substring(0, 2) == PLACEHOLDER)
-                data = data.substr(2);
-            else if (data.charAt(0) == PLACEHOLDER.charAt(0))
-                data = data.substr(1);
-            else if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
-                data = data.slice(0, -1);
-            // can happen if undo in textarea isn't stopped
-            if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
-                data = data.slice(0, -1);
-            
+            data = cleanData(data);
             if (data)
                 host.onTextInput(data);
         }
@@ -210,7 +220,7 @@ var TextInput = function(parentNode, host) {
         sendText(data);
         resetValue();
     };
-    
+
     var handleClipboardData = function(e, data, forceIEMime) {
         var clipboardData = e.clipboardData || window.clipboardData;
         if (!clipboardData || BROKEN_SETDATA)
@@ -313,7 +323,7 @@ var TextInput = function(parentNode, host) {
         // console.log("onCompositionStart", inComposition)
         inComposition = {};
         inComposition.canUndo = host.session.$undoManager;
-        host.onCompositionStart();
+        // host.onCompositionStart();
         setTimeout(onCompositionUpdate, 0);
         host.on("mousedown", onCompositionEnd);
         if (inComposition.canUndo && !host.selection.isEmpty()) {
@@ -325,10 +335,13 @@ var TextInput = function(parentNode, host) {
     };
 
     var onCompositionUpdate = function() {
-        // console.log("onCompositionUpdate", inComposition && JSON.stringify(text.value))
-        if (!inComposition || !host.onCompositionUpdate || host.$readOnly)
+        //console.log("onCompositionUpdate", text.value)
+        if (!inComposition || !host.onCompositionUpdate || host.$readOnly) {
+            resetValue();
             return;
-        var val = text.value.replace(/\x01/g, "");
+        }
+        // var val = text.value.replace(/\x01/g, "");
+        var val = cleanData(text.value).replace(/\x01/g, "");
         if (inComposition.lastValue === val) return;
         
         host.onCompositionUpdate(val);
@@ -338,6 +351,7 @@ var TextInput = function(parentNode, host) {
             inComposition.lastValue = val;
         if (inComposition.lastValue) {
             var r = host.selection.getRange();
+            //console.log("onCompositionUpdate lastvalue", inComposition.lastValue);
             host.insert(inComposition.lastValue);
             host.session.markUndoGroup();
             inComposition.range = host.selection.getRange();
@@ -348,12 +362,13 @@ var TextInput = function(parentNode, host) {
 
     var onCompositionEnd = function(e) {
         if (!host.onCompositionEnd || host.$readOnly) return;
-        // console.log("onCompositionEnd", inComposition &&inComposition.lastValue)
+        //console.log("onCompositionEnd", inComposition);
         var c = inComposition;
         inComposition = false;
         var timer = setTimeout(function() {
             timer = null;
-            var str = text.value.replace(/\x01/g, "");
+            // var str = text.value.replace(/\x01/g, "");
+            var str = cleanData(text.value).replace(/\x01/g, "");
             // console.log(str, c.lastValue)
             if (inComposition)
                 return;
@@ -380,6 +395,7 @@ var TextInput = function(parentNode, host) {
         if (e.type == "compositionend" && c.range) {
             host.selection.setRange(c.range);
         }
+        // 会导致自动完成时，重复单词，比如输入：en 空格后，会有2个End出来
         // Workaround for #3027, #3045, #3097, #3100, #3249
         var needsOnInput =
             (!!useragent.isChrome && useragent.isChrome >= 53) ||
@@ -396,10 +412,10 @@ var TextInput = function(parentNode, host) {
 
     event.addListener(text, "compositionstart", onCompositionStart);
     if (useragent.isGecko) {
-        event.addListener(text, "text", function(){syncComposition.schedule()});
+        event.addListener(text, "text", function(){syncComposition.schedule();});
     } else {
-        event.addListener(text, "keyup", function(){syncComposition.schedule()});
-        event.addListener(text, "keydown", function(){syncComposition.schedule()});
+        event.addListener(text, "keyup", function(){syncComposition.schedule();return false;});
+        event.addListener(text, "keydown", function(){syncComposition.schedule();return false;});
     }
     event.addListener(text, "compositionend", onCompositionEnd);
 

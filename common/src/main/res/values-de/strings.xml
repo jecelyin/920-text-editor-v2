@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2016 Jecelyin Peng <jecelyin@gmail.com>
+  ~
+  ~ This file is part of 920 Text Editor.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!--
+Thanks: Werner Scheinast
+-->
+<resources>
+    <string name="crash_report">Fehlerbericht</string>
+    <string name="crash_contact">E-mail (optional)</string>
+    <string name="crash_comment">Was zum Absturz führt (optional):</string>
+    <string name="crash_report_success">Übermittelt; vielen Dank!</string>
+    <string name="crash_stacktrace">Stacktrace:</string>
+    <string name="crash_submit">Absenden</string>
+    <string name="crash_submit_fail_x">Fehler: %s</string>
+    <string name="network_unavailable">Keine Netzwerkverbindung</string>
+    <string name="submitting">Sende …</string>
+    <string name="can_not_be_empty">Darf nicht leer sein.</string>
+    <string name="no_data">Keine Daten</string>
+    <string name="try_agent">Neuer Versuch</string>
+    <string name="search_results">Suchergebnisse</string>
+    <string name="directory">Verzeichnis</string>
+    <string name="authenticate">Authentifizierung</string>
+    <string name="logout">Ausloggen</string>
+    <string name="selected_x_items">%d Punkte ausgewählt</string>
+    <string name="filename">Dateiname:</string>
+    <string name="file_encoding">Kodierung:</string>
+    <string name="file_save">Speichern</string>
+    <string name="root_path">Root</string>
+    <string name="auto_detection_encoding">Kodierung automatisch erkennen</string>
+    <string name="illegal_filename">unerlaubter Name</string>
+    <string name="unknown_path">unbekannter Pfad</string>
+    <string name="open_file">Datei öffnen</string>
+    <string name="save_file">Datei speichern</string>
+    <string name="override_file_prompt">%s existiert schon; überschreiben？</string>
+    <string name="filter_by_name">Nach Namen filtern</string>
+    <string name="can_not_create_folder">Kann Ordner nicht anlegen.</string>
+    <string name="can_not_share_x">Datei %s kann nicht geteilt werden.</string>
+    <string name="cancel_select_all">Auswahl aufheben</string>
+    <string name="copy">Kopieren</string>
+    <string name="create_folder">Neuer Ordner</string>
+    <string name="cut">Ausschneiden</string>
+    <string name="delete">Löschen</string>
+    <string name="paste">Einfügen</string>
+    <string name="rename">Umbenennen</string>
+    <string name="rename_fail">Umbenennen nicht möglich.</string>
+    <string name="select_all">Alles auswählen</string>
+    <string name="share">Teilen</string>
+    <string name="show_hidden_files">Versteckte Dateien anzeigen</string>
+    <string name="sort_by_datetime">Nach Datum sortieren</string>
+    <string name="sort_by_name">Nach Name sortieren</string>
+    <string name="sort_by_size">Nach Größe sortieren</string>
+    <string name="sort_by_type">Nach Typ sortieren</string>
+    <string name="addToDictionary">Zum Wörterbuch hinzufügen</string>
+    <string name="deleteText">Text löschen</string>
+    <string name="replace">Ersetzen</string>
+    <string name="textSelectionCABTitle">Text auswählen</string>
+    <string name="selectAll">Alles auswählen</string>
+    <string name="find">Suchen</string>
+    <string name="app_name">920 Text Editor</string>
+    <string name="new_file">Neu</string>
+    <string name="open">Öffnen</string>
+    <string name="save">Speichern</string>
+    <string name="undo">Rückgängig</string>
+    <string name="redo">Wieder ausführen</string>
+    <string name="save_all">Alles speichern</string>
+    <string name="save_as">Speichern unter</string>
+    <string name="recent_files">Zuletzt geöffnet</string>
+    <string name="line_separator">Zeilenumbruch</string>
+    <string name="duplication_line">Zeile verdoppeln</string>
+    <string name="find_in_files">Dateien durchsuchen</string>
+    <string name="jump_to_start">Zum Dateianfang</string>
+    <string name="jump_to_end">Zum Dateiende</string>
+    <string name="goto_line">Zur Zeile</string>
+    <string name="back">Rückwärts</string>
+    <string name="forward">Vorwärts</string>
+    <string name="document_info">Begleitinformationen</string>
+    <string name="symbol">Symbol</string>
+    <string name="insert_color">Farbe hinzufügen</string>
+    <string name="highlight_language">Sprache für Auszeichnung</string>
+    <string name="encoding">Kodierung</string>
+    <string name="read_only">Schreibgeschützt</string>
+    <string name="insert_datetime">Datum/Uhrzeit einfügen</string>
+    <string name="edit_mode">Editiermodus</string>
+    <string name="run">Ausführen</string>
+    <string name="file">Datei</string>
+    <string name="other">Sonstige</string>
+    <string name="view">Ansicht</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="new_filename">unbenannt %d</string>
+    <string name="confirm_save">Speichern bestätigen</string>
+    <string name="confirm_save_msg">Dokument %s wurde geändert. Möchten Sie es speichern?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="cannt_access_file">Kann auf Datei %s nicht zugreifen.</string>
+    <string name="cannt_read_file">Datei unlesbar: %s</string>
+    <string name="ok">OK</string>
+    <string name="read_file_exception">Beim Lesen trat ein interner Fehler auf.</string>
+    <string name="init_syntax_msg">Initialisiere Syntaxauszeichnung …</string>
+    <string name="init_syntax_error">Fehler bei der Initialisierung der Syntaxauszeichnung.</string>
+    <string name="init_build_index_error">Fehler beim Erstellen des Index\'</string>
+    <string name="close">Schließen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="convert_wrap_char">Zeilenumbrüche konvertieren</string>
+    <string name="path_x">Pfad: %s</string>
+    <string name="char_x">Zeichen: %d</string>
+    <string name="word_x">Wörter: %d</string>
+    <string name="line_number_x">Zeilennummer: %d</string>
+    <string name="encoding_x">Kodierung: %s</string>
+    <string name="tab">Tab</string>
+    <string name="no_change">Keine Änderung!</string>
+    <string name="save_success">Gespeichert!</string>
+    <string name="find_label">Suchen nach:</string>
+    <string name="replace_label">Ersetzen durch:</string>
+    <string name="case_sensitive">Groß-/Kleinschreibung unterscheiden</string>
+    <string name="whole_words_only">Nur ganze Wörter</string>
+    <string name="regex">Regulärer Ausdruck</string>
+    <string name="in_path">Startpfad:</string>
+    <string name="recursively">Rekursiv</string>
+    <string name="cannot_be_empty">Darf nicht leer sein!</string>
+    <string name="path_not_exists">Pfad existiert nicht.</string>
+    <string name="find_not_found">Nicht gefunden.</string>
+    <string name="previous_occurrence">Voriger Treffer</string>
+    <string name="next_occurrence">Nächster Treffer</string>
+    <string name="replace_all">Alle ersetzen</string>
+    <string name="searching">Suchen …</string>
+    <string name="select_lang_to_highlight">Wählen Sie eine Auszeichnungssprache</string>
+    <string name="more_menu">Weiteres</string>
+    <string name="reopen_with_encoding">Erneut öffnen mit anderer Kodierung</string>
+    <string name="document_changed">Dokument wurde geändert.</string>
+    <string name="give_up_document_changed_message">Dokument wurde geändert. Wollen Sie diese Änderungen verlieren？</string>
+    <string name="preview_in_browser">Vorschau im Browser</string>
+    <string name="use_sl4a_in_background_run_script">SL4A-Skript im Hintergrund ausführen</string>
+    <string name="use_sl4a_in_terminal_run_script">SL4A-Skript im Terminal ausführen</string>
+    <string name="please_save_as_file_first">Speichern Sie erst das Dokument in eine Datei!</string>
+    <string name="run_fail_message">Aufruf der externen Anwendung fehlgeschlagen.</string>
+    <string name="settings">Einstellungen</string>
+    <string name="editor">Editor</string>
+    <string name="font">Schriftart</string>
+    <string name="default_value">Standard</string>
+    <string name="font_size">Schriftgröße</string>
+    <string name="cursor_width">Cursor-Breite</string>
+    <string name="touch_to_adjust_text_size">Textgröße durch Berühren ändern</string>
+    <string name="word_wrap_in_editor">Automatischer Wort-Umbruch</string>
+    <string name="show_linenumber">Zeilennummern anzeigen</string>
+    <string name="show_whitespace">Leerraum anzeigen</string>
+    <string name="auto_indent">Automatische Einrückung</string>
+    <string name="insert_space_for_tab">Leerzeichen statt Tab einfügen</string>
+    <string name="indent_size">Tab-Weite</string>
+    <string name="highlight_and_theme">Syntax-Auszeichnung und Oberfläche</string>
+    <string name="highlight_the_file_size_limit">Maximale Dateigröße für Syntax-Auszeichnung</string>
+    <string name="auto_save">Automatisches Speichern</string>
+    <string name="remember_last_opened_files">Sich an zuletzt geöffnete Dateien erinnern</string>
+    <string name="remember_last_opened_files_summary">Beim Programmstart zuletzt offene Dateien wieder öffnen</string>
+    <string name="screen_orientation">Bildschirm-Orientierung</string>
+    <string name="keep_screen_on">Bildschirm eingeschaltet lassen</string>
+    <string name="auto_capitalize">Automatisch große Anfangsbuchstaben setzen</string>
+    <string name="feedback">Feedback</string>
+    <string name="donate">Spenden</string>
+    <string name="help_translate">Diese App übersetzen</string>
+    <string name="about">Über</string>
+    <string name="enable_highlight">Syntax-Auszeichnung ein</string>
+    <string name="version_x">Version: %s</string>
+    <string name="need_to_enable_read_storage_permissions">Benötige Erlaubnis zum Lesen des Speichers.</string>
+    <string name="file_not_exists">Datei existiert nicht.</string>
+    <string name="cannt_handle_intent_x">Kann Text nicht einrücken: %s</string>
+    <string name="handle_intent_x_error">Fehler während des Einrückens: %s</string>
+    <string name="verify_sign_failure">Sie haben nicht die offizielle Version dieser App, zu finden auf https://github.com/jecelyin/920-text-editor-v2/releases.</string>
+    <string name="press_again_will_exit">Zum Beenden noch einmal drücken.</string>
+    <string name="find_replace">Suchen/Ersetzen</string>
+    <string name="find_title">\"%s\" Suchergebnisse</string>
+    <string name="zero_matches">0 Treffer</string>
+    <string name="chooser_browser">Browser auswählen</string>
+    <string name="find_or_replace">Suchen/Ersetzen …</string>
+    <string name="other_application">Andere Anwendung …</string>
+    <string name="chooser_application">Anwendung wählen</string>
+    <string name="editor_create_unknown_exception">Beim Erstellen des Editors trat ein unbekannter Fehler auf.</string>
+    <string name="convert_to_uppercase">Umwandeln in Großbuchstaben</string>
+    <string name="convert_to_lowercase">Umwandeln in Kleinbuchstaben</string>
+    <string name="duplication_text">Text duplizieren</string>
+    <string name="tab_size">Tab-Weite</string>
+    <string name="new_version_available">Eine neue Version ist verfügbar.</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="new_version_update_content">Neueste Version: %1$s\n\nÄnderungen:\n%2$s</string>
+    <string name="auto_check_updates">Automatisch nach Updates suchen</string>
+    <string name="cannt_download">Download nicht möglich.</string>
+    <string name="readonly_mode_not_support_this_action">Diese Aktion ist mit Schreibschutz nicht erlaubt.</string>
+    <string name="x_text_replaced">%d Vorkommen wurden ersetzt.</string>
+    <string name="enable_root">Root zulassen</string>
+    <string name="my_name">Autor: Jecelyin Peng</string>
+    <string name="open_with_external_browser">Mit externem Browser öffnen</string>
+    <string name="contact_email_optional">E-mail-Adresse (optional)</string>
+    <string name="with_error_logs">Fehlerlogs</string>
+    <string name="content">Inhalt</string>
+    <string name="send">Absenden</string>
+    <string name="feedback_content_length_must_be_greater_than_x_char">Der Inhalt der Feedback-Nachricht muß länger als %d Zeichen sein.</string>
+    <string name="feedback_submit_error_x">Fehler beim Senden: %s</string>
+    <string name="submit_success">Nachricht wurde übermittelt.</string>
+    <string name="writing">Schreibe</string>
+    <string name="keyword">Suchbegriff</string>
+    <string name="find_keyword_is_empty">Suchbegriff darf nicht leer sein.</string>
+    <plurals name="x_text_replaced">
+        <item quantity="zero">0 gefunden.</item>
+        <item quantity="other">%d Vorkommen ersetzt.</item>
+    </plurals>
+    <string-array name="insert_datetime_lang">
+        <item>Englisch</item>
+        <item>Chinesisch</item>
+        <item>Deutsch</item>
+    </string-array>
+    <string-array name="wrap_char_list">
+        <item>Konvertieren nach \\n（Linux/OSX）</item>
+        <item>Konvertieren nach \\r\\n（Windows）</item>
+    </string-array>
+    <string-array name="screen_orientation">
+        <item>Auto</item>
+        <item>Querformat</item>
+        <item>Hochformat</item>
+    </string-array>
+    <string name="exit">Beenden</string>
+    <string name="unknown_exception_and_report_message_x">Unbekannter Fehler. Bitte teilen Sie dem Entwickler mit,\n
+unter welchen Umständen er aufgetreten ist. - Danke!\nCode: %s</string>
+    <string name="keep_backup_file">Backup-Datei anlegen</string>
+    <string name="keep_backup_file_summary">Eine Backup-Datei ist sehr empfehlenswert, da durch\n
+Fehlfunktionen die Datei verloren gehen kann.</string>
+    <string name="save_all_without_new_document_message">Alles speichern ignoriert ein neues, leeres Dokument.</string>
+    <string name="clear_history">Clear History</string>
+    <string name="custom_symbol_list">Selbstgewählte Liste von Symbolen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="change_theme">Thema wechseln</string>
+    <string name="dark_theme">Dunkles Thema</string>
+    <string name="default_theme">Standard-Theme</string>
+    <string name="fullscreen_mode">Vollbild-Modus</string>
+    <string name="enable_fullscreen_mode_message">Die Aktivierung des Vollbild-Modus erfordert einen Neustart der App.</string>
+    <string name="disabled_fullscreen_mode_message">Die Deaktivierung des Vollbild-Modus erfordert einen Neustart der App.</string>
+    <string name="confirm_change_theme_message">Wenn Sie das Thema wechseln, gehen alle nicht gespeicherten Änderungen an
+Ihren Dokumenten verloren. Einverstanden?</string>
+    <string name="translate_confirm_message">Um die Web-basierte Übersetzung auf getlocalization.com zu öffnen,
+drücken Sie "Web-basiert", wenn Sie die App lokal übersetzen möchten, drücken Sie "Lokal".</string>
+    <string name="translate_external_text">Web-basiert</string>
+    <string name="translate_internal_text">Lokal</string>
+    <string name="cannt_load_lang_file">Sprachdatei kann nicht geladen werden.</string>
+    <string name="local_translate_message">Wenn Sie fertig sind, schicken Sie die Datei bitte an jecelyin@gmail.com. Danke!</string>
+</resources>
