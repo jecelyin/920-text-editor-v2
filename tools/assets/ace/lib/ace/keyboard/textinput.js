@@ -50,9 +50,8 @@ var TextInput = function(parentNode, host) {
     text.style.opacity = "0";
     parentNode.insertBefore(text, parentNode.firstChild);
 
-    // var PLACEHOLDER = "\u2028\u2028";
+    var PLACEHOLDER = "\u2028\u2028";
     // var PLACEHOLDER = "\x01\x01";
-    var PLACEHOLDER = "@@";
 
     var copied = false;
     var pasted = false;
@@ -179,8 +178,11 @@ var TextInput = function(parentNode, host) {
 
         if (data.charAt(0) == PLACEHOLDER.charAt(0))
             data = data.substr(1);
+        // 当输入一个单词时，比如AnySoftKeyboard会自己追加一个空格，这个空格可能在PLACEHOLDER后面，不是中间
+        if (data.length > 0 && data.charAt(0) == PLACEHOLDER.charAt(0))
+            data = data.substr(1);
 
-        if (data.charAt(data.length - 1) == PLACEHOLDER.charAt(0))
+        if (data.length > 0 && data.charAt(data.length - 1) == PLACEHOLDER.charAt(1))
             data = data.slice(0, -1);
 
         return data;
@@ -191,19 +193,19 @@ var TextInput = function(parentNode, host) {
             data = inputHandler(data);
             inputHandler = null;
         }
+
         if (pasted) {
             resetSelection();
             if (data)
                 host.onPaste(data);
             pasted = false;
-        } else if (data === PLACEHOLDER.charAt(0)) {
+        } else if (data == PLACEHOLDER.charAt(0)) { //一些输入法会在删除一个字符后，留下一个PLACEHOLDER字符，但是不触发其他delete事件，比如搜狗输入法
             if (afterContextMenu)
                 host.execCommand("del", {source: "ace"});
             else // some versions of android do not fire keydown when pressing backspace
                 host.execCommand("backspace", {source: "ace"});
         } else {
             data = cleanData(data);
-
             if (data)
                 host.onTextInput(data);
         }
@@ -214,7 +216,7 @@ var TextInput = function(parentNode, host) {
         // console.log("onInput", inComposition)
         if (inComposition)
             return;
-        var data = cleanData(text.value);
+        var data = text.value;
         sendText(data);
         resetValue();
     };
