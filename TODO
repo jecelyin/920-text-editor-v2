@@ -85,3 +85,7 @@ Hi! thank you for great app! it would be nice to have "Word wrap" and "Show line
 -提示: 文件不存在
 -java.lang.NullPointerException: Attempt to get length of null array
 -at com.jecelyin.android.file_explorer.io.LocalFile.listFiles(LocalFile.java:151)
+
+
+行号太宽
+讯飞输入法无法选择文字
