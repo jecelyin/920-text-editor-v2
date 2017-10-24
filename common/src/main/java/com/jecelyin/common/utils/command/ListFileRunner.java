@@ -95,7 +95,7 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
     }
 
     private void lsParser(String path, String line) {
-        final String[] split = line.split(" ");
+        final String[] split = line.split("\\s+");
         int index = 0;
 
         final FileInfo file = new FileInfo(false, "");
@@ -103,6 +103,7 @@ public abstract class ListFileRunner extends Runner<List<FileInfo>> {
         String date = "";
         String time = "";
         //drwxrwx--x 3 root sdcard_rw 4096 2016-12-17 15:02 obb
+        //drwxr-x--x 5 0 1028 100 Oct 7 15:59 ..
         for (String token : split) {
             if (token.trim().isEmpty())
                 continue;

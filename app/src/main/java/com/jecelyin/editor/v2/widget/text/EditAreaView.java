@@ -575,13 +575,17 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
     }
 
     public void doFind(String findText, String replaceText, boolean caseSensitive, boolean wholeWordOnly, boolean regex) {
-        execCommand(new EditorCommand.Builder("doFind")
-                .put("findText", findText)
-                .put("replaceText", replaceText)
-                .put("caseSensitive", caseSensitive)
-                .put("wholeWordOnly", wholeWordOnly)
-                .put("regex", regex)
-                .build());
+        try {
+            execCommand(new EditorCommand.Builder("doFind")
+                    .put("findText", findText)
+                    .put("replaceText", replaceText)
+                    .put("caseSensitive", caseSensitive)
+                    .put("wholeWordOnly", wholeWordOnly)
+                    .put("regex", regex)
+                    .build());
+        } catch (Throwable t) { //out of memory
+            UIUtils.toast(getContext(), getContext().getString(R.string.error_occurred_x, t.getMessage()));
+        }
     }
 
     public boolean isTextChanged() {

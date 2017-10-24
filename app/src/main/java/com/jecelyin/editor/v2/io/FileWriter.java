@@ -19,6 +19,7 @@
 package com.jecelyin.editor.v2.io;
 
 import android.os.AsyncTask;
+import android.text.TextUtils;
 
 import com.jecelyin.common.listeners.OnResultCallback;
 import com.jecelyin.common.utils.IOUtils;
@@ -54,7 +55,7 @@ public class FileWriter extends AsyncTask<String, Void, Void> {
         this.file = file;
         this.root = root;
         this.backupFile = makeBackupFile(file);
-        this.encoding = encoding;
+        this.encoding = TextUtils.isEmpty(encoding) ? "UTF-8" : encoding;
         this.keepBackupFile = keepBackupFile;
     }
 
