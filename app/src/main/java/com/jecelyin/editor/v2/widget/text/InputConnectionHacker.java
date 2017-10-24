@@ -91,10 +91,10 @@ public class InputConnectionHacker implements InputConnection {
     @Override
     public boolean deleteSurroundingText(int beforeLength, int afterLength) {
         boolean b = ic.deleteSurroundingText(beforeLength, afterLength);
-        beginBatchEdit();
-        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
-        endBatchEdit();
+//        beginBatchEdit();
+//        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+//        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+//        endBatchEdit();
         return b;
     }
 
