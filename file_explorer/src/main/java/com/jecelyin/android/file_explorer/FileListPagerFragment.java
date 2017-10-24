@@ -257,11 +257,12 @@ public class FileListPagerFragment extends JecFragment implements SwipeRefreshLa
 
             @Override
             public void onSuccess(JecFile[] result) {
-                if (adapter != null) {
+                Context context = getContext();
+                if (adapter != null && context != null) {
                     pathAdapter.setPath(path);
                     adapter.setData(result);
-                    Pref.getInstance(getContext()).setLastOpenPath(path.getPath());
-                    DBHelper.getInstance(getContext()).addRecentPath(path.getPath());
+                    Pref.getInstance(context).setLastOpenPath(path.getPath());
+                    DBHelper.getInstance(context).addRecentPath(path.getPath());
                 }
 
             }
