@@ -90,3 +90,25 @@ Hi! thank you for great app! it would be nice to have "Word wrap" and "Show line
 行号太宽
 讯飞输入法无法选择文字
 自定义字体是，显示错位
+文本复制剪贴选择非常不好用，起始位置太过于靠近屏幕边缘，手指点不到，只有显示行号才行
+
+Cursor movement (dpad left and right) sometimes highlights a character instead of moving the cursor.
+
+Typing a word often doesn't move the cursor.
+
+Trying to insert characters into an existing word doesn't work. Sometimes it will insert one character, highlight it, and then insert no more characters.
+
+Backspace will often delete more than one character.
+
+Auto capitalize doesn't always work.
+
+Typing suggestions are not always shown.
+
+All these bugs seem to be new.
+
+Some user interface ideas:
+Opening the keyboard covers the text where you placed the cursor. This is annoying. It would be nice if the text was automatically moved out of the way of the keyboard.
+
+It would be nice to have a toggle in the side menu to toggle word wrap rather than having to go to settings to toggle it.
+
+小米6 android7.1打开键盘后，符号栏出不来
