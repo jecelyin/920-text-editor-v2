@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.inputmethod.CompletionInfo;
 import android.view.inputmethod.CorrectionInfo;
@@ -45,7 +46,7 @@ public class InputConnectionHacker implements InputConnection {
     private boolean isAltPressed;
     private boolean isSymPressed;
     private boolean isCtrlPressed;
-    public String cursorBeforeText;
+    private String cursorBeforeText, cursorAfterText;
 
     public InputConnectionHacker(InputConnection ic, EditAreaView editAreaView) {
         this.ic = ic;
@@ -53,15 +54,42 @@ public class InputConnectionHacker implements InputConnection {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        boolean rt = false;
+        if (obj instanceof InputConnectionHacker) {
+            rt = ((InputConnectionHacker)obj).ic == this.ic;
+        }
+        return rt || super.equals(obj);
+    }
+
+    public void updateCursorText(String cursorBeforeText, String cursorAfterText) {
+        L.d("cursorBeforeText:%s cursorAfterText:%s", cursorBeforeText, cursorAfterText);
+        this.cursorBeforeText = cursorBeforeText;
+        this.cursorAfterText = cursorAfterText;
+    }
+
+    @Override
     public CharSequence getTextBeforeCursor(int n, int flags) {
 //        return ic.getTextBeforeCursor(n, flags);
-        // TODO: 2017/8/28
-        return cursorBeforeText == null ? "" : cursorBeforeText;
+        if (cursorBeforeText == null) {
+            return "";
+        }
+        int length = cursorBeforeText.length();
+        if (n > length)
+            n = length;
+        return cursorBeforeText.substring(length - n, length);
     }
 
     @Override
     public CharSequence getTextAfterCursor(int n, int flags) {
-        return ic.getTextAfterCursor(n, flags);
+//        return ic.getTextAfterCursor(n, flags);
+        if (cursorAfterText == null) {
+            return "";
+        }
+        int length = cursorAfterText.length();
+        if (n > length)
+            n = length;
+        return cursorAfterText.substring(0, n);
     }
 
     @Override
@@ -80,22 +108,29 @@ public class InputConnectionHacker implements InputConnection {
         String text = editAreaView.getSelectedText();
         if (text == null) text = "";
         ExtractedText et = new ExtractedText();
+        if (!TextUtils.isEmpty(text)) {
+            et.selectionStart = 0;
+            et.selectionEnd = text.length();
+        } else {
+            et.selectionStart = -1;
+            et.selectionEnd = -1;
+            text = "that is text"; //修正输入法无法左右移动 todo: 这里应该返回所有文本，目前还不知道这样做有什么后遗症
+        }
         et.text = text;
         et.partialEndOffset = text.length();
-        et.selectionStart = 0;
-        et.selectionEnd = text.length();
         et.flags = 0;
         return et;
     }
 
     @Override
     public boolean deleteSurroundingText(int beforeLength, int afterLength) {
-        boolean b = ic.deleteSurroundingText(beforeLength, afterLength);
-//        beginBatchEdit();
-//        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-//        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
-//        endBatchEdit();
-        return b;
+//        boolean b = ic.deleteSurroundingText(beforeLength, afterLength);
+        beginBatchEdit();
+        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+        endBatchEdit();
+//        return b;
+        return true;
     }
 
     @Override
@@ -179,7 +214,7 @@ public class InputConnectionHacker implements InputConnection {
         isShiftPressed = false;
         isCtrlPressed = false;
         isSymPressed = false;
-        editAreaView.clearSelection();
+//        editAreaView.clearSelection();
         return ic.clearMetaKeyStates(states);
     }
 

@@ -320,9 +320,13 @@ function Bridge(editor) {
             try {
                 var cursor = self.editor.getSelection().getCursor();
                 var range = new Range(cursor.row, Math.max(0, cursor.column - 30), cursor.row, cursor.column);
-                var text = self.editor.session.getDocument().getTextRange(range);
-                AndroidEditor.updateCursorBeforeText(text);
-            } catch (e) { }
+                var line = self.editor.session.getDocument().getLine(cursor.row);
+                var before = line.substring(Math.max(0, cursor.column - 30), cursor.column);
+                var after = line.substring(cursor.column, cursor.column + 30);
+                AndroidEditor.updateCursorText(before, after);
+            } catch (e) {
+                console.log(e);
+            }
         });
         this.editor.on("onLongTouch", function () {
             self.showActionMode();

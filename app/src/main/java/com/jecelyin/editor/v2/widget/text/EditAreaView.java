@@ -26,6 +26,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.View;
@@ -238,8 +239,16 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
 
         @JavascriptInterface
         public void onSelectionChange(boolean s, String text) {
+            if (selected != s) {
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    int selEnd = TextUtils.isEmpty(text) ? 0 : text.length();
+                    imm.updateSelection(EditAreaView.this, 0, selEnd, -1, -1);
+                }
+            }
             selectedText = text;
             selected = s;
+
         }
 
         @JavascriptInterface
@@ -300,9 +309,9 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         }
 
         @JavascriptInterface
-        public void updateCursorBeforeText(String text) {
+        public void updateCursorText(String cursorBeforeText, String cursorAfterText) {
             if(inputConnectionHacker != null)
-                inputConnectionHacker.cursorBeforeText = text;
+                inputConnectionHacker.updateCursorText(cursorBeforeText, cursorAfterText);
         }
     }
 
@@ -611,6 +620,8 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
         final InputConnection ic = super.onCreateInputConnection(outAttrs);
         if (ic == null)
             return null;
+        if (inputConnectionHacker != null && inputConnectionHacker.equals(ic))
+            return inputConnectionHacker;
         inputConnectionHacker = new InputConnectionHacker(ic, this);
         return inputConnectionHacker;
     }

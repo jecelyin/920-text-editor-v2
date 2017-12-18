@@ -82,16 +82,19 @@ var TextInput = function(parentNode, host) {
         // text.style.position = "fixed";
         // text.style.top = "0px";
         text.focus();
+        console.log("focus " + host.selection.isEmpty());
+        //修正Android 7.1上 不能正确识别选择状态，比如：弹出快捷菜单
+        resetSelection(host.selection.isEmpty());
         // setTimeout(function() {
         //     text.style.position = "";
         //     if (text.style.top == "0px")
         //         text.style.top = top;
         // }, 0);
-        console.trace("focus");
+        // console.trace("focus");
     };
     this.blur = function() {
         text.blur();
-        console.trace("blur");
+        // console.trace("blur");
     };
     this.isFocused = function() {
         return isFocused;
@@ -109,10 +112,11 @@ var TextInput = function(parentNode, host) {
     });
 
     function resetSelection(isEmpty) {
+        // console.trace("resetSelection " + isEmpty);
         if (inComposition)
             return;
-        
-        // this prevents infinite recursion on safari 8 
+
+        // this prevents infinite recursion on safari 8
         // see https://github.com/ajaxorg/ace/issues/2114
         inComposition = true;
         var selectionStart, selectionEnd;
@@ -355,7 +359,7 @@ var TextInput = function(parentNode, host) {
             host.insert(inComposition.lastValue);
             host.session.markUndoGroup();
             inComposition.range = host.selection.getRange();
-            host.selection.setRange(r);
+            // host.selection.setRange(r); //实际是没选择的，会导致updateSelection时没有auto complete
             host.selection.clearSelection();
         }
     };
