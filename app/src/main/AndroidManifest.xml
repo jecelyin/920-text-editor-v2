@@ -30,7 +30,7 @@
         <activity
             android:name="com.jecelyin.common.app.CrashReportDialogActivity"
             android:theme="@style/DefaultTheme"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTop"
             android:excludeFromRecents="true"
             android:finishOnTaskLaunch="true"/>
 
@@ -53,7 +53,7 @@
         -->
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|layoutDirection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
