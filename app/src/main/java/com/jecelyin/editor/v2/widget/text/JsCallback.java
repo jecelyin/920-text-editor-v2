@@ -18,9 +18,8 @@
 
 package com.jecelyin.editor.v2.widget.text;
 
-import android.webkit.ValueCallback;
-
 import com.alibaba.fastjson.JSON;
+import com.tencent.smtt.sdk.ValueCallback;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

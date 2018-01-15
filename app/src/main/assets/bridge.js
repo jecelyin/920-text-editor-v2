@@ -21,6 +21,11 @@
  * @param editor Editor
  * @constructor
  */
+var KeyEventHook = {
+    isShiftPressed : false,
+    isAltPressed : false,
+    isCtrlPressed : false,
+};
 function Bridge(editor) {
     this.mode = null;
     this.lastTextLength = 0;
@@ -33,6 +38,18 @@ function Bridge(editor) {
         } else {
             alert('Unknown cmd: ' + cmd);
         }
+    };
+
+    this.setShiftPressed = function (data) {
+        KeyEventHook.isShiftPressed = data['value'];
+    };
+
+    this.setAltPressed = function (data) {
+        KeyEventHook.isAltPressed = data['value'];
+    };
+
+    this.setCtrlPressed = function (data) {
+        KeyEventHook.isCtrlPressed = data['value'];
     };
 
     this.redo = function () {

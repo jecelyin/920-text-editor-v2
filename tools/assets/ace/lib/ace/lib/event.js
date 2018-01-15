@@ -257,8 +257,6 @@ var getModifierHash = useragent.isMac && useragent.isOpera && !("KeyboardEvent" 
         return 0 | (e.metaKey ? 1 : 0) | (e.altKey ? 2 : 0) | (e.shiftKey ? 4 : 0) | (e.ctrlKey ? 8 : 0);
     }
     : function(e) {
-        if ('ctrlKey2' in e)
-            return 0 | (e.ctrlKey2 ? 1 : 0) | (e.altKey2 ? 2 : 0) | (e.shiftKey2 ? 4 : 0) | (e.metaKey ? 8 : 0);
         return 0 | (e.ctrlKey ? 1 : 0) | (e.altKey ? 2 : 0) | (e.shiftKey ? 4 : 0) | (e.metaKey ? 8 : 0);
     };
 
@@ -349,14 +347,14 @@ exports.addCommandKeyListener = function(el, callback) {
         var lastDefaultPrevented = null;
 
         addListener(el, "keydown", function(e) {
-            if (AndroidEditor) {
-                var shiftKey = AndroidEditor.isShiftPressed();
-                var altKey = AndroidEditor.isAltPressed();
-                var ctrlKey = AndroidEditor.isCtrlPressed();
-                e.shiftKey2 = shiftKey;
-                e.altKey2 = altKey;
-                e.ctrlKey2 = ctrlKey;
-            }
+            // if (AndroidEditor) {
+            //     var shiftKey = KeyEventHook.isShiftPressed;
+            //     var altKey = KeyEventHook.isAltPressed;
+            //     var ctrlKey = KeyEventHook.isCtrlPressed;
+            //     e.shiftKey2 = shiftKey;
+            //     e.altKey2 = altKey;
+            //     e.ctrlKey2 = ctrlKey;
+            // }
 
             pressedKeys[e.keyCode] = (pressedKeys[e.keyCode] || 0) + 1;
             var result = normalizeCommandKeys(callback, e, e.keyCode);

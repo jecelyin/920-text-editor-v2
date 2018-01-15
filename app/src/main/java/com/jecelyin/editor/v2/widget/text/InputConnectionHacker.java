@@ -42,11 +42,8 @@ import com.jecelyin.common.utils.L;
 public class InputConnectionHacker implements InputConnection {
     private final InputConnection ic;
     private final EditAreaView editAreaView;
-    private boolean isShiftPressed;
-    private boolean isAltPressed;
-    private boolean isSymPressed;
-    private boolean isCtrlPressed;
     private String cursorBeforeText, cursorAfterText;
+    private boolean isShiftPressed;
 
     public InputConnectionHacker(InputConnection ic, EditAreaView editAreaView) {
         this.ic = ic;
@@ -99,7 +96,13 @@ public class InputConnectionHacker implements InputConnection {
 
     @Override
     public int getCursorCapsMode(int reqModes) {
-        return ic.getCursorCapsMode(reqModes);
+//        return ic.getCursorCapsMode(reqModes);
+        String text;
+        if (cursorBeforeText == null || cursorAfterText == null)
+            text = "";
+        else
+            text = cursorBeforeText + cursorAfterText;
+        return TextUtils.getCapsMode(text, cursorBeforeText == null ? 0 : cursorBeforeText.length(), reqModes);
     }
 
     @Override
@@ -112,13 +115,13 @@ public class InputConnectionHacker implements InputConnection {
             et.selectionStart = 0;
             et.selectionEnd = text.length();
         } else {
-            et.selectionStart = -1;
-            et.selectionEnd = -1;
-            text = "that is text"; //修正输入法无法左右移动 todo: 这里应该返回所有文本，目前还不知道这样做有什么后遗症
+            et.selectionStart = 5;
+            et.selectionEnd = 5;
+            text = "that is text\ntest test"; //修正输入法无法左右移动 todo: 这里应该返回所有文本，目前还不知道这样做有什么后遗症
         }
         et.text = text;
+        et.partialStartOffset = 0;
         et.partialEndOffset = text.length();
-        et.flags = 0;
         return et;
     }
 
@@ -197,24 +200,38 @@ public class InputConnectionHacker implements InputConnection {
         int keyCode = event.getKeyCode();
         if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT || keyCode == KeyEvent.KEYCODE_SHIFT_RIGHT) {
             isShiftPressed = event.getAction() == KeyEvent.ACTION_DOWN;
+            setShiftPressed(isShiftPressed);
         } else if (keyCode == KeyEvent.KEYCODE_ALT_LEFT || keyCode == KeyEvent.KEYCODE_ALT_RIGHT
                 || keyCode == KeyEvent.KEYCODE_NUM) {
-            isAltPressed = event.getAction() == KeyEvent.ACTION_DOWN;
-        } else if (keyCode == KeyEvent.KEYCODE_SYM) {
-            isSymPressed = event.getAction() == KeyEvent.ACTION_DOWN;
+            boolean isAltPressed = event.getAction() == KeyEvent.ACTION_DOWN;
+            setAltPressed(isAltPressed);
         } else if (keyCode == KeyEvent.KEYCODE_CTRL_LEFT || keyCode == KeyEvent.KEYCODE_CTRL_RIGHT) {
-            isCtrlPressed = event.getAction() == KeyEvent.ACTION_DOWN;
+            boolean isCtrlPressed = event.getAction() == KeyEvent.ACTION_DOWN;
+            setCtrlPressed(isCtrlPressed);
         }
+      
         return ic.sendKeyEvent(event);
+    }
+
+    private void setShiftPressed(boolean b) {
+        editAreaView.execCommand(new EditorCommand.Builder("setShiftPressed").put("value", b).build());
+    }
+
+    private void setAltPressed(boolean b) {
+        editAreaView.execCommand(new EditorCommand.Builder("setAltPressed").put("value", b).build());
+    }
+
+    private void setCtrlPressed(boolean b) {
+        editAreaView.execCommand(new EditorCommand.Builder("setCtrlPressed").put("value", b).build());
     }
 
     @Override
     public boolean clearMetaKeyStates(int states) {
-        isAltPressed = false;
-        isShiftPressed = false;
-        isCtrlPressed = false;
-        isSymPressed = false;
-//        editAreaView.clearSelection();
+        L.d("clearMetaKeyStates");
+        setShiftPressed(false);
+        setAltPressed(false);
+        setCtrlPressed(false);
+
         return ic.clearMetaKeyStates(states);
     }
 
@@ -234,22 +251,6 @@ public class InputConnectionHacker implements InputConnection {
             return ic.requestCursorUpdates(cursorUpdateMode);
         }
         return false;
-    }
-
-    public boolean isShiftPressed() {
-        return isShiftPressed;
-    }
-
-    public boolean isAltPressed() {
-        return isAltPressed;
-    }
-
-    public boolean isSymPressed() {
-        return isSymPressed;
-    }
-
-    public boolean isCtrlPressed() {
-        return isCtrlPressed;
     }
 
     @TargetApi(Build.VERSION_CODES.N)

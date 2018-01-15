@@ -33,13 +33,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.alibaba.fastjson.JSON;
 import com.jecelyin.common.utils.IOUtils;
@@ -49,6 +43,12 @@ import com.jecelyin.editor.v2.Pref;
 import com.jecelyin.editor.v2.R;
 import com.jecelyin.editor.v2.ThemeList;
 import com.jecelyin.editor.v2.ui.MainActivity;
+import com.tencent.smtt.export.external.interfaces.ConsoleMessage;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -291,21 +291,6 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                     }
                 }
             });
-        }
-
-        @JavascriptInterface
-        public boolean isShiftPressed() {
-            return inputConnectionHacker != null && inputConnectionHacker.isShiftPressed();
-        }
-
-        @JavascriptInterface
-        public boolean isAltPressed() {
-            return inputConnectionHacker != null && inputConnectionHacker.isAltPressed();
-        }
-
-        @JavascriptInterface
-        public boolean isCtrlPressed() {
-            return inputConnectionHacker != null && inputConnectionHacker.isCtrlPressed();
         }
 
         @JavascriptInterface
@@ -615,14 +600,49 @@ public class EditAreaView extends WebView implements SharedPreferences.OnSharedP
                 .callback(callback).build());
     }
 
-    @Override
-    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+//    @Override
+    public InputConnection onCreateInputConnection2(EditorInfo outAttrs) {
         final InputConnection ic = super.onCreateInputConnection(outAttrs);
         if (ic == null)
             return null;
-        if (inputConnectionHacker != null && inputConnectionHacker.equals(ic))
-            return inputConnectionHacker;
-        inputConnectionHacker = new InputConnectionHacker(ic, this);
+
+        outAttrs.imeOptions = EditorInfo.IME_NULL;
+        if (focusSearch(FOCUS_DOWN) != null) {
+            outAttrs.imeOptions |= EditorInfo.IME_FLAG_NAVIGATE_NEXT;
+        }
+        if (focusSearch(FOCUS_UP) != null) {
+            outAttrs.imeOptions |= EditorInfo.IME_FLAG_NAVIGATE_PREVIOUS;
+        }
+        if ((outAttrs.imeOptions&EditorInfo.IME_MASK_ACTION)
+                == EditorInfo.IME_ACTION_UNSPECIFIED) {
+            if ((outAttrs.imeOptions&EditorInfo.IME_FLAG_NAVIGATE_NEXT) != 0) {
+                // An action has not been set, but the enter key will move to
+                // the next focus, so set the action to that.
+                outAttrs.imeOptions |= EditorInfo.IME_ACTION_NEXT;
+            } else {
+                // An action has not been set, and there is no focus to move
+                // to, so let's just supply a "done" action.
+                outAttrs.imeOptions |= EditorInfo.IME_ACTION_DONE;
+            }
+        }
+        // Multi-line text editors should always show an enter key.
+        outAttrs.imeOptions |= EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+        outAttrs.imeOptions = 1140850694;
+
+        if (inputConnectionHacker == null || !inputConnectionHacker.equals(ic))
+            inputConnectionHacker = new InputConnectionHacker(ic, this);
+
+        outAttrs.initialSelStart = 0;
+        outAttrs.initialSelEnd = 0;
+
+        int inputType = EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE;
+        inputType |= EditorInfo.TYPE_TEXT_FLAG_AUTO_COMPLETE;
+        inputType |= EditorInfo.TYPE_TEXT_FLAG_AUTO_CORRECT;
+        inputType |= EditorInfo.TYPE_TEXT_FLAG_CAP_WORDS;
+        inputType |= EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES;
+        outAttrs.inputType = 147457;
+        outAttrs.initialCapsMode = inputConnectionHacker.getCursorCapsMode(inputType);
+
         return inputConnectionHacker;
     }
 
